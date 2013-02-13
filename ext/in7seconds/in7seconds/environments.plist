@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Release</key>
+	<dict>
+		<key>vkScopes</key>
+		<string>friends,photos,status,wall,offline</string>
+		<key>vkAppId</key>
+		<string>3425096</string>
+		<key>vkAppSecret</key>
+		<string>mcLC6xIOxpMApchoAg3u</string>
+		<key>baseURL</key>
+		<string>http://in7seconds.com</string>
+	</dict>
+	<key>Distribution</key>
+	<dict>
+		<key>vkScopes</key>
+		<string>friends,photos,status,wall,offline</string>
+		<key>vkAppId</key>
+		<string>3425096</string>
+		<key>vkAppSecret</key>
+		<string>mcLC6xIOxpMApchoAg3u</string>
+		<key>baseURL</key>
+		<string>http://in7seconds.com</string>
+	</dict>
+	<key>Debug</key>
+	<dict>
+		<key>vkScopes</key>
+		<string>friends,photos,status,wall,offline</string>
+		<key>baseURL</key>
+		<string>http://in7seconds.com</string>
+		<key>vkAppId</key>
+		<string>3425096</string>
+		<key>vkAppSecret</key>
+		<string>mcLC6xIOxpMApchoAg3u</string>
+	</dict>
+</dict>
+</plist>

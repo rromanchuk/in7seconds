@@ -7,7 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Vkontakte.h"
+#import "User.h"
+@protocol LoginDelegate;
+@interface LoginViewController : UIViewController <VkontakteDelegate>
 
-@interface LoginViewController : UIViewController
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) User *currentUser;
+
+@property (weak, nonatomic) IBOutlet UIButton *vkLoginButton;
+@property (weak, nonatomic) id <LoginDelegate> delegate;
+
+- (IBAction)didTapVkLogin:(id)sender;
+
+@end
+
+
+@protocol LoginDelegate <NSObject>
+
+@required
+- (void)didLogin:(User *)users;
 
 @end
