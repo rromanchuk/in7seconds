@@ -7,7 +7,8 @@
 //
 
 #import "InitialViewController.h"
-
+#import "NavigationTopViewController.h"
+#import "InitialViewController.h"
 @interface InitialViewController ()
 
 @end
@@ -36,6 +37,10 @@
 
 	// Do any additional setup after loading the view.
     self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationTop"];
+    NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
+    ((InitialViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
+    ((InitialViewController *)nc.topViewController).currentUser = self.currentUser;
+    
 }
 
 - (void)didReceiveMemoryWarning

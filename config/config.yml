@@ -1,7 +1,7 @@
 test:
   name: Ostronaut
   description: DICK
-  host: tripbrodev.ru:3000
+  host: in7secondsdev.com:3000
   fb_app_id: 416377108420491
   fb_app_secret: d63ab873eee7b992ad53b816b848bbba
   aws_access: 0SPGHF9VGDTQXENQC282
@@ -17,8 +17,8 @@ test:
 development:
   name: 7seconds Development
   description: AWESUM
-  host: piclardev.com:3000
-  asset_host: tripbrodev.com:3000
+  host: in7secondsdev.com:3000
+  asset_host: in7secondsdev.com:3000
   fb_app_id: 251326115000725
   fb_app_secret: 84f74e5f9546de6410610df76cc0521c
   aws_access: 0SPGHF9VGDTQXENQC282
@@ -36,7 +36,7 @@ development:
 production:
   name: 7seconds
   description: INSERT DESCRIPTION
-  host: piclar.com
+  host: in7seconds.com
   asset_host: piclar.com
   fb_app_id: 416377108420491
   fb_app_secret: d63ab873eee7b992ad53b816b848bbba

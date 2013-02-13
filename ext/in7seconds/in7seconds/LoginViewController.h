@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Vkontakte.h"
-#import "User.h"
+#import "User+REST.h"
 @protocol LoginDelegate;
 @interface LoginViewController : UIViewController <VkontakteDelegate>
 

@@ -42,13 +42,15 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :last_name
       t.string :vk_token
       t.string :fb_token
+      t.string :photo_url
       t.column :fbuid, :bigint
       t.column :vkuid, :bigint
       t.column "latitude", :decimal, :precision => 15, :scale => 10
       t.column "longitude", :decimal, :precision => 15, :scale => 10
       t.timestamps
     end
-
+    
+    add_attachment :users, :photo
     add_index :users, :email,                :unique => true
     add_index :users, :reset_password_token, :unique => true
     # add_index :users, :confirmation_token,   :unique => true
@@ -56,6 +58,5 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :authentication_token, :unique => true
     add_index :users, :fbuid
     add_index :users, :vkuid
-    
   end
 end

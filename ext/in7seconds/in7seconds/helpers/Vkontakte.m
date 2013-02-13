@@ -261,6 +261,7 @@
     
     
     NSURL *url = [NSURL URLWithString:[Config sharedConfig].vkUrl];
+    ALog(@"vk auth url %@", url);
     VkontakteViewController *vkontakteViewController = [[VkontakteViewController alloc] initWithAuthLink:url];
     vkontakteViewController.delegate = self;
     

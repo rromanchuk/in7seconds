@@ -37,8 +37,10 @@
 }
 
 - (IBAction)didTapVkLogin:(id)sender {
+    ALog(@"did tap");
     if (![[Vkontakte sharedInstance] isAuthorized])
     {
+        ALog(@"authenticate");
         [[Vkontakte sharedInstance] authenticate];
     }
     else
@@ -55,47 +57,41 @@
     [[Vkontakte sharedInstance] logout];
     [RestUser resetIdentifiers];
     [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"VK_LOGIN_ERROR", @"Error when trying to authenticate vk")];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)showVkontakteAuthController:(UIViewController *)controller
 {
+    [self presentViewController:controller animated:YES completion:^(void) {
+        
+    }];
 }
 
 - (void)vkontakteAuthControllerDidCancelled
 {
     [RestUser resetIdentifiers];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)vkontakteDidFinishLogin:(Vkontakte *)vkontakte
 {
-//    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[Vkontakte sharedInstance].userId, @"user_id", [Vkontakte sharedInstance].accessToken, @"access_token", @"vkontakte", @"platform", nil];
-//    if ([Utils NSStringIsValidEmail:[Vkontakte sharedInstance].email]) {
-//        [params setValue:[Vkontakte sharedInstance].email forKey:@"email"];
-//    }
-//    
-//    [RestUser create:params
-//              onLoad:^(RestUser *restUser) {
-//                  if (restUser.isNewUserCreated) {
-//                      [Flurry logEvent:@"REGISTRATION_VK_NEW_USER_CREATED"];
-//                  } else {
-//                      [Flurry logEvent:@"REGISTRATION_VK_EXIST_USER_LOGINED"];
-//                  }
-//                  restUser.vkToken = [Vkontakte sharedInstance].accessToken;
-//                  restUser.vkUserId = [Vkontakte sharedInstance].userId;
-//                  restUser.remoteProfilePhotoUrl = [Vkontakte sharedInstance].bigPhotoUrl;
-//                  [RestUser setCurrentUserId:restUser.externalId];
-//                  [RestUser setCurrentUserToken:restUser.authenticationToken];
-//                  [self findOrCreateCurrentUserWithRestUser:restUser];
-//                  [self setUASettings];
-//                  self.currentUser.vkontakteToken = [Vkontakte sharedInstance].accessToken;
-//                  [SVProgressHUD dismiss];
-//                  [self didLogIn];
-//                  
-//              }
-//             onError:^(NSError *error) {
-//                 [RestUser resetIdentifiers];
-//                 [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-//             }];
+
+    NSDictionary *_params = @{@"access_token": vkontakte.accessToken, @"user_id": vkontakte.userId, @"platform": @"vkontakte", @"email": vkontakte.email };
+    NSMutableDictionary *params = [_params mutableCopy];
+    
+    [RestUser create:params
+              onLoad:^(RestUser *restUser) {
+                  
+                  [User findOrCreateUserWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+                  [RestUser setCurrentUserId:restUser.externalId];
+                  [RestUser setCurrentUserToken:restUser.authenticationToken];
+                  [SVProgressHUD dismiss];
+                  
+              }
+             onError:^(NSError *error) {
+                 [RestUser resetIdentifiers];
+                 [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+             }];
 
 }
 

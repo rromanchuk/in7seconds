@@ -29,7 +29,7 @@
 		<key>vkScopes</key>
 		<string>friends,photos,status,wall,offline</string>
 		<key>baseURL</key>
-		<string>http://in7seconds.com</string>
+		<string>http://in7secondsdev.com:3000</string>
 		<key>vkAppId</key>
 		<string>3425096</string>
 		<key>vkAppSecret</key>

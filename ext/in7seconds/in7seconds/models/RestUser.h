@@ -10,6 +10,23 @@
 
 @interface RestUser : RestObject <RestMappable>
 
+@property NSInteger gender;
+
+// Identifiers
+@property (atomic, strong) NSString *authenticationToken;
+@property (atomic, strong) NSString *fbToken;
+@property (atomic, strong) NSString *vkToken;
+
+// Attributes
+@property (atomic, strong) NSString *firstName;
+@property (atomic, strong) NSString *lastName;
+@property (atomic, strong) NSString *email;
+@property (atomic, strong) NSString *photoUrl;
+@property (atomic, strong) NSString *location;
+@property (atomic, strong) NSDate *birthday;
+@property (atomic, strong) NSDate *modifiedAt;
+@property (atomic, strong) NSDate *createdAt;
+
 + (void)create:(NSMutableDictionary *)parameters
         onLoad:(void (^)(RestUser *restUser))onLoad
        onError:(void (^)(NSError *error))onError;
