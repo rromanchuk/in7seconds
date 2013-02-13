@@ -65,7 +65,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden = YES;
+    //self.navigationController.navigationBarHidden = YES;
     //    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     //    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
     //        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar.png"]
@@ -76,8 +76,9 @@
     //                                                                              style:UIBarButtonItemStyleBordered
     //                                                                             target:self
     //                                                                             action:@selector(cancelButtonPressed:)];
+    
     self.webView.delegate = self;
-    DLog(@"%@", _authLink);
+    ALog(@"in viewdidload %@", _authLink);
     [self.webView loadRequest:[NSURLRequest requestWithURL:_authLink]];
 }
 
@@ -88,11 +89,6 @@
     self.webView = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 - (void)cancelButtonPressed:(id)sender
 {
@@ -112,6 +108,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView
 {
+    ALog(@"in webviewdidfinished");
     NSString *cleanup_dialog = @"var nodes=document.getElementsByClassName('apps_access_item');"
     "for (var i=0;i<nodes.length;i++) {"
     "   nodes[i].children[1].children[0].nextSibling.textContent = '';"
@@ -183,6 +180,7 @@
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
+    ALog(@"did fail");
     [Flurry logError:@"VK_WEBVIEW_FAILED" message:error.localizedDescription error:error];
     if (self.delegate && [self.delegate respondsToSelector:@selector(authorizationDidFailedWithError:)])
     {
@@ -195,6 +193,7 @@
 
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    ALog(@"should start loading");
     NSString *s = @"var inputs = document.getElementsByTagName('input');"
     "var email = '';"
     "for (var i=0;i<inputs.length; i++) {"
@@ -203,7 +202,7 @@
     "email;";
     
     NSString *email = [_webView stringByEvaluatingJavaScriptFromString:s];
-    DLog(@"Caught EMAIL %@", email);
+    ALog(@"Caught EMAIL %@", email);
     if (([email length] != 0))
     {
         _userEmail = email;

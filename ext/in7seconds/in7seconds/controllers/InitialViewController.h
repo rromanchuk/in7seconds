@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ECSlidingViewController.h"
-
+#import "User+REST.h"
 @interface InitialViewController : ECSlidingViewController
-
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) User *currentUser;
 @end

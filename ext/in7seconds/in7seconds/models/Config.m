@@ -20,7 +20,7 @@
         NSDictionary *environment  = [environments objectForKey:configuration];
         self.vkAppId = [environment valueForKey:@"vkAppId"];
         self.vkSecretId = [environment valueForKey:@"vkSecretId"];
-        self.vkScopes = [environment valueForKey:@"vkPermissions"];
+        self.vkScopes = [environment valueForKey:@"vkScopes"];
         self.baseURL = [environment valueForKey:@"baseURL"];
     }
     
@@ -31,6 +31,7 @@
     NSString *url = [NSString stringWithFormat:@"http://oauth.vk.com/authorize?client_id=%@&scope=%@&redirect_uri=http://oauth.vk.com/blank.html&display=touch&response_type=token", self.vkAppId, self.vkScopes];
     return url;
 }
+
 
 + (Config *)sharedConfig
 {

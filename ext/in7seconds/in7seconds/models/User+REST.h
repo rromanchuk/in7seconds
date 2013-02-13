@@ -16,4 +16,6 @@
       inManagedObjectContext:(NSManagedObjectContext *)context;
 + (User *)findOrCreateUserWithRestUser:(RestUser *)user
                 inManagedObjectContext:(NSManagedObjectContext *)context;
+
++ (User *)currentUser:(NSManagedObjectContext *)context;
 @end

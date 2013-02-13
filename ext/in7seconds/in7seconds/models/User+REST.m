@@ -57,6 +57,13 @@
     return user;
 }
 
++ (User *)currentUser:(NSManagedObjectContext *)context {
+    if ([RestUser currentUserId]) {
+        return [User userWithExternalId:[NSNumber numberWithInteger:[[RestUser currentUserId] integerValue]]inManagedObjectContext:context];
+    }
+    
+    return nil;
+}
 
 + (User *)findOrCreateUserWithRestUser:(RestUser *)user
                 inManagedObjectContext:(NSManagedObjectContext *)context
@@ -72,24 +79,20 @@
 
 - (void)setManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {
     RestUser *restUser = (RestUser *) intermediateObject;
-//    self.firstname = restUser.firstName;
-//    self.lastname = restUser.lastName;
-//    self.checkinsCount = [NSNumber numberWithInt:restUser.checkinsCount];
-//    self.fullName = restUser.fullName;
-//    self.email = restUser.email;
-//    self.remoteProfilePhotoUrl = restUser.remoteProfilePhotoUrl;
-//    self.externalId = [NSNumber numberWithInt:restUser.externalId];
-//    self.authentication_token = restUser.authenticationToken;
-//    self.fbToken = restUser.fbToken;
-//    self.vkontakteToken = restUser.vkToken;
-//    self.location = restUser.location;
-//    self.gender = [NSNumber numberWithInteger:restUser.gender];
-//    self.birthday = restUser.birthday;
-//    self.registrationStatus = [NSNumber numberWithInteger:restUser.registrationStatus];
-//    self.isFollowed = [NSNumber numberWithInteger:restUser.isFollowed];
-//    self.modifiedDate = restUser.modifiedDate;
-//    
-//    // Add following if they exist
+    self.firstName = restUser.firstName;
+    self.lastName = restUser.lastName;
+    //self.email = restUser.email;
+    self.photoUrl = restUser.photoUrl;
+    self.externalId = [NSNumber numberWithInt:restUser.externalId];
+    self.authenticationToken = restUser.authenticationToken;
+    self.vkToken = restUser.vkToken;
+    //self.fbToken = restUser.fbToken;
+    self.location = restUser.location;
+    self.gender = [NSNumber numberWithInteger:restUser.gender];
+    self.birthday = restUser.birthday;
+    self.modifiedAt = restUser.modifiedAt;
+    
+    // Add following if they exist
 //    if ([restUser.following count] > 0) {
 //        [self removeFollowing:self.following];
 //        NSMutableSet *following = [[NSMutableSet alloc] init];
@@ -101,7 +104,7 @@
 //        }
 //        [self addFollowing:following];
 //    }
-//    
+    
 //    // Add followers if they exist
 //    if ([restUser.followers count] > 0) {
 //        [self removeFollowers:self.followers];

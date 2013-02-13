@@ -32,6 +32,14 @@
 	// Do any additional setup after loading the view.
 }
 
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (!self.currentUser) {
+        [self performSegueWithIdentifier:@"Login" sender:self];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -39,7 +47,11 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
+    if ([segue.identifier isEqualToString:@"Login"]) {
+        IndexViewController *vc = (IndexViewController *)segue.destinationViewController;
+        vc.managedObjectContext = self.managedObjectContext;
+        vc.currentUser = self.currentUser;
+    }
 }
 
 - (IBAction)revealMenu:(id)sender

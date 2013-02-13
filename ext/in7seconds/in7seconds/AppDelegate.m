@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "InitialViewController.h"
+#import "User+REST.h"
 @implementation AppDelegate
 @synthesize window = _window;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -21,6 +22,9 @@
     // Override point for customization after application launch.
     [Flurry startSession:@"7RBHDYVR2RPTKP7NT4XN"];
     [TestFlight takeOff:@"8b9f2759-9e2b-48d9-873b-d3af3677d35b"];
+    InitialViewController *vc = (InitialViewController *)self.window.rootViewController;
+    vc.managedObjectContext = self.managedObjectContext;
+    vc.currentUser = [User currentUser:self.managedObjectContext];
     [self theme];
     return YES;
 }

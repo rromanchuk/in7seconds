@@ -11,30 +11,25 @@
 static NSString *AUTH_PATH = @"token_authentications.json";
 
 @implementation RestUser
-//+ (NSDictionary *)mapping {
-//    NSMutableDictionary *map = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-//                                @"firstName", @"first_name",
-//                                @"lastName", @"last_name",
-//                                //@"fullName", @"full_name",
-//                                @"location", @"location",
-//                                @"gender", @"sex",
-//                                @"email", @"email",
-//                                @"externalId", @"id",
-//                                //@"checkinsCount", @"checkins_count",
-//                                @"authenticationToken", @"authentication_token",
-//                                @"fbToken", @"fb_token",
-//                                //@"vkToken", @"vk_token"
-//                                @"remoteProfilePhotoUrl", @"photo_url",
-//                                //@"registrationStatus", @"status",
-//                                //@"isNewUserCreated", @"is_new_user_created",
-//                                @"isFollowed", @"is_followed",
-//                                [NSDate mappingWithKey:@"birthday"
-//                                      dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"birthday",
-//                                [NSDate mappingWithKey:@"modifiedDate"
-//                                      dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"updated_at",
-//                                nil];
-//    return map;
-//}
++ (NSDictionary *)mapping {
+    NSMutableDictionary *map = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                @"firstName", @"first_name",
+                                @"lastName", @"last_name",
+                                @"location", @"location",
+                                @"gender", @"sex",
+                                @"email", @"email",
+                                @"externalId", @"id",
+                                @"authenticationToken", @"authentication_token",
+                                @"fbToken", @"fb_token",
+                                @"vkToken", @"vk_token"
+                                @"photoUrl", @"photo_url",
+                                [NSDate mappingWithKey:@"birthday"
+                                      dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"birthday",
+                                [NSDate mappingWithKey:@"modifiedAt"
+                                      dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"updated_at",
+                                nil];
+    return map;
+}
 
 
 + (void)create:(NSMutableDictionary *)parameters
@@ -68,7 +63,7 @@ static NSString *AUTH_PATH = @"token_authentications.json";
 
 + (void)resetIdentifiers {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"userAuthenticationToken"];
+    [defaults removeObjectForKey:@"authToken"];
     [defaults removeObjectForKey:@"currentUser"];
     [defaults removeObjectForKey:@"currentUserId"];
     [defaults synchronize];
@@ -89,14 +84,14 @@ static NSString *AUTH_PATH = @"token_authentications.json";
 
 + (void)setCurrentUserToken:(NSString *)token {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:token forKey:@"userAuthenticationToken"];
+    [defaults setObject:token forKey:@"authToken"];
     [defaults synchronize];
 }
 
 + (NSString *)currentUserToken
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults objectForKey:@"userAuthenticationToken"];
+    return [defaults objectForKey:@"authToken"];
 }
 
 @end

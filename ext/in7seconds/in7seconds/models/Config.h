@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface Config : NSObject
+
 @property (nonatomic, strong) NSString *vkAppId;
 @property (nonatomic, strong) NSString *vkSecretId;
 @property (nonatomic, strong) NSString *vkScopes;
 @property (nonatomic, strong) NSString *baseURL;
-@property (nonatomic, strong) NSString *vkUrl;
+@property (nonatomic, strong, getter = getVkUrl) NSString *vkUrl;
 
 + (Config *)sharedConfig;
 @end

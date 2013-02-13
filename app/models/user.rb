@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city
-  # attr_accessible :title, :body
+  attr_accessible :vkuid, :birthday, :provider, :photo_url
 
   has_many :relationships
 
@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
          :through => :friendships,
          :source => :hookup,
          :conditions => "status = 'pending'"
+
 
   def fb_client
      FbGraph::User.fetch(fbuid, :access_token => fb_token)
@@ -44,13 +45,6 @@ class User < ActiveRecord::Base
     last_name + " " + first_name
   end
 
-  def photo_from_url(url)
-    self.photo = URI.parse(url)
-    self.photo_file_name = "avatar.png"
-    self.photo_content_type = "image/png"
-  end
-
-
   #authentication
 
   def update_user_from_vk_graph(vk_user, access_token)
@@ -68,7 +62,8 @@ class User < ActiveRecord::Base
           :country => get_vk_country(vk_user.country, access_token),
           :vk_token => access_token,
           :gender => vk_user.sex,
-          :provider => :vkontakte)
+          :provider => :vkontakte,
+          :photo_url => vk_user.photo_big)
     user.photo_from_url vk_user.photo_big
 
     user
@@ -82,7 +77,7 @@ class User < ActiveRecord::Base
     self.location = facebook_user.location.name unless facebook_user.location.blank?
     self.gender = (facebook_user.gender == "male") ? 1 : 2
     puts "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=100&height=100"
-    photo_from_url "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=100&height=100"
+    self.photo_url "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=100&height=100"
     #photo_from_url "http://www.warrenphotographic.co.uk/photography/cats/21495.jpg"
 
     save
@@ -157,6 +152,24 @@ class User < ActiveRecord::Base
     request.status = 'accepted'
     request.accepted_at = accepted_at
     request.save!
+  end
+
+   def self.get_vk_city(id, token)
+    HTTParty.get('https://api.vk.com/method/getCities', {query: {cids: id, access_token: token}})["response"].first["name"]
+  end
+
+  def self.get_vk_country(id, token)
+    HTTParty.get('https://api.vk.com/method/getCountries', {query: {cids: id, access_token: token}})["response"].first["name"]
+  end
+
+  private
+
+  def get_vk_city(id, token)
+    User.get_vk_city(id, token)
+  end
+
+  def get_vk_country(id, token)
+    User.get_vk_country(id, token)
   end
 
 end

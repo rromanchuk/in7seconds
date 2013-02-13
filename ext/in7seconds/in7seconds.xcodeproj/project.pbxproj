@@ -18,7 +18,6 @@
 		94D09CBC16CBD3E60064F886 /* JTValidMappingKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CB516CBD3E60064F886 /* JTValidMappingKey.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		94D09CBD16CBD3E60064F886 /* NSObject+JTObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CB716CBD3E60064F886 /* NSObject+JTObjectMapping.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		94D09CBF16CBD5260064F886 /* environments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94D09CBE16CBD5260064F886 /* environments.plist */; };
-		94D09CC616CBEA5D0064F886 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CC516CBEA5D0064F886 /* User.m */; };
 		94D09CC916CBED1D0064F886 /* User+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CC816CBED1D0064F886 /* User+REST.m */; };
 		94D09CCC16CBF0160064F886 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CCB16CBF0160064F886 /* IndexViewController.m */; };
 		94D09CCE16CBF0CC0064F886 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D09CCD16CBF0CC0064F886 /* CoreData.framework */; };
@@ -66,6 +65,7 @@
 		FA7002C516CAF5430098A5B7 /* Vkontakte.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002C416CAF5430098A5B7 /* Vkontakte.m */; };
 		FA7002C816CAF5F00098A5B7 /* VkontakteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002C716CAF5F00098A5B7 /* VkontakteViewController.m */; };
 		FA7002CC16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */; };
+		FA7002D816CC3D4B0098A5B7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002D716CC3D4B0098A5B7 /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,8 +98,6 @@
 		94D09CB616CBD3E60064F886 /* NSObject+JTObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JTObjectMapping.h"; sourceTree = "<group>"; };
 		94D09CB716CBD3E60064F886 /* NSObject+JTObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JTObjectMapping.m"; sourceTree = "<group>"; };
 		94D09CBE16CBD5260064F886 /* environments.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = environments.plist; sourceTree = "<group>"; };
-		94D09CC416CBEA5D0064F886 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
-		94D09CC516CBEA5D0064F886 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
 		94D09CC716CBED1D0064F886 /* User+REST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "User+REST.h"; path = "models/User+REST.h"; sourceTree = "<group>"; };
 		94D09CC816CBED1D0064F886 /* User+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "User+REST.m"; path = "models/User+REST.m"; sourceTree = "<group>"; };
 		94D09CCA16CBF0160064F886 /* IndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndexViewController.h; path = controllers/IndexViewController.h; sourceTree = "<group>"; };
@@ -166,6 +164,8 @@
 		FA7002C716CAF5F00098A5B7 /* VkontakteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VkontakteViewController.m; path = controllers/VkontakteViewController.m; sourceTree = "<group>"; };
 		FA7002CA16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+NetworkActivityIndicator.h"; path = "categories/UIApplication+NetworkActivityIndicator.h"; sourceTree = "<group>"; };
 		FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+NetworkActivityIndicator.m"; path = "categories/UIApplication+NetworkActivityIndicator.m"; sourceTree = "<group>"; };
+		FA7002D616CC3D4B0098A5B7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
+		FA7002D716CC3D4B0098A5B7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,8 +216,8 @@
 		94D09CC316CBEA4B0064F886 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				94D09CC416CBEA5D0064F886 /* User.h */,
-				94D09CC516CBEA5D0064F886 /* User.m */,
+				FA7002D616CC3D4B0098A5B7 /* User.h */,
+				FA7002D716CC3D4B0098A5B7 /* User.m */,
 				94D09CC716CBED1D0064F886 /* User+REST.h */,
 				94D09CC816CBED1D0064F886 /* User+REST.m */,
 			);
@@ -553,13 +553,13 @@
 				94D09CBB16CBD3E60064F886 /* JTSetMappings.m in Sources */,
 				94D09CBC16CBD3E60064F886 /* JTValidMappingKey.m in Sources */,
 				94D09CBD16CBD3E60064F886 /* NSObject+JTObjectMapping.m in Sources */,
-				94D09CC616CBEA5D0064F886 /* User.m in Sources */,
 				94D09CC916CBED1D0064F886 /* User+REST.m in Sources */,
 				94D09CCC16CBF0160064F886 /* IndexViewController.m in Sources */,
 				94D09CD116CBF2260064F886 /* InitialViewController.m in Sources */,
 				94D09CD416CBF3830064F886 /* NavigationTopViewController.m in Sources */,
 				94D09CD716CBF4060064F886 /* MenuViewController.m in Sources */,
 				9484987616CBFE96000083DE /* UIBarButtonItem+Borderless.m in Sources */,
+				FA7002D816CC3D4B0098A5B7 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
