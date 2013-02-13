@@ -15,7 +15,7 @@
  */
 
 #import "Vkontakte.h"
-//#import "Config.h"
+#import "Config.h"
 @interface Vkontakte (Private)
 
 - (void)storeSession;

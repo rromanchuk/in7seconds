@@ -7,7 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AFJSONRequestOperation.h"
+#import "RestClient.h"
 
-@interface RestObject : NSObject
+typedef enum  {
+    kObjectNotFound = 404,
+    kUserNotAuthorized = 403,
+    kInternalServerError = 500
+} OstronautNetworkError;
+
+
+@interface RestObject : NSObject 
+@property NSInteger externalId;
++ (NSError *)customError:(NSError *)error withServerResponse:(NSHTTPURLResponse *)response andJson:(id)JSON;
+@end
+
+@protocol RestMappable <NSObject>
+
+@required
++ (NSDictionary *)mapping;
 
 @end

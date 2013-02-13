@@ -8,6 +8,17 @@
 
 #import "RestObject.h"
 
-@interface RestUser : RestObject
+@interface RestUser : RestObject <RestMappable>
 
++ (void)create:(NSMutableDictionary *)parameters
+        onLoad:(void (^)(RestUser *restUser))onLoad
+       onError:(void (^)(NSError *error))onError;
+
+
+
++ (NSNumber *)currentUserId;
++ (void)setCurrentUserId:(NSInteger)userId;
++ (NSString *)currentUserToken;
++ (void)setCurrentUserToken:(NSString *)token;
++ (void)resetIdentifiers;
 @end
