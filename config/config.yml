@@ -1,0 +1,53 @@
+test:
+  name: Ostronaut
+  description: DICK
+  host: tripbrodev.ru:3000
+  fb_app_id: 416377108420491
+  fb_app_secret: d63ab873eee7b992ad53b816b848bbba
+  aws_access: 0SPGHF9VGDTQXENQC282
+  aws_secret: 9zscLw+Y+Mh437fHaG1h+BUCtjViDrCP8ipmJImy
+  aws_bucket: ostronaut-dev
+  fsq_key: 3JGS1NJOEXKRRMMRYDDGWEOOVWKHUT3MK24Y4YBTZ5BM2UZ4
+  fsq_secret: HNMOAADDNV3EEX3G0XUWYS2UBWSXZCMTX0WYKS1MJXIPUNKJ
+  vk_app_id: 3425096
+  vk_secret: mcLC6xIOxpMApchoAg3u
+  vk_scopes: "friends,photos,status,wall,offline"
+  contact_email: blah@blah.com
+
+development:
+  name: 7seconds Development
+  description: AWESUM
+  host: piclardev.com:3000
+  asset_host: tripbrodev.com:3000
+  fb_app_id: 251326115000725
+  fb_app_secret: 84f74e5f9546de6410610df76cc0521c
+  aws_access: 0SPGHF9VGDTQXENQC282
+  aws_secret: 9zscLw+Y+Mh437fHaG1h+BUCtjViDrCP8ipmJImy
+  aws_bucket: ostronaut-dev
+  aws_path: development
+  fsq_key: 3JGS1NJOEXKRRMMRYDDGWEOOVWKHUT3MK24Y4YBTZ5BM2UZ4
+  fsq_secret: HNMOAADDNV3EEX3G0XUWYS2UBWSXZCMTX0WYKS1MJXIPUNKJ
+  vk_app_id: 3425096
+  vk_secret: mcLC6xIOxpMApchoAg3u
+  vk_scopes: "friends,photos,status,wall,offline"
+  s3_cdn: s3.amazonaws.com/piclar
+  contact_email: blah@blah.com
+
+production:
+  name: 7seconds
+  description: INSERT DESCRIPTION
+  host: piclar.com
+  asset_host: piclar.com
+  fb_app_id: 416377108420491
+  fb_app_secret: d63ab873eee7b992ad53b816b848bbba
+  aws_access: 0SPGHF9VGDTQXENQC282
+  aws_secret: 9zscLw+Y+Mh437fHaG1h+BUCtjViDrCP8ipmJImy
+  aws_bucket: piclar
+  aws_path: production
+  fsq_key: 3JGS1NJOEXKRRMMRYDDGWEOOVWKHUT3MK24Y4YBTZ5BM2UZ4
+  fsq_secret: HNMOAADDNV3EEX3G0XUWYS2UBWSXZCMTX0WYKS1MJXIPUNKJ
+  vk_app_id: 3425096
+  vk_secret: mcLC6xIOxpMApchoAg3u
+  vk_scopes: "friends,photos,status,wall,offline"
+  s3_cdn: cdn.piclar.com
+  contact_email: rromanchuk@gmail.com
