@@ -1,0 +1,57 @@
+
+PODS:
+- AFNetworking (1.1.0)
+- ASIHTTPRequest (1.8.1):
+  - ASIHTTPRequest/ASIWebPageRequest (= 1.8.1)
+  - ASIHTTPRequest/CloudFiles (= 1.8.1)
+  - ASIHTTPRequest/S3 (= 1.8.1)
+  - Reachability
+- ASIHTTPRequest/ASIWebPageRequest (1.8.1):
+  - Reachability
+- ASIHTTPRequest/CloudFiles (1.8.1):
+  - Reachability
+- ASIHTTPRequest/S3 (1.8.1):
+  - Reachability
+- ECSlidingViewController (0.9.0)
+- Facebook-iOS-SDK (3.1.1)
+- FlurrySDK (4.1.0)
+- Reachability (3.1.0)
+- SBJson (3.2)
+- SVProgressHUD (0.9)
+- TTTAttributedLabel (1.6.0)
+- TestFlightSDK (1.2.3.beta1)
+- UrbanAirship-iOS-SDK (1.3.7):
+  - ASIHTTPRequest
+  - Reachability
+  - SBJson
+  - ZipArchive
+- ZipArchive (1.01h)
+
+DEPENDENCIES:
+- AFNetworking
+- ECSlidingViewController
+- Facebook-iOS-SDK
+- FlurrySDK
+- SVProgressHUD (>= 0.8)
+- TTTAttributedLabel
+- TestFlightSDK (>= 1.1)
+- UrbanAirship-iOS-SDK
+
+SPEC CHECKSUMS:
+  AFNetworking: 761a418233d280c1e0580bcb76ff9cb4c3073d17
+  ASIHTTPRequest: e606d2df58b0aace6c1cf1d39a08d3484f91324a
+  ASIHTTPRequest/ASIWebPageRequest: e606d2df58b0aace6c1cf1d39a08d3484f91324a
+  ASIHTTPRequest/CloudFiles: e606d2df58b0aace6c1cf1d39a08d3484f91324a
+  ASIHTTPRequest/S3: e606d2df58b0aace6c1cf1d39a08d3484f91324a
+  ECSlidingViewController: 46cb6a6cc72e359a19d2f232728be08685450d90
+  Facebook-iOS-SDK: 5fc068ebfd8c8c9b0fad476bc36dbbf1fffeebc8
+  FlurrySDK: 52245ae8c6fa31825dc74a6afb94b861da2435fa
+  Reachability: 1c8584c5f26fa776695efef95caaa50402c94cfb
+  SBJson: 4971016670e7b3fa04a36d4e72ab0fb1ad3a9f69
+  SVProgressHUD: 98935fbafaf0031df4a9cafca3c66eaf3da06967
+  TTTAttributedLabel: 2d27b3cd50ed69e452dbc6e2588283c5eafbcfec
+  TestFlightSDK: f638b08651a37af099e40c47241fc58fd3cb1a66
+  UrbanAirship-iOS-SDK: e682c0ca268005f451f5c5446576afb7b66bfd80
+  ZipArchive: 1a98724ab6c80f6bb1bde02f831589b73062e91d
+
+COCOAPODS: 0.16.2

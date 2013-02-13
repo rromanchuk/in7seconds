@@ -1,0 +1,21 @@
+//
+// Prefix header for all source files of the 'in7seconds' target in the 'in7seconds' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+    #import "TestFlight.h"
+    #import "SVProgressHUD.h"
+    #import "UIImageView+AFNetworking.h"
+    //#import "UIBarButtonItem+Borderless.h"
+    #import "UIApplication+NetworkActivityIndicator.h"
+    #import "Flurry.h"
+#endif
