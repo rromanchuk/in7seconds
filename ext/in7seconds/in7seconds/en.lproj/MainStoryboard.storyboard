@@ -43,8 +43,8 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMf-Bg-gE4">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="5w4-Bs-SGQ"/>
-                                    <constraint firstAttribute="width" constant="73" id="qx9-2F-D80"/>
+                                    <constraint firstAttribute="width" constant="257" id="lxe-jH-HbQ"/>
+                                    <constraint firstAttribute="height" constant="47" id="xPL-O6-gTm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Button" backgroundImage="logout_button@2x.png">
@@ -58,8 +58,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="dMf-Bg-gE4" secondAttribute="bottom" constant="28" id="041-V7-ivq"/>
-                            <constraint firstItem="dMf-Bg-gE4" firstAttribute="centerX" secondItem="g5W-oG-InV" secondAttribute="centerX" type="default" id="aP2-yz-cHV"/>
+                            <constraint firstItem="dMf-Bg-gE4" firstAttribute="centerX" secondItem="g5W-oG-InV" secondAttribute="centerX" type="default" id="333-SY-0m5"/>
+                            <constraint firstAttribute="bottom" secondItem="dMf-Bg-gE4" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="z3Y-Fe-6ov"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -248,7 +248,6 @@
             <relationships>
                 <relationship kind="action" name="didTapLike:"/>
                 <relationship kind="action" name="didTapUnlike:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="didTapLike" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="likeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
