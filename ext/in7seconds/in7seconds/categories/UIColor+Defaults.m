@@ -10,6 +10,12 @@
 
 @implementation UIColor (Defaults)
 + (UIColor *)backgroundColor {
-    return [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg"]];
+    return [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"normal_bg"]];
 }
+
++ (UIColor *)darkBackgroundColor {
+    return [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"settings_bg"]];
+}
+
+
 @end

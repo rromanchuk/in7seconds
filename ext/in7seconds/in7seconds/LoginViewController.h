@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
+@property (weak, nonatomic) IBOutlet UILabel *loginLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *vkLoginButton;
 @property (weak, nonatomic) id <LoginDelegate> delegate;
@@ -26,6 +27,6 @@
 @protocol LoginDelegate <NSObject>
 
 @required
-- (void)didLogin:(User *)users;
+- (void)didVkLogin:(User *)user;
 
 @end

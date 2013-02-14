@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(test)];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(revealMenu:)];
 
 	// Do any additional setup after loading the view.
 }
@@ -48,9 +48,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Login"]) {
-        IndexViewController *vc = (IndexViewController *)segue.destinationViewController;
+        LoginViewController *vc = (LoginViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
+        vc.delegate = self;
     }
 }
 
@@ -66,4 +67,12 @@
 - (IBAction)didTapLike:(id)sender {
     
 }
+
+#pragma mark LoginDelegate methods
+- (void)didVkLogin:(User *)user {
+    self.currentUser = user;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 @end

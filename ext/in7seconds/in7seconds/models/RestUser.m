@@ -16,12 +16,12 @@ static NSString *AUTH_PATH = @"token_authentications.json";
                                 @"firstName", @"first_name",
                                 @"lastName", @"last_name",
                                 @"location", @"location",
-                                @"gender", @"sex",
+                                @"gender", @"gender",
                                 @"email", @"email",
                                 @"externalId", @"id",
                                 @"authenticationToken", @"authentication_token",
                                 @"fbToken", @"fb_token",
-                                @"vkToken", @"vk_token"
+                                @"vkToken", @"vk_token",
                                 @"photoUrl", @"photo_url",
                                 [NSDate mappingWithKey:@"birthday"
                                       dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"birthday",
@@ -46,7 +46,7 @@ static NSString *AUTH_PATH = @"token_authentications.json";
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
-                                                                                            DLog(@"JSON: %@", JSON);
+                                                                                            ALog(@"JSON: %@", JSON);
                                                                                             RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
                                                                                             if (onLoad)
                                                                                                 onLoad(user);

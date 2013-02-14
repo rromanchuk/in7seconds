@@ -11,18 +11,18 @@
 
 @implementation User
 
-@dynamic externalId;
-@dynamic firstName;
-@dynamic lastName;
-@dynamic latitude;
-@dynamic longitude;
-@dynamic vkToken;
-@dynamic photoUrl;
 @dynamic authenticationToken;
-@dynamic modifiedAt;
-@dynamic gender;
-@dynamic location;
 @dynamic birthday;
 @dynamic email;
+@dynamic externalId;
+@dynamic firstName;
+@dynamic gender;
+@dynamic lastName;
+@dynamic latitude;
+@dynamic location;
+@dynamic longitude;
+@dynamic modifiedAt;
+@dynamic photoUrl;
+@dynamic vkToken;
 
 @end

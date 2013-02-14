@@ -143,16 +143,17 @@
                                     <action selector="didTapVkLogin:" destination="uDf-1G-bJ7" eventType="touchUpInside" id="lRp-u6-NWm"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YWp-SQ-Y6x">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Войти через Вконтакте" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YWp-SQ-Y6x">
                                 <rect key="frame" x="20" y="182" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" red="0.68235294117647061" green="0.68235294117647061" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="loginLabel" destination="YWp-SQ-Y6x" id="kSD-6q-9LJ"/>
                         <outlet property="vkLoginButton" destination="mcp-vM-4SM" id="EC3-AA-vCV"/>
                     </connections>
                 </viewController>
@@ -203,7 +204,6 @@
             <relationships>
                 <relationship kind="action" name="didTapLike:"/>
                 <relationship kind="action" name="didTapUnlike:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="didTapLike" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="likeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
@@ -217,6 +217,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
                 <relationship kind="action" name="didTapVkLogin:"/>
+                <relationship kind="outlet" name="loginLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="vkLoginButton" candidateClass="UIButton"/>
             </relationships>
         </class>

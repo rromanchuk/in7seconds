@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "RestUser.h"
+#import "AppDelegate.h"
 @interface LoginViewController ()
 
 @end
@@ -27,6 +28,8 @@
 {
     [super viewDidLoad];
     [Vkontakte sharedInstance].delegate = self;
+    self.loginLabel.text = NSLocalizedString(@"Войти через Вконтакте", @"Login with vk prompt");
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -70,11 +73,13 @@
 - (void)vkontakteAuthControllerDidCancelled
 {
     [RestUser resetIdentifiers];
+    [SVProgressHUD dismiss];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)vkontakteDidFinishLogin:(Vkontakte *)vkontakte
 {
+    ALog(@"vk did finish logging in");
 
     NSDictionary *_params = @{@"access_token": vkontakte.accessToken, @"user_id": vkontakte.userId, @"platform": @"vkontakte", @"email": vkontakte.email };
     NSMutableDictionary *params = [_params mutableCopy];
@@ -82,14 +87,20 @@
     [RestUser create:params
               onLoad:^(RestUser *restUser) {
                   
-                  [User findOrCreateUserWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+                  self.currentUser = [User findOrCreateUserWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+                  [self saveContext];
                   [RestUser setCurrentUserId:restUser.externalId];
                   [RestUser setCurrentUserToken:restUser.authenticationToken];
                   [SVProgressHUD dismiss];
-                  
+                  [self dismissViewControllerAnimated:YES completion:^(void) {
+                      ALog(@"finished dismissing");
+                      [self.delegate didVkLogin:self.currentUser];
+                  }];
+
               }
              onError:^(NSError *error) {
                  [RestUser resetIdentifiers];
+                 [self dismissViewControllerAnimated:YES completion:nil];
                  [SVProgressHUD showErrorWithStatus:error.localizedDescription];
              }];
 
@@ -97,17 +108,33 @@
 
 - (void)vkontakteDidFinishLogOut:(Vkontakte *)vkontakte
 {
-    DLog(@"USER DID LOGOUT");
+    ALog(@"USER DID LOGOUT");
 }
 
 - (void)vkontakteDidFinishGettinUserInfo:(NSDictionary *)info
 {
-    DLog(@"GOT USER INFO FROM VK: %@", info);
+    ALog(@"GOT USER INFO FROM VK: %@", info);
 }
 
 - (void)vkontakteDidFinishPostingToWall:(NSDictionary *)responce
 {
-    DLog(@"%@", responce);
+    ALog(@"%@", responce);
+}
+
+
+- (void)saveContext
+{
+    NSError *error = nil;
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        if ([_managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        }
+    }
+    
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [sharedAppDelegate writeToDisk];
 }
 
 @end
