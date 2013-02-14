@@ -98,8 +98,12 @@
     self.location = restUser.location;
     self.gender = [NSNumber numberWithInteger:restUser.gender];
     self.birthday = restUser.birthday;
-    self.modifiedAt = restUser.modifiedAt;
+    self.updatedAt = restUser.updatedAt;
     
+    for (RestUser *_restUser in restUser.possibleHookups) {
+        User *user = [User userWithRestUser:_restUser inManagedObjectContext:self.managedObjectContext];
+        [self addPossibleHookupsObject:user];
+    }
     // Add following if they exist
 //    if ([restUser.following count] > 0) {
 //        [self removeFollowing:self.following];

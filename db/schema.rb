@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(:version => 20130212212123) do
     t.boolean  "is_active"
     t.string   "provider"
     t.string   "location"
+    t.integer  "city_id"
+    t.integer  "country_id"
     t.string   "city"
     t.string   "country"
     t.integer  "gender",                                                              :default => 0
@@ -54,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130212212123) do
     t.integer  "vkuid",                  :limit => 8
     t.decimal  "latitude",                            :precision => 15, :scale => 10
     t.decimal  "longitude",                           :precision => 15, :scale => 10
+    t.text     "friends_list"
     t.datetime "created_at",                                                                          :null => false
     t.datetime "updated_at",                                                                          :null => false
   end

@@ -27,8 +27,8 @@ development:
   aws_path: development
   fsq_key: 3JGS1NJOEXKRRMMRYDDGWEOOVWKHUT3MK24Y4YBTZ5BM2UZ4
   fsq_secret: HNMOAADDNV3EEX3G0XUWYS2UBWSXZCMTX0WYKS1MJXIPUNKJ
-  vk_app_id: 3425096
-  vk_secret: mcLC6xIOxpMApchoAg3u
+  vk_app_id: 3429661
+  vk_secret: 2TdwkRgv1T4I8fYnsa9M
   vk_scopes: "friends,photos,status,wall,offline"
   s3_cdn: s3.amazonaws.com/piclar
   contact_email: blah@blah.com

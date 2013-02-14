@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   respond_to :json, :html
   
   def home
-    @feed_items = current_user.feed
-    respond_with @feed_items
+    # @feed_items = current_user.feed
+    # respond_with @feed_items
   end
 
   def show
@@ -17,11 +17,6 @@ class UsersController < ApplicationController
     render :show
   end
 
-  def feed
-   user = User.find(params[:id])
-   @feed_items = user.feed
-   render "feed_items/index"
-  end
 
   def following_followers
     @user = current_user

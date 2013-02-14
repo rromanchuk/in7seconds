@@ -36,6 +36,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :is_active
       t.string :provider
       t.string :location
+      t.integer :city_id
+      t.integer :country_id
       t.string :city
       t.string :country
       t.integer :gender, :default => 0
@@ -49,6 +51,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.column :vkuid, :bigint
       t.column "latitude", :decimal, :precision => 15, :scale => 10
       t.column "longitude", :decimal, :precision => 15, :scale => 10
+      t.text :friends_list
       t.timestamps
     end
     
