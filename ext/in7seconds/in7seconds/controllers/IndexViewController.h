@@ -8,8 +8,8 @@
 
 #import "ECSlidingViewController.h"
 #import "User+REST.h"
-
-@interface IndexViewController : ECSlidingViewController
+#import "LoginViewController.h"
+@interface IndexViewController : ECSlidingViewController <LoginDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
 

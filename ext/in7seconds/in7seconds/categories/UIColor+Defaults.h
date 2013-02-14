@@ -10,4 +10,5 @@
 
 @interface UIColor (Defaults)
 + (UIColor *)backgroundColor;
++ (UIColor *)darkBackgroundColor;
 @end

@@ -18,5 +18,5 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 //@property (weak, nonatomic) id <ApplicationLifecycleDelegate> delegate;
 //@property (strong, nonatomic) NotificationHandler *notificationHandler;
-
+- (void)writeToDisk;
 @end

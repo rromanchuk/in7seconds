@@ -19,19 +19,22 @@
     
     NSError *error = nil;
     NSArray *users = [context executeFetchRequest:request error:&error];
-    
+    ALog(@"returning coredata users %@", users);
+
     if (!users || ([users count] > 1)) {
         // handle error
     } else if (![users count]) {
         user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
                                              inManagedObjectContext:context];
         
+        ALog(@"coredata user is %@", user);
         [user setManagedObjectWithIntermediateObject:restUser];
         
     } else {
         user = [users lastObject];
         [user setManagedObjectWithIntermediateObject:restUser];
     }
+    ALog(@"returning coredata user %@", user);
     return user;
 }
 
@@ -58,8 +61,13 @@
 }
 
 + (User *)currentUser:(NSManagedObjectContext *)context {
+    NSNumber *currentId =  [NSNumber numberWithInteger:[[RestUser currentUserId] integerValue]];
+    ALog(@"Current userId is %@", currentId);
+    
     if ([RestUser currentUserId]) {
-        return [User userWithExternalId:[NSNumber numberWithInteger:[[RestUser currentUserId] integerValue]]inManagedObjectContext:context];
+        User *user = [User userWithExternalId:currentId inManagedObjectContext:context];
+        ALog("got user %@", user);
+        return user;
     }
     
     return nil;
@@ -68,10 +76,10 @@
 + (User *)findOrCreateUserWithRestUser:(RestUser *)user
                 inManagedObjectContext:(NSManagedObjectContext *)context
 {
-    User *new_user =[User userWithRestUser:user inManagedObjectContext:context];
+    User *new_user = [User userWithRestUser:user inManagedObjectContext:context];
     NSError *error = nil;
     if (![context save:&error]) {
-        DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        ALog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
     return new_user;
 }

@@ -2,28 +2,31 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
+  devise :registerable, :database_authenticatable,
+         :recoverable, :rememberable, :trackable, :token_authenticatable
+         #:validatable
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city
-  attr_accessible :vkuid, :birthday, :provider, :photo_url
+  attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active
 
   has_many :relationships
 
-  has_many :hookups, :through => :friendships,
+  has_many :hookups, :through => :relationships,
          :conditions => "status = 'accepted'"
 
   has_many :requested_hookups,
-         :through => :friendships,
+         :through => :relationships,
          :source => :hookup,
          :conditions => "status = 'requested'"
   
   has_many :pending_hookups,
-         :through => :friendships,
+         :through => :relationships,
          :source => :hookup,
          :conditions => "status = 'pending'"
 
+  USER_SEX_MALE = 1
+  USER_SEX_FEMALE = 2
+  USER_SEX_UNKNOWN = 0
 
   def fb_client
      FbGraph::User.fetch(fbuid, :access_token => fb_token)
@@ -45,6 +48,47 @@ class User < ActiveRecord::Base
     last_name + " " + first_name
   end
 
+  def email
+     self[:email] || ""
+  end
+
+  def location 
+    self[:location] || ""
+  end
+
+  def gender
+    if self[:gender] == 1 || self[:gender] == 0
+      return true
+    else
+      return false
+    end
+  end
+
+  def get_friends
+    fields = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big]
+    vk_client.friends.get(fields: fields) do |friend|
+      puts "#{friend.first_name} '#{friend.screen_name}' #{friend.last_name}"
+      puts friend.to_yaml
+      user = User.where(:vkuid => friend.uid).first
+      if user.blank?
+        user = User.create!(
+          :vkuid => friend.uid,
+          :password => Devise.friendly_token[0,20],
+          :first_name => friend.first_name,
+          :last_name => friend.last_name,
+          :birthday => friend.bdate,
+          :city => get_vk_city(friend.city, self.vk_token),
+          :country => get_vk_country(friend.country, self.vk_token),
+          :gender => friend.sex,
+          :provider => :vkontakte,
+          :photo_url => friend.photo_big,
+          :is_active => false)
+      end
+      User.flirt(self, user)
+      break
+    end
+  end
+
   #authentication
 
   def update_user_from_vk_graph(vk_user, access_token)
@@ -64,7 +108,6 @@ class User < ActiveRecord::Base
           :gender => vk_user.sex,
           :provider => :vkontakte,
           :photo_url => vk_user.photo_big)
-    user.photo_from_url vk_user.photo_big
 
     user
   end
@@ -131,10 +174,10 @@ class User < ActiveRecord::Base
   end
 
   def self.flirt(user, friend)
-    unless user == friend or Friendship.exists?(user, friend)
+    unless user == friend or user.relationships.exists?(hookup_id: friend.id)
       transaction do
-        create(:user => user, :hookup => friend, :status => 'pending')
-        create(:user => friend, :hookup => user, :status => 'requested')
+        Relationship.create(:user => user, :hookup => friend, :status => 'pending')
+        Relationship.create(:user => friend, :hookup => user, :status => 'requested')
       end
     end
   end
@@ -142,13 +185,13 @@ class User < ActiveRecord::Base
   def self.fuck(user, friend)
     transaction do
       accepted_at = Time.now
-      accept_one_side(user, friend, accepted_at)
-      accept_one_side(friend, user, accepted_at)
+      User.accept_one_side(user, friend, accepted_at)
+      User.accept_one_side(friend, user, accepted_at)
     end
   end
 
   def self.accept_one_side(user, friend, accepted_at)
-    request = find_by_user_id_and_hookup_id(user, friend)
+    request = Relationship.find_by_user_id_and_hookup_id(user, friend)
     request.status = 'accepted'
     request.accepted_at = accepted_at
     request.save!
