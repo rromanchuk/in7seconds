@@ -12,4 +12,9 @@
 @interface MenuViewController : UIViewController <UITableViewDataSource, UITabBarControllerDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
+@property (weak, nonatomic) IBOutlet UILabel *iAmLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *genderSegmentControl;
+@property (weak, nonatomic) IBOutlet UIButton *lookingForMen;
+@property (weak, nonatomic) IBOutlet UIButton *lookingForWomen;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @end
