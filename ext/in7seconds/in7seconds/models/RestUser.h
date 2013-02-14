@@ -24,8 +24,9 @@
 @property (atomic, strong) NSString *photoUrl;
 @property (atomic, strong) NSString *location;
 @property (atomic, strong) NSDate *birthday;
-@property (atomic, strong) NSDate *modifiedAt;
+@property (atomic, strong) NSDate *updatedAt;
 @property (atomic, strong) NSDate *createdAt;
+@property (atomic, strong) NSSet *possibleHookups;
 
 + (void)create:(NSMutableDictionary *)parameters
         onLoad:(void (^)(RestUser *restUser))onLoad

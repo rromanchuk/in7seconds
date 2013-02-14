@@ -2,13 +2,14 @@
 //  User.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 2/14/13.
+//  Created by Ryan Romanchuk on 2/15/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class User;
 
 @interface User : NSManagedObject
 
@@ -22,8 +23,17 @@
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSNumber * longitude;
-@property (nonatomic, retain) NSDate * modifiedAt;
+@property (nonatomic, retain) NSDate * updatedAt;
 @property (nonatomic, retain) NSString * photoUrl;
 @property (nonatomic, retain) NSString * vkToken;
+@property (nonatomic, retain) NSSet *possibleHookups;
+@end
+
+@interface User (CoreDataGeneratedAccessors)
+
+- (void)addPossibleHookupsObject:(User *)value;
+- (void)removePossibleHookupsObject:(User *)value;
+- (void)addPossibleHookups:(NSSet *)values;
+- (void)removePossibleHookups:(NSSet *)values;
 
 @end

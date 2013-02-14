@@ -28,7 +28,7 @@ development:
   fsq_key: ***REMOVED***
   fsq_secret: ***REMOVED***
   vk_app_id: ***REMOVED***
-  vk_secret: mcLC6xIOxpMApchoAg3u
+  vk_secret: ***REMOVED***
   vk_scopes: "friends,photos,status,wall,offline"
   s3_cdn: s3.amazonaws.com/piclar
   contact_email: blah@blah.com

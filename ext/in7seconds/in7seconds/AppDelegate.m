@@ -105,6 +105,18 @@
     }
 }
 
+- (void)resetCoreData {
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"in7seconds.sqlite"];
+    [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
+    __persistentStoreCoordinator = nil;
+    __managedObjectContext = nil;
+    __managedObjectModel = nil;
+    __privateWriterContext = nil;
+    InitialViewController *vc = (InitialViewController *)self.window.rootViewController;
+    vc.managedObjectContext = self.managedObjectContext;
+    vc.currentUser = [User currentUser:self.managedObjectContext];
+    
+}
 
 #pragma mark - Core Data stack
 

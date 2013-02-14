@@ -26,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.logoutButton setTitle:NSLocalizedString(@"Выйти", @"logout button text") forState:UIControlStateNormal];
+    
     [self.slidingViewController setAnchorRightRevealAmount:280.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     self.view.backgroundColor = [UIColor darkBackgroundColor];
@@ -38,4 +40,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)didTapLogout:(id)sender {
+    [self.delegate didLogout];
+}
+
+- (IBAction)didTapWomen:(id)sender {
+    self.lookingForWomen.selected = !self.lookingForWomen.selected;
+}
+
+- (IBAction)didTapMen:(id)sender {
+    self.lookingForMen.selected = !self.lookingForMen.selected;
+}
 @end

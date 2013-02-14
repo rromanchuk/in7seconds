@@ -2,10 +2,11 @@
 //  User.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 2/14/13.
+//  Created by Ryan Romanchuk on 2/15/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
+#import "User.h"
 #import "User.h"
 
 
@@ -21,8 +22,9 @@
 @dynamic latitude;
 @dynamic location;
 @dynamic longitude;
-@dynamic modifiedAt;
+@dynamic updatedAt;
 @dynamic photoUrl;
 @dynamic vkToken;
+@dynamic possibleHookups;
 
 @end

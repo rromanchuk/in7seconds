@@ -7,9 +7,9 @@
 //
 
 #import "IndexViewController.h"
-
+#import "AppDelegate.h"
 @interface IndexViewController ()
-
+@property (strong, nonatomic) User *otherUser;
 @end
 
 @implementation IndexViewController
@@ -28,7 +28,9 @@
     [super viewDidLoad];
     self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(revealMenu:)];
-
+    ((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
+    self.otherUser = [self.currentUser.possibleHookups anyObject];
+    [self.userImageView setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
 	// Do any additional setup after loading the view.
 }
 
@@ -74,5 +76,20 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - LogoutDelegate delegate methods
+- (void) didLogout
+{
+    
+    [RestUser resetIdentifiers];
+    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
+    self.currentUser = nil;
+    [[Vkontakte sharedInstance] logout];
+    //[[UAPush shared] setAlias:nil];
+    //[[UAPush shared] updateRegistration];
+    
+    //[FBSession.activeSession closeAndClearTokenInformation];
+    //[self dismissModalViewControllerAnimated:YES];
+    [self performSegueWithIdentifier:@"Login" sender:self];
+}
 
 @end

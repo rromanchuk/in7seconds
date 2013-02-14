@@ -3,11 +3,11 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :registerable, :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :token_authenticatable
+         :recoverable, :rememberable, :trackable, :token_authenticatable, :omniauthable
          #:validatable
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city
-  attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active
+  attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active, :city_id, :country_id
 
   has_many :relationships
 
@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
   USER_SEX_MALE = 1
   USER_SEX_FEMALE = 2
   USER_SEX_UNKNOWN = 0
+
+  serialize :friends_list
 
   def fb_client
      FbGraph::User.fetch(fbuid, :access_token => fb_token)
@@ -66,6 +68,7 @@ class User < ActiveRecord::Base
 
   def get_friends
     fields = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big]
+    self.friends_list = vk_client.friends.get
     vk_client.friends.get(fields: fields) do |friend|
       puts "#{friend.first_name} '#{friend.screen_name}' #{friend.last_name}"
       puts friend.to_yaml
@@ -77,16 +80,19 @@ class User < ActiveRecord::Base
           :first_name => friend.first_name,
           :last_name => friend.last_name,
           :birthday => friend.bdate,
-          :city => get_vk_city(friend.city, self.vk_token),
-          :country => get_vk_country(friend.country, self.vk_token),
+          :city_id => friend.city,
+          :country_id => friend.country,
+          #:city => get_vk_city(friend.city, self.vk_token),
+          #:country => get_vk_country(friend.country, self.vk_token),
           :gender => friend.sex,
           :provider => :vkontakte,
           :photo_url => friend.photo_big,
           :is_active => false)
       end
-      User.flirt(self, user)
-      break
+      # User.flirt(self, user)
+      # break
     end
+    save
   end
 
   #authentication
@@ -107,7 +113,8 @@ class User < ActiveRecord::Base
           :vk_token => access_token,
           :gender => vk_user.sex,
           :provider => :vkontakte,
-          :photo_url => vk_user.photo_big)
+          :photo_url => vk_user.photo_big,
+          :is_active => true)
 
     user
   end
@@ -173,10 +180,24 @@ class User < ActiveRecord::Base
     user
   end
 
+  def possible_hookups
+    User.where(:vkuid => self.friends_list)
+  end
+
+
   def self.flirt(user, friend)
     unless user == friend or user.relationships.exists?(hookup_id: friend.id)
       transaction do
         Relationship.create(:user => user, :hookup => friend, :status => 'pending')
+        Relationship.create(:user => friend, :hookup => user, :status => 'requested')
+      end
+    end
+  end
+
+  def self.reject(user, friend)
+     unless user == friend or user.relationships.exists?(hookup_id: friend.id)
+      transaction do
+        Relationship.create(:user => user, :hookup => friend, :status => 'rejected')
         Relationship.create(:user => friend, :hookup => user, :status => 'requested')
       end
     end

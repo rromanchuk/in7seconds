@@ -23,9 +23,10 @@ static NSString *AUTH_PATH = @"token_authentications.json";
                                 @"fbToken", @"fb_token",
                                 @"vkToken", @"vk_token",
                                 @"photoUrl", @"photo_url",
+                                [RestUser mappingWithKey:@"possibleHookups" mapping:[RestUser mapping]], @"possible_hookups",
                                 [NSDate mappingWithKey:@"birthday"
                                       dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"birthday",
-                                [NSDate mappingWithKey:@"modifiedAt"
+                                [NSDate mappingWithKey:@"updatedAt"
                                       dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"updated_at",
                                 nil];
     return map;
