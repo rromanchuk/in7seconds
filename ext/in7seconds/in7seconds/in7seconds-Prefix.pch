@@ -19,6 +19,7 @@
     #import "UIApplication+NetworkActivityIndicator.h"
     #import "Flurry.h"
     #import "NSObject+JTObjectMapping.h"
+    #import "UIColor+Defaults.h"
 #endif
 
 

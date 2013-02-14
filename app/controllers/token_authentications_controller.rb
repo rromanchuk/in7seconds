@@ -19,7 +19,7 @@ class TokenAuthenticationsController < ApplicationController
     @user.ensure_authentication_token!
     @user.save
     sign_in(@user)
-    render :create
+    render "users/show"
   end
 
   def destroy

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		90455B5C1D5F434F8877A20B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9F46389CB045FD9589A9AC /* libPods.a */; };
 		9484987616CBFE96000083DE /* UIBarButtonItem+Borderless.m in Sources */ = {isa = PBXBuildFile; fileRef = 9484987516CBFE96000083DE /* UIBarButtonItem+Borderless.m */; };
+		9484988A16CD1EBB000083DE /* UIColor+Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 9484988916CD1EBB000083DE /* UIColor+Defaults.m */; };
+		9484988F16CD1F69000083DE /* BaseUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9484988E16CD1F69000083DE /* BaseUIView.m */; };
+		9484989116CD2BE4000083DE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9484989016CD2BE4000083DE /* Default-568h@2x.png */; };
+		9484989316CD2C17000083DE /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9484989216CD2C17000083DE /* Default@2x.png */; };
 		94D09CA716CBD3470064F886 /* RestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA616CBD3470064F886 /* RestClient.m */; };
 		94D09CAA16CBD3630064F886 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA916CBD3630064F886 /* Config.m */; };
 		94D09CB816CBD3E60064F886 /* JTDataMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CAD16CBD3E60064F886 /* JTDataMappings.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -81,6 +85,12 @@
 /* Begin PBXFileReference section */
 		9484987416CBFE96000083DE /* UIBarButtonItem+Borderless.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIBarButtonItem+Borderless.h"; path = "categories/UIBarButtonItem+Borderless.h"; sourceTree = "<group>"; };
 		9484987516CBFE96000083DE /* UIBarButtonItem+Borderless.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIBarButtonItem+Borderless.m"; path = "categories/UIBarButtonItem+Borderless.m"; sourceTree = "<group>"; };
+		9484988816CD1EBB000083DE /* UIColor+Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Defaults.h"; path = "categories/UIColor+Defaults.h"; sourceTree = "<group>"; };
+		9484988916CD1EBB000083DE /* UIColor+Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Defaults.m"; path = "categories/UIColor+Defaults.m"; sourceTree = "<group>"; };
+		9484988D16CD1F69000083DE /* BaseUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseUIView.h; path = views/BaseUIView.h; sourceTree = "<group>"; };
+		9484988E16CD1F69000083DE /* BaseUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseUIView.m; path = views/BaseUIView.m; sourceTree = "<group>"; };
+		9484989016CD2BE4000083DE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		9484989216CD2C17000083DE /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		94D09CA516CBD3470064F886 /* RestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestClient.h; path = models/RestClient.h; sourceTree = "<group>"; };
 		94D09CA616CBD3470064F886 /* RestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestClient.m; path = models/RestClient.m; sourceTree = "<group>"; };
 		94D09CA816CBD3630064F886 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = models/Config.h; sourceTree = "<group>"; };
@@ -194,6 +204,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9484988B16CD1F3B000083DE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9484988C16CD1F43000083DE /* Base */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9484988C16CD1F43000083DE /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				9484988D16CD1F69000083DE /* BaseUIView.h */,
+				9484988E16CD1F69000083DE /* BaseUIView.m */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
 		94D09CAB16CBD3AC0064F886 /* JTObjectMapping */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +254,8 @@
 		FA70024816CAECB20098A5B7 = {
 			isa = PBXGroup;
 			children = (
+				9484989216CD2C17000083DE /* Default@2x.png */,
+				9484989016CD2BE4000083DE /* Default-568h@2x.png */,
 				94D09CCD16CBF0CC0064F886 /* CoreData.framework */,
 				FA70025A16CAECB20098A5B7 /* in7seconds */,
 				FA70027E16CAECB30098A5B7 /* in7secondsTests */,
@@ -261,6 +290,7 @@
 		FA70025A16CAECB20098A5B7 /* in7seconds */ = {
 			isa = PBXGroup;
 			children = (
+				9484988B16CD1F3B000083DE /* Views */,
 				FA7002C916CAF6C10098A5B7 /* Categories */,
 				FA7002C216CAF5010098A5B7 /* Helpers */,
 				FA70029116CAECCC0098A5B7 /* Models */,
@@ -387,6 +417,8 @@
 				FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */,
 				9484987416CBFE96000083DE /* UIBarButtonItem+Borderless.h */,
 				9484987516CBFE96000083DE /* UIBarButtonItem+Borderless.m */,
+				9484988816CD1EBB000083DE /* UIColor+Defaults.h */,
+				9484988916CD1EBB000083DE /* UIColor+Defaults.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -487,6 +519,8 @@
 				FA7002B416CAF01B0098A5B7 /* vk_login_icon.png in Resources */,
 				FA7002B516CAF01B0098A5B7 /* vk_login_icon@2x.png in Resources */,
 				94D09CBF16CBD5260064F886 /* environments.plist in Resources */,
+				9484989116CD2BE4000083DE /* Default-568h@2x.png in Resources */,
+				9484989316CD2C17000083DE /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +594,8 @@
 				94D09CD716CBF4060064F886 /* MenuViewController.m in Sources */,
 				9484987616CBFE96000083DE /* UIBarButtonItem+Borderless.m in Sources */,
 				FA7002D816CC3D4B0098A5B7 /* User.m in Sources */,
+				9484988A16CD1EBB000083DE /* UIColor+Defaults.m in Sources */,
+				9484988F16CD1F69000083DE /* BaseUIView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
