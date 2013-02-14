@@ -13,6 +13,9 @@
 		9484988F16CD1F69000083DE /* BaseUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9484988E16CD1F69000083DE /* BaseUIView.m */; };
 		9484989116CD2BE4000083DE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9484989016CD2BE4000083DE /* Default-568h@2x.png */; };
 		9484989316CD2C17000083DE /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9484989216CD2C17000083DE /* Default@2x.png */; };
+		9484989516CD2D8E000083DE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9484989416CD2D8E000083DE /* Default.png */; };
+		9484989716CD2DB0000083DE /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = 9484989616CD2DB0000083DE /* 114.png */; };
+		9484989916CD2DBA000083DE /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = 9484989816CD2DBA000083DE /* 57.png */; };
 		94D09CA716CBD3470064F886 /* RestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA616CBD3470064F886 /* RestClient.m */; };
 		94D09CAA16CBD3630064F886 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA916CBD3630064F886 /* Config.m */; };
 		94D09CB816CBD3E60064F886 /* JTDataMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CAD16CBD3E60064F886 /* JTDataMappings.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -91,6 +94,9 @@
 		9484988E16CD1F69000083DE /* BaseUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseUIView.m; path = views/BaseUIView.m; sourceTree = "<group>"; };
 		9484989016CD2BE4000083DE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9484989216CD2C17000083DE /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		9484989416CD2D8E000083DE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		9484989616CD2DB0000083DE /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
+		9484989816CD2DBA000083DE /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
 		94D09CA516CBD3470064F886 /* RestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestClient.h; path = models/RestClient.h; sourceTree = "<group>"; };
 		94D09CA616CBD3470064F886 /* RestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestClient.m; path = models/RestClient.m; sourceTree = "<group>"; };
 		94D09CA816CBD3630064F886 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = models/Config.h; sourceTree = "<group>"; };
@@ -254,6 +260,9 @@
 		FA70024816CAECB20098A5B7 = {
 			isa = PBXGroup;
 			children = (
+				9484989816CD2DBA000083DE /* 57.png */,
+				9484989616CD2DB0000083DE /* 114.png */,
+				9484989416CD2D8E000083DE /* Default.png */,
 				9484989216CD2C17000083DE /* Default@2x.png */,
 				9484989016CD2BE4000083DE /* Default-568h@2x.png */,
 				94D09CCD16CBF0CC0064F886 /* CoreData.framework */,
@@ -521,6 +530,9 @@
 				94D09CBF16CBD5260064F886 /* environments.plist in Resources */,
 				9484989116CD2BE4000083DE /* Default-568h@2x.png in Resources */,
 				9484989316CD2C17000083DE /* Default@2x.png in Resources */,
+				9484989516CD2D8E000083DE /* Default.png in Resources */,
+				9484989716CD2DB0000083DE /* 114.png in Resources */,
+				9484989916CD2DBA000083DE /* 57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
