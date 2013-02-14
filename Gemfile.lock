@@ -88,6 +88,7 @@ GEM
       rack-oauth2 (>= 0.14.4)
       tzinfo
     fssm (0.2.9)
+    geocoder (1.1.6)
     haml (3.1.7)
     hashie (1.2.0)
     highline (1.6.15)
@@ -242,6 +243,7 @@ DEPENDENCIES
   devise
   exception_notification
   fb_graph
+  geocoder
   haml
   httparty
   jquery-rails
