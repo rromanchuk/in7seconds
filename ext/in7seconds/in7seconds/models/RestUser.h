@@ -32,7 +32,7 @@
         onLoad:(void (^)(RestUser *restUser))onLoad
        onError:(void (^)(NSError *error))onError;
 
-
++ (NSDictionary *)mapping;
 
 + (NSNumber *)currentUserId;
 + (void)setCurrentUserId:(NSInteger)userId;
