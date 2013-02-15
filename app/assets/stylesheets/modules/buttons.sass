@@ -1,0 +1,112 @@
+@import 'include/mixins'
+
+$red: #d94b4b
+$green: #5fc84e
+$blue: #3da1fe
+$pink: #ff005f
+
+// button reset
+button,
+.button 
+  margin: 0
+  padding: 0
+  
+  overflow: visible
+  
+  border: none
+  outline: none
+  background: none
+  
+  box-shadow: none
+  border-radius: 0
+
+  @include noselect
+  @include touch-callout(none)
+  @include box-sizing(border-box)
+  @include tap-highlight-color(transparent !important)
+
+  cursor: pointer
+
+
+// button styles
+.button
+  height: 30px
+  padding: 0 15px
+
+  display: inline-block
+  position: relative
+
+  font-size: 14px
+  line-height: 30px
+  color: #fff
+
+  border-radius: 3px
+
+  text-decoration: none
+  text-align: center
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .3)
+
+  color: #fff
+
+  &:before  // webkit drag while clicking fix
+    content: ""
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+  
+  &:hover 
+    text-decoration: none
+  
+  &:active 
+    top: 1px 
+
+  &.round
+    width: 50px
+    height: 50px
+    padding: 0
+
+    border-radius: 25px
+
+    font-size: 18px
+    line-height: 50px
+
+  // color styles
+  &.red
+    background: $red
+    border: 1px solid darken($red, 30%)
+    box-shadow: 0 2px 0 darken($red, 40%)
+    &:active
+      background: darken($red, 10%)
+      box-shadow: 0 1px 0 darken($red, 40%)
+
+  &.green
+    background: $green
+    border: 1px solid darken($green, 30%)
+    box-shadow: 0 2px 0 darken($green, 40%)
+    &:active
+      background: darken($green, 10%)
+      box-shadow: 0 1px 0 darken($green, 40%)
+
+  &.blue
+    background: $blue
+    border: 1px solid darken($blue, 30%)
+    box-shadow: 0 2px 0 darken($blue, 40%)
+    &:active
+      background: darken($blue, 10%)
+      box-shadow: 0 1px 0 darken($blue, 40%)
+
+  &.pink
+    background: $pink
+    border: 1px solid darken($pink, 30%)
+    box-shadow: 0 2px 0 darken($pink, 40%)
+    &:active
+      background: darken($pink, 10%)
+      box-shadow: 0 1px 0 darken($pink, 40%)
+    
+  &[disabled],
+  &.disabled 
+    &,
+    &:active 
+      opacity: .5

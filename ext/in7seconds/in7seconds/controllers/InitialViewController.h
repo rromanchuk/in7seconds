@@ -6,10 +6,14 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "ECSlidingViewController.h"
+#import "IIViewDeckController.h"
+
 #import "User+REST.h"
-@interface InitialViewController : ECSlidingViewController
+#import "LoginViewController.h"
+#import "MenuViewController.h"
+
+@interface InitialViewController : IIViewDeckController 
+
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
 @end

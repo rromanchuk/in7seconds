@@ -512,7 +512,7 @@
             NSLog(@"DB Query: %@", sql);
         }
         else {
-            // ***REMOVED***?
+            // wtf?
             NSLog(@"Unknown error calling sqlite3_step (%d: %s) eu", rc, sqlite3_errmsg(db));
             NSLog(@"DB Query: %@", sql);
         }

@@ -1,0 +1,54 @@
+@import 'include/mixins'
+
+.block-match_user
+  padding: 10px
+  overflow: hidden
+  background: #fff
+  border-bottom: 1px solid #ccc
+
+  .b-mu-photo
+    width: 50px
+    height: 50px
+    margin-right: 10px
+
+    float: left
+
+    border-radius: 3px
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .4)
+
+    overflow: hidden
+    position: relative
+
+    img
+      width: 100%
+
+  .b-mu-info
+    width: 500px
+    height: 50px
+    float: left
+    line-height: 50px
+
+    .b-mu-location
+      height: 14px
+      font-size: 12px
+      color: #999
+
+  .b-mu-contacts
+    padding-top: 12px
+    float: right
+
+    text-align: right
+
+    a
+      width: 25px
+      height: 25px
+
+      margin-left: 15px
+
+      display: inline-block
+
+    a.vk
+      background: url('/assets/vkontakte.png') no-repeat
+      background-size: 25px 25px
+
+  

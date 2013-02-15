@@ -1,0 +1,8 @@
+p Привет, #{@resource.first_name}!
+
+p
+  - if @resource.is_girl?
+    Осталось всего лишь пройти по #{link_to 'ссылке', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)} чтобы твой принц смог найти тебя :)
+  - else 
+    Осталось всего лишь пройти по #{link_to 'ссылке', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)} чтобы найти твою принцессу.
+

@@ -14,14 +14,24 @@
     self = [super init];
     
     if (self) {
-        NSString *configuration    = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Configuration"];
+        NSString *configuration    = [[NSBundle mainBundle] infoDictionary][@"Configuration"];
         NSBundle *bundle           = [NSBundle mainBundle];
         NSDictionary *environments = [[NSDictionary alloc] initWithContentsOfFile:[bundle pathForResource:@"environments" ofType:@"plist"]];
-        NSDictionary *environment  = [environments objectForKey:configuration];
+        NSDictionary *environment  = environments[configuration];
         self.vkAppId = [environment valueForKey:@"vkAppId"];
         self.vkSecretId = [environment valueForKey:@"vkSecretId"];
         self.vkScopes = [environment valueForKey:@"vkScopes"];
+        self.fbScopes = [[environment valueForKey:@"fbScopes"] componentsSeparatedByString:@","];
+        
         self.baseURL = [environment valueForKey:@"baseURL"];
+        
+        self.airshipSecretProd = [environment valueForKey:@"PRODUCTION_APP_SECRET"];
+        self.airshipKeyProd = [environment valueForKey:@"PRODUCTION_APP_KEY"];
+        
+        
+        self.airshipSecretDev = [environment valueForKey:@"DEVELOPMENT_APP_SECRET"];
+        self.airshipKeyDev = [environment valueForKey:@"DEVELOPMENT_APP_KEY"];
+        self.adHoc = [environment valueForKey:@"APP_STORE_OR_AD_HOC_BUILD"];
     }
     
     return self;

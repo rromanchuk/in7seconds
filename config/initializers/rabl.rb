@@ -1,8 +1,8 @@
 # config/initializers/rabl_init.rb
 Rabl.configure do |config|
   # Commented as these are defaults
-  # config.cache_all_output = false
-  # config.cache_sources = Rails.env != 'development' # Defaults to false
+  config.cache_all_output = true if Rails.env.production?
+  config.cache_sources = Rails.env != 'development' # Defaults to false
   # config.escape_all_output = false
   # config.json_engine = nil # Any multi\_json engines
   # config.msgpack_engine = nil # Defaults to ::MessagePack
@@ -16,5 +16,7 @@ Rabl.configure do |config|
   config.include_child_root = false
   # config.enable_json_callbacks = false
   # config.xml_options = { :dasherize  => true, :skip_types => false }
-  # config.view_paths = []
+  config.raise_on_missing_attribute = true
+  config.view_paths = ["app/views"]
+  config.replace_nil_values_with_empty_strings = true
 end

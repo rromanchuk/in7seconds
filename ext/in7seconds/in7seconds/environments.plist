@@ -4,36 +4,32 @@
 <dict>
 	<key>Release</key>
 	<dict>
-		<key>vkScopes</key>
-		<string>friends,photos,status,wall,offline</string>
-		<key>vkAppId</key>
-		<string>***REMOVED***</string>
-		<key>vkAppSecret</key>
-		<string>mcLC6xIOxpMApchoAg3u</string>
+		<key>fbScopes</key>
+		<string>email,user_location</string>
+		<key>PRODUCTION_APP_KEY</key>
+		<string></string>
+		<key>APP_STORE_OR_AD_HOC_BUILD</key>
+		<string>YES</string>
 		<key>baseURL</key>
 		<string>http://in7seconds.com</string>
 	</dict>
 	<key>Distribution</key>
 	<dict>
-		<key>vkScopes</key>
-		<string>friends,photos,status,wall,offline</string>
-		<key>vkAppId</key>
-		<string>***REMOVED***</string>
-		<key>vkAppSecret</key>
-		<string>mcLC6xIOxpMApchoAg3u</string>
+		<key>fbScopes</key>
+		<string>email,user_location</string>
+		<key>APP_STORE_OR_AD_HOC_BUILD</key>
+		<string>NO</string>
 		<key>baseURL</key>
 		<string>http://in7seconds.com</string>
 	</dict>
 	<key>Debug</key>
 	<dict>
+		<key>fbScopes</key>
+		<string>email,user_location</string>
 		<key>vkScopes</key>
-		<string>friends,photos,status,wall,offline</string>
+		<string>friends,photos,status,wall,offline,notify</string>
 		<key>baseURL</key>
 		<string>http://in7secondsdev.com:3000</string>
-		<key>vkAppId</key>
-		<string>***REMOVED***</string>
-		<key>vkAppSecret</key>
-		<string>mcLC6xIOxpMApchoAg3u</string>
 	</dict>
 </dict>
 </plist>

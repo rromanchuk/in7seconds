@@ -7,34 +7,33 @@
 //
 
 #import "User+REST.h"
-
+#import "Image+REST.h"
+#import "RestMutualFriend.h"
 @implementation User (REST)
 + (User *)userWithRestUser:(RestUser *)restUser
     inManagedObjectContext:(NSManagedObjectContext *)context {
     
     User *user;
-    ALog(@"restUser coming in from coredata is %@", restUser);
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
-    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", [NSNumber numberWithInt:restUser.externalId]];
+    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", restUser.externalId];
     
     NSError *error = nil;
     NSArray *users = [context executeFetchRequest:request error:&error];
-    ALog(@"returning coredata users %@", users);
-
-    if (!users || ([users count] > 1)) {
+    //ALog(@"looking for user with externalId %d got %@ from restUser %@ with context %@", restUser.externalId, users, restUser, context);
+    if (users && ([users count] > 1)) {
         // handle error
+        ALog(@"not returning a user");
     } else if (![users count]) {
         user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
                                              inManagedObjectContext:context];
         
-        ALog(@"coredata user is %@", user);
         [user setManagedObjectWithIntermediateObject:restUser];
         
     } else {
         user = [users lastObject];
         [user setManagedObjectWithIntermediateObject:restUser];
     }
-    ALog(@"returning coredata user %@", user);
+    
     return user;
 }
 
@@ -61,12 +60,14 @@
 }
 
 + (User *)currentUser:(NSManagedObjectContext *)context {
-    NSNumber *currentId =  [NSNumber numberWithInteger:[[RestUser currentUserId] integerValue]];
-    ALog(@"Current userId is %@", currentId);
+    if (!context) {
+        abort();
+    }
     
+    NSNumber *currentId =  @([[RestUser currentUserId] integerValue]);
     if ([RestUser currentUserId]) {
         User *user = [User userWithExternalId:currentId inManagedObjectContext:context];
-        ALog("got user %@", user);
+        //ALog("got user %@", user);
         return user;
     }
     
@@ -89,48 +90,107 @@
     RestUser *restUser = (RestUser *) intermediateObject;
     self.firstName = restUser.firstName;
     self.lastName = restUser.lastName;
-    //self.email = restUser.email;
+    self.email = restUser.email;
     self.photoUrl = restUser.photoUrl;
-    self.externalId = [NSNumber numberWithInt:restUser.externalId];
+    self.externalId = restUser.externalId;
     self.authenticationToken = restUser.authenticationToken;
-    self.vkToken = restUser.vkToken;
-    //self.fbToken = restUser.fbToken;
-    self.location = restUser.location;
-    self.gender = [NSNumber numberWithInteger:restUser.gender];
+    self.vkUniversityName = restUser.vkUniversityName;
+    self.vkGraduation = restUser.vkGraduation;
+    self.vkFacultyName = restUser.vkFacultyName;
+
+    self.gender = restUser.gender;
+    self.country = restUser.country;
+    self.city = restUser.city;
+    self.mutualFriendsNum = restUser.mutualFriendsNum;
+    self.mutualGroups = restUser.mutualGroups;
     self.birthday = restUser.birthday;
     self.updatedAt = restUser.updatedAt;
-    
-    for (RestUser *_restUser in restUser.possibleHookups) {
-        User *user = [User userWithRestUser:_restUser inManagedObjectContext:self.managedObjectContext];
-        [self addPossibleHookupsObject:user];
+    self.vkDomain = restUser.vkDomain;
+    self.groupNames = restUser.groupNames;
+    self.friendNames = restUser.friendNames;
+    self.mutualFriendNames = restUser.mutualFriendNames;
+    self.mutualGroupNames = restUser.mutualGroupNames;
+    self.emailOptIn = @(restUser.emailOptIn);
+    self.pushOptIn = @(restUser.pushOptIn);
+    self.latitude = @(restUser.latitude);
+    self.longitude = @(restUser.longitude);
+    self.status = restUser.status;
+    self.lookingForGender = restUser.lookingForGender;
+    for (RestImage *restImage in restUser.images) {
+        [self addImagesObject:[Image imageWithRestImage:restImage inManagedObjectContext:self.managedObjectContext]];
     }
-    // Add following if they exist
-//    if ([restUser.following count] > 0) {
-//        [self removeFollowing:self.following];
-//        NSMutableSet *following = [[NSMutableSet alloc] init];
-//        for (RestUser *friend_restUser in restUser.following) {
-//            User *user = [User userWithRestUser:friend_restUser inManagedObjectContext:self.managedObjectContext];
-//            if (user) {
-//                [following addObject:user];
-//            }
-//        }
-//        [self addFollowing:following];
-//    }
+
+}
+
+- (NSString *)fullName {
+    return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
+}
+
+- (NSString *)schoolInfo {
+    if (self.vkUniversityName && self.vkGraduation.length > 1) {
+        return [NSString stringWithFormat:@"%@, %@", self.vkUniversityName, self.vkGraduation];
+    } else if (self.vkUniversityName) {
+        return [NSString stringWithFormat:@"%@", self.vkUniversityName];
+    }
+    return nil;
+}
+
+- (NSString *)vkUrl {
+    if (self.vkDomain) {
+        return [NSString stringWithFormat:@"http://vk.com/%@", self.vkDomain];
+    }
+    return nil;
+}
+
+- (NSString *)socialUrl {
+    if (self.vkDomain) {
+        return [NSString stringWithFormat:@"http://vk.com/%@", self.vkDomain];
+    } else {
+        return [NSString stringWithFormat:@"http://facebook.com/%@", self.fbDomain];
+    }
+    return nil;
+}
+
+
+- (NSString *)russianFullName {
+    return [NSString stringWithFormat:@"%@ %@", self.lastName, self.firstName];
+}
+
+- (NSString *)fullLocation {
+    if (self.city.length && self.country.length) {
+        return [NSString stringWithFormat:@"%@, %@", self.city, self.country];
+    } else if (self.city.length) {
+        return self.city;
+    } else if (self.country.length) {
+        return self.country;
+    } else {
+        return @"";
+    }
     
-//    // Add followers if they exist
-//    if ([restUser.followers count] > 0) {
-//        [self removeFollowers:self.followers];
-//        NSMutableSet *followers = [[NSMutableSet alloc] init];
-//        for (RestUser *friend_restUser in restUser.followers) {
-//            User *user_ = [User userWithRestUser:friend_restUser inManagedObjectContext:self.managedObjectContext];
-//            if (user_) {
-//                [followers addObject:user_];
-//            }
-//        }
-//        [self addFollowers:followers];
-//    }
-//    
+}
+
+- (NSNumber *)yearsOld {
+    NSDate *fromDate;
+    NSDate *toDate;
     
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&fromDate
+                 interval:NULL forDate:self.birthday];
+    
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&toDate
+                 interval:NULL forDate:[NSDate date]];
+    
+    NSDateComponents *difference = [calendar components:NSYearCalendarUnit
+                                               fromDate:fromDate toDate:toDate options:0];
+    
+    return @([difference year]);
+}
+
+- (NSInteger)numberOfUnreadNotifications {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isRead == %@", @NO];
+    NSSet *notifications = [self.notifications filteredSetUsingPredicate:predicate];
+    return [notifications count];
 }
 
 @end

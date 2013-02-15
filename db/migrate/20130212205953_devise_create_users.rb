@@ -41,6 +41,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :city
       t.string :country
       t.integer :gender, :default => 0
+      t.integer :looking_for_gender
       t.timestamp :birthday
       t.string :first_name
       t.string :last_name
@@ -62,5 +63,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :authentication_token, :unique => true
     add_index :users, :fbuid, :unique => true
     add_index :users, :vkuid, :unique => true
+    add_index :users, :is_active
+    add_index :users, :gender
+    add_index :users, :looking_for_gender
   end
 end

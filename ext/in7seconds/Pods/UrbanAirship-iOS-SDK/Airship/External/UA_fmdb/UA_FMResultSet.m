@@ -112,7 +112,7 @@
             break;
         }
         else {
-            // ***REMOVED***?
+            // wtf?
             NSLog(@"Unknown error calling sqlite3_step (%d: %s) rs", rc, sqlite3_errmsg([parentDB sqliteHandle]));
             break;
         }

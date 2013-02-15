@@ -18,4 +18,12 @@
                 inManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (User *)currentUser:(NSManagedObjectContext *)context;
+
+- (NSString *)fullName;
+- (NSNumber *)yearsOld;
+- (NSString *)fullLocation;
+- (NSString *)vkUrl;
+- (NSString *)schoolInfo;
+- (NSString *)socialUrl;
+- (NSInteger)numberOfUnreadNotifications;
 @end

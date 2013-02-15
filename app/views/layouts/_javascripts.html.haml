@@ -1,0 +1,24 @@
+:javascript
+  var app = {
+    env: {
+      debug: #{Rails.env.development? ? 'true' : 'false'},
+      vk_app_id: #{CONFIG[:vk_web_app_id]},
+      host: '#{CONFIG[:host]}'
+    },
+    endpoints: {
+      profile: '/api/v1/users/update_user',
+      hookups: '/api/v1/users/hookups.json',
+      matches: '/api/v1/users/matches.json',
+      like: '/api/v1/users/:id/flirt',
+      dislike: '/api/v1/users/:id/reject'
+    },
+    user: #{render_json current_user, 'api/v1/users/show'},
+    collections: {},
+    models: {},
+    modules: {},
+    views: {}
+  };
+%script{:src=>"//vk.com/js/api/openapi.js?79"}
+%script{:src=>"//vk.com/js/api/share.js?9"}
+= render :partial => 'layouts/analytics'
+= javascript_include_tag 'application'

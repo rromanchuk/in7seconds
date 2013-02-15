@@ -7,36 +7,41 @@
 //
 
 #import "LoginViewController.h"
+#import "IndexViewController.h"
+#import "BaseNavigationViewController.h"
 #import "RestUser.h"
 #import "AppDelegate.h"
+#import "UAPush.h"
+#import "UAirship.h"
+#import "MenuViewController.h"
+#import "ThreadedUpdates.h"
+#import <ViewDeck/IIViewDeckController.h>
+
 @interface LoginViewController ()
 
 @end
 
 @implementation LoginViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [Vkontakte sharedInstance].delegate = self;
-    self.loginLabel.text = NSLocalizedString(@"Войти через Вконтакте", @"Login with vk prompt");
     
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = appDelegate.managedObjectContext;
+    self.navigationController.navigationBarHidden = YES;
+    
+    [Vkontakte sharedInstance].delegate = self;
+    [FacebookHelper shared].delegate = self;
+    self.loginLabel.text = NSLocalizedString(@"Войти через Вконтакте", @"Login with vk prompt");
+    [[Vkontakte sharedInstance] logout];
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.screenName = @"Login Screen";
 }
 
 - (IBAction)didTapVkLogin:(id)sender {
@@ -46,11 +51,11 @@
         ALog(@"authenticate");
         [[Vkontakte sharedInstance] authenticate];
     }
-    else
-    {
-        [[Vkontakte sharedInstance] logout];
-    }
+}
 
+- (IBAction)didTapFbLogin:(id)sender {
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...") maskType:SVProgressHUDMaskTypeGradient];
+    [[FacebookHelper shared] login];
 }
 
 #pragma mark - VkontakteDelegate
@@ -65,6 +70,7 @@
 
 - (void)showVkontakteAuthController:(UIViewController *)controller
 {
+    self.vkController = controller;
     [self presentViewController:controller animated:YES completion:^(void) {
         
     }];
@@ -83,24 +89,25 @@
 
     NSDictionary *_params = @{@"access_token": vkontakte.accessToken, @"user_id": vkontakte.userId, @"platform": @"vkontakte", @"email": vkontakte.email };
     NSMutableDictionary *params = [_params mutableCopy];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...") maskType:SVProgressHUDMaskTypeGradient];
     
     [RestUser create:params
               onLoad:^(RestUser *restUser) {
-                  
-                  self.currentUser = [User findOrCreateUserWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
-                  [self saveContext];
+                  User *user = [User findOrCreateUserWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+                  self.currentUser = user;
                   [RestUser setCurrentUserId:restUser.externalId];
                   [RestUser setCurrentUserToken:restUser.authenticationToken];
+                  [self setIdentifiers:user];
                   [SVProgressHUD dismiss];
-                  [self dismissViewControllerAnimated:YES completion:^(void) {
-                      ALog(@"finished dismissing");
-                      [self.delegate didVkLogin:self.currentUser];
-                  }];
-
+                  [self setupProfile];
+                  [self.vkController dismissViewControllerAnimated:YES completion:nil];
               }
              onError:^(NSError *error) {
+                 [SVProgressHUD dismiss];
                  [RestUser resetIdentifiers];
+                 [[Vkontakte sharedInstance] logout];
                  [self dismissViewControllerAnimated:YES completion:nil];
+                 [self.vkController dismissViewControllerAnimated:YES completion:nil];
                  [SVProgressHUD showErrorWithStatus:error.localizedDescription];
              }];
 
@@ -121,20 +128,60 @@
     ALog(@"%@", responce);
 }
 
+#pragma mark - FacebookHelperDelegatemethods 
 
-- (void)saveContext
-{
-    NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
-        if ([_managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        }
-    }
-    
-    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [sharedAppDelegate writeToDisk];
+- (void)fbDidLogin:(RestUser *)restUser {
+    User *user = [User findOrCreateUserWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+    self.currentUser = user;
+    [RestUser setCurrentUserId:restUser.externalId];
+    [RestUser setCurrentUserToken:restUser.authenticationToken];
+    [self setIdentifiers:user];
+    [SVProgressHUD dismiss];
+    [self setupProfile];
 }
 
+- (void)fbDidFailLogin:(NSError *)error {
+    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+}
+
+- (void)fbSessionValid:(RestUser *)restUser {
+    [self fbDidLogin:restUser];
+}
+
+- (void)setIdentifiers:(User *)user {
+    
+    NSString *alias = [NSString stringWithFormat:@"%@", user.externalId];
+    [[UAPush shared] setAlias:alias];
+    [[UAPush shared] updateRegistration];
+    [Flurry setUserID:alias];
+    if ([user.gender boolValue]) {
+        [Flurry setGender:@"f"];
+    } else {
+        [Flurry setGender:@"m"];
+    }
+    if ([user.yearsOld integerValue] > 0) {
+        [Flurry setAge:[user.yearsOld integerValue]];
+    }
+
+}
+
+- (void)setupProfile {
+    AppDelegate *sharedAppDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [sharedAppDelegate resetWindowToInitialView];
+
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+//    
+//    BaseNavigationViewController *center = [storyboard instantiateViewControllerWithIdentifier:@"middleViewController"];
+//    self.viewDeckController.centerController = center;
+//    
+//    BaseNavigationViewController *menu = [storyboard instantiateViewControllerWithIdentifier:@"menuViewController"];
+//    self.viewDeckController.leftController = menu;
+    
+}
+
+
+- (void)viewDidUnload {
+    [self setFbLoginButton:nil];
+    [super viewDidUnload];
+}
 @end

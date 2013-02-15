@@ -1,0 +1,8 @@
+.prt-social
+  .p-s-ituneswrap
+    %a.p-s-itunes{:href=>'https://itunes.apple.com/ru/app/7-seconds/id604460636', :target=>'itunes_store'}
+      %img{:src=>'/assets/Available_on_the_App_Store_Badge_RU_135x40.png', :alt => 'In 7 Seconds'}
+  .p-s-likewrap
+    #vk_like
+  .p-s-sharewrap
+    #vk_share

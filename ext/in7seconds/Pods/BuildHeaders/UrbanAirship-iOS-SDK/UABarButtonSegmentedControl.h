@@ -1,1 +1,1 @@
-../../UrbanAirship-iOS-SDK/Airship/Common/UABarButtonSegmentedControl.h
+../../UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Classes/Shared/UABarButtonSegmentedControl.h

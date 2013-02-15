@@ -1,0 +1,3 @@
+.p-feed
+  .p-f-loading!= app.templates.spinner()
+  .p-f-error Произошел сбой соединения. Попробуй обновить страницу.

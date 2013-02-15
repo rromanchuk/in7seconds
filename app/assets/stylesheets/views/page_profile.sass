@@ -1,0 +1,75 @@
+@import 'include/mixins'
+
+.p-profile
+  width: 960px
+  margin: 0 auto
+  padding-top: 30px
+
+  .p-p-content
+    @include cf()
+
+    .p-p-u-photo
+      width: 200px
+      margin-top: 12px
+      float: left
+
+    .p-p-u-meta
+      margin-left: 250px
+
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 1)
+
+      .p-p-u-name
+        font-size: 48px
+        line-height: 64px
+        color: #333
+
+      .p-p-u-settings
+        margin-top: 30px
+
+        .p-p-u-label
+          width: 100px
+          display: inline-block
+
+        .p-p-u-desc
+          width: 500px
+          margin-top: 10px
+          display: block
+
+          font-size: 12px
+          line-height: 16px
+
+        .p-p-u-submit
+          margin-top: 30px
+
+        // .checkbox
+        //   margin-top: 15px
+
+        //   .p-p-u-label
+        //     width: 400px
+        //     margin-left: 10px
+        //     vertical-align: middle
+        //     font-size: 12px
+        //     line-height: 18px
+
+        .p-p-u-saved
+          width: 300px
+          margin-top: 20px
+          padding: 5px 10px
+          display: inline-block
+
+          border-radius: 5px
+
+          opacity: 0
+
+          background: #0a0
+          background: rgba(0, 200, 0, .5)
+
+          font-size: 12px
+          line-height: 18px
+
+          color: #fff
+          text-shadow: 0 -1px 0 rgba(0, 0, 0, .3)
+          text-align: center
+
+          transition: opacity linear .2s
+

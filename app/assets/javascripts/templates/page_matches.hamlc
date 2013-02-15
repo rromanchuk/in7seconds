@@ -1,0 +1,11 @@
+.p-matches
+  .p-m-loading!= app.templates.spinner()
+  .p-m-error Произошел сбой соединения. Попробуй обновить страницу.
+  .p-m-content
+    %h1.p-m-header Совпадения
+    .p-m-list
+      .p-m-list-empty Похоже, что пока-что у тебя нет совпадений. Чем больше ты играешь, тем больше шанс, что они появятся!
+    %p Чтобы отправлять своим совпадениям сообщения просто
+      %a.p-s-itunes{:href=>'https://itunes.apple.com/ru/app/7-seconds/id604460636', :target=>'itunes_store'}установи iOS приложение.
+
+    != app.templates.social()

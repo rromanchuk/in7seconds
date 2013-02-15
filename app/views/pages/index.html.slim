@@ -1,0 +1,22 @@
+.row.header
+  = image_tag('logo.png', class: 'logo pull-left')
+  .col-md-offset-4
+    = image_tag('Available_on_the_App_Store_Badge_RU_135x40.png', class: 'pull-right')
+.row
+  .col-md-6
+    .phone-image
+      .screen-crop
+        ul.screens
+          li= image_tag('screen-01-568.jpg', :alt => 'Screenshot 1', :class => 'p-i-p-screen')
+          li= image_tag('screen-02-568.jpg', :alt => 'Screenshot 2', :class => 'p-i-p-screen')
+          li= image_tag('screen-03-568.jpg', :alt => 'Screenshot 3', :class => 'p-i-p-screen')
+          li= image_tag('screen-04-568.jpg', :alt => 'Screenshot 4', :class => 'p-i-p-screen')
+          li= image_tag('screen-05-568.jpg', :alt => 'Screenshot 5', :class => 'p-i-p-screen')
+  .col-md-6.about
+    h1 Улыбок тебе дед макар
+    p С утра садимся мы в телегу, Мы рады голову сломать И, презирая лень и негу, Кричим: пошёл! ебёна мать!
+    
+
+.row#footer
+  p this is the footer
+  = render :partial => 'partials/social'

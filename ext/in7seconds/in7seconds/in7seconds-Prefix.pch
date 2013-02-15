@@ -20,6 +20,11 @@
     #import "Flurry.h"
     #import "NSObject+JTObjectMapping.h"
     #import "UIColor+Defaults.h"
+    #import "NSNull+NullAddition.h"
+    #import "GAITrackedViewController.h"
+    #import "GAIDictionaryBuilder.h"
+    #import "GAI.h"
+    #import "GAIFields.h"
 #endif
 
 
@@ -42,3 +47,17 @@
 
 #define RGBA(r,g,b,a) (r)/255.0f, (g)/255.0f, (b)/255.0f, (a)
 
+
+/// Stick this in code you want to assert if run on the main UI thread.
+#define DONT_BLOCK_UI() \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Wpedantic\"") \
+NSAssert(![NSThread isMainThread], @"Don't block the UI thread please!") \
+_Pragma("clang diagnostic pop")
+
+/// Stick this in code you want to assert if run on a background thread.
+#define BLOCK_UI() \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Wpedantic\"") \
+NSAssert([NSThread isMainThread], @"You aren't running in the UI thread!") \
+_Pragma("clang diagnostic pop")

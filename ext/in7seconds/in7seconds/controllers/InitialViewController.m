@@ -7,46 +7,68 @@
 //
 
 #import "InitialViewController.h"
-#import "NavigationTopViewController.h"
-#import "InitialViewController.h"
+#import "IndexViewController.h"
+#import "BaseNavigationViewController.h"
+#import "MenuViewController.h"
+#import "IndexViewController.h"
+
+#import "RestHookup.h"
+#import "Hookup+REST.h"
+#import "Location.h"
+
+
 @interface InitialViewController ()
 
 @end
 
 @implementation InitialViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = delegate.managedObjectContext;
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    if (self.currentUser) {
+        self = [super initWithCenterViewController:[storyboard instantiateViewControllerWithIdentifier:@"middleViewController"]
+                                leftViewController:[storyboard instantiateViewControllerWithIdentifier:@"menuViewController"]
+                rightViewController:[storyboard instantiateViewControllerWithIdentifier:@"matchesController"]];
+    } else {
+        
+        self = [super initWithCenterViewController:[storyboard instantiateViewControllerWithIdentifier:@"middleViewController"]
+                                leftViewController:[storyboard instantiateViewControllerWithIdentifier:@"loginViewController"]];
+    }
+            
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
 
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIStoryboard *storyboard;
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        storyboard = [UIStoryboard storyboardWithName:@"iPad" bundle:nil];
-    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout)
+                                                 name:@"UserNotAuthorized" object:nil];
 
-	// Do any additional setup after loading the view.
-    self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationTop"];
-    NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
-    ((InitialViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
-    ((InitialViewController *)nc.topViewController).currentUser = self.currentUser;
-    
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - LogoutDelegate delegate methods
+- (void) didLogout
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    ALog(@"in logout");
+    [[Location sharedLocation] stopUpdatingLocation:@"logout"];
+    [[[RestClient sharedClient] operationQueue] cancelAllOperations];
+    [RestUser resetIdentifiers];
+    [[Vkontakte sharedInstance] logout];
+    
+    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [sharedAppDelegate resetWindowToInitialView];
 }
 
 @end

@@ -1,0 +1,5 @@
+ul.nav.nav-tabs
+  li class="#{controller_name == 'users'  ? 'active' : ''}"= link_to 'User', admin_users_path
+  li class="#{ controller_name == 'notifications'  ? 'active' : '' }"= link_to 'Notifications', admin_notifications_path
+  li class="#{ action_name == 'stats'  ? 'active' : '' }"= link_to 'Stats', stats_admin_users_path
+  

@@ -1,0 +1,222 @@
+@import 'include/mixins'
+
+.p-index 
+  width: 100%
+  height: 100%
+
+  min-width: 960px
+  min-height: 600px
+
+  margin: 0 auto
+
+  position: relative
+
+  .p-i-bg-wrap 
+    width: 100%
+    height: 100%
+
+    position: absolute
+    top: 0
+    left: 0
+
+    overflow: hidden
+
+    .p-i-bg-container 
+      width: 200%
+      height: 200%
+
+      position: absolute
+      left: -50%
+      top: -50%
+
+      .p-i-bg-img 
+        min-width: 50%
+        min-height: 50%
+
+        margin: auto
+
+        position: absolute
+        left: 0
+        top: 0
+        right: 0
+        bottom: 0
+      
+  .p-i-content
+    width: 960px
+    margin-left: -480px
+    margin-top: -300px
+
+    position: absolute
+    top: 50%
+    left: 50%
+
+    overflow: hidden
+
+    .p-i-phone
+      width: 250px
+      float: left
+      position: relative
+
+      .p-i-p-crop
+        width: 211px
+        height: 375px
+        overflow: hidden
+
+        position: absolute
+        left: 20px
+        top: 78px
+
+        .p-i-p-screens
+          position: absolute
+          left: 0
+          top: 0
+
+          li
+            width: 211px
+            height: 375px
+            display: block
+
+      .p-i-p-front
+        position: relative
+        z-index: 3
+
+    .p-i-desc
+      width: 640px
+      margin-top: 10px
+      float: right
+
+      text-align: center
+
+      color: #eee
+
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, .6)
+
+      .p-i-details
+        padding: 15px
+
+        border-radius: 5px
+        background: #333
+        background: rgba(0, 0, 0, .4)
+
+        .p-i-title
+          font-size: 36px
+          line-height: 48px
+        .p-i-subtitle
+          font-size: 16px
+          line-height: 24px
+
+        .p-i-concept
+          margin-top: 20px
+          font-size: 14px
+          line-height: 22px
+
+          text-align: left
+
+        .p-i-invitation
+          margin-top: 10px
+          font-size: 14px
+          line-height: 22px
+          text-align: left
+
+        .p-i-auth
+          margin-top: 20px
+          padding-top: 20px
+          border-top: 1px solid #555
+
+          .vkbutton
+            height: 25px
+            padding: 0 10px 0 40px
+            display: inline-block
+
+            background: #597da4
+            line-height: 25px
+
+            box-shadow: 0 2px 0 darken(#597da4, 40%)
+
+            text-align: left
+
+            font-size: 13px
+            text-shadow: 0 1px 0 rgba(0, 0, 0, .4)
+
+            color: #fff
+
+            &:hover
+              text-decoration: none
+
+            .vk-icon
+              width: 35px
+              height: 35px
+
+              position: absolute
+              left: -1px
+              top: -5px
+
+              display: inline-block
+              vertical-align: middle
+
+              border-radius: 8px
+              box-shadow: 0 2px 0 darken(#43678c, 40%)
+
+              background: url('/assets/vkontakte.png') no-repeat
+              background-size: 35px 35px
+
+            &:active
+              box-shadow: 0 1px 0 darken(#597da4, 40%)
+
+              .vk-icon
+                box-shadow: 0 1px 0 darken(#43678c, 40%)
+
+          .fbbutton
+            height: 25px
+            margin-left: 20px
+            padding: 0 10px 0 40px
+            display: inline-block
+
+            background: #3b5998
+            line-height: 25px
+
+            box-shadow: 0 2px 0 darken(#3b5998, 40%)
+
+            text-align: left
+
+            font-size: 13px
+            text-shadow: 0 1px 0 rgba(0, 0, 0, .4)
+
+            color: #fff
+
+            &:hover
+              text-decoration: none
+
+            .vk-icon
+              width: 35px
+              height: 35px
+
+              position: absolute
+              left: -1px
+              top: -5px
+
+              display: inline-block
+              vertical-align: middle
+
+              border-radius: 8px
+              box-shadow: 0 2px 0 darken(#43678c, 40%)
+
+              background: url('/assets/facebook.png') no-repeat
+              background-size: 35px 35px
+
+            &:active
+              box-shadow: 0 1px 0 darken(#3b5998, 40%)
+
+              .vk-icon
+                box-shadow: 0 1px 0 darken(#43678c, 40%)
+
+          .p-i-a-conditions
+            margin-top: 15px
+            display: block
+            font-size: 10px
+            line-height: 14px
+
+            color: #777
+
+      .p-i-extras
+        margin-top: 30px

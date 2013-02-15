@@ -102,8 +102,7 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [[UIApplication sharedApplication] showNetworkActivityIndicator];
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"LOADING", @"loading screen")];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView
@@ -174,7 +173,6 @@
         }
     }
     
-    [[UIApplication sharedApplication] hideNetworkActivityIndicator];
     [SVProgressHUD dismiss];
 }
 
@@ -187,7 +185,6 @@
         [self.delegate authorizationDidFailedWithError:error];
     }
     
-    [[UIApplication sharedApplication] hideNetworkActivityIndicator];
     [SVProgressHUD dismiss];
 }
 
@@ -203,7 +200,7 @@
     
     NSString *email = [_webView stringByEvaluatingJavaScriptFromString:s];
     ALog(@"Caught EMAIL %@", email);
-    if (([email length] != 0))
+    if (email.length > 0)
     {
         _userEmail = email;
     }

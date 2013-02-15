@@ -1,67 +1,92 @@
 In7seconds::Application.routes.draw do
   
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  resources :token_authentications, :only => [:create, :destroy]
+  devise_for :users,
+             :controllers => { :registrations => "users/registrations",
+                               :sessions => 'devise/sessions',
+                               :omniauth_callbacks => "users/omniauth_callbacks"},
+             :skip => [:sessions] do
+    get '/'   => "pages#index",       :as => :new_user_session
+  end
 
-  resources :users do 
-    collection do 
-      get :me
+  devise_scope :user do
+    match "/logout" => "devise/sessions#destroy",  via: [:get, :post]
+  end
+
+
+
+  match '/users/unsubscribe/:signature' => 'users#unsubscribe', as: 'unsubscribe', via: [:get, :post]
+  
+
+  namespace :admin do
+    resources :notifications
+    resources :users do 
+      collection do
+        get :stats
+      end
+      member do
+        post :flirt
+        post :send_pending_reminder
+        post :send_notification
+      end
     end
   end
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
+  namespace :api do
+    namespace :v1 do
+      resources :token_authentications, :only => [:create, :destroy]
+      resources :images
+      resources :notifications do
+        collection do
+          post :mark_as_read
+        end
+      end
+      
+      resources :messages do
+        collection do
+          get :all_threads
+          post :create_new
+        end
+      end
+        
+      
+      resources :users do
+        resources :messages do
+          collection do
+            get :thread
+            post :create_new
+          end
+        end
+        member do
+          post :flirt
+          post :reject
+        end
 
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
+        collection do
+          get :me
+          get :authenticated_user
+          put :update_user
+          get :feed
+          get :hookups
+          get :matches
+        end
+      end
+    end
+  end
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  # config/routes.rb
+  if Rails.env.development?
+    mount MailPreview => 'mail_view'
+  end
 
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  get 'about' => 'pages#about'
+  get 'tos' => 'pages#tos'
+  get 'exception' => 'pages#exception'
 
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+  # fixme
+  get 'matches' => 'pages#matches'
+  get 'profile' => 'pages#profile'
 
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
+  get 'feed' => 'users#feed'
 
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  root :to => 'users#home'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  root :to => 'pages#index'
 end

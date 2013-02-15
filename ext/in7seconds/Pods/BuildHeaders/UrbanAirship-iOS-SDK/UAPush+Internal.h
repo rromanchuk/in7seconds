@@ -1,1 +1,1 @@
-../../UrbanAirship-iOS-SDK/Airship/Library/PushLib/UAPush+Internal.h
+../../UrbanAirship-iOS-SDK/Airship/Push/UAPush+Internal.h

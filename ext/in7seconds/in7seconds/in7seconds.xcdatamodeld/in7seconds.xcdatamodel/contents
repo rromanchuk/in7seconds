@@ -1,22 +1,156 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="13A584" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Group" representedClassName="Group" syncable="YES">
+        <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="provider" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="hookup" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Hookup" inverseName="groups" inverseEntity="Hookup" syncable="YES"/>
+        <relationship name="match" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Match" inverseName="groups" inverseEntity="Match" syncable="YES"/>
+    </entity>
+    <entity name="Hookup" representedClassName="Hookup" syncable="YES">
+        <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="didRate" optional="YES" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="fbDomain" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friendNames" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="Boolean" indexed="YES" syncable="YES"/>
+        <attribute name="groupNames" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lookingForGender" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="mutualFriendNames" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mutualFriendsNum" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="mutualGroupNames" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mutualGroups" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkDomain" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkFacultyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkGraduation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkToken" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkUniversityName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="hookup" inverseEntity="Group" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="hookup" inverseEntity="Image" syncable="YES"/>
+        <relationship name="mutualFriends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MutualFriend" inverseName="hookup" inverseEntity="MutualFriend" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="hookups" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Image" representedClassName="Image" syncable="YES">
+        <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="isFromUpload" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="hookup" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Hookup" inverseName="images" inverseEntity="Hookup" syncable="YES"/>
+        <relationship name="match" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Match" inverseName="images" inverseEntity="Match" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="images" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Match" representedClassName="Match" syncable="YES">
+        <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="fbDomain" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friendNames" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="groupNames" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="matchedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="mutualFriendNames" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mutualFriendsNum" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="mutualGroupNames" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mutualGroups" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkDomain" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkFacultyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkGraduation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkToken" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkUniversityName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="match" inverseEntity="Group" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="match" inverseEntity="Image" syncable="YES"/>
+        <relationship name="mutualFriends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MutualFriend" inverseName="match" inverseEntity="MutualFriend" syncable="YES"/>
+        <relationship name="privateMessages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PrivateMessage" inverseName="withMatch" inverseEntity="PrivateMessage" syncable="YES"/>
+        <relationship name="sentNotifcation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Notification" inverseName="sender" inverseEntity="Notification" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="matches" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="MutualFriend" representedClassName="MutualFriend" syncable="YES">
+        <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="hookup" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Hookup" inverseName="mutualFriends" inverseEntity="Hookup" syncable="YES"/>
+        <relationship name="match" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Match" inverseName="mutualFriends" inverseEntity="Match" syncable="YES"/>
+    </entity>
+    <entity name="Notification" representedClassName="Notification" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="isRead" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notificationType" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="sender" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Match" inverseName="sentNotifcation" inverseEntity="Match" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="notifications" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="PrivateMessage" representedClassName="PrivateMessage" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="isFromSelf" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="privateMessages" inverseEntity="User" syncable="YES"/>
+        <relationship name="withMatch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Match" inverseName="privateMessages" inverseEntity="Match" syncable="YES"/>
+    </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="authenticationToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="externalId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="emailOptIn" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="fbDomain" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friendNames" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="groupNames" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
-        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lookingForGender" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="mutualFriendNames" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mutualFriendsNum" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="mutualGroupNames" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mutualGroups" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pushOptIn" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="vkToken" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="possibleHookups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="possibleHookups" inverseEntity="User" syncable="YES"/>
+        <attribute name="vkDomain" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkFacultyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkGraduation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkUniversityName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="hookups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Hookup" inverseName="user" inverseEntity="Hookup" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="user" inverseEntity="Image" syncable="YES"/>
+        <relationship name="matches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Match" inverseName="user" inverseEntity="Match" syncable="YES"/>
+        <relationship name="notifications" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Notification" inverseName="user" inverseEntity="Notification" syncable="YES"/>
+        <relationship name="privateMessages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PrivateMessage" inverseName="user" inverseEntity="PrivateMessage" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="160" positionY="192" width="128" height="255"/>
+        <element name="Group" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Hookup" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Image" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Match" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MutualFriend" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Notification" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PrivateMessage" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="User" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

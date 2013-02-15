@@ -1,1 +1,1 @@
-../../UrbanAirship-iOS-SDK/Airship/Common/UADateUtils.h
+../../UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Classes/Shared/UADateUtils.h

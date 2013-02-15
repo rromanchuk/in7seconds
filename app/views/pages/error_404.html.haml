@@ -1,0 +1,12 @@
+- content_for :html_classes do
+  splash
+
+.p-error
+  .p-e-bg-wrap
+    .p-e-bg-container
+      = image_tag('splash_error.jpg', :alt => 'You\'re lost, friend', :class => 'p-e-bg-img') 
+
+  .p-e-content
+    %h2 Упс.
+    %strong Похоже, что такой страницы не существует&#133;
+

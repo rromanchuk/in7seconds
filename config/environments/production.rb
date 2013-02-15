@@ -20,6 +20,10 @@ In7seconds::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  config.assets.precompile << '*.js'
+  config.eager_load = true
+
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
@@ -40,11 +44,10 @@ In7seconds::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production
-  # config.cache_store = :mem_cache_store
-
+  config.cache_store = :dalli_store
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  # config.action_controller.asset_host = "http://assets.example.com"
-
+  config.action_controller.asset_host = CONFIG[:asset_host]
+  config.action_mailer.default_url_options = { :host => CONFIG[:asset_host] }
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
 
@@ -64,4 +67,27 @@ In7seconds::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  config.action_mailer.delivery_method = :amazon_ses
+  
+  # RELEASE
+  Urbanairship.application_key = ""
+  Urbanairship.application_secret = ""
+  Urbanairship.master_secret = "-2LNQ"
+  
+  #DISTRIBUTION
+  # Urbanairship.application_key = ""
+  # Urbanairship.application_secret = ""
+  # Urbanairship.master_secret = ""
+  Urbanairship.logger = Rails.logger
+
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[7seconds] ",
+    :sender_address => %{"in7Seconds Exception" <>},
+    :exception_recipients => %w{  }
+  }
+
+  if defined? ::HamlCoffeeAssets
+    
+  end
 end

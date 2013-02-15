@@ -1,0 +1,40 @@
+ryan_api:
+  user: ryan
+  group: api
+
+ryan_minnesota:
+  user: ryan
+  group: minnesota
+
+ryan_ostrovok:
+  user: ryan
+  group: ostrovok
+
+
+evgeny_api:
+  user: evgeny
+  group: api
+
+evgeny_minnesota:
+  user: evgeny
+  group: minnesota
+
+evgeny_ostrovok:
+  user: evgeny
+  group: ostrovok
+
+evgeny_ebay:
+  user: evgeny
+  group: ebay
+
+evgeny_school:
+  user: evgeny
+  group: school
+
+evgeny_things: 
+  user: evgeny
+  group: things
+
+evgeny_mdk:
+  user: evgeny
+  group: mdk

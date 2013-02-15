@@ -1,0 +1,23 @@
+- content_for :html_classes do
+  splash
+
+%section#l-content.p-about
+  .p-a-bg-wrap
+    .p-a-bg-container
+      = image_tag('splash.jpg', :alt => 'Spread love', :class => 'p-a-bg-img') 
+
+  .p-a-content
+    .p-a-details
+      %h1.p-a-title In 7 Seconds
+      %h1.p-a-subtitle Найди свою любовь всего за 7 секунд
+      %p.p-a-concept
+        Мы&nbsp;помогаем людям встретить свою любовь и&nbsp;стать ближе друг к&nbsp;другу.
+        Если тебе симпатичен наш проект, или ты&nbsp;просто хочешь пообщаться, то&nbsp;пиши нам на&nbsp;почту:
+        = succeed ',' do
+          %a{:href=>'mailto:' + CONFIG[:contact_email]}= CONFIG[:contact_email]
+        и добавляйся к нам в 
+        = succeed '.' do
+          %a{:href=>'http://vk.com/in7seconds'} группу ВКонтакте
+
+    .p-a-extras
+      = render :partial => 'partials/social'

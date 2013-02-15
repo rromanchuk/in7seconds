@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    = csrf_meta_tags
+    = render :partial => 'layouts/meta'
+    = javascript_include_tag CONFIG[:faye_host] + ".js"
+  body
+    .container
+      = yield
+      = render :partial => 'layouts/javascripts'

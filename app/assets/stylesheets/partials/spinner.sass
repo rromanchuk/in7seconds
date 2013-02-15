@@ -1,0 +1,35 @@
+@import 'include/mixins'
+
+.prt-spinner
+  width: 48px
+  height: 48px
+  margin: 0 auto
+
+  position: relative
+
+  .icon-spinner
+    position: absolute
+    left: 0
+    top: 0
+
+    font-size: 48px
+
+    @include animation-duration(2s)
+    @include animation-name(rotate)
+    @include animation-iteration-count(infinite)
+    @include animation-timing-function(linear)
+
+    color: #3da1fe
+
+// -90deg to compensate initial rotation of spinner
+@keyframes rotate
+  from
+    transform: rotate(-90deg)
+  to
+    transform: rotate(270deg)
+
+@-webkit-keyframes rotate
+  from
+    -webkit-transform: rotate(-90deg)
+  to
+    -webkit-transform: rotate(270deg)

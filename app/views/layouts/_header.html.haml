@@ -1,0 +1,25 @@
+%header#l-header
+  .l-h-content
+    %a.l-h-logo-wrap(href=root_path)
+      = image_tag('logo.png', :alt => 'In 7 Seconds', :class => '.l-h-logo')
+
+
+    - if user_signed_in?
+      %nav
+        %a.l-h-link.app-route{:href=>matches_path}
+          %i.icon-bubbles
+          %span Совпадения
+
+        .l-h-usermenu
+          .l-h-u-top
+            %img{:src=>current_user.photo_url, :alt=>current_user.first_name + ' ' + current_user.last_name}
+            %span.l-h-u-name= current_user.first_name + ' ' + current_user.last_name
+          %ul.l-h-dropdown
+            %li
+              %a.app-route{:href=>profile_path}
+                %i.icon-wink
+                %span Профиль           
+            %li
+              %a.last{:href=> logout_path}
+                %i.icon-exit
+                %span Выйти

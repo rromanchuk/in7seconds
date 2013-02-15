@@ -1,0 +1,111 @@
+@import "twitter/bootstrap";
+@import "include/reset";
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ 
+
+
+
+ */
+
+/* /
+*= require ./include/reset
+ *= require ./include/fonts
+ *= require_tree ./vendor
+ *= require_tree ./partials
+ *= require_tree ./modules
+/*= require_tree ./views
+ //*= require ./layout*/
+
+
+  html { 
+  background: url(image-path('bg.png')) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
+}
+
+body {
+  background: transparent;
+  color: white;
+  height: 100%;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: 300;
+    .header {
+      margin-top: 30px;
+    }
+  .container {
+    min-height: 100%;
+  }
+    /*.logo {
+      margin-left: -80px;
+      margin-top: 30px;
+    }*/
+    .about {
+      margin-top: 150px;
+    }
+
+    .prt-social {
+      padding: 15px;
+      text-align: center;
+      text-shadow: none;
+    }
+
+    .p-s-likewrap {
+      width: 180px;
+      margin-left: 30px;
+      display: inline-block;
+    }
+    
+
+    .p-s-sharewrap {
+      width: 130px;
+      display: inline-block;
+      text-shadow: none;
+    }
+    
+
+}
+
+h1 {
+  font-size: 48px;
+}
+
+p {
+  font-size: 30px;
+}
+
+.phone-image {
+  background-image: url(image-path('iphone.png'));
+  width: 570px;
+  height: 700px;
+  position: relative;
+  .screen-crop {
+    background-color: red;
+    width: 290px;
+        height: 515px;
+        overflow: hidden;
+        position: absolute;
+    top: 180px;
+    left: 100px;
+  }
+}
+
+#footer {
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:60px;   /* Height of the footer */
+  background:#6cf;
+}

@@ -112,12 +112,14 @@
     return [cachedStatements objectForKey:query];
 }
 
-- (void) setCachedStatement:(UA_FMStatement*)statement forQuery:(NSString*)query {
+- (void) setCachedStatement:(UA_FMStatement*)statement forQuery:(NSString *)query {
     //NSLog(@"setting query: %@", query);
     query = [query copy]; // in case we got handed in a mutable string...
-    [statement setQuery:query];
-    [cachedStatements setObject:statement forKey:query];
-    [query release];
+    if (query) {
+        [statement setQuery:query];
+        [cachedStatements setValue:statement forKey:query];
+        [query release];
+    }
 }
 
 
@@ -512,7 +514,7 @@
             NSLog(@"DB Query: %@", sql);
         }
         else {
-            // ***REMOVED***?
+            // wtf?
             NSLog(@"Unknown error calling sqlite3_step (%d: %s) eu", rc, sqlite3_errmsg(db));
             NSLog(@"DB Query: %@", sql);
         }

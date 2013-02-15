@@ -9,8 +9,27 @@
 #import "AppDelegate.h"
 #import "InitialViewController.h"
 #import "User+REST.h"
+#import <Crashlytics/Crashlytics.h>
+#import "UAPush.h"
+#import "UAirship.h"
+#import "UAConfig.h"
+#import "Config.h"
+#import "Facebook.h"
+#import "Appirater.h"
+#import "RestHookup.h"
+#import "Hookup+REST.h"
+
+#import "NotificationHandler.h"
+#import "RestNotification.h"
+#import "Notification+REST.h"
+
+#import "GAI.h"
+
+#import "AFNetworkActivityIndicatorManager.h"
+
+#import "ThreadedUpdates.h"
 @implementation AppDelegate
-@synthesize window = _window;
+
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize privateWriterContext = __privateWriterContext;
@@ -19,21 +38,75 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    [ThreadedUpdates shared].managedObjectContext = self.managedObjectContext;
+    
     // Override point for customization after application launch.
     [Flurry startSession:@"7RBHDYVR2RPTKP7NT4XN"];
     [TestFlight takeOff:@"8b9f2759-9e2b-48d9-873b-d3af3677d35b"];
-    InitialViewController *vc = (InitialViewController *)self.window.rootViewController;
-    vc.managedObjectContext = self.managedObjectContext;
-    vc.currentUser = [User currentUser:self.managedObjectContext];
+    [Crashlytics startWithAPIKey:@"cbbca2d940f872c4617ddb67cf20ec9844d036ea"];
+    
+    UAConfig *config = [UAConfig defaultConfig];
+    config.developmentAppKey = [Config sharedConfig].airshipKeyDev;
+    config.developmentAppSecret = [Config sharedConfig].airshipSecretDev;
+    config.productionAppKey = [Config sharedConfig].airshipKeyProd;
+    config.productionAppSecret = [Config sharedConfig].airshipSecretProd;
+
+    
+
+    
+    [UAirship takeOff:config];
+    [[UAPush shared] setPushEnabled:YES];
+    [UAPush shared].delegate = [NotificationHandler shared];
+    [[UAPush shared] setAutobadgeEnabled:YES];
+
+    // Set the icon badge to zero on startup (optional)
+    [[UAPush shared] resetBadge];
+    
+    // Register for remote notfications with the UA Library. This call is required.
+    [[UAPush shared] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                         UIRemoteNotificationTypeSound |
+                                                         UIRemoteNotificationTypeAlert)];
+    
+    // Handle any incoming incoming push notifications.
+    // This will invoke `handleBackgroundNotification` on your UAPushNotificationDelegate.
+    [[UAPush shared] handleNotification:[launchOptions valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey]
+                       applicationState:application.applicationState];
+    
+    
+    [Location sharedLocation].delegate = self;
+    self.initalStoryboard = self.window.rootViewController.storyboard;
+    
+    self.currentUser = [User currentUser:self.managedObjectContext];
     [self theme];
+    
+    [FBAppEvents activateApp];
+    
+    [Appirater setAppId:@"604460636"];
+    [Appirater setDaysUntilPrompt:3];
+    [Appirater setUsesUntilPrompt:4];
+    //[Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:2];
+    [Appirater appLaunched:YES];
+    
+    
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = NO;
+    
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 20;
+    
+    // Initialize tracker.
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-43989132-1"];
+    
     return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
+    [self.delegate applicationWillExit];
     [self writeToDisk];
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -45,35 +118,73 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self.delegate applicationWillWillStart];
+    
+
+    [FBSession.activeSession handleDidBecomeActive];
+    
+    [Location sharedLocation].delegate = self;
+    [[Location sharedLocation] updateUntilDesiredOrTimeout:15.0];
+    [self updateUser];
 }
 
+
+- (void)updateUser {
+    if (self.currentUser) {
+        [NotificationHandler shared].currentUser = self.currentUser;
+        [NotificationHandler shared].managedObjectContext = self.managedObjectContext;
+        
+        [self.managedObjectContext performBlock:^{
+            [RestUser reload:^(RestUser *restUser) {
+                NSString *alias = [NSString stringWithFormat:@"%@", restUser.externalId];
+                [[UAPush shared] setAlias:alias];
+                [[UAPush shared] updateRegistration];
+                self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+                
+                [self.managedObjectContext save:nil];
+                [self writeToDisk];
+                [[ThreadedUpdates shared] fetchNotifications];
+            } onError:^(NSError *error) {
+                [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+            }];
+            
+        }];
+        
+    }
+
+}
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-
 - (void)theme {
     UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
-    [navigationBarAppearance setBackgroundImage:[UIImage imageNamed:@"navigation-bar"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
+    
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+
+    } else {
+        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+        [[UINavigationBar appearance] setTintColor:RGBCOLOR(148, 153, 156)];
+        [[UIButton appearance] setTintColor:RGBCOLOR(148, 153, 156)];
+    }
+
+    
+    
+    //ios7
+    
+
+    navigationBarAppearance.titleTextAttributes = @{UITextAttributeFont: [UIFont fontWithName:@"HelveticaNeue-Light" size:21.0],
+                                                   UITextAttributeTextColor: RGBACOLOR(50, 57, 61, 1.0),
+                                                   UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0, 0)]};
 }
-//- (void)resetCoreData {
-//    LoginViewController *lc = ((LoginViewController *) self.window.rootViewController);
-//    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Piclar.sqlite"];
-//    [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
-//    __persistentStoreCoordinator = nil;
-//    __managedObjectContext = nil;
-//    __managedObjectModel = nil;
-//    __privateWriterContext = nil;
-//    lc.managedObjectContext = self.managedObjectContext;
-//    
-//}
 
 - (void)writeToDisk {
     NSError *error = nil;
@@ -99,10 +210,11 @@
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             [Flurry logError:@"FAILED_CONTEXT_SAVE" message:[error description] error:error];
-            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+            ALog(@"Unresolved error %@, %@", error, [error userInfo]);
         }
     }
+    
+    [self writeToDisk];
 }
 
 - (void)resetCoreData {
@@ -207,6 +319,89 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+
+#pragma mark LocationDelegate methods
+
+- (void)locationStoppedUpdatingFromTimeout
+{
+    //[[ThreadedUpdates shared] loadPlacesPassivelyWithCurrentLocation];
+    
+    //    [Flurry logEvent:@"FAILED_TO_GET_DESIRED_LOCATION_ACCURACY_APP_LAUNCH"];
+    if (!self.currentUser)
+        return;
+    [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
+        
+    } onError:^(NSError *error) {
+        
+    }];
+}
+
+- (void)didGetBestLocationOrTimeout
+{
+    ALog(@"");
+    if (!self.currentUser)
+        return;
+    
+    //[[ThreadedUpdates shared] loadPlacesPassivelyWithCurrentLocation];
+    //    [Flurry logEvent:@"DID_GET_DESIRED_LOCATION_ACCURACY_APP_LAUNCH"];
+    [self.managedObjectContext performBlock:^{
+        [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
+            
+        } onError:^(NSError *error) {
+            
+        }];
+    }];
+}
+
+- (void)failedToGetLocation:(NSError *)error
+{
+    DLog(@"%@", error);
+    //    [Flurry logEvent:@"FAILED_TO_GET_ANY_LOCATION_APP_LAUNCH"];
+}
+
+
+#pragma mark - UrbanAirship configuration
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Updates the device token and registers the token with UA.
+    [[UAPush shared] registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    ALog(@"Received remote notification: %@", userInfo);
+    ALog(@"delegate is %@", [UAPush shared].delegate);
+    [[UAPush shared] handleNotification:userInfo applicationState:application.applicationState];
+    [[UAPush shared] resetBadge]; // zero badge after push received
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    ALog(@"sourceApplication  is %@ url %@, %@annotation", sourceApplication, url, annotation);
+    return [FBSession.activeSession handleOpenURL:url];
+}
+
+
+- (void)resetWindowToInitialView
+{
+    for (UIView* view in self.window.subviews)
+    {
+        [view removeFromSuperview];
+    }
+    
+    UIViewController *initialScene = [_initalStoryboard instantiateInitialViewController];
+    self.window.rootViewController = initialScene;
+    
+    InitialViewController *vc = (InitialViewController *)self.window.rootViewController;
+    vc.managedObjectContext = self.managedObjectContext;
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    vc.currentUser = self.currentUser;
+    [self updateUser];
+}
+
 
 
 

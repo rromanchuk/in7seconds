@@ -1,11 +1,75 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+ryan:
+  email: 
+  first_name: Ryan
+  last_name: Romanchuk
+  gender: false
+  vkuid: 
+  looking_for_gender: 0
+  photo_url: 
+  vk_city: san_francisco
+  vk_country: usa
+  birthday: <%= (Time.now - 18.years).to_s(:db) %>
+  is_active: true
+  latitude: 37.3938261792
+  longitude: -122.0414431970
+
+adarsh:
+  email:
+  first_name: Adarsh
+  last_name: 
+  gender: false
+  vkuid: 
+  looking_for_gender: 0
+  photo_url: 
+  vk_city: moscow
+  vk_country: india
+  birthday: <%= (Time.now - 18.years).to_s(:db) %>
+  is_active: true
+  latitude: 37.3938261792
+  longitude: -122.0414431970
+
+evgeny:
+  email:
+  first_name: Evgeny
+  last_name: 
+  gender: false
+  vkuid: 
+  looking_for_gender: 0
+  photo_url: 
+  vk_city: moscow
+  vk_country: india
+  birthday: <%= (Time.now - 18.years).to_s(:db) %>
+  is_active: true
+  latitude: 37.3938261792
+  longitude: -122.0414431970
+
+bob:
+  email:
+  first_name: Bob
+  last_name: Mckenzy
+  gender: false
+  vkuid: 
+  looking_for_gender: 0
+  photo_url: 
+  vk_city: moscow
+  vk_country: india
+  birthday: <%= (Time.now - 18.years).to_s(:db) %>
+  is_active: true
+  latitude: 37.3938261792
+  longitude: -122.0414431970
+
+felix:
+  email:
+  first_name: Felix
+  last_name: 
+  gender: false
+  vkuid: 
+  looking_for_gender: 0
+  photo_url: 
+  vk_city: moscow
+  vk_country: india
+  birthday: <%= (Time.now - 18.years).to_s(:db) %>
+  is_active: true
+  latitude: 37.3938261792
+  longitude: -122.0414431970
