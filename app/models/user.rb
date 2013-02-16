@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          #:validatable
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city
-  attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active, :city_id, :country_id
+  attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active, :city_id, :country_id, :looking_for_gender
 
   has_many :relationships
 
@@ -145,12 +145,12 @@ class User < ActiveRecord::Base
           :country => get_vk_country(vk_user.country, access_token),
           :vk_token => access_token,
           :gender => gender_for_vk_gender(vk_user.sex),
-          :looking_for_gender => guess_looking_for(gender_for_vk_gender(friend.sex)),
+          :looking_for_gender => guess_looking_for(gender_for_vk_gender(vk_user.sex)),
           :provider => :vkontakte,
           :photo_url => vk_user.photo_big,
           :is_active => true)
     # delay this
-    user.find_friends
+    user.get_friends
     user
   end
 

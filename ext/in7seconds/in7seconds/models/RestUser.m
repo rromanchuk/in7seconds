@@ -47,10 +47,10 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
         onLoad:(void (^)(RestUser *restUser))onLoad
        onError:(void (^)(NSError *error))onError {
     RestClient *restClient = [RestClient sharedClient];
-    ALog(@"got gender:")
+    ALog(@"got gender:%@ got looking for %@", user.gender, user.lookingForGender);
     NSDictionary *params = @{@"user[looking_for_gender]": user.lookingForGender, @"user[gender]": user.gender};
-    NSMutableURLRequest *request = [restClient requestWithMethod:@"PUT"
-                                                            path:RESOURCE_PATH
+    NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"PUT"
+                                                            path:[RESOURCE_PATH stringByAppendingString:@"/update_user.json"]
                                                       parameters:params];
     
     ALog(@"CREATE REQUEST: %@", request);

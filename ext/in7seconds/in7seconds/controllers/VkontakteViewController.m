@@ -103,7 +103,7 @@
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     [[UIApplication sharedApplication] showNetworkActivityIndicator];
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"LOADING", @"loading screen")];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView

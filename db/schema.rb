@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20130216141041) do
     t.text     "friends_list"
     t.datetime "created_at",                                                                             :null => false
     t.datetime "updated_at",                                                                             :null => false
-    t.integer  "looking_for_gender",                                                  :default => 0
+    t.integer  "looking_for_gender"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

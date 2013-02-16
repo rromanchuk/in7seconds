@@ -14,6 +14,7 @@ In7seconds::Application.routes.draw do
   resources :users do 
     collection do 
       get :me
+      put :update_user
     end
   end
   # The priority is based upon order of creation:
