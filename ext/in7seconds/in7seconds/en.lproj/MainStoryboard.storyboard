@@ -42,7 +42,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dMf-Bg-gE4">
-                                <rect key="frame" x="32" y="396" width="257" height="47"/>
+                                <rect key="frame" x="32" y="404" width="257" height="47"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Выйти" backgroundImage="logout_button@2x.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -126,6 +126,13 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" red="0.24313725489999999" green="0.23137254900000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P6k-Mf-jwU">
+                                <rect key="frame" x="32" y="385" width="257" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -135,6 +142,7 @@
                         <outlet property="logoutButton" destination="dMf-Bg-gE4" id="MxG-ha-cqk"/>
                         <outlet property="lookingForMen" destination="0ht-gZ-hZl" id="tFI-dR-hlR"/>
                         <outlet property="lookingForWomen" destination="WcR-BA-U5Z" id="O0e-cA-tvT"/>
+                        <outlet property="versionLabel" destination="P6k-Mf-jwU" id="uFy-w9-IVO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S94-kk-E0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -183,10 +191,10 @@
                                     <action selector="didTapUnlike:" destination="PtS-j9-yLv" eventType="touchUpInside" id="2tI-eH-nVV"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="APD-Fz-edu">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="APD-Fz-edu">
                                 <rect key="frame" x="33" y="58" width="255" height="255"/>
                             </imageView>
-                            <view alpha="0.80000000000000004" contentMode="scaleToFill" id="1TP-4s-6JG">
+                            <view hidden="YES" alpha="0.80000000000000004" contentMode="scaleToFill" id="1TP-4s-6JG">
                                 <rect key="frame" x="33" y="264" width="255" height="49"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="friends_icon@2x.png" id="03O-yp-Uo1">
@@ -351,6 +359,7 @@
                 <relationship kind="outlet" name="logoutButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="lookingForMen" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="lookingForWomen" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="versionLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="NavigationTopViewController" superclassName="UINavigationController">

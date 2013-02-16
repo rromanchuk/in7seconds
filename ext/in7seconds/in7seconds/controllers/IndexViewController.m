@@ -98,7 +98,12 @@
         self.otherUser = [self.currentUser.possibleHookups anyObject];
         
         [self.userImageView setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
-        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@, %@ %@", self.otherUser.lastName, self.otherUser.firstName, self.otherUser.yearsOld, NSLocalizedString(@"лет", @"years old")];
+        if (self.otherUser.birthday) {
+            self.nameLabel.text = [NSString stringWithFormat:@"%@ %@, %@ %@", self.otherUser.lastName, self.otherUser.firstName, self.otherUser.yearsOld, NSLocalizedString(@"лет", @"years old")];
+        } else {
+            self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.otherUser.lastName, self.otherUser.firstName];
+        }
+        
     }
 }
 

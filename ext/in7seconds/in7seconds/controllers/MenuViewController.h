@@ -21,6 +21,7 @@ typedef enum  {
 @property (strong, nonatomic) User *currentUser;
 @property (weak, nonatomic) IBOutlet UILabel *iAmLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *genderSegmentControl;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *lookingForMen;
 @property (weak, nonatomic) IBOutlet UIButton *lookingForWomen;
