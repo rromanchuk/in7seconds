@@ -150,7 +150,7 @@ class User < ActiveRecord::Base
           :photo_url => vk_user.photo_big,
           :is_active => true)
     # delay this
-    user.get_friends
+    user.delay.get_friends
     user
   end
 
