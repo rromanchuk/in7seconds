@@ -84,6 +84,7 @@
 		FA7002C516CAF5430098A5B7 /* Vkontakte.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002C416CAF5430098A5B7 /* Vkontakte.m */; };
 		FA7002C816CAF5F00098A5B7 /* VkontakteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002C716CAF5F00098A5B7 /* VkontakteViewController.m */; };
 		FA7002CC16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */; };
+		FA809FEA16D040FD003920E6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA809FE916D040FD003920E6 /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,6 +206,7 @@
 		FA7002C716CAF5F00098A5B7 /* VkontakteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VkontakteViewController.m; path = controllers/VkontakteViewController.m; sourceTree = "<group>"; };
 		FA7002CA16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+NetworkActivityIndicator.h"; path = "categories/UIApplication+NetworkActivityIndicator.h"; sourceTree = "<group>"; };
 		FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+NetworkActivityIndicator.m"; path = "categories/UIApplication+NetworkActivityIndicator.m"; sourceTree = "<group>"; };
+		FA809FE916D040FD003920E6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA809FEA16D040FD003920E6 /* Crashlytics.framework in Frameworks */,
 				94D09CCE16CBF0CC0064F886 /* CoreData.framework in Frameworks */,
 				FA70025516CAECB20098A5B7 /* UIKit.framework in Frameworks */,
 				FA70025716CAECB20098A5B7 /* Foundation.framework in Frameworks */,
@@ -283,12 +286,12 @@
 		FA70024816CAECB20098A5B7 = {
 			isa = PBXGroup;
 			children = (
+				FA809FE916D040FD003920E6 /* Crashlytics.framework */,
 				9484989816CD2DBA000083DE /* 57.png */,
 				9484989616CD2DB0000083DE /* 114.png */,
 				9484989416CD2D8E000083DE /* Default.png */,
 				9484989216CD2C17000083DE /* Default@2x.png */,
 				9484989016CD2BE4000083DE /* Default-568h@2x.png */,
-				94D09CCD16CBF0CC0064F886 /* CoreData.framework */,
 				FA70025A16CAECB20098A5B7 /* in7seconds */,
 				FA70027E16CAECB30098A5B7 /* in7secondsTests */,
 				FA70025316CAECB20098A5B7 /* Frameworks */,
@@ -309,6 +312,7 @@
 		FA70025316CAECB20098A5B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				94D09CCD16CBF0CC0064F886 /* CoreData.framework */,
 				94D09CAB16CBD3AC0064F886 /* JTObjectMapping */,
 				FA70025416CAECB20098A5B7 /* UIKit.framework */,
 				FA70025616CAECB20098A5B7 /* Foundation.framework */,
@@ -478,6 +482,7 @@
 				FA70024E16CAECB20098A5B7 /* Frameworks */,
 				FA70024F16CAECB20098A5B7 /* Resources */,
 				8E491643FF18455A9E8F911A /* Copy Pods Resources */,
+				FA809FE616D03CED003920E6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -619,6 +624,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		FA809FE616D03CED003920E6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run cbbca2d940f872c4617ddb67cf20ec9844d036ea";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -738,6 +756,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF7F3663B2C24854B8CFE612 /* Pods.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "in7seconds/in7seconds-Prefix.pch";
 				INFOPLIST_FILE = "in7seconds/in7seconds-Info.plist";
@@ -823,6 +845,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF7F3663B2C24854B8CFE612 /* Pods.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "in7seconds/in7seconds-Prefix.pch";
 				INFOPLIST_FILE = "in7seconds/in7seconds-Info.plist";
@@ -835,6 +861,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF7F3663B2C24854B8CFE612 /* Pods.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "in7seconds/in7seconds-Prefix.pch";
 				INFOPLIST_FILE = "in7seconds/in7seconds-Info.plist";

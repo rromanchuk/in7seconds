@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "InitialViewController.h"
 #import "User+REST.h"
+#import <Crashlytics/Crashlytics.h>
 @implementation AppDelegate
 @synthesize window = _window;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -22,6 +23,7 @@
     // Override point for customization after application launch.
     [Flurry startSession:@"7RBHDYVR2RPTKP7NT4XN"];
     [TestFlight takeOff:@"8b9f2759-9e2b-48d9-873b-d3af3677d35b"];
+    [Crashlytics startWithAPIKey:@"cbbca2d940f872c4617ddb67cf20ec9844d036ea"];
     InitialViewController *vc = (InitialViewController *)self.window.rootViewController;
     vc.managedObjectContext = self.managedObjectContext;
     vc.currentUser = [User currentUser:self.managedObjectContext];
