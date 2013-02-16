@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
   def get_friends
     fields = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big]
     self.friends_list = vk_client.friends.get
-    vk_client.friends.get(fields: fields) do |friend|
+    vk_client.friends.get(fields: fields, lang:"ru") do |friend|
       puts "#{friend.first_name} '#{friend.screen_name}' #{friend.last_name}"
       puts friend.to_yaml
       user = User.where(:vkuid => friend.uid).first
@@ -216,7 +216,7 @@ class User < ActiveRecord::Base
   end
 
   def possible_hookups
-    User.where(:vkuid => self.friends_list)
+    User.where(:vkuid => self.friends_list, :looking_for_gender => self.looking_for_gender)
   end
 
   def is_requested?(hookup)
