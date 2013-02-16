@@ -9,6 +9,8 @@
 #import "RestUser.h"
 
 static NSString *AUTH_PATH = @"token_authentications.json";
+static NSString *RESOURCE_PATH = @"users";
+static NSString *RELATIONSHIP_PATH = @"relationships";
 
 @implementation RestUser
 
@@ -22,6 +24,7 @@ static NSString *AUTH_PATH = @"token_authentications.json";
                                 @"lastName", @"last_name",
                                 @"location", @"location",
                                 @"gender", @"gender",
+                                @"lookingForGender", @"looking_for_gender",
                                 @"email", @"email",
                                 @"externalId", @"id",
                                 @"authenticationToken", @"authentication_token",
@@ -40,6 +43,35 @@ static NSString *AUTH_PATH = @"token_authentications.json";
     return map;
 }
 
++ (void)update:(User *)user
+        onLoad:(void (^)(RestUser *restUser))onLoad
+       onError:(void (^)(NSError *error))onError {
+    RestClient *restClient = [RestClient sharedClient];
+    ALog(@"got gender:")
+    NSDictionary *params = @{@"user[looking_for_gender]": user.lookingForGender, @"user[gender]": user.gender};
+    NSMutableURLRequest *request = [restClient requestWithMethod:@"PUT"
+                                                            path:RESOURCE_PATH
+                                                      parameters:params];
+    
+    ALog(@"CREATE REQUEST: %@", request);
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            ALog(@"JSON: %@", JSON);
+                                                                                            RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
+                                                                                            if (onLoad)
+                                                                                                onLoad(user);
+                                                                                        }
+                                                                                        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            NSError *customError = [RestObject customError:error withServerResponse:response andJson:JSON];
+                                                                                            if (onError)
+                                                                                                onError(customError);
+                                                                                        }];
+    [[UIApplication sharedApplication] showNetworkActivityIndicator];
+    [operation start];
+
+}
 
 + (void)create:(NSMutableDictionary *)parameters
         onLoad:(void (^)(RestUser *restUser))onLoad
@@ -68,6 +100,93 @@ static NSString *AUTH_PATH = @"token_authentications.json";
                                                                                         }];
     [[UIApplication sharedApplication] showNetworkActivityIndicator];
     [operation start];
+}
+
+
++ (void)reload:(void (^)(RestUser *restUser))onLoad
+       onError:(void (^)(NSError *error))onError {
+    RestClient *restClient = [RestClient sharedClient];
+    NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"GET"
+                                                            path:[RESOURCE_PATH stringByAppendingString:@"/me.json"]
+                                                      parameters:@{}];
+    
+    ALog(@"CREATE REQUEST: %@", request);
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            ALog(@"JSON: %@", JSON);
+                                                                                            RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
+                                                                                            if (onLoad)
+                                                                                                onLoad(user);
+                                                                                        }
+                                                                                        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            NSError *customError = [RestObject customError:error withServerResponse:response andJson:JSON];
+                                                                                            if (onError)
+                                                                                                onError(customError);
+                                                                                        }];
+    [[UIApplication sharedApplication] showNetworkActivityIndicator];
+    [operation start];
+
+
+
+}
+
++ (void)rejectUser:(User *)user
+            onLoad:(void (^)(RestUser *restUser))onLoad
+           onError:(void (^)(NSError *error))onError {
+    RestClient *restClient = [RestClient sharedClient];
+    NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"POST"
+                                                                  path:[RELATIONSHIP_PATH stringByAppendingString:@"/reject.json"]
+                                                            parameters:@{@"relationship[hookup_id]": user.externalId}];
+    
+    ALog(@"CREATE REQUEST: %@", request);
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            ALog(@"JSON: %@", JSON);
+                                                                                            RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
+                                                                                            if (onLoad)
+                                                                                                onLoad(user);
+                                                                                        }
+                                                                                        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            NSError *customError = [RestObject customError:error withServerResponse:response andJson:JSON];
+                                                                                            if (onError)
+                                                                                                onError(customError);
+                                                                                        }];
+    [[UIApplication sharedApplication] showNetworkActivityIndicator];
+    [operation start];
+
+}
+
++ (void)flirtWithUser:(User *)user
+               onLoad:(void (^)(RestUser *restUser))onLoad
+              onError:(void (^)(NSError *error))onError {
+    
+    RestClient *restClient = [RestClient sharedClient];
+    NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"POST"
+                                                                  path:[RELATIONSHIP_PATH stringByAppendingString:@"/flirt.json"]
+                                                            parameters:@{@"relationship[hookup_id]": user.externalId}];
+    
+    ALog(@"CREATE REQUEST: %@", request);
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            ALog(@"JSON: %@", JSON);
+                                                                                            RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
+                                                                                            if (onLoad)
+                                                                                                onLoad(user);
+                                                                                        }
+                                                                                        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            NSError *customError = [RestObject customError:error withServerResponse:response andJson:JSON];
+                                                                                            if (onError)
+                                                                                                onError(customError);
+                                                                                        }];
+    [[UIApplication sharedApplication] showNetworkActivityIndicator];
+    [operation start];
+
 }
 
 + (void)resetIdentifiers {

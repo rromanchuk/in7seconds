@@ -18,4 +18,8 @@
                 inManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (User *)currentUser:(NSManagedObjectContext *)context;
+
+
+- (NSNumber *)yearsOld;
+
 @end

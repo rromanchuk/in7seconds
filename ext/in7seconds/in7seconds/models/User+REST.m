@@ -133,4 +133,22 @@
     
 }
 
+- (NSNumber *)yearsOld {
+    NSDate *fromDate;
+    NSDate *toDate;
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&fromDate
+                 interval:NULL forDate:self.birthday];
+    
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&toDate
+                 interval:NULL forDate:[NSDate date]];
+    
+    NSDateComponents *difference = [calendar components:NSYearCalendarUnit
+                                               fromDate:fromDate toDate:toDate options:0];
+    
+    return [NSNumber numberWithInteger:[difference year]];
+}
+
 @end

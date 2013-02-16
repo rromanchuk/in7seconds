@@ -24,9 +24,19 @@ class User < ActiveRecord::Base
          :source => :hookup,
          :conditions => "status = 'pending'"
 
-  USER_SEX_MALE = 1
-  USER_SEX_FEMALE = 2
-  USER_SEX_UNKNOWN = 0
+  
+  LOOKING_FOR_MALE = 0
+  LOOKING_FOR_FEMALE = 1
+  LOOKING_FOR_BOTH = 2
+
+  USER_MALE = false
+  USER_FEMALE = true
+
+  VK_USER_SEX_MALE = 2
+  VK_USER_SEX_FEMALE = 1
+  VK_USER_SEX_UNKNOWN = 0
+
+  STATUS_TYPES = {accepted: 1, requested: 2, pending: 3, rejected: 4}
 
   serialize :friends_list
 
@@ -54,15 +64,37 @@ class User < ActiveRecord::Base
      self[:email] || ""
   end
 
+  def looking_for_gender
+    self[:looking_for_gender] || 0
+  end
+
   def location 
     self[:location] || ""
   end
 
-  def gender
-    if self[:gender] == 1 || self[:gender] == 0
-      return true
+  def self.guess_looking_for(gender)
+    if gender == USER_MALE
+      LOOKING_FOR_FEMALE
     else
-      return false
+      LOOKING_FOR_MALE
+    end
+  end
+
+  def guess_looking_for(gender)
+    User.guess_looking_for(gender)
+  end
+
+  def gender_for_vk_gender(vk_gender)
+    User.gender_for_vk_gender(vk_gender)
+  end
+
+  def self.gender_for_vk_gender(vk_gender)
+    if vk_gender == VK_USER_SEX_MALE
+      USER_MALE
+    elsif vk_gender == VK_USER_SEX_FEMALE
+      USER_FEMALE
+    else
+      USER_FEMALE
     end
   end
 
@@ -84,7 +116,8 @@ class User < ActiveRecord::Base
           :country_id => friend.country,
           #:city => get_vk_city(friend.city, self.vk_token),
           #:country => get_vk_country(friend.country, self.vk_token),
-          :gender => friend.sex,
+          :gender => gender_for_vk_gender(friend.sex),
+          :looking_for_gender => guess_looking_for(gender_for_vk_gender(friend.sex)),
           :provider => :vkontakte,
           :photo_url => friend.photo_big,
           :is_active => false)
@@ -111,11 +144,13 @@ class User < ActiveRecord::Base
           :city => get_vk_city(vk_user.city, access_token),
           :country => get_vk_country(vk_user.country, access_token),
           :vk_token => access_token,
-          :gender => vk_user.sex,
+          :gender => gender_for_vk_gender(vk_user.sex),
+          :looking_for_gender => guess_looking_for(gender_for_vk_gender(friend.sex)),
           :provider => :vkontakte,
           :photo_url => vk_user.photo_big,
           :is_active => true)
-
+    # delay this
+    user.find_friends
     user
   end
 
@@ -125,7 +160,7 @@ class User < ActiveRecord::Base
     self.last_name = facebook_user.last_name
     self.birthday = facebook_user.birthday
     self.location = facebook_user.location.name unless facebook_user.location.blank?
-    self.gender = (facebook_user.gender == "male") ? 1 : 2
+    self.gender = (facebook_user.gender == "male") ? USER_SEX_MALE : USER_SEX_FEMALE
     puts "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=100&height=100"
     self.photo_url "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=100&height=100"
     #photo_from_url "http://www.warrenphotographic.co.uk/photography/cats/21495.jpg"
@@ -144,7 +179,7 @@ class User < ActiveRecord::Base
           :location => (facebook_user.location.blank?) ? "" : facebook_user.location.name,
           :fb_token => facebook_user.access_token,
           :provider => :facebook,
-          :gender => (facebook_user.gender == "male") ? 2 : 0)
+          :gender => (facebook_user.gender == "male") ? USER_SEX_MALE : USER_SEX_FEMALE)
     user.photo_from_url "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=100&height=100"
     return user
   end
@@ -184,6 +219,9 @@ class User < ActiveRecord::Base
     User.where(:vkuid => self.friends_list)
   end
 
+  def is_requested?(hookup)
+    self.relationships.exists?(hookup_id: hookup.id, status: 'requested')
+  end
 
   def self.flirt(user, friend)
     unless user == friend or user.relationships.exists?(hookup_id: friend.id)
@@ -198,7 +236,7 @@ class User < ActiveRecord::Base
      unless user == friend or user.relationships.exists?(hookup_id: friend.id)
       transaction do
         Relationship.create(:user => user, :hookup => friend, :status => 'rejected')
-        Relationship.create(:user => friend, :hookup => user, :status => 'requested')
+        Relationship.create(:user => friend, :hookup => user, :status => 'rejected')
       end
     end
   end

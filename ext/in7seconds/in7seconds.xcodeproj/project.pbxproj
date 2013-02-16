@@ -26,6 +26,8 @@
 		948498AC16CD6560000083DE /* on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 948498A816CD6560000083DE /* on@2x.png */; };
 		948498AF16CD6A7F000083DE /* segment.png in Resources */ = {isa = PBXBuildFile; fileRef = 948498AD16CD6A7F000083DE /* segment.png */; };
 		948498B016CD6A7F000083DE /* segment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 948498AE16CD6A7F000083DE /* segment@2x.png */; };
+		948498B616CFB2C1000083DE /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 948498B516CFB2C1000083DE /* Location.m */; };
+		948498B916CFC0C4000083DE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 948498B816CFC0C4000083DE /* User.m */; };
 		94D09CA716CBD3470064F886 /* RestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA616CBD3470064F886 /* RestClient.m */; };
 		94D09CAA16CBD3630064F886 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA916CBD3630064F886 /* Config.m */; };
 		94D09CB816CBD3E60064F886 /* JTDataMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CAD16CBD3E60064F886 /* JTDataMappings.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -82,7 +84,6 @@
 		FA7002C516CAF5430098A5B7 /* Vkontakte.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002C416CAF5430098A5B7 /* Vkontakte.m */; };
 		FA7002C816CAF5F00098A5B7 /* VkontakteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002C716CAF5F00098A5B7 /* VkontakteViewController.m */; };
 		FA7002CC16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */; };
-		FA7002E716CDA3430098A5B7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002E616CDA3430098A5B7 /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,10 @@
 		948498A816CD6560000083DE /* on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "on@2x.png"; sourceTree = "<group>"; };
 		948498AD16CD6A7F000083DE /* segment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segment.png; sourceTree = "<group>"; };
 		948498AE16CD6A7F000083DE /* segment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segment@2x.png"; sourceTree = "<group>"; };
+		948498B416CFB2C1000083DE /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Location.h; path = helpers/Location.h; sourceTree = "<group>"; };
+		948498B516CFB2C1000083DE /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Location.m; path = helpers/Location.m; sourceTree = "<group>"; };
+		948498B716CFC0C4000083DE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
+		948498B816CFC0C4000083DE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
 		94D09CA516CBD3470064F886 /* RestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestClient.h; path = models/RestClient.h; sourceTree = "<group>"; };
 		94D09CA616CBD3470064F886 /* RestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestClient.m; path = models/RestClient.m; sourceTree = "<group>"; };
 		94D09CA816CBD3630064F886 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = models/Config.h; sourceTree = "<group>"; };
@@ -200,8 +205,6 @@
 		FA7002C716CAF5F00098A5B7 /* VkontakteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VkontakteViewController.m; path = controllers/VkontakteViewController.m; sourceTree = "<group>"; };
 		FA7002CA16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+NetworkActivityIndicator.h"; path = "categories/UIApplication+NetworkActivityIndicator.h"; sourceTree = "<group>"; };
 		FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+NetworkActivityIndicator.m"; path = "categories/UIApplication+NetworkActivityIndicator.m"; sourceTree = "<group>"; };
-		FA7002E516CDA3420098A5B7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
-		FA7002E616CDA3430098A5B7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,8 +272,8 @@
 		94D09CC316CBEA4B0064F886 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				FA7002E516CDA3420098A5B7 /* User.h */,
-				FA7002E616CDA3430098A5B7 /* User.m */,
+				948498B716CFC0C4000083DE /* User.h */,
+				948498B816CFC0C4000083DE /* User.m */,
 				94D09CC716CBED1D0064F886 /* User+REST.h */,
 				94D09CC816CBED1D0064F886 /* User+REST.m */,
 			);
@@ -445,6 +448,8 @@
 			children = (
 				FA7002C316CAF5430098A5B7 /* Vkontakte.h */,
 				FA7002C416CAF5430098A5B7 /* Vkontakte.m */,
+				948498B416CFB2C1000083DE /* Location.h */,
+				948498B516CFB2C1000083DE /* Location.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -647,7 +652,8 @@
 				9484987616CBFE96000083DE /* UIBarButtonItem+Borderless.m in Sources */,
 				9484988A16CD1EBB000083DE /* UIColor+Defaults.m in Sources */,
 				9484988F16CD1F69000083DE /* BaseUIView.m in Sources */,
-				FA7002E716CDA3430098A5B7 /* User.m in Sources */,
+				948498B616CFB2C1000083DE /* Location.m in Sources */,
+				948498B916CFC0C4000083DE /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

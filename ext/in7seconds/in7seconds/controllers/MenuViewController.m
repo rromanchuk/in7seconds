@@ -7,6 +7,8 @@
 //
 
 #import "MenuViewController.h"
+#import "RestUser.h"
+#import "AppDelegate.h"
 
 @interface MenuViewController ()
 
@@ -46,9 +48,55 @@
 
 - (IBAction)didTapWomen:(id)sender {
     self.lookingForWomen.selected = !self.lookingForWomen.selected;
+    [self setLookingFor];
 }
+
 
 - (IBAction)didTapMen:(id)sender {
     self.lookingForMen.selected = !self.lookingForMen.selected;
+    [self setLookingFor];
+}
+
+- (void)setLookingFor {
+    if (self.lookingForMen.selected && self.lookingForMen) {
+        self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForBoth];
+    } else if (self.lookingForWomen) {
+        self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForWomen];
+    } else {
+        self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForMen];
+    }
+    
+    [self update];
+}
+
+- (void)update {
+    [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
+    [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
+        [SVProgressHUD dismiss];
+        self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+        [self saveContext];
+    } onError:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    }];
+}
+
+- (IBAction)genderChanged:(id)sender {
+    self.currentUser.gender = [NSNumber numberWithInteger:self.genderSegmentControl.selectedSegmentIndex];
+    [self update];
+}
+
+- (void)saveContext
+{
+    NSError *error = nil;
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        if ([_managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        }
+    }
+    
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [sharedAppDelegate writeToDisk];
 }
 @end

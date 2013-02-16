@@ -3,6 +3,22 @@ class RelationshipsController < ApplicationController
   before_filter :authenticate_user!
   respond_to :json
 
+  def flirt
+    hookup = User.find(params[:relationship][:hookup_id])
+    if current_user.is_requested?(hookup)
+      User.fuck(current_user, hookup)
+    else
+      User.flirt(current_user, hookup)
+    end
+    render json: ''
+  end
+
+  def reject
+    @hookup = User.find(params[:relationship][:hookup_id])
+    User.reject(current_user, @hookup)
+    render json: ''
+  end
+
   def create
     @user = User.find(params[:relationship][:followed_id])
     current_user.follow!(@user)

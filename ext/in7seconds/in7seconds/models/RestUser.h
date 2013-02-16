@@ -7,10 +7,11 @@
 //
 
 #import "RestObject.h"
-
+#import "User.h"
 @interface RestUser : RestObject <RestMappable>
 
 @property NSInteger gender;
+@property NSInteger lookingForGender;
 
 // Identifiers
 @property (atomic, strong) NSString *authenticationToken;
@@ -31,6 +32,22 @@
 + (void)create:(NSMutableDictionary *)parameters
         onLoad:(void (^)(RestUser *restUser))onLoad
        onError:(void (^)(NSError *error))onError;
+
++ (void)reload:(void (^)(RestUser *restUser))onLoad
+       onError:(void (^)(NSError *error))onError;
+
++ (void)rejectUser:(User *)user
+            onLoad:(void (^)(RestUser *restUser))onLoad
+           onError:(void (^)(NSError *error))onError;
+
++ (void)flirtWithUser:(User *)user
+               onLoad:(void (^)(RestUser *restUser))onLoad
+              onError:(void (^)(NSError *error))onError;
+
++ (void)update:(User *)user
+               onLoad:(void (^)(RestUser *restUser))onLoad
+              onError:(void (^)(NSError *error))onError;
+
 
 + (NSDictionary *)mapping;
 

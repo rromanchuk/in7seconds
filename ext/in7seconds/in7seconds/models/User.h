@@ -2,7 +2,7 @@
 //  User.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 2/15/13.
+//  Created by Ryan Romanchuk on 2/16/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -23,9 +23,10 @@
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSNumber * longitude;
-@property (nonatomic, retain) NSDate * updatedAt;
 @property (nonatomic, retain) NSString * photoUrl;
+@property (nonatomic, retain) NSDate * updatedAt;
 @property (nonatomic, retain) NSString * vkToken;
+@property (nonatomic, retain) NSNumber * lookingForGender;
 @property (nonatomic, retain) NSSet *possibleHookups;
 @end
 

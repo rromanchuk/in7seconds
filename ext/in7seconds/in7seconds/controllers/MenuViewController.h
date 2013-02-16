@@ -8,6 +8,13 @@
 
 #import "ECSlidingViewController.h"
 #import "User+REST.h"
+
+typedef enum  {
+    LookingForMen = 0,
+    LookingForWomen = 1,
+    LookingForBoth = 2
+    } LookingForTypes;
+
 @protocol LogoutDelegate;
 @interface MenuViewController : UIViewController <UITableViewDataSource, UITabBarControllerDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
@@ -19,9 +26,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *lookingForWomen;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (weak, nonatomic) id <LogoutDelegate> delegate;
+
+
 - (IBAction)didTapLogout:(id)sender;
 - (IBAction)didTapWomen:(id)sender;
 - (IBAction)didTapMen:(id)sender;
+- (IBAction)genderChanged:(id)sender;
+
 @end
 
 @protocol LogoutDelegate <NSObject>

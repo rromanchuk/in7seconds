@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130212212123) do
+ActiveRecord::Schema.define(:version => 20130216141041) do
 
   create_table "relationships", :force => true do |t|
     t.integer  "user_id"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20130212212123) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.string   "encrypted_password",                                                  :default => "", :null => false
+    t.string   "encrypted_password",                                                  :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20130212212123) do
     t.integer  "country_id"
     t.string   "city"
     t.string   "country"
-    t.integer  "gender",                                                              :default => 0
+    t.boolean  "gender",                                                              :default => false
     t.datetime "birthday"
     t.string   "first_name"
     t.string   "last_name"
@@ -57,8 +57,9 @@ ActiveRecord::Schema.define(:version => 20130212212123) do
     t.decimal  "latitude",                            :precision => 15, :scale => 10
     t.decimal  "longitude",                           :precision => 15, :scale => 10
     t.text     "friends_list"
-    t.datetime "created_at",                                                                          :null => false
-    t.datetime "updated_at",                                                                          :null => false
+    t.datetime "created_at",                                                                             :null => false
+    t.datetime "updated_at",                                                                             :null => false
+    t.integer  "looking_for_gender",                                                  :default => 0
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

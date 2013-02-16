@@ -2,7 +2,7 @@
 //  User.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 2/15/13.
+//  Created by Ryan Romanchuk on 2/16/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -22,9 +22,10 @@
 @dynamic latitude;
 @dynamic location;
 @dynamic longitude;
-@dynamic updatedAt;
 @dynamic photoUrl;
+@dynamic updatedAt;
 @dynamic vkToken;
+@dynamic lookingForGender;
 @dynamic possibleHookups;
 
 @end

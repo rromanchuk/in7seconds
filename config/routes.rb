@@ -3,6 +3,14 @@ In7seconds::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :token_authentications, :only => [:create, :destroy]
 
+  resources :relationships do 
+    collection do 
+      post :flirt
+      post :reject
+    end
+  end
+
+
   resources :users do 
     collection do 
       get :me

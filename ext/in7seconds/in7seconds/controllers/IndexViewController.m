@@ -29,9 +29,8 @@
     self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(revealMenu:)];
     ((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
-    self.otherUser = [self.currentUser.possibleHookups anyObject];
-    [self.userImageView setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
-	// Do any additional setup after loading the view.
+    
+   	// Do any additional setup after loading the view.
 }
 
 
@@ -39,6 +38,12 @@
     [super viewWillAppear:animated];
     if (!self.currentUser) {
         [self performSegueWithIdentifier:@"Login" sender:self];
+    } else {
+        if (self.currentUser && self.currentUser.possibleHookups) {
+            self.otherUser = [self.currentUser.possibleHookups anyObject];
+        }
+        [self fetchPossibleHookups];
+        [self.userImageView setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
     }
 }
 
@@ -64,10 +69,37 @@
 
 - (IBAction)didTapUnlike:(id)sender {
     
+    [RestUser rejectUser:self.otherUser onLoad:^(RestUser *restUser) {
+        
+    } onError:^(NSError *error) {
+        
+    }];
 }
 
 - (IBAction)didTapLike:(id)sender {
-    
+    [RestUser flirtWithUser:self.otherUser onLoad:^(RestUser *restUser) {
+        
+    } onError:^(NSError *error) {
+        
+    }];
+}
+
+- (void)setupNextHookup {
+    if (self.currentUser && self.currentUser.possibleHookups) {
+        self.otherUser = [self.currentUser.possibleHookups anyObject];
+        
+        [self.userImageView setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
+        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@, %@ %@", self.otherUser.lastName, self.otherUser.firstName, self.otherUser.yearsOld, NSLocalizedString(@"лет", @"years old")];
+    }
+}
+
+- (void)fetchPossibleHookups {
+    [RestUser reload:^(RestUser *restUser) {
+        [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+        [self setupNextHookup];
+    } onError:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark LoginDelegate methods
