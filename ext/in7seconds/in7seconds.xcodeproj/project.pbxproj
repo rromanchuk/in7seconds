@@ -733,6 +733,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Romanchuk (RJ6W6Q2JLW)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -748,6 +749,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "402C7F1F-A805-496E-9A3C-E7A1EBA00766";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -756,6 +758,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF7F3663B2C24854B8CFE612 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Romanchuk (RJ6W6Q2JLW)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -764,6 +767,7 @@
 				GCC_PREFIX_HEADER = "in7seconds/in7seconds-Prefix.pch";
 				INFOPLIST_FILE = "in7seconds/in7seconds-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "402C7F1F-A805-496E-9A3C-E7A1EBA00766";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;
@@ -797,6 +801,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Romanchuk (RJ6W6Q2JLW)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -812,6 +817,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "402C7F1F-A805-496E-9A3C-E7A1EBA00766";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -828,6 +834,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Romanchuk (RJ6W6Q2JLW)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -836,6 +843,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "402C7F1F-A805-496E-9A3C-E7A1EBA00766";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -845,6 +853,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF7F3663B2C24854B8CFE612 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Romanchuk (RJ6W6Q2JLW)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -853,6 +862,7 @@
 				GCC_PREFIX_HEADER = "in7seconds/in7seconds-Prefix.pch";
 				INFOPLIST_FILE = "in7seconds/in7seconds-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "402C7F1F-A805-496E-9A3C-E7A1EBA00766";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -861,6 +871,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF7F3663B2C24854B8CFE612 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Romanchuk (RJ6W6Q2JLW)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -869,6 +880,7 @@
 				GCC_PREFIX_HEADER = "in7seconds/in7seconds-Prefix.pch";
 				INFOPLIST_FILE = "in7seconds/in7seconds-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "402C7F1F-A805-496E-9A3C-E7A1EBA00766";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

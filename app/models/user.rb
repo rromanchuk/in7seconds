@@ -132,6 +132,9 @@ class User < ActiveRecord::Base
 
   def update_user_from_vk_graph(vk_user, access_token)
     self.vk_token = access_token
+    self.is_active = true
+    self.delay.get_friends
+    user
   end
 
   def self.create_user_from_vk_graph(vk_user, access_token)
