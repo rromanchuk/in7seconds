@@ -134,6 +134,7 @@ class User < ActiveRecord::Base
     self.vk_token = access_token
     self.is_active = true
     self.delay.get_friends
+    save
     user
   end
 

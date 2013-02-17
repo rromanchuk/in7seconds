@@ -75,7 +75,7 @@
 }
 
 - (void)update {
-    [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
     [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
         [SVProgressHUD dismiss];
         self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];

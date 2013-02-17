@@ -44,9 +44,10 @@
     } else {
         if (self.currentUser && self.currentUser.possibleHookups) {
             self.otherUser = [self.currentUser.possibleHookups anyObject];
+        } else {
+            [self fetchPossibleHookups];
+            [self.userImageView setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
         }
-        [self fetchPossibleHookups];
-        [self.userImageView setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
     }
 }
 
@@ -108,11 +109,14 @@
 }
 
 - (void)fetchPossibleHookups {
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
+
     [RestUser reload:^(RestUser *restUser) {
         self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
         [self setupNextHookup];
+        [SVProgressHUD dismiss];
     } onError:^(NSError *error) {
-        
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
 }
 
