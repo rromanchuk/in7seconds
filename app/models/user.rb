@@ -135,7 +135,6 @@ class User < ActiveRecord::Base
     self.is_active = true
     self.delay.get_friends
     save
-    user
   end
 
   def self.create_user_from_vk_graph(vk_user, access_token)
