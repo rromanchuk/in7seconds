@@ -207,6 +207,8 @@
 		FA7002CA16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+NetworkActivityIndicator.h"; path = "categories/UIApplication+NetworkActivityIndicator.h"; sourceTree = "<group>"; };
 		FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+NetworkActivityIndicator.m"; path = "categories/UIApplication+NetworkActivityIndicator.m"; sourceTree = "<group>"; };
 		FA809FE916D040FD003920E6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		FA809FEB16D2B641003920E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FA809FEC16D2B642003920E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -527,6 +529,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ru,
 			);
 			mainGroup = FA70024816CAECB20098A5B7;
 			productRefGroup = FA70025216CAECB20098A5B7 /* Products */;
@@ -698,6 +701,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				FA70025E16CAECB20098A5B7 /* en */,
+				FA809FEB16D2B641003920E6 /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -714,6 +718,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				FA70028216CAECB30098A5B7 /* en */,
+				FA809FEC16D2B642003920E6 /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

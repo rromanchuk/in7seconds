@@ -24,6 +24,7 @@
     [Flurry startSession:@"7RBHDYVR2RPTKP7NT4XN"];
     [TestFlight takeOff:@"8b9f2759-9e2b-48d9-873b-d3af3677d35b"];
     [Crashlytics startWithAPIKey:@"cbbca2d940f872c4617ddb67cf20ec9844d036ea"];
+    [Location sharedLocation].delegate = self;
     InitialViewController *vc = (InitialViewController *)self.window.rootViewController;
     vc.managedObjectContext = self.managedObjectContext;
     vc.currentUser = [User currentUser:self.managedObjectContext];
@@ -208,6 +209,29 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+
+#pragma mark LocationDelegate methods
+
+- (void)locationStoppedUpdatingFromTimeout
+{
+    //[[ThreadedUpdates shared] loadPlacesPassivelyWithCurrentLocation];
+    
+    //    [Flurry logEvent:@"FAILED_TO_GET_DESIRED_LOCATION_ACCURACY_APP_LAUNCH"];
+}
+
+- (void)didGetBestLocationOrTimeout
+{
+    ALog(@"");
+    //[[ThreadedUpdates shared] loadPlacesPassivelyWithCurrentLocation];
+    //    [Flurry logEvent:@"DID_GET_DESIRED_LOCATION_ACCURACY_APP_LAUNCH"];
+}
+
+- (void)failedToGetLocation:(NSError *)error
+{
+    DLog(@"%@", error);
+    //    [Flurry logEvent:@"FAILED_TO_GET_ANY_LOCATION_APP_LAUNCH"];
 }
 
 

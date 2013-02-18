@@ -7,6 +7,7 @@
 //
 
 #import "RestUser.h"
+#import "Location.h"
 
 static NSString *AUTH_PATH = @"token_authentications.json";
 static NSString *RESOURCE_PATH = @"users";
@@ -48,7 +49,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
        onError:(void (^)(NSError *error))onError {
     RestClient *restClient = [RestClient sharedClient];
     ALog(@"got gender:%@ got looking for %@", user.gender, user.lookingForGender);
-    NSDictionary *params = @{@"user[looking_for_gender]": user.lookingForGender, @"user[gender]": user.gender};
+    NSDictionary *params = @{@"user[looking_for_gender]": user.lookingForGender, @"user[gender]": user.gender, @"user[latitude]": [Location sharedLocation].latitude, @"user[longitude": [Location sharedLocation].longitude};
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"PUT"
                                                             path:[RESOURCE_PATH stringByAppendingString:@"/update_user.json"]
                                                       parameters:params];

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Location.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, LocationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
