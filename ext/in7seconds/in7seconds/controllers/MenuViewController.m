@@ -39,6 +39,8 @@
     NSString *minorVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
     self.versionLabel.text = [NSString stringWithFormat:@"Version %@ (%@)", majorVersion, minorVersion];
 	// Do any additional setup after loading the view.
+    [self setLookingFor];
+    self.genderSegmentControl.selectedSegmentIndex = [self.currentUser.gender integerValue];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,12 +56,14 @@
 - (IBAction)didTapWomen:(id)sender {
     self.lookingForWomen.selected = !self.lookingForWomen.selected;
     [self setLookingFor];
+    [self update];
 }
 
 
 - (IBAction)didTapMen:(id)sender {
     self.lookingForMen.selected = !self.lookingForMen.selected;
     [self setLookingFor];
+    [self update];
 }
 
 - (void)setLookingFor {
@@ -69,9 +73,7 @@
         self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForWomen];
     } else {
         self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForMen];
-    }
-    
-    [self update];
+    }    
 }
 
 - (void)update {
@@ -80,6 +82,7 @@
         [SVProgressHUD dismiss];
         self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
         [self saveContext];
+        [self.delegate didUpdateSettings];
     } onError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];

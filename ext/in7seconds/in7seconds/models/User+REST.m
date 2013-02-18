@@ -100,6 +100,7 @@
     self.birthday = restUser.birthday;
     self.updatedAt = restUser.updatedAt;
     
+    [self removePossibleHookups:self.possibleHookups];
     for (RestUser *_restUser in restUser.possibleHookups) {
         User *user = [User userWithRestUser:_restUser inManagedObjectContext:self.managedObjectContext];
         [self addPossibleHookupsObject:user];

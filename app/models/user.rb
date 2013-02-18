@@ -219,7 +219,7 @@ class User < ActiveRecord::Base
   end
 
   def possible_hookups
-    User.where(:vkuid => self.friends_list, :looking_for_gender => self.looking_for_gender)
+    User.where(:vkuid => self.friends_list, :gender => self.looking_for_gender)
   end
 
   def is_requested?(hookup)

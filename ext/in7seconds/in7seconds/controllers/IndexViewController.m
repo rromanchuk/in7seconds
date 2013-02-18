@@ -71,7 +71,7 @@
 }
 
 - (IBAction)didTapUnlike:(id)sender {
-    [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
     [RestUser rejectUser:self.otherUser onLoad:^(RestUser *restUser) {
         [SVProgressHUD dismiss];
         [self setupNextHookup];
@@ -81,7 +81,7 @@
 }
 
 - (IBAction)didTapLike:(id)sender {
-    [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
     [RestUser flirtWithUser:self.otherUser onLoad:^(RestUser *restUser) {
         [SVProgressHUD dismiss];
         [self setupNextHookup];
@@ -100,6 +100,7 @@
         self.otherUser = [self.currentUser.possibleHookups anyObject];
         
         [self.userImageView setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
+        ALog(@"birthday %@", self.otherUser.birthday);
         if (self.otherUser.birthday) {
             self.nameLabel.text = [NSString stringWithFormat:@"%@ %@, %@ %@", self.otherUser.lastName, self.otherUser.firstName, self.otherUser.yearsOld, NSLocalizedString(@"лет", @"years old")];
         } else {
@@ -144,7 +145,7 @@
 }
 
 - (void)didUpdateSettings {
-    [self setupNextHookup];
+    [self fetchPossibleHookups];
 }
 
 @end
