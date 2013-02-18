@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Location.h"
-
+#import "User.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate, LocationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -17,6 +17,8 @@
 
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (strong, nonatomic) User *currentUser;
+
 //@property (weak, nonatomic) id <ApplicationLifecycleDelegate> delegate;
 //@property (strong, nonatomic) NotificationHandler *notificationHandler;
 - (void)writeToDisk;

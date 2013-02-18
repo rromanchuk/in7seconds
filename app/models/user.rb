@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          #:validatable
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city
-  attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active, :city_id, :country_id, :looking_for_gender
+  attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active, :city_id, :country_id, :looking_for_gender, :latitude, :longitude
 
   has_many :relationships
 

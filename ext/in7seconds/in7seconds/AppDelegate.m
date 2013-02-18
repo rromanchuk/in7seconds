@@ -27,7 +27,8 @@
     [Location sharedLocation].delegate = self;
     InitialViewController *vc = (InitialViewController *)self.window.rootViewController;
     vc.managedObjectContext = self.managedObjectContext;
-    vc.currentUser = [User currentUser:self.managedObjectContext];
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    vc.currentUser = self.currentUser;
     [self theme];
     return YES;
 }
@@ -52,6 +53,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    [Location sharedLocation].delegate = self;
+    [[Location sharedLocation] updateUntilDesiredOrTimeout:15.0];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
@@ -219,13 +222,28 @@
     //[[ThreadedUpdates shared] loadPlacesPassivelyWithCurrentLocation];
     
     //    [Flurry logEvent:@"FAILED_TO_GET_DESIRED_LOCATION_ACCURACY_APP_LAUNCH"];
+    if (!self.currentUser)
+        return;
+    [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
+        
+    } onError:^(NSError *error) {
+        
+    }];
 }
 
 - (void)didGetBestLocationOrTimeout
 {
     ALog(@"");
+    if (!self.currentUser)
+        return;
+    
     //[[ThreadedUpdates shared] loadPlacesPassivelyWithCurrentLocation];
     //    [Flurry logEvent:@"DID_GET_DESIRED_LOCATION_ACCURACY_APP_LAUNCH"];
+    [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
+        
+    } onError:^(NSError *error) {
+        
+    }];
 }
 
 - (void)failedToGetLocation:(NSError *)error
