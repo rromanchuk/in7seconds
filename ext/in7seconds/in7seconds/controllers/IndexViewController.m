@@ -42,11 +42,10 @@
     if (!self.currentUser) {
         [self performSegueWithIdentifier:@"Login" sender:self];
     } else {
-        if (self.currentUser && self.currentUser.possibleHookups) {
-            self.otherUser = [self.currentUser.possibleHookups anyObject];
+        if (self.currentUser && [self.currentUser.possibleHookups count] > 0) {
+            [self setupNextHookup];
         } else {
             [self fetchPossibleHookups];
-            [self.userImageView setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
         }
     }
 }
@@ -92,7 +91,9 @@
 }
 
 - (void)setupNextHookup {
-    [self.currentUser removePossibleHookupsObject:self.otherUser];
+    if (self.otherUser)
+        [self.currentUser removePossibleHookupsObject:self.otherUser];
+    
     self.otherUser = nil;
     
     if (self.currentUser && self.currentUser.possibleHookups) {
@@ -140,6 +141,10 @@
     //[FBSession.activeSession closeAndClearTokenInformation];
     //[self dismissModalViewControllerAnimated:YES];
     [self performSegueWithIdentifier:@"Login" sender:self];
+}
+
+- (void)didUpdateSettings {
+    [self setupNextHookup];
 }
 
 @end

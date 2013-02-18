@@ -40,5 +40,6 @@ typedef enum  {
 
 @required
 - (void)didLogout;
+- (void)didUpdateSettings;
 
 @end

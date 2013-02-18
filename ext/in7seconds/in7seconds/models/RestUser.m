@@ -53,7 +53,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                                             path:[RESOURCE_PATH stringByAppendingString:@"/update_user.json"]
                                                       parameters:params];
     
-    ALog(@"CREATE REQUEST: %@", request);
+    ALog(@"UPDATE USER REQUEST: %@", request);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
@@ -110,7 +110,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                                             path:[RESOURCE_PATH stringByAppendingString:@"/me.json"]
                                                       parameters:@{}];
     
-    ALog(@"CREATE REQUEST: %@", request);
+    ALog(@"RELOAD USER REQUEST: %@", request);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
@@ -140,7 +140,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                                                   path:[RELATIONSHIP_PATH stringByAppendingString:@"/reject.json"]
                                                             parameters:@{@"relationship[hookup_id]": user.externalId}];
     
-    ALog(@"CREATE REQUEST: %@", request);
+    ALog(@"REJECT USER REQUEST: %@", request);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
@@ -169,7 +169,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                                                   path:[RELATIONSHIP_PATH stringByAppendingString:@"/flirt.json"]
                                                             parameters:@{@"relationship[hookup_id]": user.externalId}];
     
-    ALog(@"CREATE REQUEST: %@", request);
+    ALog(@"REJECT FLIRT REQUEST: %@", request);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
