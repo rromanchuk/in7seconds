@@ -8,6 +8,7 @@
 
 #import "IndexViewController.h"
 #import "AppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 @interface IndexViewController ()
 @property (strong, nonatomic) User *otherUser;
 @end
@@ -32,7 +33,8 @@
     ((MenuViewController *)self.slidingViewController.underLeftViewController).currentUser = self.currentUser;
     ((MenuViewController *)self.slidingViewController.underLeftViewController).managedObjectContext = self.managedObjectContext;
 
-
+    self.userImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.userImageView.layer.borderWidth = 3;
    	// Do any additional setup after loading the view.
 }
 
@@ -101,7 +103,7 @@
         
         [self.userImageView setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
         ALog(@"birthday %@", self.otherUser.birthday);
-        if (self.otherUser.birthday) {
+        if (self.otherUser.birthday && [self.otherUser.yearsOld integerValue] > 0) {
             self.nameLabel.text = [NSString stringWithFormat:@"%@ %@, %@ %@", self.otherUser.lastName, self.otherUser.firstName, self.otherUser.yearsOld, NSLocalizedString(@"лет", @"years old")];
         } else {
             self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.otherUser.lastName, self.otherUser.firstName];
