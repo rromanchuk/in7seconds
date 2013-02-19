@@ -39,7 +39,14 @@
     NSString *minorVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
     self.versionLabel.text = [NSString stringWithFormat:@"Version %@ (%@)", majorVersion, minorVersion];
 	// Do any additional setup after loading the view.
-    [self setLookingFor];
+    if ([self.currentUser.lookingForGender integerValue] == LookingForBoth) {
+        self.lookingForMen.selected = YES;
+        self.lookingForWomen.selected = YES;
+    } else if ([self.currentUser.lookingForGender integerValue] == LookingForMen) {
+        self.lookingForMen.selected = YES;
+    } else {
+        self.lookingForWomen.selected = YES;
+    }
     self.genderSegmentControl.selectedSegmentIndex = [self.currentUser.gender integerValue];
 }
 

@@ -19,7 +19,6 @@
         self.locationManager.delegate        = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         self.locationManager.distanceFilter  = 250;
-        self.locationManager.purpose         = NSLocalizedString(@"LOCATION_EXPLANATION", @"Explain to the user why we need location");
         self.geoCoder = [[CLGeocoder alloc] init];
     }
     
