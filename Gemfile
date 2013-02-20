@@ -20,7 +20,7 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'geocoder'
 gem "aws-ses", :require => 'aws/ses'
-#gem 'squeel'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
