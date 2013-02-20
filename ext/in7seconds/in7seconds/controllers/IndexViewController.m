@@ -100,6 +100,10 @@
     
     if (self.currentUser && self.currentUser.possibleHookups) {
         self.otherUser = [self.currentUser.possibleHookups anyObject];
+        if (!self.otherUser) {
+            [self fetchPossibleHookups];
+            return;
+        }
         
         [self.userImageView setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
         ALog(@"birthday %@", self.otherUser.birthday);

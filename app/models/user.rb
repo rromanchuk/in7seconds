@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
          :conditions => "status = 'pending'"
 
   
+  scope :active, where(is_active: true)
+
+  
   LOOKING_FOR_MALE = 0
   LOOKING_FOR_FEMALE = 1
   LOOKING_FOR_BOTH = 2
@@ -219,7 +222,11 @@ class User < ActiveRecord::Base
   end
 
   def possible_hookups
-    User.where(:vkuid => self.friends_list, :gender => self.looking_for_gender).where('vkuid NOT IN (?)', self.relationships.map(&:user).map(&:vkuid))
+    users = User.where(:vkuid => self.friends_list, :gender => self.looking_for_gender)
+                .where('vkuid NOT IN (?)', self.relationships.map(&:user).map(&:vkuid)) 
+
+    users = User.where(:gender => self.looking_for_gender).where('vkuid NOT IN (?)', self.relationships.map(&:user).map(&:vkuid)).take(50) if users.blank?
+    users
   end
 
   def is_requested?(hookup)

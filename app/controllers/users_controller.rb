@@ -17,14 +17,8 @@ class UsersController < ApplicationController
     render :show
   end
 
-
   def following_followers
     @user = current_user
-  end
-
-  def suggested
-    @users = current_user.suggest_users
-    render :index
   end
 
   def settings
