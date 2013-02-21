@@ -1,0 +1,113 @@
+@import "mixins";
+@import "settings";
+
+body,
+html {
+  height: 100%;
+  min-width: 960px;
+  background: #f5f5f5;
+}
+
+body, select, input, button, textarea {
+  color: #232323;
+  font: normal 13px Helvetica Neue, Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+}
+
+::-moz-selection { background: #b4242a; color: #fff; text-shadow: none; }
+::selection { background: #b4242a; color: #fff; text-shadow: none; }
+a:link { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+
+a, a:active, a:visited {
+  color: #0076a3;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.cf {
+  zoom: 1;
+
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// fixing android2 terribleness
+.android2 * {
+  text-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+.l-wrap {
+  width: 960px;
+  margin: 0 auto;
+}
+
+html.splash {
+  width: 100%;
+  height: 100%;
+
+  overflow: auto;
+
+  @include noselect();
+
+  body {
+    background: none;
+  }
+}
+
+.l-header {
+  padding-top: 60px;
+  @include noselect();
+  .l-h-logo {
+    width: 150px;
+    height: 169px;
+
+    display: block;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+    text-indent: -999px;
+    text-align: left;
+
+    background: image-url('logo_alt.png') no-repeat;
+  }
+}
+
+.l-wrapper {
+    min-height: 100%;
+    height: auto !important;
+    margin: 0 auto -#{$footer_height};
+}
+.l-footer,
+.l-footer-pusher {
+    height: $footer_height;
+}
+
+.l-footer {
+  background: #333;
+
+  line-height: $footer_height;
+
+  font-size: 14px;
+  text-align: center;
+
+  @include noselect();
+
+  .l-f-link {
+    margin: 0 10px;
+    display: inline-block;
+    font-weight: bold;
+    color: #fff;
+
+    // cursor: pointer;
+  }
+}

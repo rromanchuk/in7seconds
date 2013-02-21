@@ -1,0 +1,16 @@
+!!!
+%html.no-js{:class=>(yield :html_classes).blank? ? nil : (yield :html_classes), :lang=>'ru-RU'}
+  %head
+    = render :partial => 'layouts/meta'
+
+  %body
+    .l-wrapper
+      = render :partial => 'layouts/header'
+      = yield
+      .l-footer-pusher
+    = render :partial => 'layouts/footer'
+
+    -#
+      :javascript
+        app = {};
+      = javascript_include_tag 'application'
