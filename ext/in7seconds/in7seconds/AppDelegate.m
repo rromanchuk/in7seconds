@@ -10,6 +10,9 @@
 #import "InitialViewController.h"
 #import "User+REST.h"
 #import <Crashlytics/Crashlytics.h>
+#import "UAPush.h"
+#import "UAirship.h"
+
 @implementation AppDelegate
 @synthesize window = _window;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -24,6 +27,28 @@
     [Flurry startSession:@"7RBHDYVR2RPTKP7NT4XN"];
     [TestFlight takeOff:@"8b9f2759-9e2b-48d9-873b-d3af3677d35b"];
     [Crashlytics startWithAPIKey:@"cbbca2d940f872c4617ddb67cf20ec9844d036ea"];
+    
+    NSMutableDictionary *takeOffOptions = [[NSMutableDictionary alloc] init];
+    [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
+    
+    // Create Airship singleton that's used to talk to Urban Airship servers.
+    // Please populate AirshipConfig.plist with your info from http://go.urbanairship.com
+    [UAirship takeOff:takeOffOptions];
+    
+    [[UAPush shared] setPushEnabled:YES];
+    
+    [[UAPush shared]
+     registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                         UIRemoteNotificationTypeSound |
+                                         UIRemoteNotificationTypeAlert)];
+    
+    
+    //[UAPush shared].delegate = [NotificationHandler shared];
+    [[UAPush shared] setAutobadgeEnabled:YES];
+    // Anytime the user user the application, we should wipe out the badge number, it pisses people off.
+    [[UAPush shared] resetBadge];
+
+    
     [Location sharedLocation].delegate = self;
     InitialViewController *vc = (InitialViewController *)self.window.rootViewController;
     vc.managedObjectContext = self.managedObjectContext;
@@ -60,7 +85,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    
+    [UAirship land];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

@@ -86,6 +86,7 @@
 		FA7002CC16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */; };
 		FA809FEA16D040FD003920E6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA809FE916D040FD003920E6 /* Crashlytics.framework */; };
 		FA809FEE16D2BD58003920E6 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA809FED16D2BD58003920E6 /* AddressBook.framework */; };
+		FAAA96C816D9070200F8CD3D /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAAA96C716D9070200F8CD3D /* AirshipConfig.plist */; };
 		FAE1AC4616D6BC3500B18144 /* NSNull+NullAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE1AC4516D6BC3500B18144 /* NSNull+NullAddition.m */; };
 /* End PBXBuildFile section */
 
@@ -212,6 +213,7 @@
 		FA809FEB16D2B641003920E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA809FEC16D2B642003920E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA809FED16D2BD58003920E6 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		FAAA96C716D9070200F8CD3D /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AirshipConfig.plist; path = in7secondsTests/AirshipConfig.plist; sourceTree = SOURCE_ROOT; };
 		FAE1AC4416D6BC3500B18144 /* NSNull+NullAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+NullAddition.h"; sourceTree = "<group>"; };
 		FAE1AC4516D6BC3500B18144 /* NSNull+NullAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+NullAddition.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -335,6 +337,7 @@
 		FA70025A16CAECB20098A5B7 /* in7seconds */ = {
 			isa = PBXGroup;
 			children = (
+				FAAA96C916D907D900F8CD3D /* Delegates */,
 				9484988B16CD1F3B000083DE /* Views */,
 				FA7002C916CAF6C10098A5B7 /* Categories */,
 				FA7002C216CAF5010098A5B7 /* Helpers */,
@@ -355,6 +358,7 @@
 		FA70025B16CAECB20098A5B7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FAAA96C716D9070200F8CD3D /* AirshipConfig.plist */,
 				FA70025C16CAECB20098A5B7 /* in7seconds-Info.plist */,
 				FA70025D16CAECB20098A5B7 /* InfoPlist.strings */,
 				FA70026016CAECB20098A5B7 /* main.m */,
@@ -482,6 +486,13 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		FAAA96C916D907D900F8CD3D /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -603,6 +614,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA70028316CAECB30098A5B7 /* InfoPlist.strings in Resources */,
+				FAAA96C816D9070200F8CD3D /* AirshipConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
