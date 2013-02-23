@@ -5,7 +5,7 @@
 	<key>Release</key>
 	<dict>
 		<key>vkScopes</key>
-		<string>friends,photos,status,wall,offline</string>
+		<string>friends,photos,status,wall,offline,notify</string>
 		<key>vkAppId</key>
 		<string>3425096</string>
 		<key>vkAppSecret</key>
@@ -16,7 +16,7 @@
 	<key>Distribution</key>
 	<dict>
 		<key>vkScopes</key>
-		<string>friends,photos,status,wall,offline</string>
+		<string>friends,photos,status,wall,offline,notify</string>
 		<key>vkAppId</key>
 		<string>3425096</string>
 		<key>vkAppSecret</key>
@@ -27,7 +27,7 @@
 	<key>Debug</key>
 	<dict>
 		<key>vkScopes</key>
-		<string>friends,photos,status,wall,offline</string>
+		<string>friends,photos,status,wall,offline,notify</string>
 		<key>baseURL</key>
 		<string>http://in7secondsdev.com:3000</string>
 		<key>vkAppId</key>
