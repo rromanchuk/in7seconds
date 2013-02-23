@@ -9,7 +9,10 @@
 #import "IndexViewController.h"
 #import "AppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
-@interface IndexViewController ()
+@interface IndexViewController () {
+    NSInteger _numberOfAttempts;
+}
+
 @property (strong, nonatomic) User *otherUser;
 @end
 
@@ -35,6 +38,7 @@
 
     self.userImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.userImageView.layer.borderWidth = 3;
+    _numberOfAttempts = 0;
    	// Do any additional setup after loading the view.
 }
 
@@ -100,8 +104,11 @@
     
     if (self.currentUser && self.currentUser.possibleHookups) {
         self.otherUser = [self.currentUser.possibleHookups anyObject];
-        if (!self.otherUser) {
+        if (!self.otherUser && _numberOfAttempts < 3) {
             [self fetchPossibleHookups];
+            return;
+        } else {
+            //NO RESULTS LEFT
             return;
         }
         
@@ -118,7 +125,7 @@
 
 - (void)fetchPossibleHookups {
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
-
+    _numberOfAttempts++;
     [RestUser reload:^(RestUser *restUser) {
         self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
         [self setupNextHookup];
