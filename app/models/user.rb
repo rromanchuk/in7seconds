@@ -224,23 +224,39 @@ class User < ActiveRecord::Base
     user
   end
 
+  def get_genders
+    if self.looking_for_gender == LOOKING_FOR_BOTH
+      [USER_MALE, USER_FEMALE]
+    elsif self.looking_for_gender == LOOKING_FOR_MALE
+      [USER_MALE]
+    else
+      [USER_FEMALE]
+    end
+  end
+
   def possible_hookups
     # First find nearby users
     users = users_nearby
     # Ok find friends on facebook
-    users = User.where(:vkuid => self.friends_list, :gender => self.looking_for_gender)
-                .where('vkuid NOT IN (?)', self.relationships.map(&:user).map(&:vkuid)) if users.blank?
-
+    users = filter(User.where(:vkuid => self.friends_list).where('gender IN (?)', get_genders)) if users.blank?
     # Ok find anyone on the system
-    users = User.where(:gender => self.looking_for_gender).where('vkuid NOT IN (?)', self.relationships.map(&:user).map(&:vkuid)).take(50) if users.blank?
+    users = filter(User.where('gender IN (?)', get_genders)).take(50) if users.blank?
     users
+  end
+
+  def filter(users)
+    if self.relationships.blank?
+      return users
+    else
+      return users.where('vkuid NOT IN (?)', self.relationships.map(&:user).map(&:vkuid))
+    end
   end
 
   def users_nearby
     if self.geocoded?
       users = self.nearbys(30)
       unless users.blank? 
-        users = users.where(:gender => self.looking_for_gender).where('vkuid NOT IN (?)', self.relationships.map(&:user).map(&:vkuid)).take(50) 
+        users = filter(users.where(:gender => self.looking_for_gender)).take(50) 
         return users
       end
     end

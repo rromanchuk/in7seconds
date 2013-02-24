@@ -107,7 +107,7 @@
         if (!self.otherUser && _numberOfAttempts < 3) {
             [self fetchPossibleHookups];
             return;
-        } else {
+        } else if (!self.otherUser){
             //NO RESULTS LEFT
             return;
         }

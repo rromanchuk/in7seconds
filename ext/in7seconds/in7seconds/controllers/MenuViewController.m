@@ -74,9 +74,9 @@
 }
 
 - (void)setLookingFor {
-    if (self.lookingForMen.selected && self.lookingForMen) {
+    if ((self.lookingForMen.selected && self.lookingForWomen.selected) || (!self.lookingForMen.selected && !self.lookingForWomen.selected)) {
         self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForBoth];
-    } else if (self.lookingForWomen) {
+    } else if (self.lookingForWomen.selected) {
         self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForWomen];
     } else {
         self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForMen];
