@@ -238,7 +238,11 @@ class User < ActiveRecord::Base
 
   def users_nearby
     if self.geocoded?
-      self.nearbys(30)
+      users = self.nearbys(30)
+      unless users.blank? 
+        users = users.where(:gender => self.looking_for_gender).where('vkuid NOT IN (?)', self.relationships.map(&:user).map(&:vkuid)).take(50) 
+        return users
+      end
     end
     []
   end
