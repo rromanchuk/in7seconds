@@ -43,6 +43,8 @@ class User < ActiveRecord::Base
 
   serialize :friends_list
 
+  reverse_geocoded_by :latitude, :longitude
+
   def fb_client
      FbGraph::User.fetch(fbuid, :access_token => fb_token)
   end
@@ -223,13 +225,24 @@ class User < ActiveRecord::Base
   end
 
   def possible_hookups
+    # First find nearby users
+    users = users_nearby
+    # Ok find friends on facebook
     users = User.where(:vkuid => self.friends_list, :gender => self.looking_for_gender)
-                .where('vkuid NOT IN (?)', self.relationships.map(&:user).map(&:vkuid)) 
+                .where('vkuid NOT IN (?)', self.relationships.map(&:user).map(&:vkuid)) if users.blank?
 
+    # Ok find anyone on the system
     users = User.where(:gender => self.looking_for_gender).where('vkuid NOT IN (?)', self.relationships.map(&:user).map(&:vkuid)).take(50) if users.blank?
     users
   end
 
+  def users_nearby
+    if self.geocoded?
+      self.nearbys(30)
+    end
+    []
+  end
+  
   def is_requested?(hookup)
     self.relationships.exists?(hookup_id: hookup.id, status: 'requested')
   end
