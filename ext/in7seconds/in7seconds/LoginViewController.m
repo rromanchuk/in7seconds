@@ -9,6 +9,8 @@
 #import "LoginViewController.h"
 #import "RestUser.h"
 #import "AppDelegate.h"
+#import "UAPush.h"
+#import "UAirship.h"
 @interface LoginViewController ()
 
 @end
@@ -91,6 +93,9 @@
                   [self saveContext];
                   [RestUser setCurrentUserId:restUser.externalId];
                   [RestUser setCurrentUserToken:restUser.authenticationToken];
+                  NSString *alias = [NSString stringWithFormat:@"%d", restUser.externalId];
+                  [[UAPush shared] setAlias:alias];
+                  [[UAPush shared] updateRegistration];
                   [SVProgressHUD dismiss];
                   [self dismissViewControllerAnimated:YES completion:^(void) {
                       ALog(@"finished dismissing");
