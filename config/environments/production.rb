@@ -66,6 +66,10 @@ In7seconds::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   config.action_mailer.delivery_method = :amazon_ses
   
+  Urbanairship.application_key = CONFIG[:ua_key]
+  Urbanairship.application_secret = CONFIG[:ua_secret]
+  Urbanairship.master_secret = CONFIG[:ua_master]
+  
   config.middleware.use ExceptionNotifier,
   :email_prefix => "[7seconds] ",
   :sender_address => %{"in7Seconds Exception" <exceptions@in7seconds.com>},

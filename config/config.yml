@@ -32,6 +32,9 @@ development:
   vk_scopes: "friends,photos,status,wall,offline,notify"
   s3_cdn: s3.amazonaws.com/piclar
   contact_email: support@in7seconds.com
+  ua_key: t3YC1EwhSX2B-jl0XP2nvg
+  ua_secret: nRah8o9GT72gsMEhth98OQ
+  ua_master: swmZZidlSx2dv1RyZ1cn4w
 
 production:
   name: 7seconds
@@ -51,3 +54,6 @@ production:
   vk_scopes: "friends,photos,status,wall,offline,notify"
   s3_cdn: cdn.piclar.com
   contact_email: support@in7seconds.com
+  ua_key: acjij3jDR1mkLzdEfhAfnw
+  ua_secret: 6qOMa1RxQ2C9bRGsoGhFtA
+  ua_master: Ld5UCuy6QTmRP873U-2LNQ

@@ -34,4 +34,10 @@ In7seconds::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  Urbanairship.application_key = CONFIG[:ua_key]
+  Urbanairship.application_secret = CONFIG[:ua_secret]
+  Urbanairship.master_secret = CONFIG[:ua_master]
+  Urbanairship.logger = Rails.logger
+  Urbanairship.request_timeout = 5 # default
 end
