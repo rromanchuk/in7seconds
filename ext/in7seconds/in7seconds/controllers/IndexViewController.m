@@ -40,6 +40,8 @@
     self.userImageView.layer.borderWidth = 3;
     _numberOfAttempts = 0;
    	// Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout)
+                                                 name:@"UserNotAuthorized" object:nil];
 }
 
 
@@ -109,6 +111,7 @@
             return;
         } else if (!self.otherUser){
             //NO RESULTS LEFT
+            ALog(@"No more results found");
             return;
         }
         
@@ -128,6 +131,7 @@
     _numberOfAttempts++;
     [RestUser reload:^(RestUser *restUser) {
         self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+        [self saveContext];
         [self setupNextHookup];
         [SVProgressHUD dismiss];
     } onError:^(NSError *error) {
@@ -160,5 +164,27 @@
 - (void)didUpdateSettings {
     [self fetchPossibleHookups];
 }
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"UserNotAuthorized"
+                                                  object:nil];
+}
+
+- (void)saveContext
+{
+    NSError *error = nil;
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        if ([_managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        }
+    }
+    
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [sharedAppDelegate writeToDisk];
+}
+
 
 @end

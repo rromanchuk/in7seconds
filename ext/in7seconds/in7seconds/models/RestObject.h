@@ -12,7 +12,7 @@
 
 typedef enum  {
     kObjectNotFound = 404,
-    kUserNotAuthorized = 403,
+    kUserNotAuthorized = 401,
     kInternalServerError = 500
 } OstronautNetworkError;
 
@@ -23,6 +23,13 @@ typedef enum  {
 @end
 
 @protocol RestMappable <NSObject>
+
+@required
++ (NSDictionary *)mapping;
+
+@end
+
+@protocol NotAuthorizedDelegate <NSObject>
 
 @required
 + (NSDictionary *)mapping;

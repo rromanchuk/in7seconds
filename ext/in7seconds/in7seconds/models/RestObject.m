@@ -12,8 +12,11 @@
 
 + (NSError *)customError:(NSError *)error withServerResponse:(NSHTTPURLResponse *)response andJson:(id)JSON {
     NSString *localizedDescription;
+    ALog(@"error with code %d", response.statusCode);
     switch (response.statusCode) {
         case kUserNotAuthorized:
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UserNotAuthorized" object:nil];
+            ALog(@"User not authorized!!");
             localizedDescription = NSLocalizedString(@"NOT_AUTHORIZED", @"signature incorrect");
             break;
         case kObjectNotFound:
