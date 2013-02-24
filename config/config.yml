@@ -1,6 +1,6 @@
 test:
-  name: Ostronaut
-  description: DICK
+  name: 7seconds
+  description: In 7 Seconds находит тех, кому вы нравитесь неподалеку и соединяет вас если симпатия взаимна. Это анонимно до тех пор пока вы не понравитесь тому тот кто вам нравится.
   host: in7secondsdev.com:3000
   fb_app_id: 416377108420491
   fb_app_secret: d63ab873eee7b992ad53b816b848bbba
@@ -9,14 +9,14 @@ test:
   aws_bucket: ostronaut-dev
   fsq_key: 3JGS1NJOEXKRRMMRYDDGWEOOVWKHUT3MK24Y4YBTZ5BM2UZ4
   fsq_secret: HNMOAADDNV3EEX3G0XUWYS2UBWSXZCMTX0WYKS1MJXIPUNKJ
-  vk_app_id: 3425096
-  vk_secret: mcLC6xIOxpMApchoAg3u
+  vk_app_id: 3450705
+  vk_secret: nnBnyGrt4Y8MpmiAC4DA
   vk_scopes: "friends,photos,status,wall,offline"
-  contact_email: blah@blah.com
+  contact_email: support@in7seconds.com
 
 development:
   name: 7seconds Development
-  description: AWESUM
+  description: In 7 Seconds находит тех, кому вы нравитесь неподалеку и соединяет вас если симпатия взаимна. Это анонимно до тех пор пока вы не понравитесь тому тот кто вам нравится.
   host: in7secondsdev.com:3000
   asset_host: in7secondsdev.com:3000
   fb_app_id: 251326115000725
@@ -27,15 +27,15 @@ development:
   aws_path: development
   fsq_key: 3JGS1NJOEXKRRMMRYDDGWEOOVWKHUT3MK24Y4YBTZ5BM2UZ4
   fsq_secret: HNMOAADDNV3EEX3G0XUWYS2UBWSXZCMTX0WYKS1MJXIPUNKJ
-  vk_app_id: 3429661
-  vk_secret: 2TdwkRgv1T4I8fYnsa9M
+  vk_app_id: 3450705
+  vk_secret: nnBnyGrt4Y8MpmiAC4DA
   vk_scopes: "friends,photos,status,wall,offline,notify"
   s3_cdn: s3.amazonaws.com/piclar
-  contact_email: blah@blah.com
+  contact_email: support@in7seconds.com
 
 production:
   name: 7seconds
-  description: INSERT DESCRIPTION
+  description: In 7 Seconds находит тех, кому вы нравитесь неподалеку и соединяет вас если симпатия взаимна. Это анонимно до тех пор пока вы не понравитесь тому тот кто вам нравится.
   host: in7seconds.com
   asset_host: piclar.com
   fb_app_id: 416377108420491
@@ -46,8 +46,8 @@ production:
   aws_path: production
   fsq_key: 3JGS1NJOEXKRRMMRYDDGWEOOVWKHUT3MK24Y4YBTZ5BM2UZ4
   fsq_secret: HNMOAADDNV3EEX3G0XUWYS2UBWSXZCMTX0WYKS1MJXIPUNKJ
-  vk_app_id: 3425096
-  vk_secret: mcLC6xIOxpMApchoAg3u
+  vk_app_id: 3450705
+  vk_secret: nnBnyGrt4Y8MpmiAC4DA
   vk_scopes: "friends,photos,status,wall,offline,notify"
   s3_cdn: cdn.piclar.com
-  contact_email: rromanchuk@gmail.com
+  contact_email: support@in7seconds.com

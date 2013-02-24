@@ -154,7 +154,8 @@ class User < ActiveRecord::Base
           :looking_for_gender => guess_looking_for(gender_for_vk_gender(vk_user.sex)),
           :provider => :vkontakte,
           :photo_url => vk_user.photo_big,
-          :is_active => true)
+          :is_active => true,
+          :email => (vk_user.email.blank?) ? '' : vk_user.email)
     # delay this
     user.delay.get_friends
     user

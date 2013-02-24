@@ -7,9 +7,9 @@
 		<key>vkScopes</key>
 		<string>friends,photos,status,wall,offline,notify</string>
 		<key>vkAppId</key>
-		<string>3425096</string>
+		<string>3450705</string>
 		<key>vkAppSecret</key>
-		<string>mcLC6xIOxpMApchoAg3u</string>
+		<string>nnBnyGrt4Y8MpmiAC4DA</string>
 		<key>baseURL</key>
 		<string>http://in7seconds.com</string>
 	</dict>
@@ -18,9 +18,9 @@
 		<key>vkScopes</key>
 		<string>friends,photos,status,wall,offline,notify</string>
 		<key>vkAppId</key>
-		<string>3425096</string>
+		<string>3450705</string>
 		<key>vkAppSecret</key>
-		<string>mcLC6xIOxpMApchoAg3u</string>
+		<string>nnBnyGrt4Y8MpmiAC4DA</string>
 		<key>baseURL</key>
 		<string>http://in7seconds.com</string>
 	</dict>
@@ -31,9 +31,9 @@
 		<key>baseURL</key>
 		<string>http://in7secondsdev.com:3000</string>
 		<key>vkAppId</key>
-		<string>3425096</string>
+		<string>3450705</string>
 		<key>vkAppSecret</key>
-		<string>mcLC6xIOxpMApchoAg3u</string>
+		<string>nnBnyGrt4Y8MpmiAC4DA</string>
 	</dict>
 </dict>
 </plist>
