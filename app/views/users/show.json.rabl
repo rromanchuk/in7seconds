@@ -7,3 +7,9 @@ node :possible_hookups do |user|
     partial("users/hookup_user", :object => hookup) 
   end
 end
+
+node :hookups do |user|
+  user.hookups.map do |hookup| 
+    partial("users/hookup_user", :object => hookup) 
+  end
+end

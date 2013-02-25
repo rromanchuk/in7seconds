@@ -9,7 +9,7 @@
 #import "MenuViewController.h"
 #import "RestUser.h"
 #import "AppDelegate.h"
-
+#import "User+REST.h"
 @interface MenuViewController ()
 
 @end
@@ -48,7 +48,20 @@
         self.lookingForWomen.selected = YES;
     }
     self.genderSegmentControl.selectedSegmentIndex = [self.currentUser.gender integerValue];
+    
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setupProfile];
+}
+
+- (void)setupProfile {
+    [self.profileImage setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];
+    self.nameTextField.text = self.currentUser.fullName;
+    self.emailTextField.text = self.currentUser.email;
+}
+
 
 - (void)didReceiveMemoryWarning
 {

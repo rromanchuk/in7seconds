@@ -1,3 +1,4 @@
+# encoding: utf-8
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -23,6 +24,11 @@ class User < ActiveRecord::Base
          :through => :relationships,
          :source => :hookup,
          :conditions => "status = 'pending'"
+
+  has_many :friendships
+  has_many :friends, :through => :friendships
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
   
   scope :active, where(is_active: true)
@@ -103,6 +109,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def mutual_friends
+    inverse_friends.joins(:friendships).where("friendships.user_id = users.id and friendships.friend_id = :self_id", :self_id => id).all
+  end
+  
   def get_friends
     fields = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big]
     self.friends_list = vk_client.friends.get
@@ -127,6 +137,7 @@ class User < ActiveRecord::Base
           :photo_url => friend.photo_big,
           :is_active => false)
       end
+      self.friends << user
       # User.flirt(self, user)
       # break
     end
@@ -160,6 +171,7 @@ class User < ActiveRecord::Base
           :email => (vk_user.email.blank?) ? '' : vk_user.email)
     # delay this
     user.delay.get_friends
+    Mailer.delay.welcome(user)
     user
   end
 

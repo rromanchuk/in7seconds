@@ -103,6 +103,10 @@
       
 }
 
+- (NSString *)fullName {
+    return [NSString stringWithFormat:@"%@ %@", self.lastName, self.firstName];
+}
+
 - (NSNumber *)yearsOld {
     NSDate *fromDate;
     NSDate *toDate;

@@ -7,6 +7,7 @@ class RelationshipsController < ApplicationController
     hookup = User.find(params[:relationship][:hookup_id])
     if current_user.is_requested?(hookup)
       User.fuck(current_user, hookup)
+      Notification.fuck(current_user, hookup)
     else
       User.flirt(current_user, hookup)
     end

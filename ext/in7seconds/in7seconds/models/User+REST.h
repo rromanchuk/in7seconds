@@ -19,7 +19,7 @@
 
 + (User *)currentUser:(NSManagedObjectContext *)context;
 
-
+- (NSString *)fullName;
 - (NSNumber *)yearsOld;
 
 @end

@@ -32,6 +32,9 @@
     [super viewDidLoad];
     self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(revealMenu:)];
+    
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chat_icon"] target:self action:@selector(revealMenu:)];
+    
     ((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
     ((MenuViewController *)self.slidingViewController.underLeftViewController).currentUser = self.currentUser;
     ((MenuViewController *)self.slidingViewController.underLeftViewController).managedObjectContext = self.managedObjectContext;
@@ -42,6 +45,10 @@
    	// Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout)
                                                  name:@"UserNotAuthorized" object:nil];
+    
+    
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation-logo"]]; 
+
 }
 
 
