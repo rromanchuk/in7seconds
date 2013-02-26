@@ -70,16 +70,18 @@ The library uses a .plist configuration file named `AirshipConfig.plist` to mana
 application profiles. Example copies of this file are available in all of the sample projects. Place this file
 in your project and set the following values to the ones in your application at http://go.urbanairship.com
 
-You can also edit the file as plain-text::
+You can also edit the file as plain-text:
 
-        {
-         /* NOTE: DO NOT USE THE MASTER SECRET */
-		"APP_STORE_OR_AD_HOC_BUILD" = NO; /* set to YES for production builds */
-		"DEVELOPMENT_APP_KEY" = "Your development app key";
-		"DEVELOPMENT_APP_SECRET" = "Your development app secret";
-		"PRODUCTION_APP_KEY" = "Your production app key";
-		"PRODUCTION_APP_SECRET" = "Your production app secret";
-        }
+.. code:: js
+
+    {
+        /* NOTE: DO NOT USE THE MASTER SECRET */
+        "APP_STORE_OR_AD_HOC_BUILD" = NO; /* set to YES for production builds */
+        "DEVELOPMENT_APP_KEY" = "Your development app key";
+        "DEVELOPMENT_APP_SECRET" = "Your development app secret";
+        "PRODUCTION_APP_KEY" = "Your production app key";
+        "PRODUCTION_APP_SECRET" = "Your production app secret";
+    }
 
 If you are using development builds and testing using the Apple sandbox set `APP_STORE_OR_AD_HOC_BUILD` to false. For
 App Store and Ad-Hoc builds, set it to YES.
@@ -162,6 +164,83 @@ To enable push:
     // This will trigger the proper registration or de-registration code in the library.
     [[UAPush shared] setPushEnabled:YES];
 
+Logging
+-------
+
+Logging can be configured through either the AirshipConfig.plist file or directly in code. The
+default log level for production apps is `UALogLevelError` and the default for development apps
+is `UALogLevelDebug`.
+
+In `AirshiCconfig.plist`, set `LOG_LEVEL` to one of the following integer values:
+
+.. code:: obj-c
+
+    None = 0
+    Error = 1
+    Warn = 2
+    Info = 3
+    Debug = 4
+    Trace = 5
+
+To set the log level in code, use:
+
+.. code:: obj-c
+
+    [UAirship setLogLevel:UALogLevelWarn];
+
+The available log levels are:
+
+.. code:: obj-c
+
+    UALogLevelNone
+    UALogLevelError
+    UALogLevelWarn
+    UALogLevelInfo
+    UALogLevelDebug
+    UALogLevelTrace
+
+
+Building the Library
+--------------------
+
+Running Tests
+#############
+
+The unit tests in this project require OCMock. OCMock can be installed automatically
+with the use of our install script, mock_setup.sh.
+
+Building for Distribution
+#########################
+
+To build full and push-only static libraries from the command line, run the distribution script:
+
+.. code:: bash
+
+    cd AirshipLib
+    ./distribute.sh
+
+This will produce static libraries (.a files) in /Airship and a distribution zip file in
+/AirshipLib/Release
+
+
+Xcode 4.5 now supports the armv7s architecture, but armv6 builds are not longer supported.
+To build an extra-fat binary that includes the armv6 architecture, set an environment variable pointing
+to an Xcode 4.4 app:
+
+.. code:: bash
+
+    export XCODE_4_4_APP=/Applications/Xcode_4_4_1/Xcode.app
+
+Contributing Code
+-----------------
+
+We accept pull requests! If you would like to submit a pull request, please fill out and submit a
+Code Contribution Agreement (http://urbanairship.com/legal/contribution-agreement/).
+
+
+Third Party Packages
+--------------------
+
 ===================  ========  ======================================================
 Third party Package  License   Copyright / Creator 
 ===================  ========  ======================================================
@@ -170,8 +249,6 @@ fmdb                 MIT       Copyright (c) 2008 Flying Meat Inc. gus@flyingmea
 SBJSON               MIT       Copyright (C) 2007-2010 Stig Brautaset.
 Base64               BSD       Copyright 2009-2010 Matt Gallagher.
 ZipFile-OC           BSD       Copyright (C) 1998-2005 Gilles Vollant.
-GHUnit               Apache 2  Copyright 2007 Google Inc.
-Google Toolkit	     Apache 2  Copyright 2007 Google Inc.
 Reachability         BSD       Copyright (C) 2010 Apple Inc.
 MTPopupWindow        MIT       Copyright 2011 Marin Todorov
 JRSwizzle            MIT       Copyright 2012 Jonathan Rentzsch

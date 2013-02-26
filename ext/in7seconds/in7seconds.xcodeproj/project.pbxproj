@@ -20,12 +20,6 @@
 		948498B916CFC0C4000083DE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 948498B816CFC0C4000083DE /* User.m */; };
 		94D09CA716CBD3470064F886 /* RestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA616CBD3470064F886 /* RestClient.m */; };
 		94D09CAA16CBD3630064F886 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA916CBD3630064F886 /* Config.m */; };
-		94D09CB816CBD3E60064F886 /* JTDataMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CAD16CBD3E60064F886 /* JTDataMappings.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		94D09CB916CBD3E60064F886 /* JTDateMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CAF16CBD3E60064F886 /* JTDateMappings.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		94D09CBA16CBD3E60064F886 /* JTMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CB116CBD3E60064F886 /* JTMappings.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		94D09CBB16CBD3E60064F886 /* JTSetMappings.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CB316CBD3E60064F886 /* JTSetMappings.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		94D09CBC16CBD3E60064F886 /* JTValidMappingKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CB516CBD3E60064F886 /* JTValidMappingKey.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		94D09CBD16CBD3E60064F886 /* NSObject+JTObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CB716CBD3E60064F886 /* NSObject+JTObjectMapping.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		94D09CBF16CBD5260064F886 /* environments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94D09CBE16CBD5260064F886 /* environments.plist */; };
 		94D09CC916CBED1D0064F886 /* User+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CC816CBED1D0064F886 /* User+REST.m */; };
 		94D09CCC16CBF0160064F886 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CCB16CBF0160064F886 /* IndexViewController.m */; };
@@ -96,6 +90,7 @@
 		FAA2CCB516DC00C900C22D76 /* settings_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC9116DC00C900C22D76 /* settings_bg@2x.png */; };
 		FAA2CCB816DC191E00C22D76 /* form-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CCB616DC191E00C22D76 /* form-bg.png */; };
 		FAA2CCB916DC191E00C22D76 /* form-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CCB716DC191E00C22D76 /* form-bg@2x.png */; };
+		FAA2CCBB16DD2ADA00C22D76 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA2CCBA16DD2ADA00C22D76 /* CoreLocation.framework */; };
 		FAAA96CB16D97CA400F8CD3D /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAAA96CA16D97CA400F8CD3D /* AirshipConfig.plist */; };
 		FAE1AC4616D6BC3500B18144 /* NSNull+NullAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE1AC4516D6BC3500B18144 /* NSNull+NullAddition.m */; };
 /* End PBXBuildFile section */
@@ -130,18 +125,6 @@
 		94D09CA616CBD3470064F886 /* RestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestClient.m; path = models/RestClient.m; sourceTree = "<group>"; };
 		94D09CA816CBD3630064F886 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = models/Config.h; sourceTree = "<group>"; };
 		94D09CA916CBD3630064F886 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Config.m; path = models/Config.m; sourceTree = "<group>"; };
-		94D09CAC16CBD3E60064F886 /* JTDataMappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTDataMappings.h; sourceTree = "<group>"; };
-		94D09CAD16CBD3E60064F886 /* JTDataMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTDataMappings.m; sourceTree = "<group>"; };
-		94D09CAE16CBD3E60064F886 /* JTDateMappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTDateMappings.h; sourceTree = "<group>"; };
-		94D09CAF16CBD3E60064F886 /* JTDateMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTDateMappings.m; sourceTree = "<group>"; };
-		94D09CB016CBD3E60064F886 /* JTMappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTMappings.h; sourceTree = "<group>"; };
-		94D09CB116CBD3E60064F886 /* JTMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTMappings.m; sourceTree = "<group>"; };
-		94D09CB216CBD3E60064F886 /* JTSetMappings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSetMappings.h; sourceTree = "<group>"; };
-		94D09CB316CBD3E60064F886 /* JTSetMappings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSetMappings.m; sourceTree = "<group>"; };
-		94D09CB416CBD3E60064F886 /* JTValidMappingKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTValidMappingKey.h; sourceTree = "<group>"; };
-		94D09CB516CBD3E60064F886 /* JTValidMappingKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTValidMappingKey.m; sourceTree = "<group>"; };
-		94D09CB616CBD3E60064F886 /* NSObject+JTObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JTObjectMapping.h"; sourceTree = "<group>"; };
-		94D09CB716CBD3E60064F886 /* NSObject+JTObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JTObjectMapping.m"; sourceTree = "<group>"; };
 		94D09CBE16CBD5260064F886 /* environments.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = environments.plist; sourceTree = "<group>"; };
 		94D09CC716CBED1D0064F886 /* User+REST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "User+REST.h"; path = "models/User+REST.h"; sourceTree = "<group>"; };
 		94D09CC816CBED1D0064F886 /* User+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "User+REST.m"; path = "models/User+REST.m"; sourceTree = "<group>"; };
@@ -233,6 +216,15 @@
 		FAA2CC9116DC00C900C22D76 /* settings_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_bg@2x.png"; path = "assets/settings_bg@2x.png"; sourceTree = "<group>"; };
 		FAA2CCB616DC191E00C22D76 /* form-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "form-bg.png"; path = "assets/form-bg.png"; sourceTree = "<group>"; };
 		FAA2CCB716DC191E00C22D76 /* form-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "form-bg@2x.png"; path = "assets/form-bg@2x.png"; sourceTree = "<group>"; };
+		FAA2CCBA16DD2ADA00C22D76 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FAA2CE3116DD351B00C22D76 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		FAA2CE3316DD352B00C22D76 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		FAA2CE3516DD353300C22D76 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		FAA2CE3716DD353F00C22D76 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FAA2CE3916DD355300C22D76 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		FAA2CE3B16DD356100C22D76 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		FAA2CE3D16DD356E00C22D76 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		FAA2CE3F16DD357900C22D76 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		FAAA96CA16D97CA400F8CD3D /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
 		FAE1AC4416D6BC3500B18144 /* NSNull+NullAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+NullAddition.h"; sourceTree = "<group>"; };
 		FAE1AC4516D6BC3500B18144 /* NSNull+NullAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+NullAddition.m"; sourceTree = "<group>"; };
@@ -243,6 +235,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAA2CCBB16DD2ADA00C22D76 /* CoreLocation.framework in Frameworks */,
 				FA809FEE16D2BD58003920E6 /* AddressBook.framework in Frameworks */,
 				FA809FEA16D040FD003920E6 /* Crashlytics.framework in Frameworks */,
 				94D09CCE16CBF0CC0064F886 /* CoreData.framework in Frameworks */,
@@ -283,25 +276,6 @@
 			name = Base;
 			sourceTree = "<group>";
 		};
-		94D09CAB16CBD3AC0064F886 /* JTObjectMapping */ = {
-			isa = PBXGroup;
-			children = (
-				94D09CAC16CBD3E60064F886 /* JTDataMappings.h */,
-				94D09CAD16CBD3E60064F886 /* JTDataMappings.m */,
-				94D09CAE16CBD3E60064F886 /* JTDateMappings.h */,
-				94D09CAF16CBD3E60064F886 /* JTDateMappings.m */,
-				94D09CB016CBD3E60064F886 /* JTMappings.h */,
-				94D09CB116CBD3E60064F886 /* JTMappings.m */,
-				94D09CB216CBD3E60064F886 /* JTSetMappings.h */,
-				94D09CB316CBD3E60064F886 /* JTSetMappings.m */,
-				94D09CB416CBD3E60064F886 /* JTValidMappingKey.h */,
-				94D09CB516CBD3E60064F886 /* JTValidMappingKey.m */,
-				94D09CB616CBD3E60064F886 /* NSObject+JTObjectMapping.h */,
-				94D09CB716CBD3E60064F886 /* NSObject+JTObjectMapping.m */,
-			);
-			name = JTObjectMapping;
-			sourceTree = "<group>";
-		};
 		94D09CC316CBEA4B0064F886 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +290,15 @@
 		FA70024816CAECB20098A5B7 = {
 			isa = PBXGroup;
 			children = (
+				FAA2CE3F16DD357900C22D76 /* StoreKit.framework */,
+				FAA2CE3D16DD356E00C22D76 /* CoreTelephony.framework */,
+				FAA2CE3B16DD356100C22D76 /* libsqlite3.dylib */,
+				FAA2CE3916DD355300C22D76 /* libz.dylib */,
+				FAA2CE3716DD353F00C22D76 /* SystemConfiguration.framework */,
+				FAA2CE3516DD353300C22D76 /* Security.framework */,
+				FAA2CE3316DD352B00C22D76 /* MobileCoreServices.framework */,
+				FAA2CE3116DD351B00C22D76 /* CFNetwork.framework */,
+				FAA2CCBA16DD2ADA00C22D76 /* CoreLocation.framework */,
 				FA809FED16D2BD58003920E6 /* AddressBook.framework */,
 				FA809FE916D040FD003920E6 /* Crashlytics.framework */,
 				9484989816CD2DBA000083DE /* 57.png */,
@@ -344,7 +327,6 @@
 			isa = PBXGroup;
 			children = (
 				94D09CCD16CBF0CC0064F886 /* CoreData.framework */,
-				94D09CAB16CBD3AC0064F886 /* JTObjectMapping */,
 				FA70025416CAECB20098A5B7 /* UIKit.framework */,
 				FA70025616CAECB20098A5B7 /* Foundation.framework */,
 				FA70025816CAECB20098A5B7 /* CoreGraphics.framework */,
@@ -720,12 +702,6 @@
 				FA7002CC16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m in Sources */,
 				94D09CA716CBD3470064F886 /* RestClient.m in Sources */,
 				94D09CAA16CBD3630064F886 /* Config.m in Sources */,
-				94D09CB816CBD3E60064F886 /* JTDataMappings.m in Sources */,
-				94D09CB916CBD3E60064F886 /* JTDateMappings.m in Sources */,
-				94D09CBA16CBD3E60064F886 /* JTMappings.m in Sources */,
-				94D09CBB16CBD3E60064F886 /* JTSetMappings.m in Sources */,
-				94D09CBC16CBD3E60064F886 /* JTValidMappingKey.m in Sources */,
-				94D09CBD16CBD3E60064F886 /* NSObject+JTObjectMapping.m in Sources */,
 				94D09CC916CBED1D0064F886 /* User+REST.m in Sources */,
 				94D09CCC16CBF0160064F886 /* IndexViewController.m in Sources */,
 				94D09CD116CBF2260064F886 /* InitialViewController.m in Sources */,
@@ -833,8 +809,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "in7seconds/in7seconds-Prefix.pch";
 				INFOPLIST_FILE = "in7seconds/in7seconds-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Airship\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "402C7F1F-A805-496E-9A3C-E7A1EBA00766";
+				PROVISIONING_PROFILE = "CC63BFEC-897B-4A06-AA87-FFE2BD926592";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;
@@ -901,7 +881,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Romanchuk (RJ6W6Q2JLW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Romanchuk";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -910,7 +890,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "402C7F1F-A805-496E-9A3C-E7A1EBA00766";
+				PROVISIONING_PROFILE = "E8E81C03-3562-492D-A940-5AF027E16BB1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -928,8 +908,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "in7seconds/in7seconds-Prefix.pch";
 				INFOPLIST_FILE = "in7seconds/in7seconds-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Airship\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "402C7F1F-A805-496E-9A3C-E7A1EBA00766";
+				PROVISIONING_PROFILE = "CC63BFEC-897B-4A06-AA87-FFE2BD926592";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -938,7 +922,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF7F3663B2C24854B8CFE612 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Romanchuk (RJ6W6Q2JLW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Romanchuk";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -946,8 +930,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "in7seconds/in7seconds-Prefix.pch";
 				INFOPLIST_FILE = "in7seconds/in7seconds-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Airship\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "402C7F1F-A805-496E-9A3C-E7A1EBA00766";
+				PROVISIONING_PROFILE = "E8E81C03-3562-492D-A940-5AF027E16BB1";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

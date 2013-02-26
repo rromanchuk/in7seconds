@@ -28,26 +28,31 @@
     [TestFlight takeOff:@"8b9f2759-9e2b-48d9-873b-d3af3677d35b"];
     [Crashlytics startWithAPIKey:@"cbbca2d940f872c4617ddb67cf20ec9844d036ea"];
     
-    NSMutableDictionary *takeOffOptions = [[NSMutableDictionary alloc] init];
+    
+    //Create Airship options dictionary and add the required UIApplication launchOptions
+    NSMutableDictionary *takeOffOptions = [NSMutableDictionary dictionary];
     [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
     
-    // Create Airship singleton that's used to talk to Urban Airship servers.
-    // Please populate AirshipConfig.plist with your info from http://go.urbanairship.com
+    // Call takeOff (which creates the UAirship singleton), passing in the launch options so the
+    // library can properly record when the app is launched from a push notification. This call is
+    // required.
+    //
+    // Populate AirshipConfig.plist with your app's info from https://go.urbanairship.com
     [UAirship takeOff:takeOffOptions];
     
-    [[UAPush shared] setPushEnabled:YES];
-    
-    [[UAPush shared]
-     registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-                                         UIRemoteNotificationTypeSound |
-                                         UIRemoteNotificationTypeAlert)];
-    
-    
-    //[UAPush shared].delegate = [NotificationHandler shared];
-    [[UAPush shared] setAutobadgeEnabled:YES];
-    // Anytime the user user the application, we should wipe out the badge number, it pisses people off.
+    // Set the icon badge to zero on startup (optional)
     [[UAPush shared] resetBadge];
-
+    
+    // Register for remote notfications with the UA Library. This call is required.
+    [[UAPush shared] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                         UIRemoteNotificationTypeSound |
+                                                         UIRemoteNotificationTypeAlert)];
+    
+    // Handle any incoming incoming push notifications.
+    // This will invoke `handleBackgroundNotification` on your UAPushNotificationDelegate.
+    [[UAPush shared] handleNotification:[launchOptions valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey]
+                       applicationState:application.applicationState];
+    
     
     [Location sharedLocation].delegate = self;
     InitialViewController *vc = (InitialViewController *)self.window.rootViewController;
@@ -277,6 +282,13 @@
     //    [Flurry logEvent:@"FAILED_TO_GET_ANY_LOCATION_APP_LAUNCH"];
 }
 
+
+#pragma mark - UrbanAirship configuration
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Updates the device token and registers the token with UA.
+    [[UAPush shared] registerDeviceToken:deviceToken];
+}
 
 
 @end
