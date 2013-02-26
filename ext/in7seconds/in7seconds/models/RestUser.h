@@ -28,6 +28,7 @@
 @property (atomic, strong) NSDate *updatedAt;
 @property (atomic, strong) NSDate *createdAt;
 @property (atomic, strong) NSSet *possibleHookups;
+@property (atomic, strong) NSSet *hookups;
 
 + (void)create:(NSMutableDictionary *)parameters
         onLoad:(void (^)(RestUser *restUser))onLoad

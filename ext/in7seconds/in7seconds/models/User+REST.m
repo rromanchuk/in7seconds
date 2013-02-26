@@ -100,6 +100,12 @@
         User *user = [User userWithRestUser:_restUser inManagedObjectContext:self.managedObjectContext];
         [self addPossibleHookupsObject:user];
     }
+    
+    [self removeHookups:self.hookups];
+    for (RestUser *_restUser in restUser.hookups) {
+        User *user = [User userWithRestUser:_restUser inManagedObjectContext:self.managedObjectContext];
+        [self addHookupsObject:user];
+    }
       
 }
 

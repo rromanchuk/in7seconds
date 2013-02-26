@@ -2,7 +2,7 @@
 //  User.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 2/16/13.
+//  Created by Ryan Romanchuk on 2/27/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -23,11 +23,12 @@
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSNumber * longitude;
+@property (nonatomic, retain) NSNumber * lookingForGender;
 @property (nonatomic, retain) NSString * photoUrl;
 @property (nonatomic, retain) NSDate * updatedAt;
 @property (nonatomic, retain) NSString * vkToken;
-@property (nonatomic, retain) NSNumber * lookingForGender;
 @property (nonatomic, retain) NSSet *possibleHookups;
+@property (nonatomic, retain) NSSet *hookups;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
@@ -36,5 +37,10 @@
 - (void)removePossibleHookupsObject:(User *)value;
 - (void)addPossibleHookups:(NSSet *)values;
 - (void)removePossibleHookups:(NSSet *)values;
+
+- (void)addHookupsObject:(User *)value;
+- (void)removeHookupsObject:(User *)value;
+- (void)addHookups:(NSSet *)values;
+- (void)removeHookups:(NSSet *)values;
 
 @end

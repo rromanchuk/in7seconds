@@ -9,6 +9,7 @@
 #import "IndexViewController.h"
 #import "AppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
+#import "MatchesViewController.h"
 @interface IndexViewController () {
     NSInteger _numberOfAttempts;
 }
@@ -33,7 +34,7 @@
     self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(revealMenu:)];
     
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chat_icon"] target:self action:@selector(revealMenu:)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chat_icon"] target:self action:@selector(didTapMatches:)];
     
     ((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
     ((MenuViewController *)self.slidingViewController.underLeftViewController).currentUser = self.currentUser;
@@ -77,6 +78,10 @@
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
         vc.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"Matches"]) {
+        MatchesViewController *vc = (MatchesViewController *)segue.destinationViewController;
+        vc.managedObjectContext = self.managedObjectContext;
+        vc.currentUser = self.currentUser;
     }
 }
 
@@ -103,6 +108,10 @@
     } onError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
+}
+
+- (IBAction)didTapMatches:(id)sender {
+    [self performSegueWithIdentifier:@"Matches" sender:nil];
 }
 
 - (void)setupNextHookup {

@@ -269,23 +269,23 @@
                         <outlet property="unlikeButton" destination="XEm-AO-bF8" id="eef-FS-e2m"/>
                         <outlet property="userImageView" destination="APD-Fz-edu" id="FfR-BH-bT2"/>
                         <segue destination="uDf-1G-bJ7" kind="modal" identifier="Login" id="qph-WC-CME"/>
-                        <segue destination="KXj-XR-793" kind="push" id="cId-S9-ht9"/>
+                        <segue destination="KXj-XR-793" kind="push" identifier="Matches" id="cId-S9-ht9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2d3-TX-Xo8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="339" y="-259"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Matches View Controller-->
         <scene sceneID="low-Aa-7nq">
             <objects>
-                <tableViewController id="KXj-XR-793" sceneMemberID="viewController">
+                <tableViewController id="KXj-XR-793" customClass="MatchesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="93" sectionHeaderHeight="22" sectionFooterHeight="22" id="O3t-0e-jEa">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="93" id="t3q-FL-F7s">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MatchCell" rowHeight="93" id="t3q-FL-F7s" customClass="MatchCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="93"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -313,6 +313,11 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <outlet property="nameLabel" destination="oQF-iK-85G" id="uEG-QY-jbi"/>
+                                    <outlet property="previewLabel" destination="FUc-d2-vm5" id="rbz-f0-JOu"/>
+                                    <outlet property="profileImage" destination="fpt-SD-auJ" id="WTJ-4f-DsC"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -324,7 +329,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z8r-JU-Hri" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="796" y="-259"/>
+            <point key="canvasLocation" x="838" y="-259"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="UIz-Qq-tXB">

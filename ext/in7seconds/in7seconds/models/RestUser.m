@@ -39,7 +39,8 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                 nil];
     if (!is_nested) {
         [map setObject:[RestUser mappingWithKey:@"possibleHookups" mapping:[RestUser mapping:YES]] forKey:@"possible_hookups"];
-        [map setObject:[RestUser mappingWithKey@"hookups" mapping:[RestUser mapping:YES]] forKey:@"hookups"];
+        
+        [map setObject:[RestUser mappingWithKey:@"hookups" mapping:[RestUser mapping:YES]] forKey:@"hookups"];
     }
     return map;
 }
