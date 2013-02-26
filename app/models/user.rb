@@ -30,7 +30,9 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
-  
+  has_many :memberships, :dependent => :destroy
+  has_many :groups, :through => :memberships
+
   scope :active, where(is_active: true)
 
   
@@ -112,7 +114,14 @@ class User < ActiveRecord::Base
   def mutual_friends
     inverse_friends.joins(:friendships).where("friendships.user_id = users.id and friendships.friend_id = :self_id", :self_id => id).all
   end
-  
+
+  def get_groups
+    vk_client.groups.get.each do |gid|
+      group = Group.where(gid: gid, provider: "vk").first_or_create
+      self.groups << group unless self.groups.exists?(group)
+    end
+  end
+
   def get_friends
     fields = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big]
     self.friends_list = vk_client.friends.get

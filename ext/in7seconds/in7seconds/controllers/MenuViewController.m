@@ -51,6 +51,11 @@
     
 }
 
+- (void)setCurrentUser:(User *)currentUser {
+    _currentUser = currentUser;
+    [self setupProfile];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setupProfile];
@@ -129,7 +134,12 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    self.currentUser.email = self.emailTextField.text;
+    NSArray *chunks = [self.nameTextField.text componentsSeparatedByString: @" "];
+    self.currentUser.lastName = chunks[0];
+    self.currentUser.firstName = chunks[1];
     [textField resignFirstResponder];
+    [self update];
     return YES;
 }
 
