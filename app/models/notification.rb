@@ -10,6 +10,8 @@ class Notification < ActiveRecord::Base
 
   def fuck(user1, user2)
     Notification.send_notfication!([user1.id, user2.id], "match was found")
+    Mailer.fuck(user1, user2).deliver
+    Mailer.fuck(user2, user1).deliver
   end
 
   def self.send_notfication!(aliases, message, extra={})

@@ -40,6 +40,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
     if (!is_nested) {
         [map setObject:[RestUser mappingWithKey:@"possibleHookups" mapping:[RestUser mapping:YES]] forKey:@"possible_hookups"];
         
+        [map setObject:[RestUser mappingWithKey:@"hookups" mapping:[RestUser mapping:YES]] forKey:@"hookups"];
     }
     return map;
 }
@@ -49,7 +50,13 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
        onError:(void (^)(NSError *error))onError {
     RestClient *restClient = [RestClient sharedClient];
     ALog(@"got gender:%@ got looking for %@", user.gender, user.lookingForGender);
-    NSDictionary *params = @{@"user[looking_for_gender]": user.lookingForGender, @"user[gender]": user.gender, @"user[latitude]": [NSNull nullWhenNil:[Location sharedLocation].latitude], @"user[longitude": [NSNull nullWhenNil:[Location sharedLocation].longitude] };
+    NSDictionary *params = @{@"user[looking_for_gender]": user.lookingForGender,
+                             @"user[gender]": user.gender,
+                             @"user[latitude]": [NSNull nullWhenNil:[Location sharedLocation].latitude],
+                             @"user[longitude": [NSNull nullWhenNil:[Location sharedLocation].longitude],
+                             @"user[email]": [NSNull nullWhenNil:user.email],
+                             @"user[first_name]": [NSNull nullWhenNil:user.firstName],
+                             @"user[last_name]": [NSNull nullWhenNil:user.lastName]};
     
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"PUT"
                                                             path:[RESOURCE_PATH stringByAppendingString:@"/update_user.json"]

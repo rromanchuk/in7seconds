@@ -21,7 +21,7 @@ gem 'daemons'
 gem 'geocoder'
 gem "aws-ses", :require => 'aws/ses'
 gem 'whenever', :require => false
-
+gem 'russian'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

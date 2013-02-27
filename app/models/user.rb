@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
+  has_many :memberships, :dependent => :destroy
+  has_many :groups, :through => :memberships
+  has_many :inverse_memberships, :class_name => "Membership", :foreign_key => "group_id"
+  has_many :inverse_memberships, :through => :inverse_memberships, :source => :user
   
   scope :active, where(is_active: true)
 
@@ -109,10 +113,25 @@ class User < ActiveRecord::Base
     end
   end
 
+  def vk_app_users
+    User.where(vkuid: vk_client.friends.getAppUsers)
+  end
+
   def mutual_friends
     inverse_friends.joins(:friendships).where("friendships.user_id = users.id and friendships.friend_id = :self_id", :self_id => id).all
   end
-  
+
+  def mutal_groups(hookup)
+    Membership.where('group_id IN (?)', self.groups.map(&:id) ).where(user_id: hookup.id).map(&:group)
+  end
+
+  def get_groups
+    vk_client.groups.get.each do |gid|
+      group = Group.where(gid: gid, provider: "vk").first_or_create
+      self.groups << group unless self.groups.exists?(group)
+    end
+  end
+
   def get_friends
     fields = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big]
     self.friends_list = vk_client.friends.get

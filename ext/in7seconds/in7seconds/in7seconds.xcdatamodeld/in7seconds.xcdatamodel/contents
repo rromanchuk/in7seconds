@@ -15,9 +15,10 @@
         <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="vkToken" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="hookups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="hookups" inverseEntity="User" syncable="YES"/>
         <relationship name="possibleHookups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="possibleHookups" inverseEntity="User" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="160" positionY="192" width="128" height="270"/>
+        <element name="User" positionX="160" positionY="192" width="128" height="285"/>
     </elements>
 </model>
