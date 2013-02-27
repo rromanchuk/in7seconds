@@ -131,7 +131,9 @@
             return;
         }
         
-        [self.userImageView setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
+        [self.userImageView setProfilePhotoWithURL:self.otherUser.photoUrl];
+        self.mutualFriendsLabel.text = [NSString stringWithFormat:@"%@ общих друзей", self.otherUser.mutualFriends];
+        self.mutualGroupsLabel.text = [NSString stringWithFormat:@"%@ общих интересов", self.otherUser.mutualGroups];
         ALog(@"birthday %@", self.otherUser.birthday);
         if (self.otherUser.birthday && [self.otherUser.yearsOld integerValue] > 0) {
             self.nameLabel.text = [NSString stringWithFormat:@"%@ %@, %@ %@", self.otherUser.lastName, self.otherUser.firstName, self.otherUser.yearsOld, NSLocalizedString(@"лет", @"years old")];

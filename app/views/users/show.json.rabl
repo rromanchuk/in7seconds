@@ -1,5 +1,5 @@
 object @user
-attributes :id, :vk_token, :fb_token, :authentication_token, :updated_at, :first_name, :last_name, :location, :birthday, :gender, :looking_for_gender, :email, :photo_url
+attributes :id, :vk_token, :fb_token, :authentication_token, :updated_at, :first_name, :last_name, :location, :birthday, :gender, :looking_for_gender, :email, :photo_url, :country, :city
 
 
 node :possible_hookups do |user|
@@ -13,3 +13,4 @@ node :hookups do |user|
     partial("users/hookup_user", :object => hookup) 
   end
 end
+

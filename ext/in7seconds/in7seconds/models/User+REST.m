@@ -92,6 +92,10 @@
     //self.fbToken = restUser.fbToken;
     self.location = restUser.location;
     self.gender = [NSNumber numberWithInteger:restUser.gender];
+    self.country = restUser.country;
+    self.city = restUser.city;
+    self.mutualFriends = [NSNumber numberWithInteger:restUser.mutualFriends];
+    self.mutualGroups = [NSNumber numberWithInteger:restUser.mutualGroups];
     self.birthday = restUser.birthday;
     self.updatedAt = restUser.updatedAt;
     

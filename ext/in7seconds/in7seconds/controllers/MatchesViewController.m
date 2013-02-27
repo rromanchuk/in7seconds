@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
     [self setupFetchedResultsController];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
 	// Do any additional setup after loading the view.
 }
 
@@ -56,6 +57,10 @@
     cell.nameLabel.text = user.fullName;
     [cell.profileImage setImageWithURL:[NSURL URLWithString:user.photoUrl]];
     return cell;
+}
+
+- (void)back {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

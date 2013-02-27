@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226202045) do
+ActiveRecord::Schema.define(:version => 20130227203159) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -40,15 +40,6 @@ ActiveRecord::Schema.define(:version => 20130226202045) do
   add_index "friendships", ["user_id", "friend_id"], :name => "index_friendships_on_user_id_and_friend_id", :unique => true
   add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
 
-  create_table "group_memberships", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "group_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "group_memberships", ["user_id", "group_id"], :name => "index_group_memberships_on_user_id_and_group_id", :unique => true
-
   create_table "groups", :force => true do |t|
     t.integer "gid"
     t.string  "name"
@@ -57,6 +48,16 @@ ActiveRecord::Schema.define(:version => 20130226202045) do
   end
 
   add_index "groups", ["gid"], :name => "index_groups_on_gid"
+  add_index "groups", ["provider"], :name => "index_groups_on_provider"
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "memberships", ["user_id", "group_id"], :name => "index_memberships_on_user_id_and_group_id", :unique => true
 
   create_table "relationships", :force => true do |t|
     t.integer  "user_id"
@@ -101,10 +102,16 @@ ActiveRecord::Schema.define(:version => 20130226202045) do
     t.integer  "vkuid",                  :limit => 8
     t.decimal  "latitude",                            :precision => 15, :scale => 10
     t.decimal  "longitude",                           :precision => 15, :scale => 10
-    t.text     "friends_list"
     t.datetime "created_at",                                                                             :null => false
     t.datetime "updated_at",                                                                             :null => false
     t.integer  "looking_for_gender"
+    t.string   "vk_domain"
+    t.string   "vk_university_name"
+    t.string   "vk_faculty_name"
+    t.string   "vk_mobile_phone"
+    t.string   "vk_graduation"
+    t.integer  "vk_city"
+    t.integer  "vk_country"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

@@ -32,6 +32,10 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                 @"fbToken", @"fb_token",
                                 @"vkToken", @"vk_token",
                                 @"photoUrl", @"photo_url",
+                                @"mutalFriends", @"mutual_friends",
+                                @"mutualGroups", @"mutual_groups",
+                                @"city", @"city",
+                                @"country", @"country",
                                 [NSDate mappingWithKey:@"birthday"
                                       dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"birthday",
                                 [NSDate mappingWithKey:@"updatedAt"

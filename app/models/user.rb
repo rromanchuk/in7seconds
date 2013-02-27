@@ -51,9 +51,16 @@ class User < ActiveRecord::Base
 
   STATUS_TYPES = {accepted: 1, requested: 2, pending: 3, rejected: 4}
 
-  serialize :friends_list
 
   reverse_geocoded_by :latitude, :longitude
+
+  after_create :get_groups, :if => :is_active?
+  after_create :get_friends, :if => :is_active?
+  after_create :update_vk_location
+
+
+  VK_FIELDS = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big, :graduation, :university_name, :education, :domain, :contacts]
+
 
   def fb_client
      FbGraph::User.fetch(fbuid, :access_token => fb_token)
@@ -117,13 +124,20 @@ class User < ActiveRecord::Base
     User.where(vkuid: vk_client.friends.getAppUsers)
   end
 
-  def mutual_friends
-    inverse_friends.joins(:friendships).where("friendships.user_id = users.id and friendships.friend_id = :self_id", :self_id => id).all
+  def mutual_friends(hookup)
+    self.friends & hookup.friends
   end
 
-  def mutal_groups(hookup)
+  def mutual_groups(hookup)
     Membership.where('group_id IN (?)', self.groups.map(&:id) ).where(user_id: hookup.id).map(&:group)
   end
+
+  def update_vk_location
+    self.city = get_vk_city(vk_city, vk_token)
+    self.country = get_vk_country(vk_country, vk_token)
+    save
+  end
+  handle_asynchronously :update_vk_location
 
   def get_groups
     vk_client.groups.get.each do |gid|
@@ -131,44 +145,40 @@ class User < ActiveRecord::Base
       self.groups << group unless self.groups.exists?(group)
     end
   end
+  handle_asynchronously :get_groups
 
   def get_friends
-    fields = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big]
-    self.friends_list = vk_client.friends.get
-    vk_client.friends.get(fields: fields, lang:"ru") do |friend|
+    vk_client.friends.get(fields: VK_FIELDS, lang:"ru") do |friend|
       puts "#{friend.first_name} '#{friend.screen_name}' #{friend.last_name}"
       puts friend.to_yaml
-      user = User.where(:vkuid => friend.uid).first
-      if user.blank?
-        user = User.create!(
-          :vkuid => friend.uid,
-          :password => Devise.friendly_token[0,20],
+      user = User.where(vkuid: friend.uid).first_or_create(:password => Devise.friendly_token[0,20],
           :first_name => friend.first_name,
           :last_name => friend.last_name,
           :birthday => friend.bdate,
-          :city_id => friend.city,
-          :country_id => friend.country,
-          #:city => get_vk_city(friend.city, self.vk_token),
-          #:country => get_vk_country(friend.country, self.vk_token),
+          :vk_city => friend.city,
+          :vk_country => friend.country,
           :gender => gender_for_vk_gender(friend.sex),
           :looking_for_gender => guess_looking_for(gender_for_vk_gender(friend.sex)),
           :provider => :vkontakte,
           :photo_url => friend.photo_big,
+          :vk_domain => friend.domain, 
+          :vk_graduation => friend.graduation,
+          :vk_university_name => friend.university_name,
+          :vk_faculty_name => friend.faculty_name,
+          :vk_mobile_phone => friend.mobile_phone,
           :is_active => false)
-      end
-      self.friends << user
-      # User.flirt(self, user)
-      # break
+
+      self.friends << user unless self.friends.exists?(user)
     end
     save
   end
+  handle_asynchronously :get_friends
 
   #authentication
 
   def update_user_from_vk_graph(vk_user, access_token)
     self.vk_token = access_token
     self.is_active = true
-    self.delay.get_friends
     save
   end
 
@@ -179,18 +189,22 @@ class User < ActiveRecord::Base
           :first_name => vk_user.first_name,
           :last_name => vk_user.last_name,
           :birthday => vk_user.bdate,
-          :city => get_vk_city(vk_user.city, access_token),
-          :country => get_vk_country(vk_user.country, access_token),
+          :vk_city => vk_user.city,
+          :vk_country => vk_user.country,
           :vk_token => access_token,
           :gender => gender_for_vk_gender(vk_user.sex),
           :looking_for_gender => guess_looking_for(gender_for_vk_gender(vk_user.sex)),
           :provider => :vkontakte,
           :photo_url => vk_user.photo_big,
+          :vk_domain => vk_user.domain, 
+          :vk_graduation => vk_user.graduation,
+          :vk_university_name => vk_user.university_name,
+          :vk_faculty_name => vk_user.faculty_name,
+          :vk_mobile_phone => vk_user.mobile_phone,
           :is_active => true,
           :email => (vk_user.email.blank?) ? '' : vk_user.email)
-    # delay this
-    user.delay.get_friends
-    Mailer.delay.welcome(user)
+    
+    Mailer.delay.welcome(user).deliver
     user
   end
 
@@ -269,7 +283,7 @@ class User < ActiveRecord::Base
     # First find nearby users
     users = users_nearby
     # Ok find friends on facebook
-    users = filter(User.where(:vkuid => self.friends_list).where('gender IN (?)', get_genders)) if users.blank?
+    users = filter(User.where(:vkuid => self.friends.map(&:vkuid) ).where('gender IN (?)', get_genders)) if users.blank?
     # Ok find anyone on the system
     users = filter(User.where('gender IN (?)', get_genders)).take(50) if users.blank?
     users

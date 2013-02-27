@@ -10,10 +10,13 @@
 #import "User+REST.h"
 #import "LoginViewController.h"
 #import "MenuViewController.h"
+#import "ProfileImageView.h"
 @interface IndexViewController : ECSlidingViewController <LoginDelegate, LogoutDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
-@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (weak, nonatomic) IBOutlet ProfileImageView *userImageView;
+@property (weak, nonatomic) IBOutlet UILabel *mutualFriendsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *mutualGroupsLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *unlikeButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
