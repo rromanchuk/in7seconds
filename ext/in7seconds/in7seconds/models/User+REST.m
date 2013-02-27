@@ -117,6 +117,19 @@
     return [NSString stringWithFormat:@"%@ %@", self.lastName, self.firstName];
 }
 
+- (NSString *)fullLocation {
+    if (self.city.length && self.country.length) {
+        return [NSString stringWithFormat:@"%@, %@", self.city, self.country];
+    } else if (self.city.length) {
+        return self.city;
+    } else if (self.country.length) {
+        return self.country;
+    } else {
+        return @"";
+    }
+    
+}
+
 - (NSNumber *)yearsOld {
     NSDate *fromDate;
     NSDate *toDate;

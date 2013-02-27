@@ -375,4 +375,10 @@ class User < ActiveRecord::Base
     User.get_vk_country(id, token)
   end
 
+  def self.update_users
+    User.active.where(city: nil).each do |user|
+      user.update_vk_location
+    end
+  end
+
 end

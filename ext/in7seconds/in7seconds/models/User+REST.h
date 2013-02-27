@@ -21,5 +21,5 @@
 
 - (NSString *)fullName;
 - (NSNumber *)yearsOld;
-
+- (NSString *)fullLocation;
 @end

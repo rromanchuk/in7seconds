@@ -57,7 +57,13 @@
     MatchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
     cell.nameLabel.text = user.fullName;
     [cell.profileImage setImageWithURL:[NSURL URLWithString:user.photoUrl]];
+    cell.previewLabel.text = user.fullLocation;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    User *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://vk.com"]];
 }
 
 - (void)back {
