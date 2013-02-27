@@ -28,6 +28,7 @@
     [super viewDidLoad];
     [self setupFetchedResultsController];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
+    self.title = NSLocalizedString(@"Симпатии", nil);
 	// Do any additional setup after loading the view.
 }
 

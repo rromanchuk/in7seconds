@@ -93,6 +93,18 @@ class User < ActiveRecord::Base
   def location 
     self[:location] || ""
   end
+  
+  def city
+    self[:city] || ""
+  end
+
+  def birthday
+    self[:city] || ""
+  end
+
+  def country
+    self[:country] || ""
+  end 
 
   def self.guess_looking_for(gender)
     if gender == USER_MALE
