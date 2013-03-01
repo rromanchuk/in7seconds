@@ -8,6 +8,7 @@
 
 #import "MatchesViewController.h"
 #import "MatchCell.h"
+#import "BaseUIView.h"
 @interface MatchesViewController ()
 
 @end
@@ -29,6 +30,7 @@
     [self setupFetchedResultsController];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     self.title = NSLocalizedString(@"Симпатии", nil);
+    self.tableView.backgroundView = [[BaseUIView alloc] init];
 	// Do any additional setup after loading the view.
 }
 
@@ -63,7 +65,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     User *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://vk.com"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://vk.com/%@", user.vkDomain]]];
 }
 
 - (void)back {

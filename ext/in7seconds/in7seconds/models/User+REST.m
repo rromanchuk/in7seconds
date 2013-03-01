@@ -98,6 +98,7 @@
     self.mutualGroups = [NSNumber numberWithInteger:restUser.mutualGroups];
     self.birthday = restUser.birthday;
     self.updatedAt = restUser.updatedAt;
+    self.vkDomain = restUser.vkDomain;
     
     [self removePossibleHookups:self.possibleHookups];
     for (RestUser *_restUser in restUser.possibleHookups) {

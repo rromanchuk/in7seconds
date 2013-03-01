@@ -30,6 +30,7 @@
 @dynamic mutualGroups;
 @dynamic country;
 @dynamic city;
+@dynamic vkDomain;
 @dynamic hookups;
 @dynamic possibleHookups;
 

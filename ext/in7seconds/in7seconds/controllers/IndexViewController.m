@@ -149,6 +149,7 @@
     _numberOfAttempts++;
     [RestUser reload:^(RestUser *restUser) {
         self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+        ((MenuViewController *)self.slidingViewController.underLeftViewController).currentUser = self.currentUser;
         [self saveContext];
         [self setupNextHookup];
         [SVProgressHUD dismiss];
@@ -160,6 +161,7 @@
 #pragma mark LoginDelegate methods
 - (void)didVkLogin:(User *)user {
     self.currentUser = user;
+    ((MenuViewController *)self.slidingViewController.underLeftViewController).currentUser = self.currentUser;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

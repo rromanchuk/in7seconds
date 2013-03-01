@@ -28,6 +28,7 @@
 @property (atomic, strong) NSString *location;
 @property (atomic, strong) NSString *city;
 @property (atomic, strong) NSString *country;
+@property (atomic, strong) NSString *vkDomain;
 @property (atomic, strong) NSDate *birthday;
 @property (atomic, strong) NSDate *updatedAt;
 @property (atomic, strong) NSDate *createdAt;

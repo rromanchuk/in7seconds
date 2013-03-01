@@ -31,6 +31,7 @@
 @property (nonatomic, retain) NSNumber * mutualGroups;
 @property (nonatomic, retain) NSString * country;
 @property (nonatomic, retain) NSString * city;
+@property (nonatomic, retain) NSString * vkDomain;
 @property (nonatomic, retain) NSSet *hookups;
 @property (nonatomic, retain) NSSet *possibleHookups;
 @end

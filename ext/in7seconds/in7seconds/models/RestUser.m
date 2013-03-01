@@ -36,6 +36,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                 @"mutualGroups", @"mutual_groups",
                                 @"city", @"city",
                                 @"country", @"country",
+                                @"vkDomain", @"vk_domain",
                                 [NSDate mappingWithKey:@"birthday"
                                       dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"birthday",
                                 [NSDate mappingWithKey:@"updatedAt"

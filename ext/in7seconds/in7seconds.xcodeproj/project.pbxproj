@@ -97,7 +97,7 @@
 		FAC3DA5016DD769900410BF7 /* RestHookup.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3DA4F16DD769900410BF7 /* RestHookup.m */; };
 		FAC3DA5316DE8FEE00410BF7 /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3DA5216DE8FEE00410BF7 /* ProfileImageView.m */; };
 		FAC3DA5616DE930700410BF7 /* UIImageView+additions.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3DA5516DE930700410BF7 /* UIImageView+additions.m */; };
-		FAC3DA5916DEACBF00410BF7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3DA5816DEACBF00410BF7 /* User.m */; };
+		FAC3DA5C16DEC71900410BF7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3DA5B16DEC71800410BF7 /* User.m */; };
 		FAE1AC4616D6BC3500B18144 /* NSNull+NullAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE1AC4516D6BC3500B18144 /* NSNull+NullAddition.m */; };
 /* End PBXBuildFile section */
 
@@ -234,8 +234,8 @@
 		FAC3DA5216DE8FEE00410BF7 /* ProfileImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageView.m; path = views/ProfileImageView.m; sourceTree = "<group>"; };
 		FAC3DA5416DE930700410BF7 /* UIImageView+additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+additions.h"; path = "categories/UIImageView+additions.h"; sourceTree = "<group>"; };
 		FAC3DA5516DE930700410BF7 /* UIImageView+additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+additions.m"; path = "categories/UIImageView+additions.m"; sourceTree = "<group>"; };
-		FAC3DA5716DEACBF00410BF7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
-		FAC3DA5816DEACBF00410BF7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
+		FAC3DA5A16DEC71800410BF7 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
+		FAC3DA5B16DEC71800410BF7 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
 		FAE1AC4416D6BC3500B18144 /* NSNull+NullAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+NullAddition.h"; sourceTree = "<group>"; };
 		FAE1AC4516D6BC3500B18144 /* NSNull+NullAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+NullAddition.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -293,8 +293,8 @@
 		94D09CC316CBEA4B0064F886 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				FAC3DA5716DEACBF00410BF7 /* User.h */,
-				FAC3DA5816DEACBF00410BF7 /* User.m */,
+				FAC3DA5A16DEC71800410BF7 /* User.h */,
+				FAC3DA5B16DEC71800410BF7 /* User.m */,
 				94D09CC716CBED1D0064F886 /* User+REST.h */,
 				94D09CC816CBED1D0064F886 /* User+REST.m */,
 			);
@@ -732,7 +732,7 @@
 				FAC3DA5016DD769900410BF7 /* RestHookup.m in Sources */,
 				FAC3DA5316DE8FEE00410BF7 /* ProfileImageView.m in Sources */,
 				FAC3DA5616DE930700410BF7 /* UIImageView+additions.m in Sources */,
-				FAC3DA5916DEACBF00410BF7 /* User.m in Sources */,
+				FAC3DA5C16DEC71900410BF7 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
