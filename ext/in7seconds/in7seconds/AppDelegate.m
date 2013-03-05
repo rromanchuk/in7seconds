@@ -12,6 +12,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import "UAPush.h"
 #import "UAirship.h"
+#import "Config.h"
 
 @implementation AppDelegate
 @synthesize window = _window;
@@ -29,16 +30,28 @@
     [Crashlytics startWithAPIKey:@"cbbca2d940f872c4617ddb67cf20ec9844d036ea"];
     
     
-    //Create Airship options dictionary and add the required UIApplication launchOptions
-    NSMutableDictionary *takeOffOptions = [NSMutableDictionary dictionary];
+    NSMutableDictionary *takeOffOptions = [[NSMutableDictionary alloc] init];
     [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
     
-    // Call takeOff (which creates the UAirship singleton), passing in the launch options so the
-    // library can properly record when the app is launched from a push notification. This call is
-    // required.
-    //
-    // Populate AirshipConfig.plist with your app's info from https://go.urbanairship.com
+    NSMutableDictionary *airshipConfigOptions = [[NSMutableDictionary alloc] init];
+    
+    [airshipConfigOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
+    
+    [airshipConfigOptions setValue:[Config sharedConfig].airshipKeyDev forKey:@"DEVELOPMENT_APP_KEY"];
+    [airshipConfigOptions setValue:[Config sharedConfig].airshipSecretDev forKey:@"DEVELOPMENT_APP_SECRET"];
+    [airshipConfigOptions setValue:[Config sharedConfig].airshipKeyProd  forKey:@"PRODUCTION_APP_KEY"];
+    [airshipConfigOptions setValue:[Config sharedConfig].airshipSecretProd  forKey:@"PRODUCTION_APP_SECRET"];
+    
+#ifdef DEBUG
+    [airshipConfigOptions setValue:@"NO" forKey:@"APP_STORE_OR_AD_HOC_BUILD"];
+#else
+    [airshipConfigOptions setValue:@"YES" forKey:@"APP_STORE_OR_AD_HOC_BUILD"];
+#endif
+    
+    [takeOffOptions setValue:airshipConfigOptions forKey:UAirshipTakeOffOptionsAirshipConfigKey];
+    
     [UAirship takeOff:takeOffOptions];
+
     
     // Set the icon badge to zero on startup (optional)
     [[UAPush shared] resetBadge];

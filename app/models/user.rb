@@ -93,11 +93,11 @@ class User < ActiveRecord::Base
   end
 
   def location 
-    self[:location] || ""
+    "#{city}, #{country}"
   end
   
   def city
-    self[:city] || ""
+    vk_city.name
   end
 
   def birthday
@@ -105,7 +105,7 @@ class User < ActiveRecord::Base
   end
 
   def country
-    self[:country] || ""
+    vk_country.name
   end 
 
   def self.guess_looking_for(gender)

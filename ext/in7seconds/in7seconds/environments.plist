@@ -4,6 +4,16 @@
 <dict>
 	<key>Release</key>
 	<dict>
+		<key>PRODUCTION_APP_KEY</key>
+		<string>acjij3jDR1mkLzdEfhAfnw</string>
+		<key>APP_STORE_OR_AD_HOC_BUILD</key>
+		<string>YES</string>
+		<key>PRODUCTION_APP_SECRET</key>
+		<string>6qOMa1RxQ2C9bRGsoGhFtA</string>
+		<key>DEVELOPMENT_APP_SECRET</key>
+		<string>nRah8o9GT72gsMEhth98OQ</string>
+		<key>DEVELOPMENT_APP_KEY</key>
+		<string>t3YC1EwhSX2B-jl0XP2nvg</string>
 		<key>vkScopes</key>
 		<string>friends,photos,status,wall,offline,notify</string>
 		<key>vkAppId</key>
@@ -15,6 +25,16 @@
 	</dict>
 	<key>Distribution</key>
 	<dict>
+		<key>PRODUCTION_APP_KEY</key>
+		<string>acjij3jDR1mkLzdEfhAfnw</string>
+		<key>APP_STORE_OR_AD_HOC_BUILD</key>
+		<string>NO</string>
+		<key>PRODUCTION_APP_SECRET</key>
+		<string>6qOMa1RxQ2C9bRGsoGhFtA</string>
+		<key>DEVELOPMENT_APP_SECRET</key>
+		<string>nRah8o9GT72gsMEhth98OQ</string>
+		<key>DEVELOPMENT_APP_KEY</key>
+		<string>t3YC1EwhSX2B-jl0XP2nvg</string>
 		<key>vkScopes</key>
 		<string>friends,photos,status,wall,offline,notify</string>
 		<key>vkAppId</key>
@@ -26,6 +46,16 @@
 	</dict>
 	<key>Debug</key>
 	<dict>
+		<key>PRODUCTION_APP_KEY</key>
+		<string>acjij3jDR1mkLzdEfhAfnw</string>
+		<key>APP_STORE_OR_AD_HOC_BUILD</key>
+		<string>NO</string>
+		<key>PRODUCTION_APP_SECRET</key>
+		<string>6qOMa1RxQ2C9bRGsoGhFtA</string>
+		<key>DEVELOPMENT_APP_SECRET</key>
+		<string>nRah8o9GT72gsMEhth98OQ</string>
+		<key>DEVELOPMENT_APP_KEY</key>
+		<string>t3YC1EwhSX2B-jl0XP2nvg</string>
 		<key>vkScopes</key>
 		<string>friends,photos,status,wall,offline,notify</string>
 		<key>baseURL</key>
