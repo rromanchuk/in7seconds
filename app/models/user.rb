@@ -147,13 +147,6 @@ class User < ActiveRecord::Base
     Membership.where('group_id IN (?)', self.groups.map(&:id) ).where(user_id: hookup.id).map(&:group)
   end
 
-  def update_vk_location
-    self.city = get_vk_city(vk_city, vk_token)
-    self.country = get_vk_country(vk_country, vk_token)
-    save
-  end
-  handle_asynchronously :update_vk_location
-
   def get_groups
     vk_client.groups.get.each do |gid|
       group = Group.where(gid: gid, provider: "vk").first_or_create
