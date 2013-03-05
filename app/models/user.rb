@@ -359,29 +359,4 @@ class User < ActiveRecord::Base
     request.accepted_at = accepted_at
     request.save!
   end
-
-   def self.get_vk_city(id, token)
-    HTTParty.get('https://api.vk.com/method/getCities', {query: {cids: id, access_token: token}})["response"].first["name"]
-  end
-
-  def self.get_vk_country(id, token)
-    HTTParty.get('https://api.vk.com/method/getCountries', {query: {cids: id, access_token: token}})["response"].first["name"]
-  end
-
-  private
-
-  def get_vk_city(id, token)
-    User.get_vk_city(id, token)
-  end
-
-  def get_vk_country(id, token)
-    User.get_vk_country(id, token)
-  end
-
-  def self.update_users
-    User.active.where(city: nil).each do |user|
-      user.update_vk_location
-    end
-  end
-
 end
