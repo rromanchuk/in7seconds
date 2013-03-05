@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130227203159) do
+ActiveRecord::Schema.define(:version => 20130305191034) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -86,9 +86,6 @@ ActiveRecord::Schema.define(:version => 20130227203159) do
     t.string   "authentication_token"
     t.boolean  "is_active"
     t.string   "provider"
-    t.string   "location"
-    t.integer  "city_id"
-    t.integer  "country_id"
     t.string   "city"
     t.string   "country"
     t.boolean  "gender",                                                              :default => false
@@ -110,14 +107,30 @@ ActiveRecord::Schema.define(:version => 20130227203159) do
     t.string   "vk_faculty_name"
     t.string   "vk_mobile_phone"
     t.string   "vk_graduation"
-    t.integer  "vk_city"
-    t.integer  "vk_country"
+    t.integer  "vk_country_id"
+    t.integer  "vk_city_id"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["fbuid"], :name => "index_users_on_fbuid", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["vk_city_id"], :name => "index_users_on_vk_city_id"
+  add_index "users", ["vk_country_id"], :name => "index_users_on_vk_country_id"
   add_index "users", ["vkuid"], :name => "index_users_on_vkuid", :unique => true
+
+  create_table "vk_cities", :force => true do |t|
+    t.string  "name"
+    t.integer "cid"
+  end
+
+  add_index "vk_cities", ["cid"], :name => "index_vk_cities_on_cid"
+
+  create_table "vk_countries", :force => true do |t|
+    t.string  "name"
+    t.integer "cid"
+  end
+
+  add_index "vk_countries", ["cid"], :name => "index_vk_countries_on_cid"
 
 end

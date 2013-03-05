@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          #:validatable
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city
-  attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active, :city_id, :country_id, :looking_for_gender, :latitude, :longitude
+  attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active, :looking_for_gender, :latitude, :longitude, :vk_city, :vk_country, :vk_domain, :vk_graduation, :vk_university_name, :vk_faculty_name, :vk_mobile_phone
 
   has_many :relationships
 
@@ -35,6 +35,9 @@ class User < ActiveRecord::Base
   has_many :inverse_memberships, :class_name => "Membership", :foreign_key => "group_id"
   has_many :inverse_memberships, :through => :inverse_memberships, :source => :user
   
+  belongs_to :vk_country
+  belongs_to :vk_city
+
   scope :active, where(is_active: true)
 
   
@@ -167,8 +170,8 @@ class User < ActiveRecord::Base
           :first_name => friend.first_name,
           :last_name => friend.last_name,
           :birthday => friend.bdate,
-          :vk_city => friend.city,
-          :vk_country => friend.country,
+          :vk_city => VkCity.where(cid: vk_user.city).first_or_create,
+          :vk_country => VkCountry.where(cid: vk_user.country).first_or_create,
           :gender => gender_for_vk_gender(friend.sex),
           :looking_for_gender => guess_looking_for(gender_for_vk_gender(friend.sex)),
           :provider => :vkontakte,
@@ -201,8 +204,8 @@ class User < ActiveRecord::Base
           :first_name => vk_user.first_name,
           :last_name => vk_user.last_name,
           :birthday => vk_user.bdate,
-          :vk_city => vk_user.city,
-          :vk_country => vk_user.country,
+          :vk_city => VkCity.where(cid: vk_user.city).first_or_create,
+          :vk_country => VkCountry.where(cid: vk_user.country).first_or_create,
           :vk_token => access_token,
           :gender => gender_for_vk_gender(vk_user.sex),
           :looking_for_gender => guess_looking_for(gender_for_vk_gender(vk_user.sex)),
@@ -216,7 +219,7 @@ class User < ActiveRecord::Base
           :is_active => true,
           :email => (vk_user.email.blank?) ? '' : vk_user.email)
     
-    Mailer.delay.welcome(user).deliver
+    Mailer.delay.welcome(user)
     user
   end
 
