@@ -7,4 +7,12 @@ class VkCity < ActiveRecord::Base
     save
   end
   handle_asynchronously :get_vk_city, :priority => 20
+
+  def self.update_missing
+   VkCity.where(name: nil).each do |c|
+     c.get_vk_city
+     sleep 3
+   end
+  end
+  
 end

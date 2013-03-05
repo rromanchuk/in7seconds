@@ -35,12 +35,6 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (IBAction)didTapVkLogin:(id)sender {
     ALog(@"did tap");
     if (![[Vkontakte sharedInstance] isAuthorized])
@@ -48,11 +42,6 @@
         ALog(@"authenticate");
         [[Vkontakte sharedInstance] authenticate];
     }
-    else
-    {
-        [[Vkontakte sharedInstance] logout];
-    }
-
 }
 
 #pragma mark - VkontakteDelegate

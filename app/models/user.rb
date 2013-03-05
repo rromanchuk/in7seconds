@@ -59,7 +59,6 @@ class User < ActiveRecord::Base
 
   after_create :get_groups, :if => :is_active?
   after_create :get_friends, :if => :is_active?
-  after_create :update_vk_location
 
 
   VK_FIELDS = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big, :graduation, :university_name, :education, :domain, :contacts]

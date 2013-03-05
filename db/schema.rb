@@ -86,8 +86,6 @@ ActiveRecord::Schema.define(:version => 20130305191034) do
     t.string   "authentication_token"
     t.boolean  "is_active"
     t.string   "provider"
-    t.string   "city"
-    t.string   "country"
     t.boolean  "gender",                                                              :default => false
     t.datetime "birthday"
     t.string   "first_name"
