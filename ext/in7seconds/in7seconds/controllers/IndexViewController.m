@@ -150,6 +150,7 @@
     [RestUser reload:^(RestUser *restUser) {
         self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
         ((MenuViewController *)self.slidingViewController.underLeftViewController).currentUser = self.currentUser;
+        
         [self saveContext];
         [self setupNextHookup];
         [SVProgressHUD dismiss];

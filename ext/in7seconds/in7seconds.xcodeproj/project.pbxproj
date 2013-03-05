@@ -93,7 +93,6 @@
 		FAA2CFBB16DD6A8D00C22D76 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2CFBA16DD6A8D00C22D76 /* CoreDataTableViewController.m */; };
 		FAA2CFBE16DD6AF200C22D76 /* MatchesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2CFBD16DD6AF200C22D76 /* MatchesViewController.m */; };
 		FAA2CFC116DD705900C22D76 /* MatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2CFC016DD705900C22D76 /* MatchCell.m */; };
-		FAAA96CB16D97CA400F8CD3D /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAAA96CA16D97CA400F8CD3D /* AirshipConfig.plist */; };
 		FAC3DA5016DD769900410BF7 /* RestHookup.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3DA4F16DD769900410BF7 /* RestHookup.m */; };
 		FAC3DA5316DE8FEE00410BF7 /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3DA5216DE8FEE00410BF7 /* ProfileImageView.m */; };
 		FAC3DA5616DE930700410BF7 /* UIImageView+additions.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC3DA5516DE930700410BF7 /* UIImageView+additions.m */; };
@@ -227,7 +226,6 @@
 		FAA2CFBD16DD6AF200C22D76 /* MatchesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchesViewController.m; path = controllers/MatchesViewController.m; sourceTree = "<group>"; };
 		FAA2CFBF16DD705900C22D76 /* MatchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchCell.h; path = views/MatchCell.h; sourceTree = "<group>"; };
 		FAA2CFC016DD705900C22D76 /* MatchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchCell.m; path = views/MatchCell.m; sourceTree = "<group>"; };
-		FAAA96CA16D97CA400F8CD3D /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
 		FAC3DA4E16DD769900410BF7 /* RestHookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestHookup.h; path = models/RestHookup.h; sourceTree = "<group>"; };
 		FAC3DA4F16DD769900410BF7 /* RestHookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestHookup.m; path = models/RestHookup.m; sourceTree = "<group>"; };
 		FAC3DA5116DE8FEE00410BF7 /* ProfileImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileImageView.h; path = views/ProfileImageView.h; sourceTree = "<group>"; };
@@ -366,7 +364,6 @@
 		FA70025B16CAECB20098A5B7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				FAAA96CA16D97CA400F8CD3D /* AirshipConfig.plist */,
 				FA70025C16CAECB20098A5B7 /* in7seconds-Info.plist */,
 				FA70025D16CAECB20098A5B7 /* InfoPlist.strings */,
 				FA70026016CAECB20098A5B7 /* main.m */,
@@ -604,7 +601,6 @@
 				9484989516CD2D8E000083DE /* Default.png in Resources */,
 				9484989716CD2DB0000083DE /* 114.png in Resources */,
 				9484989916CD2DBA000083DE /* 57.png in Resources */,
-				FAAA96CB16D97CA400F8CD3D /* AirshipConfig.plist in Resources */,
 				FAA2CC9216DC00C900C22D76 /* interests_icon.png in Resources */,
 				FAA2CC9316DC00C900C22D76 /* interests_icon@2x.png in Resources */,
 				FAA2CC9416DC00C900C22D76 /* like_icon.png in Resources */,
@@ -812,7 +808,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "402C7F1F-A805-496E-9A3C-E7A1EBA00766";
+				PROVISIONING_PROFILE = "CC63BFEC-897B-4A06-AA87-FFE2BD926592";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;

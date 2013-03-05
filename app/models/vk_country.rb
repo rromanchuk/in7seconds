@@ -14,4 +14,5 @@ class VkCountry < ActiveRecord::Base
      sleep 3
    end
   end
+  
 end

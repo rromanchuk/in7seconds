@@ -74,11 +74,12 @@
 
     NSDictionary *_params = @{@"access_token": vkontakte.accessToken, @"user_id": vkontakte.userId, @"platform": @"vkontakte", @"email": vkontakte.email };
     NSMutableDictionary *params = [_params mutableCopy];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...") maskType:SVProgressHUDMaskTypeGradient];
     
     [RestUser create:params
               onLoad:^(RestUser *restUser) {
-                  
-                  self.currentUser = [User findOrCreateUserWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+                  User *user = [User findOrCreateUserWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+                  self.currentUser = user;
                   [self saveContext];
                   [RestUser setCurrentUserId:restUser.externalId];
                   [RestUser setCurrentUserToken:restUser.authenticationToken];
@@ -88,11 +89,12 @@
                   [SVProgressHUD dismiss];
                   [self dismissViewControllerAnimated:YES completion:^(void) {
                       ALog(@"finished dismissing");
-                      [self.delegate didVkLogin:self.currentUser];
+                      [self.delegate didVkLogin:user];
                   }];
 
               }
              onError:^(NSError *error) {
+                 [SVProgressHUD dismiss];
                  [RestUser resetIdentifiers];
                  [self dismissViewControllerAnimated:YES completion:nil];
                  [SVProgressHUD showErrorWithStatus:error.localizedDescription];

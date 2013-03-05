@@ -22,6 +22,8 @@ gem 'geocoder'
 gem "aws-ses", :require => 'aws/ses'
 gem 'whenever', :require => false
 gem 'russian'
+
+gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

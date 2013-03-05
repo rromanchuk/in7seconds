@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/37signals/mail_view.git
+  revision: c8cc1315026ce85973ef56e628ac2e38a7a95563
+  specs:
+    mail_view (1.0.1)
+      tilt
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -260,6 +267,7 @@ DEPENDENCIES
   haml
   httparty
   jquery-rails
+  mail_view!
   mysql2
   omniauth-facebook
   omniauth-vkontakte

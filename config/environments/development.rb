@@ -40,4 +40,6 @@ In7seconds::Application.configure do
   Urbanairship.master_secret = CONFIG[:ua_master]
   Urbanairship.logger = Rails.logger
   Urbanairship.request_timeout = 5 # default
+
+  #config.middleware.use MailView::Mapper, [MailPreview]
 end

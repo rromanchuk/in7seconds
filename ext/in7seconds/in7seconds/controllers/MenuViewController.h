@@ -36,6 +36,7 @@ typedef enum  {
 - (IBAction)didTapWomen:(id)sender;
 - (IBAction)didTapMen:(id)sender;
 - (IBAction)genderChanged:(id)sender;
+- (void)setupProfile;
 
 @end
 

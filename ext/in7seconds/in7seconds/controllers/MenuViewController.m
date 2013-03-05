@@ -62,6 +62,7 @@
 }
 
 - (void)setupProfile {
+    ALog(@"setting up profile for %@", self.currentUser);
     [self.profileImage setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];
     self.nameTextField.text = self.currentUser.fullName;
     self.emailTextField.text = self.currentUser.email;
