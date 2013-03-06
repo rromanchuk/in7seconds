@@ -2,11 +2,11 @@
 PODS:
 - AFNetworking (1.1.0)
 - ECSlidingViewController (0.9.0)
-- Facebook-iOS-SDK (3.1.1)
+- Facebook-iOS-SDK (3.2.0)
 - FlurrySDK (4.1.0)
 - JTObjectMapping (1.1)
 - SVProgressHUD (0.9)
-- TestFlightSDK (1.2.3.beta1)
+- TestFlightSDK (1.2.4.beta)
 - UrbanAirship-iOS-SDK (1.4.0)
 
 DEPENDENCIES:
@@ -22,11 +22,11 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 761a418233d280c1e0580bcb76ff9cb4c3073d17
   ECSlidingViewController: 46cb6a6cc72e359a19d2f232728be08685450d90
-  Facebook-iOS-SDK: 5fc068ebfd8c8c9b0fad476bc36dbbf1fffeebc8
+  Facebook-iOS-SDK: a9893c9ad7cf2ce35cb6297e2859eaee654bd6b0
   FlurrySDK: 52245ae8c6fa31825dc74a6afb94b861da2435fa
   JTObjectMapping: 245b1123d0f0d7d0d6ff6537f9d23bbe0d108ddc
   SVProgressHUD: 98935fbafaf0031df4a9cafca3c66eaf3da06967
-  TestFlightSDK: f638b08651a37af099e40c47241fc58fd3cb1a66
+  TestFlightSDK: aeec97fd81096753d53b942f030a443520a087f4
   UrbanAirship-iOS-SDK: 169e60a879cc77a06eb3188c88004776c27464f0
 
 COCOAPODS: 0.16.4
