@@ -98,6 +98,14 @@
 {
     [Location sharedLocation].delegate = self;
     [[Location sharedLocation] updateUntilDesiredOrTimeout:15.0];
+    
+    if (self.currentUser) {
+        [RestUser reload:^(RestUser *restUser) {
+            self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+        } onError:^(NSError *error) {
+            
+        }];
+    }
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
