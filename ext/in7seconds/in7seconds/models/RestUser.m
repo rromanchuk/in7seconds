@@ -23,7 +23,6 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
     NSMutableDictionary *map = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                 @"firstName", @"first_name",
                                 @"lastName", @"last_name",
-                                @"location", @"location",
                                 @"gender", @"gender",
                                 @"lookingForGender", @"looking_for_gender",
                                 @"email", @"email",
@@ -54,7 +53,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
         onLoad:(void (^)(RestUser *restUser))onLoad
        onError:(void (^)(NSError *error))onError {
     RestClient *restClient = [RestClient sharedClient];
-    ALog(@"got gender:%@ got looking for %@", user.gender, user.lookingForGender);
+    //ALog(@"got gender:%@ got looking for %@", user.gender, user.lookingForGender);
     NSDictionary *params = @{@"user[looking_for_gender]": user.lookingForGender,
                              @"user[gender]": user.gender,
                              @"user[latitude]": [NSNull nullWhenNil:[Location sharedLocation].latitude],

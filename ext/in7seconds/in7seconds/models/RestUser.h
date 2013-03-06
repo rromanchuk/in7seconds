@@ -25,7 +25,6 @@
 @property (atomic, strong) NSString *lastName;
 @property (atomic, strong) NSString *email;
 @property (atomic, strong) NSString *photoUrl;
-@property (atomic, strong) NSString *location;
 @property (atomic, strong) NSString *city;
 @property (atomic, strong) NSString *country;
 @property (atomic, strong) NSString *vkDomain;

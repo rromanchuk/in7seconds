@@ -137,8 +137,10 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     self.currentUser.email = self.emailTextField.text;
     NSArray *chunks = [self.nameTextField.text componentsSeparatedByString: @" "];
-    self.currentUser.lastName = chunks[0];
-    self.currentUser.firstName = chunks[1];
+    if ([chunks count] == 2) {
+        self.currentUser.lastName = chunks[1];
+        self.currentUser.firstName = chunks[0];
+    }
     [textField resignFirstResponder];
     [self update];
     return YES;

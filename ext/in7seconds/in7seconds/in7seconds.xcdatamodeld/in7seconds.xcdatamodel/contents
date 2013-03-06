@@ -11,7 +11,6 @@
         <attribute name="gender" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
-        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="lookingForGender" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="mutualFriends" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -24,6 +23,6 @@
         <relationship name="possibleHookups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="possibleHookups" inverseEntity="User" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="160" positionY="192" width="128" height="360"/>
+        <element name="User" positionX="160" positionY="192" width="128" height="345"/>
     </elements>
 </model>

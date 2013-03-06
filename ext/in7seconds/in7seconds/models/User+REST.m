@@ -90,7 +90,6 @@
     self.authenticationToken = restUser.authenticationToken;
     self.vkToken = restUser.vkToken;
     //self.fbToken = restUser.fbToken;
-    self.location = restUser.location;
     self.gender = [NSNumber numberWithInteger:restUser.gender];
     self.country = restUser.country;
     self.city = restUser.city;
@@ -115,9 +114,12 @@
 }
 
 - (NSString *)fullName {
-    return [NSString stringWithFormat:@"%@ %@", self.lastName, self.firstName];
+    return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
 }
 
+- (NSString *)russianFullName {
+    return [NSString stringWithFormat:@"%@ %@", self.lastName, self.firstName];
+}
 - (NSString *)fullLocation {
     if (self.city.length && self.country.length) {
         return [NSString stringWithFormat:@"%@, %@", self.city, self.country];
