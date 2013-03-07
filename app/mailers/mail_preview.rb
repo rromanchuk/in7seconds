@@ -11,4 +11,8 @@ class MailPreview < MailView
       Mailer.fuck(user1, user2)
     end
 
+    def daily_stats
+      Mailer.daily_stats
+    end
+
   end

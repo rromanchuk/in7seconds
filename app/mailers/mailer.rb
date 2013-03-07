@@ -11,4 +11,12 @@ class Mailer < ActionMailer::Base
     mail to: receiver.email, :bcc => "support@in7seconds.com", subject: "Ого, да вы понравились #{hookup.first_name}"
   end
 
+   def daily_stats
+    @total_users = User.active.count
+    @total_users_yesterday = User.added_yesterday.count
+    @toal_ratings = Relationship.count
+    @total_ratings_yesterday = Relationship.added_yesterday.count
+    mail to: 'stats@piclar.com', subject: 'in7seconds Stats'
+  end
+
 end

@@ -4,4 +4,6 @@ class Relationship < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :hookup, :class_name => 'User'
+
+  scope :added_yesterday, where(created_at: Date.yesterday...Date.today)
 end

@@ -67,6 +67,7 @@ class User < ActiveRecord::Base
 
   VK_FIELDS = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big, :graduation, :university_name, :education, :domain, :contacts]
 
+  scope :added_yesterday, where(created_at: Date.yesterday...Date.today, is_active: true)
 
   def fb_client
      FbGraph::User.fetch(fbuid, :access_token => fb_token)
