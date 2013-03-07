@@ -261,7 +261,7 @@
                             </view>
                             <view contentMode="scaleToFill" id="kwh-Zy-R72">
                                 <rect key="frame" x="130" y="330" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -475,7 +475,9 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IndexViewController.h"/>
             <relationships>
                 <relationship kind="action" name="didTapLike:"/>
+                <relationship kind="action" name="didTapMatches:"/>
                 <relationship kind="action" name="didTapUnlike:"/>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="countdownView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="didTapLike" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="likeButton" candidateClass="UIButton"/>
