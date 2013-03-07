@@ -39,22 +39,25 @@
     NSString *minorVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
     self.versionLabel.text = [NSString stringWithFormat:@"Version %@ (%@)", majorVersion, minorVersion];
 	// Do any additional setup after loading the view.
-    if ([self.currentUser.lookingForGender integerValue] == LookingForBoth) {
+    if ([self.user.lookingForGender integerValue] == LookingForBoth) {
         self.lookingForMen.selected = YES;
         self.lookingForWomen.selected = YES;
-    } else if ([self.currentUser.lookingForGender integerValue] == LookingForMen) {
+    } else if ([self.user.lookingForGender integerValue] == LookingForMen) {
         self.lookingForMen.selected = YES;
     } else {
         self.lookingForWomen.selected = YES;
     }
-    self.genderSegmentControl.selectedSegmentIndex = [self.currentUser.gender integerValue];
+    self.genderSegmentControl.selectedSegmentIndex = [self.user.gender integerValue];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startCountdown) name:@"ECSlidingViewTopDidReset" object:nil];
+
     
 }
 
-- (void)setCurrentUser:(User *)currentUser {
-    _currentUser = currentUser;
-    [self setupProfile];
-}
+//- (void)setCurrentUser:(User *)currentUser {
+//    _currentUser = currentUser;
+//    [self setupProfile];
+//}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -62,10 +65,10 @@
 }
 
 - (void)setupProfile {
-    ALog(@"setting up profile for %@", self.currentUser);
-    [self.profileImage setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];
-    self.nameTextField.text = self.currentUser.fullName;
-    self.emailTextField.text = self.currentUser.email;
+    ALog(@"setting up profile for %@", self.user);
+    [self.profileImage setImageWithURL:[NSURL URLWithString:self.user.photoUrl]];
+    self.nameTextField.text = self.user.fullName;
+    self.emailTextField.text = self.user.email;
 }
 
 
@@ -94,19 +97,19 @@
 
 - (void)setLookingFor {
     if ((self.lookingForMen.selected && self.lookingForWomen.selected) || (!self.lookingForMen.selected && !self.lookingForWomen.selected)) {
-        self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForBoth];
+        self.user.lookingForGender = [NSNumber numberWithInteger:LookingForBoth];
     } else if (self.lookingForWomen.selected) {
-        self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForWomen];
+        self.user.lookingForGender = [NSNumber numberWithInteger:LookingForWomen];
     } else {
-        self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForMen];
+        self.user.lookingForGender = [NSNumber numberWithInteger:LookingForMen];
     }    
 }
 
 - (void)update {
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
-    [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
+    [RestUser update:self.user onLoad:^(RestUser *restUser) {
         [SVProgressHUD dismiss];
-        self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+        self.user = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
         [self saveContext];
         [self.delegate didUpdateSettings];
     } onError:^(NSError *error) {
@@ -115,7 +118,7 @@
 }
 
 - (IBAction)genderChanged:(id)sender {
-    self.currentUser.gender = [NSNumber numberWithInteger:self.genderSegmentControl.selectedSegmentIndex];
+    self.user.gender = [NSNumber numberWithInteger:self.genderSegmentControl.selectedSegmentIndex];
     [self update];
 }
 
@@ -135,11 +138,11 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    self.currentUser.email = self.emailTextField.text;
+    self.user.email = self.emailTextField.text;
     NSArray *chunks = [self.nameTextField.text componentsSeparatedByString: @" "];
     if ([chunks count] == 2) {
-        self.currentUser.lastName = chunks[1];
-        self.currentUser.firstName = chunks[0];
+        self.user.lastName = chunks[1];
+        self.user.firstName = chunks[0];
     }
     [textField resignFirstResponder];
     [self update];

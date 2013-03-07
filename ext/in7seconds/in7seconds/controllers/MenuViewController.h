@@ -18,7 +18,7 @@ typedef enum  {
 @protocol LogoutDelegate;
 @interface MenuViewController : UIViewController <UITableViewDataSource, UITabBarControllerDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) User *currentUser;
+@property (strong, nonatomic) User *user;
 @property (weak, nonatomic) IBOutlet UILabel *iAmLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *genderSegmentControl;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;

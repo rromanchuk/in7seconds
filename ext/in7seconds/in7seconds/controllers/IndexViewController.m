@@ -41,7 +41,6 @@
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chat_icon"] target:self action:@selector(didTapMatches:)];
     
     ((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
-    ((MenuViewController *)self.slidingViewController.underLeftViewController).currentUser = self.currentUser;
     ((MenuViewController *)self.slidingViewController.underLeftViewController).managedObjectContext = self.managedObjectContext;
 
     self.userImageView.delegate = self;
@@ -51,12 +50,16 @@
    	// Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout)
                                                  name:@"UserNotAuthorized" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startCountdown) name:@"ECSlidingViewTopDidReset" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewUnderLeftWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation-logo"]]; 
 
 }
 
+
+- (void)viewUnderLeftWillAppear {
+    ALog(@"view under left will appear");
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
