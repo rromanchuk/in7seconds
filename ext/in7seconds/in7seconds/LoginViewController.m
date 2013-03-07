@@ -31,7 +31,7 @@
     [super viewDidLoad];
     [Vkontakte sharedInstance].delegate = self;
     self.loginLabel.text = NSLocalizedString(@"Войти через Вконтакте", @"Login with vk prompt");
-    
+    [[Vkontakte sharedInstance] logout];
 	// Do any additional setup after loading the view.
 }
 

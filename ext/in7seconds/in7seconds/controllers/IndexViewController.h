@@ -11,7 +11,7 @@
 #import "LoginViewController.h"
 #import "MenuViewController.h"
 #import "ProfileImageView.h"
-@interface IndexViewController : ECSlidingViewController <LoginDelegate, LogoutDelegate>
+@interface IndexViewController : ECSlidingViewController <LoginDelegate, LogoutDelegate, ImageLoadedDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
 @property (weak, nonatomic) IBOutlet ProfileImageView *userImageView;
@@ -24,5 +24,6 @@
 - (IBAction)didTapLike:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *didTapLike;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIView *countdownView;
 
 @end

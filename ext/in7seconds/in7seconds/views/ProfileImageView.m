@@ -56,6 +56,7 @@
                              self.image = image;
                              CGSize actual = [self imageScale];
                              self.clipsToBounds = YES;
+                             [self.delegate imageLoaded];
                              
                          }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                              [self.activityIndicator stopAnimating];
@@ -64,13 +65,6 @@
 }
 
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+
 
 @end

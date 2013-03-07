@@ -49,6 +49,9 @@
 		FA7002C516CAF5430098A5B7 /* Vkontakte.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002C416CAF5430098A5B7 /* Vkontakte.m */; };
 		FA7002C816CAF5F00098A5B7 /* VkontakteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002C716CAF5F00098A5B7 /* VkontakteViewController.m */; };
 		FA7002CC16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */; };
+		FA7F38D916E7CA8B00EA2C0B /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */; };
+		FA7F38DF16E7DD8200EA2C0B /* CircleCounterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38DC16E7DD8200EA2C0B /* CircleCounterView.m */; };
+		FA7F38E016E7DD8200EA2C0B /* CircleDownCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38DE16E7DD8200EA2C0B /* CircleDownCounter.m */; };
 		FA809FEA16D040FD003920E6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA809FE916D040FD003920E6 /* Crashlytics.framework */; };
 		FA809FEE16D2BD58003920E6 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA809FED16D2BD58003920E6 /* AddressBook.framework */; };
 		FAA2CC9216DC00C900C22D76 /* interests_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC6E16DC00C900C22D76 /* interests_icon.png */; };
@@ -177,6 +180,12 @@
 		FA7002C716CAF5F00098A5B7 /* VkontakteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VkontakteViewController.m; path = controllers/VkontakteViewController.m; sourceTree = "<group>"; };
 		FA7002CA16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+NetworkActivityIndicator.h"; path = "categories/UIApplication+NetworkActivityIndicator.h"; sourceTree = "<group>"; };
 		FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+NetworkActivityIndicator.m"; path = "categories/UIApplication+NetworkActivityIndicator.m"; sourceTree = "<group>"; };
+		FA7F38D716E7CA8B00EA2C0B /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentViewController.h; path = controllers/CommentViewController.h; sourceTree = "<group>"; };
+		FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentViewController.m; path = controllers/CommentViewController.m; sourceTree = "<group>"; };
+		FA7F38DB16E7DD8200EA2C0B /* CircleCounterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleCounterView.h; sourceTree = "<group>"; };
+		FA7F38DC16E7DD8200EA2C0B /* CircleCounterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleCounterView.m; sourceTree = "<group>"; };
+		FA7F38DD16E7DD8200EA2C0B /* CircleDownCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDownCounter.h; sourceTree = "<group>"; };
+		FA7F38DE16E7DD8200EA2C0B /* CircleDownCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleDownCounter.m; sourceTree = "<group>"; };
 		FA809FE916D040FD003920E6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		FA809FEB16D2B641003920E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA809FEC16D2B642003920E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -459,6 +468,8 @@
 				FAA2CFBA16DD6A8D00C22D76 /* CoreDataTableViewController.m */,
 				FAA2CFBC16DD6AF100C22D76 /* MatchesViewController.h */,
 				FAA2CFBD16DD6AF200C22D76 /* MatchesViewController.m */,
+				FA7F38D716E7CA8B00EA2C0B /* CommentViewController.h */,
+				FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -484,6 +495,7 @@
 		FA7002C216CAF5010098A5B7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				FA7F38DA16E7DD8200EA2C0B /* CircleCountDown */,
 				FA7002C316CAF5430098A5B7 /* Vkontakte.h */,
 				FA7002C416CAF5430098A5B7 /* Vkontakte.m */,
 				948498B416CFB2C1000083DE /* Location.h */,
@@ -507,6 +519,18 @@
 				FAC3DA5516DE930700410BF7 /* UIImageView+additions.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		FA7F38DA16E7DD8200EA2C0B /* CircleCountDown */ = {
+			isa = PBXGroup;
+			children = (
+				FA7F38DB16E7DD8200EA2C0B /* CircleCounterView.h */,
+				FA7F38DC16E7DD8200EA2C0B /* CircleCounterView.m */,
+				FA7F38DD16E7DD8200EA2C0B /* CircleDownCounter.h */,
+				FA7F38DE16E7DD8200EA2C0B /* CircleDownCounter.m */,
+			);
+			name = CircleCountDown;
+			path = helpers/CircleCountDown;
 			sourceTree = "<group>";
 		};
 		FAAA96C916D907D900F8CD3D /* Delegates */ = {
@@ -729,6 +753,9 @@
 				FAC3DA5316DE8FEE00410BF7 /* ProfileImageView.m in Sources */,
 				FAC3DA5616DE930700410BF7 /* UIImageView+additions.m in Sources */,
 				FAC3DA5C16DEC71900410BF7 /* User.m in Sources */,
+				FA7F38D916E7CA8B00EA2C0B /* CommentViewController.m in Sources */,
+				FA7F38DF16E7DD8200EA2C0B /* CircleCounterView.m in Sources */,
+				FA7F38E016E7DD8200EA2C0B /* CircleDownCounter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

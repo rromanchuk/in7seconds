@@ -7,8 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol ImageLoadedDelegate;
 @interface ProfileImageView : UIImageView
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
+@property (weak) id <ImageLoadedDelegate> delegate;
 - (void)setProfilePhotoWithURL:(NSString *)url;
+
+@end
+
+
+@protocol ImageLoadedDelegate <NSObject>
+
+@required
+- (void)imageLoaded;
+
 @end

@@ -10,6 +10,10 @@
 #import "AppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MatchesViewController.h"
+
+#import "CircleCounterView.h"
+#import "CircleDownCounter.h"
+
 @interface IndexViewController () {
     NSInteger _numberOfAttempts;
 }
@@ -40,13 +44,14 @@
     ((MenuViewController *)self.slidingViewController.underLeftViewController).currentUser = self.currentUser;
     ((MenuViewController *)self.slidingViewController.underLeftViewController).managedObjectContext = self.managedObjectContext;
 
+    self.userImageView.delegate = self;
     self.userImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.userImageView.layer.borderWidth = 3;
     _numberOfAttempts = 0;
    	// Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout)
                                                  name:@"UserNotAuthorized" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startCountdown) name:@"ECSlidingViewTopDidReset" object:nil];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation-logo"]]; 
 
@@ -69,11 +74,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Login"]) {
+        [self stopCountdown];
         LoginViewController *vc = (LoginViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
         vc.delegate = self;
     } else if ([segue.identifier isEqualToString:@"Matches"]) {
+        [self stopCountdown];
         MatchesViewController *vc = (MatchesViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
@@ -82,10 +89,12 @@
 
 - (IBAction)revealMenu:(id)sender
 {
+    [self stopCountdown];
     [self.slidingViewController anchorTopViewTo:ECRight];
 }
 
 - (IBAction)didTapUnlike:(id)sender {
+    [self stopCountdown];
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
     [RestUser rejectUser:self.otherUser onLoad:^(RestUser *restUser) {
         [SVProgressHUD dismiss];
@@ -95,7 +104,19 @@
     }];
 }
 
+- (void)stopCountdown {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [[CircleDownCounter circleViewInView:self.countdownView] stop];
+}
+
+- (void)startCountdown {
+    ALog(@"Starting countdown");
+    [[CircleDownCounter circleViewInView:self.countdownView] startWithSeconds:7];
+    [self performSelector:@selector(didTapUnlike:) withObject:self afterDelay:8.0];
+}
+
 - (IBAction)didTapLike:(id)sender {
+    [self stopCountdown];
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
     [RestUser flirtWithUser:self.otherUser onLoad:^(RestUser *restUser) {
         [SVProgressHUD dismiss];
@@ -202,5 +223,17 @@
     [sharedAppDelegate writeToDisk];
 }
 
+- (void)imageLoaded {
+    [CircleDownCounter showCircleDownWithSeconds:7.0f
+                                          onView:self.countdownView
+                                        withSize:kDefaultCounterSize
+                                         andType:CircleDownCounterTypeIntegerIncre];
+    [self performSelector:@selector(didTapUnlike:) withObject:self afterDelay:8.0];
+}
 
+
+#pragma mark - CircleCounterViewDelegate methods
+- (void)counterDownFinished:(CircleCounterView *)circleView; {
+    ALog(@"countdown finished");
+}
 @end
