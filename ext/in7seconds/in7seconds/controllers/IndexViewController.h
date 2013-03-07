@@ -25,5 +25,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *didTapLike;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIView *countdownView;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
 @end

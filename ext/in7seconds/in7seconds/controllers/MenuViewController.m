@@ -10,20 +10,12 @@
 #import "RestUser.h"
 #import "AppDelegate.h"
 #import "User+REST.h"
+#import "IndexViewController.h"
 @interface MenuViewController ()
 
 @end
 
 @implementation MenuViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -38,7 +30,31 @@
     NSString *majorVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     NSString *minorVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
     self.versionLabel.text = [NSString stringWithFormat:@"Version %@ (%@)", majorVersion, minorVersion];
-	// Do any additional setup after loading the view.
+	
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftViewWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
+    if ([RestUser currentUserToken]) {
+        [self fetch];
+    }
+}
+
+- (void)leftViewWillAppear {
+    ALog(@"left fiew will appear with user %@", self.user);
+    if (!self.user && [RestUser currentUserToken]) {
+        [self fetch];
+    }
+}
+
+- (void)setUser:(User *)currentUser {
+    _user = currentUser;
+    [self setupProfile];
+}
+
+- (void)setupProfile {
+    ALog(@"setting up profile for %@", self.user);
+    [self.profileImage setImageWithURL:[NSURL URLWithString:self.user.photoUrl]];
+    self.nameTextField.text = self.user.fullName;
+    self.emailTextField.text = self.user.email;
+    // Do any additional setup after loading the view.
     if ([self.user.lookingForGender integerValue] == LookingForBoth) {
         self.lookingForMen.selected = YES;
         self.lookingForWomen.selected = YES;
@@ -48,27 +64,6 @@
         self.lookingForWomen.selected = YES;
     }
     self.genderSegmentControl.selectedSegmentIndex = [self.user.gender integerValue];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startCountdown) name:@"ECSlidingViewTopDidReset" object:nil];
-
-    
-}
-
-//- (void)setCurrentUser:(User *)currentUser {
-//    _currentUser = currentUser;
-//    [self setupProfile];
-//}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self setupProfile];
-}
-
-- (void)setupProfile {
-    ALog(@"setting up profile for %@", self.user);
-    [self.profileImage setImageWithURL:[NSURL URLWithString:self.user.photoUrl]];
-    self.nameTextField.text = self.user.fullName;
-    self.emailTextField.text = self.user.email;
 }
 
 
@@ -105,6 +100,16 @@
     }    
 }
 
+- (void)fetch {
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
+    [RestUser reload:^(RestUser *restUser) {
+        self.user = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+        [self saveContext];
+        [SVProgressHUD dismiss];
+    } onError:^(NSError *error) {
+        [SVProgressHUD dismiss];
+    }];
+}
 - (void)update {
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
     [RestUser update:self.user onLoad:^(RestUser *restUser) {

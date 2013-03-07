@@ -120,6 +120,7 @@
 - (NSString *)russianFullName {
     return [NSString stringWithFormat:@"%@ %@", self.lastName, self.firstName];
 }
+
 - (NSString *)fullLocation {
     if (self.city.length && self.country.length) {
         return [NSString stringWithFormat:@"%@, %@", self.city, self.country];

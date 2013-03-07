@@ -50,16 +50,20 @@
    	// Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout)
                                                  name:@"UserNotAuthorized" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewUnderLeftWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startCountdown) name:@"ECSlidingViewTopDidReset" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftViewWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation-logo"]]; 
 
 }
 
-
-- (void)viewUnderLeftWillAppear {
-    ALog(@"view under left will appear");
+- (void)leftViewWillAppear {
+    ALog(@"left fiew will appear with user");
+    [self stopCountdown];
 }
+
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -74,6 +78,13 @@
     }
 }
 
+- (void)getDistance {
+    CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude: [self.currentUser.latitude doubleValue] longitude:[self.currentUser.longitude doubleValue]];
+    CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:[self.otherUser.latitude doubleValue] longitude:[self.otherUser.longitude doubleValue]];
+    //place.distance = [NSNumber numberWithDouble:[targetLocation distanceFromLocation:currentLocation]];
+    DLog(@"%@ is %g meters away", place.title, [place.distance doubleValue]);
+
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Login"]) {
@@ -151,6 +162,7 @@
         }
         
         [self.userImageView setProfilePhotoWithURL:self.otherUser.photoUrl];
+        self.locationLabel.text = self.otherUser.fullLocation;
         self.mutualFriendsLabel.text = [NSString stringWithFormat:@"%@ общих друзей", self.otherUser.mutualFriends];
         self.mutualGroupsLabel.text = [NSString stringWithFormat:@"%@ общих интересов", self.otherUser.mutualGroups];
         ALog(@"birthday %@", self.otherUser.birthday);
@@ -168,7 +180,6 @@
     _numberOfAttempts++;
     [RestUser reload:^(RestUser *restUser) {
         self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
-        ((MenuViewController *)self.slidingViewController.underLeftViewController).currentUser = self.currentUser;
         
         [self saveContext];
         [self setupNextHookup];
@@ -181,7 +192,6 @@
 #pragma mark LoginDelegate methods
 - (void)didVkLogin:(User *)user {
     self.currentUser = user;
-    ((MenuViewController *)self.slidingViewController.underLeftViewController).currentUser = self.currentUser;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

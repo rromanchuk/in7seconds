@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city
   attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active, :looking_for_gender, :latitude, :longitude, :vk_city, :vk_country, :vk_domain, :vk_graduation, :vk_university_name, :vk_faculty_name, :vk_mobile_phone
 
-  has_many :relationships
+  has_many :relationships, :dependent => :destroy
 
   has_many :hookups, :through => :relationships,
          :conditions => "status = 'accepted'"
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
          :source => :hookup,
          :conditions => "status = 'pending'"
 
-  has_many :friendships
+  has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user

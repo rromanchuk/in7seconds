@@ -87,9 +87,9 @@
                   [[UAPush shared] setAlias:alias];
                   [[UAPush shared] updateRegistration];
                   [SVProgressHUD dismiss];
+                  [self.delegate didVkLogin:user];
                   [self dismissViewControllerAnimated:YES completion:^(void) {
                       ALog(@"finished dismissing");
-                      [self.delegate didVkLogin:user];
                   }];
 
               }
