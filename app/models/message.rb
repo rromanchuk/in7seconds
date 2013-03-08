@@ -4,5 +4,5 @@ class Message < ActiveRecord::Base
   belongs_to :thread, :class_name => 'Message'  # Reference to parent message
   has_many :replies,  :class_name => 'Message', :foreign_key => 'thread_id'
 
-  named_scope :in_reply_to, lambda { |message| :conditions => {:thread => message}, :order => 'created_at' }
+  #named_scope :in_reply_to, lambda { |message| :conditions => {:thread => message}, :order => 'created_at' }
 end

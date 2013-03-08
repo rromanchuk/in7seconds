@@ -24,6 +24,8 @@
 		94A9808016E9E1F10036E52C /* white_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A9807E16E9E1F10036E52C /* white_bubble.png */; };
 		94A9808116E9E1F10036E52C /* white_bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A9807F16E9E1F10036E52C /* white_bubble@2x.png */; };
 		94A9808416E9E34C0036E52C /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9808316E9E34C0036E52C /* MatchViewController.m */; };
+		94A9808716E9F0960036E52C /* CurrentUserChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9808616E9F0960036E52C /* CurrentUserChatCell.m */; };
+		94A9808A16E9F0A40036E52C /* OtherUserChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9808916E9F0A40036E52C /* OtherUserChatCell.m */; };
 		94D09CA716CBD3470064F886 /* RestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA616CBD3470064F886 /* RestClient.m */; };
 		94D09CAA16CBD3630064F886 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA916CBD3630064F886 /* Config.m */; };
 		94D09CBF16CBD5260064F886 /* environments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94D09CBE16CBD5260064F886 /* environments.plist */; };
@@ -142,6 +144,10 @@
 		94A9807F16E9E1F10036E52C /* white_bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white_bubble@2x.png"; sourceTree = "<group>"; };
 		94A9808216E9E34C0036E52C /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchViewController.h; path = controllers/MatchViewController.h; sourceTree = "<group>"; };
 		94A9808316E9E34C0036E52C /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchViewController.m; path = controllers/MatchViewController.m; sourceTree = "<group>"; };
+		94A9808516E9F0960036E52C /* CurrentUserChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CurrentUserChatCell.h; path = views/CurrentUserChatCell.h; sourceTree = "<group>"; };
+		94A9808616E9F0960036E52C /* CurrentUserChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CurrentUserChatCell.m; path = views/CurrentUserChatCell.m; sourceTree = "<group>"; };
+		94A9808816E9F0A40036E52C /* OtherUserChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherUserChatCell.h; sourceTree = "<group>"; };
+		94A9808916E9F0A40036E52C /* OtherUserChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherUserChatCell.m; sourceTree = "<group>"; };
 		94D09CA516CBD3470064F886 /* RestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestClient.h; path = models/RestClient.h; sourceTree = "<group>"; };
 		94D09CA616CBD3470064F886 /* RestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestClient.m; path = models/RestClient.m; sourceTree = "<group>"; };
 		94D09CA816CBD3630064F886 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = models/Config.h; sourceTree = "<group>"; };
@@ -299,6 +305,10 @@
 				FAA2CFC016DD705900C22D76 /* MatchCell.m */,
 				FAC3DA5116DE8FEE00410BF7 /* ProfileImageView.h */,
 				FAC3DA5216DE8FEE00410BF7 /* ProfileImageView.m */,
+				94A9808516E9F0960036E52C /* CurrentUserChatCell.h */,
+				94A9808616E9F0960036E52C /* CurrentUserChatCell.m */,
+				94A9808816E9F0A40036E52C /* OtherUserChatCell.h */,
+				94A9808916E9F0A40036E52C /* OtherUserChatCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -786,6 +796,8 @@
 				FA7F38DF16E7DD8200EA2C0B /* CircleCounterView.m in Sources */,
 				FA7F38E016E7DD8200EA2C0B /* CircleDownCounter.m in Sources */,
 				94A9808416E9E34C0036E52C /* MatchViewController.m in Sources */,
+				94A9808716E9F0960036E52C /* CurrentUserChatCell.m in Sources */,
+				94A9808A16E9F0A40036E52C /* OtherUserChatCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -865,7 +877,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "CC63BFEC-897B-4A06-AA87-FFE2BD926592";
+				PROVISIONING_PROFILE = "402C7F1F-A805-496E-9A3C-E7A1EBA00766";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -887,7 +899,7 @@
 					"\"$(SRCROOT)/Airship\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CC63BFEC-897B-4A06-AA87-FFE2BD926592";
+				PROVISIONING_PROFILE = "402C7F1F-A805-496E-9A3C-E7A1EBA00766";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;

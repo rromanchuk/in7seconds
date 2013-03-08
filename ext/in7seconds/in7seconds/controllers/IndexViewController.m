@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MatchesViewController.h"
-
+#import "MatchViewController.h"
 #import "CircleCounterView.h"
 #import "CircleDownCounter.h"
 
@@ -22,15 +22,6 @@
 @end
 
 @implementation IndexViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -98,6 +89,10 @@
         MatchesViewController *vc = (MatchesViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
+    } else if ([segue.identifier isEqualToString:@"NewMatch"]) {
+        MatchViewController *vc = (MatchViewController *)segue.destinationViewController;
+        vc.currentUser = self.currentUser;
+        vc.otherUser = self.otherUser;
     }
 }
 
@@ -134,6 +129,10 @@
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
     [RestUser flirtWithUser:self.otherUser onLoad:^(RestUser *restUser) {
         [SVProgressHUD dismiss];
+        if (restUser) {
+            [self performSegueWithIdentifier:@"NewMatch" sender:self];
+            return;
+        }
         [self setupNextHookup];
     } onError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];

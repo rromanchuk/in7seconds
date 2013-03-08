@@ -30,6 +30,73 @@
 }
 
 
+#pragma mark - UITableViewDelegate methods
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+//    NSString *identifier = @"NewCommentCell";
+//    NewCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+//    if (cell == nil) {
+//        cell = [[NewCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+//    }
+//    
+//    if ([cell.profilePhotoView.gestureRecognizers count] == 0) {
+//        UITapGestureRecognizer *tapProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didPressProfilePhoto:)];
+//        [cell.profilePhotoView addGestureRecognizer:tapProfile];
+//    }
+//    
+//    cell.profilePhotoView.tag = indexPath.row;
+//    
+//    
+//    cell.timeInWordsLabel.backgroundColor = [UIColor backgroundColor];
+//    cell.userCommentLabel.backgroundColor = [UIColor backgroundColor];
+//    Comment *comment = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//    cell.nameLabel.text = comment.user.fullName;
+//    cell.userCommentLabel.text = comment.comment;
+//    
+//    //cell.userCommentLabel.backgroundColor = [UIColor yellowColor];
+//    //ALog(@"string is %@", fullString);
+//    CGSize expectedCommentLabelSize = [comment.comment sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:14.0] constrainedToSize:CGSizeMake(COMMENT_LABEL_WIDTH, CGFLOAT_MAX)];
+//    int height = MAX(expectedCommentLabelSize.height, 25);
+//    [cell.userCommentLabel setFrame:CGRectMake(cell.userCommentLabel.frame.origin.x, cell.userCommentLabel.frame.origin.y, COMMENT_LABEL_WIDTH, height)];
+//    
+//    
+//    
+//    ALog(@"recomed: %f,%f  actual: %f,%f", expectedCommentLabelSize.height, expectedCommentLabelSize.width, cell.userCommentLabel.frame.size.height, cell.userCommentLabel.frame.size.width);
+//    cell.timeInWordsLabel.text = [comment.createdAt distanceOfTimeInWords];
+//    
+//    [cell.timeInWordsLabel sizeToFit];
+//    [cell.timeInWordsLabel setFrame:CGRectMake(cell.userCommentLabel.frame.origin.x, (cell.userCommentLabel.frame.origin.y + cell.userCommentLabel.frame.size.height) + 2.0, cell.timeInWordsLabel.frame.size.width, cell.timeInWordsLabel.frame.size.height + 4.0)];
+//    [cell.profilePhotoView setProfileImageForUser:comment.user];
+//    
+//    return cell;
+}
+
+#warning add constants
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+//    Comment *comment = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//    DLog(@"COMMENT IS %@", comment.comment);
+//    UILabel *sampleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, COMMENT_LABEL_WIDTH, CGFLOAT_MAX)];
+//    sampleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+//    sampleLabel.text = [NSString stringWithFormat:@"%@", comment.comment];
+//    
+//    CGSize expectedCommentLabelSize = [sampleLabel.text sizeWithFont:sampleLabel.font
+//                                                   constrainedToSize:CGSizeMake(COMMENT_LABEL_WIDTH, CGFLOAT_MAX)                                                       lineBreakMode:UILineBreakModeWordWrap];
+//    
+//    
+//    DLog(@"Returning expected height of %f", expectedCommentLabelSize.height);
+//    int totalHeight;
+//    totalHeight = 24 + expectedCommentLabelSize.height + 2 + 16 + 6;;
+//    
+//    DLog(@"total height %d", totalHeight);
+//    return totalHeight;
+    
+}
+
+
+
 
 - (void)keyboardWillHide:(NSNotification*)aNotification {
     NSDictionary* info = [aNotification userInfo];
