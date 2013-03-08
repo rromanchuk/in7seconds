@@ -12,6 +12,7 @@ In7seconds::Application.routes.draw do
 
 
   resources :users do 
+    resources :messages
     collection do 
       get :me
       put :update_user

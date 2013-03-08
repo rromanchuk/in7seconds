@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130306195657) do
+ActiveRecord::Schema.define(:version => 20130308104157) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -60,9 +60,13 @@ ActiveRecord::Schema.define(:version => 20130306195657) do
   add_index "memberships", ["user_id", "group_id"], :name => "index_memberships_on_user_id_and_group_id", :unique => true
 
   create_table "messages", :force => true do |t|
-    t.integer "from_user_id"
-    t.integer "to_user_id"
-    t.integer "thread_id"
+    t.integer  "from_user_id"
+    t.integer  "to_user_id"
+    t.integer  "thread_id"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_read"
   end
 
   add_index "messages", ["from_user_id"], :name => "index_messages_on_from_user_id"
