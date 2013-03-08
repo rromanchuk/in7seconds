@@ -287,6 +287,7 @@
                         <outlet property="userImageView" destination="APD-Fz-edu" id="FfR-BH-bT2"/>
                         <segue destination="uDf-1G-bJ7" kind="modal" identifier="Login" id="qph-WC-CME"/>
                         <segue destination="KXj-XR-793" kind="push" identifier="Matches" id="cId-S9-ht9"/>
+                        <segue destination="Ujj-87-9Zu" kind="modal" identifier="NewMatch" id="sSy-fW-JD7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2d3-TX-Xo8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -424,6 +425,80 @@
             </objects>
             <point key="canvasLocation" x="-162" y="464"/>
         </scene>
+        <!--Match View Controller-->
+        <scene sceneID="AvQ-Xf-ZGx">
+            <objects>
+                <viewController id="Ujj-87-9Zu" customClass="MatchViewController" sceneMemberID="viewController">
+                    <view key="view" alpha="0.70000000000000007" contentMode="scaleToFill" id="9zA-zV-msD">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="NFJ-ke-WZU">
+                                <rect key="frame" x="37" y="81" width="103" height="113"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="jze-Kh-OEd">
+                                <rect key="frame" x="179" y="81" width="103" height="113"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GQX-Pg-u5j">
+                                <rect key="frame" x="18" y="287" width="282" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Начать общение" backgroundImage="blue_button@2x.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapStartChat:" destination="Ujj-87-9Zu" eventType="touchUpInside" id="afW-4V-9qQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fhT-7A-PrV">
+                                <rect key="frame" x="18" y="377" width="282" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Продолжить поиск" backgroundImage="logout_button@2x.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapKeepSearching:" destination="Ujj-87-9Zu" eventType="touchUpInside" id="JjC-7W-OrQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Базинга!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r5u-EQ-WRv">
+                                <rect key="frame" x="37" y="33" width="245" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="У вас с Анюткой похоже что-то намечается!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jkK-XV-Iid">
+                                <rect key="frame" x="20" y="212" width="280" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="currentUserImage" destination="NFJ-ke-WZU" id="dTd-a5-VKh"/>
+                        <outlet property="keepSearchingButton" destination="fhT-7A-PrV" id="1Ou-gF-n27"/>
+                        <outlet property="otherUserImage" destination="jze-Kh-OEd" id="lst-1j-RjN"/>
+                        <outlet property="startChatButton" destination="GQX-Pg-u5j" id="IZO-YR-HR1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tsS-1z-XD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="422" y="365"/>
+        </scene>
         <!--Vkontakte View Controller-->
         <scene sceneID="xIX-93-nbs">
             <objects>
@@ -450,6 +525,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="blue_button@2x.png" width="564" height="94"/>
         <image name="form-bg@2x.png" width="338" height="174"/>
         <image name="friends_icon@2x.png" width="38" height="44"/>
         <image name="in7seconds_logo@2x.png" width="268" height="270"/>
@@ -462,6 +538,103 @@
         <image name="unlike_icon@2x.png" width="156" height="156"/>
         <image name="vk_login_icon@2x.png" width="156" height="156"/>
     </resources>
+    <classes>
+        <class className="BaseUIView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseUIView.h"/>
+        </class>
+        <class className="CommentViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CommentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="CoreDataTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
+        </class>
+        <class className="ECSlidingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ECSlidingViewController.h"/>
+        </class>
+        <class className="IndexViewController" superclassName="ECSlidingViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IndexViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didTapLike:"/>
+                <relationship kind="action" name="didTapUnlike:"/>
+                <relationship kind="outlet" name="countdownView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="didTapLike" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="likeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="locationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mutualFriendsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mutualGroupsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="unlikeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="userImageView" candidateClass="ProfileImageView"/>
+            </relationships>
+        </class>
+        <class className="InitialViewController" superclassName="ECSlidingViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InitialViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didTapVkLogin:"/>
+                <relationship kind="outlet" name="loginLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="vkLoginButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="MatchCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="previewLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="profileImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="MatchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didTapKeepSearching:"/>
+                <relationship kind="action" name="didTapStartChat:"/>
+                <relationship kind="outlet" name="currentUserImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="keepSearchingButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="otherUserImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="startChatButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="MatchesViewController" superclassName="CoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchesViewController.h"/>
+        </class>
+        <class className="MenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didTapLogout:"/>
+                <relationship kind="action" name="didTapMen:"/>
+                <relationship kind="action" name="didTapWomen:"/>
+                <relationship kind="action" name="genderChanged:"/>
+                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="genderSegmentControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="iAmLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="logoutButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="lookingForMen" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="lookingForWomen" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="profileImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="versionLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NavigationTopViewController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationTopViewController.h"/>
+        </class>
+        <class className="ProfileImageView" superclassName="UIImageView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileImageView.h"/>
+        </class>
+        <class className="VkontakteViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VkontakteViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
