@@ -26,6 +26,7 @@
 		94A9808416E9E34C0036E52C /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9808316E9E34C0036E52C /* MatchViewController.m */; };
 		94A9808716E9F0960036E52C /* CurrentUserChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9808616E9F0960036E52C /* CurrentUserChatCell.m */; };
 		94A9808A16E9F0A40036E52C /* OtherUserChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9808916E9F0A40036E52C /* OtherUserChatCell.m */; };
+		94A9808D16E9FF6F0036E52C /* RestMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9808C16E9FF6F0036E52C /* RestMessage.m */; };
 		94D09CA716CBD3470064F886 /* RestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA616CBD3470064F886 /* RestClient.m */; };
 		94D09CAA16CBD3630064F886 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA916CBD3630064F886 /* Config.m */; };
 		94D09CBF16CBD5260064F886 /* environments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94D09CBE16CBD5260064F886 /* environments.plist */; };
@@ -148,6 +149,8 @@
 		94A9808616E9F0960036E52C /* CurrentUserChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CurrentUserChatCell.m; path = views/CurrentUserChatCell.m; sourceTree = "<group>"; };
 		94A9808816E9F0A40036E52C /* OtherUserChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherUserChatCell.h; sourceTree = "<group>"; };
 		94A9808916E9F0A40036E52C /* OtherUserChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherUserChatCell.m; sourceTree = "<group>"; };
+		94A9808B16E9FF6F0036E52C /* RestMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestMessage.h; path = models/RestMessage.h; sourceTree = "<group>"; };
+		94A9808C16E9FF6F0036E52C /* RestMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestMessage.m; path = models/RestMessage.m; sourceTree = "<group>"; };
 		94D09CA516CBD3470064F886 /* RestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestClient.h; path = models/RestClient.h; sourceTree = "<group>"; };
 		94D09CA616CBD3470064F886 /* RestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestClient.m; path = models/RestClient.m; sourceTree = "<group>"; };
 		94D09CA816CBD3630064F886 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = models/Config.h; sourceTree = "<group>"; };
@@ -521,6 +524,8 @@
 				94D09CA916CBD3630064F886 /* Config.m */,
 				FAC3DA4E16DD769900410BF7 /* RestHookup.h */,
 				FAC3DA4F16DD769900410BF7 /* RestHookup.m */,
+				94A9808B16E9FF6F0036E52C /* RestMessage.h */,
+				94A9808C16E9FF6F0036E52C /* RestMessage.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -798,6 +803,7 @@
 				94A9808416E9E34C0036E52C /* MatchViewController.m in Sources */,
 				94A9808716E9F0960036E52C /* CurrentUserChatCell.m in Sources */,
 				94A9808A16E9F0A40036E52C /* OtherUserChatCell.m in Sources */,
+				94A9808D16E9FF6F0036E52C /* RestMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,8 +7,11 @@ class Notification < ActiveRecord::Base
 
   # attr_accessible :sender, :receiver, :notification_type, :sender_id, :receiver_id
 
-
-  def fuck(user1, user2)
+  def self.no_email
+    
+  end
+  
+  def self.fuck(user1, user2)
     Notification.send_notfication!([user1.id, user2.id], "match was found")
     Mailer.fuck(user1, user2).deliver
     Mailer.fuck(user2, user1).deliver
