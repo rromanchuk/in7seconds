@@ -13,7 +13,8 @@ static NSString *RESOURCE_PATH = @"messages";
 
 
 + (NSDictionary *)mapping {
-    return @{@"id": @"externalId", @"message": @"message"};
+    return @{@"id": @"externalId",
+             @"message": @"message"};
 }
 
 + (void)sendMessageTo:(User *)user

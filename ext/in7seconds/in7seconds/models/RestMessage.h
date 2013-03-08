@@ -10,6 +10,12 @@
 #import "User+REST.h"
 
 @interface RestMessage : RestObject
+@property (strong, atomic) NSString *message;
+@property (strong, atomic) RestUser *sender;
+@property (strong, atomic) RestUser *receiver;
+
+
+
 + (void)sendMessageTo:(User *)user
           withMessage:(NSString *)message
         onLoad:(void (^)(RestMessage *restUser))onLoad
