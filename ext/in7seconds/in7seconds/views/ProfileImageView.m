@@ -64,6 +64,13 @@
                          }];
 }
 
+- (void)setWithImage:(UIImage *)image {
+    [self.activityIndicator stopAnimating];
+    self.image = image;
+    CGSize actual = [self imageScale];
+    self.clipsToBounds = YES;
+}
+
 
 
 

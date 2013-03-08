@@ -16,6 +16,7 @@
 
 @interface IndexViewController () {
     NSInteger _numberOfAttempts;
+    BOOL _noResults;
 }
 
 @property (strong, nonatomic) User *otherUser;
@@ -119,6 +120,8 @@
 }
 
 - (void)startCountdown {
+    if (_noResults)
+        return;
     ALog(@"Starting countdown");
     [[CircleDownCounter circleViewInView:self.countdownView] startWithSeconds:7];
     [self performSelector:@selector(didTapUnlike:) withObject:self afterDelay:8.0];
@@ -156,9 +159,12 @@
             return;
         } else if (!self.otherUser){
             //NO RESULTS LEFT
+            [self noResultsLeft];
             ALog(@"No more results found");
             return;
         }
+        if (_noResults)
+            [self foundResults];
         
         [self.userImageView setProfilePhotoWithURL:self.otherUser.photoUrl];
         self.locationLabel.text = self.otherUser.fullLocation;
@@ -247,5 +253,21 @@
 #pragma mark - CircleCounterViewDelegate methods
 - (void)counterDownFinished:(CircleCounterView *)circleView; {
     ALog(@"countdown finished");
+}
+
+
+- (void)foundResults {
+    _noResults = NO;
+    self.likeButton.hidden = self.unlikeButton.hidden = NO;
+}
+
+- (void)noResultsLeft {
+    [self stopCountdown];
+    _noResults = YES;
+    self.likeButton.hidden = self.unlikeButton.hidden = YES;
+    self.nameLabel.text = @"владимир путин, 60 лет";
+    self.locationLabel.text = @"Москва, Россия";
+    [self.userImageView setWithImage:[UIImage imageNamed:@"sadputin.jpeg"]];
+    
 }
 @end

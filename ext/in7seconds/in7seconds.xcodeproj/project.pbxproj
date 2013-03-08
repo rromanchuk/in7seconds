@@ -29,6 +29,7 @@
 		94A9808D16E9FF6F0036E52C /* RestMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9808C16E9FF6F0036E52C /* RestMessage.m */; };
 		94A9809616EA048B0036E52C /* Message+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9809516EA048A0036E52C /* Message+REST.m */; };
 		94A9809C16EA04BF0036E52C /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9809B16EA04BF0036E52C /* Message.m */; };
+		94A9809E16EA15B10036E52C /* sadputin.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 94A9809D16EA15B10036E52C /* sadputin.jpeg */; };
 		94D09CA716CBD3470064F886 /* RestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA616CBD3470064F886 /* RestClient.m */; };
 		94D09CAA16CBD3630064F886 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA916CBD3630064F886 /* Config.m */; };
 		94D09CBF16CBD5260064F886 /* environments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94D09CBE16CBD5260064F886 /* environments.plist */; };
@@ -157,6 +158,7 @@
 		94A9809516EA048A0036E52C /* Message+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Message+REST.m"; sourceTree = "<group>"; };
 		94A9809A16EA04BF0036E52C /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Message.h; path = models/Message.h; sourceTree = "<group>"; };
 		94A9809B16EA04BF0036E52C /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Message.m; path = models/Message.m; sourceTree = "<group>"; };
+		94A9809D16EA15B10036E52C /* sadputin.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sadputin.jpeg; sourceTree = "<group>"; };
 		94D09CA516CBD3470064F886 /* RestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestClient.h; path = models/RestClient.h; sourceTree = "<group>"; };
 		94D09CA616CBD3470064F886 /* RestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestClient.m; path = models/RestClient.m; sourceTree = "<group>"; };
 		94D09CA816CBD3630064F886 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = models/Config.h; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 		FA70028F16CAECBD0098A5B7 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				94A9809D16EA15B10036E52C /* sadputin.jpeg */,
 				94A9807E16E9E1F10036E52C /* white_bubble.png */,
 				94A9807F16E9E1F10036E52C /* white_bubble@2x.png */,
 				94A9807616E9E1E60036E52C /* blue_bubble.png */,
@@ -717,6 +720,7 @@
 				94A9807D16E9E1E60036E52C /* blue_button@2x.png in Resources */,
 				94A9808016E9E1F10036E52C /* white_bubble.png in Resources */,
 				94A9808116E9E1F10036E52C /* white_bubble@2x.png in Resources */,
+				94A9809E16EA15B10036E52C /* sadputin.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
