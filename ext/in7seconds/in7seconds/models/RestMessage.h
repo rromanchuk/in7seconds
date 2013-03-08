@@ -7,7 +7,12 @@
 //
 
 #import "RestObject.h"
+#import "User+REST.h"
 
 @interface RestMessage : RestObject
++ (void)sendMessageTo:(User *)user
+          withMessage:(NSString *)message
+        onLoad:(void (^)(RestMessage *restUser))onLoad
+       onError:(void (^)(NSError *error))onError;
 
 @end
