@@ -9,20 +9,13 @@
 #import "MatchesViewController.h"
 #import "MatchCell.h"
 #import "BaseUIView.h"
+
+#import "CommentViewController.h"
 @interface MatchesViewController ()
 
 @end
 
 @implementation MatchesViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -32,12 +25,6 @@
     self.title = NSLocalizedString(@"Симпатии", nil);
     self.tableView.backgroundView = [[BaseUIView alloc] init];
 	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark CoreData methods
@@ -54,6 +41,18 @@
                                                                                    cacheName:nil];
 }
 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"CommentThread"]) {
+        CommentViewController *vc = (CommentViewController *)segue.destinationViewController;
+        vc.managedObjectContext = self.managedObjectContext;
+        vc.currentUser = self.currentUser;
+        User *user = [self.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
+        vc.otherUser = user;
+        
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     User *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
     MatchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
@@ -63,13 +62,13 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    User *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://vk.com/%@", user.vkDomain]]];
-}
 
 - (void)back {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+- (void)fetchResults {
+    
+}
 @end

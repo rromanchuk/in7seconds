@@ -7,6 +7,8 @@
 //
 
 #import "CommentViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 @interface CommentViewController ()
 @property (nonatomic) BOOL beganUpdates;
@@ -18,9 +20,64 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [self setupFooterView];
+
 }
 
+
+- (void)setupFetchedResultsController // attaches an NSFetchRequest to this UITableViewController
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Message"];
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
+    //request.predicate = [NSPredicate predicateWithFormat:@"feedItem = %@", self.feedItem];
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:self.managedObjectContext
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
+}
+
+
+- (void)setupFooterView {
+    //UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height - 20, self.view.frame.size.width, 40.0)];
+    //view.clipsToBounds = NO;
+    
+    self.footerView.opaque = YES;
+    self.footerView.backgroundColor = RGBCOLOR(239.0, 239.0, 239.0);
+    [self.footerView.layer setMasksToBounds:NO];
+    //[self.footerView.layer setBorderColor: [[UIColor redColor] CGColor]];
+    //[self.footerView.layer setBorderWidth: 1.0];
+    //[self.footerView.layer setShadowColor:[UIColor blackColor].CGColor];
+    //[self.footerView.layer setShadowOffset:CGSizeMake(0, 0)];
+    //[self.footerView.layer setShadowRadius:2.0];
+    //[self.footerView.layer setShadowOpacity:0.65 ];
+    //[self.footerView.layer setShadowPath:[[UIBezierPath bezierPathWithRect:self.footerView.bounds ] CGPath ] ];
+    HPGrowingTextView *textView = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(5.0, 5.0, 220.0, 43.0)];
+    textView.delegate = self;
+    self.commentView = textView;
+    self.commentView.text = NSLocalizedString(@"ENTER_COMMENT", nil);
+    self.commentView.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+    self.commentView.textColor = RGBCOLOR(127, 127, 127);
+    [self.commentView.layer setBorderColor:RGBCOLOR(233, 233, 233).CGColor];
+    [self.commentView.layer setBorderWidth:1.0];
+    [self.commentView.layer setShadowOffset:CGSizeMake(0, 0)];
+    [self.commentView.layer setShadowOpacity:1 ];
+    [self.commentView.layer setShadowRadius:4.0];
+    [self.commentView.layer setShadowColor:RGBCOLOR(233, 233, 233).CGColor];
+    [self.commentView.layer setShadowPath:[[UIBezierPath bezierPathWithRect:self.commentView.bounds ] CGPath ] ];
+    self.commentView.backgroundColor  = [UIColor clearColor];
+    [self.footerView addSubview:textView];
+    
+    UIButton *enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    enterButton.frame = CGRectMake(225.0, 5, 90.0, 43.0);
+    [enterButton setBackgroundImage:[UIImage imageNamed:@"enter-button.png"] forState:UIControlStateNormal];
+    //[enterButton setBackgroundImage:[UIImage imageNamed:@"enter-button-pressed.png"] forState:UIControlStateHighlighted];
+    [enterButton setTitle:NSLocalizedString(@"ENTER", @"Enter button for comment") forState:UIControlStateNormal];
+    [enterButton setTitle:NSLocalizedString(@"ENTER", @"Enter button for comment") forState:UIControlStateHighlighted];
+    [enterButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:11.0]];
+    [enterButton setTitleColor:RGBCOLOR(117, 117, 117) forState:UIControlStateNormal];
+    [enterButton addTarget:self action:@selector(didAddComment:event:) forControlEvents:UIControlEventTouchUpInside];
+    [self.footerView addSubview:enterButton];
+}
 
 #pragma mark - UITableViewDelegate methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

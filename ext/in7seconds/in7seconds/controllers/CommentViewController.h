@@ -6,9 +6,11 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "User+REST.h"
+#import "HPGrowingTextView.h"
 
-@interface CommentViewController : UIViewController
+@interface CommentViewController : UIViewController <HPGrowingTextViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 
@@ -16,6 +18,11 @@
 @property BOOL debug;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) User *currentUser;
+@property (nonatomic, strong) User *otherUser;
+
+@property (nonatomic, weak) HPGrowingTextView *commentView;
+
 
 - (void)performFetch;
 

@@ -15,4 +15,9 @@
         onLoad:(void (^)(RestMessage *restUser))onLoad
        onError:(void (^)(NSError *error))onError;
 
++ (void)loadThreadWithUser:(User *)user
+               onLoad:(void (^)(NSArray *messages))onLoad
+              onError:(void (^)(NSError *error))onError;
+
+
 @end

@@ -46,4 +46,38 @@ static NSString *RESOURCE_PATH = @"messages";
     [operation start];
 
 }
+
+
++ (void)loadThreadWithUser:(User *)user
+                    onLoad:(void (^)(NSArray *messages))onLoad
+                   onError:(void (^)(NSError *error))onError {
+    
+    RestClient *restClient = [RestClient sharedClient];
+    NSDictionary *params = @{@"user_id": user.externalId};
+    
+    NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"GET"
+                                                                  path:RESOURCE_PATH
+                                                            parameters:params];
+
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            ALog(@"JSON: %@", JSON);
+                                                                                            NSArray *restMessages;
+                                                                                            //RestMessage *restMessage = [RestMessage objectFromJSONObject:JSON mapping:[RestMessage mapping]];
+                                                                                            if (onLoad)
+                                                                                                onLoad(restMessages);
+                                                                                        }
+                                                                                        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            NSError *customError = [RestObject customError:error withServerResponse:response andJson:JSON];
+                                                                                            if (onError)
+                                                                                                onError(customError);
+                                                                                        }];
+    [[UIApplication sharedApplication] showNetworkActivityIndicator];
+    [operation start];
+
+
+}
+
 @end
