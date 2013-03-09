@@ -12,6 +12,7 @@ class Message < ActiveRecord::Base
     Message.where('(from_user_id = ? AND to_user_id = ?) OR (to_user_id = ? AND from_user_id = ?)', hookup.id, current_user.id, current_user.id, hookup.id).first
   end
 
+
   def thread
     Message.where(thread: self)
   end

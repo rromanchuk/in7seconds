@@ -69,8 +69,12 @@ static NSString *RESOURCE_PATH = @"messages";
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             ALog(@"JSON: %@", JSON);
-                                                                                            NSArray *restMessages;
-                                                                                            //RestMessage *restMessage = [RestMessage objectFromJSONObject:JSON mapping:[RestMessage mapping]];
+                                                                                            NSMutableArray *restMessages;
+                                                                                            for (id json in JSON) {
+                                                                                                RestMessage *restMessage = [RestMessage objectFromJSONObject:json mapping:[RestMessage mapping]];
+                                                                                                [restMessages addObject:restMessage];
+                                                                                            }
+                                                                                
                                                                                             if (onLoad)
                                                                                                 onLoad(restMessages);
                                                                                         }
@@ -82,7 +86,6 @@ static NSString *RESOURCE_PATH = @"messages";
                                                                                         }];
     [[UIApplication sharedApplication] showNetworkActivityIndicator];
     [operation start];
-
 
 }
 

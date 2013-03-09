@@ -16,6 +16,8 @@
 #import "RestMessage.h"
 
 #import "AppDelegate.h"
+#import "BaseUIView.h"
+
 @interface CommentViewController ()
 @property (nonatomic) BOOL beganUpdates;
 @end
@@ -29,7 +31,10 @@
     [self setupFooterView];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     self.title = self.otherUser.fullName;
+    self.tableView.backgroundView = [[BaseUIView alloc] init];
+
     [self setupFetchedResultsController];
+    [self fetchResults];
 }
 
 
@@ -54,7 +59,7 @@
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"PrivateMessage"];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
-    request.predicate = [NSPredicate predicateWithFormat:@"(sender = %@ AND receiver) OR (sender = %@ AND receiver = %@)", self.currentUser, self.otherUser, self.otherUser, self.currentUser];
+    request.predicate = [NSPredicate predicateWithFormat:@"(toUser = %@ AND fromUser = %@) OR (toUser = %@ AND fromUser = %@)", self.currentUser, self.otherUser, self.otherUser, self.currentUser];
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.managedObjectContext
                                                                           sectionNameKeyPath:nil
@@ -103,8 +108,36 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PrivateMessage *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    CurrentUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CurrentUserChatCell"];
-    return cell;
+    if (message.toUser == self.currentUser) {
+        OtherUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OtherUserChatCell"];
+        cell.chatLabel.text = message.message;
+        
+        UIImage *img =  [UIImage imageNamed:@"white_bubble"];
+        CGSize imgSize = cell.chatLabel.frame.size;
+        
+        UIGraphicsBeginImageContext( imgSize );
+        [img drawInRect:CGRectMake(0,0,imgSize.width,imgSize.height)];
+        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        [newImage resizableImageWithCapInsets:UIEdgeInsetsMake(5, 8, 7, 6)];
+        cell.chatLabel.backgroundColor = [UIColor colorWithPatternImage:[newImage resizableImageWithCapInsets:UIEdgeInsetsMake(5, 8, 7, 6)]];
+        
+        [cell.imageView setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
+        return cell;
+    } else {
+        CurrentUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CurrentUserChatCell"];
+        cell.chatLabel.text = message.message;
+        [cell.imageView setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];
+        UIImage *img = [UIImage imageNamed:@"white_bubble"];
+        CGSize imgSize = cell.chatLabel.frame.size;
+        
+        UIGraphicsBeginImageContext( imgSize );
+        [img drawInRect:CGRectMake(0,0,imgSize.width,imgSize.height)];
+        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        cell.chatLabel.backgroundColor = [UIColor colorWithPatternImage:newImage];
+        return cell;
+    }
 
     //    return cell;
 }
@@ -253,6 +286,35 @@
 }
 
 
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [[self.fetchedResultsController sections] count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+	return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    return [self.fetchedResultsController sectionIndexTitles];
+}
+
+
 #pragma mark - NSFetchedResultsControllerDelegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
@@ -353,5 +415,16 @@
     [sharedAppDelegate writeToDisk];
 }
 
+
+- (void)fetchResults {
+    [RestMessage loadThreadWithUser:self.otherUser onLoad:^(NSArray *messages) {
+        for (RestMessage *_message in messages) {
+            [PrivateMessage privateMessageWithRestMessage:_message inManagedObjectContext:self.managedObjectContext];
+        }
+        [self saveContext];
+    } onError:^(NSError *error) {
+        
+    }];
+}
 
 @end
