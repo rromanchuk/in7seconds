@@ -6,6 +6,7 @@ class Message < ActiveRecord::Base
   belongs_to :thread, :class_name => 'Message'  # Reference to parent message
   has_many :replies,  :class_name => 'Message', :foreign_key => 'thread_id'
 
+  after_create :notify
   #named_scope :in_reply_to, lambda { |message| :conditions => {:thread => message}, :order => 'created_at' }
 
   def self.first_message(current_user, hookup)
@@ -16,9 +17,13 @@ class Message < ActiveRecord::Base
     Message.where('(from_user_id = ? AND to_user_id = ?) OR (to_user_id = ? AND from_user_id = ?)', hookup.id, current_user.id, current_user.id, hookup.id)
   end
 
-
   def thread
     Message.where(thread: self)
+  end
+
+  def notify
+    Notification.send_message(to_user, message)
+    Mailer.delay.send_message(to_user, from_user, message)
   end
 
 end

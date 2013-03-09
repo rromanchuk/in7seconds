@@ -11,6 +11,7 @@
 @interface MatchViewController : UIViewController
 @property (strong, nonatomic) User *currentUser;
 @property (strong, nonatomic) User *otherUser;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @property (weak, nonatomic) IBOutlet UIImageView *currentUserImage;
 @property (weak, nonatomic) IBOutlet UIImageView *otherUserImage;

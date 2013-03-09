@@ -95,6 +95,7 @@
         MatchViewController *vc = (MatchViewController *)segue.destinationViewController;
         vc.currentUser = self.currentUser;
         vc.otherUser = self.otherUser;
+        vc.managedObjectContext = self.managedObjectContext;
     }
 }
 
