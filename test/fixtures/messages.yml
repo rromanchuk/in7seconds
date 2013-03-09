@@ -4,6 +4,6 @@ hello:
   message: Hello world!
 
 hi:
- from_user: adarsh
+  from_user: adarsh
   to_user: ryan
   message: hey, how r u

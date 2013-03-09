@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BlueBubble.h"
 @interface OtherUserChatCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *userImage;
-@property (weak, nonatomic) IBOutlet UITextView *chatLabel;
 
+@property (weak, nonatomic) IBOutlet BlueBubble *blueBubble;
+
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end

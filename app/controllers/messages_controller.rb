@@ -11,6 +11,7 @@ class MessagesController < ApplicationController
     else
       @message = Message.new(:to_user => hookup, :from_user => current_user, :message => params[:message][:message])
     end
+    Notification.send_message(hookup, @message.message)
     @message.save
     render :show
   end

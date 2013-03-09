@@ -22,7 +22,9 @@
 @property (nonatomic) BOOL beganUpdates;
 @end
 
-@implementation CommentViewController
+@implementation CommentViewController {
+    NSDateFormatter *_df;
+}
 
 
 - (void)viewDidLoad
@@ -35,6 +37,8 @@
 
     [self setupFetchedResultsController];
     [self fetchResults];
+    _df = [[NSDateFormatter alloc] init];
+    [_df setDateFormat:@"dd-MM-yyyy, HH:mm"];
 }
 
 
@@ -81,10 +85,11 @@
     //[self.footerView.layer setShadowRadius:2.0];
     //[self.footerView.layer setShadowOpacity:0.65 ];
     //[self.footerView.layer setShadowPath:[[UIBezierPath bezierPathWithRect:self.footerView.bounds ] CGPath ] ];
-    HPGrowingTextView *textView = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(5.0, 5.0, 220.0, 43.0)];
+    HPGrowingTextView *textView = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(25.0, 5.0, 215, 32.0)];
     textView.delegate = self;
+    textView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"enter-textfield-bg"]];
     self.commentView = textView;
-    self.commentView.text = NSLocalizedString(@"ENTER_COMMENT", nil);
+    self.commentView.text = NSLocalizedString(@"Написать комментарий", nil);
     self.commentView.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
     self.commentView.textColor = RGBCOLOR(127, 127, 127);
     [self.commentView.layer setBorderColor:RGBCOLOR(233, 233, 233).CGColor];
@@ -94,7 +99,6 @@
     [self.commentView.layer setShadowRadius:4.0];
     [self.commentView.layer setShadowColor:RGBCOLOR(233, 233, 233).CGColor];
     [self.commentView.layer setShadowPath:[[UIBezierPath bezierPathWithRect:self.commentView.bounds ] CGPath ] ];
-    self.commentView.backgroundColor  = [UIColor clearColor];
     [self.footerView addSubview:textView];
     
     UIButton *enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -110,13 +114,16 @@
     PrivateMessage *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
     if (message.toUser == self.currentUser) {
         OtherUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OtherUserChatCell"];
-        cell.chatLabel.text = message.message;
-        [cell.imageView setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
+        [cell.blueBubble setMessage:message.message];
+        [cell.profileImage setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
+        cell.dateLabel.text = [_df stringFromDate:message.createdAt];
         return cell;
     } else {
         CurrentUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CurrentUserChatCell"];
         [cell.whiteBubble setMessage:message.message];
-        [cell.imageView setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];
+        cell.dateLabel.text = [_df stringFromDate:message.createdAt];
+        [cell.profilePhoto setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];
+        //[cell.imageView setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];
         return cell;
     }
 
@@ -125,9 +132,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RestMessage *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    CGSize exptectedSize = [message.message sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:15] forWidth:230 lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize size = [message.message sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:15] constrainedToSize:CGSizeMake(245, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
     //return exptectedSize.height + 20;
-    return 100;
+    return size.height + 20 + 20;
 }
 
 

@@ -11,5 +11,7 @@
 @interface CurrentUserChatCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet WhiteBubble *whiteBubble;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *profilePhoto;
 
 @end

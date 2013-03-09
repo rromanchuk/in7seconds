@@ -70,6 +70,7 @@
 		FA7F38DF16E7DD8200EA2C0B /* CircleCounterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38DC16E7DD8200EA2C0B /* CircleCounterView.m */; };
 		FA7F38E016E7DD8200EA2C0B /* CircleDownCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38DE16E7DD8200EA2C0B /* CircleDownCounter.m */; };
 		FA7F38E316EBBF9500EA2C0B /* WhiteBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E216EBBF9400EA2C0B /* WhiteBubble.m */; };
+		FA7F38E616EBDB7D00EA2C0B /* BlueBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E516EBDB7C00EA2C0B /* BlueBubble.m */; };
 		FA809FEA16D040FD003920E6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA809FE916D040FD003920E6 /* Crashlytics.framework */; };
 		FA809FEE16D2BD58003920E6 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA809FED16D2BD58003920E6 /* AddressBook.framework */; };
 		FAA2CC9216DC00C900C22D76 /* interests_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC6E16DC00C900C22D76 /* interests_icon.png */; };
@@ -229,6 +230,8 @@
 		FA7F38DE16E7DD8200EA2C0B /* CircleDownCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleDownCounter.m; sourceTree = "<group>"; };
 		FA7F38E116EBBF9400EA2C0B /* WhiteBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteBubble.h; sourceTree = "<group>"; };
 		FA7F38E216EBBF9400EA2C0B /* WhiteBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteBubble.m; sourceTree = "<group>"; };
+		FA7F38E416EBDB7B00EA2C0B /* BlueBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlueBubble.h; path = views/BlueBubble.h; sourceTree = "<group>"; };
+		FA7F38E516EBDB7C00EA2C0B /* BlueBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlueBubble.m; path = views/BlueBubble.m; sourceTree = "<group>"; };
 		FA809FE916D040FD003920E6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		FA809FEB16D2B641003920E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA809FEC16D2B642003920E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -333,6 +336,8 @@
 				94A9808916E9F0A40036E52C /* OtherUserChatCell.m */,
 				FA7F38E116EBBF9400EA2C0B /* WhiteBubble.h */,
 				FA7F38E216EBBF9400EA2C0B /* WhiteBubble.m */,
+				FA7F38E416EBDB7B00EA2C0B /* BlueBubble.h */,
+				FA7F38E516EBDB7C00EA2C0B /* BlueBubble.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -842,6 +847,7 @@
 				94A9809616EA048B0036E52C /* PrivateMessage+REST.m in Sources */,
 				94A980AE16EB70D40036E52C /* PrivateMessage.m in Sources */,
 				FA7F38E316EBBF9500EA2C0B /* WhiteBubble.m in Sources */,
+				FA7F38E616EBDB7D00EA2C0B /* BlueBubble.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,7 +911,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Romanchuk (RJ6W6Q2JLW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Romanchuk";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -921,7 +927,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "402C7F1F-A805-496E-9A3C-E7A1EBA00766";
+				PROVISIONING_PROFILE = "EB48B7A8-A7EE-4C5F-B293-84B57068FC4F";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -943,7 +949,7 @@
 					"\"$(SRCROOT)/Airship\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "402C7F1F-A805-496E-9A3C-E7A1EBA00766";
+				PROVISIONING_PROFILE = "CC63BFEC-897B-4A06-AA87-FFE2BD926592";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;
