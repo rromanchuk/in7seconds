@@ -18,8 +18,7 @@ class MessagesController < ApplicationController
 
   def index
     hookup = User.find(params[:user_id])
-    first_message = Message.first_message(current_user, hookup)
-    @messages
+    @messages = Message.thread(current_user, hookup)
   end
 
 

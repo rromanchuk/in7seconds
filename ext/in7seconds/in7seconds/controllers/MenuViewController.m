@@ -22,7 +22,7 @@
     [super viewDidLoad];
     [self.logoutButton setTitle:NSLocalizedString(@"Выйти", @"logout button text") forState:UIControlStateNormal];
     
-    [self.slidingViewController setAnchorRightRevealAmount:280.0f];
+    [self.slidingViewController setAnchorRightRevealAmount:290.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     self.view.backgroundColor = [UIColor darkBackgroundColor];
     
@@ -37,6 +37,7 @@
     }
 }
 
+
 - (void)leftViewWillAppear {
     ALog(@"left fiew will appear with user %@", self.user);
     if (!self.user && [RestUser currentUserToken]) {
@@ -44,10 +45,6 @@
     }
 }
 
-- (void)setUser:(User *)currentUser {
-    _user = currentUser;
-    [self setupProfile];
-}
 
 - (void)setupProfile {
     ALog(@"setting up profile for %@", self.user);
@@ -103,8 +100,10 @@
 - (void)fetch {
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
     [RestUser reload:^(RestUser *restUser) {
-        self.user = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+        User *user = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
         [self saveContext];
+        self.user = user;
+        [self setupProfile];
         [SVProgressHUD dismiss];
     } onError:^(NSError *error) {
         [SVProgressHUD dismiss];

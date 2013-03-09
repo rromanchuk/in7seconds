@@ -1,1 +1,2 @@
-index.json.rabl
+collection @messages
+extends "messages/show"

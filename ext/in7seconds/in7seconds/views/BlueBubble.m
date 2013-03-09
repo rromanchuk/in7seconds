@@ -25,7 +25,7 @@
     {
         CGSize size = self.frame.size;
         self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-        self.imgView.image = [[UIImage imageNamed:@"blue_bubble"] resizableImageWithCapInsets:UIEdgeInsetsMake(21, 13, 10, 7)];
+        self.imgView.image = [[UIImage imageNamed:@"blue_bubble"] resizableImageWithCapInsets:UIEdgeInsetsMake(21, 7, 10, 14)];
         [self addSubview:self.imgView];
         self.backgroundColor = [UIColor clearColor];
         

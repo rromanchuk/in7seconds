@@ -59,6 +59,19 @@
 }
 
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.commentView resignFirstResponder];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardDidShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+    
+}
+
 - (void)setupFetchedResultsController // attaches an NSFetchRequest to this UITableViewController
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"PrivateMessage"];
@@ -78,17 +91,19 @@
     self.footerView.opaque = YES;
     self.footerView.backgroundColor = RGBCOLOR(239.0, 239.0, 239.0);
     [self.footerView.layer setMasksToBounds:NO];
-    //[self.footerView.layer setBorderColor: [[UIColor redColor] CGColor]];
-    //[self.footerView.layer setBorderWidth: 1.0];
-    //[self.footerView.layer setShadowColor:[UIColor blackColor].CGColor];
-    //[self.footerView.layer setShadowOffset:CGSizeMake(0, 0)];
-    //[self.footerView.layer setShadowRadius:2.0];
-    //[self.footerView.layer setShadowOpacity:0.65 ];
-    //[self.footerView.layer setShadowPath:[[UIBezierPath bezierPathWithRect:self.footerView.bounds ] CGPath ] ];
-    HPGrowingTextView *textView = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(25.0, 5.0, 215, 32.0)];
+    [self.footerView.layer setBorderColor: [[UIColor redColor] CGColor]];
+    [self.footerView.layer setBorderWidth: 1.0];
+    [self.footerView.layer setShadowColor:[UIColor blackColor].CGColor];
+    [self.footerView.layer setShadowOffset:CGSizeMake(0, 0)];
+    [self.footerView.layer setShadowRadius:2.0];
+    [self.footerView.layer setShadowOpacity:0.65 ];
+    [self.footerView.layer setShadowPath:[[UIBezierPath bezierPathWithRect:self.footerView.bounds ] CGPath ] ];
+    HPGrowingTextView *textView = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(15.0, 5.0, 245, 32.0)];
     textView.delegate = self;
-    textView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"enter-textfield-bg"]];
+    textView.backgroundColor = [UIColor whiteColor];
     self.commentView = textView;
+    self.commentView.layer.masksToBounds = YES;
+    self.commentView.layer.cornerRadius = 5.0;
     self.commentView.text = NSLocalizedString(@"Написать комментарий", nil);
     self.commentView.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
     self.commentView.textColor = RGBCOLOR(127, 127, 127);
@@ -136,6 +151,23 @@
     //return exptectedSize.height + 20;
     return size.height + 20 + 20;
 }
+
+
+#pragma mark - HPGrowingTextView delegate methods
+-(void)growingTextView:(HPGrowingTextView *)growingTextView didChangeHeight:(float)height {
+    DLog(@"new height is %f old height is %f", height, self.footerView.frame.size.height);
+    if(height < 50)
+        height = 50.0;
+    [self.footerView setFrame:CGRectMake(self.footerView.frame.origin.x, self.footerView.frame.origin.y - (height - self.footerView.frame.size.height ), self.footerView.frame.size.width, height)];
+}
+
+-(void)growingTextViewDidBeginEditing:(HPGrowingTextView *)growingTextView {
+    if ([self.commentView.text isEqualToString:NSLocalizedString(@"Написать комментарий", nil)]) {
+        self.commentView.text = @"";
+    }
+    DLog(@"did begin editing");
+}
+
 
 
 - (void)keyboardWillHide:(NSNotification*)aNotification {

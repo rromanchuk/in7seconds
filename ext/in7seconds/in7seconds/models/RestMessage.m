@@ -60,9 +60,10 @@ static NSString *RESOURCE_PATH = @"messages";
     
     RestClient *restClient = [RestClient sharedClient];
     NSDictionary *params = @{@"user_id": user.externalId};
-    
+    NSString *path = [NSString stringWithFormat:@"users/%@/messages.json", user.externalId];
+
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"GET"
-                                                                  path:RESOURCE_PATH
+                                                                  path:path
                                                             parameters:params];
 
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
