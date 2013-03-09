@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "WhiteBubble.h"
 
 @interface CurrentUserChatCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *userImage;
-@property (weak, nonatomic) IBOutlet UILabel *chatLabel;
+
+@property (weak, nonatomic) IBOutlet WhiteBubble *whiteBubble;
 
 @end

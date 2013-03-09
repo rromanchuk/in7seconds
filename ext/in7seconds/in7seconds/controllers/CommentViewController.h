@@ -9,7 +9,7 @@
 #import "User+REST.h"
 #import "HPGrowingTextView.h"
 
-@interface CommentViewController : UIViewController <HPGrowingTextViewDelegate, NSFetchedResultsControllerDelegate>
+@interface CommentViewController : UIViewController <HPGrowingTextViewDelegate, NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *footerView;

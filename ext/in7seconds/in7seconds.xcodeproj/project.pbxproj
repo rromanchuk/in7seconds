@@ -69,6 +69,7 @@
 		FA7F38D916E7CA8B00EA2C0B /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */; };
 		FA7F38DF16E7DD8200EA2C0B /* CircleCounterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38DC16E7DD8200EA2C0B /* CircleCounterView.m */; };
 		FA7F38E016E7DD8200EA2C0B /* CircleDownCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38DE16E7DD8200EA2C0B /* CircleDownCounter.m */; };
+		FA7F38E316EBBF9500EA2C0B /* WhiteBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E216EBBF9400EA2C0B /* WhiteBubble.m */; };
 		FA809FEA16D040FD003920E6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA809FE916D040FD003920E6 /* Crashlytics.framework */; };
 		FA809FEE16D2BD58003920E6 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA809FED16D2BD58003920E6 /* AddressBook.framework */; };
 		FAA2CC9216DC00C900C22D76 /* interests_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC6E16DC00C900C22D76 /* interests_icon.png */; };
@@ -226,6 +227,8 @@
 		FA7F38DC16E7DD8200EA2C0B /* CircleCounterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleCounterView.m; sourceTree = "<group>"; };
 		FA7F38DD16E7DD8200EA2C0B /* CircleDownCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDownCounter.h; sourceTree = "<group>"; };
 		FA7F38DE16E7DD8200EA2C0B /* CircleDownCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleDownCounter.m; sourceTree = "<group>"; };
+		FA7F38E116EBBF9400EA2C0B /* WhiteBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteBubble.h; sourceTree = "<group>"; };
+		FA7F38E216EBBF9400EA2C0B /* WhiteBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteBubble.m; sourceTree = "<group>"; };
 		FA809FE916D040FD003920E6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		FA809FEB16D2B641003920E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA809FEC16D2B642003920E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -328,6 +331,8 @@
 				94A9808616E9F0960036E52C /* CurrentUserChatCell.m */,
 				94A9808816E9F0A40036E52C /* OtherUserChatCell.h */,
 				94A9808916E9F0A40036E52C /* OtherUserChatCell.m */,
+				FA7F38E116EBBF9400EA2C0B /* WhiteBubble.h */,
+				FA7F38E216EBBF9400EA2C0B /* WhiteBubble.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -836,6 +841,7 @@
 				94A9808D16E9FF6F0036E52C /* RestMessage.m in Sources */,
 				94A9809616EA048B0036E52C /* PrivateMessage+REST.m in Sources */,
 				94A980AE16EB70D40036E52C /* PrivateMessage.m in Sources */,
+				FA7F38E316EBBF9500EA2C0B /* WhiteBubble.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

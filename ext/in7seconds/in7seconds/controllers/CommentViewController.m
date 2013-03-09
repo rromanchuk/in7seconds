@@ -98,7 +98,7 @@
     [self.footerView addSubview:textView];
     
     UIButton *enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    enterButton.frame = CGRectMake(225.0, 5, 36, 31.0);
+    enterButton.frame = CGRectMake(275.0, 5, 36, 31.0);
     [enterButton setImage:[UIImage imageNamed:@"enter-button.png"] forState:UIControlStateNormal];
     [enterButton addTarget:self action:@selector(didAddComment:event:) forControlEvents:UIControlEventTouchUpInside];
     [self.footerView addSubview:enterButton];
@@ -111,40 +111,23 @@
     if (message.toUser == self.currentUser) {
         OtherUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OtherUserChatCell"];
         cell.chatLabel.text = message.message;
-        
-        UIImage *img =  [UIImage imageNamed:@"white_bubble"];
-        CGSize imgSize = cell.chatLabel.frame.size;
-        
-        UIGraphicsBeginImageContext( imgSize );
-        [img drawInRect:CGRectMake(0,0,imgSize.width,imgSize.height)];
-        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        [newImage resizableImageWithCapInsets:UIEdgeInsetsMake(5, 8, 7, 6)];
-        cell.chatLabel.backgroundColor = [UIColor colorWithPatternImage:[newImage resizableImageWithCapInsets:UIEdgeInsetsMake(5, 8, 7, 6)]];
-        
         [cell.imageView setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
         return cell;
     } else {
         CurrentUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CurrentUserChatCell"];
-        cell.chatLabel.text = message.message;
+        [cell.whiteBubble setMessage:message.message];
         [cell.imageView setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];
-        UIImage *img = [UIImage imageNamed:@"white_bubble"];
-        CGSize imgSize = cell.chatLabel.frame.size;
-        
-        UIGraphicsBeginImageContext( imgSize );
-        [img drawInRect:CGRectMake(0,0,imgSize.width,imgSize.height)];
-        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        cell.chatLabel.backgroundColor = [UIColor colorWithPatternImage:newImage];
         return cell;
     }
 
-    //    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 40;
+    RestMessage *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    CGSize exptectedSize = [message.message sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:15] forWidth:230 lineBreakMode:NSLineBreakByWordWrapping];
+    //return exptectedSize.height + 20;
+    return 100;
 }
 
 

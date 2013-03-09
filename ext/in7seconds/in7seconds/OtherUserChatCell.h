@@ -10,6 +10,7 @@
 
 @interface OtherUserChatCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
-@property (weak, nonatomic) IBOutlet UILabel *chatLabel;
+@property (weak, nonatomic) IBOutlet UITextView *chatLabel;
+
 
 @end
