@@ -8,11 +8,14 @@
 
 #import "CommentViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "Message+REST.h"
+#import "PrivateMessage+REST.h"
 
 #import "CurrentUserChatCell.h"
 #import "OtherUserChatCell.h"
 
+#import "RestMessage.h"
+
+#import "AppDelegate.h"
 @interface CommentViewController ()
 @property (nonatomic) BOOL beganUpdates;
 @end
@@ -24,15 +27,34 @@
 {
     [super viewDidLoad];
     [self setupFooterView];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
+    self.title = self.otherUser.fullName;
+    [self setupFetchedResultsController];
+}
 
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    //[self.navigationController.view.layer setCornerRadius:0.0];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+    
+    // Let's make sure comments are current and ask the server (this will automatically update the feed as well)
+//    [self setupFetchedResultsController];
+//    [self updateFeedItem];
+//    [self setupView];
+    
 }
 
 
 - (void)setupFetchedResultsController // attaches an NSFetchRequest to this UITableViewController
 {
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Message"];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"PrivateMessage"];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
-    //request.predicate = [NSPredicate predicateWithFormat:@"feedItem = %@", self.feedItem];
+    request.predicate = [NSPredicate predicateWithFormat:@"(sender = %@ AND receiver) OR (sender = %@ AND receiver = %@)", self.currentUser, self.otherUser, self.otherUser, self.currentUser];
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.managedObjectContext
                                                                           sectionNameKeyPath:nil
@@ -71,13 +93,8 @@
     [self.footerView addSubview:textView];
     
     UIButton *enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    enterButton.frame = CGRectMake(225.0, 5, 90.0, 43.0);
-    [enterButton setBackgroundImage:[UIImage imageNamed:@"enter-button.png"] forState:UIControlStateNormal];
-    //[enterButton setBackgroundImage:[UIImage imageNamed:@"enter-button-pressed.png"] forState:UIControlStateHighlighted];
-    [enterButton setTitle:NSLocalizedString(@"ENTER", @"Enter button for comment") forState:UIControlStateNormal];
-    [enterButton setTitle:NSLocalizedString(@"ENTER", @"Enter button for comment") forState:UIControlStateHighlighted];
-    [enterButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:11.0]];
-    [enterButton setTitleColor:RGBCOLOR(117, 117, 117) forState:UIControlStateNormal];
+    enterButton.frame = CGRectMake(225.0, 5, 36, 31.0);
+    [enterButton setImage:[UIImage imageNamed:@"enter-button.png"] forState:UIControlStateNormal];
     [enterButton addTarget:self action:@selector(didAddComment:event:) forControlEvents:UIControlEventTouchUpInside];
     [self.footerView addSubview:enterButton];
 }
@@ -85,20 +102,17 @@
 #pragma mark - UITableViewDelegate methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Message *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    PrivateMessage *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
     CurrentUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CurrentUserChatCell"];
     return cell;
 
     //    return cell;
 }
 
-#warning add constants
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 40;
 }
-
-
 
 
 - (void)keyboardWillHide:(NSNotification*)aNotification {
@@ -163,6 +177,41 @@
     [UIView commitAnimations];
 }
 
+
+
+#pragma mark - User actions
+- (IBAction)didAddComment:(id)sender event:(UIEvent *)event {
+    [self.commentView resignFirstResponder];
+    NSString *comment = self.commentView.text;
+    if (comment.length == 0 || [comment isEqualToString:NSLocalizedString(@"ENTER_COMMENT", nil)]) {
+        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"COMMENT_REQUIRED", @"User pressed submit with no comment given")];
+        return;
+    }
+    
+    [SVProgressHUD show];
+    [RestMessage sendMessageTo:self.otherUser withMessage:comment onLoad:^(RestMessage *restMessage) {
+        [SVProgressHUD dismiss];
+        PrivateMessage *message = [PrivateMessage privateMessageWithRestMessage:restMessage inManagedObjectContext:self.managedObjectContext];
+        [self saveContext];
+    } onError:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    }];
+    
+//    [self.feedItem createComment:comment onLoad:^(RestComment *restComment) {
+//        Comment *comment = [Comment commentWithRestComment:restComment inManagedObjectContext:self.managedObjectContext];
+//        self.tableView.tableFooterView = nil;
+//        [self.feedItem addCommentsObject:comment];
+//        [self saveContext];
+//        [SVProgressHUD dismiss];
+//        self.commentView.text = nil;
+//        DLog(@"added comment");
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.fetchedResultsController.fetchedObjects count]-1 inSection:0];
+//        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+//    } onError:^(NSError *error) {
+//        DLog(@"ERROR %@", error);
+//        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+//    }];
+}
 
 
 #pragma mark - Fetching
@@ -284,8 +333,25 @@
     }
 }
 
+- (void)back {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
+- (void)saveContext
+{
+    NSError *error = nil;
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        if ([_managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        }
+    }
+    
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [sharedAppDelegate writeToDisk];
+}
 
 
 @end

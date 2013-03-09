@@ -11,8 +11,9 @@
 
 @interface RestMessage : RestObject
 @property (strong, atomic) NSString *message;
-@property (strong, atomic) RestUser *sender;
-@property (strong, atomic) RestUser *receiver;
+@property (strong, atomic) RestUser *fromUser;
+@property (strong, atomic) RestUser *toUser;
+@property (strong, atomic) NSDate *createdAt;
 
 
 

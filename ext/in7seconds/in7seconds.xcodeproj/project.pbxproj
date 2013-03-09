@@ -27,9 +27,11 @@
 		94A9808716E9F0960036E52C /* CurrentUserChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9808616E9F0960036E52C /* CurrentUserChatCell.m */; };
 		94A9808A16E9F0A40036E52C /* OtherUserChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9808916E9F0A40036E52C /* OtherUserChatCell.m */; };
 		94A9808D16E9FF6F0036E52C /* RestMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9808C16E9FF6F0036E52C /* RestMessage.m */; };
-		94A9809616EA048B0036E52C /* Message+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9809516EA048A0036E52C /* Message+REST.m */; };
-		94A9809C16EA04BF0036E52C /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9809B16EA04BF0036E52C /* Message.m */; };
+		94A9809616EA048B0036E52C /* PrivateMessage+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9809516EA048A0036E52C /* PrivateMessage+REST.m */; };
 		94A9809E16EA15B10036E52C /* sadputin.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 94A9809D16EA15B10036E52C /* sadputin.jpeg */; };
+		94A980A116EB45FC0036E52C /* enter-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A9809F16EB45FC0036E52C /* enter-button.png */; };
+		94A980A216EB45FC0036E52C /* enter-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A980A016EB45FC0036E52C /* enter-button@2x.png */; };
+		94A980AE16EB70D40036E52C /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A980AD16EB70D40036E52C /* PrivateMessage.m */; };
 		94D09CA716CBD3470064F886 /* RestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA616CBD3470064F886 /* RestClient.m */; };
 		94D09CAA16CBD3630064F886 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA916CBD3630064F886 /* Config.m */; };
 		94D09CBF16CBD5260064F886 /* environments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94D09CBE16CBD5260064F886 /* environments.plist */; };
@@ -154,11 +156,13 @@
 		94A9808916E9F0A40036E52C /* OtherUserChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherUserChatCell.m; sourceTree = "<group>"; };
 		94A9808B16E9FF6F0036E52C /* RestMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestMessage.h; path = models/RestMessage.h; sourceTree = "<group>"; };
 		94A9808C16E9FF6F0036E52C /* RestMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestMessage.m; path = models/RestMessage.m; sourceTree = "<group>"; };
-		94A9809416EA048A0036E52C /* Message+REST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Message+REST.h"; sourceTree = "<group>"; };
-		94A9809516EA048A0036E52C /* Message+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Message+REST.m"; sourceTree = "<group>"; };
-		94A9809A16EA04BF0036E52C /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Message.h; path = models/Message.h; sourceTree = "<group>"; };
-		94A9809B16EA04BF0036E52C /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Message.m; path = models/Message.m; sourceTree = "<group>"; };
+		94A9809416EA048A0036E52C /* PrivateMessage+REST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PrivateMessage+REST.h"; sourceTree = "<group>"; };
+		94A9809516EA048A0036E52C /* PrivateMessage+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PrivateMessage+REST.m"; sourceTree = "<group>"; };
 		94A9809D16EA15B10036E52C /* sadputin.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sadputin.jpeg; sourceTree = "<group>"; };
+		94A9809F16EB45FC0036E52C /* enter-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enter-button.png"; sourceTree = "<group>"; };
+		94A980A016EB45FC0036E52C /* enter-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enter-button@2x.png"; sourceTree = "<group>"; };
+		94A980AC16EB70D40036E52C /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateMessage.h; path = models/PrivateMessage.h; sourceTree = "<group>"; };
+		94A980AD16EB70D40036E52C /* PrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivateMessage.m; path = models/PrivateMessage.m; sourceTree = "<group>"; };
 		94D09CA516CBD3470064F886 /* RestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestClient.h; path = models/RestClient.h; sourceTree = "<group>"; };
 		94D09CA616CBD3470064F886 /* RestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestClient.m; path = models/RestClient.m; sourceTree = "<group>"; };
 		94D09CA816CBD3630064F886 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = models/Config.h; sourceTree = "<group>"; };
@@ -336,14 +340,14 @@
 		94D09CC316CBEA4B0064F886 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				94A9809A16EA04BF0036E52C /* Message.h */,
-				94A9809B16EA04BF0036E52C /* Message.m */,
+				94A980AC16EB70D40036E52C /* PrivateMessage.h */,
+				94A980AD16EB70D40036E52C /* PrivateMessage.m */,
 				FAC3DA5A16DEC71800410BF7 /* User.h */,
 				FAC3DA5B16DEC71800410BF7 /* User.m */,
 				94D09CC716CBED1D0064F886 /* User+REST.h */,
 				94D09CC816CBED1D0064F886 /* User+REST.m */,
-				94A9809416EA048A0036E52C /* Message+REST.h */,
-				94A9809516EA048A0036E52C /* Message+REST.m */,
+				94A9809416EA048A0036E52C /* PrivateMessage+REST.h */,
+				94A9809516EA048A0036E52C /* PrivateMessage+REST.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -447,6 +451,8 @@
 		FA70028F16CAECBD0098A5B7 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				94A9809F16EB45FC0036E52C /* enter-button.png */,
+				94A980A016EB45FC0036E52C /* enter-button@2x.png */,
 				94A9809D16EA15B10036E52C /* sadputin.jpeg */,
 				94A9807E16E9E1F10036E52C /* white_bubble.png */,
 				94A9807F16E9E1F10036E52C /* white_bubble@2x.png */,
@@ -721,6 +727,8 @@
 				94A9808016E9E1F10036E52C /* white_bubble.png in Resources */,
 				94A9808116E9E1F10036E52C /* white_bubble@2x.png in Resources */,
 				94A9809E16EA15B10036E52C /* sadputin.jpeg in Resources */,
+				94A980A116EB45FC0036E52C /* enter-button.png in Resources */,
+				94A980A216EB45FC0036E52C /* enter-button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,8 +826,8 @@
 				94A9808716E9F0960036E52C /* CurrentUserChatCell.m in Sources */,
 				94A9808A16E9F0A40036E52C /* OtherUserChatCell.m in Sources */,
 				94A9808D16E9FF6F0036E52C /* RestMessage.m in Sources */,
-				94A9809616EA048B0036E52C /* Message+REST.m in Sources */,
-				94A9809C16EA04BF0036E52C /* Message.m in Sources */,
+				94A9809616EA048B0036E52C /* PrivateMessage+REST.m in Sources */,
+				94A980AE16EB70D40036E52C /* PrivateMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

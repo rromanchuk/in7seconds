@@ -36,8 +36,8 @@ class User < ActiveRecord::Base
   has_many :inverse_memberships, :through => :inverse_memberships, :source => :user
   
 
-  has_many :messages_received,  :class_name => 'Message', :foreign_key=> 'to_user_id'
-  has_many :messages_sent,      :class_name => 'Message', :foreign_key=> 'from_user_id'
+  has_many :messages_received,  :class_name => 'Message', :foreign_key => 'to_user_id'
+  has_many :messages_sent,      :class_name => 'Message', :foreign_key => 'from_user_id'
 
   belongs_to :vk_country
   belongs_to :vk_city
@@ -106,7 +106,7 @@ class User < ActiveRecord::Base
   end
 
   def birthday
-    self[:city] || ""
+    self[:birthday] || ""
   end
 
   def country

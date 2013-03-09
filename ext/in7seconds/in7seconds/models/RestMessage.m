@@ -14,7 +14,11 @@ static NSString *RESOURCE_PATH = @"messages";
 
 + (NSDictionary *)mapping {
     return @{@"id": @"externalId",
-             @"message": @"message"};
+             @"message": @"message",
+             @"created_at": [NSDate mappingWithKey:@"createdAt"
+                   dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"],
+             @"from_user": [RestUser mappingWithKey:@"fromUser" mapping:[RestUser mapping]],
+             @"to_user": [RestUser mappingWithKey:@"toUser" mapping:[RestUser mapping]]};
 }
 
 + (void)sendMessageTo:(User *)user
@@ -23,9 +27,10 @@ static NSString *RESOURCE_PATH = @"messages";
               onError:(void (^)(NSError *error))onError {
     
     RestClient *restClient = [RestClient sharedClient];
-    NSDictionary *params = @{@"message[message]":message, @"user_id": user.externalId};
+    NSDictionary *params = @{@"message[message]": message};
+    NSString *path = [NSString stringWithFormat:@"users/%@/messages.json", user.externalId];
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"POST"
-                                                                  path:RESOURCE_PATH
+                                                                  path:path
                                                             parameters:params];
     
     ALog(@"SendMessage: %@", request);

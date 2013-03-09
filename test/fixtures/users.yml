@@ -1,9 +1,4 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
 ryan:
   email: rromanchuk@gmail.com
   first_name: Ryan
@@ -12,6 +7,8 @@ ryan:
   vkuid: 41526347
   looking_for_gender: 0
   photo_url: http://cs9609.vk.me/u41526347/a_b9a69665.jpg
+  vk_city: san_francisco
+  vk_country: usa
 
 adarsh:
   email:
@@ -21,3 +18,5 @@ adarsh:
   vkuid: 178182827
   looking_for_gender: 0
   photo_url: http://cs303515.vk.me/v303515827/6813/piM8cu0xcgI.jpg
+  vk_city: moscow
+  vk_country: india

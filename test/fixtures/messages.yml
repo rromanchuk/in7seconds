@@ -1,1 +1,4 @@
-messages.yml
+hello:
+  from_user: ryan
+  to_user: adarsh
+  message: Hello world!
