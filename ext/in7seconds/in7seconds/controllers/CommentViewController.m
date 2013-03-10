@@ -91,8 +91,8 @@
     self.footerView.opaque = YES;
     self.footerView.backgroundColor = RGBCOLOR(239.0, 239.0, 239.0);
     [self.footerView.layer setMasksToBounds:NO];
-    [self.footerView.layer setBorderColor: [[UIColor redColor] CGColor]];
-    [self.footerView.layer setBorderWidth: 1.0];
+    //[self.footerView.layer setBorderColor: [[UIColor redColor] CGColor]];
+    //[self.footerView.layer setBorderWidth: 1.0];
     [self.footerView.layer setShadowColor:[UIColor blackColor].CGColor];
     [self.footerView.layer setShadowOffset:CGSizeMake(0, 0)];
     [self.footerView.layer setShadowRadius:2.0];
