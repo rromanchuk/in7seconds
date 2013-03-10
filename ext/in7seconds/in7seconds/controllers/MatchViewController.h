@@ -7,7 +7,7 @@
 //
 
 #import "User+REST.h"
-
+@protocol MatchModalDelegate;
 @interface MatchViewController : UIViewController
 @property (strong, nonatomic) User *currentUser;
 @property (strong, nonatomic) User *otherUser;
@@ -18,6 +18,17 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *startChatButton;
 @property (weak, nonatomic) IBOutlet UIButton *keepSearchingButton;
+
+@property (weak) id <MatchModalDelegate> delegate;
+
 - (IBAction)didTapStartChat:(id)sender;
 - (IBAction)didTapKeepSearching:(id)sender;
+@end
+
+@protocol MatchModalDelegate <NSObject>
+
+@required
+- (void)userWantsToChat;
+- (void)userWantsToRate;
+
 @end

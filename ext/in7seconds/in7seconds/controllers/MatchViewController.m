@@ -25,10 +25,12 @@
 
 
 - (IBAction)didTapStartChat:(id)sender {
-    
+    [self.delegate userWantsToChat];
 }
 
 - (IBAction)didTapKeepSearching:(id)sender {
+    [self.delegate userWantsToRate];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end
+

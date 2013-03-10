@@ -18,7 +18,7 @@
     
     NSError *error = nil;
     NSArray *users = [context executeFetchRequest:request error:&error];
-    ALog(@"looking for user with externalId %d got %@ from restUser %@ with context %@", restUser.externalId, users, restUser, context);
+    //ALog(@"looking for user with externalId %d got %@ from restUser %@ with context %@", restUser.externalId, users, restUser, context);
     if (users && ([users count] > 1)) {
         // handle error
         ALog(@"not returning a user");

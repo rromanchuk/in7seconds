@@ -11,7 +11,9 @@
 #import "LoginViewController.h"
 #import "MenuViewController.h"
 #import "ProfileImageView.h"
-@interface IndexViewController : ECSlidingViewController <LoginDelegate, LogoutDelegate, ImageLoadedDelegate>
+#import "MatchViewController.h"
+
+@interface IndexViewController : ECSlidingViewController <LoginDelegate, LogoutDelegate, ImageLoadedDelegate, MatchModalDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
 @property (weak, nonatomic) IBOutlet ProfileImageView *userImageView;

@@ -10,10 +10,9 @@
 #import "AppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MatchesViewController.h"
-#import "MatchViewController.h"
 #import "CircleCounterView.h"
 #import "CircleDownCounter.h"
-
+#import "CommentViewController.h"
 @interface IndexViewController () {
     NSInteger _numberOfAttempts;
     BOOL _noResults;
@@ -49,15 +48,6 @@
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation-logo"]];
     
-    if (self.currentUser && [self.currentUser.possibleHookups count] > 0) {
-        if (!self.otherUser) {
-            [self setupNextHookup];
-        }
-    } else if (!_noResults){
-        [self fetchPossibleHookups];
-    }
-
-
 }
 
 - (void)leftViewWillAppear {
@@ -69,8 +59,11 @@
     [super viewWillAppear:animated];
     if (!self.currentUser) {
         [self performSegueWithIdentifier:@"Login" sender:self];
+        return;
     }
+    [self topDidAppear];
 }
+
 
 - (void)getDistance {
     CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude: [self.currentUser.latitude doubleValue] longitude:[self.currentUser.longitude doubleValue]];
@@ -93,10 +86,16 @@
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
     } else if ([segue.identifier isEqualToString:@"NewMatch"]) {
+        [self stopCountdown];
         MatchViewController *vc = (MatchViewController *)segue.destinationViewController;
         vc.currentUser = self.currentUser;
         vc.otherUser = self.otherUser;
         vc.managedObjectContext = self.managedObjectContext;
+    } else if ([segue.identifier isEqualToString:@"DirectToChat"]) {
+        CommentViewController *vc = (CommentViewController *)segue.destinationViewController;
+        vc.managedObjectContext = self.managedObjectContext;
+        vc.currentUser = self.currentUser;
+        vc.otherUser = self.otherUser;
     }
 }
 
@@ -121,7 +120,10 @@
     [((MenuViewController *)self.slidingViewController.underLeftViewController).view endEditing:YES];
     if (self.otherUser) {
         [self startCountdown];
-    } else {
+    } else if ([self.currentUser.hookups count] > 0) {
+        [self setupNextHookup];
+    }
+    else {
         [self fetchPossibleHookups];
     }
 }
@@ -282,4 +284,17 @@
     [self.userImageView setWithImage:[UIImage imageNamed:@"sadputin.jpeg"]];
     
 }
+
+#pragma mark MatchModalDelegate methods
+- (void)userWantsToChat {
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [self performSegueWithIdentifier:@"DirectToChat" sender:self.otherUser];
+    self.otherUser = nil;
+}
+
+- (void)userWantsToRate {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self setupNextHookup];
+}
+
 @end
