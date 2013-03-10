@@ -12,7 +12,7 @@ class Notification < ActiveRecord::Base
   end
 
   def self.private_message(hookup, message)
-    Notification.send_notfication!([hookup.id], "#{hookup.first_name}:#{message}")
+    Notification.send_notfication!([hookup.id], "#{hookup.first_name}: #{message}")
   end
   
   def self.fuck(user1, user2)

@@ -20,5 +20,4 @@ class MailPreview < MailView
       user2 = User.last
       Mailer.private_message(user1, user2, "Hey, nice meeting you")
   end
-
-  end
+end
