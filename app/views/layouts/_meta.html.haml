@@ -10,7 +10,16 @@
 %meta{:name=>'viewport', :content=>'width=960, initial-scale=0.75, maximum-scale=1, minimum-scale=0.75'}
 %meta{:name=>'format-detection', :content=>'telephone=no'}
 %meta{'http-equiv'=>'cleartype', :content=>'on'}
-%meta{'http-equiv'=>'apple-itunes-app', :content=>"app-id=600568556"}
+%meta{'http-equiv'=>'apple-itunes-app', :content=>"app-id=604460636"}
+
+/ FB OG
+%meta{:property=>'og:title', :content=>CONFIG[:name]}
+%meta{:property=>'og:description', :content=>CONFIG[:description]}
+%meta{:property=>'og:image', :content=>image_path('avatar2_300.jpg')}
+
+/ VK
+%meta{:name=>'title', :content=>CONFIG[:name]}
+%link{:rel=>'image_src', :href=>image_path('avatar2_300.jpg')}
 
 %link{:rel=>'apple-touch-icon-precomposed', :sizes=> '114x114', :href=> image_path('apple-touch-icon-114.png')}
 %link{:rel=>'apple-touch-icon-precomposed', :sizes=> '72x72', :href=> image_path('apple-touch-icon-72.png')}

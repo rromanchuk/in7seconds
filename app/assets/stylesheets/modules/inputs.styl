@@ -1,0 +1,54 @@
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea 
+  margin: 0
+  padding: 0
+
+  outline: none
+  
+  border: none
+  appearance: none
+
+  border-radius: 0
+
+  &:focus 
+    outline: none
+
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+.fakeinput,
+textarea 
+  padding: 5px 10px
+
+  font-size: 14px
+  line-height: 20px
+  color: #555
+
+  box-sizing: border-box
+  placeholder-color: #808a8f
+
+  border-radius: 3px
+
+  // &.valid 
+  //   background: #efffdd
+  // 
+  &.invalid 
+    background: #e8d4d4
+
+  &.disabled,
+  &[disabled]
+    opacity: .5
+
+  &.bg
+    background: #f0f0f0
+
+
+textarea 
+  resize: none
+
+

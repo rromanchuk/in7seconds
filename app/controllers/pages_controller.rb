@@ -16,7 +16,7 @@ class PagesController < ApplicationController
   end
 
   def landing
-    render :layout => "splash"
+    # render :layout => "splash"
   end
 
   def error_404

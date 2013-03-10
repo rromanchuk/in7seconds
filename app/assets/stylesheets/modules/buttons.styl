@@ -1,0 +1,83 @@
+// button reset
+button,
+.button 
+  margin: 0
+  padding: 0
+  
+  overflow: visible
+  
+  border: none
+  outline: none
+  background: none
+  
+  box-shadow: none
+  border-radius: 0
+
+  noselect plz
+  touch-callout: none
+  box-sizing: border-box
+
+  tap-highlight-color: transparent !important
+
+  cursor: pointer
+
+
+// button styles
+.button 
+  height: 30px
+  padding: 0 (@height / 2)
+
+  display: inline-block
+  position: relative
+
+  font-size: 14px
+  line-height: @height
+  color: #fff
+
+  border-radius: 3px
+
+  text-decoration: none
+  text-align: center
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .3)
+
+  color: #fff
+
+  &:before  // webkit drag while clicking fix
+    content: ""
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+  
+  &:hover 
+    text-decoration: none
+  
+  &:active 
+    top: 1px 
+
+  // color styles
+  &.blue
+    background: #4e84e5
+    border: 1px solid #4e84e5 - 30%
+    box-shadow: 0 2px 0 #4e84e5 - 40%
+
+    &:active
+      background: #4e84e5 - 10%
+      box-shadow: 0 1px 0 #4e84e5 - 40%
+
+  &.pink
+    background: #ff005f
+    border: 1px solid #ff005f - 30%
+    box-shadow: 0 2px 0 #ff005f - 40%
+
+    &:active
+      background: #ff005f - 10%
+      box-shadow: 0 1px 0 #ff005f - 40%
+    
+  &[disabled],
+  &.disabled 
+    &,
+    &:active 
+      opacity: .5
+

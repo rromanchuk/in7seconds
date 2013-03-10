@@ -4,13 +4,38 @@
     = render :partial => 'layouts/meta'
 
   %body
-    .l-wrapper
-      = render :partial => 'layouts/header'
-      = yield
-      .l-footer-pusher
-    = render :partial => 'layouts/footer'
+    #l-wrap
+      %header#l-header
+        = render :partial => 'layouts/header'
 
-    -#
-      :javascript
-        app = {};
-      = javascript_include_tag 'application'
+      #l-content
+        = yield
+      #l-footer-push
+    %footer#l-footer
+      = render :partial => 'layouts/footer'
+
+    #l-notifications
+
+    :javascript
+      var app = {
+        env: {
+          debug: true // get from current env!
+        },
+        endpoints: {
+          user: '/api/user/'
+        },
+        user: {
+          name: 'awesome name',
+          photo: 'http://...'
+        },
+        settings: {
+          interested: 'male'
+        },
+        controllers: {},
+        models: {},
+        modules: {}
+      };
+    %script{:src=>"//vk.com/js/api/openapi.js?79"}
+    %script{:src=>"//vk.com/js/api/share.js?9"}
+    = render :partial => 'layouts/analytics'
+    = javascript_include_tag 'application'
