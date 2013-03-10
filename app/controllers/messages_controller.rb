@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
     hookup = User.find(params[:user_id])
     first_message = Message.first_message(current_user, hookup)
     if first_message
-      @message = first_message.replies.build(:to_user => @hookup, :from_user => current_user, :body => params[:message][:message])
+      @message = first_message.replies.build(:to_user => @hookup, :from_user => current_user, :message => params[:message][:message])
     else
       @message = Message.new(:to_user => hookup, :from_user => current_user, :message => params[:message][:message])
     end
