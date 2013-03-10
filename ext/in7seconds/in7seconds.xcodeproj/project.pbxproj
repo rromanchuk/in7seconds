@@ -72,6 +72,7 @@
 		FA7F38E016E7DD8200EA2C0B /* CircleDownCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38DE16E7DD8200EA2C0B /* CircleDownCounter.m */; };
 		FA7F38E316EBBF9500EA2C0B /* WhiteBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E216EBBF9400EA2C0B /* WhiteBubble.m */; };
 		FA7F38E616EBDB7D00EA2C0B /* BlueBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E516EBDB7C00EA2C0B /* BlueBubble.m */; };
+		FA7F38E916ECE94700EA2C0B /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E816ECE94700EA2C0B /* ProfileCell.m */; };
 		FA809FEA16D040FD003920E6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA809FE916D040FD003920E6 /* Crashlytics.framework */; };
 		FA809FEE16D2BD58003920E6 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA809FED16D2BD58003920E6 /* AddressBook.framework */; };
 		FAA2CC9216DC00C900C22D76 /* interests_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC6E16DC00C900C22D76 /* interests_icon.png */; };
@@ -235,6 +236,8 @@
 		FA7F38E216EBBF9400EA2C0B /* WhiteBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteBubble.m; sourceTree = "<group>"; };
 		FA7F38E416EBDB7B00EA2C0B /* BlueBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlueBubble.h; path = views/BlueBubble.h; sourceTree = "<group>"; };
 		FA7F38E516EBDB7C00EA2C0B /* BlueBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlueBubble.m; path = views/BlueBubble.m; sourceTree = "<group>"; };
+		FA7F38E716ECE94700EA2C0B /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileCell.h; path = views/ProfileCell.h; sourceTree = "<group>"; };
+		FA7F38E816ECE94700EA2C0B /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileCell.m; path = views/ProfileCell.m; sourceTree = "<group>"; };
 		FA809FE916D040FD003920E6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		FA809FEB16D2B641003920E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA809FEC16D2B642003920E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -341,6 +344,8 @@
 				FA7F38E216EBBF9400EA2C0B /* WhiteBubble.m */,
 				FA7F38E416EBDB7B00EA2C0B /* BlueBubble.h */,
 				FA7F38E516EBDB7C00EA2C0B /* BlueBubble.m */,
+				FA7F38E716ECE94700EA2C0B /* ProfileCell.h */,
+				FA7F38E816ECE94700EA2C0B /* ProfileCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -854,6 +859,7 @@
 				FA7F38E316EBBF9500EA2C0B /* WhiteBubble.m in Sources */,
 				FA7F38E616EBDB7D00EA2C0B /* BlueBubble.m in Sources */,
 				94A980B516ECB4060036E52C /* UserProfileViewController.m in Sources */,
+				FA7F38E916ECE94700EA2C0B /* ProfileCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

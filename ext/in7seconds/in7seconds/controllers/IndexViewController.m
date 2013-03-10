@@ -93,12 +93,14 @@
         vc.currentUser = self.currentUser;
         vc.otherUser = self.otherUser;
         vc.managedObjectContext = self.managedObjectContext;
+        vc.delegate = self;
     } else if ([segue.identifier isEqualToString:@"DirectToChat"]) {
         CommentViewController *vc = (CommentViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser; 
         vc.otherUser = self.otherUser;
     } else if ([segue.identifier isEqualToString:@"UserProfile"]) {
+        [self stopCountdown];
         UserProfileViewController *vc = (UserProfileViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
@@ -304,4 +306,7 @@
     [self setupNextHookup];
 }
 
+- (IBAction)didTapInfo:(id)sender {
+    [self performSegueWithIdentifier:@"UserProfile" sender:self];
+}
 @end

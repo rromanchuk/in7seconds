@@ -4,8 +4,8 @@ adarsh_ryan:
   status: accepted
 
 ryan_adarsh:
-  user: ryan
-  hookup: adarsh
+  user: adarsh
+  hookup: ryan
   status: accepted
 
 ryan_evgeny:

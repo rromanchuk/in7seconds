@@ -11,7 +11,7 @@ class Notification < ActiveRecord::Base
     Notification.send_notfication!([user.id], "Упс, у тебя не введен адрес эл. почты. Введи его в настройках приложения чтобы сразу получать оповещения.")
   end
 
-  def self.send_message(hookup, message)
+  def self.private_message(hookup, message)
     Notification.send_notfication!([hookup.id], "#{hookup.first_name}:#{message}")
   end
   

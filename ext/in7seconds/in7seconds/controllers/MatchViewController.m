@@ -30,7 +30,6 @@
 
 - (IBAction)didTapKeepSearching:(id)sender {
     [self.delegate userWantsToRate];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end
 
