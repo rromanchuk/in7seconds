@@ -20,3 +20,14 @@ adarsh:
   photo_url: http://cs303515.vk.me/v303515827/6813/piM8cu0xcgI.jpg
   vk_city: moscow
   vk_country: india
+
+evgeny:
+  email:
+  first_name: Evgeny
+  last_name: Seleznev
+  gender: false
+  vkuid: 4807674
+  looking_for_gender: 0
+  photo_url: http://cs5295.vk.me/u4807674/a_ef1dcaa0.jpg
+  vk_city: moscow
+  vk_country: india

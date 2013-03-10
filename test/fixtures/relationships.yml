@@ -2,3 +2,13 @@ adarh_ryan:
   user: ryan
   hookup: adarsh
   status: accepted
+
+ryan_evgeny:
+  user: evgeny
+  hookup: ryan
+  status: requested
+
+evgeny_ryan:
+  user: ryan
+  hookup: evgeny
+  status: pending

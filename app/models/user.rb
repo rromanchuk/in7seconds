@@ -305,7 +305,7 @@ class User < ActiveRecord::Base
     if self.relationships.blank?
       return users
     else
-      return users.where('vkuid NOT IN (?)', self.relationships.map(&:hookup).map(&:vkuid).push(vkuid))
+      return users.where('vkuid NOT IN (?)', self.relationships.where('status in (?)', ['accepted', 'requested']).map(&:hookup).map(&:vkuid).push(vkuid))
     end
   end
 

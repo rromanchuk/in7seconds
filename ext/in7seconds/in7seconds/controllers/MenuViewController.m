@@ -32,15 +32,14 @@
     self.versionLabel.text = [NSString stringWithFormat:@"Version %@ (%@)", majorVersion, minorVersion];
 	
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftViewWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
-    if ([RestUser currentUserToken]) {
-        [self fetch];
-    }
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = sharedAppDelegate.managedObjectContext;
 }
 
 
 - (void)leftViewWillAppear {
-    ALog(@"left fiew will appear with user %@", self.user);
-    if (!self.user && [RestUser currentUserToken]) {
+    ALog(@"left view will appear with user %@ and managedObject %@", self.user, self.managedObjectContext);
+    if (!self.user && [RestUser currentUserToken] && self.managedObjectContext) {
         [self fetch];
     }
 }
@@ -98,14 +97,17 @@
 }
 
 - (void)fetch {
+    ALog(@"in fetch user for menu controller");
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
     [RestUser reload:^(RestUser *restUser) {
         User *user = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+        ALog(@"returning from coredate helper with user %@", user);
         [self saveContext];
         self.user = user;
         [self setupProfile];
         [SVProgressHUD dismiss];
     } onError:^(NSError *error) {
+        ALog(@"got error %@", error);
         [SVProgressHUD dismiss];
     }];
 }

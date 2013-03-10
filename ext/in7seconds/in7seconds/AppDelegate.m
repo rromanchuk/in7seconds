@@ -73,6 +73,7 @@
     self.currentUser = [User currentUser:self.managedObjectContext];
     vc.currentUser = self.currentUser;
     [self theme];
+    
     return YES;
 }
 							
@@ -125,17 +126,6 @@
                                                    [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset, nil];
 
 }
-//- (void)resetCoreData {
-//    LoginViewController *lc = ((LoginViewController *) self.window.rootViewController);
-//    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Piclar.sqlite"];
-//    [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
-//    __persistentStoreCoordinator = nil;
-//    __managedObjectContext = nil;
-//    __managedObjectModel = nil;
-//    __privateWriterContext = nil;
-//    lc.managedObjectContext = self.managedObjectContext;
-//    
-//}
 
 - (void)writeToDisk {
     NSError *error = nil;

@@ -27,13 +27,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
+    //self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(revealMenu:)];
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chat_icon"] target:self action:@selector(didTapMatches:)];
     
-    ((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
-    ((MenuViewController *)self.slidingViewController.underLeftViewController).managedObjectContext = self.managedObjectContext;
+    //((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
+    //((MenuViewController *)self.slidingViewController.underLeftViewController).managedObjectContext = self.managedObjectContext;
 
     self.userImageView.delegate = self;
     self.userImageView.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -119,7 +119,11 @@
 
 - (void)topDidAppear {
     [((MenuViewController *)self.slidingViewController.underLeftViewController).view endEditing:YES];
-    [self startCountdown];
+    if (self.otherUser) {
+        [self startCountdown];
+    } else {
+        [self fetchPossibleHookups];
+    }
 }
 
 - (void)stopCountdown {
@@ -128,8 +132,6 @@
 }
 
 - (void)startCountdown {
-    if (_noResults)
-        return;
     ALog(@"Starting countdown");
     [[CircleDownCounter circleViewInView:self.countdownView] startWithSeconds:7];
     [self performSelector:@selector(didTapUnlike:) withObject:self afterDelay:8.0];
@@ -214,7 +216,6 @@
     
     [RestUser resetIdentifiers];
     [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
-    self.currentUser = nil;
     [[Vkontakte sharedInstance] logout];
     //[[UAPush shared] setAlias:nil];
     //[[UAPush shared] updateRegistration];
@@ -250,11 +251,14 @@
 }
 
 - (void)imageLoaded {
-    [CircleDownCounter showCircleDownWithSeconds:7.0f
-                                          onView:self.countdownView
-                                        withSize:kDefaultCounterSize
-                                         andType:CircleDownCounterTypeIntegerIncre];
-    [self performSelector:@selector(didTapUnlike:) withObject:self afterDelay:8.0];
+    if (self.otherUser) {
+        [CircleDownCounter showCircleDownWithSeconds:7.0f
+                                              onView:self.countdownView
+                                            withSize:kDefaultCounterSize
+                                             andType:CircleDownCounterTypeIntegerIncre];
+        [self performSelector:@selector(didTapUnlike:) withObject:self afterDelay:8.0];
+    }
+    
 }
 
 
