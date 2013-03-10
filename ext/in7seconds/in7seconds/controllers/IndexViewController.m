@@ -114,16 +114,7 @@
     [self.slidingViewController anchorTopViewTo:ECRight];
 }
 
-- (IBAction)didTapUnlike:(id)sender {
-    [self stopCountdown];
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
-    [RestUser rejectUser:self.otherUser onLoad:^(RestUser *restUser) {
-        [SVProgressHUD dismiss];
-        [self setupNextHookup];
-    } onError:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-    }];
-}
+
 
 - (void)topDidAppear {
     [((MenuViewController *)self.slidingViewController.underLeftViewController).view endEditing:YES];
@@ -160,6 +151,19 @@
         [self setupNextHookup];
     } onError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        [self setupNextHookup];
+    }];
+}
+
+- (IBAction)didTapUnlike:(id)sender {
+    [self stopCountdown];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
+    [RestUser rejectUser:self.otherUser onLoad:^(RestUser *restUser) {
+        [SVProgressHUD dismiss];
+        [self setupNextHookup];
+    } onError:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        [self setupNextHookup];
     }];
 }
 

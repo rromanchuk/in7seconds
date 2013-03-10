@@ -25,6 +25,11 @@ class User < ActiveRecord::Base
          :source => :hookup,
          :conditions => "status = 'pending'"
 
+  has_many :rejected_hookups,
+         :through => :relationships,
+         :source => :hookup,
+         :conditions => "status = 'rejected'"
+
   has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
@@ -305,7 +310,7 @@ class User < ActiveRecord::Base
     if self.relationships.blank?
       return users
     else
-      return users.where('vkuid NOT IN (?)', self.relationships.where('status in (?)', ['accepted', 'pending', 'rejected']).map(&:hookup).map(&:vkuid).push(vkuid))
+      return users.where('vkuid NOT IN (?)', self.relationships.where('status in (?)', ['accepted', 'requested', 'rejected']).map(&:hookup).map(&:vkuid).push(vkuid))
     end
   end
 
