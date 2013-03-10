@@ -47,7 +47,16 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftViewWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
     
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation-logo"]]; 
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation-logo"]];
+    
+    if (self.currentUser && [self.currentUser.possibleHookups count] > 0) {
+        if (!self.otherUser) {
+            [self setupNextHookup];
+        }
+    } else if (!_noResults){
+        [self fetchPossibleHookups];
+    }
+
 
 }
 
@@ -56,18 +65,10 @@
     [self stopCountdown];
 }
 
-
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (!self.currentUser) {
         [self performSegueWithIdentifier:@"Login" sender:self];
-    } else {
-        if (self.currentUser && [self.currentUser.possibleHookups count] > 0) {
-            [self setupNextHookup];
-        } else {
-            [self fetchPossibleHookups];
-        }
     }
 }
 
