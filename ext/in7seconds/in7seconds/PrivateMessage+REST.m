@@ -39,6 +39,7 @@
 
 - (void)setManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {
     RestMessage *restMessage = (RestMessage *) intermediateObject;
+    self.externalId = [NSNumber numberWithInteger:restMessage.externalId];
     self.message = restMessage.message;
     self.createdAt = restMessage.createdAt;
     self.fromUser = [User userWithRestUser:restMessage.fromUser inManagedObjectContext:self.managedObjectContext];

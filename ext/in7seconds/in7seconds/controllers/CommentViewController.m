@@ -440,8 +440,10 @@
 
 - (void)fetchResults {
     [RestMessage loadThreadWithUser:self.otherUser onLoad:^(NSArray *messages) {
+        ALog(@"rest messages %@", messages);
         for (RestMessage *_message in messages) {
-            [PrivateMessage privateMessageWithRestMessage:_message inManagedObjectContext:self.managedObjectContext];
+            PrivateMessage *pm = [PrivateMessage privateMessageWithRestMessage:_message inManagedObjectContext:self.managedObjectContext];
+            ALog(@"private message %@", pm);
         }
         [self saveContext];
     } onError:^(NSError *error) {

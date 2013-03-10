@@ -65,14 +65,17 @@ static NSString *RESOURCE_PATH = @"messages";
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"GET"
                                                                   path:path
                                                             parameters:params];
+    ALog(@"load thread: %@", request);
 
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             ALog(@"JSON: %@", JSON);
-                                                                                            NSMutableArray *restMessages;
+                                                                                            NSMutableArray *restMessages = [[NSMutableArray alloc] init];
                                                                                             for (id json in JSON) {
+                                                                                                ALog(@"in loop with %@", json);
                                                                                                 RestMessage *restMessage = [RestMessage objectFromJSONObject:json mapping:[RestMessage mapping]];
+                                                                                                ALog(@"restMessage: %@", restMessage);
                                                                                                 [restMessages addObject:restMessage];
                                                                                             }
                                                                                 
