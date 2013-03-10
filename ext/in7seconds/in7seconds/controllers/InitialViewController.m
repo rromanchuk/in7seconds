@@ -8,7 +8,7 @@
 
 #import "InitialViewController.h"
 #import "NavigationTopViewController.h"
-#import "InitialViewController.h"
+#import "IndexViewController.h"
 @interface InitialViewController ()
 
 @end
@@ -36,17 +36,16 @@
     }
 
 	// Do any additional setup after loading the view.
+    ALog(@"managed object is %@", self.managedObjectContext);
     self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationTop"];
     NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
-    ((InitialViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
-    ((InitialViewController *)nc.topViewController).currentUser = self.currentUser;
+    ((IndexViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
+    ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
     
+    self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
+    ((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = ((IndexViewController *)nc.topViewController);
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 @end

@@ -12,6 +12,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import "UAPush.h"
 #import "UAirship.h"
+#import "Config.h"
 
 @implementation AppDelegate
 @synthesize window = _window;
@@ -29,16 +30,28 @@
     [Crashlytics startWithAPIKey:@"cbbca2d940f872c4617ddb67cf20ec9844d036ea"];
     
     
-    //Create Airship options dictionary and add the required UIApplication launchOptions
-    NSMutableDictionary *takeOffOptions = [NSMutableDictionary dictionary];
+    NSMutableDictionary *takeOffOptions = [[NSMutableDictionary alloc] init];
     [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
     
-    // Call takeOff (which creates the UAirship singleton), passing in the launch options so the
-    // library can properly record when the app is launched from a push notification. This call is
-    // required.
-    //
-    // Populate AirshipConfig.plist with your app's info from https://go.urbanairship.com
+    NSMutableDictionary *airshipConfigOptions = [[NSMutableDictionary alloc] init];
+    
+    [airshipConfigOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
+    
+    [airshipConfigOptions setValue:[Config sharedConfig].airshipKeyDev forKey:@"DEVELOPMENT_APP_KEY"];
+    [airshipConfigOptions setValue:[Config sharedConfig].airshipSecretDev forKey:@"DEVELOPMENT_APP_SECRET"];
+    [airshipConfigOptions setValue:[Config sharedConfig].airshipKeyProd  forKey:@"PRODUCTION_APP_KEY"];
+    [airshipConfigOptions setValue:[Config sharedConfig].airshipSecretProd  forKey:@"PRODUCTION_APP_SECRET"];
+    
+#ifdef DEBUG
+    [airshipConfigOptions setValue:@"NO" forKey:@"APP_STORE_OR_AD_HOC_BUILD"];
+#else
+    [airshipConfigOptions setValue:@"YES" forKey:@"APP_STORE_OR_AD_HOC_BUILD"];
+#endif
+    
+    [takeOffOptions setValue:airshipConfigOptions forKey:UAirshipTakeOffOptionsAirshipConfigKey];
+    
     [UAirship takeOff:takeOffOptions];
+
     
     // Set the icon badge to zero on startup (optional)
     [[UAPush shared] resetBadge];
@@ -60,6 +73,7 @@
     self.currentUser = [User currentUser:self.managedObjectContext];
     vc.currentUser = self.currentUser;
     [self theme];
+    
     return YES;
 }
 							
@@ -85,6 +99,14 @@
 {
     [Location sharedLocation].delegate = self;
     [[Location sharedLocation] updateUntilDesiredOrTimeout:15.0];
+    
+    if (self.currentUser) {
+        [RestUser reload:^(RestUser *restUser) {
+            self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+        } onError:^(NSError *error) {
+            
+        }];
+    }
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
@@ -98,18 +120,12 @@
 - (void)theme {
     UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
     [navigationBarAppearance setBackgroundImage:[UIImage imageNamed:@"navigation-bar"] forBarMetrics:UIBarMetricsDefault];
+    
+    navigationBarAppearance.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue" size:20.0], UITextAttributeFont,
+                                                   RGBACOLOR(159, 169, 172, 1.0), UITextAttributeTextColor,
+                                                   [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset, nil];
+
 }
-//- (void)resetCoreData {
-//    LoginViewController *lc = ((LoginViewController *) self.window.rootViewController);
-//    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Piclar.sqlite"];
-//    [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
-//    __persistentStoreCoordinator = nil;
-//    __managedObjectContext = nil;
-//    __managedObjectModel = nil;
-//    __privateWriterContext = nil;
-//    lc.managedObjectContext = self.managedObjectContext;
-//    
-//}
 
 - (void)writeToDisk {
     NSError *error = nil;

@@ -18,9 +18,10 @@
     
     NSError *error = nil;
     NSArray *users = [context executeFetchRequest:request error:&error];
-
-    if (!users || ([users count] > 1)) {
+    //ALog(@"looking for user with externalId %d got %@ from restUser %@ with context %@", restUser.externalId, users, restUser, context);
+    if (users && ([users count] > 1)) {
         // handle error
+        ALog(@"not returning a user");
     } else if (![users count]) {
         user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
                                              inManagedObjectContext:context];
@@ -31,6 +32,7 @@
         user = [users lastObject];
         [user setManagedObjectWithIntermediateObject:restUser];
     }
+    
     return user;
 }
 
@@ -90,10 +92,14 @@
     self.authenticationToken = restUser.authenticationToken;
     self.vkToken = restUser.vkToken;
     //self.fbToken = restUser.fbToken;
-    self.location = restUser.location;
     self.gender = [NSNumber numberWithInteger:restUser.gender];
+    self.country = restUser.country;
+    self.city = restUser.city;
+    self.mutualFriends = [NSNumber numberWithInteger:restUser.mutualFriends];
+    self.mutualGroups = [NSNumber numberWithInteger:restUser.mutualGroups];
     self.birthday = restUser.birthday;
     self.updatedAt = restUser.updatedAt;
+    self.vkDomain = restUser.vkDomain;
     
     [self removePossibleHookups:self.possibleHookups];
     for (RestUser *_restUser in restUser.possibleHookups) {
@@ -110,7 +116,24 @@
 }
 
 - (NSString *)fullName {
+    return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
+}
+
+- (NSString *)russianFullName {
     return [NSString stringWithFormat:@"%@ %@", self.lastName, self.firstName];
+}
+
+- (NSString *)fullLocation {
+    if (self.city.length && self.country.length) {
+        return [NSString stringWithFormat:@"%@, %@", self.city, self.country];
+    } else if (self.city.length) {
+        return self.city;
+    } else if (self.country.length) {
+        return self.country;
+    } else {
+        return @"";
+    }
+    
 }
 
 - (NSNumber *)yearsOld {

@@ -16,5 +16,12 @@
 @property (nonatomic, strong) NSString *baseURL;
 @property (nonatomic, strong, getter = getVkUrl) NSString *vkUrl;
 
+@property (nonatomic, strong) NSString *airshipKeyDev;
+@property (nonatomic, strong) NSString *airshipSecretDev;
+@property (nonatomic, strong) NSString *airshipKeyProd;
+@property (nonatomic, strong) NSString *airshipSecretProd;
+@property (nonatomic, strong) NSString *adHoc;
+
+
 + (Config *)sharedConfig;
 @end

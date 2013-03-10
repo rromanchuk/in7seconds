@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
          #:validatable
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city
-  attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active, :city_id, :country_id, :looking_for_gender, :latitude, :longitude
+  attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active, :looking_for_gender, :latitude, :longitude, :vk_city, :vk_country, :vk_domain, :vk_graduation, :vk_university_name, :vk_faculty_name, :vk_mobile_phone
 
-  has_many :relationships
+  has_many :relationships, :dependent => :destroy
 
   has_many :hookups, :through => :relationships,
          :conditions => "status = 'accepted'"
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
          :source => :hookup,
          :conditions => "status = 'pending'"
 
-  has_many :friendships
+  has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
@@ -35,6 +35,13 @@ class User < ActiveRecord::Base
   has_many :inverse_memberships, :class_name => "Membership", :foreign_key => "group_id"
   has_many :inverse_memberships, :through => :inverse_memberships, :source => :user
   
+
+  has_many :messages_received,  :class_name => 'Message', :foreign_key => 'to_user_id'
+  has_many :messages_sent,      :class_name => 'Message', :foreign_key => 'from_user_id'
+
+  belongs_to :vk_country
+  belongs_to :vk_city
+
   scope :active, where(is_active: true)
 
   
@@ -51,9 +58,16 @@ class User < ActiveRecord::Base
 
   STATUS_TYPES = {accepted: 1, requested: 2, pending: 3, rejected: 4}
 
-  serialize :friends_list
 
   reverse_geocoded_by :latitude, :longitude
+
+  after_create :get_groups, :if => :is_active?
+  after_create :get_friends, :if => :is_active?
+
+
+  VK_FIELDS = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big, :graduation, :university_name, :education, :domain, :contacts]
+
+  scope :added_yesterday, where(created_at: Date.yesterday...Date.today, is_active: true)
 
   def fb_client
      FbGraph::User.fetch(fbuid, :access_token => fb_token)
@@ -84,8 +98,20 @@ class User < ActiveRecord::Base
   end
 
   def location 
-    self[:location] || ""
+    "#{city}, #{country}"
   end
+  
+  def city
+    vk_city.name
+  end
+
+  def birthday
+    self[:birthday] || ""
+  end
+
+  def country
+    vk_country.name
+  end 
 
   def self.guess_looking_for(gender)
     if gender == USER_MALE
@@ -117,11 +143,11 @@ class User < ActiveRecord::Base
     User.where(vkuid: vk_client.friends.getAppUsers)
   end
 
-  def mutual_friends
-    inverse_friends.joins(:friendships).where("friendships.user_id = users.id and friendships.friend_id = :self_id", :self_id => id).all
+  def mutual_friends(hookup)
+    self.friends & hookup.friends
   end
 
-  def mutal_groups(hookup)
+  def mutual_groups(hookup)
     Membership.where('group_id IN (?)', self.groups.map(&:id) ).where(user_id: hookup.id).map(&:group)
   end
 
@@ -131,44 +157,40 @@ class User < ActiveRecord::Base
       self.groups << group unless self.groups.exists?(group)
     end
   end
+  handle_asynchronously :get_groups
 
   def get_friends
-    fields = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big]
-    self.friends_list = vk_client.friends.get
-    vk_client.friends.get(fields: fields, lang:"ru") do |friend|
+    vk_client.friends.get(fields: VK_FIELDS, lang:"ru") do |friend|
       puts "#{friend.first_name} '#{friend.screen_name}' #{friend.last_name}"
       puts friend.to_yaml
-      user = User.where(:vkuid => friend.uid).first
-      if user.blank?
-        user = User.create!(
-          :vkuid => friend.uid,
-          :password => Devise.friendly_token[0,20],
+      user = User.where(vkuid: friend.uid).first_or_create(:password => Devise.friendly_token[0,20],
           :first_name => friend.first_name,
           :last_name => friend.last_name,
           :birthday => friend.bdate,
-          :city_id => friend.city,
-          :country_id => friend.country,
-          #:city => get_vk_city(friend.city, self.vk_token),
-          #:country => get_vk_country(friend.country, self.vk_token),
+          :vk_city => VkCity.where(cid: friend.city).first_or_create,
+          :vk_country => VkCountry.where(cid: friend.country).first_or_create,
           :gender => gender_for_vk_gender(friend.sex),
           :looking_for_gender => guess_looking_for(gender_for_vk_gender(friend.sex)),
           :provider => :vkontakte,
           :photo_url => friend.photo_big,
+          :vk_domain => friend.domain, 
+          :vk_graduation => friend.graduation,
+          :vk_university_name => friend.university_name,
+          :vk_faculty_name => friend.faculty_name,
+          :vk_mobile_phone => friend.mobile_phone,
           :is_active => false)
-      end
-      self.friends << user
-      # User.flirt(self, user)
-      # break
+
+      self.friends << user unless self.friends.exists?(user)
     end
     save
   end
+  handle_asynchronously :get_friends
 
   #authentication
 
   def update_user_from_vk_graph(vk_user, access_token)
     self.vk_token = access_token
     self.is_active = true
-    self.delay.get_friends
     save
   end
 
@@ -179,17 +201,21 @@ class User < ActiveRecord::Base
           :first_name => vk_user.first_name,
           :last_name => vk_user.last_name,
           :birthday => vk_user.bdate,
-          :city => get_vk_city(vk_user.city, access_token),
-          :country => get_vk_country(vk_user.country, access_token),
+          :vk_city => VkCity.where(cid: vk_user.city).first_or_create,
+          :vk_country => VkCountry.where(cid: vk_user.country).first_or_create,
           :vk_token => access_token,
           :gender => gender_for_vk_gender(vk_user.sex),
           :looking_for_gender => guess_looking_for(gender_for_vk_gender(vk_user.sex)),
           :provider => :vkontakte,
           :photo_url => vk_user.photo_big,
+          :vk_domain => vk_user.domain, 
+          :vk_graduation => vk_user.graduation,
+          :vk_university_name => vk_user.university_name,
+          :vk_faculty_name => vk_user.faculty_name,
+          :vk_mobile_phone => vk_user.mobile_phone,
           :is_active => true,
           :email => (vk_user.email.blank?) ? '' : vk_user.email)
-    # delay this
-    user.delay.get_friends
+    
     Mailer.delay.welcome(user)
     user
   end
@@ -269,7 +295,7 @@ class User < ActiveRecord::Base
     # First find nearby users
     users = users_nearby
     # Ok find friends on facebook
-    users = filter(User.where(:vkuid => self.friends_list).where('gender IN (?)', get_genders)) if users.blank?
+    users = filter(User.where(:vkuid => self.friends.map(&:vkuid) ).where('gender IN (?)', get_genders)) if users.blank?
     # Ok find anyone on the system
     users = filter(User.where('gender IN (?)', get_genders)).take(50) if users.blank?
     users
@@ -279,7 +305,7 @@ class User < ActiveRecord::Base
     if self.relationships.blank?
       return users
     else
-      return users.where('vkuid NOT IN (?)', self.relationships.map(&:hookup).map(&:vkuid).push(vkuid))
+      return users.where('vkuid NOT IN (?)', self.relationships.where('status in (?)', ['accepted', 'pending']).map(&:hookup).map(&:vkuid).push(vkuid))
     end
   end
 
@@ -330,23 +356,4 @@ class User < ActiveRecord::Base
     request.accepted_at = accepted_at
     request.save!
   end
-
-   def self.get_vk_city(id, token)
-    HTTParty.get('https://api.vk.com/method/getCities', {query: {cids: id, access_token: token}})["response"].first["name"]
-  end
-
-  def self.get_vk_country(id, token)
-    HTTParty.get('https://api.vk.com/method/getCountries', {query: {cids: id, access_token: token}})["response"].first["name"]
-  end
-
-  private
-
-  def get_vk_city(id, token)
-    User.get_vk_city(id, token)
-  end
-
-  def get_vk_country(id, token)
-    User.get_vk_country(id, token)
-  end
-
 end

@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "Location.h"
 #import "User.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate, LocationDelegate>

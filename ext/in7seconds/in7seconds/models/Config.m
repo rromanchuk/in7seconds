@@ -22,6 +22,14 @@
         self.vkSecretId = [environment valueForKey:@"vkSecretId"];
         self.vkScopes = [environment valueForKey:@"vkScopes"];
         self.baseURL = [environment valueForKey:@"baseURL"];
+        
+        self.airshipSecretProd = [environment valueForKey:@"PRODUCTION_APP_SECRET"];
+        self.airshipKeyProd = [environment valueForKey:@"PRODUCTION_APP_KEY"];
+        
+        
+        self.airshipSecretDev = [environment valueForKey:@"DEVELOPMENT_APP_SECRET"];
+        self.airshipKeyDev = [environment valueForKey:@"DEVELOPMENT_APP_KEY"];
+        self.adHoc = [environment valueForKey:@"APP_STORE_OR_AD_HOC_BUILD"];
     }
     
     return self;

@@ -31,14 +31,8 @@
     [super viewDidLoad];
     [Vkontakte sharedInstance].delegate = self;
     self.loginLabel.text = NSLocalizedString(@"Войти через Вконтакте", @"Login with vk prompt");
-    
+    [[Vkontakte sharedInstance] logout];
 	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)didTapVkLogin:(id)sender {
@@ -48,11 +42,6 @@
         ALog(@"authenticate");
         [[Vkontakte sharedInstance] authenticate];
     }
-    else
-    {
-        [[Vkontakte sharedInstance] logout];
-    }
-
 }
 
 #pragma mark - VkontakteDelegate
@@ -85,11 +74,12 @@
 
     NSDictionary *_params = @{@"access_token": vkontakte.accessToken, @"user_id": vkontakte.userId, @"platform": @"vkontakte", @"email": vkontakte.email };
     NSMutableDictionary *params = [_params mutableCopy];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...") maskType:SVProgressHUDMaskTypeGradient];
     
     [RestUser create:params
               onLoad:^(RestUser *restUser) {
-                  
-                  self.currentUser = [User findOrCreateUserWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+                  User *user = [User findOrCreateUserWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+                  self.currentUser = user;
                   [self saveContext];
                   [RestUser setCurrentUserId:restUser.externalId];
                   [RestUser setCurrentUserToken:restUser.authenticationToken];
@@ -97,13 +87,14 @@
                   [[UAPush shared] setAlias:alias];
                   [[UAPush shared] updateRegistration];
                   [SVProgressHUD dismiss];
+                  [self.delegate didVkLogin:user];
                   [self dismissViewControllerAnimated:YES completion:^(void) {
                       ALog(@"finished dismissing");
-                      [self.delegate didVkLogin:self.currentUser];
                   }];
 
               }
              onError:^(NSError *error) {
+                 [SVProgressHUD dismiss];
                  [RestUser resetIdentifiers];
                  [self dismissViewControllerAnimated:YES completion:nil];
                  [SVProgressHUD showErrorWithStatus:error.localizedDescription];

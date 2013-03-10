@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226202045) do
+ActiveRecord::Schema.define(:version => 20130308104157) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -40,15 +40,6 @@ ActiveRecord::Schema.define(:version => 20130226202045) do
   add_index "friendships", ["user_id", "friend_id"], :name => "index_friendships_on_user_id_and_friend_id", :unique => true
   add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
 
-  create_table "group_memberships", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "group_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "group_memberships", ["user_id", "group_id"], :name => "index_group_memberships_on_user_id_and_group_id", :unique => true
-
   create_table "groups", :force => true do |t|
     t.integer "gid"
     t.string  "name"
@@ -57,6 +48,30 @@ ActiveRecord::Schema.define(:version => 20130226202045) do
   end
 
   add_index "groups", ["gid"], :name => "index_groups_on_gid"
+  add_index "groups", ["provider"], :name => "index_groups_on_provider"
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "memberships", ["user_id", "group_id"], :name => "index_memberships_on_user_id_and_group_id", :unique => true
+
+  create_table "messages", :force => true do |t|
+    t.integer  "from_user_id"
+    t.integer  "to_user_id"
+    t.integer  "thread_id"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_read"
+  end
+
+  add_index "messages", ["from_user_id"], :name => "index_messages_on_from_user_id"
+  add_index "messages", ["thread_id"], :name => "index_messages_on_thread_id"
+  add_index "messages", ["to_user_id"], :name => "index_messages_on_to_user_id"
 
   create_table "relationships", :force => true do |t|
     t.integer  "user_id"
@@ -85,11 +100,6 @@ ActiveRecord::Schema.define(:version => 20130226202045) do
     t.string   "authentication_token"
     t.boolean  "is_active"
     t.string   "provider"
-    t.string   "location"
-    t.integer  "city_id"
-    t.integer  "country_id"
-    t.string   "city"
-    t.string   "country"
     t.boolean  "gender",                                                              :default => false
     t.datetime "birthday"
     t.string   "first_name"
@@ -101,16 +111,38 @@ ActiveRecord::Schema.define(:version => 20130226202045) do
     t.integer  "vkuid",                  :limit => 8
     t.decimal  "latitude",                            :precision => 15, :scale => 10
     t.decimal  "longitude",                           :precision => 15, :scale => 10
-    t.text     "friends_list"
     t.datetime "created_at",                                                                             :null => false
     t.datetime "updated_at",                                                                             :null => false
     t.integer  "looking_for_gender"
+    t.string   "vk_domain"
+    t.string   "vk_university_name"
+    t.string   "vk_faculty_name"
+    t.string   "vk_mobile_phone"
+    t.string   "vk_graduation"
+    t.integer  "vk_country_id"
+    t.integer  "vk_city_id"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["fbuid"], :name => "index_users_on_fbuid", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["vk_city_id"], :name => "index_users_on_vk_city_id"
+  add_index "users", ["vk_country_id"], :name => "index_users_on_vk_country_id"
   add_index "users", ["vkuid"], :name => "index_users_on_vkuid", :unique => true
+
+  create_table "vk_cities", :force => true do |t|
+    t.string  "name"
+    t.integer "cid"
+  end
+
+  add_index "vk_cities", ["cid"], :name => "index_vk_cities_on_cid"
+
+  create_table "vk_countries", :force => true do |t|
+    t.string  "name"
+    t.integer "cid"
+  end
+
+  add_index "vk_countries", ["cid"], :name => "index_vk_countries_on_cid"
 
 end
