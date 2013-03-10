@@ -6,9 +6,9 @@ adarh_ryan:
 ryan_evgeny:
   user: evgeny
   hookup: ryan
-  status: requested
+  status: pending
 
 evgeny_ryan:
   user: ryan
   hookup: evgeny
-  status: pending
+  status: requested

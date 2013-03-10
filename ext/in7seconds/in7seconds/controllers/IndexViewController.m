@@ -13,6 +13,8 @@
 #import "CircleCounterView.h"
 #import "CircleDownCounter.h"
 #import "CommentViewController.h"
+#import "UserProfileViewController.h"
+
 @interface IndexViewController () {
     NSInteger _numberOfAttempts;
     BOOL _noResults;
@@ -93,6 +95,11 @@
         vc.managedObjectContext = self.managedObjectContext;
     } else if ([segue.identifier isEqualToString:@"DirectToChat"]) {
         CommentViewController *vc = (CommentViewController *)segue.destinationViewController;
+        vc.managedObjectContext = self.managedObjectContext;
+        vc.currentUser = self.currentUser; 
+        vc.otherUser = self.otherUser;
+    } else if ([segue.identifier isEqualToString:@"UserProfile"]) {
+        UserProfileViewController *vc = (UserProfileViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
         vc.otherUser = self.otherUser;

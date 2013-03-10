@@ -34,6 +34,7 @@
 		94A980AE16EB70D40036E52C /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A980AD16EB70D40036E52C /* PrivateMessage.m */; };
 		94A980B116EB7A620036E52C /* enter-textfield-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A980AF16EB7A620036E52C /* enter-textfield-bg.png */; };
 		94A980B216EB7A620036E52C /* enter-textfield-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A980B016EB7A620036E52C /* enter-textfield-bg@2x.png */; };
+		94A980B516ECB4060036E52C /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A980B416ECB4040036E52C /* UserProfileViewController.m */; };
 		94D09CA716CBD3470064F886 /* RestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA616CBD3470064F886 /* RestClient.m */; };
 		94D09CAA16CBD3630064F886 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA916CBD3630064F886 /* Config.m */; };
 		94D09CBF16CBD5260064F886 /* environments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94D09CBE16CBD5260064F886 /* environments.plist */; };
@@ -169,6 +170,8 @@
 		94A980AD16EB70D40036E52C /* PrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivateMessage.m; path = models/PrivateMessage.m; sourceTree = "<group>"; };
 		94A980AF16EB7A620036E52C /* enter-textfield-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enter-textfield-bg.png"; sourceTree = "<group>"; };
 		94A980B016EB7A620036E52C /* enter-textfield-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enter-textfield-bg@2x.png"; sourceTree = "<group>"; };
+		94A980B316ECB4030036E52C /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = controllers/UserProfileViewController.h; sourceTree = "<group>"; };
+		94A980B416ECB4040036E52C /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = controllers/UserProfileViewController.m; sourceTree = "<group>"; };
 		94D09CA516CBD3470064F886 /* RestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestClient.h; path = models/RestClient.h; sourceTree = "<group>"; };
 		94D09CA616CBD3470064F886 /* RestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestClient.m; path = models/RestClient.m; sourceTree = "<group>"; };
 		94D09CA816CBD3630064F886 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = models/Config.h; sourceTree = "<group>"; };
@@ -541,6 +544,8 @@
 				FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */,
 				94A9808216E9E34C0036E52C /* MatchViewController.h */,
 				94A9808316E9E34C0036E52C /* MatchViewController.m */,
+				94A980B316ECB4030036E52C /* UserProfileViewController.h */,
+				94A980B416ECB4040036E52C /* UserProfileViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -848,6 +853,7 @@
 				94A980AE16EB70D40036E52C /* PrivateMessage.m in Sources */,
 				FA7F38E316EBBF9500EA2C0B /* WhiteBubble.m in Sources */,
 				FA7F38E616EBDB7D00EA2C0B /* BlueBubble.m in Sources */,
+				94A980B516ECB4060036E52C /* UserProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
