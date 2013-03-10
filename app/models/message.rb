@@ -22,8 +22,8 @@ class Message < ActiveRecord::Base
   end
 
   def notify
-    Notification.send_message(to_user, message)
-    Mailer.delay.send_message(to_user, from_user, message)
+    Notification.private_message(to_user, message)
+    Mailer.delay.private_message(to_user, from_user, message)
   end
 
 end
