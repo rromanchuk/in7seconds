@@ -15,8 +15,9 @@ class Notification < ActiveRecord::Base
     Notification.send_notfication!([hookup.id], "#{hookup.first_name}: #{message}")
   end
   
-  def self.fuck(user1, user2)
-    Notification.send_notfication!([user1.id, user2.id], "Ого, похоже что ты понравился <User>. Напиши (ему|ей) прямо сейчас!")
+  def self.fuck(receiver, hookup)
+    message = (hookup.gender) ? I18n.t('notifications.fuck.f', user: hookup.first_name) : I18n.t('notifications.fuck.m', user: hookup.first_name)
+    Notification.send_notfication!([receiver.id], message)
   end
 
   def self.send_notfication!(aliases, message, extra={})

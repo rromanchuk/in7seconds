@@ -14,6 +14,7 @@ class Relationship < ActiveRecord::Base
       changes = self.status_change
       if changes[1] == 'accepted'
         Notification.fuck(self.user, self.hookup)
+        Notification.fuck(self.hookup, self.user)
         Mailer.delay.fuck(self.user, self.hookup)
         Mailer.delay.fuck(self.hookup, self.user)
       end
