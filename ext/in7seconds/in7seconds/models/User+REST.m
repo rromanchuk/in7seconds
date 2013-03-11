@@ -100,6 +100,8 @@
     self.birthday = restUser.birthday;
     self.updatedAt = restUser.updatedAt;
     self.vkDomain = restUser.vkDomain;
+    self.groupNames = restUser.groupNames;
+    self.friendNames = restUser.friendNames;
     
     [self removePossibleHookups:self.possibleHookups];
     for (RestUser *_restUser in restUser.possibleHookups) {

@@ -15,7 +15,9 @@
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friendNames" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="groupNames" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -31,6 +33,6 @@
     </entity>
     <elements>
         <element name="PrivateMessage" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="User" positionX="160" positionY="192" width="128" height="345"/>
+        <element name="User" positionX="160" positionY="192" width="128" height="375"/>
     </elements>
 </model>

@@ -2,7 +2,7 @@
 //  User.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 2/28/13.
+//  Created by Ryan Romanchuk on 3/11/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -15,23 +15,24 @@
 
 @property (nonatomic, retain) NSString * authenticationToken;
 @property (nonatomic, retain) NSDate * birthday;
+@property (nonatomic, retain) NSString * city;
+@property (nonatomic, retain) NSString * country;
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSNumber * externalId;
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSNumber * gender;
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSNumber * latitude;
-@property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSNumber * lookingForGender;
-@property (nonatomic, retain) NSString * photoUrl;
-@property (nonatomic, retain) NSDate * updatedAt;
-@property (nonatomic, retain) NSString * vkToken;
 @property (nonatomic, retain) NSNumber * mutualFriends;
 @property (nonatomic, retain) NSNumber * mutualGroups;
-@property (nonatomic, retain) NSString * country;
-@property (nonatomic, retain) NSString * city;
+@property (nonatomic, retain) NSString * photoUrl;
+@property (nonatomic, retain) NSDate * updatedAt;
 @property (nonatomic, retain) NSString * vkDomain;
+@property (nonatomic, retain) NSString * vkToken;
+@property (nonatomic, retain) NSString * groupNames;
+@property (nonatomic, retain) NSString * friendNames;
 @property (nonatomic, retain) NSSet *hookups;
 @property (nonatomic, retain) NSSet *possibleHookups;
 @end

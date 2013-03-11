@@ -116,7 +116,15 @@ class User < ActiveRecord::Base
 
   def country
     vk_country.name
-  end 
+  end
+
+  def group_names
+    groups.map(&:name).join(',')
+  end
+
+  def friend_names
+    friends.map(&:name).join(',')
+  end
 
   def self.guess_looking_for(gender)
     if gender == USER_MALE

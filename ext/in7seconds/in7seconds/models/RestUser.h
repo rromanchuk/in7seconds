@@ -23,6 +23,9 @@
 // Attributes
 @property (atomic, strong) NSString *firstName;
 @property (atomic, strong) NSString *lastName;
+@property (atomic, strong) NSString *groupNames;
+@property (atomic, strong) NSString *friendNames;
+
 @property (atomic, strong) NSString *email;
 @property (atomic, strong) NSString *photoUrl;
 @property (atomic, strong) NSString *city;

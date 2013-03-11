@@ -11,8 +11,11 @@
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
 @property (strong, nonatomic) User *otherUser;
-@property (weak, nonatomic) IBOutlet UIImageView *userProfile;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UIButton *mutalFriendsButton;
+@property (weak, nonatomic) IBOutlet UIButton *mutualGroupsButton;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *friendsLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *groupsLabel;
 @end

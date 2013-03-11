@@ -33,6 +33,8 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                 @"photoUrl", @"photo_url",
                                 @"mutualFriends", @"mutual_friends",
                                 @"mutualGroups", @"mutual_groups",
+                                @"groupNames", @"group_names",
+                                @"friendNames", @"friend_names",
                                 @"city", @"city",
                                 @"country", @"country",
                                 @"vkDomain", @"vk_domain",

@@ -19,14 +19,19 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self.userProfile setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
-    self.nameLabel.text = self.otherUser.fullName;
+    self.title = [NSString stringWithFormat:@"%@", self.otherUser.firstName];
     
+    [self.profileImage setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
+    [self.mutalFriendsButton setTitle:[NSString stringWithFormat:@"%@", self.otherUser.mutualFriends] forState:UIControlStateNormal];
+    [self.mutualGroupsButton setTitle:[NSString stringWithFormat:@"%@", self.otherUser.mutualGroups] forState:UIControlStateNormal];
+    
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
+    
+    
+}
+
+- (void)back {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
