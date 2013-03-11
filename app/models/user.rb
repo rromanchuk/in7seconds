@@ -315,7 +315,7 @@ class User < ActiveRecord::Base
   end
 
   def exclude_vkuids
-    (hookups + requested_hookups + rejected_hookups).map(&:vkuid)
+    (hookups + pending_hookups + rejected_hookups).map(&:vkuid)
   end
 
   def users_nearby
