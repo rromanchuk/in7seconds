@@ -68,11 +68,16 @@ class User < ActiveRecord::Base
 
   after_create :get_groups, :if => :is_active?
   after_create :get_friends, :if => :is_active?
-
+  after_create :welcome_email, :if => :is_active?
+  before_destroy :remove_relationships
 
   VK_FIELDS = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big, :graduation, :university_name, :education, :domain, :contacts]
 
   scope :added_yesterday, where(created_at: Date.yesterday...Date.today, is_active: true)
+
+  def remove_relationships
+    Relationship.where(hookup_id: self.id).map(&:destroy)
+  end
 
   def fb_client
      FbGraph::User.fetch(fbuid, :access_token => fb_token)
@@ -237,8 +242,12 @@ class User < ActiveRecord::Base
           :is_active => true,
           :email => (vk_user.email.blank?) ? '' : vk_user.email)
     
-    Mailer.delay.welcome(user)
+    
     user
+  end
+
+  def welcome_email
+    Mailer.delay.welcome(user)
   end
 
   def update_user_from_fb_graph(facebook_user)
