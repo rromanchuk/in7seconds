@@ -598,11 +598,11 @@
                         <sections>
                             <tableViewSection id="QX9-pn-fb6">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="506" id="6wk-rw-iHH">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="506"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="592" id="6wk-rw-iHH">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="592"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="505"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="591"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="AiT-bI-kN2">
@@ -656,7 +656,7 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="eb5-qE-QVY">
-                                                    <rect key="frame" x="142" y="147" width="171" height="69"/>
+                                                    <rect key="frame" x="142" y="178" width="171" height="69"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </scrollView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="веб, типографика, здоровый образ жизни, онлайн игры, ролики" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nun-fn-HM2">
@@ -688,25 +688,31 @@
                                                     <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d2N-lh-vrA">
+                                                    <rect key="frame" x="88" y="420" width="222" height="72"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <string key="text">веб, типографика, здоровый образ жизни, онлайн игры, ролики, Объять необъятное: гастроэнтерология, кошки, горные лыжи, путешествия, друзья</string>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                                                    <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Страница ВКонтакте" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ehf-ga-Jtg">
+                                                    <rect key="frame" x="86" y="488" width="214" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                                    <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="http://vk.com/rromanchuk" id="aJF-eR-bec">
+                                                    <rect key="frame" x="86" y="510" width="214" height="41"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                </textView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="53" id="0Sk-Mu-o3i">
-                                        <rect key="frame" x="0.0" y="506" width="320" height="53"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="rVY-0O-lTf">
-                                        <rect key="frame" x="0.0" y="559" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
@@ -720,11 +726,15 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="C2c-vp-31l"/>
                     <connections>
+                        <outlet property="educationLabel" destination="d2N-lh-vrA" id="K7D-p5-Hf7"/>
                         <outlet property="friendsLabel" destination="nun-fn-HM2" id="8qR-Aa-NiW"/>
                         <outlet property="mutalFriendsButton" destination="jqs-1v-Qqa" id="lqg-Rk-XcM"/>
                         <outlet property="mutualGroupsButton" destination="seK-RF-ZPO" id="8cm-cu-Xd0"/>
+                        <outlet property="mutualGroupsLabel" destination="Hgj-Vb-esQ" id="uPA-Vp-I8C"/>
                         <outlet property="profileImage" destination="AiT-bI-kN2" id="g8P-WV-c1i"/>
                         <outlet property="scrollView" destination="eb5-qE-QVY" id="kiW-45-iL7"/>
+                        <outlet property="userGroupsLabel" destination="3CS-1t-LNw" id="KTj-Xy-v9z"/>
+                        <outlet property="vkUrlTextView" destination="aJF-eR-bec" id="v0p-vq-fl4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q2r-MF-gAZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -886,12 +896,15 @@
         <class className="UserProfileViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UserProfileViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="educationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="friendsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="groupsLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="mutalFriendsButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="mutualGroupsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mutualGroupsLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="profileImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="userGroupsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="vkUrlTextView" candidateClass="UITextView"/>
             </relationships>
         </class>
         <class className="VkontakteViewController" superclassName="UIViewController">

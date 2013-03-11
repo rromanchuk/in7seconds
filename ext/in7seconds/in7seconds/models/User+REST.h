@@ -22,4 +22,7 @@
 - (NSString *)fullName;
 - (NSNumber *)yearsOld;
 - (NSString *)fullLocation;
+- (NSString *)vkUrl;
+- (NSString *)schoolInfo;
+
 @end

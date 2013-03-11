@@ -118,6 +118,14 @@ class User < ActiveRecord::Base
     vk_country.name
   end
 
+  def mutual_group_names(hookup)
+    mutual_groups(hookup).map(&:name).join(',')
+  end
+
+  def mutual_friend_names(hookup)
+    mutual_friends(hookup).map(&:name).join(',')
+  end
+
   def group_names
     groups.map(&:name).join(',')
   end

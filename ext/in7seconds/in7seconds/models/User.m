@@ -2,7 +2,7 @@
 //  User.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 3/11/13.
+//  Created by Ryan Romanchuk on 3/12/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -32,6 +32,11 @@
 @dynamic vkToken;
 @dynamic groupNames;
 @dynamic friendNames;
+@dynamic mutualGroupNames;
+@dynamic mutualFriendNames;
+@dynamic vkUniversityName;
+@dynamic vkGraduation;
+@dynamic vkFacultyName;
 @dynamic hookups;
 @dynamic possibleHookups;
 

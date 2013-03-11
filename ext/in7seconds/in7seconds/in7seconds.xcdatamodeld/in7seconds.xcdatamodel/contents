@@ -22,17 +22,22 @@
         <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="lookingForGender" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="mutualFriendNames" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mutualFriends" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="mutualGroupNames" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mutualGroups" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="vkDomain" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkFacultyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkGraduation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vkToken" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vkUniversityName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="hookups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="hookups" inverseEntity="User" syncable="YES"/>
         <relationship name="possibleHookups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="possibleHookups" inverseEntity="User" syncable="YES"/>
     </entity>
     <elements>
         <element name="PrivateMessage" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="User" positionX="160" positionY="192" width="128" height="375"/>
+        <element name="User" positionX="160" positionY="192" width="128" height="450"/>
     </elements>
 </model>

@@ -91,6 +91,10 @@
     self.externalId = [NSNumber numberWithInt:restUser.externalId];
     self.authenticationToken = restUser.authenticationToken;
     self.vkToken = restUser.vkToken;
+    self.vkUniversityName = restUser.vkUniversityName;
+    self.vkGraduation = restUser.vkGraduation;
+    self.vkFacultyName = restUser.vkFacultyName;
+    
     //self.fbToken = restUser.fbToken;
     self.gender = [NSNumber numberWithInteger:restUser.gender];
     self.country = restUser.country;
@@ -102,6 +106,8 @@
     self.vkDomain = restUser.vkDomain;
     self.groupNames = restUser.groupNames;
     self.friendNames = restUser.friendNames;
+    self.mutualFriendNames = restUser.mutualFriendNames;
+    self.mutualGroupNames = restUser.mutualGroupNames;
     
     [self removePossibleHookups:self.possibleHookups];
     for (RestUser *_restUser in restUser.possibleHookups) {
@@ -119,6 +125,20 @@
 
 - (NSString *)fullName {
     return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
+}
+
+- (NSString *)schoolInfo {
+    if (self.vkUniversityName) {
+        return [NSString stringWithFormat:@"%@, %@", self.vkUniversityName, self.vkGraduation];
+    }
+    return nil;
+}
+
+- (NSString *)vkUrl {
+    if (self.vkDomain) {
+        return [NSString stringWithFormat:@"http://vk.com/%@", self.vkDomain];
+    }
+    return nil;
 }
 
 - (NSString *)russianFullName {

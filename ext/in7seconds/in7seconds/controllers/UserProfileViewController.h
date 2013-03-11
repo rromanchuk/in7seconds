@@ -14,8 +14,15 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UIButton *mutalFriendsButton;
 @property (weak, nonatomic) IBOutlet UIButton *mutualGroupsButton;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UILabel *friendsLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *groupsLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (weak, nonatomic) IBOutlet UILabel *friendsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *mutualGroupsLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *userGroupsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *educationLabel;
+
+
+@property (weak, nonatomic) IBOutlet UITextView *vkUrlTextView;
 @end

@@ -19,12 +19,19 @@
 @property (atomic, strong) NSString *authenticationToken;
 @property (atomic, strong) NSString *fbToken;
 @property (atomic, strong) NSString *vkToken;
+@property (atomic, strong) NSString *vkUniversityName;
+@property (atomic, strong) NSString *vkGraduation;
+@property (atomic, strong) NSString *vkFacultyName;
+
+
 
 // Attributes
 @property (atomic, strong) NSString *firstName;
 @property (atomic, strong) NSString *lastName;
 @property (atomic, strong) NSString *groupNames;
 @property (atomic, strong) NSString *friendNames;
+@property (atomic, strong) NSString *mutualFriendNames;
+@property (atomic, strong) NSString *mutualGroupNames;
 
 @property (atomic, strong) NSString *email;
 @property (atomic, strong) NSString *photoUrl;
