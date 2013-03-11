@@ -8,7 +8,7 @@
       %header#l-header
         = render :partial => 'layouts/header'
 
-      #l-content
+      #l-content{:class=>(yield :content_classes).blank? ? nil : (yield :content_classes)}
         = yield
       #l-footer-push
     %footer#l-footer

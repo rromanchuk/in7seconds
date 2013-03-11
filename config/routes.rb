@@ -81,7 +81,7 @@ In7seconds::Application.routes.draw do
     match '*not_found', to: 'pages#error_404'
   end
   
-  root :to => 'pages#landing'#'users#home'
+  root :to => 'pages#index'#'users#home'
 
   # See how all your routes lay out with "rake routes"
 

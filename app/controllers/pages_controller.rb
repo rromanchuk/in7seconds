@@ -15,7 +15,7 @@ class PagesController < ApplicationController
 
   end
 
-  def landing
+  def index
     # render :layout => "splash"
   end
 

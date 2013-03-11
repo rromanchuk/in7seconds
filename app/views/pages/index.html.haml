@@ -1,0 +1,32 @@
+
+.p-index
+  .p-i-bg-wrap
+    .p-i-bg-container
+      = image_tag('splash.jpg', :alt => 'Spread love', :class => '.p-i-bg-img') 
+
+  .p-i-content
+    %h1 Fuck With Friends
+
+    .p-i-desc
+      %strong Открой своих друзей с&nbsp;новой стороны.
+      %small
+        Анонимно найди тех, кто свободен на эту ночь.
+        Твои друзья ни&nbsp;о&nbsp;чем не&nbsp;узнают, пока они тоже не&nbsp;заинтересованы.
+        Как узнать, что они заинтересованы? Показать им&nbsp;этот сайт конечно&nbsp;же.
+
+    / .p-i-auth
+    /   = link_to '/auth/vkontakte', tos_path, :class=> '.vkbutton.button',
+    /     %i.vk-icon
+    /     Войти через ВКонтакте
+
+    /   %p.p-i-policy
+    /     Авторизуясь, вы&nbsp;даете свое согласие на&nbsp;обработку личных данных, соглашаетесь&nbsp;с&nbsp;
+    /     #{link_to 'http://' + CONFIG[:host] + tos_path, 'условиями использования'}, а так же подтверждаете, 
+    /     что вам больше 18 лет.
+
+    .p-i-share
+      .p-i-likewrap
+        #vk_like
+      .p-i-sharewrap
+        #vk_share
+      
