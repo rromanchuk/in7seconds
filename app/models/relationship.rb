@@ -6,4 +6,18 @@ class Relationship < ActiveRecord::Base
   belongs_to :hookup, :class_name => 'User'
 
   scope :added_yesterday, where(created_at: Date.yesterday...Date.today)
+
+  after_save :notify
+
+  def notify
+    if self.status_changed?
+      changes = self.status_change
+      if changes[1] == 'accepted'
+        Notification.fuck(self.user, self.hookup)
+        Mailer.delay.fuck(self.user, self.hookup)
+        Mailer.delay.fuck(self.hookup, self.user)
+      end
+    end
+  end
+
 end

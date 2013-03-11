@@ -20,11 +20,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setupFetchedResultsController];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     self.title = NSLocalizedString(@"Симпатии", nil);
     self.tableView.backgroundView = [[BaseUIView alloc] init];
 	// Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setupFetchedResultsController];
 }
 
 #pragma mark CoreData methods
@@ -57,7 +61,7 @@
     User *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
     MatchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
     cell.nameLabel.text = user.fullName;
-    [cell.profileImage setImageWithURL:[NSURL URLWithString:user.photoUrl]];
+    [cell.profileImage setProfilePhotoWithURL:user.photoUrl];
     cell.previewLabel.text = user.fullLocation;
     return cell;
 }

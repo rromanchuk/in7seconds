@@ -7,7 +7,6 @@
 //
 
 #import "IndexViewController.h"
-#import "AppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MatchesViewController.h"
 #import "CircleCounterView.h"
@@ -49,7 +48,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftViewWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation-logo"]];
-    
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    sharedAppDelegate.delegate = self;
+
 }
 
 - (void)leftViewWillAppear {
@@ -298,6 +299,16 @@
     
 }
 
+#pragma mark ApplicationLifecycleDelegate methods
+- (void)applicationWillExit {
+    [self stopCountdown];
+}
+
+- (void)applicationWillWillStart {
+    if (self.otherUser) {
+        [self startCountdown];
+    }
+}
 #pragma mark MatchModalDelegate methods
 - (void)userWantsToChat {
     [self dismissViewControllerAnimated:NO completion:nil];

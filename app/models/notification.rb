@@ -17,8 +17,6 @@ class Notification < ActiveRecord::Base
   
   def self.fuck(user1, user2)
     Notification.send_notfication!([user1.id, user2.id], "Ого, похоже что ты понравился <User>. Напиши (ему|ей) прямо сейчас!")
-    Mailer.fuck(user1, user2).deliver
-    Mailer.fuck(user2, user1).deliver
   end
 
   def self.send_notfication!(aliases, message, extra={})

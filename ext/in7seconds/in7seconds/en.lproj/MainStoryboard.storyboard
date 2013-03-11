@@ -328,7 +328,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="76"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="fpt-SD-auJ">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="fpt-SD-auJ" customClass="ProfileImageView">
                                             <rect key="frame" x="12" y="9" width="60" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -923,6 +923,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="w1L-Nh-4Xb"/>
+        <segue reference="hjQ-Dw-AsQ"/>
     </inferredMetricsTieBreakers>
 </document>

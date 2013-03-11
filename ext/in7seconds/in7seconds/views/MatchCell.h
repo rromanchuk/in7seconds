@@ -6,11 +6,10 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
+#import "ProfileImageView.h"
 @interface MatchCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet ProfileImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *previewLabel;
 
 @end
