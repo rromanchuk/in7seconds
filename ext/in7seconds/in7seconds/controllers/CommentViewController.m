@@ -270,6 +270,7 @@
     [RestMessage sendMessageTo:self.otherUser withMessage:comment onLoad:^(RestMessage *restMessage) {
         [SVProgressHUD dismiss];
         PrivateMessage *message = [PrivateMessage privateMessageWithRestMessage:restMessage inManagedObjectContext:self.managedObjectContext];
+        self.commentView.text = nil;
         [self saveContext];
     } onError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
