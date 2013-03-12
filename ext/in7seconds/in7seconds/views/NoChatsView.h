@@ -8,5 +8,6 @@
 
 #import "BaseUIView.h"
 @interface NoChatsView : BaseUIView
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 
 @end
