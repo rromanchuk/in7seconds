@@ -7,7 +7,7 @@ class Relationship < ActiveRecord::Base
 
   scope :added_yesterday, where(created_at: Date.yesterday...Date.today)
   scope :matches_yesterday, where(created_at: Date.yesterday...Date.today, status: "accepted")
-
+  
 
   after_save :notify
 

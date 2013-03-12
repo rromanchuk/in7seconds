@@ -41,5 +41,8 @@ In7seconds::Application.configure do
   Urbanairship.logger = Rails.logger
   Urbanairship.request_timeout = 5 # default
 
+  Delayed::Worker.delay_jobs = false
+
+
   #config.middleware.use MailView::Mapper, [MailPreview]
 end
