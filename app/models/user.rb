@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
   end
 
   def location 
-    "#{city}, #{country}"
+   "#{city}, #{country}"
   end
   
   def city
@@ -124,7 +124,11 @@ class User < ActiveRecord::Base
   end
 
   def country
-    vk_country.name
+    if vk_country
+      vk_country.name
+    else
+      ''
+    end
   end
 
   def mutual_group_names(hookup)
