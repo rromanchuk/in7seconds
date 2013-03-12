@@ -113,6 +113,7 @@
 
 - (void)setHookupManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {
     RestUser *restUser = (RestUser *) intermediateObject;
+    self.externalId = [NSNumber numberWithInt:restUser.externalId];
     self.updatedAt = restUser.updatedAt;
     self.firstName = restUser.firstName;
     self.lastName = restUser.lastName;
