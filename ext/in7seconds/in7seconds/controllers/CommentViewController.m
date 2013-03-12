@@ -252,20 +252,6 @@
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
     
-//    [self.feedItem createComment:comment onLoad:^(RestComment *restComment) {
-//        Comment *comment = [Comment commentWithRestComment:restComment inManagedObjectContext:self.managedObjectContext];
-//        self.tableView.tableFooterView = nil;
-//        [self.feedItem addCommentsObject:comment];
-//        [self saveContext];
-//        [SVProgressHUD dismiss];
-//        self.commentView.text = nil;
-//        DLog(@"added comment");
-//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.fetchedResultsController.fetchedObjects count]-1 inSection:0];
-//        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-//    } onError:^(NSError *error) {
-//        DLog(@"ERROR %@", error);
-//        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-//    }];
 }
 
 
@@ -447,7 +433,7 @@
         }
         [self saveContext];
     } onError:^(NSError *error) {
-        
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
 }
 

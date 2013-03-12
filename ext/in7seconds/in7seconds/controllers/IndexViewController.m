@@ -305,6 +305,7 @@
 }
 
 - (void)applicationWillWillStart {
+    _numberOfAttempts = 0;
     if (self.otherUser) {
         [self startCountdown];
     }

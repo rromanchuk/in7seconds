@@ -112,7 +112,11 @@ class User < ActiveRecord::Base
   end
   
   def city
-    vk_city.name
+    if vk_city
+      vk_city.name
+    else
+      ''
+    end
   end
 
   def birthday

@@ -650,7 +650,8 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hgj-Vb-esQ">
                                                     <rect key="frame" x="86" y="242" width="222" height="72"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <string key="text">веб, типографика, здоровый образ жизни, онлайн игры, ролики, Объять необъятное: гастроэнтерология, кошки, горные лыжи, путешествия, друзья</string>
+                                                    <string key="text">веб, типографика, здоровый образ жизни, онлайн игры, ролики, Объять необъятное: 
+гастроэнтерология, кошки, горные лыжи, путешествия, друзья</string>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                                                     <color key="textColor" red="0.62352941176470589" green="0.66274509803921566" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -676,7 +677,8 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3CS-1t-LNw">
                                                     <rect key="frame" x="86" y="329" width="222" height="72"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <string key="text">веб, типографика, здоровый образ жизни, онлайн игры, ролики, Объять необъятное: гастроэнтерология, кошки, горные лыжи, путешествия, друзья</string>
+                                                    <string key="text">веб, типографика, здоровый образ жизни, онлайн игры, ролики, Объять необъятное: 
+гастроэнтерология, кошки, горные лыжи, путешествия, друзья</string>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                                                     <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -691,7 +693,8 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d2N-lh-vrA">
                                                     <rect key="frame" x="88" y="420" width="222" height="72"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <string key="text">веб, типографика, здоровый образ жизни, онлайн игры, ролики, Объять необъятное: гастроэнтерология, кошки, горные лыжи, путешествия, друзья</string>
+                                                    <string key="text">веб, типографика, здоровый образ жизни, онлайн игры, ролики, Объять необъятное: 
+гастроэнтерология, кошки, горные лыжи, путешествия, друзья</string>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                                                     <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
