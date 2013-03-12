@@ -37,6 +37,35 @@
 }
 
 
++ (User *)hookupWithRestUser:(RestUser *)restUser
+    inManagedObjectContext:(NSManagedObjectContext *)context {
+    
+    User *user;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", [NSNumber numberWithInt:restUser.externalId]];
+    
+    NSError *error = nil;
+    NSArray *users = [context executeFetchRequest:request error:&error];
+    //ALog(@"looking for user with externalId %d got %@ from restUser %@ with context %@", restUser.externalId, users, restUser, context);
+    if (users && ([users count] > 1)) {
+        // handle error
+        ALog(@"not returning a user");
+    } else if (![users count]) {
+        user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
+                                             inManagedObjectContext:context];
+        
+        [user setHookupManagedObjectWithIntermediateObject:restUser];
+        
+    } else {
+        user = [users lastObject];
+        [user setHookupManagedObjectWithIntermediateObject:restUser];
+    }
+    
+    return user;
+}
+
+
+
 + (User *)userWithExternalId:(NSNumber *)externalId
       inManagedObjectContext:(NSManagedObjectContext *)context {
     
@@ -82,6 +111,25 @@
 }
 
 
+- (void)setHookupManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {
+    RestUser *restUser = (RestUser *) intermediateObject;
+    self.updatedAt = restUser.updatedAt;
+    self.firstName = restUser.firstName;
+    self.lastName = restUser.lastName;
+    self.birthday = restUser.birthday;
+    self.gender = [NSNumber numberWithInteger:restUser.gender];
+    self.email = restUser.email;
+    self.photoUrl = restUser.photoUrl;
+    self.lookingForGender = [NSNumber numberWithInteger:restUser.lookingForGender];
+    self.country = restUser.country;
+    self.city = restUser.city;
+    self.vkDomain = restUser.vkDomain;
+    self.vkUniversityName = restUser.vkUniversityName;
+    self.vkGraduation = restUser.vkGraduation;
+    self.vkFacultyName = restUser.vkFacultyName;
+
+}
+
 - (void)setManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {
     RestUser *restUser = (RestUser *) intermediateObject;
     self.firstName = restUser.firstName;
@@ -111,13 +159,13 @@
     
     [self removePossibleHookups:self.possibleHookups];
     for (RestUser *_restUser in restUser.possibleHookups) {
-        User *user = [User userWithRestUser:_restUser inManagedObjectContext:self.managedObjectContext];
+        User *user = [User hookupWithRestUser:_restUser inManagedObjectContext:self.managedObjectContext];
         [self addPossibleHookupsObject:user];
     }
     
     [self removeHookups:self.hookups];
     for (RestUser *_restUser in restUser.hookups) {
-        User *user = [User userWithRestUser:_restUser inManagedObjectContext:self.managedObjectContext];
+        User *user = [User hookupWithRestUser:_restUser inManagedObjectContext:self.managedObjectContext];
         [self addHookupsObject:user];
     }
       

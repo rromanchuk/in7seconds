@@ -9,13 +9,31 @@
 #import "MatchesViewController.h"
 #import "MatchCell.h"
 #import "BaseUIView.h"
-
+#import "NoChatsView.h"
 #import "CommentViewController.h"
 @interface MatchesViewController ()
+@property (strong, nonatomic) NoChatsView *noResultsFooterView;
 
 @end
 
 @implementation MatchesViewController
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if(self = [super initWithCoder:aDecoder])
+    {
+        self.noResultsFooterView = (NoChatsView *)[[[NSBundle mainBundle] loadNibNamed:@"NoChatsView" owner:self options:nil] objectAtIndex:0];
+        //self.noResultsFooterView.feedEmptyLabel.text = NSLocalizedString(@"FEED_IS_EMPTY", @"Empty feed");
+    }
+    return self;
+}
+
+- (void)checkNoResults {
+    if ([[self.fetchedResultsController fetchedObjects] count] == 0) {
+        self.tableView.tableFooterView = self.noResultsFooterView;
+    } else {
+        self.tableView.tableFooterView = nil;
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -29,12 +47,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setupFetchedResultsController];
+    [self checkNoResults];
 }
 
 #pragma mark CoreData methods
 - (void)setupFetchedResultsController // attaches an NSFetchRequest to this UITableViewController
 {
-    
+    ALog(@"setting up frc with hookups %@", self.currentUser.hookups);
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
     request.predicate = [NSPredicate predicateWithFormat:@"self IN %@", self.currentUser.hookups];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"updatedAt" ascending:NO]];
