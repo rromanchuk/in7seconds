@@ -4,4 +4,12 @@ class Group < ActiveRecord::Base
 
   has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
+
+  def self.update_groups
+    User.active.each do |u|
+      u.get_groups
+      sleep 2
+    end
+  end
+
 end
