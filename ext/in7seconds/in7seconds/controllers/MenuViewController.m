@@ -11,8 +11,9 @@
 #import "AppDelegate.h"
 #import "User+REST.h"
 #import "IndexViewController.h"
-@interface MenuViewController ()
-
+@interface MenuViewController () {
+    BOOL _filtersChanged;
+}
 @end
 
 @implementation MenuViewController
@@ -74,6 +75,7 @@
 }
 
 - (IBAction)didTapWomen:(id)sender {
+    _filtersChanged = YES;
     self.lookingForWomen.selected = !self.lookingForWomen.selected;
     [self setLookingFor];
     [self update];
@@ -81,6 +83,7 @@
 
 
 - (IBAction)didTapMen:(id)sender {
+    _filtersChanged = YES;
     self.lookingForMen.selected = !self.lookingForMen.selected;
     [self setLookingFor];
     [self update];
@@ -117,7 +120,10 @@
         [SVProgressHUD dismiss];
         self.user = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
         [self saveContext];
-        [self.delegate didUpdateSettings];
+        if (_filtersChanged) {
+            [self.delegate didChangeFilters];
+            _filtersChanged = NO;
+        }
     } onError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];

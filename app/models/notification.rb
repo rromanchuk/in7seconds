@@ -8,7 +8,7 @@ class Notification < ActiveRecord::Base
   # attr_accessible :sender, :receiver, :notification_type, :sender_id, :receiver_id
 
   def self.no_email(user)
-    Notification.send_notfication!([user.id], "Упс, у тебя не введен адрес эл. почты. Введи его в настройках приложения чтобы сразу получать оповещения.")
+    Notification.send_notfication!([user.id], I18n.t('notifications.no_email'))
   end
 
   def self.private_message(hookup, message)
@@ -20,8 +20,8 @@ class Notification < ActiveRecord::Base
     Notification.send_notfication!([receiver.id], message)
   end
 
-  def self.send_notfication!(aliases, message, extra={})
-    notification = { aliases: aliases, aps: {:alert => message, :badge => 1}, extra: extra }
+  def self.!(aliases, message, extra={})
+    notification = { alisend_notficationases: aliases, aps: {:alert => message, :badge => 1}, extra: extra }
     Urbanairship.push(notification)
   end
 

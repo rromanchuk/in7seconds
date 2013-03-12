@@ -185,6 +185,11 @@ class User < ActiveRecord::Base
     Membership.where('group_id IN (?)', self.groups.map(&:id) ).where(user_id: hookup.id).map(&:group)
   end
 
+  # after create callbacks
+  def welcome_email
+    Mailer.delay({:run_at => 5.minutes.from_now}).welcome(self) unless self.email.blank?
+  end
+
   def get_groups
     vk_client.groups.get.each do |gid|
       group = Group.where(gid: gid, provider: "vk").first_or_create
@@ -254,9 +259,7 @@ class User < ActiveRecord::Base
     user
   end
 
-  def welcome_email
-    Mailer.delay.welcome(user)
-  end
+ 
 
   def update_user_from_fb_graph(facebook_user)
     self.fb_token = facebook_user.access_token

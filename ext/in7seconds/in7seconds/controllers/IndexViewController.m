@@ -145,6 +145,7 @@
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
     [RestUser flirtWithUser:self.otherUser onLoad:^(RestUser *restUser) {
         [SVProgressHUD dismiss];
+        [self.currentUser removePossibleHookupsObject:self.otherUser];
         if (restUser) {
             [self performSegueWithIdentifier:@"NewMatch" sender:self];
             return;
@@ -161,6 +162,7 @@
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
     [RestUser rejectUser:self.otherUser onLoad:^(RestUser *restUser) {
         [SVProgressHUD dismiss];
+        [self.currentUser removePossibleHookupsObject:self.otherUser];
         [self setupNextHookup];
     } onError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
@@ -173,11 +175,9 @@
 }
 
 - (void)setupNextHookup {
-    if (self.otherUser)
-        [self.currentUser removePossibleHookupsObject:self.otherUser];
+
     
-    self.otherUser = nil;
-    
+    self.otherUser = nil;    
     if (self.currentUser && self.currentUser.possibleHookups) {
         self.otherUser = [self.currentUser.possibleHookups anyObject];
         if (!self.otherUser && _numberOfAttempts < 3) {
@@ -207,11 +207,10 @@
 }
 
 - (void)fetchPossibleHookups {
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...") maskType:SVProgressHUDMaskTypeGradient];
     _numberOfAttempts++;
     [RestUser reload:^(RestUser *restUser) {
         self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
-        
         [self saveContext];
         [self setupNextHookup];
         [SVProgressHUD dismiss];
@@ -242,6 +241,10 @@
 }
 
 - (void)didUpdateSettings {
+    [self fetchPossibleHookups];
+}
+
+- (void)didChangeFilters {
     [self fetchPossibleHookups];
 }
 
@@ -286,17 +289,15 @@
 
 - (void)foundResults {
     _noResults = NO;
-    self.likeButton.hidden = self.unlikeButton.hidden = NO;
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdownView.hidden = NO;
+    self.noResultsLabel.hidden = YES;
 }
 
 - (void)noResultsLeft {
     [self stopCountdown];
     _noResults = YES;
-    self.likeButton.hidden = self.unlikeButton.hidden = YES;
-    self.nameLabel.text = @"владимир путин, 60 лет";
-    self.locationLabel.text = @"Москва, Россия";
-    [self.userImageView setWithImage:[UIImage imageNamed:@"sadputin.jpeg"]];
-    
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdownView.hidden = YES;
+    self.noResultsLabel.hidden = NO;
 }
 
 #pragma mark ApplicationLifecycleDelegate methods
