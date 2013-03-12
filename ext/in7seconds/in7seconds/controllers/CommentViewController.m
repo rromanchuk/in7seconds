@@ -16,15 +16,29 @@
 #import "RestMessage.h"
 
 #import "AppDelegate.h"
-#import "BaseUIView.h"
 
+// views
+#import "BaseUIView.h"
+#import "NoChatsView.h"
 @interface CommentViewController ()
+@property (strong, nonatomic) NoChatsView *noResultsFooterView;
 @property (nonatomic) BOOL beganUpdates;
 @end
 
 @implementation CommentViewController {
     NSDateFormatter *_df;
 }
+
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if(self = [super initWithCoder:aDecoder])
+    {
+        self.noResultsFooterView = (NoChatsView *)[[[NSBundle mainBundle] loadNibNamed:@"NoChatsView" owner:self options:nil] objectAtIndex:0];
+        //self.noResultsFooterView.feedEmptyLabel.text = NSLocalizedString(@"FEED_IS_EMPTY", @"Empty feed");
+    }
+    return self;
+}
+
 
 
 - (void)viewDidLoad
@@ -35,7 +49,6 @@
     self.title = self.otherUser.fullName;
     self.tableView.backgroundView = [[BaseUIView alloc] init];
 
-    [self setupFetchedResultsController];
     [self fetchResults];
     _df = [[NSDateFormatter alloc] init];
     [_df setDateFormat:@"dd-MM-yyyy, HH:mm"];
@@ -52,12 +65,22 @@
     
     
     // Let's make sure comments are current and ask the server (this will automatically update the feed as well)
-//    [self setupFetchedResultsController];
+    [self setupFetchedResultsController];
+    [self checkNoResults];
+    
+    
 //    [self updateFeedItem];
 //    [self setupView];
     
 }
 
+- (void)checkNoResults {
+    if ([[self.fetchedResultsController fetchedObjects] count] == 0) {
+        self.tableView.tableFooterView = self.noResultsFooterView;
+    } else {
+        self.tableView.tableFooterView = nil;
+    }
+}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -432,6 +455,7 @@
             ALog(@"private message %@", pm);
         }
         [self saveContext];
+        [self checkNoResults];
     } onError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];

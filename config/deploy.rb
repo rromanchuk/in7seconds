@@ -1,8 +1,8 @@
 require 'rvm/capistrano'                  # Load RVM's capistrano plugin.
 require 'bundler/capistrano'
 require "delayed/recipes"  
-#set :whenever_command, "bundle exec whenever"
-#require "whenever/capistrano"
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
 
 set :application, "in7seconds"
 set :rails_env, 'production'

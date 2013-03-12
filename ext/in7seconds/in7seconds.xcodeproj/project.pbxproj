@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		90455B5C1D5F434F8877A20B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9F46389CB045FD9589A9AC /* libPods.a */; };
+		942544E516EF87A100FA79FB /* NoChatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 942544E416EF87A000FA79FB /* NoChatsView.xib */; };
+		942544E816EF888200FA79FB /* NoChatsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 942544E716EF888200FA79FB /* NoChatsView.m */; };
 		9484987616CBFE96000083DE /* UIBarButtonItem+Borderless.m in Sources */ = {isa = PBXBuildFile; fileRef = 9484987516CBFE96000083DE /* UIBarButtonItem+Borderless.m */; };
 		9484988A16CD1EBB000083DE /* UIColor+Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 9484988916CD1EBB000083DE /* UIColor+Defaults.m */; };
 		9484988F16CD1F69000083DE /* BaseUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9484988E16CD1F69000083DE /* BaseUIView.m */; };
@@ -139,6 +141,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		942544E416EF87A000FA79FB /* NoChatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoChatsView.xib; sourceTree = "<group>"; };
+		942544E616EF888200FA79FB /* NoChatsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoChatsView.h; path = views/NoChatsView.h; sourceTree = "<group>"; };
+		942544E716EF888200FA79FB /* NoChatsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoChatsView.m; path = views/NoChatsView.m; sourceTree = "<group>"; };
 		9484987416CBFE96000083DE /* UIBarButtonItem+Borderless.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIBarButtonItem+Borderless.h"; path = "categories/UIBarButtonItem+Borderless.h"; sourceTree = "<group>"; };
 		9484987516CBFE96000083DE /* UIBarButtonItem+Borderless.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIBarButtonItem+Borderless.m"; path = "categories/UIBarButtonItem+Borderless.m"; sourceTree = "<group>"; };
 		9484988816CD1EBB000083DE /* UIColor+Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Defaults.h"; path = "categories/UIColor+Defaults.h"; sourceTree = "<group>"; };
@@ -354,6 +359,8 @@
 				FA7F38E516EBDB7C00EA2C0B /* BlueBubble.m */,
 				FA7F38E716ECE94700EA2C0B /* ProfileCell.h */,
 				FA7F38E816ECE94700EA2C0B /* ProfileCell.m */,
+				942544E616EF888200FA79FB /* NoChatsView.h */,
+				942544E716EF888200FA79FB /* NoChatsView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -440,6 +447,7 @@
 				FA70027016CAECB20098A5B7 /* ViewController.m */,
 				FA70025B16CAECB20098A5B7 /* Supporting Files */,
 				FA7002B916CAF42E0098A5B7 /* in7seconds.xcdatamodeld */,
+				942544E416EF87A000FA79FB /* NoChatsView.xib */,
 			);
 			path = in7seconds;
 			sourceTree = "<group>";
@@ -773,6 +781,7 @@
 				FA316E0216EE5F300051EB5F /* blue_circle@2x.png in Resources */,
 				FA316E0516EE5F460051EB5F /* green_circle.png in Resources */,
 				FA316E0616EE5F460051EB5F /* green_circle@2x.png in Resources */,
+				942544E516EF87A100FA79FB /* NoChatsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -876,6 +885,7 @@
 				94A980B516ECB4060036E52C /* UserProfileViewController.m in Sources */,
 				FA7F38E916ECE94700EA2C0B /* ProfileCell.m in Sources */,
 				FA316E1216EE7C270051EB5F /* User.m in Sources */,
+				942544E816EF888200FA79FB /* NoChatsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
