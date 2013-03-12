@@ -30,6 +30,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UILabel *noResultsLabel;
+@property (weak, nonatomic) IBOutlet UIView *infoBanner;
+
+
+
 - (IBAction)didTapInfo:(id)sender;
 
 @end

@@ -20,7 +20,7 @@ class Notification < ActiveRecord::Base
     Notification.send_notfication!([receiver.id], message)
   end
 
-  def self.!(aliases, message, extra={})
+  def self.send_notfication!(aliases, message, extra={})
     notification = { alisend_notficationases: aliases, aps: {:alert => message, :badge => 1}, extra: extra }
     Urbanairship.push(notification)
   end

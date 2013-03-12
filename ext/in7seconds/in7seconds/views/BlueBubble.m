@@ -29,7 +29,7 @@
         [self addSubview:self.imgView];
         self.backgroundColor = [UIColor clearColor];
         
-        self.label = [[UILabel alloc] initWithFrame:CGRectMake(10, 3, size.width - 10 , size.height - 20)];
+        self.label = [[UILabel alloc] initWithFrame:CGRectMake(10, 3, size.width - 25 , size.height - 10)];
         self.label.backgroundColor = [UIColor clearColor];
         self.label.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
         self.label.textAlignment = NSTextAlignmentRight;

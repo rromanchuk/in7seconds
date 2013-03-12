@@ -244,7 +244,7 @@
                                         <string key="text">13 общих
 друзей</string>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4QQ-8e-BWw">
@@ -253,7 +253,7 @@
                                         <string key="text">47 общих
 интересов</string>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="IbW-aK-uuE">
@@ -286,11 +286,11 @@
                                 <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Ух, похоже, что больше никого не осталось. Почему бы тебе не попробовать еще разок чуть позже?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b8r-St-uW1">
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Ух, похоже, что больше никого не осталось. Почему бы тебе не попробовать еще разок чуть позже?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b8r-St-uW1">
                                 <rect key="frame" x="20" y="125" width="280" height="122"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -299,7 +299,7 @@
                     <navigationItem key="navigationItem" id="lIV-Yn-ccr"/>
                     <connections>
                         <outlet property="countdownView" destination="kwh-Zy-R72" id="2Nx-xO-hG6"/>
-                        <outlet property="didTapLike" destination="SJt-G6-rU9" id="j5E-KO-ido"/>
+                        <outlet property="infoBanner" destination="1TP-4s-6JG" id="l9h-DV-upV"/>
                         <outlet property="infoButton" destination="IbW-aK-uuE" id="VdV-Ov-dKi"/>
                         <outlet property="likeButton" destination="SJt-G6-rU9" id="4RK-U2-ZXh"/>
                         <outlet property="locationLabel" destination="Xda-bs-u6h" id="OZO-mm-JiS"/>
@@ -799,6 +799,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hjQ-Dw-AsQ"/>
+        <segue reference="w1L-Nh-4Xb"/>
     </inferredMetricsTieBreakers>
 </document>

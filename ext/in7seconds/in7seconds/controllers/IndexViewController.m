@@ -289,14 +289,14 @@
 
 - (void)foundResults {
     _noResults = NO;
-    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdownView.hidden = NO;
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdownView.hidden = self.userImageView.hidden = self.infoBanner.hidden = NO;
     self.noResultsLabel.hidden = YES;
 }
 
 - (void)noResultsLeft {
     [self stopCountdown];
     _noResults = YES;
-    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdownView.hidden = YES;
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdownView.hidden = self.userImageView.hidden = self.infoBanner.hidden  = YES;
     self.noResultsLabel.hidden = NO;
 }
 
