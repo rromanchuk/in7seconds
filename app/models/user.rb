@@ -191,9 +191,10 @@ class User < ActiveRecord::Base
   end
 
   def get_groups
-    vk_client.getGroupsFull.each do |group|
-      group = Group.where(gid: group.gid, provider: "vk").first_or_create
-      group.update_attributes(name: group.name, photo: group.photo)
+    vk_client.getGroupsFull.each do |g|
+      puts "adding #{g.name}"
+      group = Group.where(gid: g.gid, provider: "vk").first_or_create
+      group.update_attributes(name: g.name, photo: g.photo)
       self.groups << group unless self.groups.exists?(group)
     end
   end
