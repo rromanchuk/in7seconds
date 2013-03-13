@@ -1,6 +1,8 @@
 # encoding: utf-8
 class VkCity < ActiveRecord::Base
   after_create :get_vk_city
+  validates :cid, :presence => {:message => 'city_id cannot be blank'}
+
 
   def get_vk_city
     self.name = HTTParty.get('https://api.vk.com/method/getCities', {query: {cids: cid}})["response"].first["name"]
