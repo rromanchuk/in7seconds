@@ -1,5 +1,6 @@
-.l-f-content
-  .copy In 7 Seconds &copy; 2013. Сделано с любовью
-  %nav
-    = link_to "О нас", about_path, class: 'l-f-link'
-    = mail_to CONFIG[:contact_email], "Обратная связь", class: 'l-f-link'
+%footer#l-footer
+  .l-f-content
+    .copy In 7 Seconds &copy; 2013. Сделано с любовью
+    %nav
+      = mail_to CONFIG[:contact_email], "Обратная связь", class: 'l-f-link'
+      = link_to "О нас", about_path, class: 'l-f-link'

@@ -16,7 +16,7 @@ class LinksManager
 
       if url.length
         e.preventDefault()
-        Spine.Route.navigate(url)
+        app.router.navigate(url)
 
     @$el.on('click', '.app-route', handleLocalRoute)
 

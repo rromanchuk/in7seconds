@@ -23,7 +23,9 @@ Router = Backbone.Router.extend
   routes:
     '':                          'index'
   before: (route, params)->
+    @log("#{route} route called")
     cleanup(views)
+    app.size.setSplash(false)
 
   initialize: ->
     @on('route', @_manageHistory)
@@ -37,5 +39,6 @@ Router = Backbone.Router.extend
 
   index: ->
     @log('match "index"')
+    app.size.setSplash(true)
 
 app.Router = Router

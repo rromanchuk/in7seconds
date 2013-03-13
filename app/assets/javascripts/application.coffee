@@ -17,6 +17,14 @@
 #= require_tree ./vendor/plugins
 #= require ./app.utils
 
+#= require_tree ./modules
+
+#= require ./router
+#= require_tree ./models
+#= require_tree ./collections
+#= require_tree ./views
+
+
 app = _.extend(@app, Backbone.Events)
 
 # Manage HTML classes
@@ -35,13 +43,15 @@ app.dom.html.addClass('android android' + app.browser.isAndroid) if app.browser.
 # if app.user
 #   app.header = new app.modules.Header()
 
-# app.size = new app.modules.Size()
+app.size = new app.modules.Size()
 # app.social = new app.modules.Social()
+
+app.router = new app.Router()
 
 # Fire up the router
 Backbone.history.start(pushState: true)
 
-# app.linksManager = new app.modules.LinksManager()
+app.linksManager = new app.modules.LinksManager()
 
 app.log('[app]: initialize')
 

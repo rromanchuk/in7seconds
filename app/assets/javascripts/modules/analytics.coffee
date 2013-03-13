@@ -1,7 +1,7 @@
 class Analytics
   trace: app.env.debug
   logPrefix: '[app.modules.Analytics]:'
-  log: Spine.Log.log
+  log: Backbone.Log.log
 
   constructor: ->
     @trackEvents()

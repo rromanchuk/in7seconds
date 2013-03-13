@@ -1,7 +1,7 @@
 class Settings
   trace: app.env.debug
   logPrefix: '[app.modules.Settings]:'
-  log: Spine.Log.log
+  log: Backbone.Log.log
 
   constructor: (@settings)->
     @log('initialized with settings', @settings)

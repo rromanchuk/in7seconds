@@ -1,7 +1,7 @@
 class Notifications
   trace: app.env.debug
   logPrefix: '[app.modules.Notifications]:'
-  log: Spine.Log.log
+  log: Backbone.Log.log
 
   _count: 0
   _hideDelay: 2000

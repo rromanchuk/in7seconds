@@ -1,7 +1,8 @@
 !!!
-%html.no-js{:class=>(yield :html_classes).blank? ? nil : (yield :html_classes), :lang=>'ru-RU'}
+%html.no-js.splash{:class=>(yield :html_classes).blank? ? nil : (yield :html_classes), :lang=>'ru-RU'}
   %head
     = render :partial => 'layouts/meta'
 
   %body
     = yield
+    = render :partial => 'layouts/javascripts'
