@@ -7,14 +7,11 @@
     #l-wrap
       %header#l-header
         = render :partial => 'layouts/header'
-
       #l-content{:class=>(yield :content_classes).blank? ? nil : (yield :content_classes)}
         = yield
       #l-footer-push
     %footer#l-footer
       = render :partial => 'layouts/footer'
-
-    #l-notifications
 
     :javascript
       var app = {

@@ -1,4 +1,30 @@
-.p-about.l-wrap
-  %h2.p-a-header О&nbsp;нас
+.p-about
+  .p-a-bg-wrap
+    .p-a-bg-container
+      = image_tag('splash.jpg', :alt => 'Spread love', :class => '.p-ф-bg-img') 
 
-  %p 7&nbsp;Seconds это новый способ познакомиться с&nbsp;интересными людьми. Известно, что для того чтобы понять, нравится тебе человек или нет, достаточно всего 7&nbsp;секунд. Проверь это с&nbsp;нашим приложением!
+  .p-a-content
+    %h1 Fuck With Friends
+
+    .p-a-desc
+      %strong Мы помогаем тебе найти любовь
+      %small.
+        А любовь это всегда прекрасно!
+
+    .p-a-contacts
+      / | Мы будем рады выслушать пожелания и критику по поводу сайта в 
+      / a(href="http://vk.com/fuckwithfriends", target="_blank") нашей группе ВКонтакте 
+      / | или по 
+      / a(href="mailto:" + window.atob(app.env.contact)) электронной почте
+      / | .
+
+    .p-a-cta
+      | Не забудь поделиться ссылкой на этот сайт со своими друзьями!
+
+    .p-a-share
+      .p-a-likewrap
+        #vk_like
+      .p-a-sharewrap
+        #vk_share
+
+    / .p-a-version v #{app.env.version}

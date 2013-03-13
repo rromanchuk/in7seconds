@@ -1,3 +1,5 @@
+@import 'include/mixins'
+
 $header_height = 50px
 $footer_height = 40px
 
@@ -6,13 +8,13 @@ html,
 body
   height: 100%
   min-width: 960px
-  
+
   background: #eee
   noselect plz
 
 body, select, input, button, textarea 
   color: #333
-  font: normal 14px Helvetica, Arial, sans-serif
+  font: normal 12px Helvetica, Arial, sans-serif
   line-height: 1.4em
 
 ::selection 
@@ -55,64 +57,6 @@ a:hover
 #l-footer-push
   height: $footer_height
 
-#l-notifications
-  margin-top: $header_height + 10px
-  position: absolute
-  right: 0
-  top: 0
-
-  .l-n-icon
-    margin: 8px
-    position: absolute
-    left: 0
-    top: 0
-    font-size: 12px
-
-  .l-notification
-    width: 200px
-
-    margin: 10px
-    padding: 7px 30px
-
-    display: block
-
-    position: relative
-
-    opacity: 0
-    transition: opacity linear .2s
-
-    border-radius: 5px
-
-    background: #333
-    background: rgba(0, 0, 0, .7)
-
-    color: #fff
-    font-size: 14px
-    line-height: 18px
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, .6)
-
-  .l-n-close
-    padding: 3px
-
-    position: absolute
-    right: 0
-    top: 0
-
-    border-radius: 5px
-
-    font-size: 8px
-    line-height: 0
-
-    cursor: pointer
-    color: #ccc
-    color: rgba(255, 255, 255, .3)
-    text-shadow: none
-
-    &:hover
-      color: #ddd
-      color: rgba(255, 255, 255, .5)
-
-
 .l-block
   width: 960px
   margin: 0 auto
@@ -124,32 +68,19 @@ a:hover
   
   cf plz
 
-  font-size: 12px
-  text-shadow: 0 1px 0 rgba(0, 0, 0, .3)
+#l-header
+  border-bottom: 1px solid #ddd
 
 .l-h-content
   height: $header_height
 
-  .logo-wrap
+  .l-h-logo-wrap
+    padding-top: 9px
     display: inline-block
     float: left
 
-    font-size: 18px
-    line-height: $header_height
-    color: inherit
-
     &:hover
       text-decoration: none
-
-    .logo
-      width: 30px
-      height: 30px
-      margin-right: 10px
-      display: inline-block
-      vertical-align: middle
-
-      background: url('/img/logo.png') no-repeat
-      background-size: @width @height
 
   nav
     float: right
@@ -159,108 +90,26 @@ a:hover
   .l-h-link
     margin-left: 20px
     display: inline-block
-    vertical-align: top
     text-decoration: none
 
-    i
-      margin-right: 5px
-      font-size: 12px
-
-    &:hover span
+    &:hover
       text-decoration: underline
-
-  .l-h-usermenu
-    margin-left: 10px
-    display: inline-block
-    position: relative
-    z-index: 10
-
-    line-height: 15px
-    text-align: left
-
-    .l-h-u-top
-      height: 30px
-      padding: 10px
-
-      cursor: pointer
-
-      img
-        width: 30px
-        height: 30px
-
-        margin-right: 10px
-
-        border-radius: 5px
-
-        box-shadow: 0 1px 0 rgba(0, 0, 0, .3)
-
-      .l-h-u-name
-        border-bottom: 1px dotted
-
-    .l-h-dropdown
-      width: 100%
-      position: absolute
-      right: 0
-      top: 100%
-
-      display: none
-
-      background: #fff
-      border-radius: 0 0 5px 5px
-      box-shadow: 0 1px 2px rgba(0, 0, 0, .3)
-
-
-      a
-        display: block
-        padding: 10px
-        text-decoration: none
-
-        i
-          margin-right: 10px
-          font-size: 12px
-
-        &:hover
-          background: #eee
-
-          span
-            text-decoration: underline
-
-        &.last
-          border-radius: 0 0 5px 5px
-
-
-    &.active
-      background: #fff
-      color: #333
-      text-shadow: 0 0 0 transparent
-
-      .l-h-dropdown
-        display: block
-
 
 .l-f-content
   line-height: 40px
 
   .copy
     float: left
-    .icon-heart
-      margin-left: 5px
-      font-size: 12px
-      color: #ff005f
 
   nav
     float: right
     text-align: right
 
-    a
+    .l-f-link
       margin-left: 20px
       display: inline-block
       text-decoration: none
 
-      i
-        margin-right: 5px
-        font-size: 12px
-
-      &:hover span
+      &:hover
         text-decoration: underline
 

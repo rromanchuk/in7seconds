@@ -1,32 +1,25 @@
-
 .p-index
   .p-i-bg-wrap
     .p-i-bg-container
       = image_tag('splash.jpg', :alt => 'Spread love', :class => '.p-i-bg-img') 
 
   .p-i-content
-    %h1 Fuck With Friends
+    .p-i-phone
+      %ul.p-i-p-screens
+        %li= image_tag('screen-01-568.jpg', :alt => 'Screenshot 1', :class => '.p-i-p-screen')
+        %li= image_tag('screen-02-568.jpg', :alt => 'Screenshot 2', :class => '.p-i-p-screen')
+        %li= image_tag('screen-03-568.jpg', :alt => 'Screenshot 3', :class => '.p-i-p-screen')
+        %li= image_tag('screen-04-568.jpg', :alt => 'Screenshot 4', :class => '.p-i-p-screen')
+        %li= image_tag('screen-05-568.jpg', :alt => 'Screenshot 5', :class => '.p-i-p-screen')
+      = image_tag('iphone.png', :alt => 'iPhone', :class => '.p-i-p-crop') 
 
     .p-i-desc
-      %strong Открой своих друзей с&nbsp;новой стороны.
+      %h1 in 7 Seconds
+
+      %strong Найди новых друзей за 7 секунд
       %small
-        Анонимно найди тех, кто свободен на эту ночь.
-        Твои друзья ни&nbsp;о&nbsp;чем не&nbsp;узнают, пока они тоже не&nbsp;заинтересованы.
-        Как узнать, что они заинтересованы? Показать им&nbsp;этот сайт конечно&nbsp;же.
+        In 7 Seconds показывает тебе интересных людей неподалеку, а ты просто отмечаешь тех, кто тебе симпатичен.
+        Думать нужно быстро, у тебя будет всего 7 секунд на то чтобы понять, нравится тебе человек, или нет.
+        Если симпатия взаимна, то мы вас познакомим и поможем растопить лед.
+        Для того, чтобы начать, тебе нужно просто авторизоваться с помощью ВКонтакте.
 
-    / .p-i-auth
-    /   = link_to '/auth/vkontakte', tos_path, :class=> '.vkbutton.button',
-    /     %i.vk-icon
-    /     Войти через ВКонтакте
-
-    /   %p.p-i-policy
-    /     Авторизуясь, вы&nbsp;даете свое согласие на&nbsp;обработку личных данных, соглашаетесь&nbsp;с&nbsp;
-    /     #{link_to 'http://' + CONFIG[:host] + tos_path, 'условиями использования'}, а так же подтверждаете, 
-    /     что вам больше 18 лет.
-
-    .p-i-share
-      .p-i-likewrap
-        #vk_like
-      .p-i-sharewrap
-        #vk_share
-      

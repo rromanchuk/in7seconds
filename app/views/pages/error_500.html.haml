@@ -1,13 +1,10 @@
-- content_for :html_classes do
-  splash
-
-.p-error
+%section#l-content.p-error
   .p-e-bg-wrap
     .p-e-bg-container
-      = image_tag('splash_error.jpg', :alt => 'Error 500', :class=> 'p-e-bg-img') 
+      = image_tag('splash_error.jpg', :alt => 'You\'re lost, friend', :class => '.p-e-bg-img') 
 
-  %a.p-e-logo 7 Seconds
-
-  %h2.p-e-description Что-то пошло не так.
+  .p-e-content
+    %h2 Упс.
+    %strong Что-то пошло не так&#133;
 
   = render :partial => 'layouts/footer'
