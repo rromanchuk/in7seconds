@@ -25,6 +25,11 @@ class User < ActiveRecord::Base
          :source => :hookup,
          :conditions => "status = 'pending'"
 
+  has_many :rejected_hookups,
+         :through => :relationships,
+         :source => :hookup,
+         :conditions => "status = 'rejected'"
+
   has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
@@ -63,11 +68,16 @@ class User < ActiveRecord::Base
 
   after_create :get_groups, :if => :is_active?
   after_create :get_friends, :if => :is_active?
-
+  after_create :welcome_email, :if => :is_active?
+  before_destroy :remove_relationships
 
   VK_FIELDS = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big, :graduation, :university_name, :education, :domain, :contacts]
 
   scope :added_yesterday, where(created_at: Date.yesterday...Date.today, is_active: true)
+
+  def remove_relationships
+    Relationship.where(hookup_id: self.id).map(&:destroy)
+  end
 
   def fb_client
      FbGraph::User.fetch(fbuid, :access_token => fb_token)
@@ -98,11 +108,15 @@ class User < ActiveRecord::Base
   end
 
   def location 
-    "#{city}, #{country}"
+   "#{city}, #{country}"
   end
   
   def city
-    vk_city.name
+    if vk_city
+      vk_city.name
+    else
+      ''
+    end
   end
 
   def birthday
@@ -110,8 +124,28 @@ class User < ActiveRecord::Base
   end
 
   def country
-    vk_country.name
-  end 
+    if vk_country
+      vk_country.name
+    else
+      ''
+    end
+  end
+
+  def mutual_group_names(hookup)
+    mutual_groups(hookup).map(&:name).join(',')
+  end
+
+  def mutual_friend_names(hookup)
+    mutual_friends(hookup).map(&:name).join(',')
+  end
+
+  def group_names
+    groups.map(&:name).join(',')
+  end
+
+  def friend_names
+    friends.map(&:name).join(',')
+  end
 
   def self.guess_looking_for(gender)
     if gender == USER_MALE
@@ -151,9 +185,16 @@ class User < ActiveRecord::Base
     Membership.where('group_id IN (?)', self.groups.map(&:id) ).where(user_id: hookup.id).map(&:group)
   end
 
+  # after create callbacks
+  def welcome_email
+    Mailer.delay({:run_at => 5.minutes.from_now}).welcome(self) unless self.email.blank?
+  end
+
   def get_groups
-    vk_client.groups.get.each do |gid|
-      group = Group.where(gid: gid, provider: "vk").first_or_create
+    vk_client.getGroupsFull.each do |g|
+      puts "adding #{g.name}"
+      group = Group.where(gid: g.gid, provider: "vk").first_or_create
+      group.update_attributes(name: g.name, photo: g.photo)
       self.groups << group unless self.groups.exists?(group)
     end
   end
@@ -216,9 +257,11 @@ class User < ActiveRecord::Base
           :is_active => true,
           :email => (vk_user.email.blank?) ? '' : vk_user.email)
     
-    Mailer.delay.welcome(user)
+    
     user
   end
+
+ 
 
   def update_user_from_fb_graph(facebook_user)
     self.fb_token = facebook_user.access_token
@@ -305,8 +348,12 @@ class User < ActiveRecord::Base
     if self.relationships.blank?
       return users
     else
-      return users.where('vkuid NOT IN (?)', self.relationships.where('status in (?)', ['accepted', 'pending', 'rejected']).map(&:hookup).map(&:vkuid).push(vkuid))
+      return users.where('vkuid NOT IN (?)', exclude_vkuids.push(vkuid))
     end
+  end
+
+  def exclude_vkuids
+    (hookups + pending_hookups + rejected_hookups).map(&:vkuid)
   end
 
   def users_nearby

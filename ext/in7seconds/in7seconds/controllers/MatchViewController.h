@@ -7,6 +7,7 @@
 //
 
 #import "User+REST.h"
+#import "ProfileImageView.h"
 @protocol MatchModalDelegate;
 @interface MatchViewController : UIViewController
 @property (strong, nonatomic) User *currentUser;

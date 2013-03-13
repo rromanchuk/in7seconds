@@ -12,8 +12,9 @@
 #import "MenuViewController.h"
 #import "ProfileImageView.h"
 #import "MatchViewController.h"
+#import "AppDelegate.h"
+@interface IndexViewController : ECSlidingViewController <LoginDelegate, LogoutDelegate, ImageLoadedDelegate, MatchModalDelegate, ApplicationLifecycleDelegate>
 
-@interface IndexViewController : ECSlidingViewController <LoginDelegate, LogoutDelegate, ImageLoadedDelegate, MatchModalDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
 @property (weak, nonatomic) IBOutlet ProfileImageView *userImageView;
@@ -24,11 +25,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 - (IBAction)didTapUnlike:(id)sender;
 - (IBAction)didTapLike:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *didTapLike;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIView *countdownView;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
+@property (weak, nonatomic) IBOutlet UILabel *noResultsLabel;
+@property (weak, nonatomic) IBOutlet UIView *infoBanner;
+
+
+
 - (IBAction)didTapInfo:(id)sender;
 
 @end

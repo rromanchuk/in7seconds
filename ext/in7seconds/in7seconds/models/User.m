@@ -2,7 +2,7 @@
 //  User.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 2/28/13.
+//  Created by Ryan Romanchuk on 3/12/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -14,23 +14,29 @@
 
 @dynamic authenticationToken;
 @dynamic birthday;
+@dynamic city;
+@dynamic country;
 @dynamic email;
 @dynamic externalId;
 @dynamic firstName;
 @dynamic gender;
 @dynamic lastName;
 @dynamic latitude;
-@dynamic location;
 @dynamic longitude;
 @dynamic lookingForGender;
-@dynamic photoUrl;
-@dynamic updatedAt;
-@dynamic vkToken;
 @dynamic mutualFriends;
 @dynamic mutualGroups;
-@dynamic country;
-@dynamic city;
+@dynamic photoUrl;
+@dynamic updatedAt;
 @dynamic vkDomain;
+@dynamic vkToken;
+@dynamic groupNames;
+@dynamic friendNames;
+@dynamic mutualGroupNames;
+@dynamic mutualFriendNames;
+@dynamic vkUniversityName;
+@dynamic vkGraduation;
+@dynamic vkFacultyName;
 @dynamic hookups;
 @dynamic possibleHookups;
 

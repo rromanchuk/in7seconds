@@ -56,8 +56,10 @@
                              self.image = image;
                              CGSize actual = [self imageScale];
                              self.clipsToBounds = YES;
-                             [self.delegate imageLoaded];
-                             
+                             if ([self.delegate respondsToSelector:@selector(imageLoaded)]) {
+                                 [self.delegate imageLoaded];
+                             }
+     
                          }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                              [self.activityIndicator stopAnimating];
                              DLog(@"Failure setting postcard image with url %@", url);

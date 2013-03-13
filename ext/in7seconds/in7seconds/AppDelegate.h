@@ -8,6 +8,8 @@
 
 #import "Location.h"
 #import "User.h"
+@protocol ApplicationLifecycleDelegate;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate, LocationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -18,8 +20,14 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (strong, nonatomic) User *currentUser;
 
-//@property (weak, nonatomic) id <ApplicationLifecycleDelegate> delegate;
+@property (weak, nonatomic) id <ApplicationLifecycleDelegate> delegate;
 //@property (strong, nonatomic) NotificationHandler *notificationHandler;
 - (void)writeToDisk;
 - (void)resetCoreData;
+@end
+
+@protocol ApplicationLifecycleDelegate <NSObject>
+@required
+- (void)applicationWillExit;
+- (void)applicationWillWillStart;
 @end

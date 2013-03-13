@@ -7,7 +7,6 @@
 //
 
 #import "IndexViewController.h"
-#import "AppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MatchesViewController.h"
 #import "CircleCounterView.h"
@@ -49,7 +48,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftViewWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation-logo"]];
-    
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    sharedAppDelegate.delegate = self;
+
 }
 
 - (void)leftViewWillAppear {
@@ -114,16 +115,7 @@
     [self.slidingViewController anchorTopViewTo:ECRight];
 }
 
-- (IBAction)didTapUnlike:(id)sender {
-    [self stopCountdown];
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
-    [RestUser rejectUser:self.otherUser onLoad:^(RestUser *restUser) {
-        [SVProgressHUD dismiss];
-        [self setupNextHookup];
-    } onError:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-    }];
-}
+
 
 - (void)topDidAppear {
     [((MenuViewController *)self.slidingViewController.underLeftViewController).view endEditing:YES];
@@ -153,6 +145,7 @@
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
     [RestUser flirtWithUser:self.otherUser onLoad:^(RestUser *restUser) {
         [SVProgressHUD dismiss];
+        [self.currentUser removePossibleHookupsObject:self.otherUser];
         if (restUser) {
             [self performSegueWithIdentifier:@"NewMatch" sender:self];
             return;
@@ -160,6 +153,20 @@
         [self setupNextHookup];
     } onError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        [self setupNextHookup];
+    }];
+}
+
+- (IBAction)didTapUnlike:(id)sender {
+    [self stopCountdown];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
+    [RestUser rejectUser:self.otherUser onLoad:^(RestUser *restUser) {
+        [SVProgressHUD dismiss];
+        [self.currentUser removePossibleHookupsObject:self.otherUser];
+        [self setupNextHookup];
+    } onError:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        [self setupNextHookup];
     }];
 }
 
@@ -168,11 +175,9 @@
 }
 
 - (void)setupNextHookup {
-    if (self.otherUser)
-        [self.currentUser removePossibleHookupsObject:self.otherUser];
+
     
-    self.otherUser = nil;
-    
+    self.otherUser = nil;    
     if (self.currentUser && self.currentUser.possibleHookups) {
         self.otherUser = [self.currentUser.possibleHookups anyObject];
         if (!self.otherUser && _numberOfAttempts < 3) {
@@ -202,11 +207,10 @@
 }
 
 - (void)fetchPossibleHookups {
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...") maskType:SVProgressHUDMaskTypeGradient];
     _numberOfAttempts++;
     [RestUser reload:^(RestUser *restUser) {
         self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
-        
         [self saveContext];
         [self setupNextHookup];
         [SVProgressHUD dismiss];
@@ -237,6 +241,10 @@
 }
 
 - (void)didUpdateSettings {
+    [self fetchPossibleHookups];
+}
+
+- (void)didChangeFilters {
     [self fetchPossibleHookups];
 }
 
@@ -281,19 +289,28 @@
 
 - (void)foundResults {
     _noResults = NO;
-    self.likeButton.hidden = self.unlikeButton.hidden = NO;
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdownView.hidden = self.userImageView.hidden = self.infoBanner.hidden = NO;
+    self.noResultsLabel.hidden = YES;
 }
 
 - (void)noResultsLeft {
     [self stopCountdown];
     _noResults = YES;
-    self.likeButton.hidden = self.unlikeButton.hidden = YES;
-    self.nameLabel.text = @"владимир путин, 60 лет";
-    self.locationLabel.text = @"Москва, Россия";
-    [self.userImageView setWithImage:[UIImage imageNamed:@"sadputin.jpeg"]];
-    
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdownView.hidden = self.userImageView.hidden = self.infoBanner.hidden  = YES;
+    self.noResultsLabel.hidden = NO;
 }
 
+#pragma mark ApplicationLifecycleDelegate methods
+- (void)applicationWillExit {
+    [self stopCountdown];
+}
+
+- (void)applicationWillWillStart {
+    _numberOfAttempts = 0;
+    if (self.otherUser) {
+        [self startCountdown];
+    }
+}
 #pragma mark MatchModalDelegate methods
 - (void)userWantsToChat {
     [self dismissViewControllerAnimated:NO completion:nil];

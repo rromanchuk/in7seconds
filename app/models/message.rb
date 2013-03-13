@@ -22,8 +22,6 @@ class Message < ActiveRecord::Base
   end
 
   def notify
-    save
-    puts "here i am " + self.inspect
     Notification.private_message(self.to_user, self.message)
     Mailer.delay.private_message(to_user, from_user, message)
   end

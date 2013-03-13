@@ -18,7 +18,7 @@
 
 @protocol ImageLoadedDelegate <NSObject>
 
-@required
+@optional
 - (void)imageLoaded;
 
 @end

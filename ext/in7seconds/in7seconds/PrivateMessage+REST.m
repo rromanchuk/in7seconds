@@ -42,7 +42,7 @@
     self.externalId = [NSNumber numberWithInteger:restMessage.externalId];
     self.message = restMessage.message;
     self.createdAt = restMessage.createdAt;
-    self.fromUser = [User userWithRestUser:restMessage.fromUser inManagedObjectContext:self.managedObjectContext];
-    self.toUser = [User userWithRestUser:restMessage.toUser inManagedObjectContext:self.managedObjectContext];
+    self.fromUser = [User hookupWithRestUser:restMessage.fromUser inManagedObjectContext:self.managedObjectContext];
+    self.toUser = [User hookupWithRestUser:restMessage.toUser inManagedObjectContext:self.managedObjectContext];
 }
 @end

@@ -38,7 +38,7 @@
         self.label.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
         self.label.numberOfLines = 0;
         [self addSubview:self.label];
-        self.backgroundColor = [UIColor yellowColor];
+        //self.backgroundColor = [UIColor yellowColor];
     }
     return self;
 }
