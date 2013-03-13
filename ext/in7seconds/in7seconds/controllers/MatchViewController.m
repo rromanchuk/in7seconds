@@ -20,6 +20,9 @@
     [super viewDidLoad];
     [self.otherUserImage setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
     [self.currentUserImage setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];
+    
+    NSString *message = ([self.otherUser.gender boolValue]) ? @"ответила" : @"ответил";
+    self.matchTextLabel.text = [NSString stringWithFormat:@"%@ %@ взаимностью!", self.otherUser.fullName, message];
 	// Do any additional setup after loading the view.
 }
 

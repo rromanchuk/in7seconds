@@ -19,6 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *startChatButton;
 @property (weak, nonatomic) IBOutlet UIButton *keepSearchingButton;
+@property (weak, nonatomic) IBOutlet UILabel *matchTextLabel;
 
 @property (weak) id <MatchModalDelegate> delegate;
 
