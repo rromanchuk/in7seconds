@@ -272,6 +272,7 @@
         PrivateMessage *message = [PrivateMessage privateMessageWithRestMessage:restMessage inManagedObjectContext:self.managedObjectContext];
         self.commentView.text = nil;
         [self saveContext];
+        [self checkNoResults];
     } onError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];

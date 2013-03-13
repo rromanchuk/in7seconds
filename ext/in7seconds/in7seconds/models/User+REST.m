@@ -177,7 +177,7 @@
 }
 
 - (NSString *)schoolInfo {
-    if (self.vkUniversityName && self.vkGraduation) {
+    if (self.vkUniversityName && self.vkGraduation.length > 1) {
         return [NSString stringWithFormat:@"%@, %@", self.vkUniversityName, self.vkGraduation];
     } else if (self.vkUniversityName) {
         return [NSString stringWithFormat:@"%@", self.vkUniversityName];

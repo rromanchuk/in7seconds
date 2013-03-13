@@ -7,7 +7,7 @@
 //
 
 #import "UserProfileViewController.h"
-
+#import "BaseUIView.h"
 @interface UserProfileViewController ()
 
 @end
@@ -18,7 +18,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    self.tableView.backgroundView = [[BaseUIView alloc] init];
     if (self.otherUser.birthday && [self.otherUser.yearsOld integerValue] > 0) {
         self.title = [NSString stringWithFormat:@"%@, %@", self.otherUser.firstName, self.otherUser.yearsOld];
     } else {
@@ -30,24 +30,26 @@
     [self.mutalFriendsButton setTitle:[NSString stringWithFormat:@"%@", self.otherUser.mutualFriends] forState:UIControlStateNormal];
     [self.mutualGroupsButton setTitle:[NSString stringWithFormat:@"%@", self.otherUser.mutualGroups] forState:UIControlStateNormal];
     
-    self.mutualFriendsLabel.text = self.otherUser.mutualFriendNames;
-    [self.mutualFriendsLabel sizeToFit];
-
-    self.mutualGroupsLabel.text = self.otherUser.mutualGroupNames;
-    [self.mutualGroupsLabel sizeToFit];
+    if (self.otherUser.mutualFriendNames.length == 0) {
+        self.mutualFriendsLabel.text = @"отсутствующий";
+    } else {
+        self.mutualFriendsLabel.text = self.otherUser.mutualFriendNames;
+    }
     
-    CGRect mgFrame = self.mutualGroupsHeading.frame;
-    mgFrame.origin = CGPointMake(mgFrame.origin.x, (self.mutualFriendsLabel.frame.origin.y + self.mutualFriendsLabel.frame.size.height) + 10);
-    self.mutualGroupsHeading.frame = mgFrame;
-    
-    
-    CGRect mglFrame = self.mutualGroupsLabel.frame;
-    mglFrame.origin = CGPointMake(mglFrame.origin.x, (self.mutualGroupsHeading.frame.origin.y + self.mutualGroupsHeading.frame.size.height) + 5);
-    self.mutualGroupsLabel.frame = mglFrame;
-    
+    if (self.otherUser.mutualGroupNames.length == 0) {
+        self.mutualGroupsLabel.text =  @"отсутствующий";
+    } else {
+        self.mutualGroupsLabel.text = self.otherUser.mutualGroupNames;
+    }
         
-    self.userGroupsLabel.text = self.otherUser.groupNames;
-    [self.userGroupsLabel sizeToFit];
+    
+       
+    if (self.otherUser.groupNames.length == 0) {
+        self.userGroupsLabel.text = @"отсутствующий";
+    } else {
+        self.userGroupsLabel.text = self.otherUser.groupNames;
+        [self.userGroupsLabel sizeToFit];
+    }
     
     self.educationLabel.text = self.otherUser.schoolInfo;
     [self.educationLabel sizeToFit];
