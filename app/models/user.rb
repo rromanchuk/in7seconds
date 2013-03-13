@@ -230,8 +230,19 @@ class User < ActiveRecord::Base
   #authentication
 
   def update_user_from_vk_graph(vk_user, access_token)
+    
     self.vk_token = access_token
-    self.is_active = true
+    
+    if self.is_active == false
+      self.birthday = vk_user.bdate
+
+      self.vk_city = VkCity.where(cid: vk_user.city).first_or_create
+      self.vk_country = VkCountry.where(cid: vk_user.country).first_or_create
+      self.is_active = true
+      welcome_email
+      get_friends
+      get_groups
+    end
     save
   end
 
