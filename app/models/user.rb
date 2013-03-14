@@ -201,7 +201,7 @@ class User < ActiveRecord::Base
   handle_asynchronously :get_groups
 
   def get_friends
-    vk_client.friends.get(fields: VK_FIELDS, lang:"ru") do |friend|
+    vk_client.friends.get(fields: VK_FIELDS, lang:"ru", uid: vkuid) do |friend|
       puts "#{friend.first_name} '#{friend.screen_name}' #{friend.last_name}"
       puts friend.to_yaml
       user = User.where(vkuid: friend.uid).first_or_create(:password => Devise.friendly_token[0,20],
