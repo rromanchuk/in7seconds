@@ -13,6 +13,8 @@
 #import "ProfileImageView.h"
 #import "MatchViewController.h"
 #import "AppDelegate.h"
+#import "JDFlipNumberView.h"
+
 @interface IndexViewController : ECSlidingViewController <LoginDelegate, LogoutDelegate, ImageLoadedDelegate, MatchModalDelegate, ApplicationLifecycleDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
@@ -26,7 +28,6 @@
 - (IBAction)didTapUnlike:(id)sender;
 - (IBAction)didTapLike:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIView *countdownView;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UILabel *noResultsLabel;
