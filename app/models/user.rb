@@ -70,6 +70,7 @@ class User < ActiveRecord::Base
   after_create :get_friends, :if => :is_active?
   after_create :welcome_email, :if => :is_active?
   before_destroy :remove_relationships
+  after_save :check_email_status
 
   VK_FIELDS = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big, :graduation, :university_name, :education, :domain, :contacts]
 
@@ -80,6 +81,14 @@ class User < ActiveRecord::Base
     is_active
   end
   
+  def check_email_status
+    if is_active? && !email.blank?
+      if confirmation_sent_at && !confirmed?
+        send_confirmation_instructions
+      end
+    end
+  end
+
   def remove_relationships
     Relationship.where(hookup_id: self.id).map(&:destroy)
   end
@@ -244,9 +253,12 @@ class User < ActiveRecord::Base
       self.vk_city = VkCity.where(cid: vk_user.city).first_or_create
       self.vk_country = VkCountry.where(cid: vk_user.country).first_or_create
       self.is_active = true
+      self.email = vk_user.email
+      save
       welcome_email
       get_friends
       get_groups
+
     end
     save
   end
