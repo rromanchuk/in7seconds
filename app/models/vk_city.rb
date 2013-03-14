@@ -5,7 +5,10 @@ class VkCity < ActiveRecord::Base
 
 
   def get_vk_city
-    self.name = HTTParty.get('https://api.vk.com/method/getCities', {query: {cids: cid}})["response"].first["name"]
+    response = HTTParty.get('https://api.vk.com/method/getCities', {query: {cids: cid}})
+    if response
+      self.name = ["response"].first["name"]
+    end
     save
   end
   handle_asynchronously :get_vk_city, :priority => 20
