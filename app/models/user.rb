@@ -75,6 +75,11 @@ class User < ActiveRecord::Base
 
   scope :added_yesterday, where(created_at: Date.yesterday...Date.today, is_active: true)
 
+  #devise 
+  def confirmation_required?
+    is_active
+  end
+  
   def remove_relationships
     Relationship.where(hookup_id: self.id).map(&:destroy)
   end

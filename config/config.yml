@@ -40,7 +40,7 @@ production:
   name: 7seconds
   description: In 7 Seconds находит тех, кому вы нравитесь неподалеку и соединяет вас если симпатия взаимна. Это анонимно до тех пор пока вы не понравитесь тому тот кто вам нравится.
   host: in7seconds.com
-  asset_host: piclar.com
+  asset_host: in7seconds.com
   fb_app_id: 416377108420491
   fb_app_secret: d63ab873eee7b992ad53b816b848bbba
   aws_access: 0SPGHF9VGDTQXENQC282
