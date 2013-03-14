@@ -15,10 +15,3 @@ node :hookups do |user|
 end
 
 
-node :mutal_friend_names do |user|
-  user
-end
-
-node :mutual_group_names do |user|
-  current_user.mutual_group_names(user)
-end
