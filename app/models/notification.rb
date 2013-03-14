@@ -11,8 +11,8 @@ class Notification < ActiveRecord::Base
     Notification.send_notfication!([user.id], I18n.t('notifications.no_email'))
   end
 
-  def self.private_message(hookup, message)
-    Notification.send_notfication!([hookup.id], "#{hookup.first_name}: #{message}")
+  def self.private_message(sender, hookup, message)
+    Notification.send_notfication!([hookup.id], "#{sender.first_name}: #{message}")
   end
   
   def self.fuck(receiver, hookup)
@@ -21,7 +21,7 @@ class Notification < ActiveRecord::Base
   end
 
   def self.send_notfication!(aliases, message, extra={})
-    notification = { alisend_notficationases: aliases, aps: {:alert => message, :badge => 1}, extra: extra }
+    notification = { aliases: aliases, aps: {:alert => message, :badge => 1}, extra: extra }
     Urbanairship.push(notification)
   end
 

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :registerable, :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :token_authenticatable, :omniauthable
+         :recoverable, :rememberable, :trackable, :token_authenticatable, :omniauthable, :confirmable
          #:validatable
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city
@@ -201,7 +201,7 @@ class User < ActiveRecord::Base
   handle_asynchronously :get_groups
 
   def get_friends
-    vk_client.friends.get(fields: VK_FIELDS, lang:"ru") do |friend|
+    vk_client.friends.get(fields: VK_FIELDS, lang:"ru", uid: vkuid) do |friend|
       puts "#{friend.first_name} '#{friend.screen_name}' #{friend.last_name}"
       puts friend.to_yaml
       user = User.where(vkuid: friend.uid).first_or_create(:password => Devise.friendly_token[0,20],
@@ -230,8 +230,19 @@ class User < ActiveRecord::Base
   #authentication
 
   def update_user_from_vk_graph(vk_user, access_token)
+    
     self.vk_token = access_token
-    self.is_active = true
+    
+    if self.is_active == false
+      self.birthday = vk_user.bdate
+
+      self.vk_city = VkCity.where(cid: vk_user.city).first_or_create
+      self.vk_country = VkCountry.where(cid: vk_user.country).first_or_create
+      self.is_active = true
+      welcome_email
+      get_friends
+      get_groups
+    end
     save
   end
 

@@ -1,5 +1,7 @@
 # encoding: utf-8
 class VkCountry < ActiveRecord::Base
+  validates :cid, :presence => {:message => 'city_id cannot be blank'}
+
   after_create :get_vk_country
 
   def get_vk_country

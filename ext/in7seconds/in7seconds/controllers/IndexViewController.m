@@ -96,6 +96,7 @@
         vc.managedObjectContext = self.managedObjectContext;
         vc.delegate = self;
     } else if ([segue.identifier isEqualToString:@"DirectToChat"]) {
+        [self stopCountdown];
         CommentViewController *vc = (CommentViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser; 
