@@ -1,10 +1,10 @@
 %p 
   Требуется всего 7 секунд чтобы понять, нравится тебе кто-то, или нет. И 
   %a{:href=>('http://vk.com/')}= @params[:hookup].first_name
-  - if !@params[:hookup].gender
-    понял
-  - else
-    поняла
+    - if !@params[:hookup].gender
+      понял
+    - else
+      поняла
   это всего за 4 #{Russian.p(4, "секунда", "секунды", "секунд")}.
 
 %p 
