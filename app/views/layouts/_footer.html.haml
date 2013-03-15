@@ -1,6 +1,10 @@
 %footer#l-footer
   .l-f-content
-    .copy In 7 Seconds &copy; 2013. Сделано с любовью
+    .copy
+      In 7 Seconds &copy; 2013. Сделано с любовью
+      %i.icon-heart.icon
+
     %nav
-      = mail_to CONFIG[:contact_email], "Обратная связь", class: 'l-f-link'
-      = link_to "О нас", about_path, class: 'l-f-link'
+      %a.l-f-link{:href=>about_path}
+        %i.icon-pacman.icon
+        %span О нас
