@@ -15,10 +15,9 @@
       = image_tag('iphone.png', :alt => 'iPhone', :class => 'p-i-p-front') 
 
     .p-i-desc
-      %h1.p-i-logo In 7 Seconds
-
       .p-i-details
-        %h2.p-i-title Найди свою любовь за 7 секунд
+        %h1.p-i-title In 7 Seconds
+        %h2.p-i-subtitle Найди свою любовь за 7 секунд
         %p.p-i-concept
           In&nbsp;7 Seconds показывает тебе интересных людей неподалеку, а&nbsp;ты&nbsp;просто отмечаешь тех, кто тебе симпатичен.
           Думать нужно быстро, у&nbsp;тебя будет всего 7&nbsp;секунд на&nbsp;то, чтобы понять, нравится тебе человек, или нет.
@@ -26,17 +25,18 @@
         %p.p-i-invitation
           Чтобы начать, тебе нужно просто авторизоваться с&nbsp;помощью ВКонтакте.
 
-        .p-i-auth
-          %a.vkbutton.button{:href=> user_omniauth_authorize_path(:vkontakte)}
-            %i.vk-icon
-            Войти через ВКонтакте
+        - if CONFIG[:debug]
+          .p-i-auth
+            %a.vkbutton.button{:href=> user_omniauth_authorize_path(:vkontakte)}
+              %i.vk-icon
+              Войти через ВКонтакте
 
-          %small.p-i-a-conditions
-            Авторизуясь, вы&nbsp;даете свое согласие на&nbsp;обработку личных данных, соглашаетесь&nbsp;с&nbsp;
-            %a{:href=>tos_path} условиями использования
-            , а так же подтверждаете, что вам больше 18 лет.
-
-    .p-i-extras
-      = render :partial => 'partials/social'
+            %small.p-i-a-conditions
+              Авторизуясь, вы&nbsp;даете свое согласие на&nbsp;обработку личных данных, соглашаетесь&nbsp;с&nbsp;
+              %a{:href=>tos_path} условиями использования
+              , а так же подтверждаете, что вам больше 18 лет.
+      - if CONFIG[:debug]
+        .p-i-extras
+          = render :partial => 'partials/social'
 
 = render :partial => 'layouts/footer'
