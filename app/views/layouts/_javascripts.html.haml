@@ -1,7 +1,7 @@
 :javascript
   var app = {
     env: {
-      debug: #{CONFIG[:debug]? 'false' : 'true'},
+      debug: #{CONFIG[:debug]? 'true' : 'false'},
       vk_app_id: #{CONFIG[:vk_app_id]},
       host: '#{CONFIG[:host]}'
     },
@@ -15,9 +15,10 @@
     settings: {
       interested: 'male'
     },
-    controllers: {},
+    collections: {},
     models: {},
-    modules: {}
+    modules: {},
+    views: {}
   };
 %script{:src=>"//vk.com/js/api/openapi.js?79"}
 %script{:src=>"//vk.com/js/api/share.js?9"}

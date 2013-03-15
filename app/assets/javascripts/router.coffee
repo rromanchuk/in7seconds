@@ -39,6 +39,8 @@ Router = Backbone.Router.extend
 
   index: ->
     @log('match "index"')
+    views['index'] = new app.views.PageIndex()
+
     app.size.setSplash(true)
     app.social.render()
 
