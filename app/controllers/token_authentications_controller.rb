@@ -11,7 +11,10 @@ class TokenAuthenticationsController < ApplicationController
     elsif params[:platform] == "vkontakte"
       @vk = VkontakteApi::Client.new(params[:access_token])
       vk_user = @vk.users.get(uid: params[:user_id], fields: User::VK_FIELDS).first
-      vk_user.merge!(email: params[:email])
+      if params[:email].include?("@")
+        vk_user.merge!(email: params[:email])
+      end
+      
       @user = User.find_or_create_for_vkontakte_oauth(vk_user, params[:access_token])
     end
     

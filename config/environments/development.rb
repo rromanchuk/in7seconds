@@ -35,14 +35,18 @@ In7seconds::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  config.action_controller.asset_host = CONFIG[:asset_host]
+  config.action_mailer.default_url_options = { :host => CONFIG[:asset_host] }
+
   Urbanairship.application_key = CONFIG[:ua_key]
   Urbanairship.application_secret = CONFIG[:ua_secret]
   Urbanairship.master_secret = CONFIG[:ua_master]
   Urbanairship.logger = Rails.logger
   Urbanairship.request_timeout = 5 # default
 
-  Delayed::Worker.delay_jobs = false
+  Delayed::Worker.delay_jobs = true
 
+  config.action_mailer.delivery_method = :amazon_ses
 
   #config.middleware.use MailView::Mapper, [MailPreview]
 end

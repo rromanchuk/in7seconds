@@ -19,6 +19,7 @@
     BOOL _noResults;
 }
 
+@property (strong, nonatomic) JDFlipNumberView *countdown;
 @property (strong, nonatomic) User *otherUser;
 @end
 
@@ -50,6 +51,11 @@
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation-logo"]];
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     sharedAppDelegate.delegate = self;
+    
+    self.countdown = [[JDFlipNumberView alloc] initWithDigitCount:1];
+    CGRect frame = CGRectOffset(self.likeButton.frame, 100, 0);
+    self.countdown.frame = frame;
+    [self.view addSubview:self.countdown];
 
 }
 
@@ -68,11 +74,20 @@
 }
 
 
-- (void)getDistance {
+- (NSString *)getDistance {
     CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude: [self.currentUser.latitude doubleValue] longitude:[self.currentUser.longitude doubleValue]];
     CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:[self.otherUser.latitude doubleValue] longitude:[self.otherUser.longitude doubleValue]];
-    //place.distance = [NSNumber numberWithDouble:[targetLocation distanceFromLocation:currentLocation]];
+    int distance = [[NSNumber numberWithDouble:[targetLocation distanceFromLocation:currentLocation]] integerValue];
     DLog(@"%@ is %g meters away", place.title, [place.distance doubleValue]);
+    NSString *measurement;
+    if (distance > 1000) {
+        distance = distance / 1000;
+        measurement = NSLocalizedString(@"KILOMETERS", nil);
+    } else {
+        measurement = NSLocalizedString(@"METERS", nil);
+    }
+    
+    [NSString stringWithFormat:@"%d %@", distance, measurement];
 
 }
 
@@ -132,12 +147,15 @@
 
 - (void)stopCountdown {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [[CircleDownCounter circleViewInView:self.countdownView] stop];
+    //[[CircleDownCounter circleViewInView:self.countdownView] stop];
+    [self.countdown stopAnimation];
 }
 
 - (void)startCountdown {
     ALog(@"Starting countdown");
-    [[CircleDownCounter circleViewInView:self.countdownView] startWithSeconds:7];
+    //[[CircleDownCounter circleViewInView:self.countdownView] startWithSeconds:7];
+    self.countdown.value = 7;
+    [self.countdown animateDownWithTimeInterval: 1.0];
     [self performSelector:@selector(didTapUnlike:) withObject:self afterDelay:8.0];
 }
 
@@ -194,6 +212,7 @@
             [self foundResults];
         
         [self.userImageView setProfilePhotoWithURL:self.otherUser.photoUrl];
+        
         self.locationLabel.text = self.otherUser.fullLocation;
         self.mutualFriendsLabel.text = [NSString stringWithFormat:@"%@ общих друзей", self.otherUser.mutualFriends];
         self.mutualGroupsLabel.text = [NSString stringWithFormat:@"%@ общих интересов", self.otherUser.mutualGroups];
@@ -229,7 +248,7 @@
 #pragma mark - LogoutDelegate delegate methods
 - (void) didLogout
 {
-    
+    [self stopCountdown];
     [RestUser resetIdentifiers];
     [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
     [[Vkontakte sharedInstance] logout];
@@ -272,11 +291,7 @@
 
 - (void)imageLoaded {
     if (self.otherUser) {
-        [CircleDownCounter showCircleDownWithSeconds:7.0f
-                                              onView:self.countdownView
-                                            withSize:kDefaultCounterSize
-                                             andType:CircleDownCounterTypeIntegerIncre];
-        [self performSelector:@selector(didTapUnlike:) withObject:self afterDelay:8.0];
+        [self startCountdown];
     }
     
 }
@@ -290,14 +305,14 @@
 
 - (void)foundResults {
     _noResults = NO;
-    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdownView.hidden = self.userImageView.hidden = self.infoBanner.hidden = NO;
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdown.hidden = self.userImageView.hidden = self.infoBanner.hidden = NO;
     self.noResultsLabel.hidden = YES;
 }
 
 - (void)noResultsLeft {
     [self stopCountdown];
     _noResults = YES;
-    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdownView.hidden = self.userImageView.hidden = self.infoBanner.hidden  = YES;
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdown.hidden = self.userImageView.hidden = self.infoBanner.hidden  = YES;
     self.noResultsLabel.hidden = NO;
 }
 

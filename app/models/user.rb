@@ -70,10 +70,26 @@ class User < ActiveRecord::Base
   after_create :get_friends, :if => :is_active?
   after_create :welcome_email, :if => :is_active?
   before_destroy :remove_relationships
-
+  
+  before_save :require_confirmation, :on => :create
+  after_save :check_email_status
+ 
   VK_FIELDS = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big, :graduation, :university_name, :education, :domain, :contacts]
 
   scope :added_yesterday, where(created_at: Date.yesterday...Date.today, is_active: true)
+
+  #devise 
+  def require_confirmation
+    self.skip_confirmation! unless is_active? && !email.blank?
+  end
+
+  def check_email_status
+    if is_active? && !email.blank?
+      if confirmation_sent_at.blank? && !confirmed?
+        send_confirmation_instructions
+      end
+    end
+  end
 
   def remove_relationships
     Relationship.where(hookup_id: self.id).map(&:destroy)
@@ -239,9 +255,12 @@ class User < ActiveRecord::Base
       self.vk_city = VkCity.where(cid: vk_user.city).first_or_create
       self.vk_country = VkCountry.where(cid: vk_user.country).first_or_create
       self.is_active = true
+      self.email = vk_user.email
+      save
       welcome_email
       get_friends
       get_groups
+
     end
     save
   end

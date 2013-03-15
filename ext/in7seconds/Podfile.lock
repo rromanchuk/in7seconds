@@ -5,6 +5,7 @@ PODS:
 - Facebook-iOS-SDK (3.2.0)
 - FlurrySDK (4.1.0)
 - HPGrowingTextView (0.0.1)
+- JDFlipNumberView (2.0.3)
 - JTObjectMapping (1.1)
 - SVProgressHUD (0.9)
 - TestFlightSDK (1.2.4.beta)
@@ -16,6 +17,7 @@ DEPENDENCIES:
 - Facebook-iOS-SDK
 - FlurrySDK
 - HPGrowingTextView
+- JDFlipNumberView
 - JTObjectMapping (= 1.1)
 - SVProgressHUD (>= 0.8)
 - TestFlightSDK (>= 1.1)
@@ -27,6 +29,7 @@ SPEC CHECKSUMS:
   Facebook-iOS-SDK: a9893c9ad7cf2ce35cb6297e2859eaee654bd6b0
   FlurrySDK: 52245ae8c6fa31825dc74a6afb94b861da2435fa
   HPGrowingTextView: 42fee2f684a8c98e61bc19579d274d7fc12b48ca
+  JDFlipNumberView: a494984c95f9536e3762f05bd6942d494f81d056
   JTObjectMapping: 245b1123d0f0d7d0d6ff6537f9d23bbe0d108ddc
   SVProgressHUD: 98935fbafaf0031df4a9cafca3c66eaf3da06967
   TestFlightSDK: aeec97fd81096753d53b942f030a443520a087f4
