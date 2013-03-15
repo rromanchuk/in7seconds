@@ -9,12 +9,12 @@ class Size
     @height = null
 
     @header =
-      width: app.dom.header.width()
-      height: app.dom.header.height()
+      width: app.dom.header.outerWidth()
+      height: app.dom.header.outerHeight()
 
     @footer =
-      width: app.dom.footer.width()
-      height: app.dom.footer.height()
+      width: app.dom.footer.outerWidth()
+      height: app.dom.footer.outerHeight()
 
     @content =
       width: null

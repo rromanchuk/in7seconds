@@ -24,10 +24,12 @@ Router = Backbone.Router.extend
     '':                          'index'
     'about':                     'about'
 
+    '*any':                      'error'
+
   before: (route, params)->
     @log("#{route} route called")
     cleanup(views)
-    app.size.setSplash(false)
+    app.size.setSplash(app.dom.html.hasClass('splash'))
 
   initialize: ->
     @on('route', @_manageHistory)
@@ -42,12 +44,13 @@ Router = Backbone.Router.extend
   index: ->
     @log('match "index"')
     views['index'] = new app.views.PageIndex()
-    app.size.setSplash(true)
     app.social.render()
 
   about: ->
     @log('match "about"')
-    app.size.setSplash(true)
     app.social.render()
+
+  error: ->
+    @log('match "error"')
 
 app.Router = Router
