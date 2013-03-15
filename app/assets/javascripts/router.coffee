@@ -22,6 +22,8 @@ Router = Backbone.Router.extend
 
   routes:
     '':                          'index'
+    'about':                     'about'
+
   before: (route, params)->
     @log("#{route} route called")
     cleanup(views)
@@ -40,7 +42,11 @@ Router = Backbone.Router.extend
   index: ->
     @log('match "index"')
     views['index'] = new app.views.PageIndex()
+    app.size.setSplash(true)
+    app.social.render()
 
+  about: ->
+    @log('match "about"')
     app.size.setSplash(true)
     app.social.render()
 
