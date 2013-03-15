@@ -54,15 +54,12 @@
 
     .p-i-phone
       width: 250px
-      height: 560px
       float: left
-
       position: relative
 
       .p-i-p-crop
         width: 211px
         height: 375px
-
         overflow: hidden
 
         position: absolute
@@ -77,5 +74,102 @@
       width: 640px
       float: right
 
-      background: #eee
-      background: rgba(255, 255, 255, .5)
+      text-align: center
+
+      color: #fff
+
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, .6)
+
+      .p-i-logo
+        width: 150px
+        height: 150px
+
+        display: inline-block
+
+        background: url('/assets/logo_big.png') no-repeat
+
+        ir plz
+
+      .p-i-details
+        margin-top: 30px
+        padding: 15px
+
+        border-radius: 5px
+        background: #333
+        background: rgba(0, 0, 0, .4)
+
+        .p-i-title
+          font-size: 36px
+          line-height: 48px
+
+        .p-i-concept
+          margin-top: 20px
+          font-size: 14px
+          line-height: 22px
+
+          text-align: left
+
+        .p-i-invitation
+          margin-top: 10px
+          font-size: 14px
+          line-height: 22px
+          text-align: left
+
+        .p-i-auth
+          margin-top: 20px
+          padding-top: 20px
+          border-top: 1px solid #555
+
+          .vkbutton
+            height: 25px
+            padding: 0 10px 0 40px
+            display: inline-block
+
+            background: #597da4
+            line-height: @height
+
+            box-shadow: 0 2px 0 #597da4 - 40%
+
+            text-align: left
+
+            font-size: 13px
+            text-shadow: 0 1px 0 rgba(0, 0, 0, .4)
+
+            color: #fff
+
+            &:hover
+              text-decoration: none
+
+            .vk-icon
+              width: 35px
+              height: 35px
+
+              position: absolute
+              left: -1px
+              top: -5px
+
+              display: inline-block
+              vertical-align: middle
+
+              border-radius: 5px
+              box-shadow: 0 2px 0 #43678c - 40%
+
+              background: url('/assets/vkontakte.png') no-repeat
+              background-size: @width @height
+
+            &:active
+              box-shadow: 0 1px 0 #597da4 - 40%
+
+              .vk-icon
+                box-shadow: 0 1px 0 #43678c - 40%
+
+          .p-i-a-conditions
+            margin-top: 15px
+            display: block
+            font-size: 10px
+            line-height: 14px
+
+            color: #777
+
+      .p-i-extras
+        margin-top: 10px

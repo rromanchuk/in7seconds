@@ -1,21 +1,21 @@
 class Social
   render: ->
-    VK.init(apiId: app.env.vk_id)
+    VK.init(apiId: app.env.vk_app_id)
     VK.Widgets.Like('vk_like', 
       type: 'button'
-      pageTitle: 'FuckWithFriends.ru'
-      pageDescription: 'Открой своих друзей с новой стороны'
+      pageTitle: 'In 7 Seconds'
+      pageDescription: 'Найди свою любовь за 7 секунд'
       pageUrl: window.location.protocol + '//' + app.env.host
-      pageImage: window.location.protocol + '//' + app.env.host + '/img/couple1.jpg'
+      pageImage: window.location.protocol + '//' + app.env.host + '/img/avatar500.jpg'
       text: 'Анонимно найди тех, кто свободен на эту ночь. Твои друзья ни о чем не узнают, пока они тоже не заинтересованы.'
     )
 
     $('#vk_share').html(VK.Share.button(
       {
-        title: 'FuckWithFriends.ru'
-        description: 'Открой своих друзей с новой стороны'
+        title: 'In 7 Seconds'
+        description: 'Найди свою любовь за 7 секунд'
         url: window.location.protocol + '//' + app.env.host
-        image: window.location.protocol + '//' + app.env.host + '/img/couple1.jpg'
+        image: window.location.protocol + '//' + app.env.host + '/img/avatar500.jpg'
         noparse: true
       }, 
       {

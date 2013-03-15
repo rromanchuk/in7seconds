@@ -44,7 +44,7 @@ app.dom.html.addClass('android android' + app.browser.isAndroid) if app.browser.
 #   app.header = new app.modules.Header()
 
 app.size = new app.modules.Size()
-# app.social = new app.modules.Social()
+app.social = new app.modules.Social()
 
 app.router = new app.Router()
 

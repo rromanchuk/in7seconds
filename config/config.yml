@@ -13,6 +13,7 @@ test:
   vk_secret: nnBnyGrt4Y8MpmiAC4DA
   vk_scopes: "friends,photos,status,wall,offline"
   contact_email: support@in7seconds.com
+  debug: false
 
 development:
   name: 7seconds Development
@@ -35,6 +36,7 @@ development:
   ua_key: t3YC1EwhSX2B-jl0XP2nvg
   ua_secret: nRah8o9GT72gsMEhth98OQ
   ua_master: swmZZidlSx2dv1RyZ1cn4w
+  debug: true
 
 production:
   name: 7seconds
@@ -57,3 +59,4 @@ production:
   ua_key: acjij3jDR1mkLzdEfhAfnw
   ua_secret: 6qOMa1RxQ2C9bRGsoGhFtA
   ua_master: Ld5UCuy6QTmRP873U-2LNQ
+  debug: false

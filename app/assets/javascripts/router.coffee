@@ -40,5 +40,6 @@ Router = Backbone.Router.extend
   index: ->
     @log('match "index"')
     app.size.setSplash(true)
+    app.social.render()
 
 app.Router = Router

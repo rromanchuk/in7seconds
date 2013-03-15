@@ -1,7 +1,9 @@
 :javascript
   var app = {
     env: {
-      debug: true // get from current env!
+      debug: #{CONFIG[:debug]? 'false' : 'true'},
+      vk_app_id: #{CONFIG[:vk_app_id]},
+      host: '#{CONFIG[:host]}'
     },
     endpoints: {
       user: '/api/user/'
