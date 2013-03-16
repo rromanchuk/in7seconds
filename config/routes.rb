@@ -76,10 +76,7 @@ In7seconds::Application.routes.draw do
   get 'about' => 'pages#about'
   get 'tos' => 'pages#tos'
 
-  unless Rails.application.config.consider_all_requests_local
-    match '*not_found', to: 'pages#error_404'
-  end
-  
+ 
   root :to => 'pages#index'
 
   # See how all your routes lay out with "rake routes"

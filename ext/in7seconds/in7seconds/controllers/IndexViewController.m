@@ -82,9 +82,9 @@
     NSString *measurement;
     if (distance > 1000) {
         distance = distance / 1000;
-        measurement = NSLocalizedString(@"KILOMETERS", nil);
+        measurement = NSLocalizedString(@"км", nil);
     } else {
-        measurement = NSLocalizedString(@"METERS", nil);
+        measurement = NSLocalizedString(@"м", nil);
     }
     
     [NSString stringWithFormat:@"%d %@", distance, measurement];
@@ -213,7 +213,12 @@
         
         [self.userImageView setProfilePhotoWithURL:self.otherUser.photoUrl];
         
-        self.locationLabel.text = self.otherUser.fullLocation;
+        if (self.otherUser.latitude) {
+            self.locationLabel.text = [NSString stringWithFormat:@"Примерно в %@ от тебя", [self getDistance]];
+        } else {
+          self.locationLabel.text = self.otherUser.fullLocation;
+        }
+        
         self.mutualFriendsLabel.text = [NSString stringWithFormat:@"%@ общих друзей", self.otherUser.mutualFriends];
         self.mutualGroupsLabel.text = [NSString stringWithFormat:@"%@ общих интересов", self.otherUser.mutualGroups];
         ALog(@"birthday %@", self.otherUser.birthday);
