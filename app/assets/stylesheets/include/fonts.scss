@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icowesome';
-  src:url(font_path('icowesome.eot'));
-  src:url(font_path('icowesome.eot?#iefix')) format('embedded-opentype'),
-    url(font_path('icowesome.woff')) format('woff'),
-    url(font_path('icowesome.ttf')) format('truetype'),
-    url(font_path('icowesome.svg#icowesome')) format('svg');
+  src:url(asset-path('right_bar_filler.jpg', image)font_path('icowesome.eot'));
+  src:url(font-path('icowesome.eot?#iefix')) format('embedded-opentype'),
+    url(font-path('icowesome.woff')) format('woff'),
+    url(font-path('icowesome.ttf')) format('truetype'),
+    url(font-path('icowesome.svg#icowesome')) format('svg');
   font-weight: normal;
   font-style: normal;
 }
