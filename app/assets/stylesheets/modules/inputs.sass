@@ -11,7 +11,7 @@ textarea
   outline: none
   
   border: none
-  appearance: none
+  @include appearance(none)
 
   border-radius: 0
 
@@ -31,8 +31,8 @@ textarea
   line-height: 20px
   color: #555
 
-  box-sizing: border-box
-  placeholder-color: #808a8f
+  @include box-sizing(border-box)
+  @include placeholder-color(#808a8f)
 
   border-radius: 3px
 
