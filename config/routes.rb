@@ -1,7 +1,17 @@
 In7seconds::Application.routes.draw do
   
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :token_authentications, :only => [:create, :destroy]
+
+
+  devise_for :users,
+             :controllers => { :registrations => "users/registrations",
+                               :confirmations => "users/confirmations",
+                               :sessions => 'devise/sessions',
+                               :omniauth_callbacks => "users/omniauth_callbacks"},
+             :skip => [:sessions] do
+    get '/signin'   => "pages#index",       :as => :new_user_session
+    get '/signout'  => 'devise/sessions#destroy',   :as => :destroy_user_session
+  end
 
   resources :relationships do 
     collection do 
@@ -18,6 +28,7 @@ In7seconds::Application.routes.draw do
       put :update_user
     end
   end
+
 
   # config/routes.rb
   if Rails.env.development?
@@ -77,7 +88,7 @@ In7seconds::Application.routes.draw do
   get 'tos' => 'pages#tos'
 
  
-  root :to => 'pages#index'
+  root :to => 'users#home'
 
   # See how all your routes lay out with "rake routes"
 
