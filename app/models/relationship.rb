@@ -1,13 +1,12 @@
 # encoding: utf-8
 class Relationship < ActiveRecord::Base
   attr_accessible :user, :hookup, :status, :user_id, :hookup_id
-  
+
   belongs_to :user
   belongs_to :hookup, :class_name => 'User'
 
-  scope :added_yesterday, where(created_at: Date.yesterday...Date.today)
-  scope :matches_yesterday, where(created_at: Date.yesterday...Date.today, status: "accepted")
-  
+  scope :added_yesterday, lambda { where(created_at: Date.yesterday...Date.today) }
+  scope :matches_yesterday, lambda { added_yesterday.where(status: "accepted") }
 
   after_save :notify
 
@@ -22,5 +21,4 @@ class Relationship < ActiveRecord::Base
       end
     end
   end
-
 end
