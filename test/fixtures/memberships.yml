@@ -1,0 +1,24 @@
+ryan_api:
+  user: ryan
+  group: api
+
+ryan_minnesota:
+  user: ryan
+  group: minnesota
+
+ryan_ostrovok:
+  user: ryan
+  group: ostrovok
+
+
+evgeny_api:
+  user: evgeny
+  group: api
+
+evgeny_minnesota:
+  user: evgeny
+  group: minnesota
+
+evgeny_ostrovok:
+  user: evgeny
+  group: ostrovok

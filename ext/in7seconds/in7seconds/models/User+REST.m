@@ -128,7 +128,12 @@
     self.vkUniversityName = restUser.vkUniversityName;
     self.vkGraduation = restUser.vkGraduation;
     self.vkFacultyName = restUser.vkFacultyName;
-
+    self.mutualFriends = [NSNumber numberWithInteger:restUser.mutualFriends];
+    self.mutualGroups = [NSNumber numberWithInteger:restUser.mutualGroups];
+    self.mutualFriendNames = restUser.mutualFriendNames;
+    self.mutualGroupNames = restUser.mutualGroupNames;
+    self.friendNames = restUser.friendNames;
+    self.groupNames = restUser.groupNames;
 }
 
 - (void)setManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {

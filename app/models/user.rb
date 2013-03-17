@@ -148,11 +148,11 @@ class User < ActiveRecord::Base
   end
 
   def mutual_group_names(hookup)
-    mutual_groups(hookup).map(&:name).join(',')
+    mutual_groups(hookup).map(&:name).join(', ')
   end
 
   def mutual_friend_names(hookup)
-    mutual_friends(hookup).map(&:name).join(',')
+    mutual_friends(hookup).map(&:name).join(', ')
   end
 
   def group_names

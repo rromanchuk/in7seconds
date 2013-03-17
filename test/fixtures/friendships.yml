@@ -1,0 +1,23 @@
+adarsh_ryan:
+  user: adarsh
+  friend: ryan
+
+ryan_adarsh:
+  user: ryan
+  friend: adarsh
+
+evgeny_adarsh:
+  user: evgeny
+  friend: adarsh
+
+adarsh_evgeny:
+  user: adarsh
+  friend: evgeny
+
+ryan_evgeny:
+  user: ryan
+  friend: evgeny
+
+evgeny_ryan:
+  user: evgeny
+  friend: ryan
