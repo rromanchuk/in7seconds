@@ -87,7 +87,7 @@
         measurement = NSLocalizedString(@"м", nil);
     }
     
-    [NSString stringWithFormat:@"%d %@", distance, measurement];
+    return [NSString stringWithFormat:@"%d%@", distance, measurement];
 
 }
 

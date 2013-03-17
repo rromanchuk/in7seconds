@@ -10,6 +10,7 @@ test:
   fsq_key: 3JGS1NJOEXKRRMMRYDDGWEOOVWKHUT3MK24Y4YBTZ5BM2UZ4
   fsq_secret: HNMOAADDNV3EEX3G0XUWYS2UBWSXZCMTX0WYKS1MJXIPUNKJ
   vk_app_id: 3450705
+  vk_web_app_id: 3425096
   vk_secret: nnBnyGrt4Y8MpmiAC4DA
   vk_scopes: "friends,photos,status,wall,offline"
   contact_email: support@in7seconds.com
@@ -29,6 +30,7 @@ development:
   fsq_key: 3JGS1NJOEXKRRMMRYDDGWEOOVWKHUT3MK24Y4YBTZ5BM2UZ4
   fsq_secret: HNMOAADDNV3EEX3G0XUWYS2UBWSXZCMTX0WYKS1MJXIPUNKJ
   vk_app_id: 3429661
+  vk_web_app_id: 3425096
   vk_secret: 2TdwkRgv1T4I8fYnsa9M
   vk_scopes: "friends,photos,status,wall,offline,notify"
   s3_cdn: s3.amazonaws.com/piclar
@@ -52,6 +54,7 @@ production:
   fsq_key: 3JGS1NJOEXKRRMMRYDDGWEOOVWKHUT3MK24Y4YBTZ5BM2UZ4
   fsq_secret: HNMOAADDNV3EEX3G0XUWYS2UBWSXZCMTX0WYKS1MJXIPUNKJ
   vk_app_id: 3450705
+  vk_web_app_id: 3425096
   vk_secret: nnBnyGrt4Y8MpmiAC4DA
   vk_scopes: "friends,photos,status,wall,offline,notify"
   s3_cdn: cdn.piclar.com
