@@ -29,13 +29,13 @@
         [self addSubview:self.imgView];
         self.backgroundColor = [UIColor clearColor];
         
-        self.label = [[UILabel alloc] initWithFrame:CGRectMake(10, 3, size.width - 25 , size.height - 10)];
+        self.label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, size.width - 25 , size.height)];
         self.label.backgroundColor = [UIColor clearColor];
         self.label.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
         self.label.textAlignment = NSTextAlignmentRight;
         self.label.numberOfLines = 0;
         [self addSubview:self.label];
-        //self.backgroundColor = [UIColor yellowColor];
+        //self.label.backgroundColor = [UIColor yellowColor];
     }
     return self;
 }

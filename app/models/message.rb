@@ -10,11 +10,11 @@ class Message < ActiveRecord::Base
   #named_scope :in_reply_to, lambda { |message| :conditions => {:thread => message}, :order => 'created_at' }
 
   def self.first_message(current_user, hookup)
-    Message.where('(from_user_id = ? AND to_user_id = ?) OR (to_user_id = ? AND from_user_id = ?)', hookup.id, current_user.id, current_user.id, hookup.id).first
+    Message.where('(from_user_id = ? AND to_user_id = ?) OR (to_user_id = ? AND from_user_id = ?)', hookup.id, current_user.id, hookup.id, current_user.id).first
   end
 
   def self.thread(current_user, hookup)
-    Message.where('(from_user_id = ? AND to_user_id = ?) OR (to_user_id = ? AND from_user_id = ?)', hookup.id, current_user.id, current_user.id, hookup.id)
+    Message.where('(from_user_id = ? AND to_user_id = ?) OR (to_user_id = ? AND from_user_id = ?)', hookup.id, current_user.id, hookup.id, current_user.id)
   end
 
   def thread

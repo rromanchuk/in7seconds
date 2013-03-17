@@ -33,7 +33,7 @@
         [self addSubview:self.imgView];
         self.backgroundColor = [UIColor clearColor];
         
-        self.label = [[UILabel alloc] initWithFrame:CGRectMake(10, 3, size.width - 10 , size.height - 10)];
+        self.label = [[UILabel alloc] initWithFrame:CGRectMake(13, 0, size.width - 18 , size.height - 0)];
         self.label.backgroundColor = [UIColor clearColor];
         self.label.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
         self.label.numberOfLines = 0;
@@ -53,7 +53,7 @@
     [self.imgView setFrame:CGRectMake(0, 0, self.frame.size.width, size.height + 20)];
 
     [self.label setFrame:CGRectMake(self.label.frame.origin.x, self.label.frame.origin.y, self.label.frame.size.width, size.height + 20)];
-
+    //self.label.backgroundColor = [UIColor yellowColor];
 }
 
 - (void)awakeFromNib {

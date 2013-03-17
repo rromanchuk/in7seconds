@@ -7,3 +7,8 @@ hi:
   from_user: adarsh
   to_user: ryan
   message: hey, how r u
+
+long_sentence:
+  from_user: adarsh
+  to_user: ryan
+  message: The big red fox jumped over the fence. After he jumped the fence he ran to San Francisco and crossed the bridged.
