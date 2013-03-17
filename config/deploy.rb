@@ -35,6 +35,7 @@ after 'deploy:update_code' do
 end
 before "deploy:restart", "delayed_job:stop"
 after  "deploy:restart", "delayed_job:start"
+after  "deploy:restart", "deploy:ensure_alive"
 after "deploy:stop",  "delayed_job:stop"
 after "deploy:start", "delayed_job:start"
 
@@ -51,5 +52,12 @@ namespace :deploy do
   task :nginx, :roles => :web do
     run 'sudo /opt/nginx/sbin/nginx restart'
   end
+
+  task :ensure_alive do 
+    cmd = "curl http://www.in7seconds.com" 
+    system(cmd) 
+  end
+
 end
+
 
