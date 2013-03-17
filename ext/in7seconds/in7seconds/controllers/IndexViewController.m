@@ -213,7 +213,8 @@
         
         [self.userImageView setProfilePhotoWithURL:self.otherUser.photoUrl];
         
-        if (self.otherUser.latitude) {
+        //ALog(@"latitude is %f", self.otherUser.latitude);
+        if (self.otherUser.latitude && [self.otherUser.latitude integerValue] > 0) {
             self.locationLabel.text = [NSString stringWithFormat:@"Примерно в %@ от тебя", [self getDistance]];
         } else {
           self.locationLabel.text = self.otherUser.fullLocation;

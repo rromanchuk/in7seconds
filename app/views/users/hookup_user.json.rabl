@@ -9,7 +9,7 @@ node :mutual_groups do |user|
   user.mutual_groups(current_user).length
 end
 
-node :mutal_friend_names do |user|
+node :mutual_friend_names do |user|
   current_user.mutual_friend_names(user)
 end
 
