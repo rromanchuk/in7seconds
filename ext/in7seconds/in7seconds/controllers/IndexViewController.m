@@ -295,7 +295,7 @@
 }
 
 - (void)imageLoaded {
-    if (self.otherUser) {
+    if (self.otherUser && (self.isViewLoaded && self.view.window)) {
         [self startCountdown];
     }
     

@@ -54,7 +54,7 @@ namespace :deploy do
   end
 
   task :ensure_alive do 
-    cmd = "curl http://www.in7seconds.com" 
+    cmd = "curl http://in7seconds.com" 
     system(cmd) 
   end
 
