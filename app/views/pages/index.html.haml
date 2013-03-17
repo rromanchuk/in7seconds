@@ -28,7 +28,7 @@
         %p.p-i-invitation
           Чтобы начать, тебе нужно просто авторизоваться с&nbsp;помощью ВКонтакте.
 
-        - if CONFIG[:debug]
+        - if Rails.env.development?
           .p-i-auth
             %a.vkbutton.button{:href=> user_omniauth_authorize_path(:vkontakte)}
               %i.vk-icon
@@ -38,7 +38,7 @@
               Авторизуясь, вы&nbsp;даете свое согласие на&nbsp;обработку личных данных, соглашаетесь&nbsp;с&nbsp;
               %a{:href=>tos_path} условиями использования
               , а так же подтверждаете, что вам больше 18 лет.
-      - if CONFIG[:debug]
+      - if Rails.env.development?
         .p-i-extras
           = render :partial => 'partials/social'
 
