@@ -64,14 +64,21 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
     NSDictionary *params = @{@"user[looking_for_gender]": user.lookingForGender,
                              @"user[gender]": user.gender,
                              @"user[latitude]": [NSNull nullWhenNil:[Location sharedLocation].latitude],
-                             @"user[longitude": [NSNull nullWhenNil:[Location sharedLocation].longitude],
-                             @"user[email]": [NSNull nullWhenNil:user.email],
-                             @"user[first_name]": [NSNull nullWhenNil:user.firstName],
-                             @"user[last_name]": [NSNull nullWhenNil:user.lastName]};
+                             @"user[longitude": [NSNull nullWhenNil:[Location sharedLocation].longitude]
+                             };
     
+    NSMutableDictionary *p = [params mutableCopy];
+    if (user.firstName && user.lastName) {
+        [p setObject:user.firstName forKey:@"user[first_name]"];
+        [p setObject:user.lastName forKey:@"user[last_name]"];
+    }
+    
+    if (user.email) {
+        [p setObject:user.email forKey:@"user[email]"];
+    }
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"PUT"
                                                             path:[RESOURCE_PATH stringByAppendingString:@"/update_user.json"]
-                                                      parameters:params];
+                                                      parameters:p];
     
     ALog(@"UPDATE USER REQUEST: %@", request);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
