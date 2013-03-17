@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
-
+gem 'rails', '3.2.12'
 gem 'mysql2'
 gem 'devise'
+
 gem "omniauth-facebook"
 gem 'awesome_print'
 gem 'rabl'
@@ -22,10 +22,8 @@ gem 'geocoder'
 gem "aws-ses", :require => 'aws/ses'
 gem 'whenever', :require => false
 gem 'russian'
-
 gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
-# Gems used only for assets and not required
-# in production environments by default.
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -47,5 +45,3 @@ group :development do
   gem 'quiet_assets'
   gem 'rvm-capistrano'
 end
-
-

@@ -1,0 +1,153 @@
+// ===========================================================================
+// Vendor madness mixins
+// ===========================================================================
+
+// TODO: remove upon full cross browser support
+// Box model
+@mixin box-sizing($val)
+  -webkit-box-sizing: $val
+  -moz-box-sizing: $val
+  box-sizing: $val
+
+// Transforms
+@mixin transform($args...)
+  -webkit-transform: $args
+  -ms-transform: $args
+  transform: $args
+
+// Transitions
+@mixin transition($args...)
+  -webkit-transition: $args
+  transition: $args
+
+@mixin overflow-scrolling($val)
+  -webkit-overflow-scrolling: $val
+  overflow-scrolling: $val
+
+// Gradients
+@mixin horizontal-gradient($startColor, $endColor) 
+  background-color: $startColor
+  background-image: -webkit-linear-gradient(left, $startColor, $endColor) /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image: linear-gradient(to right, $startColor, $endColor)
+    
+
+@mixin vertical-gradient($startColor, $endColor) 
+  background-color: $startColor
+  background-image: -webkit-linear-gradient(top, $startColor, $endColor) /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image: linear-gradient(to bottom, $startColor, $endColor)
+
+// Animations
+@mixin animation-delay($args...)
+  -webkit-animation-delay: $args
+  animation-delay: $args
+
+@mixin animation-direction($args...)
+  -webkit-animation-direction: $args
+  animation-direction: $args
+
+@mixin animation-duration($args...)
+  -webkit-animation-duration: $args
+  animation-duration: $args
+
+@mixin animation-iteration-count($args...)
+  -webkit-animation-iteration-count: $args
+  animation-iteration-count: $args
+
+@mixin animation-name($args...)
+  -webkit-animation-name: $args
+  animation-name: $args
+
+@mixin animation-play-state($args...)
+  -webkit-animation-play-state: $args
+  animation-play-state: $args
+
+@mixin animation-timing-function($args...)
+  -webkit-animation-timing-function: $args
+  animation-timing-function: $args
+
+@mixin animation-fill-mode($args...)
+  -webkit-animation-fill-mode: $args
+  animation-fill-mode: $args
+
+// EXPERIMENTAL: Text selectability
+@mixin user-select($val: all) 
+  -webkit-user-select: $val
+  -moz-user-select: $val
+  -o-user-select: $val
+  user-select: $val
+
+
+// MOBILE SPECIFIC: Links callout
+@mixin touch-callout($val: default) 
+  -webkit-touch-callout: $val
+  touch-callout: $val
+
+// MOBILE SPECIFIC: Tap highlighting
+@mixin tap-highlight-color($val)
+  -webkit-tap-highlight-color: $val
+  tap-highlight-color: $val
+
+// EXPERIMENTAL: Input styling
+@mixin appearance($args...)
+  -webkit-appearance: $args
+  appearance: $args
+
+// EXPERIMENTAL: text hyphenation
+@mixin hyphens($val: manual)
+  -webkit-hyphens: $val
+  -moz-hyphens: $val
+  -ms-hyphens: $val
+  hyphens: $val
+
+
+// EXPERIMENTAL: placeholder color
+@mixin placeholder-color($val: inherit) 
+  &::-webkit-input-placeholder 
+    color: $val
+  
+  &:-ms-input-placeholder 
+    color: $val
+  
+  &:-moz-placeholder 
+    color: $val
+  
+
+@mixin placeholder-text-shadow($val: inherit) 
+  &::-webkit-input-placeholder 
+    text-shadow: $val
+  
+  &:-ms-input-placeholder 
+    text-shadow: $val
+  
+  &:-moz-placeholder 
+    text-shadow: $val
+
+
+// ===========================================================================
+// Utility mixins
+// ===========================================================================
+@mixin noselect
+  @include user-select(none)
+  cursor: default
+
+@mixin cf
+  &:before,
+  &:after
+    content: ' '
+    display: table
+
+  &:after
+    clear: both
+
+
+@mixin ir
+  background-color: transparent
+  border: 0
+  overflow: hidden
+
+  &:before
+    content: ""
+    display: block
+    width: 0
+    height: 150%
+
