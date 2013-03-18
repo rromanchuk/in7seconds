@@ -106,6 +106,9 @@
     
     if (self.currentUser) {
         [RestUser reload:^(RestUser *restUser) {
+            NSString *alias = [NSString stringWithFormat:@"%d", restUser.externalId];
+            [[UAPush shared] setAlias:alias];
+            [[UAPush shared] updateRegistration];
             self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
         } onError:^(NSError *error) {
             
