@@ -8,20 +8,20 @@ class Notification < ActiveRecord::Base
   # attr_accessible :sender, :receiver, :notification_type, :sender_id, :receiver_id
 
   def self.no_email(user)
-    Notification.send_notfication!([user.id], I18n.t('notifications.no_email'))
+    Notification.send_notification!([user.id], I18n.t('notifications.no_email'))
   end
 
   def self.private_message(sender, hookup, message)
-    Notification.send_notfication!([hookup.id], "#{sender.first_name}: #{message}")
+    Notification.send_notification!([hookup.id], "#{sender.first_name}: #{message}")
   end
   
   def self.fuck(receiver, hookup)
     message = (hookup.gender) ? I18n.t('notifications.fuck.f', user: hookup.first_name) : I18n.t('notifications.fuck.m', user: hookup.first_name)
-    Notification.send_notfication!([receiver.id], message)
+    Notification.send_notification!([receiver.id], message)
   end
 
-  def self.send_notfication!(aliases, message, extra={})
-    notification = { aliases: aliases, aps: {:alert => message, :badge => 1}, extra: extra }
+  def self.send_notification!(aliases, message, extra={})
+    notification = { aliases: [aliases.join(',')], aps: {:alert => message, :badge => 1}, extra: extra }
     Urbanairship.push(notification)
   end
 
