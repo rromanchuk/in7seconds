@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails'
 gem 'mysql2'
 gem 'devise'
 
@@ -23,7 +23,7 @@ gem "aws-ses", :require => 'aws/ses'
 gem 'whenever', :require => false
 gem 'russian'
 gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
-
+gem 'slim'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
