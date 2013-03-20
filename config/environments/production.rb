@@ -78,6 +78,7 @@ In7seconds::Application.configure do
   Urbanairship.application_key = "t3YC1EwhSX2B-jl0XP2nvg"
   Urbanairship.application_secret = "nRah8o9GT72gsMEhth98OQ"
   Urbanairship.master_secret = "swmZZidlSx2dv1RyZ1cn4w"
+  Urbanairship.logger = Rails.logger
 
 
   config.middleware.use ExceptionNotifier,
