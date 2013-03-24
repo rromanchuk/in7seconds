@@ -11,6 +11,8 @@
 #import "BaseUIView.h"
 #import "NoChatsView.h"
 #import "CommentViewController.h"
+#import "UAPush.h"
+
 @interface MatchesViewController ()
 @property (strong, nonatomic) NoChatsView *noResultsFooterView;
 
@@ -41,6 +43,7 @@
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     self.title = NSLocalizedString(@"Симпатии", nil);
     self.tableView.backgroundView = [[BaseUIView alloc] init];
+    [[UAPush shared] resetBadge];
 	// Do any additional setup after loading the view.
 }
 
