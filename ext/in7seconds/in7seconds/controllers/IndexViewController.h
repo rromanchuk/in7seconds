@@ -15,7 +15,7 @@
 #import "AppDelegate.h"
 #import "JDFlipNumberView.h"
 
-@interface IndexViewController : ECSlidingViewController <LoginDelegate, LogoutDelegate, ImageLoadedDelegate, MatchModalDelegate, ApplicationLifecycleDelegate>
+@interface IndexViewController : ECSlidingViewController <LoginDelegate, LogoutDelegate, ImageLoadedDelegate, MatchModalDelegate, ApplicationLifecycleDelegate, JDFlipNumberViewDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;

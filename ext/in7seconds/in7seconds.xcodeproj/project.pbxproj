@@ -74,8 +74,6 @@
 		FA7002C816CAF5F00098A5B7 /* VkontakteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002C716CAF5F00098A5B7 /* VkontakteViewController.m */; };
 		FA7002CC16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */; };
 		FA7F38D916E7CA8B00EA2C0B /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */; };
-		FA7F38DF16E7DD8200EA2C0B /* CircleCounterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38DC16E7DD8200EA2C0B /* CircleCounterView.m */; };
-		FA7F38E016E7DD8200EA2C0B /* CircleDownCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38DE16E7DD8200EA2C0B /* CircleDownCounter.m */; };
 		FA7F38E316EBBF9500EA2C0B /* WhiteBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E216EBBF9400EA2C0B /* WhiteBubble.m */; };
 		FA7F38E616EBDB7D00EA2C0B /* BlueBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E516EBDB7C00EA2C0B /* BlueBubble.m */; };
 		FA7F38E916ECE94700EA2C0B /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E816ECE94700EA2C0B /* ProfileCell.m */; };
@@ -240,10 +238,6 @@
 		FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+NetworkActivityIndicator.m"; path = "categories/UIApplication+NetworkActivityIndicator.m"; sourceTree = "<group>"; };
 		FA7F38D716E7CA8B00EA2C0B /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentViewController.h; path = controllers/CommentViewController.h; sourceTree = "<group>"; };
 		FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentViewController.m; path = controllers/CommentViewController.m; sourceTree = "<group>"; };
-		FA7F38DB16E7DD8200EA2C0B /* CircleCounterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleCounterView.h; sourceTree = "<group>"; };
-		FA7F38DC16E7DD8200EA2C0B /* CircleCounterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleCounterView.m; sourceTree = "<group>"; };
-		FA7F38DD16E7DD8200EA2C0B /* CircleDownCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDownCounter.h; sourceTree = "<group>"; };
-		FA7F38DE16E7DD8200EA2C0B /* CircleDownCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleDownCounter.m; sourceTree = "<group>"; };
 		FA7F38E116EBBF9400EA2C0B /* WhiteBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteBubble.h; sourceTree = "<group>"; };
 		FA7F38E216EBBF9400EA2C0B /* WhiteBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteBubble.m; sourceTree = "<group>"; };
 		FA7F38E416EBDB7B00EA2C0B /* BlueBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlueBubble.h; path = views/BlueBubble.h; sourceTree = "<group>"; };
@@ -593,7 +587,6 @@
 		FA7002C216CAF5010098A5B7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				FA7F38DA16E7DD8200EA2C0B /* CircleCountDown */,
 				FA7002C316CAF5430098A5B7 /* Vkontakte.h */,
 				FA7002C416CAF5430098A5B7 /* Vkontakte.m */,
 				948498B416CFB2C1000083DE /* Location.h */,
@@ -617,18 +610,6 @@
 				FAC3DA5516DE930700410BF7 /* UIImageView+additions.m */,
 			);
 			name = Categories;
-			sourceTree = "<group>";
-		};
-		FA7F38DA16E7DD8200EA2C0B /* CircleCountDown */ = {
-			isa = PBXGroup;
-			children = (
-				FA7F38DB16E7DD8200EA2C0B /* CircleCounterView.h */,
-				FA7F38DC16E7DD8200EA2C0B /* CircleCounterView.m */,
-				FA7F38DD16E7DD8200EA2C0B /* CircleDownCounter.h */,
-				FA7F38DE16E7DD8200EA2C0B /* CircleDownCounter.m */,
-			);
-			name = CircleCountDown;
-			path = helpers/CircleCountDown;
 			sourceTree = "<group>";
 		};
 		FAAA96C916D907D900F8CD3D /* Delegates */ = {
@@ -866,8 +847,6 @@
 				FAC3DA5316DE8FEE00410BF7 /* ProfileImageView.m in Sources */,
 				FAC3DA5616DE930700410BF7 /* UIImageView+additions.m in Sources */,
 				FA7F38D916E7CA8B00EA2C0B /* CommentViewController.m in Sources */,
-				FA7F38DF16E7DD8200EA2C0B /* CircleCounterView.m in Sources */,
-				FA7F38E016E7DD8200EA2C0B /* CircleDownCounter.m in Sources */,
 				94A9808416E9E34C0036E52C /* MatchViewController.m in Sources */,
 				94A9808716E9F0960036E52C /* CurrentUserChatCell.m in Sources */,
 				94A9808A16E9F0A40036E52C /* OtherUserChatCell.m in Sources */,
