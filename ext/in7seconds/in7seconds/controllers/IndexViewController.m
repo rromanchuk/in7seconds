@@ -257,11 +257,13 @@
     [RestUser resetIdentifiers];
     [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
     [[Vkontakte sharedInstance] logout];
+    self.currentUser = nil;
     //[[UAPush shared] setAlias:nil];
     //[[UAPush shared] updateRegistration];
     
     //[FBSession.activeSession closeAndClearTokenInformation];
     //[self dismissModalViewControllerAnimated:YES];
+    
     [self performSegueWithIdentifier:@"Login" sender:self];
 }
 

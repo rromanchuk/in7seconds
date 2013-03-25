@@ -266,7 +266,7 @@
         return;
     }
     
-    [SVProgressHUD show];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Отсылаю сообщение...", nil) maskType:SVProgressHUDMaskTypeGradient];
     [RestMessage sendMessageTo:self.otherUser withMessage:comment onLoad:^(RestMessage *restMessage) {
         [SVProgressHUD dismiss];
         PrivateMessage *message = [PrivateMessage privateMessageWithRestMessage:restMessage inManagedObjectContext:self.managedObjectContext];
