@@ -9,8 +9,6 @@
 #import "IndexViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MatchesViewController.h"
-#import "CircleCounterView.h"
-#import "CircleDownCounter.h"
 #import "CommentViewController.h"
 #import "UserProfileViewController.h"
 
@@ -56,6 +54,7 @@
     CGRect frame = CGRectOffset(self.likeButton.frame, 100, 0);
     self.countdown.frame = frame;
     [self.view addSubview:self.countdown];
+    self.countdown.delegate = self;
 
 }
 
@@ -307,13 +306,6 @@
     
 }
 
-
-#pragma mark - CircleCounterViewDelegate methods
-- (void)counterDownFinished:(CircleCounterView *)circleView; {
-    ALog(@"countdown finished");
-}
-
-
 - (void)foundResults {
     _noResults = NO;
     self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdown.hidden = self.userImageView.hidden = self.infoBanner.hidden = NO;
@@ -353,4 +345,14 @@
 - (IBAction)didTapInfo:(id)sender {
     [self performSegueWithIdentifier:@"UserProfile" sender:self];
 }
+
+#pragma mark - JDFlipNumberViewDelegate
+- (void)flipNumberView:(JDFlipNumberView *)flipNumberView didChangeValueAnimated:(BOOL)animated {
+    ALog(@"delegate callback %d", flipNumberView.value);
+    if (flipNumberView.value == 0) {
+        [self stopCountdown];
+    }
+        
+}
+
 @end
