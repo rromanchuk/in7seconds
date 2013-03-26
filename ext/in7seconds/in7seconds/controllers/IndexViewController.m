@@ -327,7 +327,7 @@
 - (void)applicationWillWillStart {
     _numberOfAttempts = 0;
     if (self.otherUser) {
-        [self didTapUnlike:self];
+        [self startCountdown];
     }
 }
 #pragma mark MatchModalDelegate methods
@@ -350,9 +350,9 @@
 - (void)flipNumberView:(JDFlipNumberView *)flipNumberView didChangeValueAnimated:(BOOL)animated {
     ALog(@"delegate callback %d", flipNumberView.value);
     if (flipNumberView.value == 0) {
-        [self stopCountdown];
+        [self didTapUnlike:self];
     }
-        
+    
 }
 
 @end
