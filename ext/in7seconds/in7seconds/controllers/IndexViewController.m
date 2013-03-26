@@ -155,8 +155,11 @@
     ALog(@"Starting countdown");
     //[[CircleDownCounter circleViewInView:self.countdownView] startWithSeconds:7];
     self.countdown.value = 7;
+    [self performSelector:@selector(startCountdownAnimation) withObject:self afterDelay:1.0];
+}
+
+- (void)startCountdownAnimation {
     [self.countdown animateDownWithTimeInterval: 1.0];
-    [self performSelector:@selector(didTapUnlike:) withObject:self afterDelay:8.0];
 }
 
 - (IBAction)didTapLike:(id)sender {
@@ -332,7 +335,7 @@
 - (void)applicationWillWillStart {
     _numberOfAttempts = 0;
     if (self.otherUser) {
-        [self startCountdown];
+        [self didTapUnlike:self];
     }
 }
 #pragma mark MatchModalDelegate methods
