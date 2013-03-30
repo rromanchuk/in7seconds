@@ -17,13 +17,13 @@
         case kUserNotAuthorized:
             [[NSNotificationCenter defaultCenter] postNotificationName:@"UserNotAuthorized" object:nil];
             ALog(@"User not authorized!!");
-            localizedDescription = NSLocalizedString(@"NOT_AUTHORIZED", @"signature incorrect");
+            localizedDescription = NSLocalizedString(@"Ошибка авторизации", @"signature incorrect");
             break;
         case kObjectNotFound:
-            localizedDescription = NSLocalizedString(@"NOT_FOUND", @"resource not found");
+            localizedDescription = NSLocalizedString(@"Упс. Произошла непредвиденная ошибка (404)", @"resource not found");
             break;
         case kInternalServerError:
-            localizedDescription = NSLocalizedString(@"FATAL_ERROR", @"interal exception");
+            localizedDescription = NSLocalizedString(@"Упс. Произошла непредвиденная ошибка (500)", @"interal exception");
             break;
         default:
             localizedDescription = [JSON objectForKey:@"message"];

@@ -31,12 +31,10 @@
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chat_icon"] target:self action:@selector(didTapMatches:)];
     
-    //((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
+    ((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
     //((MenuViewController *)self.slidingViewController.underLeftViewController).managedObjectContext = self.managedObjectContext;
 
     self.userImageView.delegate = self;
-    self.userImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.userImageView.layer.borderWidth = 3;
     _numberOfAttempts = 0;
    	// Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout)
@@ -65,6 +63,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    ((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
+
     if (!self.currentUser) {
         [self performSegueWithIdentifier:@"Login" sender:self];
         return;
@@ -256,6 +256,7 @@
 #pragma mark - LogoutDelegate delegate methods
 - (void) didLogout
 {
+    DLog(@"in logout");
     [self stopCountdown];
     [RestUser resetIdentifiers];
     [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];

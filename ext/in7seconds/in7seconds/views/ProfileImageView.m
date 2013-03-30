@@ -36,6 +36,8 @@
     [self.layer setShadowOpacity:0.8];
     [self.layer setShadowRadius:1.0];
     [self.layer setShadowOffset:CGSizeMake(0.0, 0.0)];
+    self.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.layer.borderWidth = 3;
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((self.frame.size.width/2) - 10, (self.frame.size.height / 2) - 10, 20.0, 20.0) ];
     [self addSubview:self.activityIndicator];
     [self.activityIndicator startAnimating];

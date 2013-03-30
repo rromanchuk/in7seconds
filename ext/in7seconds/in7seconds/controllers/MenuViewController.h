@@ -8,7 +8,7 @@
 
 #import "ECSlidingViewController.h"
 #import "User+REST.h"
-
+#import "ProfileImageView.h"
 typedef enum  {
     LookingForMen = 0,
     LookingForWomen = 1,
@@ -30,7 +30,7 @@ typedef enum  {
 @property (weak, nonatomic) id <LogoutDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet ProfileImageView *profileImage;
 
 
 - (IBAction)didTapLogout:(id)sender;
