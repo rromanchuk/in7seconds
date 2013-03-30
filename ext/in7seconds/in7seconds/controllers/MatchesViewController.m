@@ -12,6 +12,7 @@
 #import "NoChatsView.h"
 #import "CommentViewController.h"
 #import "UAPush.h"
+#import  <QuartzCore/QuartzCore.h>
 
 @interface MatchesViewController ()
 @property (strong, nonatomic) NoChatsView *noResultsFooterView;
@@ -84,6 +85,7 @@
     MatchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
     cell.nameLabel.text = user.fullName;
     [cell.profileImage setProfilePhotoWithURL:user.photoUrl];
+    cell.profileImage.layer.borderWidth = 1;
     cell.previewLabel.text = user.fullLocation;
     return cell;
 }

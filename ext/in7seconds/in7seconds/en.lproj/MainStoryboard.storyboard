@@ -94,6 +94,7 @@
                                     <segment title="Мужчина"/>
                                     <segment title="Женщина"/>
                                 </segments>
+                                <color key="tintColor" red="0.24313725490196078" green="0.23137254901960785" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="genderChanged:" destination="Bm8-fS-JEv" eventType="valueChanged" id="ecY-sM-3yu"/>
                                 </connections>
@@ -885,7 +886,7 @@
                 <relationship kind="outlet" name="lookingForMen" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="lookingForWomen" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="profileImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="profileImage" candidateClass="ProfileImageView"/>
                 <relationship kind="outlet" name="versionLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
