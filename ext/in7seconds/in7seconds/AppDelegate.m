@@ -110,6 +110,7 @@
             [[UAPush shared] setAlias:alias];
             [[UAPush shared] updateRegistration];
             self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+            [self saveContext];
         } onError:^(NSError *error) {
             
         }];
@@ -162,6 +163,8 @@
             abort();
         }
     }
+    
+    [self writeToDisk];
 }
 
 - (void)resetCoreData {

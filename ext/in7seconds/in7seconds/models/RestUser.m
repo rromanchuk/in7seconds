@@ -8,7 +8,7 @@
 
 #import "RestUser.h"
 #import "Location.h"
-
+#import "RestMutualFriend.h"
 static NSString *AUTH_PATH = @"token_authentications.json";
 static NSString *RESOURCE_PATH = @"users";
 static NSString *RELATIONSHIP_PATH = @"relationships";
@@ -34,7 +34,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                 @"vkGraduation", @"vk_graduation",
                                 @"vkFalcultyName", @"vk_falculty_name",
                                 @"photoUrl", @"photo_url",
-                                @"mutualFriends", @"mutual_friends",
+                                @"mutualFriendsNum", @"mutual_friends_num",
                                 @"mutualGroups", @"mutual_groups",
                                 @"mutualGroupNames", @"mutual_group_names",
                                 @"mutualFriendNames", @"mutual_friend_names",
@@ -50,9 +50,10 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                 nil];
     if (!is_nested) {
         [map setObject:[RestUser mappingWithKey:@"possibleHookups" mapping:[RestUser mapping:YES]] forKey:@"possible_hookups"];
-        
         [map setObject:[RestUser mappingWithKey:@"hookups" mapping:[RestUser mapping:YES]] forKey:@"hookups"];
     }
+    
+    [map setObject:[RestMutualFriend mappingWithKey:@"mutualFriends" mapping:[RestMutualFriend mapping]] forKey:@"mutual_friends"];
     return map;
 }
 

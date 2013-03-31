@@ -7,7 +7,7 @@
 //
 
 #import "User+REST.h"
-
+#import "RestMutualFriend.h"
 @implementation User (REST)
 + (User *)userWithRestUser:(RestUser *)restUser
     inManagedObjectContext:(NSManagedObjectContext *)context {
@@ -59,6 +59,33 @@
     } else {
         user = [users lastObject];
         [user setHookupManagedObjectWithIntermediateObject:restUser];
+    }
+    
+    return user;
+}
+
++ (User *)mutualFriendWithRestMutualFriend:(RestMutualFriend *)restUser
+      inManagedObjectContext:(NSManagedObjectContext *)context {
+    
+    User *user;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", [NSNumber numberWithInt:restUser.externalId]];
+    
+    NSError *error = nil;
+    NSArray *users = [context executeFetchRequest:request error:&error];
+    //ALog(@"looking for user with externalId %d got %@ from restUser %@ with context %@", restUser.externalId, users, restUser, context);
+    if (users && ([users count] > 1)) {
+        // handle error
+        ALog(@"not returning a user");
+    } else if (![users count]) {
+        user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
+                                             inManagedObjectContext:context];
+        
+        [user setMutualFriendManagedObjectWithIntermediateObject:restUser];
+        
+    } else {
+        user = [users lastObject];
+        [user setMutualFriendManagedObjectWithIntermediateObject:restUser];
     }
     
     return user;
@@ -128,12 +155,31 @@
     self.vkUniversityName = restUser.vkUniversityName;
     self.vkGraduation = restUser.vkGraduation;
     self.vkFacultyName = restUser.vkFacultyName;
-    self.mutualFriends = [NSNumber numberWithInteger:restUser.mutualFriends];
+    self.mutualFriendsNum = [NSNumber numberWithInteger:restUser.mutualFriendsNum];
     self.mutualGroups = [NSNumber numberWithInteger:restUser.mutualGroups];
     self.mutualFriendNames = restUser.mutualFriendNames;
     self.mutualGroupNames = restUser.mutualGroupNames;
     self.friendNames = restUser.friendNames;
     self.groupNames = restUser.groupNames;
+    
+    [self removeMutalFriends:self.mutalFriends];
+    for (RestMutualFriend *_restMutualFriendUser in restUser.mutualFriends) {
+        User *user = [User mutualFriendWithRestMutualFriend:_restMutualFriendUser inManagedObjectContext:self.managedObjectContext];
+        [self addMutalFriendsObject:user];
+    }
+
+}
+
+- (void)setMutualFriendManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {
+    RestMutualFriend *restUser = (RestMutualFriend *) intermediateObject;
+    self.externalId = [NSNumber numberWithInt:restUser.externalId];
+    self.updatedAt = restUser.updatedAt;
+    self.firstName = restUser.firstName;
+    self.lastName = restUser.lastName;
+    self.birthday = restUser.birthday;
+    self.gender = [NSNumber numberWithInteger:restUser.gender];
+    self.email = restUser.email;
+    self.photoUrl = restUser.photoUrl;
 }
 
 - (void)setManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {
@@ -153,7 +199,7 @@
     self.gender = [NSNumber numberWithInteger:restUser.gender];
     self.country = restUser.country;
     self.city = restUser.city;
-    self.mutualFriends = [NSNumber numberWithInteger:restUser.mutualFriends];
+    self.mutualFriendsNum = [NSNumber numberWithInteger:restUser.mutualFriendsNum];
     self.mutualGroups = [NSNumber numberWithInteger:restUser.mutualGroups];
     self.birthday = restUser.birthday;
     self.updatedAt = restUser.updatedAt;
@@ -174,7 +220,13 @@
         User *user = [User hookupWithRestUser:_restUser inManagedObjectContext:self.managedObjectContext];
         [self addHookupsObject:user];
     }
-      
+    
+    for (RestMutualFriend *_restMutualFriendUser in restUser.mutualFriends) {
+        User *user = [User mutualFriendWithRestMutualFriend:_restMutualFriendUser inManagedObjectContext:self.managedObjectContext];
+        [self addMutalFriendsObject:user];
+    }
+
+
 }
 
 - (NSString *)fullName {

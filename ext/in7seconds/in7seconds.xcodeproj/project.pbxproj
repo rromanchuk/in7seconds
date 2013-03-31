@@ -36,6 +36,8 @@
 		94A980B116EB7A620036E52C /* enter-textfield-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A980AF16EB7A620036E52C /* enter-textfield-bg.png */; };
 		94A980B216EB7A620036E52C /* enter-textfield-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A980B016EB7A620036E52C /* enter-textfield-bg@2x.png */; };
 		94A980B516ECB4060036E52C /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A980B416ECB4040036E52C /* UserProfileViewController.m */; };
+		94CA887517084BFE008A821A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CA887417084BFE008A821A /* User.m */; };
+		94CA887817086AB3008A821A /* RestMutualFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CA887717086AB3008A821A /* RestMutualFriend.m */; };
 		94D09CA716CBD3470064F886 /* RestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA616CBD3470064F886 /* RestClient.m */; };
 		94D09CAA16CBD3630064F886 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA916CBD3630064F886 /* Config.m */; };
 		94D09CBF16CBD5260064F886 /* environments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94D09CBE16CBD5260064F886 /* environments.plist */; };
@@ -49,7 +51,6 @@
 		FA316E0216EE5F300051EB5F /* blue_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA316E0016EE5F300051EB5F /* blue_circle@2x.png */; };
 		FA316E0516EE5F460051EB5F /* green_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FA316E0316EE5F460051EB5F /* green_circle.png */; };
 		FA316E0616EE5F460051EB5F /* green_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA316E0416EE5F460051EB5F /* green_circle@2x.png */; };
-		FA316E1216EE7C270051EB5F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FA316E1116EE7C270051EB5F /* User.m */; };
 		FA70025516CAECB20098A5B7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA70025416CAECB20098A5B7 /* UIKit.framework */; };
 		FA70025716CAECB20098A5B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA70025616CAECB20098A5B7 /* Foundation.framework */; };
 		FA70025916CAECB20098A5B7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA70025816CAECB20098A5B7 /* CoreGraphics.framework */; };
@@ -179,6 +180,10 @@
 		94A980B016EB7A620036E52C /* enter-textfield-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enter-textfield-bg@2x.png"; sourceTree = "<group>"; };
 		94A980B316ECB4030036E52C /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = controllers/UserProfileViewController.h; sourceTree = "<group>"; };
 		94A980B416ECB4040036E52C /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = controllers/UserProfileViewController.m; sourceTree = "<group>"; };
+		94CA887317084BFE008A821A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
+		94CA887417084BFE008A821A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
+		94CA887617086AB3008A821A /* RestMutualFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestMutualFriend.h; sourceTree = "<group>"; };
+		94CA887717086AB3008A821A /* RestMutualFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestMutualFriend.m; sourceTree = "<group>"; };
 		94D09CA516CBD3470064F886 /* RestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestClient.h; path = models/RestClient.h; sourceTree = "<group>"; };
 		94D09CA616CBD3470064F886 /* RestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestClient.m; path = models/RestClient.m; sourceTree = "<group>"; };
 		94D09CA816CBD3630064F886 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Config.h; path = models/Config.h; sourceTree = "<group>"; };
@@ -201,8 +206,6 @@
 		FA316E0016EE5F300051EB5F /* blue_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue_circle@2x.png"; sourceTree = "<group>"; };
 		FA316E0316EE5F460051EB5F /* green_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_circle.png; sourceTree = "<group>"; };
 		FA316E0416EE5F460051EB5F /* green_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_circle@2x.png"; sourceTree = "<group>"; };
-		FA316E1016EE7C270051EB5F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
-		FA316E1116EE7C270051EB5F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
 		FA70025116CAECB20098A5B7 /* in7seconds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = in7seconds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA70025416CAECB20098A5B7 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FA70025616CAECB20098A5B7 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -370,8 +373,8 @@
 		94D09CC316CBEA4B0064F886 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				FA316E1016EE7C270051EB5F /* User.h */,
-				FA316E1116EE7C270051EB5F /* User.m */,
+				94CA887317084BFE008A821A /* User.h */,
+				94CA887417084BFE008A821A /* User.m */,
 				94A980AC16EB70D40036E52C /* PrivateMessage.h */,
 				94A980AD16EB70D40036E52C /* PrivateMessage.m */,
 				94D09CC716CBED1D0064F886 /* User+REST.h */,
@@ -583,6 +586,8 @@
 				FAC3DA4F16DD769900410BF7 /* RestHookup.m */,
 				94A9808B16E9FF6F0036E52C /* RestMessage.h */,
 				94A9808C16E9FF6F0036E52C /* RestMessage.m */,
+				94CA887617086AB3008A821A /* RestMutualFriend.h */,
+				94CA887717086AB3008A821A /* RestMutualFriend.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -861,8 +866,9 @@
 				FA7F38E616EBDB7D00EA2C0B /* BlueBubble.m in Sources */,
 				94A980B516ECB4060036E52C /* UserProfileViewController.m in Sources */,
 				FA7F38E916ECE94700EA2C0B /* ProfileCell.m in Sources */,
-				FA316E1216EE7C270051EB5F /* User.m in Sources */,
 				942544E816EF888200FA79FB /* NoChatsView.m in Sources */,
+				94CA887517084BFE008A821A /* User.m in Sources */,
+				94CA887817086AB3008A821A /* RestMutualFriend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

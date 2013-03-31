@@ -146,13 +146,11 @@
 
 - (void)stopCountdown {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    //[[CircleDownCounter circleViewInView:self.countdownView] stop];
     [self.countdown stopAnimation];
 }
 
 - (void)startCountdown {
     ALog(@"Starting countdown");
-    //[[CircleDownCounter circleViewInView:self.countdownView] startWithSeconds:7];
     self.countdown.value = 7;
     [self performSelector:@selector(startCountdownAnimation) withObject:self afterDelay:1.0];
 }
@@ -222,7 +220,7 @@
           self.locationLabel.text = self.otherUser.fullLocation;
         }
         
-        self.mutualFriendsLabel.text = [NSString stringWithFormat:@"%@ общих друзей", self.otherUser.mutualFriends];
+        self.mutualFriendsLabel.text = [NSString stringWithFormat:@"%@ общих друзей", self.otherUser.mutualFriendsNum];
         self.mutualGroupsLabel.text = [NSString stringWithFormat:@"%@ общих интересов", self.otherUser.mutualGroups];
         ALog(@"birthday %@", self.otherUser.birthday);
         if (self.otherUser.birthday && [self.otherUser.yearsOld integerValue] > 0) {
@@ -331,6 +329,8 @@
         [self startCountdown];
     }
 }
+
+
 #pragma mark MatchModalDelegate methods
 - (void)userWantsToChat {
     [self dismissViewControllerAnimated:NO completion:nil];
@@ -346,6 +346,7 @@
 - (IBAction)didTapInfo:(id)sender {
     [self performSegueWithIdentifier:@"UserProfile" sender:self];
 }
+
 
 #pragma mark - JDFlipNumberViewDelegate
 - (void)flipNumberView:(JDFlipNumberView *)flipNumberView didChangeValueAnimated:(BOOL)animated {

@@ -1,15 +1,14 @@
 //
-//  RestUser.h
+//  RestMutualFriend.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 2/13/13.
+//  Created by Ryan Romanchuk on 3/31/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
 #import "RestObject.h"
-#import "User.h"
-@interface RestUser : RestObject <RestMappable>
 
+@interface RestMutualFriend : RestObject
 @property NSInteger gender;
 @property NSInteger lookingForGender;
 @property NSInteger mutualGroups;
@@ -45,31 +44,7 @@
 @property (atomic, strong) NSSet *hookups;
 @property (atomic, strong) NSSet *mutualFriends;
 
-+ (void)create:(NSMutableDictionary *)parameters
-        onLoad:(void (^)(RestUser *restUser))onLoad
-       onError:(void (^)(NSError *error))onError;
-
-+ (void)reload:(void (^)(RestUser *restUser))onLoad
-       onError:(void (^)(NSError *error))onError;
-
-+ (void)rejectUser:(User *)user
-            onLoad:(void (^)(RestUser *restUser))onLoad
-           onError:(void (^)(NSError *error))onError;
-
-+ (void)flirtWithUser:(User *)user
-               onLoad:(void (^)(RestUser *restUser))onLoad
-              onError:(void (^)(NSError *error))onError;
-
-+ (void)update:(User *)user
-               onLoad:(void (^)(RestUser *restUser))onLoad
-              onError:(void (^)(NSError *error))onError;
-
 
 + (NSDictionary *)mapping;
 
-+ (NSNumber *)currentUserId;
-+ (void)setCurrentUserId:(NSInteger)userId;
-+ (NSString *)currentUserToken;
-+ (void)setCurrentUserToken:(NSString *)token;
-+ (void)resetIdentifiers;
 @end
