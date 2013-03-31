@@ -8,6 +8,8 @@
 
 @protocol ImageLoadedDelegate;
 @interface ProfileImageView : UIImageView
+@property BOOL notifyImageLoad;
+
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 @property (weak) id <ImageLoadedDelegate> delegate;
 - (void)setProfilePhotoWithURL:(NSString *)url;

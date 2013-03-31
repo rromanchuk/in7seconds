@@ -15,6 +15,7 @@
 @interface IndexViewController () {
     NSInteger _numberOfAttempts;
     BOOL _noResults;
+    BOOL _modalOpen;
 }
 
 @property (strong, nonatomic) JDFlipNumberView *countdown;
@@ -53,7 +54,7 @@
     self.countdown.frame = frame;
     [self.view addSubview:self.countdown];
     self.countdown.delegate = self;
-
+    self.userImageView.notifyImageLoad = YES;
 }
 
 - (void)leftViewWillAppear {
@@ -63,6 +64,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    _modalOpen = NO;
     ((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
 
     if (!self.currentUser) {
@@ -117,6 +119,7 @@
         vc.otherUser = self.otherUser;
     } else if ([segue.identifier isEqualToString:@"UserProfile"]) {
         [self stopCountdown];
+        _modalOpen = YES;
         UserProfileViewController *vc = (UserProfileViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
@@ -134,8 +137,11 @@
 
 - (void)topDidAppear {
     [((MenuViewController *)self.slidingViewController.underLeftViewController).view endEditing:YES];
+    
     if (self.otherUser) {
-        [self startCountdown];
+        if (_modalOpen == NO) {
+            [self startCountdown];
+        }
     } else if ([self.currentUser.hookups count] > 0) {
         [self setupNextHookup];
     }

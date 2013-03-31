@@ -31,6 +31,7 @@
 }
 
 - (void)commonInit {
+    _notifyImageLoad = NO;
     [self.layer setShadowPath:[[UIBezierPath bezierPathWithRect:self.bounds] CGPath]];
     [self.layer setShadowColor:[UIColor grayColor].CGColor];
     [self.layer setShadowOpacity:0.8];
@@ -58,7 +59,7 @@
                              self.image = image;
                              CGSize actual = [self imageScale];
                              self.clipsToBounds = YES;
-                             if ([self.delegate respondsToSelector:@selector(imageLoaded)]) {
+                             if (_notifyImageLoad && [self.delegate respondsToSelector:@selector(imageLoaded)]) {
                                  [self.delegate imageLoaded];
                              }
      

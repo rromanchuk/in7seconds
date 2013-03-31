@@ -8,6 +8,8 @@
 
 #import "UserProfileViewController.h"
 #import "BaseUIView.h"
+#import  <QuartzCore/QuartzCore.h>
+
 @interface UserProfileViewController ()
 
 @end
@@ -69,23 +71,21 @@
     for (User *mutualFriend in self.otherUser.mutalFriends) {
         ALog(@"in mutal friend loop");
         ProfileImageView *userImageView = [[ProfileImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+        userImageView.layer.borderWidth = 1;
         [userImageView setProfilePhotoWithURL:mutualFriend.photoUrl];
         
         [self.scrollView addSubview:userImageView];
         
         UILabel *userNameLabel = [[UILabel alloc] initWithFrame: CGRectMake(offsetX, userImageView.frame.size.height + 8, userImageView.frame.size.width, 10.0)];
         userNameLabel.text = mutualFriend.fullName;
-        userNameLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:12.0];
+        userNameLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:10.0];
         userNameLabel.textAlignment = NSTextAlignmentCenter;
         userNameLabel.backgroundColor = [UIColor clearColor];
-        userNameLabel.textColor = [UIColor whiteColor];
+        userNameLabel.textColor = RGBCOLOR(159, 169, 172);
         [self.scrollView addSubview:userNameLabel];
         offsetX += 10 + userNameLabel.frame.size.width;
     }
     
-    DLog(@"number of photos is %d", [sampleFilterImages count]);
-    //[self saveSampleFilters];
-    //self.filterScrollView.backgroundColor = [UIColor blueColor];
     [self.scrollView setContentSize:CGSizeMake(offsetX, 70)];
     
 }
