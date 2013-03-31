@@ -30,7 +30,6 @@
 		94A9808A16E9F0A40036E52C /* OtherUserChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9808916E9F0A40036E52C /* OtherUserChatCell.m */; };
 		94A9808D16E9FF6F0036E52C /* RestMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9808C16E9FF6F0036E52C /* RestMessage.m */; };
 		94A9809616EA048B0036E52C /* PrivateMessage+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9809516EA048A0036E52C /* PrivateMessage+REST.m */; };
-		94A9809E16EA15B10036E52C /* sadputin.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 94A9809D16EA15B10036E52C /* sadputin.jpeg */; };
 		94A980A116EB45FC0036E52C /* enter-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A9809F16EB45FC0036E52C /* enter-button.png */; };
 		94A980A216EB45FC0036E52C /* enter-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A980A016EB45FC0036E52C /* enter-button@2x.png */; };
 		94A980AE16EB70D40036E52C /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A980AD16EB70D40036E52C /* PrivateMessage.m */; };
@@ -73,6 +72,8 @@
 		FA7002C516CAF5430098A5B7 /* Vkontakte.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002C416CAF5430098A5B7 /* Vkontakte.m */; };
 		FA7002C816CAF5F00098A5B7 /* VkontakteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002C716CAF5F00098A5B7 /* VkontakteViewController.m */; };
 		FA7002CC16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */; };
+		FA73B0FD1707514700D084CB /* segment-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FA73B0FC1707514700D084CB /* segment-bg.png */; };
+		FA73B0FF170754E300D084CB /* segment-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = FA73B0FE170754E200D084CB /* segment-selected.png */; };
 		FA7F38D916E7CA8B00EA2C0B /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */; };
 		FA7F38E316EBBF9500EA2C0B /* WhiteBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E216EBBF9400EA2C0B /* WhiteBubble.m */; };
 		FA7F38E616EBDB7D00EA2C0B /* BlueBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E516EBDB7C00EA2C0B /* BlueBubble.m */; };
@@ -170,7 +171,6 @@
 		94A9808C16E9FF6F0036E52C /* RestMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestMessage.m; path = models/RestMessage.m; sourceTree = "<group>"; };
 		94A9809416EA048A0036E52C /* PrivateMessage+REST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PrivateMessage+REST.h"; sourceTree = "<group>"; };
 		94A9809516EA048A0036E52C /* PrivateMessage+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PrivateMessage+REST.m"; sourceTree = "<group>"; };
-		94A9809D16EA15B10036E52C /* sadputin.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sadputin.jpeg; sourceTree = "<group>"; };
 		94A9809F16EB45FC0036E52C /* enter-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enter-button.png"; sourceTree = "<group>"; };
 		94A980A016EB45FC0036E52C /* enter-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enter-button@2x.png"; sourceTree = "<group>"; };
 		94A980AC16EB70D40036E52C /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateMessage.h; path = models/PrivateMessage.h; sourceTree = "<group>"; };
@@ -236,6 +236,8 @@
 		FA7002C716CAF5F00098A5B7 /* VkontakteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VkontakteViewController.m; path = controllers/VkontakteViewController.m; sourceTree = "<group>"; };
 		FA7002CA16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+NetworkActivityIndicator.h"; path = "categories/UIApplication+NetworkActivityIndicator.h"; sourceTree = "<group>"; };
 		FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+NetworkActivityIndicator.m"; path = "categories/UIApplication+NetworkActivityIndicator.m"; sourceTree = "<group>"; };
+		FA73B0FC1707514700D084CB /* segment-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segment-bg.png"; sourceTree = "<group>"; };
+		FA73B0FE170754E200D084CB /* segment-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segment-selected.png"; sourceTree = "<group>"; };
 		FA7F38D716E7CA8B00EA2C0B /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentViewController.h; path = controllers/CommentViewController.h; sourceTree = "<group>"; };
 		FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentViewController.m; path = controllers/CommentViewController.m; sourceTree = "<group>"; };
 		FA7F38E116EBBF9400EA2C0B /* WhiteBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteBubble.h; sourceTree = "<group>"; };
@@ -478,6 +480,8 @@
 		FA70028F16CAECBD0098A5B7 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				FA73B0FE170754E200D084CB /* segment-selected.png */,
+				FA73B0FC1707514700D084CB /* segment-bg.png */,
 				FA316E0316EE5F460051EB5F /* green_circle.png */,
 				FA316E0416EE5F460051EB5F /* green_circle@2x.png */,
 				FA316DFF16EE5F300051EB5F /* blue_circle.png */,
@@ -486,7 +490,6 @@
 				94A980B016EB7A620036E52C /* enter-textfield-bg@2x.png */,
 				94A9809F16EB45FC0036E52C /* enter-button.png */,
 				94A980A016EB45FC0036E52C /* enter-button@2x.png */,
-				94A9809D16EA15B10036E52C /* sadputin.jpeg */,
 				94A9807E16E9E1F10036E52C /* white_bubble.png */,
 				94A9807F16E9E1F10036E52C /* white_bubble@2x.png */,
 				94A9807616E9E1E60036E52C /* blue_bubble.png */,
@@ -748,7 +751,6 @@
 				94A9807D16E9E1E60036E52C /* blue_button@2x.png in Resources */,
 				94A9808016E9E1F10036E52C /* white_bubble.png in Resources */,
 				94A9808116E9E1F10036E52C /* white_bubble@2x.png in Resources */,
-				94A9809E16EA15B10036E52C /* sadputin.jpeg in Resources */,
 				94A980A116EB45FC0036E52C /* enter-button.png in Resources */,
 				94A980A216EB45FC0036E52C /* enter-button@2x.png in Resources */,
 				94A980B116EB7A620036E52C /* enter-textfield-bg.png in Resources */,
@@ -758,6 +760,8 @@
 				FA316E0516EE5F460051EB5F /* green_circle.png in Resources */,
 				FA316E0616EE5F460051EB5F /* green_circle@2x.png in Resources */,
 				942544E516EF87A100FA79FB /* NoChatsView.xib in Resources */,
+				FA73B0FD1707514700D084CB /* segment-bg.png in Resources */,
+				FA73B0FF170754E300D084CB /* segment-selected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

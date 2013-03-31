@@ -23,7 +23,7 @@
     [super viewDidLoad];
     [self.logoutButton setTitle:NSLocalizedString(@"Выйти", @"logout button text") forState:UIControlStateNormal];
     
-    [self.slidingViewController setAnchorRightRevealAmount:290.0f];
+    [self.slidingViewController setAnchorRightRevealAmount:295.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     self.view.backgroundColor = [UIColor darkBackgroundColor];
     
@@ -35,6 +35,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftViewWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.managedObjectContext = sharedAppDelegate.managedObjectContext;
+    
+//    [self.genderSegmentControl setBackgroundImage:[[UIImage imageNamed:@"segment"] resizableImageWithCapInsets:UIEdgeInsetsMake(9, 0, 0, 0)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//    [self.genderSegmentControl setBackgroundImage:[UIImage imageNamed:@"segment-selected"] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
 }
 
 
