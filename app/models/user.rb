@@ -369,6 +369,7 @@ class User < ActiveRecord::Base
     # Ok find friends on facebook
     users = filter(User.where(:vkuid => self.friends.map(&:vkuid) ).where('gender IN (?)', get_genders)) if users.blank?
     # Ok find anyone on the system
+    users = filter(User.where('gender IN (?)', get_genders).where(vk_city_id: vk_city_id)).take(50) if users.blank?
     users = filter(User.where('gender IN (?)', get_genders)).take(50) if users.blank?
     users
   end
@@ -432,4 +433,13 @@ class User < ActiveRecord::Base
     request.accepted_at = accepted_at
     request.save!
   end
+
+  # syncing 
+  def self.update_friends
+    User.active.each do |user|
+      user.get_friends
+      sleep 4
+    end
+  end
+
 end

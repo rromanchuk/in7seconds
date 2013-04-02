@@ -9,7 +9,7 @@ In7seconds::Application.routes.draw do
                                :sessions => 'devise/sessions',
                                :omniauth_callbacks => "users/omniauth_callbacks"},
              :skip => [:sessions] do
-    get '/signin'   => "pages#index",       :as => :new_user_session
+    get '/'   => "pages#index",       :as => :new_user_session
     get '/signout'  => 'devise/sessions#destroy',   :as => :destroy_user_session
   end
 
