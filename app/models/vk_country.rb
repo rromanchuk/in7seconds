@@ -19,5 +19,12 @@ class VkCountry < ActiveRecord::Base
      sleep 3
    end
   end
+
+  def self.update_all
+   VkCountry.all.each do |c|
+     c.get_vk_country
+     sleep 3
+   end
+  end
   
 end
