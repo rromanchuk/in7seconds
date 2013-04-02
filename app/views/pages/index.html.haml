@@ -38,8 +38,7 @@
               Авторизуясь, вы&nbsp;даете свое согласие на&nbsp;обработку личных данных, соглашаетесь&nbsp;с&nbsp;
               %a{:href=>tos_path} условиями использования
               , а так же подтверждаете, что вам больше 18 лет.
-      - if Rails.env.development?
-        .p-i-extras
-          = render :partial => 'partials/social'
+      .p-i-extras
+        = render :partial => 'partials/social'
 
 = render :partial => 'layouts/footer'
