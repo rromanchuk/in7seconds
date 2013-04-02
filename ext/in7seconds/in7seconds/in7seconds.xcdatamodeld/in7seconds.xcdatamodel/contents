@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="PrivateMessage" representedClassName="PrivateMessage" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
@@ -34,7 +34,7 @@
         <attribute name="vkToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vkUniversityName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="hookups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="hookups" inverseEntity="User" syncable="YES"/>
-        <relationship name="mutalFriends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="mutalFriends" inverseEntity="User" syncable="YES"/>
+        <relationship name="mutalFriendObjects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="mutalFriendObjects" inverseEntity="User" syncable="YES"/>
         <relationship name="possibleHookups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="possibleHookups" inverseEntity="User" syncable="YES"/>
     </entity>
     <elements>

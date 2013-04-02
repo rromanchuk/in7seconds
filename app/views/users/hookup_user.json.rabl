@@ -5,11 +5,15 @@ node :mutual_friends do |user|
   user.mutual_friends(current_user).length
 end
 
-# node :mutual_friends do |user|
-#   user.mutual_friends(current_user).map do |mutual_friend| 
-#     partial("users/mutual_user", :object => mutual_friend) 
-#   end
-# end
+node :mutual_friends_num do |user|
+  user.mutual_friends(current_user).length
+end
+
+node :mutual_friend_objects do |user|
+  user.mutual_friends(current_user).map do |mutual_friend| 
+    partial("users/mutual_user", :object => mutual_friend) 
+  end
+end
 
 node :mutual_groups do |user|
   user.mutual_groups(current_user).length

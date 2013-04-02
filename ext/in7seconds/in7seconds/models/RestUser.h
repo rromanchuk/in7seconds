@@ -43,7 +43,7 @@
 @property (atomic, strong) NSDate *createdAt;
 @property (atomic, strong) NSSet *possibleHookups;
 @property (atomic, strong) NSSet *hookups;
-@property (atomic, strong) NSSet *mutualFriends;
+@property (atomic, strong) NSSet *mutualFriendObjects;
 
 + (void)create:(NSMutableDictionary *)parameters
         onLoad:(void (^)(RestUser *restUser))onLoad

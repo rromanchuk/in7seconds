@@ -5,7 +5,7 @@ class VkCountry < ActiveRecord::Base
   after_create :get_vk_country
 
   def get_vk_country
-    response =  HTTParty.get('https://api.vk.com/method/getCountries', {query: {cids: cid}})
+    response =  HTTParty.get('https://api.vk.com/method/getCountries', {query: {cids: cid, lang:"ru"}})
     if response
       self.name = response["response"].first["name"]
     end

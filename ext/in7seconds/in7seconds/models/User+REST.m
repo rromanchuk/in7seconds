@@ -162,10 +162,10 @@
     self.friendNames = restUser.friendNames;
     self.groupNames = restUser.groupNames;
     
-    [self removeMutalFriends:self.mutalFriends];
-    for (RestMutualFriend *_restMutualFriendUser in restUser.mutualFriends) {
+    [self removeMutalFriendObjects:self.mutalFriendObjects];
+    for (RestMutualFriend *_restMutualFriendUser in restUser.mutualFriendObjects) {
         User *user = [User mutualFriendWithRestMutualFriend:_restMutualFriendUser inManagedObjectContext:self.managedObjectContext];
-        [self addMutalFriendsObject:user];
+        [self addMutalFriendObjectsObject:user];
     }
 
 }
@@ -221,9 +221,9 @@
         [self addHookupsObject:user];
     }
     
-    for (RestMutualFriend *_restMutualFriendUser in restUser.mutualFriends) {
+    for (RestMutualFriend *_restMutualFriendUser in restUser.mutualFriendObjects) {
         User *user = [User mutualFriendWithRestMutualFriend:_restMutualFriendUser inManagedObjectContext:self.managedObjectContext];
-        [self addMutalFriendsObject:user];
+        [self addMutalFriendObjectsObject:user];
     }
 
 

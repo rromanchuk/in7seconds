@@ -2,7 +2,7 @@
 //  User.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 3/31/13.
+//  Created by Ryan Romanchuk on 4/2/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -39,8 +39,8 @@
 @property (nonatomic, retain) NSString * vkToken;
 @property (nonatomic, retain) NSString * vkUniversityName;
 @property (nonatomic, retain) NSSet *hookups;
+@property (nonatomic, retain) NSSet *mutalFriendObjects;
 @property (nonatomic, retain) NSSet *possibleHookups;
-@property (nonatomic, retain) NSSet *mutalFriends;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
@@ -50,14 +50,14 @@
 - (void)addHookups:(NSSet *)values;
 - (void)removeHookups:(NSSet *)values;
 
+- (void)addMutalFriendObjectsObject:(User *)value;
+- (void)removeMutalFriendObjectsObject:(User *)value;
+- (void)addMutalFriendObjects:(NSSet *)values;
+- (void)removeMutalFriendObjects:(NSSet *)values;
+
 - (void)addPossibleHookupsObject:(User *)value;
 - (void)removePossibleHookupsObject:(User *)value;
 - (void)addPossibleHookups:(NSSet *)values;
 - (void)removePossibleHookups:(NSSet *)values;
-
-- (void)addMutalFriendsObject:(User *)value;
-- (void)removeMutalFriendsObject:(User *)value;
-- (void)addMutalFriends:(NSSet *)values;
-- (void)removeMutalFriends:(NSSet *)values;
 
 @end
