@@ -68,7 +68,7 @@
     //OstronautFilterType filterType;
     ALog(@"other user %@", self.otherUser);
     ALog(@"current user is %@", self.currentUser);
-    for (User *mutualFriend in self.otherUser.mutalFriends) {
+    for (User *mutualFriend in self.otherUser.mutalFriendObjects) {
         ALog(@"in mutal friend loop");
         ProfileImageView *userImageView = [[ProfileImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
         userImageView.layer.borderWidth = 1;
