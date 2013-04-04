@@ -14,7 +14,7 @@
 #import "UAirship.h"
 #import "Config.h"
 #import "Facebook.h"
-
+#import "Appirater.h"
 @implementation AppDelegate
 @synthesize window = _window;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -25,6 +25,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Appirater setAppId:@"604460636"];
+    
     // Override point for customization after application launch.
     [Flurry startSession:@"7RBHDYVR2RPTKP7NT4XN"];
     [TestFlight takeOff:@"8b9f2759-9e2b-48d9-873b-d3af3677d35b"];
@@ -77,6 +79,14 @@
     
     [FBSettings publishInstall:@"138127329695553"];
     
+    [Appirater setAppId:@"604460636"];
+    //[Appirater setDaysUntilPrompt:3];
+    [Appirater setUsesUntilPrompt:10];
+    //[Appirater setSignificantEventsUntilPrompt:-1];
+    //[Appirater setTimeBeforeReminding:2];
+    //[Appirater setDebug:YES];
+    
+    [Appirater appLaunched:YES];
     return YES;
 }
 							
@@ -95,6 +105,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

@@ -1,6 +1,7 @@
 
 PODS:
 - AFNetworking (1.1.0)
+- Appirater (1.0.1)
 - ECSlidingViewController (0.9.0)
 - Facebook-iOS-SDK (3.2.0)
 - FlurrySDK (4.1.0)
@@ -13,6 +14,7 @@ PODS:
 
 DEPENDENCIES:
 - AFNetworking
+- Appirater
 - ECSlidingViewController
 - Facebook-iOS-SDK
 - FlurrySDK
@@ -25,6 +27,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 761a418233d280c1e0580bcb76ff9cb4c3073d17
+  Appirater: c35256f3cf5acec56d3d167939d210ffa1e65f94
   ECSlidingViewController: 46cb6a6cc72e359a19d2f232728be08685450d90
   Facebook-iOS-SDK: a9893c9ad7cf2ce35cb6297e2859eaee654bd6b0
   FlurrySDK: 52245ae8c6fa31825dc74a6afb94b861da2435fa

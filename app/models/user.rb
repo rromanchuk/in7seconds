@@ -15,11 +15,13 @@ class User < ActiveRecord::Base
   has_many :hookups, :through => :relationships,
          :conditions => "status = 'accepted'"
 
+  # Users who want to hookup with current_user
   has_many :requested_hookups,
          :through => :relationships,
          :source => :hookup,
          :conditions => "status = 'requested'"
   
+  # User's current_user has requested
   has_many :pending_hookups,
          :through => :relationships,
          :source => :hookup,
@@ -366,7 +368,8 @@ class User < ActiveRecord::Base
 
   def possible_hookups
     # First find nearby users
-    users = users_nearby
+    users = user.requested_hookups
+    users = users_nearby if users.blank?
     # Ok find friends on facebook
     users = filter(User.where(:vkuid => self.friends.map(&:vkuid) ).where('gender IN (?)', get_genders)) if users.blank?
     # Ok find anyone on the system
@@ -415,7 +418,7 @@ class User < ActiveRecord::Base
     User.flirt(self, friend)
   end
   handle_asynchronously :flirt
-  
+
   def self.reject(user, friend)
      unless user == friend or user.relationships.exists?(hookup_id: friend.id)
       transaction do
