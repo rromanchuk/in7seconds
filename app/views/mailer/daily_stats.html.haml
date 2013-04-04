@@ -6,7 +6,14 @@
   %dd #{@total_users}
   
   %dt Total ratings
-  %dd= @toal_ratings
+  %dd= @toal_ratings / 2
   
   %dt Total ratings yesterday
-  %dd= @total_ratings_yesterday
+  %dd= @total_ratings_yesterday / 2
+
+  %dt Total matches 
+  %dd= @total_matches
+
+
+  %dt Users with geo
+  %dd= @users_with_geo_location

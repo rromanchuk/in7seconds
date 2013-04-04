@@ -6,6 +6,7 @@ class Relationship < ActiveRecord::Base
   belongs_to :hookup, :class_name => 'User'
 
   scope :added_yesterday, lambda { where(created_at: Date.yesterday...Date.today) }
+  scope :matches, lambda { where(status: "accepted") }
   scope :matches_yesterday, lambda { added_yesterday.where(status: "accepted") }
 
   after_save :notify

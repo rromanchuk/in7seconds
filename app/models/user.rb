@@ -77,7 +77,8 @@ class User < ActiveRecord::Base
   VK_FIELDS = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big, :graduation, :university_name, :education, :domain, :contacts]
 
   scope :added_yesterday, lambda { where(created_at: Date.yesterday...Date.today, is_active: true) }
-
+  scope :with_geo_location, lambda { where('latitude is NOT NULL') }
+  
   #devise 
   def require_confirmation
     self.skip_confirmation! unless is_active? && !email.blank?
@@ -418,6 +419,11 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def reject(friend)
+    User.reject(user, friend)
+  end
+  handle_asynchronously :reject
 
   def self.fuck(user, friend)
     transaction do
