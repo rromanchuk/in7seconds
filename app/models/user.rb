@@ -78,7 +78,7 @@ class User < ActiveRecord::Base
 
   scope :added_yesterday, lambda { where(created_at: Date.yesterday...Date.today, is_active: true) }
   scope :with_geo_location, lambda { where('latitude is NOT NULL') }
-  
+
   #devise 
   def require_confirmation
     self.skip_confirmation! unless is_active? && !email.blank?
@@ -411,6 +411,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def flirt(friend)
+    User.flirt(self, friend)
+  end
+  handle_asynchronously :flirt
+  
   def self.reject(user, friend)
      unless user == friend or user.relationships.exists?(hookup_id: friend.id)
       transaction do

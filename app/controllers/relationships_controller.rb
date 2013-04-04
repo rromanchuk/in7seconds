@@ -11,7 +11,7 @@ class RelationshipsController < ApplicationController
       render 'users/hookup_user'
       return
     else
-      User.flirt(current_user, hookup)
+      current_user.flirt(hookup)
     end
     render json: ''
   end

@@ -70,14 +70,14 @@ In7seconds::Application.configure do
   config.action_mailer.delivery_method = :amazon_ses
   
   # RELEASE
-  # Urbanairship.application_key = "acjij3jDR1mkLzdEfhAfnw"
-  # Urbanairship.application_secret = "6qOMa1RxQ2C9bRGsoGhFtA"
-  # Urbanairship.master_secret = "Ld5UCuy6QTmRP873U-2LNQ"
+  Urbanairship.application_key = "acjij3jDR1mkLzdEfhAfnw"
+  Urbanairship.application_secret = "6qOMa1RxQ2C9bRGsoGhFtA"
+  Urbanairship.master_secret = "Ld5UCuy6QTmRP873U-2LNQ"
   
   #DISTRIBUTION
-  Urbanairship.application_key = "t3YC1EwhSX2B-jl0XP2nvg"
-  Urbanairship.application_secret = "nRah8o9GT72gsMEhth98OQ"
-  Urbanairship.master_secret = "swmZZidlSx2dv1RyZ1cn4w"
+  # Urbanairship.application_key = "t3YC1EwhSX2B-jl0XP2nvg"
+  # Urbanairship.application_secret = "nRah8o9GT72gsMEhth98OQ"
+  # Urbanairship.master_secret = "swmZZidlSx2dv1RyZ1cn4w"
   Urbanairship.logger = Rails.logger
 
 
