@@ -36,25 +36,6 @@
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.managedObjectContext = sharedAppDelegate.managedObjectContext;
     
-    //[self.genderSegmentControl setFrame:CGRectMake(self.genderSegmentControl.frame.origin.x, self.genderSegmentControl.frame.origin.y, 249, 44)];
-    UIImage *segmentSelected = [[UIImage imageNamed:@"selected_control"] resizableImageWithCapInsets:UIEdgeInsetsMake(7, 8, 9, 8) resizingMode:UIImageResizingModeStretch];
-    UIImage *segmentUnselected = [[UIImage imageNamed:@"unselected_control"] resizableImageWithCapInsets:UIEdgeInsetsMake(7, 8, 9, 8) resizingMode:UIImageResizingModeStretch];
-    
-    UIImage *segmentSelectedUnselected = [[UIImage imageNamed:@"center_left_select"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 0, 5, 0)];
-    UIImage *segUnselectedSelected = [[UIImage imageNamed:@"center_right_select"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 0, 5, 0)];
-    UIImage *segmentUnselectedUnselected = [[UIImage imageNamed:@"center_noselect"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 0, 5, 0)];
-    [self.genderSegmentControl setBackgroundImage:segmentUnselected forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [self.genderSegmentControl setBackgroundImage:segmentSelected forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    
-//    [[UISegmentedControl appearance] setBackgroundImage:segmentUnselected forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//    [[UISegmentedControl appearance] setBackgroundImage:segmentSelected forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    
-    [[UISegmentedControl appearance] setDividerImage:segmentUnselectedUnselected forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [[UISegmentedControl appearance] setDividerImage:segmentSelectedUnselected forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [[UISegmentedControl appearance] setDividerImage:segUnselectedSelected forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    
-//    [self.genderSegmentControl setBackgroundImage:[[UIImage imageNamed:@"segment"] resizableImageWithCapInsets:UIEdgeInsetsMake(9, 0, 0, 0)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//    [self.genderSegmentControl setBackgroundImage:[UIImage imageNamed:@"segment-selected"] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
 }
 
 
@@ -179,6 +160,41 @@
     [textField resignFirstResponder];
     [self update];
     return YES;
+}
+
+
+- (void)setupSegmentControl {
+    //[self.genderSegmentControl setFrame:CGRectMake(self.genderSegmentControl.frame.origin.x, self.genderSegmentControl.frame.origin.y, 249, 44)];
+    UIImage *segmentSelected = [[UIImage imageNamed:@"selected_control"] resizableImageWithCapInsets:UIEdgeInsetsMake(7, 8, 9, 8) resizingMode:UIImageResizingModeStretch];
+    UIImage *segmentUnselected = [[UIImage imageNamed:@"unselected_control"] resizableImageWithCapInsets:UIEdgeInsetsMake(7, 8, 9, 8) resizingMode:UIImageResizingModeStretch];
+    
+    UIImage *segmentSelectedUnselected = [[UIImage imageNamed:@"center_left_select"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 0, 5, 0)];
+    UIImage *segUnselectedSelected = [[UIImage imageNamed:@"center_right_select"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 0, 5, 0)];
+    UIImage *segmentUnselectedUnselected = [[UIImage imageNamed:@"center_noselect"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 0, 5, 0)];
+    [self.genderSegmentControl setBackgroundImage:segmentUnselected forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [self.genderSegmentControl setBackgroundImage:segmentSelected forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    
+    //    [[UISegmentedControl appearance] setBackgroundImage:segmentUnselected forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    //    [[UISegmentedControl appearance] setBackgroundImage:segmentSelected forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    
+    [[UISegmentedControl appearance] setDividerImage:segmentUnselectedUnselected forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UISegmentedControl appearance] setDividerImage:segmentSelectedUnselected forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UISegmentedControl appearance] setDividerImage:segUnselectedSelected forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIFont boldSystemFontOfSize:15], UITextAttributeFont,
+                                RGBCOLOR(24, 23, 20), UITextAttributeTextColor,
+                                [UIColor clearColor], UITextAttributeTextShadowColor,
+                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset,
+                                nil];
+    [self.genderSegmentControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    [self.genderSegmentControl setTitleTextAttributes:highlightedAttributes forState:UIControlStateHighlighted];
+    
+    //    [self.genderSegmentControl setBackgroundImage:[[UIImage imageNamed:@"segment"] resizableImageWithCapInsets:UIEdgeInsetsMake(9, 0, 0, 0)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    //    [self.genderSegmentControl setBackgroundImage:[UIImage imageNamed:@"segment-selected"] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+
 }
 
 @end
