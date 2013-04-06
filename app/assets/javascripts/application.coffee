@@ -13,7 +13,8 @@
 #= require ./vendor/jquery
 #= require ./vendor/lodash.underscore
 #= require ./vendor/backbone
-
+#= require hamlcoffee
+#= require_tree ./templates
 #= require_tree ./vendor/plugins
 #= require ./app.utils
 
@@ -24,8 +25,7 @@
 #= require_tree ./collections
 #= require_tree ./views
 
-#= require hamlcoffee
-#= require_tree ./templates
+
 
 app = _.extend(@app, Backbone.Events)
 
