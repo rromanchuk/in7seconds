@@ -20,7 +20,13 @@ class PagesController < ApplicationController
   end
 
   def index
-    render :layout => "splash"
+    if current_user
+      redirect_to feed_path
+      return
+    else
+      render :layout => "splash"
+      return
+    end
   end
 
   def error_404
