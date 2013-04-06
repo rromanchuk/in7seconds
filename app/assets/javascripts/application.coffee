@@ -9,13 +9,13 @@
 #
 # WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 # GO AFTER THE REQUIRES BELOW.
-#
-#= require hamlcoffee
+
 #= require ./vendor/jquery
 #= require ./vendor/lodash.underscore
 #= require ./vendor/backbone
 #= require hamlcoffee
-#
+
+#= require_tree ./templates
 #= require_tree ./vendor/plugins
 #= require ./app.utils
 #
@@ -25,6 +25,8 @@
 #= require_tree ./models
 #= require_tree ./collections
 #= require_tree ./views
+
+
 
 app = _.extend(@app, Backbone.Events)
 
