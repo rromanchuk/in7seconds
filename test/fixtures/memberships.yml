@@ -22,3 +22,16 @@ evgeny_minnesota:
 evgeny_ostrovok:
   user: evgeny
   group: ostrovok
+
+evgeny_ebay:
+  user: evgeny
+  group: ebay
+
+evgeny_school:
+  user: evgeny
+  group: school
+
+evgeny_things: 
+  user: evgeny
+  group: things
+

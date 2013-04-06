@@ -48,5 +48,6 @@ In7seconds::Application.configure do
 
   config.action_mailer.delivery_method = :amazon_ses
 
+  config.hamlcoffee.namespace = 'window.app.templates'
   #config.middleware.use MailView::Mapper, [MailPreview]
 end

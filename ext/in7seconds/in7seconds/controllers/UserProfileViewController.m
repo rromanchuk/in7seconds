@@ -64,10 +64,10 @@
 }
 
 - (void)setupMutualFriends {
-    int offsetX = 10;
+    int offsetX = 15;
     //OstronautFilterType filterType;
-    ALog(@"other user %@", self.otherUser);
-    ALog(@"current user is %@", self.currentUser);
+    //ALog(@"other user %@", self.otherUser);
+    //ALog(@"current user is %@", self.currentUser);
     for (User *mutualFriend in self.otherUser.mutalFriendObjects) {
         ALog(@"in mutal friend loop");
         ProfileImageView *userImageView = [[ProfileImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
@@ -76,8 +76,8 @@
         
         [self.scrollView addSubview:userImageView];
         
-        UILabel *userNameLabel = [[UILabel alloc] initWithFrame: CGRectMake(offsetX, userImageView.frame.size.height + 8, userImageView.frame.size.width, 10.0)];
-        userNameLabel.text = mutualFriend.fullName;
+        UILabel *userNameLabel = [[UILabel alloc] initWithFrame: CGRectMake(offsetX, userImageView.frame.size.height + 4, userImageView.frame.size.width, 10.0)];
+        userNameLabel.text = mutualFriend.firstName;
         userNameLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:10.0];
         userNameLabel.textAlignment = NSTextAlignmentCenter;
         userNameLabel.backgroundColor = [UIColor clearColor];

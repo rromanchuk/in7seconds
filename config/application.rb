@@ -60,7 +60,7 @@ module In7seconds
     config.assets.version = '1.0'
 
     if defined? ::HamlCoffeeAssets
-      config.hamlcoffee.namespace = 'window.app.templates'
+        
     end
   end
 end

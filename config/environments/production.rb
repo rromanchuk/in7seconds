@@ -85,4 +85,9 @@ In7seconds::Application.configure do
   :email_prefix => "[7seconds] ",
   :sender_address => %{"in7Seconds Exception" <exceptions@in7seconds.com>},
   :exception_recipients => %w{rromanchuk@gmail.com suprmax@gmail.com ivan.kataitsev@gmail.com}
+
+
+  if defined? ::HamlCoffeeAssets
+    config.hamlcoffee.awesome = true
+  end
 end
