@@ -5,4 +5,4 @@
     %p.b-g-startwrap
       %span.button.blue.b-g-start Начать игру
 
-  .p-g-content!= app.templates.spinner()
+  .p-g-content
