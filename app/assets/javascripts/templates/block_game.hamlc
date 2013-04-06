@@ -6,3 +6,15 @@
       %span.button.blue.b-g-start Начать игру
 
   .p-g-content
+    .p-g-c-countdown
+      %span.p-g-c-c-num
+
+    .p-g-c-user
+
+    .p-g-c-controls
+      %span.button.round.red.p-g-c-c-dislike
+        %i.icon-thumbs-up-2
+
+      %span.button.round.green.p-g-c-c-like
+        %i.icon-thumbs-up
+

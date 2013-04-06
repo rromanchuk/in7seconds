@@ -14,10 +14,12 @@ BlockGame = Backbone.View.extend
 
   events:
     'click .b-g-start':     'startGame'
+    
 
   postRender: ->
     @introEl = @$el.find('.p-g-intro')
     @gameEl = @$el.find('.p-g-content')
+    @userEl = @gameEl.find('.p-g-c-user')
 
     @log('post render')
 
@@ -43,7 +45,7 @@ BlockGame = Backbone.View.extend
     @postRender()
 
   renderUser: ->
-    @gameEl.html(app.templates.block_game_user(@collection.at(@currentUser).toJSON()))
+    # @userEl.html(app.templates.block_game_user(@collection.at(@currentUser).toJSON()))
 
     @currentUser++
 
