@@ -24,13 +24,13 @@ gem 'whenever', :require => false
 gem 'russian'
 gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 gem 'slim'
+gem 'haml_coffee_assets'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'compass-rails'
   gem 'compass'
-  gem 'haml_coffee_assets'
   gem 'execjs'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

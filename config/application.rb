@@ -61,7 +61,7 @@ module In7seconds
 
 
     if defined? ::HamlCoffeeAssets
-        
+      config.hamlcoffee.namespace = 'window.app.templates'
     end
 
   end

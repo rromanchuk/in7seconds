@@ -88,6 +88,6 @@ In7seconds::Application.configure do
 
 
   if defined? ::HamlCoffeeAssets
-    config.hamlcoffee.awesome = true
+    
   end
 end
