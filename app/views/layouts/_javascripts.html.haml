@@ -6,7 +6,9 @@
       host: '#{CONFIG[:host]}'
     },
     endpoints: {
-      user: '/api/user/'
+      user: '/users/me.json',
+      hookups: '/users/me.json',
+      matches: '/users/me.json'
     },
     user: #{current_user_json},
     collections: {},

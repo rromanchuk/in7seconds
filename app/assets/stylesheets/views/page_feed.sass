@@ -3,5 +3,22 @@
 .p-feed
   width: 960px
   margin: 0 auto
+
   .p-f-loading
     padding-top: 90px
+
+  .p-f-error
+    padding-top: 90px
+    display: none
+    font-size: 16px
+    line-height: 21px
+
+    text-align: center
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 1)
+
+  &.error
+    .p-f-loading
+      display: none
+
+    .p-f-error
+      display: block

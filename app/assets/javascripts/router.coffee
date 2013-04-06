@@ -49,7 +49,9 @@ Router = Backbone.Router.extend
 
   feed: ->
     @log('match "feed"')
-    views['feed'] = new app.views.PageFeed()
+    views['feed'] = new app.views.PageFeed(
+      collection: new app.collections.Hookups()
+      )
 
   about: ->
     @log('match "about"')

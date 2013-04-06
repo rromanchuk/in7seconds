@@ -16,6 +16,7 @@
 #
 #= require_tree ./vendor/plugins
 #= require ./app.utils
+#= require ./helpers
 #
 #= require hamlcoffee
 #= require_tree ./templates

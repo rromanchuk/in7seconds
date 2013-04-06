@@ -7,6 +7,10 @@ PageFeed = Backbone.View.extend
   initialize: ->
     @render()
 
+    @game = new app.views.BlockGame(
+      collection: @collection
+      )
+
     @log('initialize')
 
   # events:
