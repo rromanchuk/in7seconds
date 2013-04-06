@@ -43,4 +43,13 @@ class UsersController < ApplicationController
     render :show
   end
 
+  def unsubscribe
+    if user = User.read_access_token(params[:signature])
+      user.update_attribute :email_opt_in, false
+      render text: "Подписка отменена"
+    else
+      render text: "Неверная ссылка"
+    end
+  end
+
 end
