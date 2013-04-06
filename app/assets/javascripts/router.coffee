@@ -22,6 +22,7 @@ Router = Backbone.Router.extend
 
   routes:
     '':                          'index'
+    'feed':                      'feed'
     'about':                     'about'
 
     '*any':                      'error'
@@ -45,6 +46,10 @@ Router = Backbone.Router.extend
     @log('match "index"')
     views['index'] = new app.views.PageIndex()
     app.social.render()
+
+  feed: ->
+    @log('match "feed"')
+    views['feed'] = new app.views.PageFeed()
 
   about: ->
     @log('match "about"')

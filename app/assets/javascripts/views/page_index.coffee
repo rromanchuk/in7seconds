@@ -14,6 +14,11 @@ PageIndex = Backbone.View.extend
     @shift = 0
     @length = @screensEls.length
 
+    @tid = null
+
+    app.dom.win.on('focus', _.bind(@startCarousel, @))
+    app.dom.win.on('blur', _.bind(@stopCarousel, @))
+
     @startCarousel()
 
     @log('initialize')
@@ -26,9 +31,14 @@ PageIndex = Backbone.View.extend
       @shift = 0 if @shift >= @length
 
       @screensListEl.animate(top: -(@shift * @screenHeight), @duration)
-      setTimeout(slide, @delay)
+      @tid = window.setTimeout(slide, @delay)
 
-    setTimeout(slide, @delay)
+    @tid = window.setTimeout(slide, @delay)
+    @log('carousel activated')
+
+  stopCarousel: ->
+    window.clearTimeout(@tid) if @tid?
+    @log('carousel deactivated')
 
   destroy: ->
     @undelegateEvents()

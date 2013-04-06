@@ -23,21 +23,20 @@
         %h2.p-i-subtitle Найди свою любовь всего за 7 секунд
         %p.p-i-concept
           In&nbsp;7 Seconds показывает тебе интересных людей неподалеку, а&nbsp;ты&nbsp;просто отмечаешь тех, кто тебе симпатичен.
-          Думать нужно быстро, у&nbsp;тебя будет всего 7&nbsp;секунд на&nbsp;то, чтобы понять, нравится тебе человек, или нет.
+          Думать нужно быстро, у&nbsp;тебя всего 7&nbsp;секунд на&nbsp;то, чтобы понять, нравится тебе человек, или нет.
           Если симпатия взаимна, то&nbsp;мы&nbsp;вас познакомим, и&nbsp;поможем растопить лед.
         %p.p-i-invitation
           Чтобы начать, тебе нужно просто авторизоваться с&nbsp;помощью ВКонтакте.
 
-        - if Rails.env.development?
-          .p-i-auth
-            %a.vkbutton.button{:href=> user_omniauth_authorize_path(:vkontakte)}
-              %i.vk-icon
-              Войти через ВКонтакте
+        .p-i-auth
+          %a.vkbutton.button{:href=> user_omniauth_authorize_path(:vkontakte)}
+            %i.vk-icon
+            Войти через ВКонтакте
 
-            %small.p-i-a-conditions
-              Авторизуясь, вы&nbsp;даете свое согласие на&nbsp;обработку личных данных, соглашаетесь&nbsp;с&nbsp;
-              %a{:href=>tos_path} условиями использования
-              , а так же подтверждаете, что вам больше 18 лет.
+          %small.p-i-a-conditions
+            Авторизуясь, вы&nbsp;даете свое согласие на&nbsp;обработку личных данных, соглашаетесь&nbsp;с&nbsp;
+            %a{:href=>tos_path} условиями использования
+            , а так же подтверждаете, что вам больше 18 лет.
       .p-i-extras
         = render :partial => 'partials/social'
 

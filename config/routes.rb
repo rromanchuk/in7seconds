@@ -89,6 +89,9 @@ In7seconds::Application.routes.draw do
   get 'about' => 'pages#about'
   get 'tos' => 'pages#tos'
 
+
+  get 'feed' => 'pages#feed'
+
  
   root :to => 'users#home'
 

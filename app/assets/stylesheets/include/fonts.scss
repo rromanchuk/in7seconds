@@ -25,9 +25,9 @@
 /*
 Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
-[class*="icon-"]:before {
+[class*="icon-"] {
 */
-.icon-bubbles:before, .icon-pacman:before, .icon-spinner:before, .icon-heart:before, .icon-fire:before {
+.icon-pacman, .icon-bubbles, .icon-spinner, .icon-heart, .icon-fire, .icon-exit, .icon-dice, .icon-wink {
   font-family: 'icowesome';
   speak: none;
   font-style: normal;
@@ -37,10 +37,10 @@ you can use the generic selector below, but it's slower:
   line-height: 1;
   -webkit-font-smoothing: antialiased;
 }
-.icon-bubbles:before {
+.icon-pacman:before {
   content: "\e000";
 }
-.icon-pacman:before {
+.icon-bubbles:before {
   content: "\e001";
 }
 .icon-spinner:before {
@@ -51,4 +51,13 @@ you can use the generic selector below, but it's slower:
 }
 .icon-fire:before {
   content: "\e004";
+}
+.icon-exit:before {
+  content: "\e005";
+}
+.icon-dice:before {
+  content: "\e006";
+}
+.icon-wink:before {
+  content: "\e007";
 }

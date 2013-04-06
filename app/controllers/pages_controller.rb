@@ -11,6 +11,10 @@ class PagesController < ApplicationController
 
   end
 
+  def feed
+    render 'generic'
+  end
+
   def tos
 
   end

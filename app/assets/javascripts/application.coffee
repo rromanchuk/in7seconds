@@ -9,7 +9,7 @@
 #
 # WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 # GO AFTER THE REQUIRES BELOW.
-
+#
 #= require ./vendor/jquery
 #= require ./vendor/lodash.underscore
 #= require ./vendor/backbone
@@ -27,8 +27,6 @@
 #= require_tree ./collections
 #= require_tree ./views
 
-
-
 app = _.extend(@app, Backbone.Events)
 
 # Manage HTML classes
@@ -44,8 +42,8 @@ app.dom.html.addClass('android android' + app.browser.isAndroid) if app.browser.
 # app.analytics = new app.modules.Analytics()
 # app.notifications = new app.modules.Notifications()
 
-# if app.user
-#   app.header = new app.modules.Header()
+if app.user
+  app.header = new app.modules.Header()
 
 app.size = new app.modules.Size()
 app.social = new app.modules.Social()
