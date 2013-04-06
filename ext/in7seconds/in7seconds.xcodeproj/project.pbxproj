@@ -82,8 +82,6 @@
 		FA7002C516CAF5430098A5B7 /* Vkontakte.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002C416CAF5430098A5B7 /* Vkontakte.m */; };
 		FA7002C816CAF5F00098A5B7 /* VkontakteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002C716CAF5F00098A5B7 /* VkontakteViewController.m */; };
 		FA7002CC16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */; };
-		FA73B0FD1707514700D084CB /* segment-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FA73B0FC1707514700D084CB /* segment-bg.png */; };
-		FA73B0FF170754E300D084CB /* segment-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = FA73B0FE170754E200D084CB /* segment-selected.png */; };
 		FA73B102170B516D00D084CB /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FA73B101170B516D00D084CB /* User.m */; };
 		FA7F38D916E7CA8B00EA2C0B /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */; };
 		FA7F38E316EBBF9500EA2C0B /* WhiteBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E216EBBF9400EA2C0B /* WhiteBubble.m */; };
@@ -257,8 +255,6 @@
 		FA7002C716CAF5F00098A5B7 /* VkontakteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VkontakteViewController.m; path = controllers/VkontakteViewController.m; sourceTree = "<group>"; };
 		FA7002CA16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+NetworkActivityIndicator.h"; path = "categories/UIApplication+NetworkActivityIndicator.h"; sourceTree = "<group>"; };
 		FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+NetworkActivityIndicator.m"; path = "categories/UIApplication+NetworkActivityIndicator.m"; sourceTree = "<group>"; };
-		FA73B0FC1707514700D084CB /* segment-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segment-bg.png"; sourceTree = "<group>"; };
-		FA73B0FE170754E200D084CB /* segment-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segment-selected.png"; sourceTree = "<group>"; };
 		FA73B100170B516D00D084CB /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
 		FA73B101170B516D00D084CB /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
 		FA7F38D716E7CA8B00EA2C0B /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentViewController.h; path = controllers/CommentViewController.h; sourceTree = "<group>"; };
@@ -513,8 +509,6 @@
 				94A9593A17105DDE006D141C /* selected_control@2x.png */,
 				94A9593B17105DDE006D141C /* unselected_control.png */,
 				94A9593C17105DDE006D141C /* unselected_control@2x.png */,
-				FA73B0FE170754E200D084CB /* segment-selected.png */,
-				FA73B0FC1707514700D084CB /* segment-bg.png */,
 				FA316E0316EE5F460051EB5F /* green_circle.png */,
 				FA316E0416EE5F460051EB5F /* green_circle@2x.png */,
 				FA316DFF16EE5F300051EB5F /* blue_circle.png */,
@@ -795,8 +789,6 @@
 				FA316E0516EE5F460051EB5F /* green_circle.png in Resources */,
 				FA316E0616EE5F460051EB5F /* green_circle@2x.png in Resources */,
 				942544E516EF87A100FA79FB /* NoChatsView.xib in Resources */,
-				FA73B0FD1707514700D084CB /* segment-bg.png in Resources */,
-				FA73B0FF170754E300D084CB /* segment-selected.png in Resources */,
 				94A9593D17105DDF006D141C /* center_left_select.png in Resources */,
 				94A9593E17105DDF006D141C /* center_left_select@2x.png in Resources */,
 				94A9593F17105DDF006D141C /* center_noselect.png in Resources */,

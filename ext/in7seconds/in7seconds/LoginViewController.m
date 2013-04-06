@@ -96,6 +96,7 @@
              onError:^(NSError *error) {
                  [SVProgressHUD dismiss];
                  [RestUser resetIdentifiers];
+                 [[Vkontakte sharedInstance] logout];
                  [self dismissViewControllerAnimated:YES completion:nil];
                  [SVProgressHUD showErrorWithStatus:error.localizedDescription];
              }];
