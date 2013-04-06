@@ -13,6 +13,7 @@
 #= require ./vendor/jquery
 #= require ./vendor/lodash.underscore
 #= require ./vendor/backbone
+#= require hamlcoffee
 
 #= require_tree ./vendor/plugins
 #= require ./app.utils
