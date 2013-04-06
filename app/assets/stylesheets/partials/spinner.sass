@@ -1,0 +1,34 @@
+@import 'include/mixins'
+
+.prt-spinner
+  width: 32px
+  height: 32px
+  margin: 0 auto
+
+  position: relative
+
+  .icon-spinner
+    position: absolute
+    left: 0
+    top: 0
+
+    font-size: 48px
+
+    @include animation-duration(2s)
+    @include animation-name(rotate)
+    @include animation-iteration-count(infinite)
+    @include animation-timing-function(linear)
+
+    color: #3da1fe
+
+@keyframes rotate
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)
+
+@-webkit-keyframes rotate
+  from
+    -webkit-transform: rotate(0deg)
+  to
+    -webkit-transform: rotate(360deg)
