@@ -1,6 +1,6 @@
 # encoding: utf-8
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :except => [:system_settings]
+  before_filter :authenticate_user!, :except => [:system_settings, :unsubscribe]
   respond_to :json, :html
   
   def home

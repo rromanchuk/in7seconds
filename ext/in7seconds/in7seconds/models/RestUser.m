@@ -53,7 +53,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
         [map setObject:[RestUser mappingWithKey:@"hookups" mapping:[RestUser mapping:YES]] forKey:@"hookups"];
     }
     
-    [map setObject:[RestMutualFriend mappingWithKey:@"mutualFriendObjects" mapping:[RestMutualFriend mapping]] forKey:@"mutual_friends_objects"];
+    [map setObject:[RestMutualFriend mappingWithKey:@"mutualFriendObjects" mapping:[RestMutualFriend mapping]] forKey:@"mutual_friend_objects"];
     return map;
 }
 

@@ -221,6 +221,7 @@
         [self addHookupsObject:user];
     }
     
+    [self removeMutalFriendObjects:self.mutalFriendObjects];
     for (RestMutualFriend *_restMutualFriendUser in restUser.mutualFriendObjects) {
         User *user = [User mutualFriendWithRestMutualFriend:_restMutualFriendUser inManagedObjectContext:self.managedObjectContext];
         [self addMutalFriendObjectsObject:user];

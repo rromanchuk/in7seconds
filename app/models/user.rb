@@ -15,13 +15,11 @@ class User < ActiveRecord::Base
   has_many :hookups, :through => :relationships,
          :conditions => "status = 'accepted'"
 
-  # Users who want to hookup with current_user
   has_many :requested_hookups,
          :through => :relationships,
          :source => :hookup,
          :conditions => "status = 'requested'"
   
-  # User's current_user has requested
   has_many :pending_hookups,
          :through => :relationships,
          :source => :hookup,
@@ -79,7 +77,6 @@ class User < ActiveRecord::Base
   VK_FIELDS = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big, :graduation, :university_name, :education, :domain, :contacts]
 
   scope :added_yesterday, lambda { where(created_at: Date.yesterday...Date.today, is_active: true) }
-  scope :with_geo_location, lambda { where('latitude is NOT NULL') }
 
   #devise 
   def require_confirmation
@@ -92,6 +89,29 @@ class User < ActiveRecord::Base
         send_confirmation_instructions
       end
     end
+  end
+
+   # Access token for a user
+  def access_token
+    User.create_access_token(self)
+  end
+
+  # Verifier based on our application secret
+  def self.verifier
+    ActiveSupport::MessageVerifier.new(In7seconds::Application.config.secret_token)
+  end
+
+  # Get a user from a token
+  def self.read_access_token(signature)
+    id = verifier.verify(signature)
+    User.find_by_id id
+  rescue ActiveSupport::MessageVerifier::InvalidSignature
+    nil
+  end
+
+  # Class method for token generation
+  def self.create_access_token(user)
+    verifier.generate(user.id)
   end
 
   def remove_relationships
@@ -159,11 +179,11 @@ class User < ActiveRecord::Base
   end
 
   def group_names
-    groups.map(&:name).join(',')
+    groups.map(&:name).join(', ')
   end
 
   def friend_names
-    friends.map(&:name).join(',')
+    friends.map(&:name).join(', ')
   end
 
   def self.guess_looking_for(gender)
@@ -368,13 +388,14 @@ class User < ActiveRecord::Base
 
   def possible_hookups
     # First find nearby users
-    users = user.requested_hookups
-    users = users_nearby if users.blank?
+    users = users_nearby
     # Ok find friends on facebook
     users = filter(User.where(:vkuid => self.friends.map(&:vkuid) ).where('gender IN (?)', get_genders)) if users.blank?
-    # Ok find anyone on the system
+    # Ok find anyone on the system in the same city
     users = filter(User.where('gender IN (?)', get_genders).where(vk_city_id: vk_city_id)).take(50) if users.blank?
+    # Any one on the system
     users = filter(User.where('gender IN (?)', get_genders)).take(50) if users.blank?
+    
     users
   end
 
@@ -414,11 +435,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def flirt(friend)
-    User.flirt(self, friend)
-  end
-  handle_asynchronously :flirt
-
   def self.reject(user, friend)
      unless user == friend or user.relationships.exists?(hookup_id: friend.id)
       transaction do
@@ -427,11 +443,6 @@ class User < ActiveRecord::Base
       end
     end
   end
-
-  def reject(friend)
-    User.reject(user, friend)
-  end
-  handle_asynchronously :reject
 
   def self.fuck(user, friend)
     transaction do
