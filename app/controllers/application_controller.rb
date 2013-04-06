@@ -3,10 +3,10 @@ class ApplicationController < ActionController::Base
   skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
   helper_method :current_user_json
 
-  
   def current_user_json
     if current_user
-      Rabl.render(current_user, 'users/show', :view_path => 'app/views', :format => :json)
+      
+      Rabl.render(current_user, 'users/simple_user', :view_path => 'app/views', :format => :json )
     else
       {}.to_json
     end

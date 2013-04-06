@@ -17,17 +17,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     auth = request.env["omniauth.auth"]
     puts auth.to_yaml
     vk = VkontakteApi::Client.new(auth.credentials.token)
-    fields = [:first_name, :last_name, :screen_name, :bdate, :city, :country, :sex, :photo_big]
-    vk_user = vk.users.get(uid: params[:user_id], fields: fields).first
+    vk_user = vk.users.get(uid: auth.uid, fields: User::VK_FIELDS).first
     #vk_user.merge!(email: params[:email])
-    @user = User.find_or_create_for_vkontakte_oauth(vk_user, params[:access_token])
-    if @user.persisted?
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
-      sign_in_and_redirect @user, :event => :authentication
-    else
-      session["devise.facebook_data"] = request.env["omniauth.auth"]
-      redirect_to new_user_registration_url
-    end
+    @user = User.find_or_create_for_vkontakte_oauth(vk_user, auth.credentials.token)
+    @user.ensure_authentication_token!
+    @user.save
+    sign_in(@user)
+    redirect_to feed_path
+
   end
 
 end

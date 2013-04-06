@@ -6,7 +6,7 @@ class VkCity < ActiveRecord::Base
 
   def get_vk_city
     response = HTTParty.get('https://api.vk.com/method/getCities', {query: {cids: cid, lang:"ru" }})
-    if response
+    if response && response["response"]
       self.name = response["response"].first["name"]
     end
     save

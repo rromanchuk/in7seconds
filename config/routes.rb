@@ -28,6 +28,7 @@ In7seconds::Application.routes.draw do
     collection do 
       get :me
       put :update_user
+      get :feed
     end
   end
 
@@ -90,7 +91,7 @@ In7seconds::Application.routes.draw do
   get 'tos' => 'pages#tos'
 
 
-  get 'feed' => 'pages#feed'
+  get 'feed' => 'users#feed'
 
  
   root :to => 'users#home'

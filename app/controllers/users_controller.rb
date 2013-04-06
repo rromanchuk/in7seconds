@@ -52,4 +52,8 @@ class UsersController < ApplicationController
     end
   end
 
+  def feed
+
+  end
+
 end
