@@ -275,6 +275,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   exception_notification
+  execjs
   fb_graph
   geocoder
   haml
