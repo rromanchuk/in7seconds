@@ -29,11 +29,13 @@ In7seconds::Application.routes.draw do
       post :flirt
       post :reject
     end
-    
+
     collection do 
       get :me
       put :update_user
       get :feed
+      get :hookups
+      get :matches
     end
   end
 
