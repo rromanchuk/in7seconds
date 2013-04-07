@@ -31,6 +31,9 @@
     exports.dateGetDaysDiff = function(date1, date2) {
         return Math.abs((+exports.extractDate(date1) - +exports.extractDate(date2)) / (1000 * 60 * 60 * 24));
     };
+    exports.dateGetYearsDiff = function(date1, date2) {
+        return Math.abs((+exports.extractDate(date1) - +exports.extractDate(date2)) / (1000 * 60 * 60 * 24 * 365)) || 0;
+    };
 
     exports.shortenString = function (str, len, pos) {
         var lim = ((len - 3) / 2) | 0,

@@ -1,13 +1,14 @@
 .block-game
   .p-g-intro
     %h1 Привет, #{app.user.first_name}!
-    %p Просто нажми кнопку "начать игру" как только будешь готов. Не забывай, у тебя будет всего 7 секунд на выбор!
+    %p Просто нажми кнопку "начать игру" как только ты будешь готов. Не забывай, у тебя будет всего 7 секунд на выбор!
     %p.b-g-startwrap
       %span.button.blue.b-g-start Начать игру
 
   .p-g-content
     .p-g-c-countdown
-      %span.p-g-c-c-num
+      %i.icon-spinner-2
+      %span.p-g-c-c-num 7
 
     .p-g-c-user
 

@@ -5,30 +5,50 @@ BlockGame = Backbone.View.extend
   el: '#l-content .p-feed'
 
   initialize: ->
-    # @loadHookups()
-    @render()
+    @loadHookups()
 
     @currentUser = 0
+    @currentCount = 0
 
     @log('initialize')
 
   events:
     'click .b-g-start':     'startGame'
-    
+
 
   postRender: ->
     @introEl = @$el.find('.p-g-intro')
     @gameEl = @$el.find('.p-g-content')
     @userEl = @gameEl.find('.p-g-c-user')
 
+    @counterEl = @gameEl.find('.p-g-c-c-num')
+
+    @startGame()
+
     @log('post render')
 
   startGame: ->
     @introEl.hide()
-    @renderUser()
     @gameEl.show()
 
+    @gameLoop()
+
     @log('game started')
+
+  gameLoop: ->
+    @currentCount--
+
+    if @currentCount <= 0
+      @nextUser()
+
+    @counterEl.html(@currentCount)
+
+    window.setTimeout(_.bind(@gameLoop, @), 1000)
+
+  nextUser: ->
+    @renderUser()
+    @currentUser++
+    @currentCount = 7
 
   loadHookups: ->
     $.ajax(
@@ -45,9 +65,7 @@ BlockGame = Backbone.View.extend
     @postRender()
 
   renderUser: ->
-    # @userEl.html(app.templates.block_game_user(@collection.at(@currentUser).toJSON()))
-
-    @currentUser++
+    @userEl.html(app.templates.block_game_user(@collection.at(@currentUser).toJSON()))
 
   destroy: ->
     @undelegateEvents()

@@ -1,8 +1,8 @@
 @import 'include/mixins'
 
 .prt-spinner
-  width: 32px
-  height: 32px
+  width: 48px
+  height: 48px
   margin: 0 auto
 
   position: relative
@@ -21,14 +21,15 @@
 
     color: #3da1fe
 
+// -90deg to compensate initial rotation of spinner
 @keyframes rotate
   from
-    transform: rotate(0deg)
+    transform: rotate(-90deg)
   to
-    transform: rotate(360deg)
+    transform: rotate(270deg)
 
 @-webkit-keyframes rotate
   from
-    -webkit-transform: rotate(0deg)
+    -webkit-transform: rotate(-90deg)
   to
-    -webkit-transform: rotate(360deg)
+    -webkit-transform: rotate(270deg)

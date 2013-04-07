@@ -1,10 +1,10 @@
 @import 'include/mixins'
 
 .block-game
+  padding-top: 30px
   .p-g-intro
     width: 500px
     margin: 0 auto
-    padding-top: 30px
 
     font-size: 16px
     line-height: 24px
@@ -14,11 +14,60 @@
       line-height: 48px
 
     p
-      margin-top: 20px
+      margin-top: 10px
 
     .b-g-startwrap  
+      margin-top: 20px
       text-align: center
 
-
   .p-g-content
+    width: 400px
+    margin: 0 auto
     display: none
+
+    font-size: 16px
+    line-height: 24px
+
+    .p-g-c-countdown
+      width: 60px
+      height: 60px
+      margin: 0 auto
+
+      text-align: center
+      font-weight: bold
+      font-size: 32px
+      line-height: 60px
+
+      position: relative
+
+      .icon-spinner-2
+        position: absolute
+        left: 0
+        top: 0
+
+        font-size: 60px
+
+        @include animation-duration(1s)
+        @include animation-name(rotate)
+        @include animation-iteration-count(infinite)
+        @include animation-timing-function(linear)
+
+        color: #3da1fe
+
+    .p-g-c-controls
+      width: 200px
+      margin: 0 auto
+      padding: 10px
+
+      overflow: hidden
+
+      .p-g-c-c-dislike
+        float: left
+      .p-g-c-c-like
+        float: right
+
+    .p-g-c-user
+      width: 210px
+      margin: 20px auto
+
+  

@@ -1,1 +1,10 @@
-ANUS
+.block-game_user
+  .b-gu-info #{@first_name + if @last_name? then ' ' + @last_name else ''}#{if @birthday? then ', ' else ''}
+    - if @birthday?
+      #{helpers.dateGetYearsDiff(@birthday, app.now)} лет
+
+    - if @city
+      %small.b-gu-location= @city + if @country? then ', ' + @country else ''
+
+  %figure.b-gu-photo
+    %img(src=@photo_url, alt=@first_name + if @last_name? then ' ' + @last_name else '')
