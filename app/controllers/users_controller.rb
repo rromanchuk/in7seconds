@@ -3,6 +3,25 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:system_settings, :unsubscribe]
   respond_to :json, :html
   
+   def flirt
+    hookup = User.find(params[:relationship][:hookup_id])
+    if current_user.is_requested?(hookup)
+      User.fuck(current_user, hookup)
+      @user = hookup
+      render 'users/hookup_user'
+      return
+    else
+      current_user.flirt(hookup)
+    end
+    render json: ''
+  end
+
+  def reject
+    @hookup = User.find(params[:relationship][:hookup_id])
+    User.reject(current_user, @hookup)
+    render json: ''
+  end
+
   def home
     # @feed_items = current_user.feed
     # respond_with @feed_items
