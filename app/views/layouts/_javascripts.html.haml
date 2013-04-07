@@ -8,7 +8,9 @@
     endpoints: {
       user: '/users/me.json',
       hookups: '/users/me.json',
-      matches: '/users/me.json'
+      matches: '/users/me.json',
+      like: '/users/:id/flirt',
+      dislike: '/users/:id/reject'
     },
     user: #{current_user_json},
     collections: {},
