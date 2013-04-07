@@ -18,10 +18,9 @@ BlockGame = Backbone.View.extend
     @log('initialize')
 
   events:
-    'click .b-g-start':            'startGame'
     'click .p-g-c-c-dislike':      'disLike'
     'click .p-g-c-c-like':         'like'
-
+    'click .b-g-start':            'startGame'
 
   postRender: ->
     @introEl = @$el.find('.p-g-intro')
@@ -34,6 +33,16 @@ BlockGame = Backbone.View.extend
     @startGame()
 
     @log('post render')
+
+  disLike: ->
+    @updateHookup()
+
+    @gameReset()
+
+  like: ->
+    @updateHookup(true)
+
+    @gameReset()
 
   startGame: ->
     @introEl.hide()
@@ -49,7 +58,7 @@ BlockGame = Backbone.View.extend
 
     @gameStop()
 
-    @log('game started')
+    @log('game stopped')
 
   updateHookup: (liked = false)->
     type = if liked then 'like' else 'dislike'
@@ -59,47 +68,39 @@ BlockGame = Backbone.View.extend
       type: 'POST'
       )
 
-  disLike: ->
-    @updateHookup()
-
-    @gameReset()
-
-  like: ->
-    @updateHookup(true)
-
-    @gameReset()
-
   gameReset: ->
     window.clearTimeout(@tid) if @tid?
-    @currentCount = 0
-    @gameLoop()
+    @gameLoop()   
 
   gameStop: ->
     window.clearTimeout(@tid) if @tid?
-    @currentCount = 0
 
   gameLoop: ->
     theLoop = =>
       @currentCount--
 
       if @currentCount <= 0
+        @updateHookup()
         @nextUser()
 
       @counterEl.html(@currentCount)
       @tid = window.setTimeout(theLoop, 1000)
 
-    theLoop()
+    @nextUser()
+    @counterEl.html(@currentCount)
+
+    @tid = window.setTimeout(theLoop, 1000)
 
   nextUser: ->
     @renderUser()
-    @currentUser++
     @currentCount = 7
+    @currentUser++
 
   loadHookups: ->
     $.ajax(
       url: app.api('hookups')
       success: (resp)=>
-        @collection.add(resp.possible_hookups)
+        @collection.add(resp)
         @render()
       error: =>
         @$el.addClass('error')
@@ -111,7 +112,7 @@ BlockGame = Backbone.View.extend
 
   renderUser: ->
     user = @collection.at(@currentUser)
-    @stopGame unless user
+    @stopGame() unless user
 
     @userEl.html(app.templates.block_game_user(user.toJSON()))
 
