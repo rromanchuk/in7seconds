@@ -28,6 +28,7 @@
 {
     [super viewDidLoad];
     [self noResultsLeft];
+    //[self noResultsLeft];
     //self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(revealMenu:)];
     
@@ -205,6 +206,7 @@
     
     self.otherUser = nil;    
     if (self.currentUser && self.currentUser.possibleHookups) {
+        [self foundResults];
         self.otherUser = [self.currentUser.possibleHookups anyObject];
         if (!self.otherUser && _numberOfAttempts < 3) {
             [self fetchPossibleHookups];

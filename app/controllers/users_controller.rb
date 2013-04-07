@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def flirt
-    hookup = User.find(params[:relationship][:hookup_id])
+    hookup = User.find(params[:id])
     if current_user.is_requested?(hookup)
       User.fuck(current_user, hookup)
       @user = hookup
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def reject
-    @hookup = User.find(params[:relationship][:hookup_id])
+    @hookup = User.find(params[:id])
     User.reject(current_user, @hookup)
     render json: ''
   end
