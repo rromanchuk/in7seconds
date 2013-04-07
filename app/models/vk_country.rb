@@ -7,7 +7,11 @@ class VkCountry < ActiveRecord::Base
   def get_vk_country
     response =  HTTParty.get('https://api.vk.com/method/getCountries', {query: {cids: cid, lang:"ru"}})
     if response
-      self.name = response["response"].first["name"]
+      begin
+        self.name = response["response"].first["name"]
+      rescue Exception => e
+        
+      end
     end
     save
   end
