@@ -4,7 +4,7 @@ class RelationshipsController < ApplicationController
   respond_to :json
 
   def flirt
-    hookup = User.find(params[:relationship][:hookup_id])
+    hookup = User.find(params[:id])
     if current_user.is_requested?(hookup)
       User.fuck(current_user, hookup)
       @user = hookup
@@ -17,24 +17,9 @@ class RelationshipsController < ApplicationController
   end
 
   def reject
-    @hookup = User.find(params[:relationship][:hookup_id])
+    @hookup = User.find(params[:id]])
     User.reject(current_user, @hookup)
     render json: ''
-  end
-
-  def create
-    @user = User.find(params[:relationship][:followed_id])
-    current_user.follow!(@user)
-
-    Notification.did_friend_user(current_user, @user)
-
-    render "users/show"
-  end
-
-  def destroy
-    @user = User.find(params[:id])
-    current_user.unfollow!(@user)
-    render "users/show"
   end
 
 end

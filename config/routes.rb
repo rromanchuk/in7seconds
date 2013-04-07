@@ -25,6 +25,11 @@ In7seconds::Application.routes.draw do
 
   resources :users do 
     resources :messages
+    member do 
+      post :flirt
+      post :reject
+    end
+    
     collection do 
       get :me
       put :update_user
