@@ -53,7 +53,7 @@
        onError:(void (^)(NSError *error))onError;
 
 + (void)rejectUser:(User *)user
-            onLoad:(void (^)(RestUser *restUser))onLoad
+            onLoad:(void (^)(BOOL success))onLoad
            onError:(void (^)(NSError *error))onError;
 
 + (void)flirtWithUser:(User *)user

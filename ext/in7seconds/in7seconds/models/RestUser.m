@@ -86,9 +86,14 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             ALog(@"JSON: %@", JSON);
-                                                                                            RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
-                                                                                            if (onLoad)
-                                                                                                onLoad(user);
+                                                                                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                                                                                RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
+                                                                                                
+                                                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                                                    if (onLoad)
+                                                                                                        onLoad(user);
+                                                                                                });
+                                                                                            });
                                                                                         }
                                                                                         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
@@ -116,9 +121,15 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             ALog(@"JSON: %@", JSON);
-                                                                                            RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
-                                                                                            if (onLoad)
-                                                                                                onLoad(user);
+                                                                                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                                                                                RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
+                                                                                                
+                                                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                                                    if (onLoad)
+                                                                                                        onLoad(user);
+                                                                                                });
+                                                                                            });
+
                                                                                         }
                                                                                         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
@@ -143,9 +154,16 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             ALog(@"JSON: %@", JSON);
-                                                                                            RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
-                                                                                            if (onLoad)
-                                                                                                onLoad(user);
+                                                                                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                                                                                RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
+                                                                                                
+                                                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                                                    if (onLoad)
+                                                                                                        onLoad(user);
+                                                                                                });
+                                                                                            });
+                                                                                            
+                                                                                            
                                                                                         }
                                                                                         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
@@ -161,7 +179,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
 }
 
 + (void)rejectUser:(User *)user
-            onLoad:(void (^)(RestUser *restUser))onLoad
+            onLoad:(void (^)(BOOL success))onLoad
            onError:(void (^)(NSError *error))onError {
     RestClient *restClient = [RestClient sharedClient];
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"POST"
@@ -173,9 +191,8 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             ALog(@"JSON: %@", JSON);
-                                                                                            RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
                                                                                             if (onLoad)
-                                                                                                onLoad(user);
+                                                                                                onLoad(YES);
                                                                                         }
                                                                                         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
@@ -202,9 +219,15 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             ALog(@"JSON: %@", JSON);
-                                                                                            RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
-                                                                                            if (onLoad)
-                                                                                                onLoad(user);
+                                                                                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                                                                                RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
+                                                                                                
+                                                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                                                    if (onLoad)
+                                                                                                        onLoad(user);
+                                                                                                });
+                                                                                            });
+
                                                                                         }
                                                                                         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];

@@ -7,7 +7,6 @@
 //
 
 #import "RestMessage.h"
-static NSString *RESOURCE_PATH = @"messages";
 
 @implementation RestMessage
 
@@ -38,9 +37,13 @@ static NSString *RESOURCE_PATH = @"messages";
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             ALog(@"JSON: %@", JSON);
-                                                                                            RestMessage *restMessage = [RestMessage objectFromJSONObject:JSON mapping:[RestMessage mapping]];
-                                                                                            if (onLoad)
-                                                                                                onLoad(restMessage);
+                                                                                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                                                                                RestMessage *restMessage = [RestMessage objectFromJSONObject:JSON mapping:[RestMessage mapping]];
+                                                                                                dispatch_sync(dispatch_get_main_queue(), ^{
+                                                                                                    if (onLoad)
+                                                                                                        onLoad(restMessage);
+                                                                                                });
+                                                                                            });
                                                                                         }
                                                                                         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
@@ -72,15 +75,23 @@ static NSString *RESOURCE_PATH = @"messages";
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             ALog(@"JSON: %@", JSON);
                                                                                             NSMutableArray *restMessages = [[NSMutableArray alloc] init];
-                                                                                            for (id json in JSON) {
-                                                                                                ALog(@"in loop with %@", json);
-                                                                                                RestMessage *restMessage = [RestMessage objectFromJSONObject:json mapping:[RestMessage mapping]];
-                                                                                                ALog(@"restMessage: %@", restMessage);
-                                                                                                [restMessages addObject:restMessage];
-                                                                                            }
-                                                                                
-                                                                                            if (onLoad)
-                                                                                                onLoad(restMessages);
+                                                                                            
+                                                                                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                                                                                for (id json in JSON) {
+                                                                                                    ALog(@"in loop with %@", json);
+                                                                                                    RestMessage *restMessage = [RestMessage objectFromJSONObject:json mapping:[RestMessage mapping]];
+                                                                                                    ALog(@"restMessage: %@", restMessage);
+                                                                                                    [restMessages addObject:restMessage];
+                                                                                                }
+                                                                                                
+                                                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                                                    if (onLoad)
+                                                                                                        onLoad(restMessages);
+                                                                                                });
+
+                                                                                            });
+                                                                                                                                                                            
+                                                                                            
                                                                                         }
                                                                                         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];

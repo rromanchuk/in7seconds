@@ -261,7 +261,7 @@
 - (IBAction)didAddComment:(id)sender event:(UIEvent *)event {
     [self.commentView resignFirstResponder];
     NSString *comment = self.commentView.text;
-    if (comment.length == 0 || [comment isEqualToString:NSLocalizedString(@"ENTER_COMMENT", nil)]) {
+    if (comment.length == 0 || [comment isEqualToString:NSLocalizedString(@"Написать комментарий", nil)]) {
         [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Упс, ты забыл ввести текст сообщения.", @"User pressed submit with no comment given")];
         return;
     }

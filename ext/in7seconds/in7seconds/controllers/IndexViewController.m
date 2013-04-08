@@ -187,7 +187,7 @@
 - (IBAction)didTapUnlike:(id)sender {
     [self stopCountdown];
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
-    [RestUser rejectUser:self.otherUser onLoad:^(RestUser *restUser) {
+    [RestUser rejectUser:self.otherUser onLoad:^(BOOL success) {
         [SVProgressHUD dismiss];
         [self.currentUser removePossibleHookupsObject:self.otherUser];
         [self setupNextHookup];

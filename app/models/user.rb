@@ -389,12 +389,14 @@ class User < ActiveRecord::Base
   def possible_hookups
     # First find nearby users
     users = users_nearby
+    # Find active users
+    users = filter(User.active.where('gender IN (?)', get_genders)).take(30) if users.blank?
     # Ok find friends on facebook
     users = filter(User.where(:vkuid => self.friends.map(&:vkuid) ).where('gender IN (?)', get_genders)) if users.blank?
     # Ok find anyone on the system in the same city
-    users = filter(User.where('gender IN (?)', get_genders).where(vk_city_id: vk_city_id)).take(50) if users.blank?
+    users = filter(User.where('gender IN (?)', get_genders).where(vk_city_id: vk_city_id)).take(30) if users.blank?
     # Any one on the system
-    users = filter(User.where('gender IN (?)', get_genders)).take(50) if users.blank?
+    users = filter(User.where('gender IN (?)', get_genders)).take(30) if users.blank?
     
     users
   end
@@ -415,7 +417,7 @@ class User < ActiveRecord::Base
     if self.geocoded?
       users = self.nearbys(30)
       unless users.blank? 
-        users = filter(users.where(:gender => self.looking_for_gender)).take(50) 
+        users = filter(users.where('gender IN (?)', get_genders)).take(30) 
         return users
       end
     end
