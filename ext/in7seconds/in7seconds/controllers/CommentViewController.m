@@ -170,7 +170,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RestMessage *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    CGSize size = [message.message sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:15] constrainedToSize:CGSizeMake(245, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize size = [message.message sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:15] constrainedToSize:CGSizeMake(245 - 25, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+    DLog(@"height will be")
     //return exptectedSize.height + 20;
     return size.height + 20 + 20;
 }
