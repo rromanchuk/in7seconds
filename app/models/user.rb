@@ -452,7 +452,7 @@ class User < ActiveRecord::Base
   end
 
   def reject(friend)
-   User.reject(user, friend)
+   User.reject(current_user, friend)
   end
   handle_asynchronously :reject
   
