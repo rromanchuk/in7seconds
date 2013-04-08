@@ -18,7 +18,7 @@ class RelationshipsController < ApplicationController
 
   def reject
     @hookup = User.find(params[:relationship][:hookup_id])
-    User.reject(current_user, @hookup)
+    current_user.reject(@hookup)
     render json: ''
   end
   

@@ -440,6 +440,7 @@ class User < ActiveRecord::Base
   def flirt(friend)
     User.flirt(current_user, friend)
   end
+  handle_asynchronously :flirt
 
   def self.reject(user, friend)
      unless user == friend or user.relationships.exists?(hookup_id: friend.id)
@@ -450,6 +451,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def reject(friend)
+   User.reject(user, friend)
+  end
+  handle_asynchronously :reject
+  
   def self.fuck(user, friend)
     transaction do
       accepted_at = Time.now
