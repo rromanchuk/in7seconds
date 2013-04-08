@@ -84,7 +84,7 @@ In7seconds::Application.configure do
   config.middleware.use ExceptionNotifier,
   :email_prefix => "[7seconds] ",
   :sender_address => %{"in7Seconds Exception" <exceptions@in7seconds.com>},
-  :exception_recipients => %w{rromanchuk@gmail.com suprmax@gmail.com ivan.kataitsev@gmail.com}
+  :exception_recipients => %w{ support@in7seconds.com }
 
 
   if defined? ::HamlCoffeeAssets

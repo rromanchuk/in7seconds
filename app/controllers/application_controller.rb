@@ -19,6 +19,9 @@ class ApplicationController < ActionController::Base
   
   private
   def render_error(status, exception)
+    logger.error e.message
+    logger.error e.backtrace.join("\n")
+    
     respond_to do |format|
       format.html { render template: "pages/error_#{status}", layout: 'layouts/splash', status: status }
       format.all { render nothing: true, status: status }
