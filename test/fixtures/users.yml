@@ -31,3 +31,25 @@ evgeny:
   photo_url: http://cs5295.vk.me/u4807674/a_ef1dcaa0.jpg
   vk_city: moscow
   vk_country: india
+
+bob:
+  email:
+  first_name: Bob
+  last_name: Mckenzy
+  gender: false
+  vkuid: 556237
+  looking_for_gender: 0
+  photo_url: http://cs5295.vk.me/u4807674/a_ef1dcaa0.jpg
+  vk_city: moscow
+  vk_country: india
+
+felix:
+  email:
+  first_name: Felix
+  last_name: Shpilman
+  gender: false
+  vkuid: 556237
+  looking_for_gender: 0
+  photo_url: http://cs5295.vk.me/u4807674/a_ef1dcaa0.jpg
+  vk_city: moscow
+  vk_country: india

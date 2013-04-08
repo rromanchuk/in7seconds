@@ -35,3 +35,6 @@ evgeny_things:
   user: evgeny
   group: things
 
+evgeny_mdk:
+  user: evgeny
+  group: mdk
