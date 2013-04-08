@@ -438,7 +438,7 @@ class User < ActiveRecord::Base
   end
 
   def flirt(friend)
-    User.flirt(current_user, friend)
+    User.flirt(self, friend)
   end
   handle_asynchronously :flirt
 
@@ -452,7 +452,7 @@ class User < ActiveRecord::Base
   end
 
   def reject(friend)
-   User.reject(current_user, friend)
+   User.reject(self, friend)
   end
   handle_asynchronously :reject
   
