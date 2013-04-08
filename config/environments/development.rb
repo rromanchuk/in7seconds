@@ -46,7 +46,7 @@ In7seconds::Application.configure do
 
   Delayed::Worker.delay_jobs = false
 
-  config.action_mailer.delivery_method = :amazon_ses
+  #config.action_mailer.delivery_method = :amazon_ses
 
   config.hamlcoffee.namespace = 'window.app.templates'
   #config.middleware.use MailView::Mapper, [MailPreview]
