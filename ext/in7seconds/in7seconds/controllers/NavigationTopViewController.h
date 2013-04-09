@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
 @interface NavigationTopViewController : UINavigationController
-
+@property (strong, nonatomic) User *currentUser;
 @end

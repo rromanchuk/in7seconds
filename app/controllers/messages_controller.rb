@@ -20,5 +20,9 @@ class MessagesController < ApplicationController
     @messages = Message.thread(current_user, hookup)
   end
 
+  def thread
+    hookup = User.find(params[:user_id])
+    @messages = Message.thread(current_user, hookup)
+  end
 
 end

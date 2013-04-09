@@ -15,18 +15,35 @@
 
 @implementation InitialViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"Login"]) {        
+        LoginViewController *vc = (LoginViewController *)segue.destinationViewController;
+        vc.managedObjectContext = self.managedObjectContext;
+        vc.currentUser = self.currentUser;
+        vc.delegate = self;
     }
-    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout)
+                                                 name:@"UserNotAuthorized" object:nil];
+
+    [self setup];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (self.currentUser) {
+        [self setup];
+    } else {
+        [self performSegueWithIdentifier:@"Login" sender:self];
+    }
+}
+
+- (void)setup {
+    
     UIStoryboard *storyboard;
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
@@ -35,15 +52,53 @@
         storyboard = [UIStoryboard storyboardWithName:@"iPad" bundle:nil];
     }
 
-	// Do any additional setup after loading the view.
-    ALog(@"managed object is %@", self.managedObjectContext);
+    // Do any additional setup after loading the view.
+    ALog(@"moc: %@ currentUser: %@", self.managedObjectContext, self.currentUser);
     self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationTop"];
     NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
     ((IndexViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
     ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
     
     self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
-    ((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = ((IndexViewController *)nc.topViewController);
+    ((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
+    ((MenuViewController *)self.slidingViewController.underLeftViewController).currentUser = self.currentUser;
+    
+}
+
+#pragma mark LoginDelegate methods
+- (void)didVkLogin:(User *)user {
+    self.currentUser = user;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - LogoutDelegate delegate methods
+- (void) didLogout
+{
+    DLog(@"in logout");
+    [RestUser resetIdentifiers];
+    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
+    [[Vkontakte sharedInstance] logout];
+    self.currentUser = nil;
+    //[[UAPush shared] setAlias:nil];
+    //[[UAPush shared] updateRegistration];
+    
+    //[FBSession.activeSession closeAndClearTokenInformation];
+    //[self dismissModalViewControllerAnimated:YES];
+    
+    [self performSegueWithIdentifier:@"Login" sender:self];
+}
+
+- (void)didUpdateSettings {
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
+    ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
+
+}
+
+- (void)didChangeFilters {
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
+    ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
 }
 
 

@@ -10,6 +10,9 @@
 #import "User+REST.h"
 
 @interface RestMessage : RestObject
+@property NSInteger fromUserId;
+@property NSInteger toUserId;
+
 @property (strong, atomic) NSString *message;
 @property (strong, atomic) RestUser *fromUser;
 @property (strong, atomic) RestUser *toUser;

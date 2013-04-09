@@ -35,40 +35,33 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftViewWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.managedObjectContext = sharedAppDelegate.managedObjectContext;
+    [self setupProfile];
     [self setupSegmentControl];
 }
 
 
 - (void)leftViewWillAppear {
-    ALog(@"left view will appear with user %@ and managedObject %@", self.user, self.managedObjectContext);
-    if (!self.user && [RestUser currentUserToken] && self.managedObjectContext) {
-        [self fetch];
-    }
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    [self setupProfile];
+    ALog(@"left view will appear with user %@ and managedObject %@", self.currentUser, self.managedObjectContext);
 }
 
 
 - (void)setupProfile {
-    ALog(@"setting up profile for %@", self.user);
-    [self.profileImage setProfilePhotoWithURL:self.user.photoUrl];
-    self.nameTextField.text = self.user.fullName;
-    self.emailTextField.text = self.user.email;
+    ALog(@"setting up profile for %@", self.currentUser);
+    [self.profileImage setProfilePhotoWithURL:self.currentUser.photoUrl];
+    self.nameTextField.text = self.currentUser.fullName;
+    self.emailTextField.text = self.currentUser.email;
     // Do any additional setup after loading the view.
-    if ([self.user.lookingForGender integerValue] == LookingForBoth) {
+    if ([self.currentUser.lookingForGender integerValue] == LookingForBoth) {
         self.lookingForMen.selected = YES;
         self.lookingForWomen.selected = YES;
-    } else if ([self.user.lookingForGender integerValue] == LookingForMen) {
+    } else if ([self.currentUser.lookingForGender integerValue] == LookingForMen) {
         self.lookingForMen.selected = YES;
     } else {
         self.lookingForWomen.selected = YES;
     }
-    self.genderSegmentControl.selectedSegmentIndex = [self.user.gender integerValue];
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.genderSegmentControl.selectedSegmentIndex = [self.currentUser.gender integerValue];
 }
 
 - (IBAction)didTapLogout:(id)sender {
@@ -92,34 +85,34 @@
 
 - (void)setLookingFor {
     if ((self.lookingForMen.selected && self.lookingForWomen.selected) || (!self.lookingForMen.selected && !self.lookingForWomen.selected)) {
-        self.user.lookingForGender = [NSNumber numberWithInteger:LookingForBoth];
+        self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForBoth];
     } else if (self.lookingForWomen.selected) {
-        self.user.lookingForGender = [NSNumber numberWithInteger:LookingForWomen];
+        self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForWomen];
     } else {
-        self.user.lookingForGender = [NSNumber numberWithInteger:LookingForMen];
+        self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForMen];
     }    
 }
 
-- (void)fetch {
-    ALog(@"in fetch user for menu controller");
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
-    [RestUser reload:^(RestUser *restUser) {
-        User *user = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
-        ALog(@"returning from coredate helper with user %@", user);
-        [self saveContext];
-        self.user = user;
-        [self setupProfile];
-        [SVProgressHUD dismiss];
-    } onError:^(NSError *error) {
-        ALog(@"got error %@", error);
-        [SVProgressHUD dismiss];
-    }];
-}
+//- (void)fetch {
+//    ALog(@"in fetch user for menu controller");
+//    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
+//    [RestUser reload:^(RestUser *restUser) {
+//        User *user = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+//        ALog(@"returning from coredate helper with user %@", user);
+//        [self saveContext];
+//        self.user = user;
+//        [self setupProfile];
+//        [SVProgressHUD dismiss];
+//    } onError:^(NSError *error) {
+//        ALog(@"got error %@", error);
+//        [SVProgressHUD dismiss];
+//    }];
+//}
 - (void)update {
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
-    [RestUser update:self.user onLoad:^(RestUser *restUser) {
+    [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
         [SVProgressHUD dismiss];
-        self.user = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+        self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
         [self saveContext];
         if (_filtersChanged) {
             [self.delegate didChangeFilters];
@@ -131,7 +124,7 @@
 }
 
 - (IBAction)genderChanged:(id)sender {
-    self.user.gender = [NSNumber numberWithInteger:self.genderSegmentControl.selectedSegmentIndex];
+    self.currentUser.gender = [NSNumber numberWithInteger:self.genderSegmentControl.selectedSegmentIndex];
     [self update];
 }
 
@@ -151,11 +144,11 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    self.user.email = self.emailTextField.text;
+    self.currentUser.email = self.emailTextField.text;
     NSArray *chunks = [self.nameTextField.text componentsSeparatedByString: @" "];
     if ([chunks count] == 2) {
-        self.user.lastName = chunks[1];
-        self.user.firstName = chunks[0];
+        self.currentUser.lastName = chunks[1];
+        self.currentUser.firstName = chunks[0];
     }
     [textField resignFirstResponder];
     [self update];

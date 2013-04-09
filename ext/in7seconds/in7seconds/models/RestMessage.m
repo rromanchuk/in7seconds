@@ -16,6 +16,8 @@
              @"message": @"message",
              @"created_at": [NSDate mappingWithKey:@"createdAt"
                    dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"],
+             @"from_user_id": @"fromUserId",
+             @"to_user_id": @"toUserId",
              @"from_user": [RestUser mappingWithKey:@"fromUser" mapping:[RestUser mapping]],
              @"to_user": [RestUser mappingWithKey:@"toUser" mapping:[RestUser mapping]]};
 }

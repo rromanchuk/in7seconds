@@ -69,6 +69,7 @@ class UsersController < ApplicationController
   def update_settings
     @user = current_user
     @user.update_attributes(params[:user])
+    @user.reload
     render :show
   end
 

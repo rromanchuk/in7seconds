@@ -28,21 +28,15 @@
 {
     [super viewDidLoad];
     [self noResultsLeft];
-    //[self noResultsLeft];
-    //self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(revealMenu:)];
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chat_icon"] target:self action:@selector(didTapMatches:)];
     
-    ((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
-    //((MenuViewController *)self.slidingViewController.underLeftViewController).managedObjectContext = self.managedObjectContext;
 
     self.userImageView.delegate = self;
     _numberOfAttempts = 0;
    	// Do any additional setup after loading the view.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout)
-                                                 name:@"UserNotAuthorized" object:nil];
-    
+        
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(topDidAppear) name:@"ECSlidingViewTopDidReset" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftViewWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
@@ -67,13 +61,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     _modalOpen = NO;
-    ((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
 
-    if (!self.currentUser) {
-        [self performSegueWithIdentifier:@"Login" sender:self];
-        return;
+    if (self.currentUser) {
+        [self topDidAppear];
     }
-    [self topDidAppear];
 }
 
 
@@ -95,13 +86,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"Login"]) {
-        [self stopCountdown];
-        LoginViewController *vc = (LoginViewController *)segue.destinationViewController;
-        vc.managedObjectContext = self.managedObjectContext;
-        vc.currentUser = self.currentUser;
-        vc.delegate = self;
-    } else if ([segue.identifier isEqualToString:@"Matches"]) {
+    if ([segue.identifier isEqualToString:@"Matches"]) {
         [self stopCountdown];
         MatchesViewController *vc = (MatchesViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
@@ -254,37 +239,7 @@
     }];
 }
 
-#pragma mark LoginDelegate methods
-- (void)didVkLogin:(User *)user {
-    self.currentUser = user;
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
-#pragma mark - LogoutDelegate delegate methods
-- (void) didLogout
-{
-    DLog(@"in logout");
-    [self stopCountdown];
-    [RestUser resetIdentifiers];
-    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
-    [[Vkontakte sharedInstance] logout];
-    self.currentUser = nil;
-    //[[UAPush shared] setAlias:nil];
-    //[[UAPush shared] updateRegistration];
-    
-    //[FBSession.activeSession closeAndClearTokenInformation];
-    //[self dismissModalViewControllerAnimated:YES];
-    
-    [self performSegueWithIdentifier:@"Login" sender:self];
-}
-
-- (void)didUpdateSettings {
-    [self fetchPossibleHookups];
-}
-
-- (void)didChangeFilters {
-    [self fetchPossibleHookups];
-}
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self

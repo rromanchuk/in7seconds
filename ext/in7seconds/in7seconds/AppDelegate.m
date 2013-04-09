@@ -15,6 +15,7 @@
 #import "Config.h"
 #import "Facebook.h"
 #import "Appirater.h"
+#import "NavigationTopViewController.h"
 @implementation AppDelegate
 @synthesize window = _window;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -123,7 +124,7 @@
             self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
             [self saveContext];
         } onError:^(NSError *error) {
-            
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
         }];
     }
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.

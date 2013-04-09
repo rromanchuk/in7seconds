@@ -28,6 +28,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="uDf-1G-bJ7" kind="modal" identifier="Login" id="uAI-3D-lSR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pJc-WO-sx8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -303,7 +306,6 @@
                         <outlet property="noResultsLabel" destination="b8r-St-uW1" id="EHM-bg-Qfr"/>
                         <outlet property="unlikeButton" destination="XEm-AO-bF8" id="eef-FS-e2m"/>
                         <outlet property="userImageView" destination="APD-Fz-edu" id="FfR-BH-bT2"/>
-                        <segue destination="uDf-1G-bJ7" kind="modal" identifier="Login" id="qph-WC-CME"/>
                         <segue destination="KXj-XR-793" kind="push" identifier="Matches" id="cId-S9-ht9"/>
                         <segue destination="Ujj-87-9Zu" kind="modal" identifier="NewMatch" id="sSy-fW-JD7"/>
                         <segue destination="q9A-pi-12M" kind="push" identifier="DirectToChat" id="w1L-Nh-4Xb"/>
@@ -514,7 +516,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="muH-Kt-KEj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-162" y="464"/>
+            <point key="canvasLocation" x="-543" y="-929"/>
         </scene>
         <!--Match View Controller-->
         <scene sceneID="AvQ-Xf-ZGx">
