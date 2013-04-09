@@ -12,7 +12,12 @@ class MessagesController < ApplicationController
       @message = Message.new(:to_user => hookup, :from_user => current_user, :message => params[:message][:message])
     end
     @message.save
-    render :show
+    
+    if params[:lite_version]
+      render 'messages/show_lite'
+    else
+      render :show
+    end
   end
 
   def index

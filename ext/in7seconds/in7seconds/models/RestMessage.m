@@ -28,7 +28,7 @@
               onError:(void (^)(NSError *error))onError {
     
     RestClient *restClient = [RestClient sharedClient];
-    NSDictionary *params = @{@"message[message]": message};
+    NSDictionary *params = @{@"message[message]": message, @"lite_version": @"true"};
     NSString *path = [NSString stringWithFormat:@"users/%@/messages.json", user.externalId];
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"POST"
                                                                   path:path
