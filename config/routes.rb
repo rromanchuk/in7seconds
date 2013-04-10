@@ -100,7 +100,7 @@ In7seconds::Application.routes.draw do
   # just remember to delete public/index.html.
   get 'about' => 'pages#about'
   get 'tos' => 'pages#tos'
-
+  get 'exception' => 'pages#exception'
 
   get 'feed' => 'users#feed'
 

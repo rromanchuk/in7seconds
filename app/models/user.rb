@@ -162,6 +162,10 @@ class User < ActiveRecord::Base
     self[:birthday] || ""
   end
 
+  def birthday_simple
+    birthday.is_a?(Date) ? birthday.strftime('%Y-%m-%d') : ""
+  end
+
   def country
     if vk_country
       vk_country.name
