@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130314191522) do
+ActiveRecord::Schema.define(:version => 20130408213917) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -131,7 +131,10 @@ ActiveRecord::Schema.define(:version => 20130314191522) do
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["fbuid"], :name => "index_users_on_fbuid", :unique => true
+  add_index "users", ["gender"], :name => "index_users_on_gender"
+  add_index "users", ["is_active"], :name => "index_users_on_is_active"
   add_index "users", ["latitude", "longitude"], :name => "index_users_on_latitude_and_longitude"
+  add_index "users", ["looking_for_gender"], :name => "index_users_on_looking_for_gender"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["vk_city_id"], :name => "index_users_on_vk_city_id"
   add_index "users", ["vk_country_id"], :name => "index_users_on_vk_country_id"
