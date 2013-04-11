@@ -10,7 +10,9 @@
 #import "JDFlipNumberView.h"
 
 
-static CGFloat kFlipAnimationMinimumTimeInterval = 0.01; // = 100 fps
+static CGFloat JDFlipAnimationMinimumTimeInterval = 0.01; // = 100 fps
+static CGFloat JDFlipViewRelativeMargin = 0.15; // use 15% of width as margin
+
 
 typedef NS_OPTIONS(NSUInteger, JDFlipAnimationDirection) {
 	JDFlipAnimationDirectionUp,
@@ -112,25 +114,43 @@ typedef NS_OPTIONS(NSUInteger, JDFlipAnimationDirection) {
     // stay in max bounds
     newValue = [self validValueFromValue:newValue];
     
+    // inform delegate
+	if (animated && [self.delegate respondsToSelector: @selector(flipNumberView:willChangeToValue:)]) {
+		[self.delegate flipNumberView:self willChangeToValue:newValue];
+	}
+    
     // convert to string
 	NSString* stringValue = [NSString stringWithFormat: @"%50d", newValue];
 	
     // udpate all flipviews, that have changed
+    __block NSUInteger completedDigits = 0;
 	for (int i=0; i<stringValue.length && i<self.digitViews.count; i++) {
 		JDFlipNumberDigitView* view = (JDFlipNumberDigitView*)self.digitViews[self.digitViews.count-(1+i)];
 		NSInteger newValue = [[stringValue substringWithRange:NSMakeRange(stringValue.length-(1+i), 1)] intValue];
         if (newValue != view.value) {
             if(animated) {
-                [view setValue:newValue withAnimationType:self.animationType];
+                [view setValue:newValue withAnimationType:self.animationType completion:^(BOOL completed){
+                    completedDigits = completedDigits + 1;
+                    if (completedDigits == self.digitViews.count) {
+                        // inform delegate, when all digits finished animation
+                        if (animated && [self.delegate respondsToSelector: @selector(flipNumberView:didChangeValueAnimated:)]) {
+                            [self.delegate flipNumberView:self didChangeValueAnimated:NO];
+                        }
+                    }
+                }];
             } else {
                 view.value = newValue;
             }
+        } else {
+            // also count not animated view
+            completedDigits++;
         }
 	}
-	
-	if ([self.delegate respondsToSelector: @selector(flipNumberView:didChangeValueAnimated:)]) {
-		[self.delegate flipNumberView:self didChangeValueAnimated:NO];
-	}
+    
+    // inform delegate
+    if (!animated && [self.delegate respondsToSelector: @selector(flipNumberView:didChangeValueAnimated:)]) {
+        [self.delegate flipNumberView:self didChangeValueAnimated:NO];
+    }
 }
 
 - (NSUInteger)validValueFromValue:(NSInteger)value;
@@ -217,7 +237,7 @@ typedef NS_OPTIONS(NSUInteger, JDFlipAnimationDirection) {
     // setup timer
     self.neededInterval = timeInterval;
     self.animationDuration = timeInterval;
-    CGFloat actualInterval = MAX(kFlipAnimationMinimumTimeInterval, timeInterval);
+    CGFloat actualInterval = MAX(JDFlipAnimationMinimumTimeInterval, timeInterval);
     
     self.animationTimer = [NSTimer timerWithTimeInterval:actualInterval
                                                   target:self
@@ -332,20 +352,25 @@ typedef NS_OPTIONS(NSUInteger, JDFlipAnimationDirection) {
 
 - (void)setFrame:(CGRect)frame;
 {
-    JDFlipNumberView* view = nil;
-	if (self.digitViews && self.digitViews.count > 0) {
-		NSUInteger i, count = self.digitViews.count, xWidth = frame.size.width/count;
+	if (self.digitViews && self.digitViews.count > 0)
+    {
+        JDFlipNumberView* previousView = nil;
+		NSUInteger i, count = self.digitViews.count;
+        NSUInteger xWidth = (frame.size.width*(1-JDFlipViewRelativeMargin))/count;
 		for (i = 0; i < count; i++) {
-			view = self.digitViews[i];
-			view.frame = CGRectMake(i*xWidth, 0, xWidth, frame.size.height);
+			JDFlipNumberView* view = self.digitViews[i];
+            CGFloat xpos = 0;
+            if (previousView) {
+                xpos = floor(CGRectGetMaxX(previousView.frame)+CGRectGetWidth(previousView.frame)*JDFlipViewRelativeMargin);
+            }
+			view.frame = CGRectMake(xpos, 0, xWidth, frame.size.height);
+			previousView = self.digitViews[i];
 		}
-	}
-    
-    if (view) {
+        
 		// take bottom right of last view for new size, to match size of subviews
-		frame.size.width  = ceil(view.frame.size.width  + view.frame.origin.x);
-		frame.size.height = ceil(view.frame.size.height + view.frame.origin.y);
-    }
+		frame.size.width  = ceil(previousView.frame.size.width  + previousView.frame.origin.x);
+		frame.size.height = ceil(previousView.frame.size.height + previousView.frame.origin.y);
+	}
     
     [super setFrame:frame];
 }
