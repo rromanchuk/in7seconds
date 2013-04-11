@@ -3,14 +3,18 @@ BlockGame = Backbone.View.extend
   logPrefix: '[app.views.BlockGame]:'
 
   el: '#l-content .p-feed'
+  _preloadFactor: 20
 
   initialize: ->
-    @loadHookups()
-
     @tid = null
 
     @currentUser = 0
-    @currentCount = 0
+    @currentCount = 7
+    @length = 0
+    @fullyLoaded = false
+    @rendered = false
+
+    @loadHookups()
 
     if app.env.debug
       window.COLLECTION = @collection
@@ -30,18 +34,22 @@ BlockGame = Backbone.View.extend
 
     @counterEl = @gameEl.find('.p-g-c-c-num')
 
-    @startGame()
+    if @fullyLoaded
+      @introEl.hide()
+      @overEl.show()
 
     @log('post render')
 
   disLike: ->
     @updateHookup()
 
+    @currentUser++
     @gameReset()
 
   like: ->
     @updateHookup(true)
 
+    @currentUser++
     @gameReset()
 
   startGame: ->
@@ -70,6 +78,10 @@ BlockGame = Backbone.View.extend
 
   gameReset: ->
     window.clearTimeout(@tid) if @tid?
+
+    @currentCount = 7
+    @counterEl.html(@currentCount)
+
     @gameLoop()   
 
   gameStop: ->
@@ -86,35 +98,51 @@ BlockGame = Backbone.View.extend
       @counterEl.html(@currentCount)
       @tid = window.setTimeout(theLoop, 1000)
 
-    @nextUser()
-    @counterEl.html(@currentCount)
-
+    @renderUser()
     @tid = window.setTimeout(theLoop, 1000)
 
   nextUser: ->
-    @renderUser()
     @currentCount = 7
     @currentUser++
+    @renderUser()
+
+    if @currentUser + @_preloadFactor >= @length and not @fullyLoaded
+      @loadHookups()
 
   loadHookups: ->
+    data = {}
+    if (last = @collection.last())?
+      data['last_id'] = last.get('id')
+
     $.ajax(
       url: app.api('hookups')
+      data: data
       success: (resp)=>
-        @collection.add(resp)
-        @render()
+        if resp.length
+          @collection.add(resp)
+          @length = @collection.length
+        else
+          @fullyLoaded = true
+
+        @render() unless @rendered
       error: =>
         @$el.addClass('error')
       )
 
   render: ->
     @$el.html(app.templates.block_game())
+    @rendered = true
     @postRender()
 
   renderUser: ->
     user = @collection.at(@currentUser)
-    @stopGame() unless user
 
-    @userEl.html(app.templates.block_game_user(user.toJSON()))
+    if user
+      @userEl.html(app.templates.block_game_user(user.toJSON()))
+    else
+      @stopGame()
+
+    
 
   destroy: ->
     @undelegateEvents()
