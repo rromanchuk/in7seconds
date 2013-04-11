@@ -97,6 +97,7 @@
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
     } else if ([segue.identifier isEqualToString:@"NewMatch"]) {
+        [Flurry logEvent:@"Found_New_Match"];
         [self stopCountdown];
         MatchViewController *vc = (MatchViewController *)segue.destinationViewController;
         vc.currentUser = self.currentUser;
@@ -110,6 +111,7 @@
         vc.currentUser = self.currentUser; 
         vc.otherUser = self.otherUser;
     } else if ([segue.identifier isEqualToString:@"UserProfile"]) {
+        [Flurry logEvent:@"View_User_Profile"];
         [self stopCountdown];
         _modalOpen = YES;
         UserProfileViewController *vc = (UserProfileViewController *)segue.destinationViewController;
@@ -158,6 +160,7 @@
 }
 
 - (IBAction)didTapLike:(id)sender {
+    [Flurry logEvent:@"Like_Tapped"];
     [self stopCountdown];
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
     [RestUser flirtWithUser:self.otherUser onLoad:^(RestUser *restUser) {
