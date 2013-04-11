@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city
   attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active, :looking_for_gender, :latitude, :longitude, :vk_city, :vk_country, :vk_domain, :vk_graduation, :vk_university_name, :vk_faculty_name, :vk_mobile_phone
 
+  has_many :images
   has_many :relationships, :dependent => :destroy
 
   has_many :hookups, :through => :relationships,
@@ -48,7 +49,7 @@ class User < ActiveRecord::Base
   belongs_to :vk_city
 
   scope :active, where(is_active: true)
-
+  scope :with_geo_location, where('latitude IS NOT NULL')
   
   LOOKING_FOR_MALE = 0
   LOOKING_FOR_FEMALE = 1

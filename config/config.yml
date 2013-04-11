@@ -32,7 +32,7 @@ development:
   vk_web_app_id: 3425096
   vk_secret: 2TdwkRgv1T4I8fYnsa9M
   vk_scopes: "friends,photos,status,wall,offline,notify"
-  s3_cdn: s3.amazonaws.com/piclar
+  s3_cdn: cdn.in7seconds.com
   contact_email: support@in7seconds.com
   ua_key: t3YC1EwhSX2B-jl0XP2nvg
   ua_secret: nRah8o9GT72gsMEhth98OQ
@@ -47,7 +47,7 @@ production:
   fb_app_secret: d63ab873eee7b992ad53b816b848bbba
   aws_access: 0SPGHF9VGDTQXENQC282
   aws_secret: 9zscLw+Y+Mh437fHaG1h+BUCtjViDrCP8ipmJImy
-  aws_bucket: piclar
+  aws_bucket: in7seconds
   aws_path: production
   fsq_key: 3JGS1NJOEXKRRMMRYDDGWEOOVWKHUT3MK24Y4YBTZ5BM2UZ4
   fsq_secret: HNMOAADDNV3EEX3G0XUWYS2UBWSXZCMTX0WYKS1MJXIPUNKJ
@@ -55,7 +55,7 @@ production:
   vk_web_app_id: 3425096
   vk_secret: nnBnyGrt4Y8MpmiAC4DA
   vk_scopes: "friends,photos,status,wall,offline,notify"
-  s3_cdn: cdn.piclar.com
+  s3_cdn: cdn.in7seconds.com
   contact_email: support@in7seconds.com
   ua_key: acjij3jDR1mkLzdEfhAfnw
   ua_secret: 6qOMa1RxQ2C9bRGsoGhFtA

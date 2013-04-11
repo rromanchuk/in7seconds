@@ -17,3 +17,20 @@
 
   %dt Users with geo
   %dd= @users_with_geo_location
+
+  %dt Names
+  %dd= @names
+
+%table
+  %thead
+    %td
+      User
+    %td
+      Pending
+    %td
+      Requested
+  - User.active.each do |u|
+    %tr
+      %td= u.name
+      %td= u.pending_hookups.count
+      %td= u.requested_hookups.count

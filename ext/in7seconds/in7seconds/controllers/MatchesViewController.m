@@ -13,6 +13,7 @@
 #import "CommentViewController.h"
 #import "UAPush.h"
 #import  <QuartzCore/QuartzCore.h>
+#import "PrivateMessage+REST.h"
 
 @interface MatchesViewController ()
 @property (strong, nonatomic) NoChatsView *noResultsFooterView;
@@ -87,6 +88,7 @@
     [cell.profileImage setProfilePhotoWithURL:user.photoUrl];
     cell.profileImage.layer.borderWidth = 1;
     cell.previewLabel.text = user.fullLocation;
+    cell.commentPreview.hidden = YES;
     return cell;
 }
 
@@ -99,4 +101,5 @@
 - (void)fetchResults {
     
 }
+
 @end

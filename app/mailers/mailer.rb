@@ -31,6 +31,8 @@ class Mailer < ActionMailer::Base
 
     @total_ratings_yesterday = Relationship.added_yesterday.count
     @users_with_geo_location = User.with_geo_location.count
+    @names = User.active.map(&:name).join(", ")
+
     mail to: 'stats@piclar.com', subject: 'in7seconds Stats'
   end
 

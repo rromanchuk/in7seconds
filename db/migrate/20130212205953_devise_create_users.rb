@@ -62,5 +62,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :authentication_token, :unique => true
     add_index :users, :fbuid, :unique => true
     add_index :users, :vkuid, :unique => true
+    add_index :users, :is_active
+    add_index :users, :gender
+    add_index :users, :looking_for_gender
   end
 end

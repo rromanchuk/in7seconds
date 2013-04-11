@@ -7,7 +7,6 @@
 //
 
 #import "MatchViewController.h"
-
 @interface MatchViewController ()
 
 @end
@@ -34,5 +33,6 @@
 - (IBAction)didTapKeepSearching:(id)sender {
     [self.delegate userWantsToRate];
 }
+
 @end
 
