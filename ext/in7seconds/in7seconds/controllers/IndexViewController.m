@@ -101,7 +101,7 @@
         [self stopCountdown];
         MatchViewController *vc = (MatchViewController *)segue.destinationViewController;
         vc.currentUser = self.currentUser;
-        vc.otherUser = self.otherUser;
+        vc.otherUser = (User *)sender;
         vc.managedObjectContext = self.managedObjectContext;
         vc.delegate = self;
     } else if ([segue.identifier isEqualToString:@"DirectToChat"]) {
@@ -162,31 +162,38 @@
 - (IBAction)didTapLike:(id)sender {
     [Flurry logEvent:@"Like_Tapped"];
     [self stopCountdown];
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
-    [RestUser flirtWithUser:self.otherUser onLoad:^(RestUser *restUser) {
-        [SVProgressHUD dismiss];
-        [self.currentUser removePossibleHookupsObject:self.otherUser];
+    if (!self.otherUser) {
+        [self setupNextHookup];
+        return;
+    }
+    User *otherUser = self.otherUser;
+    [self.currentUser removePossibleHookupsObject:self.otherUser];
+    [self saveContext];
+    [self setupNextHookup];
+    [RestUser flirtWithUser:otherUser onLoad:^(RestUser *restUser) {
         if (restUser) {
-            [self performSegueWithIdentifier:@"NewMatch" sender:self];
+            [self performSegueWithIdentifier:@"NewMatch" sender:otherUser];
             return;
         }
-        [self setupNextHookup];
     } onError:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
         [self setupNextHookup];
     }];
 }
 
 - (IBAction)didTapUnlike:(id)sender {
+    [Flurry logEvent:@"Unlike_Tapped"];
     [self stopCountdown];
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
-    [RestUser rejectUser:self.otherUser onLoad:^(BOOL success) {
-        [SVProgressHUD dismiss];
-        [self.currentUser removePossibleHookupsObject:self.otherUser];
+    if (!self.otherUser) {
         [self setupNextHookup];
+        return;
+    }
+    User *otherUser = self.otherUser;
+    [self.currentUser removePossibleHookupsObject:self.otherUser];
+    [self saveContext];
+    [self setupNextHookup];
+    [RestUser rejectUser:otherUser onLoad:^(BOOL success) {
+        
     } onError:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-        [self setupNextHookup];
     }];
 }
 
@@ -195,8 +202,6 @@
 }
 
 - (void)setupNextHookup {
-
-    
     self.otherUser = nil;    
     if (self.currentUser && self.currentUser.possibleHookups) {
         [self foundResults];

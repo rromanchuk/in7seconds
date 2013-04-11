@@ -8,7 +8,7 @@ In7seconds::Application.routes.draw do
                                :omniauth_callbacks => "users/omniauth_callbacks"},
              :skip => [:sessions] do
     get '/'   => "pages#index",       :as => :new_user_session
-    get '/signout'  => 'devise/sessions#destroy',   :as => :destroy_user_session
+    get '/signout'  => 'devise/sessions#destroy',  :as => :signout
   end
 
   resources :relationships do
@@ -48,7 +48,6 @@ In7seconds::Application.routes.draw do
   get 'about' => 'pages#about'
   get 'tos' => 'pages#tos'
   get 'exception' => 'pages#exception'
-
   get 'feed' => 'users#feed'
 
   root :to => 'users#home'
