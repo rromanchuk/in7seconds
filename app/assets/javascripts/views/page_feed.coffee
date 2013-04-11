@@ -21,6 +21,9 @@ PageFeed = Backbone.View.extend
   destroy: ->
     @undelegateEvents()
 
+    @game?.destroy()
+    delete @game
+
     @log('destroyed')
 
 app.views.PageFeed = PageFeed

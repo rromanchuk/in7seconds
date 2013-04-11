@@ -1,0 +1,8 @@
+.p-matches
+  .p-m-loading!= app.templates.spinner()
+  .p-m-error Произошел сбой соединения. Попробуй обновить страницу.
+  .p-m-content
+    %h1.p-m-header Совпадения
+    %p Скоро и на сайте! А пока воспользуйся нашим приложением для iOS!
+
+    != app.templates.social()

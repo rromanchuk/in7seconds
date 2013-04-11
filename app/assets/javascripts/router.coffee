@@ -23,6 +23,10 @@ Router = Backbone.Router.extend
   routes:
     '':                          'index'
     'feed':                      'feed'
+
+    'matches':                   'matches'
+    'profile':                   'profile'
+
     'about':                     'about'
 
     '*any':                      'error'
@@ -52,6 +56,14 @@ Router = Backbone.Router.extend
     views['feed'] = new app.views.PageFeed(
       collection: new app.collections.Hookups()
       )
+
+  matches: ->
+    @log('match "matches"')
+    views['matches'] = new app.views.PageMatches()
+
+  profile: ->
+    @log('match "profile"')
+    views['profile'] = new app.views.PageProfile()
 
   about: ->
     @log('match "about"')

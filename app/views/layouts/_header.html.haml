@@ -6,7 +6,7 @@
 
     - if user_signed_in?
       %nav
-        %a.l-h-link{:href=>'messages_path'}
+        %a.l-h-link{:href=>matches_path}
           %i.icon-bubbles
           %span Совпадения
 
@@ -16,10 +16,10 @@
             %span.l-h-u-name= current_user.first_name + ' ' + current_user.last_name
           %ul.l-h-dropdown
             %li
-              %a.app-route{:href=>'profile_path'}
+              %a.app-route{:href=>profile_path}
                 %i.icon-wink
                 %span Профиль           
             %li
-              %a.last{:href=>'logout_path'}
+              %a.last{:href=>'/destroy'}
                 %i.icon-exit
                 %span Выйти
