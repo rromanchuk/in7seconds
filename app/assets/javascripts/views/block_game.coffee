@@ -8,11 +8,13 @@ BlockGame = Backbone.View.extend
   initialize: ->
     @tid = null
 
+    @destroyed = false
+    @fullyLoaded = false
+    @rendered = false
+
     @currentUser = 0
     @currentCount = 7
     @length = 0
-    @fullyLoaded = false
-    @rendered = false
 
     @loadHookups()
 
@@ -69,6 +71,7 @@ BlockGame = Backbone.View.extend
     @log('game stopped')
 
   updateHookup: (liked = false)->
+    return if @destroyed
     type = if liked then 'like' else 'dislike'
 
     $.ajax(
@@ -102,6 +105,8 @@ BlockGame = Backbone.View.extend
     @tid = window.setTimeout(theLoop, 1000)
 
   nextUser: ->
+    return if @destroyed
+
     @currentCount = 7
     @currentUser++
     @renderUser()
@@ -118,6 +123,8 @@ BlockGame = Backbone.View.extend
       url: app.api('hookups')
       data: data
       success: (resp)=>
+        return if @destroyed
+
         if resp.length
           @collection.add(resp)
           @length = @collection.length
@@ -142,10 +149,11 @@ BlockGame = Backbone.View.extend
     else
       @stopGame()
 
-    
-
   destroy: ->
     @undelegateEvents()
+
+    window.clearTimeout(@tid) if @tid?
+    @destroyed = true
 
     @log('destroyed')
 

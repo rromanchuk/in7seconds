@@ -10,11 +10,10 @@
  *
  *= require ./include/reset
  *= require ./include/fonts
- 
+ *= require_tree ./vendor
  *= require_tree ./partials
  *= require_tree ./modules
  *= require_tree ./views
-
  *= require ./layout
  
  */

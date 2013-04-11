@@ -1,0 +1,48 @@
+@import 'include/mixins'
+
+.p-matches
+  width: 960px
+  margin: 0 auto
+
+  .p-m-loading
+    display: none
+    padding-top: 90px
+
+  .p-m-error
+    padding-top: 90px
+    display: none
+    font-size: 16px
+    line-height: 21px
+
+    text-align: center
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 1)
+
+  .p-m-header
+    padding: 10px 0
+
+    border-bottom: 1px solid #ccc
+
+    text-align: center
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 1)
+
+    font-size: 36px
+    line-height: 48px
+
+  .p-m-content
+    width: 960px
+    margin: 0 auto
+
+    font-size: 16px
+    line-height: 24px      
+
+    p
+      width: 500px
+      margin: 10px auto
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 1)
+
+  &.error
+    .p-m-loading
+      display: none
+
+    .p-m-error
+      display: block

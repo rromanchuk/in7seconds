@@ -1,0 +1,28 @@
+- @name = app.user.first_name + if app.user.last_name? then ' ' + app.user.last_name else ''
+.p-profile
+  %figure.p-p-content
+    %img.p-p-u-photo(src=app.user.photo_url, alt=@name)
+    %figcaption.p-p-u-meta
+      %h2.p-p-u-name= @name
+
+      %form.p-p-u-settings
+        .p-p-u-row
+          %label.p-p-u-label(for="p-p-u-email") Эл. почта:
+          %span.m-validate-container(data-for="email")
+            %input#p-p-u-email.p-p-u-email(type="email", name='email', value=app.user.email, placeholder="me@example.com", autocorrect="off", autocapitalize="off", data-validate="true", data-filter="email", data-error="Введи правильный адрес эл. почты", required="required")
+
+        / .p-p-u-row.checkbox
+        /   %input#p-p-u-notify(type="checkbox", checked=notify)
+        /   %label.p-p-u-label(for="p-p-u-notify") Я хочу получать оповещения о новых совпадениях по эл. почте
+
+        - if !app.user.email
+          %small.p-p-u-desc.
+            Нам нужен твой адрес&nbsp;эл. почты чтобы сразу сообщить тебе о&nbsp;том, кто тоже тебя выбрал.
+            Ведь чем быстрее ты&nbsp;узнаешь, тем лучше. Мы&nbsp;не&nbsp;собираемся использовать
+            этот адрес для чего-то еще.
+
+        .p-p-u-submit
+          %button.button.pink Сохранить
+
+        .p-p-u-saved
+          Профиль успешно сохранен

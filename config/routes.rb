@@ -48,6 +48,11 @@ In7seconds::Application.routes.draw do
   get 'about' => 'pages#about'
   get 'tos' => 'pages#tos'
   get 'exception' => 'pages#exception'
+
+  # fixme
+  get 'matches' => 'pages#matches'
+  get 'profile' => 'pages#profile'
+
   get 'feed' => 'users#feed'
 
   root :to => 'users#home'

@@ -15,6 +15,14 @@ class PagesController < ApplicationController
     render 'generic'
   end
 
+  def matches
+    render 'generic'
+  end
+
+  def profile
+    render 'generic'
+  end
+
   def tos
 
   end
