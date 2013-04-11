@@ -1,6 +1,6 @@
 .block-game
   .p-g-intro
-    %h1 Привет, #{app.user.first_name}!
+    %h1.p-g-header Привет, #{app.user.first_name}!
     %p Просто нажми кнопку "начать игру" как только ты будешь готов. Не забывай, у тебя будет всего 7 секунд на выбор!
     %p.b-g-startwrap
       %span.button.blue.b-g-start Начать игру
@@ -19,10 +19,8 @@
       %span.button.round.green.p-g-c-c-like
         %i.icon-thumbs-up
 
-  .p-g-loading
-
   .p-g-over
-    %h2 Game over, #{app.user.first_name}!
+    %h2.p-g-header Game over, #{app.user.first_name}!
     %p Ты увидел всех, кого мы успели подобрать для тебя на данный момент.
       Не расстраивайся, в море еще много рыбы. Мы посмотрим кто еще может показаться тебе интересен.
       Просто зайди на сайт через пару часов. И не забудь показать его своим друзьям.
