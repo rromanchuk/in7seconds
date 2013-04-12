@@ -41,6 +41,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :city
       t.string :country
       t.integer :gender, :default => 0
+      t.integer :looking_for_gender
       t.timestamp :birthday
       t.string :first_name
       t.string :last_name
