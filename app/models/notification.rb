@@ -1,12 +1,11 @@
 # encoding: utf-8
 class Notification < ActiveRecord::Base
-  # belongs_to :sender, :class_name => "User", :foreign_key => "sender_id"
-  # belongs_to :receiver, :class_name => "User", :foreign_key => "receiver_id"
+  belongs_to :sender, :class_name => "User", :foreign_key => "sender_id"
+  belongs_to :receiver, :class_name => "User", :foreign_key => "receiver_id"
 
   # validates_inclusion_of :notification_type, :in => [NOTIFICATION_TYPE_NEW_COMMENT, NOTIFICATION_TYPE_NEW_FRIEND]
 
   # attr_accessible :sender, :receiver, :notification_type, :sender_id, :receiver_id
-
   def self.no_email(user)
     Notification.send_notification!([user.id], I18n.t('notifications.no_email'))
   end
@@ -24,7 +23,5 @@ class Notification < ActiveRecord::Base
     notification = { aliases: aliases.map(&:to_s), aps: {:alert => message, :badge => 1}, extra: extra }
     Urbanairship.push(notification)
   end
-
-
 
 end

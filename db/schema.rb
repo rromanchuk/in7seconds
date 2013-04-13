@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411184710) do
+ActiveRecord::Schema.define(:version => 20130413203303) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -82,6 +82,18 @@ ActiveRecord::Schema.define(:version => 20130411184710) do
   add_index "messages", ["thread_id"], :name => "index_messages_on_thread_id"
   add_index "messages", ["to_user_id"], :name => "index_messages_on_to_user_id"
 
+  create_table "notifications", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.boolean  "is_read"
+    t.string   "notification_type"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "notifications", ["receiver_id"], :name => "index_notifications_on_receiver_id"
+  add_index "notifications", ["sender_id"], :name => "index_notifications_on_sender_id"
+
   create_table "relationships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "hookup_id"
@@ -110,7 +122,6 @@ ActiveRecord::Schema.define(:version => 20130411184710) do
     t.boolean  "is_active"
     t.string   "provider"
     t.boolean  "gender",                                                              :default => false
-    t.integer  "looking_for_gender"
     t.datetime "birthday"
     t.string   "first_name"
     t.string   "last_name"
@@ -123,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20130411184710) do
     t.decimal  "longitude",                           :precision => 15, :scale => 10
     t.datetime "created_at",                                                                             :null => false
     t.datetime "updated_at",                                                                             :null => false
+    t.integer  "looking_for_gender"
     t.string   "vk_domain"
     t.string   "vk_university_name"
     t.string   "vk_faculty_name"
