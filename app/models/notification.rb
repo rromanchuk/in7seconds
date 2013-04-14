@@ -19,9 +19,15 @@ class Notification < ActiveRecord::Base
     Notification.send_notification!([receiver.id], message)
   end
 
+  def self.notify_requested_hookups
+    message = (hookup.gender) ? I18n.t('notifications.fuck.f', user: hookup.first_name) : I18n.t('notifications.fuck.m', user: hookup.first_name)
+    Notification.send_notification!([receiver.id], message)
+  end
+
   def self.send_notification!(aliases, message, extra={})
     notification = { aliases: aliases.map(&:to_s), aps: {:alert => message, :badge => 1}, extra: extra }
     Urbanairship.push(notification)
   end
+
 
 end

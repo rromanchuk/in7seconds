@@ -83,6 +83,8 @@
 		FA7002C816CAF5F00098A5B7 /* VkontakteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002C716CAF5F00098A5B7 /* VkontakteViewController.m */; };
 		FA7002CC16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */; };
 		FA73B102170B516D00D084CB /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FA73B101170B516D00D084CB /* User.m */; };
+		FA73B105171A041500D084CB /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA73B104171A041000D084CB /* NotificationsViewController.m */; };
+		FA73B108171A058100D084CB /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA73B107171A058000D084CB /* NotificationCell.m */; };
 		FA7F38D916E7CA8B00EA2C0B /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */; };
 		FA7F38E316EBBF9500EA2C0B /* WhiteBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E216EBBF9400EA2C0B /* WhiteBubble.m */; };
 		FA7F38E616EBDB7D00EA2C0B /* BlueBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E516EBDB7C00EA2C0B /* BlueBubble.m */; };
@@ -257,6 +259,10 @@
 		FA7002CB16CAF7C10098A5B7 /* UIApplication+NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+NetworkActivityIndicator.m"; path = "categories/UIApplication+NetworkActivityIndicator.m"; sourceTree = "<group>"; };
 		FA73B100170B516D00D084CB /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
 		FA73B101170B516D00D084CB /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
+		FA73B103171A040B00D084CB /* NotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationsViewController.h; path = controllers/NotificationsViewController.h; sourceTree = "<group>"; };
+		FA73B104171A041000D084CB /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationsViewController.m; path = controllers/NotificationsViewController.m; sourceTree = "<group>"; };
+		FA73B106171A057F00D084CB /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationCell.h; path = views/NotificationCell.h; sourceTree = "<group>"; };
+		FA73B107171A058000D084CB /* NotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationCell.m; path = views/NotificationCell.m; sourceTree = "<group>"; };
 		FA7F38D716E7CA8B00EA2C0B /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentViewController.h; path = controllers/CommentViewController.h; sourceTree = "<group>"; };
 		FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentViewController.m; path = controllers/CommentViewController.m; sourceTree = "<group>"; };
 		FA7F38E116EBBF9400EA2C0B /* WhiteBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteBubble.h; sourceTree = "<group>"; };
@@ -373,6 +379,8 @@
 				FA7F38E816ECE94700EA2C0B /* ProfileCell.m */,
 				942544E616EF888200FA79FB /* NoChatsView.h */,
 				942544E716EF888200FA79FB /* NoChatsView.m */,
+				FA73B106171A057F00D084CB /* NotificationCell.h */,
+				FA73B107171A058000D084CB /* NotificationCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -590,6 +598,8 @@
 				94A9808316E9E34C0036E52C /* MatchViewController.m */,
 				94A980B316ECB4030036E52C /* UserProfileViewController.h */,
 				94A980B416ECB4040036E52C /* UserProfileViewController.m */,
+				FA73B103171A040B00D084CB /* NotificationsViewController.h */,
+				FA73B104171A041000D084CB /* NotificationsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -901,6 +911,8 @@
 				942544E816EF888200FA79FB /* NoChatsView.m in Sources */,
 				94CA887817086AB3008A821A /* RestMutualFriend.m in Sources */,
 				FA73B102170B516D00D084CB /* User.m in Sources */,
+				FA73B105171A041500D084CB /* NotificationsViewController.m in Sources */,
+				FA73B108171A058100D084CB /* NotificationCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
