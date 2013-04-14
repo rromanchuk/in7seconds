@@ -17,12 +17,12 @@ class Notification < ActiveRecord::Base
   end
 
   def self.private_message(sender, hookup, message)
-    Notification.create(receiver_id: user.id, sender_id: sender.id notification_type: NOTIFICATION_PRIVATE_MESSAGE)
+    Notification.create(receiver_id: user.id, sender_id: sender.id, notification_type: NOTIFICATION_PRIVATE_MESSAGE)
     Notification.send_notification!([hookup.id], "#{sender.first_name}: #{message}")
   end
   
   def self.fuck(receiver, hookup)
-    Notification.create(receiver_id: user.id, sender_id: sender.id notification_type: NOTIFICATION_MATCH)
+    Notification.create(receiver_id: user.id, sender_id: sender.id, notification_type: NOTIFICATION_MATCH)
     message = (hookup.gender) ? I18n.t('notifications.fuck.f', user: hookup.first_name) : I18n.t('notifications.fuck.m', user: hookup.first_name)
     Notification.send_notification!([receiver.id], message)
   end
