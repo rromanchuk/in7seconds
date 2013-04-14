@@ -19,9 +19,8 @@ In7seconds::Application.routes.draw do
   end
 
   match '/users/unsubscribe/:signature' => 'users#unsubscribe', as: 'unsubscribe'
-
+  resources :images
   resources :users do
-    resources :images
     resources :messages do
       collection do
         get :thread

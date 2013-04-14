@@ -37,6 +37,10 @@
     self.managedObjectContext = sharedAppDelegate.managedObjectContext;
     [self setupProfile];
     [self setupSegmentControl];
+    
+    self.profileImage.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pictureFromLibrary:)];
+    [self.profileImage addGestureRecognizer:tap];
 }
 
 
@@ -93,21 +97,7 @@
     }    
 }
 
-//- (void)fetch {
-//    ALog(@"in fetch user for menu controller");
-//    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
-//    [RestUser reload:^(RestUser *restUser) {
-//        User *user = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
-//        ALog(@"returning from coredate helper with user %@", user);
-//        [self saveContext];
-//        self.user = user;
-//        [self setupProfile];
-//        [SVProgressHUD dismiss];
-//    } onError:^(NSError *error) {
-//        ALog(@"got error %@", error);
-//        [SVProgressHUD dismiss];
-//    }];
-//}
+
 - (void)update {
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...")];
     [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
@@ -196,11 +186,12 @@
 }
 
 - (IBAction)pictureFromLibrary:(id)sender {
-//    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-//    [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-//    [imagePicker setDelegate:self];
-//    imagePicker.allowsEditing = YES;
-//    [self presentModalViewController:imagePicker animated:YES];
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.showsCameraControls = YES;
+    [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
+    [self presentModalViewController:imagePicker animated:YES];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info

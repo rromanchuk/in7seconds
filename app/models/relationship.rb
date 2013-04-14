@@ -28,7 +28,7 @@ class Relationship < ActiveRecord::Base
     User.active.each do |user|
       requested = user.requested_hookups
       unless requested.blank?
-
+        Notification.notify_requested_hookups(user, "#{requested.count}")
       end
     end
   end

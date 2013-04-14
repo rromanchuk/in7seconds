@@ -10,5 +10,6 @@
 #define __POD_JDFlipNumberView
 #define __POD_JTObjectMapping
 #define __POD_SVProgressHUD
+#define __POD_TTTAttributedLabel
 #define __POD_TestFlightSDK
 #define __POD_UrbanAirship_iOS_SDK

@@ -28,7 +28,9 @@
     %td
       Pending
     %td
-      Requested
+      Requested (Liked by Others)
+    %td
+      Rejected
     %td
       Matches
   - User.active.each do |u|
@@ -36,4 +38,5 @@
       %td= u.name
       %td= u.pending_hookups.count
       %td= u.requested_hookups.count
+      %td= u.rejected_hookups.count
       %td= u.hookups.count

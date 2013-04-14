@@ -57,6 +57,51 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
     return map;
 }
 
++ (void)addPhoto:(NSMutableData *)photo
+        onLoad:(void (^)(RestUser *restUser))onLoad
+       onError:(void (^)(NSError *error))onError {
+
+    
+    RestClient *restClient = [RestClient sharedClient];
+
+    NSMutableURLRequest *request = [restClient multipartFormRequestWithMethod:@"POST"
+                                                                         path:[RESOURCE_PATH stringByAppendingString:@"/images.json"]
+                                                                   parameters:@{}
+                                                    constructingBodyWithBlock:^(id <AFMultipartFormData>formData)
+                                    {
+                                        
+                                        [formData appendPartWithFileData:photo
+                                                                    name:@"image[image]"
+                                                                fileName:@"my_photo.jpg"
+                                                                mimeType:@"image/jpeg"];
+                                    }];
+    
+    ALog(@"UPDATE USER REQUEST: %@", request);
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            //ALog(@"JSON: %@", JSON);
+                                                                                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                                                                                RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
+                                                                                                
+                                                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                                                    if (onLoad)
+                                                                                                        onLoad(user);
+                                                                                                });
+                                                                                            });
+                                                                                        }
+                                                                                        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            NSError *customError = [RestObject customError:error withServerResponse:response andJson:JSON];
+                                                                                            if (onError)
+                                                                                                onError(customError);
+                                                                                        }];
+    [[UIApplication sharedApplication] showNetworkActivityIndicator];
+    [operation start];
+
+ 
+}
+
 + (void)update:(User *)user
         onLoad:(void (^)(RestUser *restUser))onLoad
        onError:(void (^)(NSError *error))onError {
@@ -80,6 +125,8 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"PUT"
                                                             path:[RESOURCE_PATH stringByAppendingString:@"/update_user.json"]
                                                       parameters:p];
+    
+   
     
     ALog(@"UPDATE USER REQUEST: %@", request);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
