@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "User+REST.h"
 #import "IndexViewController.h"
+#import "UIImage+Resize.h"
 @interface MenuViewController () {
     BOOL _filtersChanged;
 }
@@ -187,7 +188,7 @@
 
 - (IBAction)pictureFromLibrary:(id)sender {
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.showsCameraControls = YES;
+    //imagePicker.showsCameraControls = YES;
     [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     imagePicker.delegate = self;
     imagePicker.allowsEditing = YES;
@@ -196,12 +197,12 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-//        [self dismissModalViewControllerAnimated:NO];
-//        CGRect cropRect = [[info valueForKey:UIImagePickerControllerCropRect] CGRectValue];
-//        // don't try to juggle around orientation, rotate from the beginning if needed
-//        UIImage *image = [[info objectForKey:@"UIImagePickerControllerOriginalImage"] fixOrientation];
+        [self dismissModalViewControllerAnimated:NO];
+        CGRect cropRect = [[info valueForKey:UIImagePickerControllerCropRect] CGRectValue];
+        // don't try to juggle around orientation, rotate from the beginning if needed
+        UIImage *image = [[info objectForKey:@"UIImagePickerControllerOriginalImage"] fixOrientation];
 //    
-//        image = [image croppedImage:cropRect];
+        image = [image croppedImage:cropRect];
     //
     //    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     //    [library assetForURL:[info objectForKey:UIImagePickerControllerReferenceURL]
@@ -265,28 +266,30 @@
     //
     //
     //
-    //    DLog(@"Coming back with image");
-    //
-    //    DLog(@"Size of image is height: %f, width: %f", image.size.height, image.size.width);
-    //    CGSize size = image.size;
-    //    if (size.width < 640.0 && size.height < 640.0) {
-    //        // The image is so small it doesn't need to be resized, this isn't great because it will forcefully scaled up.
-    //        self.imageFromLibrary = image;
-    //        [self didFinishPickingFromLibrary:self];
-    //    } else {
-    //        // This image needs to be scaled and cropped into a square image
-    //        CGFloat centerX = size.width / 2;
-    //        CGFloat centerY = size.height / 2;
-    //        if (size.width > size.height) {
-    //            image = [image croppedImage:CGRectMake(centerX - size.height / 2 , 0, size.height, size.height)];
-    //        } else {
-    //            image = [image croppedImage:CGRectMake(0 , centerY - size.width / 2, size.width, size.width)];
-    //        }
-    //        self.imageFromLibrary = [image resizedImage:CGSizeMake(640, 640) interpolationQuality:kCGInterpolationHigh];
-    //        
-    //        [self didFinishPickingFromLibrary:self];
-    //    }
-    //    
+        DLog(@"Coming back with image");
+    
+        DLog(@"Size of image is height: %f, width: %f", image.size.height, image.size.width);
+        CGSize size = image.size;
+        if (size.width < 640.0 && size.height < 640.0) {
+   
+        } else {
+            // This image needs to be scaled and cropped into a square image
+            CGFloat centerX = size.width / 2;
+            CGFloat centerY = size.height / 2;
+            if (size.width > size.height) {
+                image = [image croppedImage:CGRectMake(centerX - size.height / 2 , 0, size.height, size.height)];
+            } else {
+                image = [image croppedImage:CGRectMake(0 , centerY - size.width / 2, size.width, size.width)];
+            }
+            image = [image resizedImage:CGSizeMake(640, 640) interpolationQuality:kCGInterpolationHigh];
+    
+        }
+     
+    [RestUser addPhoto:image  onLoad:^(RestUser *restUser) {
+        
+    } onError:^(NSError *error) {
+        
+    }];
 }
 
 

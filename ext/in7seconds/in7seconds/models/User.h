@@ -2,7 +2,7 @@
 //  User.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/2/13.
+//  Created by Ryan Romanchuk on 4/15/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -41,6 +41,7 @@
 @property (nonatomic, retain) NSSet *hookups;
 @property (nonatomic, retain) NSSet *mutalFriendObjects;
 @property (nonatomic, retain) NSSet *possibleHookups;
+@property (nonatomic, retain) NSSet *images;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
@@ -59,5 +60,10 @@
 - (void)removePossibleHookupsObject:(User *)value;
 - (void)addPossibleHookups:(NSSet *)values;
 - (void)removePossibleHookups:(NSSet *)values;
+
+- (void)addImagesObject:(NSManagedObject *)value;
+- (void)removeImagesObject:(NSManagedObject *)value;
+- (void)addImages:(NSSet *)values;
+- (void)removeImages:(NSSet *)values;
 
 @end
