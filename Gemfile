@@ -20,6 +20,7 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'geocoder'
 gem "aws-ses", :require => 'aws/ses'
+gem 'chronic', :git => 'git@github.com:mojombo/chronic.git'
 gem 'whenever', :require => false
 gem 'russian'
 gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
