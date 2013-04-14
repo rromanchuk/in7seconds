@@ -81,6 +81,7 @@ GEM
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
     daemons (1.1.9)
+    dalli (2.6.2)
     delayed_job (3.0.5)
       activesupport (~> 3.0)
     delayed_job_active_record (0.4.4)
@@ -281,6 +282,7 @@ DEPENDENCIES
   compass
   compass-rails
   daemons
+  dalli
   delayed_job_active_record
   devise
   exception_notification
