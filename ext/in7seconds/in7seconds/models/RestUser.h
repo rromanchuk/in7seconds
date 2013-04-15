@@ -45,6 +45,10 @@
 @property (atomic, strong) NSSet *hookups;
 @property (atomic, strong) NSSet *mutualFriendObjects;
 
++ (void)addPhoto:(NSMutableData *)photo
+          onLoad:(void (^)(RestUser *restUser))onLoad
+         onError:(void (^)(NSError *error))onError;
+
 + (void)create:(NSMutableDictionary *)parameters
         onLoad:(void (^)(RestUser *restUser))onLoad
        onError:(void (^)(NSError *error))onError;

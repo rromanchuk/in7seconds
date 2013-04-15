@@ -1,4 +1,5 @@
 object @message
+cache @message
 attributes :id, :message, :created_at
 
 node :from_user_id  do |message|

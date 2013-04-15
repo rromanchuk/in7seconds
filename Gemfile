@@ -20,12 +20,13 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'geocoder'
 gem "aws-ses", :require => 'aws/ses'
+gem 'chronic', :git => 'git@github.com:mojombo/chronic.git'
 gem 'whenever', :require => false
 gem 'russian'
 gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 gem 'slim'
 gem 'haml_coffee_assets'
-
+gem 'dalli'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -46,4 +47,5 @@ group :development do
   gem 'pry-rails'
   gem 'quiet_assets'
   gem 'rvm-capistrano'
+  gem "bullet"
 end

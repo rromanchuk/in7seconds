@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Image" representedClassName="Image" syncable="YES">
+        <attribute name="externalId" optional="YES" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="images" inverseEntity="User" syncable="YES"/>
+    </entity>
     <entity name="Notification" syncable="YES"/>
     <entity name="PrivateMessage" representedClassName="PrivateMessage" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
@@ -35,12 +40,14 @@
         <attribute name="vkToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vkUniversityName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="hookups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="hookups" inverseEntity="User" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="user" inverseEntity="Image" syncable="YES"/>
         <relationship name="mutalFriendObjects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="mutalFriendObjects" inverseEntity="User" syncable="YES"/>
         <relationship name="possibleHookups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="possibleHookups" inverseEntity="User" syncable="YES"/>
     </entity>
     <elements>
         <element name="PrivateMessage" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="User" positionX="160" positionY="192" width="128" height="465"/>
+        <element name="User" positionX="160" positionY="192" width="128" height="480"/>
         <element name="Notification" positionX="160" positionY="192" width="128" height="45"/>
+        <element name="Image" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>

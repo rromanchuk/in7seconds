@@ -7,7 +7,7 @@ require "whenever/capistrano"
 set :application, "in7seconds"
 set :rails_env, 'production'
 
-set :rvm_ruby_string, '1.9.3' # Or whatever env you want it to run in.
+set :rvm_ruby_string, '2.0.0' # Or whatever env you want it to run in.
 
 role :web, "in7seconds.com"
 role :db,  "in7seconds.com", :primary => true # This is where Rails migrations will run

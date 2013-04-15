@@ -2,7 +2,7 @@
 //  User.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/2/13.
+//  Created by Ryan Romanchuk on 4/15/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -40,5 +40,6 @@
 @dynamic hookups;
 @dynamic mutalFriendObjects;
 @dynamic possibleHookups;
+@dynamic images;
 
 @end

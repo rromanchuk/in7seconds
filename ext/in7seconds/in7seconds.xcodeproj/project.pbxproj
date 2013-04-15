@@ -85,6 +85,11 @@
 		FA73B102170B516D00D084CB /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FA73B101170B516D00D084CB /* User.m */; };
 		FA73B105171A041500D084CB /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA73B104171A041000D084CB /* NotificationsViewController.m */; };
 		FA73B108171A058100D084CB /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA73B107171A058000D084CB /* NotificationCell.m */; };
+		FA73B10B171B3E6E00D084CB /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = FA73B10A171B3E6E00D084CB /* UIImage+Resize.m */; };
+		FA73B10E171B3EE200D084CB /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = FA73B10D171B3EE100D084CB /* UIImage+RoundedCorner.m */; };
+		FA73B111171B3F6000D084CB /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = FA73B110171B3F5F00D084CB /* UIImage+Alpha.m */; };
+		FA73B114171B42C800D084CB /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FA73B113171B42B600D084CB /* User.m */; };
+		FA73B117171B42E500D084CB /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = FA73B116171B42DD00D084CB /* Image.m */; };
 		FA7F38D916E7CA8B00EA2C0B /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */; };
 		FA7F38E316EBBF9500EA2C0B /* WhiteBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E216EBBF9400EA2C0B /* WhiteBubble.m */; };
 		FA7F38E616EBDB7D00EA2C0B /* BlueBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E516EBDB7C00EA2C0B /* BlueBubble.m */; };
@@ -263,6 +268,16 @@
 		FA73B104171A041000D084CB /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationsViewController.m; path = controllers/NotificationsViewController.m; sourceTree = "<group>"; };
 		FA73B106171A057F00D084CB /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationCell.h; path = views/NotificationCell.h; sourceTree = "<group>"; };
 		FA73B107171A058000D084CB /* NotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationCell.m; path = views/NotificationCell.m; sourceTree = "<group>"; };
+		FA73B109171B3E6E00D084CB /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Resize.h"; path = "categories/UIImage+Resize.h"; sourceTree = "<group>"; };
+		FA73B10A171B3E6E00D084CB /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "categories/UIImage+Resize.m"; sourceTree = "<group>"; };
+		FA73B10C171B3EE000D084CB /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+RoundedCorner.h"; path = "categories/UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		FA73B10D171B3EE100D084CB /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "categories/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		FA73B10F171B3F5F00D084CB /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Alpha.h"; path = "categories/UIImage+Alpha.h"; sourceTree = "<group>"; };
+		FA73B110171B3F5F00D084CB /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Alpha.m"; path = "categories/UIImage+Alpha.m"; sourceTree = "<group>"; };
+		FA73B112171B42A200D084CB /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
+		FA73B113171B42B600D084CB /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
+		FA73B115171B42CD00D084CB /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = models/Image.h; sourceTree = "<group>"; };
+		FA73B116171B42DD00D084CB /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Image.m; path = models/Image.m; sourceTree = "<group>"; };
 		FA7F38D716E7CA8B00EA2C0B /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentViewController.h; path = controllers/CommentViewController.h; sourceTree = "<group>"; };
 		FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentViewController.m; path = controllers/CommentViewController.m; sourceTree = "<group>"; };
 		FA7F38E116EBBF9400EA2C0B /* WhiteBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteBubble.h; sourceTree = "<group>"; };
@@ -465,6 +480,10 @@
 				FA70026C16CAECB20098A5B7 /* MainStoryboard.storyboard */,
 				FA70025B16CAECB20098A5B7 /* Supporting Files */,
 				FA7002B916CAF42E0098A5B7 /* in7seconds.xcdatamodeld */,
+				FA73B115171B42CD00D084CB /* Image.h */,
+				FA73B116171B42DD00D084CB /* Image.m */,
+				FA73B112171B42A200D084CB /* User.h */,
+				FA73B113171B42B600D084CB /* User.m */,
 				942544E416EF87A000FA79FB /* NoChatsView.xib */,
 			);
 			path = in7seconds;
@@ -650,6 +669,12 @@
 				FAE1AC4516D6BC3500B18144 /* NSNull+NullAddition.m */,
 				FAC3DA5416DE930700410BF7 /* UIImageView+additions.h */,
 				FAC3DA5516DE930700410BF7 /* UIImageView+additions.m */,
+				FA73B109171B3E6E00D084CB /* UIImage+Resize.h */,
+				FA73B10A171B3E6E00D084CB /* UIImage+Resize.m */,
+				FA73B10C171B3EE000D084CB /* UIImage+RoundedCorner.h */,
+				FA73B10D171B3EE100D084CB /* UIImage+RoundedCorner.m */,
+				FA73B10F171B3F5F00D084CB /* UIImage+Alpha.h */,
+				FA73B110171B3F5F00D084CB /* UIImage+Alpha.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -913,6 +938,11 @@
 				FA73B102170B516D00D084CB /* User.m in Sources */,
 				FA73B105171A041500D084CB /* NotificationsViewController.m in Sources */,
 				FA73B108171A058100D084CB /* NotificationCell.m in Sources */,
+				FA73B10B171B3E6E00D084CB /* UIImage+Resize.m in Sources */,
+				FA73B10E171B3EE200D084CB /* UIImage+RoundedCorner.m in Sources */,
+				FA73B111171B3F6000D084CB /* UIImage+Alpha.m in Sources */,
+				FA73B114171B42C800D084CB /* User.m in Sources */,
+				FA73B117171B42E500D084CB /* Image.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
