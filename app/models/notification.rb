@@ -28,7 +28,8 @@ class Notification < ActiveRecord::Base
   end
 
   def self.notify_requested_hookups(receiver, num_requested)
-    message = I18n.t('notifications.pending_hookups', num_users: num_requested)
+    people = (num_requested.to_i == 2) ? 'человека' : 'человек'
+    message = I18n.t('notifications.pending_hookups', num_users: num_requested, people: people)
     Notification.send_notification!([receiver.id], message)
   end
 
