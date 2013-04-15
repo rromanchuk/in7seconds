@@ -23,7 +23,7 @@ class Notification < ActiveRecord::Base
   
   def self.fuck(receiver, hookup)
     message = (hookup.gender) ? I18n.t('notifications.fuck.f', user: hookup.first_name) : I18n.t('notifications.fuck.m', user: hookup.first_name)
-    Notification.create(receiver_id: receiver.id, sender_id: sender.id, notification_type: NOTIFICATION_MATCH, message: message)
+    Notification.create(receiver_id: receiver.id, sender_id: hookup.id, notification_type: NOTIFICATION_MATCH, message: message)
     Notification.send_notification!([receiver.id], message)
   end
 
