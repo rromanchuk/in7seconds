@@ -9,7 +9,7 @@ class Notification < ActiveRecord::Base
   NOTIFICATION_MATCH_REMINDER = "match_reminder"
   # validates_inclusion_of :notification_type, :in => [NOTIFICATION_TYPE_NEW_COMMENT, NOTIFICATION_TYPE_NEW_FRIEND]
 
-  attr_accessible :sender, :receiver, :notification_type, :sender_id, :receiver_id
+  attr_accessible :sender, :receiver, :notification_type, :sender_id, :receiver_id, :message
   
   def self.no_email(user)
     Notification.create(receiver_id: user.id, notification_type: NOTIFICATION_TYPE_NO_EMAIL, message: I18n.t('notifications.no_email'))
