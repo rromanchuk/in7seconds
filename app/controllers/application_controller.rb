@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   #skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
   helper_method :current_user_json
 
+  def current_user
+    @current_user ||= super && User.includes([:vk_country, :vk_city, :friends, :groups]).find(@current_user.id)
+  end
+
   def current_user_json
     if current_user
       

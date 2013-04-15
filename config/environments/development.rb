@@ -56,8 +56,6 @@ In7seconds::Application.configure do
     Bullet.alert = true 
     Bullet.bullet_logger = true
     Bullet.console = true
-    Bullet.growl = true
     Bullet.rails_logger = true
-    Bullet.airbrake = true
   end
 end

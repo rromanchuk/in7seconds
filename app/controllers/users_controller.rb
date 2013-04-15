@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes([:vk_country, :vk_city, :friends, :groups]).find(params[:id])
     render :hookup_user
   end
 
