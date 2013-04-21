@@ -153,6 +153,7 @@ BlockGame = Backbone.View.extend
     @undelegateEvents()
 
     window.clearTimeout(@tid) if @tid?
+    @fullyLoaded = true
     @destroyed = true
 
     @log('destroyed')

@@ -1,7 +1,7 @@
 .block-game_user
-  .b-gu-info #{@first_name + if @last_name? then ' ' + @last_name else ''}#{if @birthday? then ', ' else ''}
-    - if @birthday?
-      #{helpers.dateGetYearsDiff(@birthday, app.now)} лет
+  .b-gu-info #{@first_name + if @last_name? then ' ' + @last_name else ''}#{if @birthday_simple? then ', ' else ''}
+    - if @birthday_simple?
+      #{helpers.dateGetYearsDiff(@birthday_simple, app.now)} лет
 
     - if @city
       %small.b-gu-location= @city + if @country? then ', ' + @country else ''
