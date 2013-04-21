@@ -1,7 +1,9 @@
+- age = if @birthday then helpers.dateGetYearsDiff(@birthday, app.now) else 0
+
 .block-game_user
-  .b-gu-info #{@first_name + if @last_name? then ' ' + @last_name else ''}#{if @birthday_simple? then ', ' else ''}
-    - if @birthday_simple?
-      #{helpers.dateGetYearsDiff(@birthday_simple, app.now)} лет
+  .b-gu-info #{@first_name + if @last_name? then ' ' + @last_name else ''}#{if age > 0 then ', ' else ''}
+    - if age > 0
+      #{age} лет
 
     - if @city
       %small.b-gu-location= @city + if @country? then ', ' + @country else ''

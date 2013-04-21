@@ -77,6 +77,60 @@ a:hover
 #l-footer
   border-top: 1px solid #ddd
 
+#l-notifications
+  margin-top: $header_height + 10px
+  position: absolute
+  right: 0
+  top: 0
+
+  .l-n-icon
+    margin: 10px
+    position: absolute
+    left: 0
+    top: 0
+    font-size: 12px
+
+  .l-notification
+    width: 200px
+
+    margin: 10px
+    padding: 7px 30px
+
+    display: block
+
+    position: relative
+
+    opacity: 0
+    transition: opacity linear .2s
+
+    border-radius: 5px
+
+    background: #333
+    background: rgba(0, 0, 0, .7)
+
+    color: #fff
+    font-size: 14px
+    line-height: 18px
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .6)
+
+  .l-n-close
+    margin: 5px 2px
+    padding: 3px
+
+    position: absolute
+    right: 0
+    top: 0
+
+    font-size: 8px
+    line-height: 0
+
+    cursor: pointer
+    color: #ccc
+    text-shadow: none
+
+    &:hover
+      color: #fff
+
 .l-h-content
   height: $header_height
 

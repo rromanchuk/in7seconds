@@ -27,7 +27,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-pacman, .icon-bubbles, .icon-spinner, .icon-heart, .icon-fire, .icon-exit, .icon-dice, .icon-wink, .icon-thumbs-up, .icon-thumbs-up-2, .icon-spinner-2, .icon-user, .icon-star {
+.icon-pacman, .icon-bubbles, .icon-spinner, .icon-heart, .icon-fire, .icon-exit, .icon-dice, .icon-wink, .icon-thumbs-up, .icon-thumbs-up-2, .icon-spinner-2, .icon-user, .icon-star, .icon-checkmark-circle, .icon-cancel-circle, .icon-close, .icon-info, .icon-spam {
   font-family: 'icowesome';
   speak: none;
   font-style: normal;
@@ -75,4 +75,19 @@ you can use the generic selector below, but it's slower:
 }
 .icon-star:before {
   content: "\e00c";
+}
+.icon-checkmark-circle:before {
+  content: "\e00e";
+}
+.icon-cancel-circle:before {
+  content: "\e00f";
+}
+.icon-close:before {
+  content: "\e00d";
+}
+.icon-info:before {
+  content: "\e010";
+}
+.icon-spam:before {
+  content: "\e011";
 }

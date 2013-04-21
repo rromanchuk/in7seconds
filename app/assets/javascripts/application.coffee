@@ -46,6 +46,8 @@ app.dom.html.addClass('android android' + app.browser.isAndroid) if app.browser.
 if app.user
   app.header = new app.modules.Header()
 
+app.notification = new app.modules.Notifications()
+
 app.size = new app.modules.Size()
 app.social = new app.modules.Social()
 
