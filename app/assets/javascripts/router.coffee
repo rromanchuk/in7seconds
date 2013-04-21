@@ -59,7 +59,9 @@ Router = Backbone.Router.extend
 
   matches: ->
     @log('match "matches"')
-    views['matches'] = new app.views.PageMatches()
+    views['matches'] = new app.views.PageMatches(
+      collection: new app.collections.Matches()
+      )
 
   profile: ->
     @log('match "profile"')

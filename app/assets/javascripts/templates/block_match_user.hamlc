@@ -1,0 +1,17 @@
+- age = if @birthday then helpers.dateGetYearsDiff(@birthday, app.now) else 0
+
+%article.block-match_user
+  %figure.b-mu-photo
+    %img(src=@photo_url, alt=@first_name + if @last_name? then ' ' + @last_name else '')
+
+  .b-mu-info #{@first_name + if @last_name? then ' ' + @last_name else ''}#{if age > 0 then ', ' else ''}
+    - if age > 0
+      #{age} лет
+
+    - if @city
+      %small.b-mu-location= @city + if @country? then ', ' + @country else ''
+
+  .b-mu-contacts
+    %a.vk(target="_blank", href="http://vk.com/#{@vk_domain}")
+
+  

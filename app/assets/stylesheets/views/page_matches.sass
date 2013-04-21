@@ -5,7 +5,6 @@
   margin: 0 auto
 
   .p-m-loading
-    display: none
     padding-top: 90px
 
   .p-m-error
@@ -17,27 +16,38 @@
     text-align: center
     text-shadow: 0 1px 0 rgba(255, 255, 255, 1)
 
-  .p-m-header
-    padding: 10px 0
-
-    border-bottom: 1px solid #ccc
-
-    text-align: center
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 1)
-
-    font-size: 36px
-    line-height: 48px
-
   .p-m-content
     width: 960px
     margin: 0 auto
 
+    display: none
+
     font-size: 16px
-    line-height: 24px      
+    line-height: 24px
+
+    .p-m-header
+      padding: 10px 0
+
+      border-bottom: 1px solid #ccc
+
+      text-align: center
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 1)
+
+      font-size: 36px
+      line-height: 48px
+
+    .p-m-list
+      margin: 20px 0
+
+      .p-m-list-empty
+        padding: 50px 200px
+        text-align: center
 
     p
       width: 500px
       margin: 10px auto
+      font-size: 12px
+      line-height: 16px
       text-shadow: 0 1px 0 rgba(255, 255, 255, 1)
 
   &.error
@@ -45,4 +55,11 @@
       display: none
 
     .p-m-error
+      display: block
+
+  &.loaded
+    .p-m-loading
+      display: none
+
+    .p-m-content
       display: block
