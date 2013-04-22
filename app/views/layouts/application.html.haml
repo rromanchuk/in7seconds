@@ -9,6 +9,8 @@
       #l-content{:class=>(yield :content_classes).blank? ? nil : (yield :content_classes)}
         = yield
       #l-footer-push
+
+    #l-notifications
     
     = render :partial => 'layouts/footer'
     = render :partial => 'layouts/javascripts'

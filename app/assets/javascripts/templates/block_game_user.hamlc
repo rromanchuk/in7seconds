@@ -1,10 +1,15 @@
-.block-game_user
-  .b-gu-info #{@first_name + if @last_name? then ' ' + @last_name else ''}#{if @birthday? then ', ' else ''}
-    - if @birthday?
-      #{helpers.dateGetYearsDiff(@birthday, app.now)} лет
+- age = if @birthday then helpers.dateGetYearsDiff(@birthday, app.now) else 0
+- name = @first_name + if @last_name? then ' ' + @last_name else ''
 
-    - if @city
-      %small.b-gu-location= @city + if @country? then ', ' + @country else ''
+.block-game_user
+  .b-gu-info #{helpers.shortenString(name, 16, 'right')}#{if age > 0 then ', ' else ''}
+    - if age > 0
+      #{age} лет
+
+    
+    %small.b-gu-location
+      - if @city
+        =@city + if @country? then ', ' + @country else ''
 
   %figure.b-gu-photo
-    %img(src=@photo_url, alt=@first_name + if @last_name? then ' ' + @last_name else '')
+    %img(src=@photo_url, alt=name)

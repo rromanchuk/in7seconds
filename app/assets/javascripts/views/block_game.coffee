@@ -125,8 +125,13 @@ BlockGame = Backbone.View.extend
       success: (resp)=>
         return if @destroyed
 
-        if resp.length
-          @collection.add(resp)
+        # FU Ryan. Do something right for once!
+        hookups = for item in resp
+          item.birthday = item.birthday.split('T')[0]
+          item
+
+        if hookups.length
+          @collection.add(hookups)
           @length = @collection.length
         else
           @fullyLoaded = true
@@ -153,6 +158,7 @@ BlockGame = Backbone.View.extend
     @undelegateEvents()
 
     window.clearTimeout(@tid) if @tid?
+    @fullyLoaded = true
     @destroyed = true
 
     @log('destroyed')
