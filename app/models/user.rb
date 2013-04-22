@@ -222,11 +222,11 @@ class User < ActiveRecord::Base
   end
 
   def mutual_friends(hookup)
-    self.friends & hookup.friends
+    self.friends.includes([:vk_country, :vk_city, :friends, :groups]) & hookup.friends.includes([:vk_country, :vk_city, :friends, :groups])
   end
 
   def mutual_groups(hookup)
-    Membership.where('group_id IN (?)', self.groups.map(&:id) ).where(user_id: hookup.id).map(&:group)
+    Membership.includes([:group]).where('group_id IN (?)', self.groups.map(&:id) ).where(user_id: hookup.id).map(&:group)
   end
 
   # after create callbacks

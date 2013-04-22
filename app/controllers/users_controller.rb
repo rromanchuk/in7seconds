@@ -1,6 +1,6 @@
 # encoding: utf-8
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :except => [:system_settings, :unsubscribe]
+  before_filter :authenticate_user!, :except => [:unsubscribe]
   respond_to :json, :html
   
   def hookups
@@ -47,17 +47,9 @@ class UsersController < ApplicationController
     render :show
   end
 
-  def following_followers
-    @user = current_user
-  end
-
   def settings
     @user = current_user
     respond_with @user
-  end
-
-  def system_settings
-
   end
 
   def update_user

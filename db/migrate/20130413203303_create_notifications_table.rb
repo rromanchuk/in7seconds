@@ -3,7 +3,7 @@ class CreateNotificationsTable < ActiveRecord::Migration
      create_table :notifications do |t|
       t.integer :sender_id
       t.integer :receiver_id
-      t.boolean :is_read
+      t.boolean :is_read, :default => false
       t.string :notification_type
       t.timestamps
     end
