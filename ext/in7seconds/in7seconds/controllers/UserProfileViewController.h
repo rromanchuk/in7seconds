@@ -11,7 +11,7 @@
 @interface UserProfileViewController : UITableViewController
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
-@property (strong, nonatomic) User *otherUser;
+@property (strong, nonatomic) Hookup *otherUser;
 @property (weak, nonatomic) IBOutlet ProfileImageView *profileImage;
 
 

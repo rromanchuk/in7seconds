@@ -1,19 +1,13 @@
 //
-//  Image.m
+//  Match+REST.m
 //  in7seconds
 //
 //  Created by Ryan Romanchuk on 4/23/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import "Image.h"
-#import "User.h"
+#import "Match+REST.h"
 
-
-@implementation Image
-
-@dynamic externalId;
-@dynamic url;
-@dynamic user;
+@implementation Match (REST)
 
 @end

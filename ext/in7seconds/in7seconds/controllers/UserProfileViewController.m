@@ -9,7 +9,8 @@
 #import "UserProfileViewController.h"
 #import "BaseUIView.h"
 #import  <QuartzCore/QuartzCore.h>
-
+#import "Hookup+REST.h"
+#import "MutualFriend+REST.h"
 @interface UserProfileViewController ()
 
 @end
@@ -68,7 +69,7 @@
     //OstronautFilterType filterType;
     //ALog(@"other user %@", self.otherUser);
     //ALog(@"current user is %@", self.currentUser);
-    for (User *mutualFriend in self.otherUser.mutalFriendObjects) {
+    for (MutualFriend *mutualFriend in self.otherUser.mutualFriends) {
         ALog(@"in mutal friend loop");
         ProfileImageView *userImageView = [[ProfileImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
         userImageView.layer.borderWidth = 1;

@@ -7,6 +7,7 @@
 //
 
 #import "MatchViewController.h"
+#import "Hookup+REST.h"
 @interface MatchViewController ()
 
 @end

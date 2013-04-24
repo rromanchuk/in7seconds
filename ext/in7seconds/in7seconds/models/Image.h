@@ -2,7 +2,7 @@
 //  Image.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/15/13.
+//  Created by Ryan Romanchuk on 4/23/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -13,7 +13,7 @@
 
 @interface Image : NSManagedObject
 
-@property (nonatomic, retain) UNKNOWN_TYPE externalId;
+@property (nonatomic, retain) NSNumber * externalId;
 @property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) User *user;
 
