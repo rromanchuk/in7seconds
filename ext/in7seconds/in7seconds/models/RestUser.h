@@ -56,11 +56,11 @@
 + (void)reload:(void (^)(RestUser *restUser))onLoad
        onError:(void (^)(NSError *error))onError;
 
-+ (void)rejectUser:(User *)user
++ (void)rejectUser:(Hookup *)user
             onLoad:(void (^)(BOOL success))onLoad
            onError:(void (^)(NSError *error))onError;
 
-+ (void)flirtWithUser:(User *)user
++ (void)flirtWithUser:(Hookup *)user
                onLoad:(void (^)(RestUser *restUser))onLoad
               onError:(void (^)(NSError *error))onError;
 

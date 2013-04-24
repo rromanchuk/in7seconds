@@ -245,11 +245,13 @@
     _numberOfAttempts++;
     
     [RestHookup load:^(NSMutableArray *possibleHookups) {
-        NSMutableSet *_restHookups;
+        NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
         for (RestHookup *restHookup in possibleHookups) {
+            ALog(@"adding resthookup %@", restHookup);
             [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
         }
         [self.currentUser addHookups:_restHookups];
+        ALog(@"hookups are%@", self.currentUser.hookups);
         [self saveContext];
         [self setupNextHookup];
         [SVProgressHUD dismiss];

@@ -33,6 +33,7 @@ In7seconds::Application.routes.draw do
 
     collection do
       get :me
+      get :authenticated_user
       put :update_user
       get :feed
       get :hookups

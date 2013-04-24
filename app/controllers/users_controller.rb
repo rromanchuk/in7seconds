@@ -47,17 +47,15 @@ class UsersController < ApplicationController
     render :show
   end
 
+  def authenticated_user
+    @user = User.includes([:vk_country, :vk_city, :friends, :groups]).find(params[:id])
+    respond_with @user
+  end
+
   def update_user
     @user = current_user
     @user.update_attributes(params[:user])
-    render :show
-  end
-
-  def update_settings
-    @user = current_user
-    @user.update_attributes(params[:user])
-    @user.reload
-    render :show
+    render :authenticated_user
   end
 
   def unsubscribe

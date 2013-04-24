@@ -44,7 +44,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                 @"country", @"country",
                                 @"vkDomain", @"vk_domain",
                                 [NSDate mappingWithKey:@"birthday"
-                                      dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"birthday",
+                                      dateFormatString:@"yyyy-MM-dd"], @"birthday",
                                 [NSDate mappingWithKey:@"updatedAt"
                                       dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"updated_at",
                                 nil];
@@ -193,7 +193,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
        onError:(void (^)(NSError *error))onError {
     RestClient *restClient = [RestClient sharedClient];
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"GET"
-                                                            path:[RESOURCE_PATH stringByAppendingString:@"/me.json"]
+                                                            path:[RESOURCE_PATH stringByAppendingString:@"/authenticated_user.json"]
                                                       parameters:@{}];
     
     ALog(@"RELOAD USER REQUEST: %@", request);

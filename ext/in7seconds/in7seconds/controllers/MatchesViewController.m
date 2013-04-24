@@ -49,6 +49,7 @@
     self.title = NSLocalizedString(@"Симпатии", nil);
     self.tableView.backgroundView = [[BaseUIView alloc] init];
     [[UAPush shared] resetBadge];
+    [self fetchResults];
 	// Do any additional setup after loading the view.
 }
 
@@ -103,7 +104,7 @@
 
 - (void)fetchResults {
     [RestMatch load:^(NSMutableArray *matches) {
-        NSMutableSet *_restMatches;
+        NSMutableSet *_restMatches = [[NSMutableSet alloc] init];
         for (RestMatch *restMatch in matches) {
             [_restMatches addObject:[Match hookupWithRestHookup:restMatch inManagedObjectContext:self.managedObjectContext]];
         }

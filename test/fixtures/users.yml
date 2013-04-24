@@ -9,6 +9,7 @@ ryan:
   photo_url: http://cs9609.vk.me/u41526347/a_b9a69665.jpg
   vk_city: san_francisco
   vk_country: usa
+  birthday: <%= (Time.now - 18.years).to_s(:db) %>
 
 adarsh:
   email:
@@ -20,6 +21,7 @@ adarsh:
   photo_url: http://cs303515.vk.me/v303515827/6813/piM8cu0xcgI.jpg
   vk_city: moscow
   vk_country: india
+  birthday: <%= (Time.now - 18.years).to_s(:db) %>
 
 evgeny:
   email:
@@ -31,6 +33,7 @@ evgeny:
   photo_url: http://cs5295.vk.me/u4807674/a_ef1dcaa0.jpg
   vk_city: moscow
   vk_country: india
+  birthday: <%= (Time.now - 18.years).to_s(:db) %>
 
 bob:
   email:
@@ -42,14 +45,16 @@ bob:
   photo_url: http://cs5295.vk.me/u4807674/a_ef1dcaa0.jpg
   vk_city: moscow
   vk_country: india
+  birthday: <%= (Time.now - 18.years).to_s(:db) %>
 
 felix:
   email:
   first_name: Felix
   last_name: Shpilman
   gender: false
-  vkuid: 556237
+  vkuid: 303515827
   looking_for_gender: 0
   photo_url: http://cs5295.vk.me/u4807674/a_ef1dcaa0.jpg
   vk_city: moscow
   vk_country: india
+  birthday: <%= (Time.now - 18.years).to_s(:db) %>

@@ -85,10 +85,10 @@ ActiveRecord::Schema.define(:version => 20130414203050) do
   create_table "notifications", :force => true do |t|
     t.integer  "sender_id"
     t.integer  "receiver_id"
-    t.boolean  "is_read"
+    t.boolean  "is_read",           :default => false
     t.string   "notification_type"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "message"
   end
 
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20130414203050) do
     t.boolean  "is_active"
     t.string   "provider"
     t.boolean  "gender",                                                              :default => false
+    t.integer  "looking_for_gender"
     t.datetime "birthday"
     t.string   "first_name"
     t.string   "last_name"
@@ -135,7 +136,6 @@ ActiveRecord::Schema.define(:version => 20130414203050) do
     t.decimal  "longitude",                           :precision => 15, :scale => 10
     t.datetime "created_at",                                                                             :null => false
     t.datetime "updated_at",                                                                             :null => false
-    t.integer  "looking_for_gender"
     t.string   "vk_domain"
     t.string   "vk_university_name"
     t.string   "vk_faculty_name"
