@@ -9,6 +9,8 @@
 #import "InitialViewController.h"
 #import "NavigationTopViewController.h"
 #import "IndexViewController.h"
+#import "RestHookup.h"
+#import "Hookup+REST.h"
 @interface InitialViewController ()
 
 @end
@@ -97,10 +99,41 @@
 
 - (void)didChangeFilters {
     self.currentUser = [User currentUser:self.managedObjectContext];
+    [self.currentUser removeHookups:self.currentUser.hookups];
+    [self saveContext];
+    
+    [RestHookup load:^(NSMutableArray *possibleHookups) {
+        NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
+        for (RestHookup *restHookup in possibleHookups) {
+            ALog(@"adding resthookup %@", restHookup);
+            [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
+        }
+        [self.currentUser addHookups:_restHookups];
+        ALog(@"hookups are%@", self.currentUser.hookups);
+        [self saveContext];
+    } onError:^(NSError *error) {
+        
+    }];
+
+    
     NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
     ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
 }
 
 
+- (void)saveContext
+{
+    NSError *error = nil;
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        if ([_managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        }
+    }
+    
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [sharedAppDelegate writeToDisk];
+}
 
 @end

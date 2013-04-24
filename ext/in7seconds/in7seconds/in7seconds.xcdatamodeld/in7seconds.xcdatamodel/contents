@@ -63,13 +63,24 @@
         <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="hookup" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Hookup" inverseName="mutualFriends" inverseEntity="Hookup" syncable="YES"/>
     </entity>
-    <entity name="Notification" representedClassName="Notification" syncable="YES"/>
+    <entity name="Notification" representedClassName="Notification" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="externalId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="isRead" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notificationType" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="PrivateMessage" representedClassName="PrivateMessage" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="isFromSelf" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="fromUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
-        <relationship name="toUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Thread" syncable="YES">
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PrivateMessage" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="threads" inverseEntity="User" syncable="YES"/>
+        <relationship name="withHookup" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Hookup" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="authenticationToken" optional="YES" attributeType="String" syncable="YES"/>
@@ -100,14 +111,16 @@
         <relationship name="hookups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Hookup" inverseName="user" inverseEntity="Hookup" syncable="YES"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="user" inverseEntity="Image" syncable="YES"/>
         <relationship name="matches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Match" inverseName="user" inverseEntity="Match" syncable="YES"/>
+        <relationship name="threads" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Thread" inverseName="user" inverseEntity="Thread" syncable="YES"/>
     </entity>
     <elements>
         <element name="Hookup" positionX="160" positionY="192" width="128" height="405"/>
         <element name="Image" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Match" positionX="160" positionY="192" width="128" height="390"/>
         <element name="MutualFriend" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Notification" positionX="160" positionY="192" width="128" height="45"/>
-        <element name="PrivateMessage" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="User" positionX="160" positionY="192" width="128" height="465"/>
+        <element name="Notification" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="PrivateMessage" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="User" positionX="160" positionY="192" width="128" height="480"/>
+        <element name="Thread" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>
