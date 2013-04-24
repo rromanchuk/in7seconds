@@ -27,6 +27,8 @@ gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 gem 'slim'
 gem 'haml_coffee_assets'
 gem 'dalli'
+gem 'faye'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

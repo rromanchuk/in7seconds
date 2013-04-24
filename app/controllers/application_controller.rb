@@ -16,6 +16,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def broadcast(channel, &block)
+    message = {:channel => channel, :data => capture(&block), :ext => {:auth_token => FAYE_TOKEN}}
+    uri = URI.parse("http://localhost:9292/faye")
+    Net::HTTP.post_form(uri, :message => message.to_json)
+  end
+
   unless Rails.application.config.consider_all_requests_local
     rescue_from Exception, with: lambda { |exception| render_error 500, exception }
     rescue_from ActionController::RoutingError, ActionController::UnknownController, ::AbstractController::ActionNotFound, ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
