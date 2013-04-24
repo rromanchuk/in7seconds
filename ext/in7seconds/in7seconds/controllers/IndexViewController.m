@@ -11,7 +11,8 @@
 #import "MatchesViewController.h"
 #import "CommentViewController.h"
 #import "UserProfileViewController.h"
-
+#import "RestHookup.h"
+#import "Hookup+REST.h"
 @interface IndexViewController () {
     NSInteger _numberOfAttempts;
     BOOL _noResults;
@@ -19,7 +20,7 @@
 }
 
 @property (strong, nonatomic) JDFlipNumberView *countdown;
-@property (strong, nonatomic) User *otherUser;
+@property (strong, nonatomic) Hookup *otherUser;
 @end
 
 @implementation IndexViewController
@@ -166,8 +167,8 @@
         [self setupNextHookup];
         return;
     }
-    User *otherUser = self.otherUser;
-    [self.currentUser removePossibleHookupsObject:self.otherUser];
+    Hookup *otherUser = self.otherUser;
+    [self.currentUser removeHookupsObject:self.otherUser];
     [self saveContext];
     [self setupNextHookup];
     [RestUser flirtWithUser:otherUser onLoad:^(RestUser *restUser) {
@@ -187,8 +188,8 @@
         [self setupNextHookup];
         return;
     }
-    User *otherUser = self.otherUser;
-    [self.currentUser removePossibleHookupsObject:self.otherUser];
+    Hookup *otherUser = self.otherUser;
+    [self.currentUser removeHookupsObject:self.otherUser];
     [self saveContext];
     [self setupNextHookup];
     [RestUser rejectUser:otherUser onLoad:^(BOOL success) {
@@ -203,9 +204,9 @@
 
 - (void)setupNextHookup {
     self.otherUser = nil;    
-    if (self.currentUser && self.currentUser.possibleHookups) {
+    if (self.currentUser && self.currentUser.hookups) {
         [self foundResults];
-        self.otherUser = [self.currentUser.possibleHookups anyObject];
+        self.otherUser = [self.currentUser.hookups anyObject];
         if (!self.otherUser && _numberOfAttempts < 3) {
             [self fetchPossibleHookups];
             return;
@@ -242,16 +243,21 @@
 - (void)fetchPossibleHookups {
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...") maskType:SVProgressHUDMaskTypeGradient];
     _numberOfAttempts++;
-    [RestUser reload:^(RestUser *restUser) {
-        self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+    
+    [RestHookup load:^(NSMutableArray *possibleHookups) {
+        NSMutableSet *_restHookups;
+        for (RestHookup *restHookup in possibleHookups) {
+            [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
+        }
+        [self.currentUser addHookups:_restHookups];
         [self saveContext];
         [self setupNextHookup];
         [SVProgressHUD dismiss];
     } onError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
+    
 }
-
 
 
 - (void)dealloc {

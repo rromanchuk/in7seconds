@@ -2,7 +2,7 @@
 //  PrivateMessage.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 3/9/13.
+//  Created by Ryan Romanchuk on 4/23/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -15,7 +15,7 @@
 @dynamic createdAt;
 @dynamic externalId;
 @dynamic message;
-@dynamic toUser;
 @dynamic fromUser;
+@dynamic toUser;
 
 @end

@@ -1,19 +1,16 @@
 //
-//  Image.m
+//  Notification.h
 //  in7seconds
 //
 //  Created by Ryan Romanchuk on 4/23/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import "Image.h"
-#import "User.h"
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 
-@implementation Image
+@interface Notification : NSManagedObject
 
-@dynamic externalId;
-@dynamic url;
-@dynamic user;
 
 @end

@@ -1,20 +1,19 @@
 //
-//  RestHookup.m
+//  RestMatch.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 2/27/13.
+//  Created by Ryan Romanchuk on 4/23/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import "RestHookup.h"
-#import "RestUser.h"
+#import "RestMatch.h"
 #import "RestMutualFriend.h"
+
 
 static NSString *RESOURCE_PATH = @"users";
 
-@implementation RestHookup
 
-
+@implementation RestMatch
 + (NSDictionary *)mapping {
     NSMutableDictionary *map = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                 @"firstName", @"first_name",
@@ -40,18 +39,18 @@ static NSString *RESOURCE_PATH = @"users";
                                 [NSDate mappingWithKey:@"updatedAt"
                                       dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"created_at",
                                 nil];
-        
+    
     [map setObject:[RestMutualFriend mappingWithKey:@"mutualFriendObjects" mapping:[RestMutualFriend mapping]] forKey:@"mutual_friend_objects"];
     return map;
 }
 
 
-+ (void)load:(void (^)(NSMutableArray *possibleHookups))onLoad
++ (void)load:(void (^)(NSMutableArray *matches))onLoad
      onError:(void (^)(NSError *error))onError {
     
     RestClient *restClient = [RestClient sharedClient];
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"GET"
-                                                                  path:[RESOURCE_PATH stringByAppendingString:@"/hookups.json"]
+                                                                  path:[RESOURCE_PATH stringByAppendingString:@"/matches.json"]
                                                             parameters:@{}];
     
     ALog(@"hookups: %@", request);
@@ -60,16 +59,16 @@ static NSString *RESOURCE_PATH = @"users";
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             //ALog(@"JSON: %@", JSON);
                                                                                             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                                                                                 NSMutableArray *restHookups = [[NSMutableArray alloc] init];
+                                                                                                NSMutableArray *restMatches = [[NSMutableArray alloc] init];
                                                                                                 for (id jsonObj in JSON) {
-                                                                                                    RestUser *restUser = [RestUser objectFromJSONObject:jsonObj mapping:[RestUser mapping]];
-                                                                                                    [restHookups addObject:restUser];
+                                                                                                    RestMatch *restMatch = [RestMatch objectFromJSONObject:jsonObj mapping:[RestMatch mapping]];
+                                                                                                    [restMatches addObject:restMatch];
                                                                                                 }
                                                                                                 
                                                                                                 
                                                                                                 dispatch_async(dispatch_get_main_queue(), ^{
                                                                                                     if (onLoad)
-                                                                                                        onLoad(restHookups);
+                                                                                                        onLoad(restMatches);
                                                                                                 });
                                                                                             });
                                                                                             
@@ -84,6 +83,6 @@ static NSString *RESOURCE_PATH = @"users";
     [[UIApplication sharedApplication] showNetworkActivityIndicator];
     [operation start];
     
-
+    
 }
 @end

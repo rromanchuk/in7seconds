@@ -1,5 +1,5 @@
 //
-//  User.h
+//  Hookup.h
 //  in7seconds
 //
 //  Created by Ryan Romanchuk on 4/23/13.
@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Hookup, Image, Match;
+@class MutualFriend, User;
 
-@interface User : NSManagedObject
+@interface Hookup : NSManagedObject
 
-@property (nonatomic, retain) NSString * authenticationToken;
 @property (nonatomic, retain) NSDate * birthday;
 @property (nonatomic, retain) NSString * city;
 @property (nonatomic, retain) NSString * country;
@@ -26,38 +25,25 @@
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
-@property (nonatomic, retain) NSNumber * lookingForGender;
 @property (nonatomic, retain) NSString * mutualFriendNames;
 @property (nonatomic, retain) NSNumber * mutualFriendsNum;
 @property (nonatomic, retain) NSString * mutualGroupNames;
 @property (nonatomic, retain) NSNumber * mutualGroups;
 @property (nonatomic, retain) NSString * photoUrl;
-@property (nonatomic, retain) NSDate * updatedAt;
 @property (nonatomic, retain) NSString * vkDomain;
 @property (nonatomic, retain) NSString * vkFacultyName;
 @property (nonatomic, retain) NSString * vkGraduation;
 @property (nonatomic, retain) NSString * vkToken;
 @property (nonatomic, retain) NSString * vkUniversityName;
-@property (nonatomic, retain) NSSet *hookups;
-@property (nonatomic, retain) NSSet *images;
-@property (nonatomic, retain) NSSet *matches;
+@property (nonatomic, retain) NSSet *mutualFriends;
+@property (nonatomic, retain) User *user;
 @end
 
-@interface User (CoreDataGeneratedAccessors)
+@interface Hookup (CoreDataGeneratedAccessors)
 
-- (void)addHookupsObject:(Hookup *)value;
-- (void)removeHookupsObject:(Hookup *)value;
-- (void)addHookups:(NSSet *)values;
-- (void)removeHookups:(NSSet *)values;
-
-- (void)addImagesObject:(Image *)value;
-- (void)removeImagesObject:(Image *)value;
-- (void)addImages:(NSSet *)values;
-- (void)removeImages:(NSSet *)values;
-
-- (void)addMatchesObject:(Match *)value;
-- (void)removeMatchesObject:(Match *)value;
-- (void)addMatches:(NSSet *)values;
-- (void)removeMatches:(NSSet *)values;
+- (void)addMutualFriendsObject:(MutualFriend *)value;
+- (void)removeMutualFriendsObject:(MutualFriend *)value;
+- (void)addMutualFriends:(NSSet *)values;
+- (void)removeMutualFriends:(NSSet *)values;
 
 @end

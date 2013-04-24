@@ -11,7 +11,7 @@
 @protocol MatchModalDelegate;
 @interface MatchViewController : UIViewController
 @property (strong, nonatomic) User *currentUser;
-@property (strong, nonatomic) User *otherUser;
+@property (strong, nonatomic) Hookup *otherUser;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @property (weak, nonatomic) IBOutlet UIImageView *currentUserImage;

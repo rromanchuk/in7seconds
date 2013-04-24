@@ -1,15 +1,14 @@
 //
-//  RestHookup.h
+//  RestMatch.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 2/27/13.
+//  Created by Ryan Romanchuk on 4/23/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
 #import "RestObject.h"
 
-@interface RestHookup : RestObject
-
+@interface RestMatch : RestObject
 @property NSInteger gender;
 @property NSInteger lookingForGender;
 @property NSInteger mutualGroups;
@@ -37,6 +36,7 @@
 @property (atomic, strong) NSString *mutualFriendNames;
 @property (atomic, strong) NSString *mutualGroupNames;
 
-+ (void)load:(void (^)(NSMutableArray *possibleHookups))onLoad
-       onError:(void (^)(NSError *error))onError;
++ (void)load:(void (^)(NSMutableArray *matches))onLoad
+     onError:(void (^)(NSError *error))onError;
+
 @end

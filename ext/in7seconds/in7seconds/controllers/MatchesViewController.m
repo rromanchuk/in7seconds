@@ -15,6 +15,9 @@
 #import  <QuartzCore/QuartzCore.h>
 #import "PrivateMessage+REST.h"
 
+#import "RestMatch.h"
+#import "Match+REST.h"
+#import "AppDelegate.h"
 @interface MatchesViewController ()
 @property (strong, nonatomic) NoChatsView *noResultsFooterView;
 
@@ -99,7 +102,32 @@
 
 
 - (void)fetchResults {
+    [RestMatch load:^(NSMutableArray *matches) {
+        NSMutableSet *_restMatches;
+        for (RestMatch *restMatch in matches) {
+            [_restMatches addObject:[Match hookupWithRestHookup:restMatch inManagedObjectContext:self.managedObjectContext]];
+        }
+        [self.currentUser addHookups:_restMatches];
+        [self saveContext];
+
+    } onError:^(NSError *error) {
+        
+    }];
+}
+
+- (void)saveContext
+{
+    NSError *error = nil;
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        if ([_managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        }
+    }
     
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [sharedAppDelegate writeToDisk];
 }
 
 @end

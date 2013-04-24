@@ -14,8 +14,6 @@
     inManagedObjectContext:(NSManagedObjectContext *)context;
 + (User *)userWithExternalId:(NSNumber *)externalId
       inManagedObjectContext:(NSManagedObjectContext *)context;
-+ (User *)hookupWithRestUser:(RestUser *)restUser
-      inManagedObjectContext:(NSManagedObjectContext *)context;
 + (User *)findOrCreateUserWithRestUser:(RestUser *)user
                 inManagedObjectContext:(NSManagedObjectContext *)context;
 

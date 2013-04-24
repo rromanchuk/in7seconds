@@ -1,20 +1,17 @@
 //
-//  User.m
+//  Match.m
 //  in7seconds
 //
 //  Created by Ryan Romanchuk on 4/23/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import "User.h"
-#import "Hookup.h"
-#import "Image.h"
 #import "Match.h"
+#import "User.h"
 
 
-@implementation User
+@implementation Match
 
-@dynamic authenticationToken;
 @dynamic birthday;
 @dynamic city;
 @dynamic country;
@@ -27,20 +24,16 @@
 @dynamic lastName;
 @dynamic latitude;
 @dynamic longitude;
-@dynamic lookingForGender;
 @dynamic mutualFriendNames;
 @dynamic mutualFriendsNum;
 @dynamic mutualGroupNames;
 @dynamic mutualGroups;
 @dynamic photoUrl;
-@dynamic updatedAt;
 @dynamic vkDomain;
 @dynamic vkFacultyName;
 @dynamic vkGraduation;
 @dynamic vkToken;
 @dynamic vkUniversityName;
-@dynamic hookups;
-@dynamic images;
-@dynamic matches;
+@dynamic user;
 
 @end
