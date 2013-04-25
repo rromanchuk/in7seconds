@@ -63,9 +63,9 @@
 - (void)setupFetchedResultsController // attaches an NSFetchRequest to this UITableViewController
 {
     ALog(@"setting up frc with hookups %@", self.currentUser.hookups);
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Match"];
     request.predicate = [NSPredicate predicateWithFormat:@"self IN %@", self.currentUser.hookups];
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"updatedAt" ascending:NO]];
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.managedObjectContext
@@ -106,7 +106,7 @@
     [RestMatch load:^(NSMutableArray *matches) {
         NSMutableSet *_restMatches = [[NSMutableSet alloc] init];
         for (RestMatch *restMatch in matches) {
-            [_restMatches addObject:[Match hookupWithRestHookup:restMatch inManagedObjectContext:self.managedObjectContext]];
+            [_restMatches addObject:[Match matchWithRestMatch:restMatch inManagedObjectContext:self.managedObjectContext]];
         }
         [self.currentUser addHookups:_restMatches];
         [self saveContext];

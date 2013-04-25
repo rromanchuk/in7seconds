@@ -2,7 +2,7 @@
 //  User.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/23/13.
+//  Created by Ryan Romanchuk on 4/24/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -41,6 +41,7 @@
 @property (nonatomic, retain) NSSet *hookups;
 @property (nonatomic, retain) NSSet *images;
 @property (nonatomic, retain) NSSet *matches;
+@property (nonatomic, retain) NSSet *threads;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
@@ -59,5 +60,10 @@
 - (void)removeMatchesObject:(Match *)value;
 - (void)addMatches:(NSSet *)values;
 - (void)removeMatches:(NSSet *)values;
+
+- (void)addThreadsObject:(NSManagedObject *)value;
+- (void)removeThreadsObject:(NSManagedObject *)value;
+- (void)addThreads:(NSSet *)values;
+- (void)removeThreads:(NSSet *)values;
 
 @end

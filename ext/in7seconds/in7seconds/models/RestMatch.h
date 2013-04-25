@@ -36,6 +36,7 @@
 @property (atomic, strong) NSString *mutualFriendNames;
 @property (atomic, strong) NSString *mutualGroupNames;
 
++ (NSDictionary *)mapping;
 + (void)load:(void (^)(NSMutableArray *matches))onLoad
      onError:(void (^)(NSError *error))onError;
 

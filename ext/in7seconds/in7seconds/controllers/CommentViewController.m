@@ -9,12 +9,12 @@
 #import "CommentViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "PrivateMessage+REST.h"
-
+#import "Thread+REST.h"
 #import "CurrentUserChatCell.h"
 #import "OtherUserChatCell.h"
 
 #import "RestMessage.h"
-
+#import "RestThread.h"
 #import "AppDelegate.h"
 
 // views
@@ -150,7 +150,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PrivateMessage *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    if (message.toUser == self.currentUser) {
+    if (message.isFromSelf) {
         OtherUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OtherUserChatCell"];
         [cell.blueBubble setMessage:message.message];
         [cell.profileImage setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
@@ -268,10 +268,11 @@
     }
     
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Отсылаю сообщение...", nil) maskType:SVProgressHUDMaskTypeGradient];
-    [RestMessage sendMessageTo:self.otherUser withMessage:comment onLoad:^(RestMessage *restMessage) {
+    [RestMessage sendMessageTo:self.otherUser withMessage:comment onLoad:^(RestThread *restThread) {
         [SVProgressHUD dismiss];
-        PrivateMessage *message = [PrivateMessage privateMessageWithRestMessage:restMessage inManagedObjectContext:self.managedObjectContext];
-        self.commentView.text = nil;
+        PrivateMessage *privateMessage = [PrivateMessage privateMessageWithRestMessage:restThread inManagedObjectContext:self.managedObjectContext];
+        //self.currentUser.t
+        //self.commentView.text = nil;
         [self saveContext];
         [self checkNoResults];
     } onError:^(NSError *error) {
@@ -451,12 +452,10 @@
 
 
 - (void)fetchResults {
-    [RestMessage loadThreadWithUser:self.otherUser onLoad:^(NSArray *messages) {
-        ALog(@"rest messages %@", messages);
-        for (RestMessage *_message in messages) {
-            PrivateMessage *pm = [PrivateMessage privateMessageWithRestMessage:_message inManagedObjectContext:self.managedObjectContext];
-            ALog(@"private message %@", pm);
-        }
+    [RestThread loadThreadWithUser:self.otherUser onLoad:^(RestThread *restThread) {
+        ALog(@"rest messages %@", restThread);
+        Thread *thread = [Thread threadWithRestThread:restThread inManagedObjectContext:self.managedObjectContext];
+        [self.currentUser addThreadsObject:thread];
         [self saveContext];
         [self checkNoResults];
     } onError:^(NSError *error) {

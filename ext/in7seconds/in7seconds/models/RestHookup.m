@@ -58,12 +58,12 @@ static NSString *RESOURCE_PATH = @"users";
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
-                                                                                            //ALog(@"JSON: %@", JSON);
+                                                                                            ALog(@"JSON: %@", JSON);
                                                                                             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                                                                                  NSMutableArray *restHookups = [[NSMutableArray alloc] init];
                                                                                                 for (id jsonObj in JSON) {
-                                                                                                    RestUser *restUser = [RestUser objectFromJSONObject:jsonObj mapping:[RestUser mapping]];
-                                                                                                    [restHookups addObject:restUser];
+                                                                                                    RestHookup *restHookup = [RestHookup objectFromJSONObject:jsonObj mapping:[RestHookup mapping]];
+                                                                                                    [restHookups addObject:restHookup];
                                                                                                 }
                                                                                                 
                                                                                                 

@@ -10,3 +10,7 @@ node :to_user_id  do |message|
   message.to_user.id
 end
 
+node :is_from_self do |message|
+  message.from_user == current_user ? true : false
+end
+

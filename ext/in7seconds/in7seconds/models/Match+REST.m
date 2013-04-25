@@ -9,8 +9,9 @@
 #import "Match+REST.h"
 #import "MutualFriend+REST.h"
 @implementation Match (REST)
-+ (Match *)hookupWithRestHookup:(RestMatch *)restMatch
-         inManagedObjectContext:(NSManagedObjectContext *)context {
+
++ (Match *)matchWithRestMatch:(RestMatch *)restMatch
+       inManagedObjectContext:(NSManagedObjectContext *)context {
     
     Match *match;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Match"];

@@ -8,10 +8,11 @@
 
 #import "RestObject.h"
 #import "User+REST.h"
-
+#import "RestThread.h"
 @interface RestMessage : RestObject
 @property NSInteger fromUserId;
 @property NSInteger toUserId;
+@property BOOL isFromSelf;
 
 @property (strong, atomic) NSString *message;
 @property (strong, atomic) RestUser *fromUser;
@@ -19,15 +20,10 @@
 @property (strong, atomic) NSDate *createdAt;
 
 
++ (NSDictionary *)mapping;
 
 + (void)sendMessageTo:(User *)user
           withMessage:(NSString *)message
-        onLoad:(void (^)(RestMessage *restUser))onLoad
+        onLoad:(void (^)(RestThread *restThread))onLoad
        onError:(void (^)(NSError *error))onError;
-
-+ (void)loadThreadWithUser:(User *)user
-               onLoad:(void (^)(NSArray *messages))onLoad
-              onError:(void (^)(NSError *error))onError;
-
-
 @end

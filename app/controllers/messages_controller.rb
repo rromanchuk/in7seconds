@@ -9,12 +9,14 @@ class MessagesController < ApplicationController
     if first_message
       @message = first_message.replies.build(:to_user => hookup, :from_user => current_user, :message => params[:message][:message])
     else
-      @message = Message.new(:to_user => hookup, :from_user => current_user, :message => params[:message][:message])
+      @message = Message.new(:to_user => hookup, :from_user => current_user, :message => params[:message][:message], :thread_id => first_message.id)
     end
     @message.save
     
     if params[:lite_version]
-      render 'messages/show_lite'
+      @hookup = hookup
+
+      render :thread
     else
       render :show
     end
@@ -26,8 +28,8 @@ class MessagesController < ApplicationController
   end
 
   def thread
-    hookup = User.find(params[:user_id])
-    @messages = Message.thread(current_user, hookup)
+    @hookup = User.find(params[:user_id])
+    @messages = Message.thread(current_user, @hookup)
   end
 
 end

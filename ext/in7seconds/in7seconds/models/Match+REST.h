@@ -9,10 +9,10 @@
 #import "Match.h"
 #import "RestMatch.h"
 @interface Match (REST)
-+ (Match *)hookupWithRestHookup:(RestMatch *)restMatch
++ (Match *)matchWithRestMatch:(RestMatch *)restMatch
           inManagedObjectContext:(NSManagedObjectContext *)context;
 
-+ (Match *)hookupWithExternalId:(NSNumber *)externalId
++ (Match *)matchWithExternalId:(NSNumber *)externalId
           inManagedObjectContext:(NSManagedObjectContext *)context;
 
 - (NSString *)fullName;

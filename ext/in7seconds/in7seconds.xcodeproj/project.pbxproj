@@ -142,12 +142,15 @@
 		FAC6941617270831008E964F /* MutualFriend+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6941517270831008E964F /* MutualFriend+REST.m */; };
 		FAC6942E172712BD008E964F /* Match+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6942D172712BD008E964F /* Match+REST.m */; };
 		FAC6943117271336008E964F /* RestMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6943017271335008E964F /* RestMatch.m */; };
-		FAC6944D17271AB7008E964F /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6944C17271AB7008E964F /* Notification.m */; };
-		FAC6945017271AB8008E964F /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6944F17271AB8008E964F /* Match.m */; };
-		FAC6945317271AB8008E964F /* MutualFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6945217271AB8008E964F /* MutualFriend.m */; };
-		FAC6945617271AB8008E964F /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6945517271AB8008E964F /* PrivateMessage.m */; };
-		FAC6945917271AB8008E964F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6945817271AB8008E964F /* User.m */; };
-		FAC6945C17271AB8008E964F /* Hookup.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6945B17271AB8008E964F /* Hookup.m */; };
+		FAC69462172862A1008E964F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69461172862A1008E964F /* User.m */; };
+		FAC69465172862A2008E964F /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69464172862A1008E964F /* PrivateMessage.m */; };
+		FAC69468172862A3008E964F /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69467172862A3008E964F /* Notification.m */; };
+		FAC6946B172862A5008E964F /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6946A172862A4008E964F /* Match.m */; };
+		FAC69471172862A7008E964F /* Hookup.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69470172862A7008E964F /* Hookup.m */; };
+		FAC69474172862A8008E964F /* MutualFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69473172862A8008E964F /* MutualFriend.m */; };
+		FAC694771728689F008E964F /* Thread+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694761728689E008E964F /* Thread+REST.m */; };
+		FAC6947A17286B9E008E964F /* RestThread.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6947917286B9C008E964F /* RestThread.m */; };
+		FAC6947D17287352008E964F /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6947C17287350008E964F /* Thread.m */; };
 		FAE1AC4616D6BC3500B18144 /* NSNull+NullAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE1AC4516D6BC3500B18144 /* NSNull+NullAddition.m */; };
 /* End PBXBuildFile section */
 
@@ -352,20 +355,26 @@
 		FAC6942D172712BD008E964F /* Match+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Match+REST.m"; path = "models/Match+REST.m"; sourceTree = "<group>"; };
 		FAC6942F17271334008E964F /* RestMatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestMatch.h; path = models/RestMatch.h; sourceTree = "<group>"; };
 		FAC6943017271335008E964F /* RestMatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestMatch.m; path = models/RestMatch.m; sourceTree = "<group>"; };
-		FAC6944817271AB7008E964F /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = models/Image.h; sourceTree = "<group>"; };
-		FAC6944917271AB7008E964F /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Image.m; path = models/Image.m; sourceTree = "<group>"; };
-		FAC6944B17271AB7008E964F /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = models/Notification.h; sourceTree = "<group>"; };
-		FAC6944C17271AB7008E964F /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notification.m; path = models/Notification.m; sourceTree = "<group>"; };
-		FAC6944E17271AB8008E964F /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Match.h; path = models/Match.h; sourceTree = "<group>"; };
-		FAC6944F17271AB8008E964F /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Match.m; path = models/Match.m; sourceTree = "<group>"; };
-		FAC6945117271AB8008E964F /* MutualFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutualFriend.h; path = models/MutualFriend.h; sourceTree = "<group>"; };
-		FAC6945217271AB8008E964F /* MutualFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutualFriend.m; path = models/MutualFriend.m; sourceTree = "<group>"; };
-		FAC6945417271AB8008E964F /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateMessage.h; path = models/PrivateMessage.h; sourceTree = "<group>"; };
-		FAC6945517271AB8008E964F /* PrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivateMessage.m; path = models/PrivateMessage.m; sourceTree = "<group>"; };
-		FAC6945717271AB8008E964F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
-		FAC6945817271AB8008E964F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
-		FAC6945A17271AB8008E964F /* Hookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hookup.h; path = models/Hookup.h; sourceTree = "<group>"; };
-		FAC6945B17271AB8008E964F /* Hookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hookup.m; path = models/Hookup.m; sourceTree = "<group>"; };
+		FAC6945D1728629C008E964F /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = models/Image.h; sourceTree = "<group>"; };
+		FAC6945E1728629D008E964F /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Image.m; path = models/Image.m; sourceTree = "<group>"; };
+		FAC694601728629F008E964F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
+		FAC69461172862A1008E964F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
+		FAC69463172862A1008E964F /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateMessage.h; path = models/PrivateMessage.h; sourceTree = "<group>"; };
+		FAC69464172862A1008E964F /* PrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivateMessage.m; path = models/PrivateMessage.m; sourceTree = "<group>"; };
+		FAC69466172862A3008E964F /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = models/Notification.h; sourceTree = "<group>"; };
+		FAC69467172862A3008E964F /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notification.m; path = models/Notification.m; sourceTree = "<group>"; };
+		FAC69469172862A4008E964F /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Match.h; path = models/Match.h; sourceTree = "<group>"; };
+		FAC6946A172862A4008E964F /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Match.m; path = models/Match.m; sourceTree = "<group>"; };
+		FAC6946F172862A6008E964F /* Hookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hookup.h; path = models/Hookup.h; sourceTree = "<group>"; };
+		FAC69470172862A7008E964F /* Hookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hookup.m; path = models/Hookup.m; sourceTree = "<group>"; };
+		FAC69472172862A7008E964F /* MutualFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutualFriend.h; path = models/MutualFriend.h; sourceTree = "<group>"; };
+		FAC69473172862A8008E964F /* MutualFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutualFriend.m; path = models/MutualFriend.m; sourceTree = "<group>"; };
+		FAC694751728689E008E964F /* Thread+REST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Thread+REST.h"; path = "categories/Thread+REST.h"; sourceTree = "<group>"; };
+		FAC694761728689E008E964F /* Thread+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Thread+REST.m"; path = "categories/Thread+REST.m"; sourceTree = "<group>"; };
+		FAC6947817286B9A008E964F /* RestThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestThread.h; path = models/RestThread.h; sourceTree = "<group>"; };
+		FAC6947917286B9C008E964F /* RestThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestThread.m; path = models/RestThread.m; sourceTree = "<group>"; };
+		FAC6947B1728734E008E964F /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Thread.h; path = models/Thread.h; sourceTree = "<group>"; };
+		FAC6947C17287350008E964F /* Thread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Thread.m; path = models/Thread.m; sourceTree = "<group>"; };
 		FAE1AC4416D6BC3500B18144 /* NSNull+NullAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+NullAddition.h"; sourceTree = "<group>"; };
 		FAE1AC4516D6BC3500B18144 /* NSNull+NullAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+NullAddition.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -437,20 +446,22 @@
 		94D09CC316CBEA4B0064F886 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				FAC6945A17271AB8008E964F /* Hookup.h */,
-				FAC6945B17271AB8008E964F /* Hookup.m */,
-				FAC6945717271AB8008E964F /* User.h */,
-				FAC6945817271AB8008E964F /* User.m */,
-				FAC6945417271AB8008E964F /* PrivateMessage.h */,
-				FAC6945517271AB8008E964F /* PrivateMessage.m */,
-				FAC6945117271AB8008E964F /* MutualFriend.h */,
-				FAC6945217271AB8008E964F /* MutualFriend.m */,
-				FAC6944E17271AB8008E964F /* Match.h */,
-				FAC6944F17271AB8008E964F /* Match.m */,
-				FAC6944B17271AB7008E964F /* Notification.h */,
-				FAC6944C17271AB7008E964F /* Notification.m */,
-				FAC6944817271AB7008E964F /* Image.h */,
-				FAC6944917271AB7008E964F /* Image.m */,
+				FAC6947B1728734E008E964F /* Thread.h */,
+				FAC6947C17287350008E964F /* Thread.m */,
+				FAC69472172862A7008E964F /* MutualFriend.h */,
+				FAC69473172862A8008E964F /* MutualFriend.m */,
+				FAC6946F172862A6008E964F /* Hookup.h */,
+				FAC69470172862A7008E964F /* Hookup.m */,
+				FAC69469172862A4008E964F /* Match.h */,
+				FAC6946A172862A4008E964F /* Match.m */,
+				FAC69466172862A3008E964F /* Notification.h */,
+				FAC69467172862A3008E964F /* Notification.m */,
+				FAC69463172862A1008E964F /* PrivateMessage.h */,
+				FAC69464172862A1008E964F /* PrivateMessage.m */,
+				FAC694601728629F008E964F /* User.h */,
+				FAC69461172862A1008E964F /* User.m */,
+				FAC6945D1728629C008E964F /* Image.h */,
+				FAC6945E1728629D008E964F /* Image.m */,
 				FAC6944717271A83008E964F /* categories */,
 			);
 			name = CoreData;
@@ -675,6 +686,8 @@
 				94CA887717086AB3008A821A /* RestMutualFriend.m */,
 				FAC6942F17271334008E964F /* RestMatch.h */,
 				FAC6943017271335008E964F /* RestMatch.m */,
+				FAC6947817286B9A008E964F /* RestThread.h */,
+				FAC6947917286B9C008E964F /* RestThread.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -733,6 +746,8 @@
 				FAC6941517270831008E964F /* MutualFriend+REST.m */,
 				FAC6942C172712BD008E964F /* Match+REST.h */,
 				FAC6942D172712BD008E964F /* Match+REST.m */,
+				FAC694751728689E008E964F /* Thread+REST.h */,
+				FAC694761728689E008E964F /* Thread+REST.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -995,12 +1010,15 @@
 				FAC6941617270831008E964F /* MutualFriend+REST.m in Sources */,
 				FAC6942E172712BD008E964F /* Match+REST.m in Sources */,
 				FAC6943117271336008E964F /* RestMatch.m in Sources */,
-				FAC6944D17271AB7008E964F /* Notification.m in Sources */,
-				FAC6945017271AB8008E964F /* Match.m in Sources */,
-				FAC6945317271AB8008E964F /* MutualFriend.m in Sources */,
-				FAC6945617271AB8008E964F /* PrivateMessage.m in Sources */,
-				FAC6945917271AB8008E964F /* User.m in Sources */,
-				FAC6945C17271AB8008E964F /* Hookup.m in Sources */,
+				FAC69462172862A1008E964F /* User.m in Sources */,
+				FAC69465172862A2008E964F /* PrivateMessage.m in Sources */,
+				FAC69468172862A3008E964F /* Notification.m in Sources */,
+				FAC6946B172862A5008E964F /* Match.m in Sources */,
+				FAC69471172862A7008E964F /* Hookup.m in Sources */,
+				FAC69474172862A8008E964F /* MutualFriend.m in Sources */,
+				FAC694771728689F008E964F /* Thread+REST.m in Sources */,
+				FAC6947A17286B9E008E964F /* RestThread.m in Sources */,
+				FAC6947D17287352008E964F /* Thread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

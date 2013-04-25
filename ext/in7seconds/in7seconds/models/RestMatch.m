@@ -36,7 +36,7 @@ static NSString *RESOURCE_PATH = @"users";
                                 @"vkDomain", @"vk_domain",
                                 [NSDate mappingWithKey:@"birthday"
                                       dateFormatString:@"yyyy-MM-dd"], @"birthday",
-                                [NSDate mappingWithKey:@"updatedAt"
+                                [NSDate mappingWithKey:@"createdAt"
                                       dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"created_at",
                                 nil];
     
