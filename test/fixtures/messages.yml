@@ -2,18 +2,22 @@ hello:
   from_user: ryan
   to_user: adarsh
   message: Hello world!
+  thread_id: 1
 
 hi:
   from_user: adarsh
   to_user: ryan
   message: hey, how r u
+  thread_id: 1
 
 long_sentence:
   from_user: adarsh
   to_user: ryan
   message: The big red fox jumped over the fence. After he jumped the fence he ran to San Francisco and crossed the bridged.
+  thread_id: 1
 
 hello1:
   from_user: adarsh
   to_user: ryan
   message: Yeah. I am secretly attracted to you
+  thread_id: 1

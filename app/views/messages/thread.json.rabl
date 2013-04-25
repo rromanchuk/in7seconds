@@ -1,11 +1,12 @@
 object false
 
+
 node :withMatch do
-  partial("users/some_partial", :object =>  @hookup }
+  partial("users/hookup_user", :object =>  @hookup )
 end
 
-node :id
-  "#{current_user.id}#{@hookup.id}"
+node :id do
+ @messages.first.thread_id
 end
 
 child @messages  do 

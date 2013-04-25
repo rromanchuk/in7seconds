@@ -8,11 +8,16 @@ class MessagesController < ApplicationController
     first_message = Message.first_message(current_user, hookup)
     if first_message
       @message = first_message.replies.build(:to_user => hookup, :from_user => current_user, :message => params[:message][:message])
+      @message.save
     else
-      @message = Message.new(:to_user => hookup, :from_user => current_user, :message => params[:message][:message], :thread_id => first_message.id)
+      first_message = Message.new(:to_user => hookup, :from_user => current_user, :message => params[:message][:message])
+      first_message.save
+      first_message.thread_id = first_message.id
+      first_message.save
+      @messages = first_message
     end
-    @message.save
     
+
     if params[:lite_version]
       @hookup = hookup
 
