@@ -2,7 +2,7 @@
 //  Thread.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/25/13.
+//  Created by Ryan Romanchuk on 4/26/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 @interface Thread : NSManagedObject
 
 @property (nonatomic, retain) NSDate * updatedAt;
+@property (nonatomic, retain) NSNumber * externalId;
 @property (nonatomic, retain) NSSet *messages;
 @property (nonatomic, retain) User *user;
 @property (nonatomic, retain) Match *withMatch;

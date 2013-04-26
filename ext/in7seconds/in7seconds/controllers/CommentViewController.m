@@ -453,11 +453,13 @@
 
 - (void)fetchResults {
     [RestThread loadThreadWithUser:self.otherUser onLoad:^(RestThread *restThread) {
-        ALog(@"rest messages %@", restThread);
+        ALog(@"rest thread %@", restThread);
         Thread *thread = [Thread threadWithRestThread:restThread inManagedObjectContext:self.managedObjectContext];
-        [self.currentUser addThreadsObject:thread];
-        [self saveContext];
-        [self checkNoResults];
+        ALog(@"thread %@", restThread);
+
+//        [self.currentUser addThreadsObject:thread];
+//        [self saveContext];
+//        [self checkNoResults];
     } onError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];

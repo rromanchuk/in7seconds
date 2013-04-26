@@ -2,14 +2,14 @@
 //  User.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/24/13.
+//  Created by Ryan Romanchuk on 4/26/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Hookup, Image, Match;
+@class Hookup, Image, Match, Thread;
 
 @interface User : NSManagedObject
 
@@ -61,8 +61,8 @@
 - (void)addMatches:(NSSet *)values;
 - (void)removeMatches:(NSSet *)values;
 
-- (void)addThreadsObject:(NSManagedObject *)value;
-- (void)removeThreadsObject:(NSManagedObject *)value;
+- (void)addThreadsObject:(Thread *)value;
+- (void)removeThreadsObject:(Thread *)value;
 - (void)addThreads:(NSSet *)values;
 - (void)removeThreads:(NSSet *)values;
 

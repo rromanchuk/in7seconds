@@ -11,11 +11,13 @@
 #import "RestMatch.h"
 
 @interface RestThread : RestObject
+
 @property (strong, atomic) RestUser *user;
 @property (strong, atomic) RestMatch *withMatch;
 @property (strong, atomic) NSArray *messages;
 
 + (NSDictionary *)mapping;
+
 + (void)loadThreadWithUser:(User *)user
                     onLoad:(void (^)(RestThread *restThread))onLoad
                    onError:(void (^)(NSError *error))onError;

@@ -12,11 +12,14 @@
 
 + (Match *)matchWithRestMatch:(RestMatch *)restMatch
        inManagedObjectContext:(NSManagedObjectContext *)context {
-    
+    ALog(@"");
+    ALog(@"match id is %@", restMatch);
+
     Match *match;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Match"];
     request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", [NSNumber numberWithInt:restMatch.externalId]];
-    
+    ALog(@"");
+
     NSError *error = nil;
     NSArray *hookups = [context executeFetchRequest:request error:&error];
     //ALog(@"looking for user with externalId %d got %@ from restUser %@ with context %@", restUser.externalId, users, restUser, context);
@@ -41,6 +44,8 @@
 
 - (void)setManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {
     RestMatch *restMatch = (RestMatch *) intermediateObject;
+    ALog(@"");
+
     self.firstName = restMatch.firstName;
     self.lastName = restMatch.lastName;
     self.email = restMatch.email;
@@ -62,12 +67,6 @@
     self.mutualFriendNames = restMatch.mutualFriendNames;
     self.mutualGroupNames = restMatch.mutualGroupNames;
     
-//    NSMutableSet *mutualFriends;
-//    for (RestMutualFriend *restMutaulFriend in restMatch.mutualFriendObjects) {
-//        MutualFriend *mutualFriend = [MutualFriend mutualFriendWithRestMutualFriend:restMutaulFriend inManagedObjectContext:self.managedObjectContext];
-//        [mutualFriends addObject:mutualFriend];
-//    }
-//    [self addMutualFriends:mutualFriends];
 }
 
 

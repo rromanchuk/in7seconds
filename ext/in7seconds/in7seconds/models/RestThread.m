@@ -14,8 +14,9 @@
     return @{@"id": @"externalId",
              @"messages": @"messages",
              @"user": [RestUser mappingWithKey:@"user" mapping:[RestUser mapping]],
+             
+             [RestUser mappingWithKey:@"possibleHookups" mapping:[RestUser mapping:YES]]
              @"with_match": [RestMatch mappingWithKey:@"withMatch" mapping:[RestMatch mapping]],
-             @"is_from_self": @"isFromSelf"
              };
 
 }

@@ -80,6 +80,7 @@
         <relationship name="thread" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Thread" inverseName="messages" inverseEntity="Thread" syncable="YES"/>
     </entity>
     <entity name="Thread" representedClassName="Thread" syncable="YES">
+        <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PrivateMessage" inverseName="thread" inverseEntity="PrivateMessage" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="threads" inverseEntity="User" syncable="YES"/>
@@ -123,7 +124,7 @@
         <element name="MutualFriend" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Notification" positionX="160" positionY="192" width="128" height="120"/>
         <element name="PrivateMessage" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Thread" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Thread" positionX="160" positionY="192" width="128" height="120"/>
         <element name="User" positionX="160" positionY="192" width="128" height="480"/>
     </elements>
 </model>
