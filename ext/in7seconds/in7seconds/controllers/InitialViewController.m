@@ -111,13 +111,11 @@
         [self.currentUser addHookups:_restHookups];
         ALog(@"hookups are%@", self.currentUser.hookups);
         [self saveContext];
+        NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
+        ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
     } onError:^(NSError *error) {
         
     }];
-
-    
-    NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
-    ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
 }
 
 
