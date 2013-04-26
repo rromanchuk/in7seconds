@@ -3,6 +3,6 @@ class AddMessageColumns < ActiveRecord::Migration
     add_column :messages, :message, :string
     add_column :messages, :created_at, :datetime
     add_column :messages, :updated_at, :datetime
-    add_column :messages, :is_read, :boolean
+    add_column :messages, :is_read, :boolean, :default => false
   end
 end
