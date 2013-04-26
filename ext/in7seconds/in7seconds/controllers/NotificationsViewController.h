@@ -7,7 +7,9 @@
 //
 
 #import "CoreDataTableViewController.h"
+#import "User+REST.h"
 
 @interface NotificationsViewController : CoreDataTableViewController
-
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) User *currentUser;
 @end

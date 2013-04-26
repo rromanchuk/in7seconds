@@ -55,6 +55,8 @@
 		94D09CD116CBF2260064F886 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CD016CBF2260064F886 /* InitialViewController.m */; };
 		94D09CD416CBF3830064F886 /* NavigationTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CD316CBF3830064F886 /* NavigationTopViewController.m */; };
 		94D09CD716CBF4060064F886 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CD616CBF4060064F886 /* MenuViewController.m */; };
+		94FF9488172A5D6400563C1A /* Notification+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FF9487172A5D6200563C1A /* Notification+REST.m */; };
+		94FF948B172A606800563C1A /* RestNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FF948A172A606600563C1A /* RestNotification.m */; };
 		FA316E0116EE5F300051EB5F /* blue_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FA316DFF16EE5F300051EB5F /* blue_circle.png */; };
 		FA316E0216EE5F300051EB5F /* blue_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA316E0016EE5F300051EB5F /* blue_circle@2x.png */; };
 		FA316E0516EE5F460051EB5F /* green_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FA316E0316EE5F460051EB5F /* green_circle.png */; };
@@ -231,6 +233,10 @@
 		94D09CD316CBF3830064F886 /* NavigationTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationTopViewController.m; path = controllers/NavigationTopViewController.m; sourceTree = "<group>"; };
 		94D09CD516CBF4060064F886 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = controllers/MenuViewController.h; sourceTree = "<group>"; };
 		94D09CD616CBF4060064F886 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = controllers/MenuViewController.m; sourceTree = "<group>"; };
+		94FF9486172A5D6100563C1A /* Notification+REST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Notification+REST.h"; path = "models/Notification+REST.h"; sourceTree = "<group>"; };
+		94FF9487172A5D6200563C1A /* Notification+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Notification+REST.m"; path = "models/Notification+REST.m"; sourceTree = "<group>"; };
+		94FF9489172A606500563C1A /* RestNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestNotification.h; path = models/RestNotification.h; sourceTree = "<group>"; };
+		94FF948A172A606600563C1A /* RestNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestNotification.m; path = models/RestNotification.m; sourceTree = "<group>"; };
 		CE9F46389CB045FD9589A9AC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF7F3663B2C24854B8CFE612 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		FA316DFF16EE5F300051EB5F /* blue_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_circle.png; sourceTree = "<group>"; };
@@ -688,6 +694,8 @@
 				FAC6943017271335008E964F /* RestMatch.m */,
 				FAC6947817286B9A008E964F /* RestThread.h */,
 				FAC6947917286B9C008E964F /* RestThread.m */,
+				94FF9489172A606500563C1A /* RestNotification.h */,
+				94FF948A172A606600563C1A /* RestNotification.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -748,6 +756,8 @@
 				FAC6942D172712BD008E964F /* Match+REST.m */,
 				FAC694751728689E008E964F /* Thread+REST.h */,
 				FAC694761728689E008E964F /* Thread+REST.m */,
+				94FF9486172A5D6100563C1A /* Notification+REST.h */,
+				94FF9487172A5D6200563C1A /* Notification+REST.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -1019,6 +1029,8 @@
 				FAC694921729C5AE008E964F /* Notification.m in Sources */,
 				FAC694951729C5B3008E964F /* Thread.m in Sources */,
 				FAC694981729C5B6008E964F /* Hookup.m in Sources */,
+				94FF9488172A5D6400563C1A /* Notification+REST.m in Sources */,
+				94FF948B172A606800563C1A /* RestNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
