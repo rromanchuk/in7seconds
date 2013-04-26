@@ -8,26 +8,24 @@
 
 #import "RestThread.h"
 #import "RestMessage.h"
-
+#import "Match+REST.h"
 @implementation RestThread
 + (NSDictionary *)mapping {
     return @{@"id": @"externalId",
-             @"messages": @"messages",
+             @"messages": [RestMessage mappingWithKey:@"messages" mapping:[RestMessage mapping]],
              @"user": [RestUser mappingWithKey:@"user" mapping:[RestUser mapping]],
-             
-             [RestUser mappingWithKey:@"possibleHookups" mapping:[RestUser mapping:YES]]
-             @"with_match": [RestMatch mappingWithKey:@"withMatch" mapping:[RestMatch mapping]],
+             @"with_match": [RestMatch mappingWithKey:@"withMatch" mapping:[RestMatch mapping]]
              };
 
 }
 
-+ (void)loadThreadWithUser:(User *)user
++ (void)loadThreadWithUser:(Match *)match
                     onLoad:(void (^)(RestThread *restThread))onLoad
                    onError:(void (^)(NSError *error))onError {
     
     RestClient *restClient = [RestClient sharedClient];
-    NSDictionary *params = @{@"user_id": user.externalId};
-    NSString *path = [NSString stringWithFormat:@"users/%@/messages/thread.json", user.externalId];
+    NSDictionary *params = @{@"user_id": match.externalId};
+    NSString *path = [NSString stringWithFormat:@"users/%@/messages/thread.json", match.externalId];
     
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"GET"
                                                                   path:path
@@ -63,5 +61,7 @@
     
 }
 
-
+- (NSDictionary *)toDict {
+    return @{@"externalId": [NSNumber numberWithInteger:self.externalId], @"messages": self.messages, @"user": self.user, @"withMatch": self.withMatch};
+}
 @end

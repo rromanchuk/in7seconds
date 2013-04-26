@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def authenticated_user
-    @user = User.includes([:vk_country, :vk_city, :friends, :groups]).find(params[:id])
+    @user = current_user
     respond_with @user
   end
 

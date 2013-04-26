@@ -19,7 +19,7 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) User *currentUser;
-@property (nonatomic, strong) User *otherUser;
+@property (nonatomic, strong) Match *otherUser;
 
 @property (nonatomic, weak) HPGrowingTextView *commentView;
 

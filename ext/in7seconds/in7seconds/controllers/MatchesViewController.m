@@ -104,13 +104,15 @@
 
 - (void)fetchResults {
     [RestMatch load:^(NSMutableArray *matches) {
-        NSMutableSet *_restMatches = [[NSMutableSet alloc] init];
-        for (RestMatch *restMatch in matches) {
-            [_restMatches addObject:[Match matchWithRestMatch:restMatch inManagedObjectContext:self.managedObjectContext]];
-        }
-        [self.currentUser addHookups:_restMatches];
-        [self saveContext];
+        [self.managedObjectContext performBlock:^{
+            NSMutableSet *_restMatches = [[NSMutableSet alloc] init];
+            for (RestMatch *restMatch in matches) {
+                [_restMatches addObject:[Match matchWithRestMatch:restMatch inManagedObjectContext:self.managedObjectContext]];
+            }
+            [self.currentUser addHookups:_restMatches];
+            [self saveContext];
 
+        }];
     } onError:^(NSError *error) {
         
     }];

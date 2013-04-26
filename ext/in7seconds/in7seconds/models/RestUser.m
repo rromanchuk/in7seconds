@@ -253,7 +253,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
 }
 
 + (void)flirtWithUser:(User *)user
-               onLoad:(void (^)(RestUser *restUser))onLoad
+               onLoad:(void (^)(RestMatch *restMatch))onLoad
               onError:(void (^)(NSError *error))onError {
     
     RestClient *restClient = [RestClient sharedClient];
@@ -267,11 +267,11 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             ALog(@"JSON: %@", JSON);
                                                                                             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                                                                                RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
+                                                                                                RestMatch *restMatch = [RestMatch objectFromJSONObject:JSON mapping:[RestMatch mapping]];
                                                                                                 
                                                                                                 dispatch_async(dispatch_get_main_queue(), ^{
                                                                                                     if (onLoad)
-                                                                                                        onLoad(user);
+                                                                                                        onLoad(restMatch);
                                                                                                 });
                                                                                             });
 
@@ -318,6 +318,10 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return [defaults objectForKey:@"authToken"];
+}
+
+- (NSDictionary *)toDict {
+    return @{};
 }
 
 @end

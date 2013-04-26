@@ -11,7 +11,7 @@
 @protocol MatchModalDelegate;
 @interface MatchViewController : UIViewController
 @property (strong, nonatomic) User *currentUser;
-@property (strong, nonatomic) Hookup *otherUser;
+@property (strong, nonatomic) Match *otherUser;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @property (weak, nonatomic) IBOutlet UIImageView *currentUserImage;
@@ -30,7 +30,7 @@
 @protocol MatchModalDelegate <NSObject>
 
 @required
-- (void)userWantsToChat;
+- (void)userWantsToChat:(Match *)matchUser;
 - (void)userWantsToRate;
 
 @end

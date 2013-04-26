@@ -18,7 +18,9 @@
 
 + (NSDictionary *)mapping;
 
-+ (void)loadThreadWithUser:(User *)user
++ (void)loadThreadWithUser:(Match *)match
                     onLoad:(void (^)(RestThread *restThread))onLoad
                    onError:(void (^)(NSError *error))onError;
+
+- (NSDictionary *)toDict;
 @end

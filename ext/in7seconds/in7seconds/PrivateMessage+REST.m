@@ -17,7 +17,7 @@
     PrivateMessage *message;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"PrivateMessage"];
     request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", [NSNumber numberWithInt:restMessage.externalId]];
-    
+    ALog(@"");
     NSError *error = nil;
     NSArray *messages = [context executeFetchRequest:request error:&error];
     
@@ -39,7 +39,9 @@
 
 - (void)setManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {
     RestMessage *restMessage = (RestMessage *) intermediateObject;
+    ALog(@"");
     self.externalId = [NSNumber numberWithInteger:restMessage.externalId];
+    ALog(@"");
     self.message = restMessage.message;
     self.createdAt = restMessage.createdAt;
 }

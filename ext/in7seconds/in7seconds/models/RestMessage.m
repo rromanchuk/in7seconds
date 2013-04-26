@@ -22,7 +22,7 @@
 
 + (void)sendMessageTo:(User *)user
           withMessage:(NSString *)message
-               onLoad:(void (^)(RestThread *restThread))onLoad
+               onLoad:(void (^)(RestMessage *restMessage))onLoad
               onError:(void (^)(NSError *error))onError {
     
     RestClient *restClient = [RestClient sharedClient];
@@ -38,10 +38,10 @@
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             ALog(@"JSON: %@", JSON);
                                                                                             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                                                                                RestThread *restThread = [RestThread objectFromJSONObject:JSON mapping:[RestThread mapping]];
+                                                                                                RestMessage *restMessage = [RestMessage objectFromJSONObject:JSON mapping:[RestMessage mapping]];
                                                                                                 dispatch_sync(dispatch_get_main_queue(), ^{
                                                                                                     if (onLoad)
-                                                                                                        onLoad(restThread);
+                                                                                                        onLoad(restMessage);
                                                                                                 });
                                                                                             });
                                                                                         }

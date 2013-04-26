@@ -7,7 +7,7 @@
 //
 
 #import "MatchViewController.h"
-#import "Hookup+REST.h"
+#import "Match+REST.h"
 @interface MatchViewController ()
 
 @end
@@ -28,7 +28,7 @@
 
 
 - (IBAction)didTapStartChat:(id)sender {
-    [self.delegate userWantsToChat];
+    [self.delegate userWantsToChat:self.otherUser];
 }
 
 - (IBAction)didTapKeepSearching:(id)sender {

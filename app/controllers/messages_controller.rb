@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
 
   def create
     hookup = User.find(params[:user_id])
+    
     first_message = Message.first_message(current_user, hookup)
     if first_message
       @message = first_message.replies.build(:to_user => hookup, :from_user => current_user, :message => params[:message][:message])
@@ -12,16 +13,13 @@ class MessagesController < ApplicationController
     else
       first_message = Message.new(:to_user => hookup, :from_user => current_user, :message => params[:message][:message])
       first_message.save
-      first_message.thread_id = first_message.id
-      first_message.save
       @messages = first_message
     end
     
 
     if params[:lite_version]
       @hookup = hookup
-
-      render :thread
+      render 'messages/show_lite'
     else
       render :show
     end

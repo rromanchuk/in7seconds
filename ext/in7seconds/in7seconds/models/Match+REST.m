@@ -13,7 +13,8 @@
 + (Match *)matchWithRestMatch:(RestMatch *)restMatch
        inManagedObjectContext:(NSManagedObjectContext *)context {
     ALog(@"");
-    ALog(@"match id is %@", restMatch);
+    ALog(@"match id is %d", restMatch.externalId);
+    ALog(@"restMatch object is %@", restMatch);
 
     Match *match;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Match"];

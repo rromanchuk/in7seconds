@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PrivateMessage+REST.h"
 #import "Thread+REST.h"
+#import "Match+REST.h"
 #import "CurrentUserChatCell.h"
 #import "OtherUserChatCell.h"
 
@@ -23,6 +24,7 @@
 @interface CommentViewController ()
 @property (strong, nonatomic) NoChatsView *noResultsFooterView;
 @property (nonatomic) BOOL beganUpdates;
+@property (strong) Thread *thread;
 @end
 
 @implementation CommentViewController {
@@ -99,7 +101,7 @@
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"PrivateMessage"];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
-    request.predicate = [NSPredicate predicateWithFormat:@"(toUser = %@ AND fromUser = %@) OR (toUser = %@ AND fromUser = %@)", self.currentUser, self.otherUser, self.otherUser, self.currentUser];
+    request.predicate = [NSPredicate predicateWithFormat:@"thread = %@", self.thread];
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.managedObjectContext
                                                                           sectionNameKeyPath:nil
@@ -268,11 +270,10 @@
     }
     
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Отсылаю сообщение...", nil) maskType:SVProgressHUDMaskTypeGradient];
-    [RestMessage sendMessageTo:self.otherUser withMessage:comment onLoad:^(RestThread *restThread) {
+    [RestMessage sendMessageTo:self.otherUser withMessage:comment onLoad:^(RestMessage *restMessage) {
         [SVProgressHUD dismiss];
-        PrivateMessage *privateMessage = [PrivateMessage privateMessageWithRestMessage:restThread inManagedObjectContext:self.managedObjectContext];
-        //self.currentUser.t
-        //self.commentView.text = nil;
+        PrivateMessage *privateMessage = [PrivateMessage privateMessageWithRestMessage:restMessage inManagedObjectContext:self.managedObjectContext];
+        [self.thread addMessagesObject:privateMessage];
         [self saveContext];
         [self checkNoResults];
     } onError:^(NSError *error) {
@@ -454,12 +455,16 @@
 - (void)fetchResults {
     [RestThread loadThreadWithUser:self.otherUser onLoad:^(RestThread *restThread) {
         ALog(@"rest thread %@", restThread);
-        Thread *thread = [Thread threadWithRestThread:restThread inManagedObjectContext:self.managedObjectContext];
+        [self.managedObjectContext performBlock:^{
+            self.thread = [Thread threadWithRestThread:restThread inManagedObjectContext:self.managedObjectContext];
+            [self.currentUser addThreadsObject:self.thread];
+            [self saveContext];
+            [self setupFetchedResultsController];
+            [self checkNoResults];
+        }];
+        
         ALog(@"thread %@", restThread);
-
-//        [self.currentUser addThreadsObject:thread];
-//        [self saveContext];
-//        [self checkNoResults];
+        
     } onError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];

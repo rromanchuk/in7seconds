@@ -8,6 +8,7 @@
 
 #import "RestObject.h"
 #import "User.h"
+#import "RestMatch.h"
 @interface RestUser : RestObject <RestMappable>
 
 @property NSInteger gender;
@@ -61,7 +62,7 @@
            onError:(void (^)(NSError *error))onError;
 
 + (void)flirtWithUser:(Hookup *)user
-               onLoad:(void (^)(RestUser *restUser))onLoad
+               onLoad:(void (^)(RestMatch *restMatch))onLoad
               onError:(void (^)(NSError *error))onError;
 
 + (void)update:(User *)user

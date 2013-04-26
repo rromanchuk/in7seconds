@@ -9,14 +9,11 @@
 #import "RestObject.h"
 #import "User+REST.h"
 #import "RestThread.h"
+#import "RestMessage.h"
 @interface RestMessage : RestObject
-@property NSInteger fromUserId;
-@property NSInteger toUserId;
-@property BOOL isFromSelf;
 
+@property BOOL isFromSelf;
 @property (strong, atomic) NSString *message;
-@property (strong, atomic) RestUser *fromUser;
-@property (strong, atomic) RestUser *toUser;
 @property (strong, atomic) NSDate *createdAt;
 
 
@@ -24,6 +21,6 @@
 
 + (void)sendMessageTo:(User *)user
           withMessage:(NSString *)message
-        onLoad:(void (^)(RestThread *restThread))onLoad
+        onLoad:(void (^)(RestMessage *restMessage))onLoad
        onError:(void (^)(NSError *error))onError;
 @end

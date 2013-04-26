@@ -13,6 +13,7 @@
 #import "UserProfileViewController.h"
 #import "RestHookup.h"
 #import "Hookup+REST.h"
+#import "Match+REST.h"
 @interface IndexViewController () {
     NSInteger _numberOfAttempts;
     BOOL _noResults;
@@ -94,6 +95,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Matches"]) {
         [self stopCountdown];
+        _modalOpen = YES;
         MatchesViewController *vc = (MatchesViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
@@ -102,15 +104,16 @@
         [self stopCountdown];
         MatchViewController *vc = (MatchViewController *)segue.destinationViewController;
         vc.currentUser = self.currentUser;
-        vc.otherUser = (User *)sender;
+        vc.otherUser = (Match *)sender;
         vc.managedObjectContext = self.managedObjectContext;
         vc.delegate = self;
     } else if ([segue.identifier isEqualToString:@"DirectToChat"]) {
         [self stopCountdown];
+        _modalOpen = YES;
         CommentViewController *vc = (CommentViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser; 
-        vc.otherUser = self.otherUser;
+        vc.otherUser = (Match *)sender;
     } else if ([segue.identifier isEqualToString:@"UserProfile"]) {
         [Flurry logEvent:@"View_User_Profile"];
         [self stopCountdown];
@@ -171,9 +174,11 @@
     [self.currentUser removeHookupsObject:self.otherUser];
     [self saveContext];
     [self setupNextHookup];
-    [RestUser flirtWithUser:otherUser onLoad:^(RestUser *restUser) {
-        if (restUser) {
-            [self performSegueWithIdentifier:@"NewMatch" sender:otherUser];
+    [RestUser flirtWithUser:otherUser onLoad:^(RestMatch *restMatch) {
+        if (restMatch) {
+            Match *match = [Match matchWithRestMatch:restMatch inManagedObjectContext:self.managedObjectContext];
+            [self.currentUser addMatchesObject:match];
+            [self performSegueWithIdentifier:@"NewMatch" sender:match];
             return;
         }
     } onError:^(NSError *error) {
@@ -317,9 +322,9 @@
 
 
 #pragma mark MatchModalDelegate methods
-- (void)userWantsToChat {
+- (void)userWantsToChat:(Match *)matchUser {
     [self dismissViewControllerAnimated:NO completion:nil];
-    [self performSegueWithIdentifier:@"DirectToChat" sender:self.otherUser];
+    [self performSegueWithIdentifier:@"DirectToChat" sender:matchUser];
     self.otherUser = nil;
 }
 

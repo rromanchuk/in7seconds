@@ -1,7 +1,7 @@
 object false
 
 
-node :withMatch do
+node :with_match do
   partial("users/hookup_user", :object =>  @hookup )
 end
 
