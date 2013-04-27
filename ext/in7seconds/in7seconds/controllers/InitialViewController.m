@@ -76,7 +76,7 @@
 #pragma mark - LogoutDelegate delegate methods
 - (void) didLogout
 {
-    DLog(@"in logout");
+    ALog(@"in logout");
     [RestUser resetIdentifiers];
     [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
     [[Vkontakte sharedInstance] logout];
@@ -98,6 +98,7 @@
 }
 
 - (void)didChangeFilters {
+    ALog(@"in change filters");
     self.currentUser = [User currentUser:self.managedObjectContext];
     [self.currentUser removeHookups:self.currentUser.hookups];
     [self saveContext];

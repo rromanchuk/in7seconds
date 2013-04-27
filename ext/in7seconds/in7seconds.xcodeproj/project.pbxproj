@@ -57,6 +57,11 @@
 		94D09CD716CBF4060064F886 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CD616CBF4060064F886 /* MenuViewController.m */; };
 		94FF9488172A5D6400563C1A /* Notification+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FF9487172A5D6200563C1A /* Notification+REST.m */; };
 		94FF948B172A606800563C1A /* RestNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FF948A172A606600563C1A /* RestNotification.m */; };
+		94FF9490172BDF3700563C1A /* facebook-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FF948C172BDF3700563C1A /* facebook-login.png */; };
+		94FF9491172BDF3700563C1A /* facebook-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FF948D172BDF3700563C1A /* facebook-login@2x.png */; };
+		94FF9492172BDF3700563C1A /* vkontakte-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FF948E172BDF3700563C1A /* vkontakte-login.png */; };
+		94FF9493172BDF3700563C1A /* vkontakte-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FF948F172BDF3700563C1A /* vkontakte-login@2x.png */; };
+		94FF9496172BE08300563C1A /* FacebookHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FF9495172BE08300563C1A /* FacebookHelper.m */; };
 		FA316E0116EE5F300051EB5F /* blue_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FA316DFF16EE5F300051EB5F /* blue_circle.png */; };
 		FA316E0216EE5F300051EB5F /* blue_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA316E0016EE5F300051EB5F /* blue_circle@2x.png */; };
 		FA316E0516EE5F460051EB5F /* green_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FA316E0316EE5F460051EB5F /* green_circle.png */; };
@@ -237,6 +242,12 @@
 		94FF9487172A5D6200563C1A /* Notification+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Notification+REST.m"; path = "models/Notification+REST.m"; sourceTree = "<group>"; };
 		94FF9489172A606500563C1A /* RestNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestNotification.h; path = models/RestNotification.h; sourceTree = "<group>"; };
 		94FF948A172A606600563C1A /* RestNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestNotification.m; path = models/RestNotification.m; sourceTree = "<group>"; };
+		94FF948C172BDF3700563C1A /* facebook-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login.png"; sourceTree = "<group>"; };
+		94FF948D172BDF3700563C1A /* facebook-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login@2x.png"; sourceTree = "<group>"; };
+		94FF948E172BDF3700563C1A /* vkontakte-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vkontakte-login.png"; sourceTree = "<group>"; };
+		94FF948F172BDF3700563C1A /* vkontakte-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vkontakte-login@2x.png"; sourceTree = "<group>"; };
+		94FF9494172BE08300563C1A /* FacebookHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookHelper.h; sourceTree = "<group>"; };
+		94FF9495172BE08300563C1A /* FacebookHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookHelper.m; sourceTree = "<group>"; };
 		CE9F46389CB045FD9589A9AC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF7F3663B2C24854B8CFE612 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		FA316DFF16EE5F300051EB5F /* blue_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_circle.png; sourceTree = "<group>"; };
@@ -575,6 +586,10 @@
 		FA70028F16CAECBD0098A5B7 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				94FF948C172BDF3700563C1A /* facebook-login.png */,
+				94FF948D172BDF3700563C1A /* facebook-login@2x.png */,
+				94FF948E172BDF3700563C1A /* vkontakte-login.png */,
+				94FF948F172BDF3700563C1A /* vkontakte-login@2x.png */,
 				94A9593317105DDE006D141C /* center_left_select.png */,
 				94A9593417105DDE006D141C /* center_left_select@2x.png */,
 				94A9593517105DDE006D141C /* center_noselect.png */,
@@ -707,6 +722,8 @@
 				FA7002C416CAF5430098A5B7 /* Vkontakte.m */,
 				948498B416CFB2C1000083DE /* Location.h */,
 				948498B516CFB2C1000083DE /* Location.m */,
+				94FF9494172BE08300563C1A /* FacebookHelper.h */,
+				94FF9495172BE08300563C1A /* FacebookHelper.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -910,6 +927,10 @@
 				94A9594417105DDF006D141C /* selected_control@2x.png in Resources */,
 				94A9594517105DDF006D141C /* unselected_control.png in Resources */,
 				94A9594617105DDF006D141C /* unselected_control@2x.png in Resources */,
+				94FF9490172BDF3700563C1A /* facebook-login.png in Resources */,
+				94FF9491172BDF3700563C1A /* facebook-login@2x.png in Resources */,
+				94FF9492172BDF3700563C1A /* vkontakte-login.png in Resources */,
+				94FF9493172BDF3700563C1A /* vkontakte-login@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1031,6 +1052,7 @@
 				FAC694981729C5B6008E964F /* Hookup.m in Sources */,
 				94FF9488172A5D6400563C1A /* Notification+REST.m in Sources */,
 				94FF948B172A606800563C1A /* RestNotification.m in Sources */,
+				94FF9496172BE08300563C1A /* FacebookHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

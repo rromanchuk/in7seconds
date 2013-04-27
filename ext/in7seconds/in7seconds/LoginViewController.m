@@ -44,6 +44,9 @@
     }
 }
 
+- (IBAction)didTapFbLogin:(id)sender {
+}
+
 #pragma mark - VkontakteDelegate
 
 - (void)vkontakteDidFailedWithError:(NSError *)error
@@ -118,7 +121,32 @@
     ALog(@"%@", responce);
 }
 
+#pragma mark - FacebookHelperDelegatemethods 
 
+- (void)fbDidLogin:(RestUser *)restUser {
+    User *user = [User findOrCreateUserWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+    self.currentUser = user;
+    [self saveContext];
+    [RestUser setCurrentUserId:restUser.externalId];
+    [RestUser setCurrentUserToken:restUser.authenticationToken];
+    NSString *alias = [NSString stringWithFormat:@"%d", restUser.externalId];
+    [[UAPush shared] setAlias:alias];
+    [[UAPush shared] updateRegistration];
+    [SVProgressHUD dismiss];
+    [self.delegate didVkLogin:user];
+    [self dismissViewControllerAnimated:YES completion:^(void) {
+        ALog(@"finished dismissing");
+    }];
+
+}
+
+- (void)fbDidFailLogin:(NSError *)error {
+    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+}
+
+- (void)fbSessionValid {
+    
+}
 - (void)saveContext
 {
     NSError *error = nil;
@@ -134,4 +162,8 @@
     [sharedAppDelegate writeToDisk];
 }
 
+- (void)viewDidUnload {
+    [self setFbLoginButton:nil];
+    [super viewDidUnload];
+}
 @end

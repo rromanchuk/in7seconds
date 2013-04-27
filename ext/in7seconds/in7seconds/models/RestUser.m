@@ -102,6 +102,51 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
  
 }
 
++ (void)updateProviderToken:(NSString *)token
+                forProvider:(NSString *)provider
+                        uid:(NSString *)uid
+                     onLoad:(void (^)(RestUser *restUser))onLoad
+                    onError:(void (^)(NSError *error))onError {
+    
+    RestClient *restClient = [RestClient sharedClient];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    if ([provider isEqualToString:@"facebook"]) {
+        [params setObject:token forKey:@"user[fb_token]"];
+    }
+    
+    NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"PUT"
+                                                                  path:[RESOURCE_PATH stringByAppendingString:@"/update_user.json"]
+                                                            parameters:params];
+    
+    
+    
+    ALog(@"UPDATE USER REQUEST: %@", request);
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            //ALog(@"JSON: %@", JSON);
+                                                                                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                                                                                RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
+                                                                                                
+                                                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                                                    if (onLoad)
+                                                                                                        onLoad(user);
+                                                                                                });
+                                                                                            });
+                                                                                        }
+                                                                                        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            NSError *customError = [RestObject customError:error withServerResponse:response andJson:JSON];
+                                                                                            if (onError)
+                                                                                                onError(customError);
+                                                                                        }];
+    [[UIApplication sharedApplication] showNetworkActivityIndicator];
+    [operation start];
+
+    
+}
+
+
 + (void)update:(User *)user
         onLoad:(void (^)(RestUser *restUser))onLoad
        onError:(void (^)(NSError *error))onError {

@@ -70,6 +70,7 @@
 }
 
 - (IBAction)didTapLogout:(id)sender {
+    ALog(@"did tap logout sending to delegate %@", self.delegate);
     [self.delegate didLogout];
 }
 

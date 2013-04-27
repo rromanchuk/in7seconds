@@ -6,20 +6,22 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "Vkontakte.h"
 #import "User+REST.h"
+#import "FacebookHelper.h"
 @protocol LoginDelegate;
-@interface LoginViewController : UIViewController <VkontakteDelegate>
+@interface LoginViewController : UIViewController <VkontakteDelegate, FacebookHelperDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
 @property (weak, nonatomic) IBOutlet UILabel *loginLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *vkLoginButton;
+@property (weak, nonatomic) IBOutlet UIButton *fbLoginButton;
 @property (weak, nonatomic) id <LoginDelegate> delegate;
 
 - (IBAction)didTapVkLogin:(id)sender;
+- (IBAction)didTapFbLogin:(id)sender;
 
 @end
 

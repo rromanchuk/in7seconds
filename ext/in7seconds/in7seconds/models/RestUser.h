@@ -69,6 +69,11 @@
                onLoad:(void (^)(RestUser *restUser))onLoad
               onError:(void (^)(NSError *error))onError;
 
++ (void)updateProviderToken:(NSString *)token
+                forProvider:(NSString *)provider
+                        uid:(NSString *)uid
+                     onLoad:(void (^)(RestUser *restUser))onLoad
+                    onError:(void (^)(NSError *error))onError;
 
 + (NSDictionary *)mapping;
 
