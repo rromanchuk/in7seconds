@@ -60,6 +60,10 @@
     [self checkNoResults];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self saveContext];
+}
 #pragma mark CoreData methods
 - (void)setupFetchedResultsController // attaches an NSFetchRequest to this UITableViewController
 {

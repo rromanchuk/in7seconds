@@ -65,7 +65,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
     RestClient *restClient = [RestClient sharedClient];
 
     NSMutableURLRequest *request = [restClient multipartFormRequestWithMethod:@"POST"
-                                                                         path:[RESOURCE_PATH stringByAppendingString:@"/images.json"]
+                                                                         path:@"images.json"
                                                                    parameters:@{}
                                                     constructingBodyWithBlock:^(id <AFMultipartFormData>formData)
                                     {
@@ -76,7 +76,7 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                                                 mimeType:@"image/jpeg"];
                                     }];
     
-    ALog(@"UPDATE USER REQUEST: %@", request);
+    ALog(@"CREATE PHOTO: %@", request);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];

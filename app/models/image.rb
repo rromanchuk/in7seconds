@@ -1,4 +1,5 @@
 class Image < ActiveRecord::Base
+  attr_accessible :image
   belongs_to :user
 
    has_attached_file :image,

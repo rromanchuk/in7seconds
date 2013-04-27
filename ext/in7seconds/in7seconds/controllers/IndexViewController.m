@@ -48,7 +48,8 @@
     sharedAppDelegate.delegate = self;
     
     self.countdown = [[JDFlipNumberView alloc] initWithDigitCount:1];
-    CGRect frame = CGRectOffset(self.likeButton.frame, 100, 0);
+    CGRect frame = CGRectOffset(self.unlikeButton.frame, 120, 0);
+    frame.origin.y = self.unlikeButton.frame.origin.y + 15;
     self.countdown.frame = frame;
     [self.view addSubview:self.countdown];
     self.countdown.delegate = self;

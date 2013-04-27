@@ -285,8 +285,8 @@
             image = [image resizedImage:CGSizeMake(640, 640) interpolationQuality:kCGInterpolationHigh];
     
         }
-     
-    [RestUser addPhoto:image  onLoad:^(RestUser *restUser) {
+    NSMutableData *imageData = [UIImageJPEGRepresentation(image, 0.9) mutableCopy];
+    [RestUser addPhoto:imageData  onLoad:^(RestUser *restUser) {
         
     } onError:^(NSError *error) {
         

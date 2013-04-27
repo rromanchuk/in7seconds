@@ -51,6 +51,9 @@ In7seconds::Application.configure do
   config.hamlcoffee.namespace = 'window.app.templates'
   #config.middleware.use MailView::Mapper, [MailPreview]
 
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+  Paperclip.options[:log_command] = true
+  
   config.after_initialize do
     Bullet.enable = false
     Bullet.alert = true 
