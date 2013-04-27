@@ -67,8 +67,8 @@ class User < ActiveRecord::Base
 
   reverse_geocoded_by :latitude, :longitude
 
-  after_create :get_groups, :if => :is_active?
-  after_create :get_friends, :if => :is_active?
+  after_create :get_groups, :if => :canCrawlVk?
+  after_create :get_friends, :if => :canCrawlVk?
   after_create :welcome_email, :if => :is_active?
   before_destroy :remove_relationships
   
@@ -173,6 +173,14 @@ class User < ActiveRecord::Base
     else
       ''
     end
+  end
+
+  def facebookUser?
+    fb_token?
+  end
+
+  def canCrawlVk?
+    !fb_token? && is_active?
   end
 
   def mutual_group_names(hookup)
@@ -347,7 +355,7 @@ class User < ActiveRecord::Base
           :fb_token => facebook_user.access_token,
           :provider => :facebook,
           :is_active => true,
-          :photo_url => "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=640&height=640"
+          :photo_url => "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=640&height=640",
           :gender => (facebook_user.gender == "male") ? USER_MALE : USER_FEMALE)
     return user
   end
