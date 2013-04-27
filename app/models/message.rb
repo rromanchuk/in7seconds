@@ -14,7 +14,14 @@ class Message < ActiveRecord::Base
   end
 
   def first_message
-    Message.where('(from_user_id = ? AND to_user_id = ?) OR (to_user_id = ? AND from_user_id = ?)', from_user.id, to_user.id, to_user.id, from_user.id).first
+    first_message = Message.where('(from_user_id = ? AND to_user_id = ?) OR (to_user_id = ? AND from_user_id = ?)', from_user.id, to_user.id, to_user.id, from_user.id).first
+    logger.error "found first message to update thread id " + first_message.inspect
+
+    if first_message
+      first_message
+    else
+      self
+    end
   end
 
   def self.thread(current_user, hookup)
@@ -31,6 +38,6 @@ class Message < ActiveRecord::Base
   end
   
   def update_thread_id
-    update_attributes(thread_id: first_message.thread_id)
+    update_attributes(thread_id: first_message.id)
   end
 end

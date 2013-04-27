@@ -7,6 +7,7 @@ class MessagesController < ApplicationController
     hookup = User.find(params[:user_id])
     
     first_message = Message.first_message(current_user, hookup)
+    logger.error "first message in create action: " + first_message.inspect
     if first_message
       @message = first_message.replies.build(:to_user => hookup, :from_user => current_user, :message => params[:message][:message])
       @message.save
@@ -34,7 +35,7 @@ class MessagesController < ApplicationController
     @hookup = User.find(params[:user_id])
     @messages = Message.thread(current_user, @hookup)
     if @messages.blank?
-      return ''
+      render json: ''
     else
       respond_with @messages
     end

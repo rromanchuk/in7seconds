@@ -152,7 +152,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PrivateMessage *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    if (message.isFromSelf) {
+    if ([message.isFromSelf boolValue]) {
         OtherUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OtherUserChatCell"];
         [cell.blueBubble setMessage:message.message];
         [cell.profileImage setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
@@ -455,6 +455,7 @@
 - (void)fetchResults {
     [RestThread loadThreadWithUser:self.otherUser onLoad:^(RestThread *restThread) {
         ALog(@"rest thread %@", restThread);
+        //if
         [self.managedObjectContext performBlock:^{
             self.thread = [Thread threadWithRestThread:restThread inManagedObjectContext:self.managedObjectContext];
             [self.currentUser addThreadsObject:self.thread];

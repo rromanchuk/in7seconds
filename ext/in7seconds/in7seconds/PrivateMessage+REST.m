@@ -39,10 +39,9 @@
 
 - (void)setManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {
     RestMessage *restMessage = (RestMessage *) intermediateObject;
-    ALog(@"");
     self.externalId = [NSNumber numberWithInteger:restMessage.externalId];
-    ALog(@"");
     self.message = restMessage.message;
     self.createdAt = restMessage.createdAt;
+    self.isFromSelf = [NSNumber numberWithBool:restMessage.isFromSelf];
 }
 @end
