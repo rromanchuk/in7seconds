@@ -147,8 +147,8 @@
     [SVProgressHUD showErrorWithStatus:error.localizedDescription];
 }
 
-- (void)fbSessionValid {
-    
+- (void)fbSessionValid:(RestUser *)restUser {
+    [self fbDidLogin:restUser];
 }
 - (void)saveContext
 {

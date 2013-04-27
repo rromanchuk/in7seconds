@@ -42,6 +42,9 @@
 }
 
 
+- (void)performSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    
+}
 
 - (void)viewDidLoad
 {
@@ -163,6 +166,10 @@
         [cell.whiteBubble setMessage:message.message];
         cell.dateLabel.text = [_df stringFromDate:message.createdAt];
         [cell.profilePhoto setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];
+        cell.profilePhoto.tag = indexPath.row;
+        cell.profilePhoto.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];
+        [cell.profilePhoto addGestureRecognizer:tg];
         //[cell.imageView setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];
         return cell;
     }
@@ -471,4 +478,10 @@
     }];
 }
 
+- (IBAction)didTapProfilePhoto:(id)sender {
+    NSInteger row = ((UIImageView *)sender).tag;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    Match *match = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+}
 @end

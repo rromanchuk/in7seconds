@@ -35,5 +35,5 @@
 @required
 - (void)fbDidLogin:(RestUser *)restUser;
 - (void)fbDidFailLogin:(NSError *)error;
-- (void)fbSessionValid;
+- (void)fbSessionValid:(RestUser *)restUser;
 @end

@@ -11,6 +11,7 @@
 #import "BaseUIView.h"
 #import "NoChatsView.h"
 #import "CommentViewController.h"
+#import "UserProfileViewController.h"
 #import "UAPush.h"
 #import  <QuartzCore/QuartzCore.h>
 #import "PrivateMessage+REST.h"
@@ -82,6 +83,11 @@
         Match *user = [self.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
         vc.otherUser = user;
         
+    } else if ([segue.identifier isEqualToString:@"UserProfile"]) {
+        UserProfileViewController *vc = (UserProfileViewController *)segue.destinationViewController;
+        vc.managedObjectContext = self.managedObjectContext;
+        vc.otherUser = (Match *)sender;
+        vc.currentUser = self.currentUser;
     }
 }
 
@@ -91,6 +97,10 @@
     cell.nameLabel.text = user.fullName;
     [cell.profileImage setProfilePhotoWithURL:user.photoUrl];
     cell.profileImage.layer.borderWidth = 1;
+    cell.profileImage.tag = indexPath.row;
+    cell.profileImage.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];
+    [cell.profileImage addGestureRecognizer:tg];
     cell.previewLabel.text = user.fullLocation;
     cell.commentPreview.hidden = YES;
     return cell;
@@ -133,4 +143,10 @@
     [sharedAppDelegate writeToDisk];
 }
 
+- (IBAction)didTapProfilePhoto:(id)sender {
+    NSInteger row = ((UITapGestureRecognizer *)sender).view.tag;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    Match *match = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"UserProfile" sender:match];
+}
 @end

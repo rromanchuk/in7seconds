@@ -2,14 +2,14 @@
 //  Match.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/26/13.
+//  Created by Ryan Romanchuk on 4/27/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class User;
+@class MutualFriend, User;
 
 @interface Match : NSManagedObject
 
@@ -37,5 +37,14 @@
 @property (nonatomic, retain) NSString * vkUniversityName;
 @property (nonatomic, retain) NSDate * createdAt;
 @property (nonatomic, retain) User *user;
+@property (nonatomic, retain) NSSet *mutualFriends;
+@end
+
+@interface Match (CoreDataGeneratedAccessors)
+
+- (void)addMutualFriendsObject:(MutualFriend *)value;
+- (void)removeMutualFriendsObject:(MutualFriend *)value;
+- (void)addMutualFriends:(NSSet *)values;
+- (void)removeMutualFriends:(NSSet *)values;
 
 @end

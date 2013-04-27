@@ -56,6 +56,7 @@
         <attribute name="vkGraduation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vkToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vkUniversityName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mutualFriends" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="MutualFriend" inverseName="match" inverseEntity="MutualFriend" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="matches" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="MutualFriend" representedClassName="MutualFriend" syncable="YES">
@@ -64,6 +65,7 @@
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="hookup" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Hookup" inverseName="mutualFriends" inverseEntity="Hookup" syncable="YES"/>
+        <relationship name="match" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Match" inverseName="mutualFriends" inverseEntity="Match" syncable="YES"/>
     </entity>
     <entity name="Notification" representedClassName="Notification" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
@@ -120,8 +122,8 @@
     <elements>
         <element name="Hookup" positionX="160" positionY="192" width="128" height="420"/>
         <element name="Image" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="Match" positionX="160" positionY="192" width="128" height="405"/>
-        <element name="MutualFriend" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Match" positionX="160" positionY="192" width="128" height="420"/>
+        <element name="MutualFriend" positionX="160" positionY="192" width="128" height="135"/>
         <element name="Notification" positionX="160" positionY="192" width="128" height="120"/>
         <element name="PrivateMessage" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Thread" positionX="160" positionY="192" width="128" height="120"/>

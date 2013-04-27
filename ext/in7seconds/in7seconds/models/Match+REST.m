@@ -68,6 +68,12 @@
     self.mutualFriendNames = restMatch.mutualFriendNames;
     self.mutualGroupNames = restMatch.mutualGroupNames;
     
+    NSMutableSet *mutualFriends;
+    for (RestMutualFriend *restMutaulFriend in restMatch.mutualFriendObjects) {
+        MutualFriend *mutualFriend = [MutualFriend mutualFriendWithRestMutualFriend:restMutaulFriend inManagedObjectContext:self.managedObjectContext];
+        [mutualFriends addObject:mutualFriend];
+    }
+    [self addMutualFriends:mutualFriends];
 }
 
 

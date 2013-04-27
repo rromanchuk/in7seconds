@@ -126,12 +126,12 @@
                                       forProvider:@"facebook"
                                               uid:my.id
                                            onLoad:^(RestUser *restUser) {
-                                               
+                                               [self.delegate fbSessionValid:restUser];
                                            } onError:^(NSError *error) {
                                                DLog(@"error %@", error);
                                                
                                            }];
-                    [self.delegate fbSessionValid];
+                    
                 }];
                 
             } else {
