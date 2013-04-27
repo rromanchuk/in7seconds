@@ -79,7 +79,7 @@
         CommentViewController *vc = (CommentViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
-        User *user = [self.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
+        Match *user = [self.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
         vc.otherUser = user;
         
     }
@@ -111,7 +111,7 @@
             }
             [self.currentUser addHookups:_restMatches];
             [self saveContext];
-
+            [self checkNoResults];
         }];
     } onError:^(NSError *error) {
         

@@ -141,23 +141,10 @@
                                 <rect key="frame" x="6" y="10" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="form-bg@2x.png" id="28Y-6R-121">
-                                <rect key="frame" x="109" y="3" width="180" height="114"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="эл. почта" minimumFontSize="17" id="TSF-hb-D4E">
+                                <rect key="frame" x="120" y="45" width="158" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Имя" minimumFontSize="17" id="iYr-8B-2Nu">
-                                <rect key="frame" x="120" y="20" width="155" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" red="0.094117647058823528" green="0.090196078431372548" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad" returnKeyType="done"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Bm8-fS-JEv" id="wi7-dz-Olw"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="эл. почта" minimumFontSize="17" id="TSF-hb-D4E">
-                                <rect key="frame" x="120" y="67" width="158" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.24313725490196078" green="0.23137254901960785" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" red="0.094117647060000004" green="0.090196078430000007" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
@@ -165,6 +152,13 @@
                                     <outlet property="delegate" destination="Bm8-fS-JEv" id="VJM-Td-cbK"/>
                                 </connections>
                             </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Райан Романчук" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OxZ-yV-dB2">
+                                <rect key="frame" x="120" y="20" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.24313725489999999" green="0.23137254900000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -175,7 +169,7 @@
                         <outlet property="logoutButton" destination="dMf-Bg-gE4" id="MxG-ha-cqk"/>
                         <outlet property="lookingForMen" destination="0ht-gZ-hZl" id="tFI-dR-hlR"/>
                         <outlet property="lookingForWomen" destination="WcR-BA-U5Z" id="O0e-cA-tvT"/>
-                        <outlet property="nameTextField" destination="iYr-8B-2Nu" id="vY3-nD-Xk7"/>
+                        <outlet property="nameLabel" destination="OxZ-yV-dB2" id="5H6-8s-hUW"/>
                         <outlet property="profileImage" destination="2HU-5F-P3V" id="Ehu-gy-D03"/>
                         <outlet property="versionLabel" destination="P6k-Mf-jwU" id="uFy-w9-IVO"/>
                     </connections>
@@ -199,7 +193,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SJt-G6-rU9">
-                                <rect key="frame" x="33" y="321" width="78" height="78"/>
+                                <rect key="frame" x="210" y="321" width="78" height="78"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Button" image="like_icon@2x.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -213,7 +207,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XEm-AO-bF8">
-                                <rect key="frame" x="210" y="321" width="78" height="78"/>
+                                <rect key="frame" x="33" y="321" width="78" height="78"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Button" image="unlike_icon@2x.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -862,7 +856,6 @@
         <image name="blue_button@2x.png" width="564" height="94"/>
         <image name="blue_circle@2x.png" width="116" height="116"/>
         <image name="facebook-login.png" width="144" height="48"/>
-        <image name="form-bg@2x.png" width="338" height="174"/>
         <image name="friends_icon@2x.png" width="38" height="44"/>
         <image name="green_circle@2x.png" width="116" height="116"/>
         <image name="in7seconds_logo@2x.png" width="268" height="270"/>
@@ -971,7 +964,7 @@
                 <relationship kind="outlet" name="logoutButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="lookingForMen" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="lookingForWomen" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="profileImage" candidateClass="ProfileImageView"/>
                 <relationship kind="outlet" name="versionLabel" candidateClass="UILabel"/>
             </relationships>
@@ -1037,7 +1030,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hjQ-Dw-AsQ"/>
         <segue reference="InG-Xj-6EH"/>
+        <segue reference="w1L-Nh-4Xb"/>
     </inferredMetricsTieBreakers>
 </document>

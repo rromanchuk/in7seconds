@@ -28,10 +28,11 @@ typedef enum  {
 @property (weak, nonatomic) IBOutlet UIButton *lookingForWomen;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (weak, nonatomic) id <LogoutDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet ProfileImageView *profileImage;
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 - (IBAction)didTapLogout:(id)sender;
 - (IBAction)didTapWomen:(id)sender;

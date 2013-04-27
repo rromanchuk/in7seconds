@@ -55,7 +55,7 @@
 - (void)setupProfile {
     ALog(@"setting up profile for %@", self.currentUser);
     [self.profileImage setProfilePhotoWithURL:self.currentUser.photoUrl];
-    self.nameTextField.text = self.currentUser.fullName;
+    self.nameLabel.text = self.currentUser.fullName;
     self.emailTextField.text = self.currentUser.email;
     // Do any additional setup after loading the view.
     if ([self.currentUser.lookingForGender integerValue] == LookingForBoth) {
@@ -137,7 +137,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     self.currentUser.email = self.emailTextField.text;
-    NSArray *chunks = [self.nameTextField.text componentsSeparatedByString: @" "];
+    NSArray *chunks = [self.nameLabel.text componentsSeparatedByString: @" "];
     if ([chunks count] == 2) {
         self.currentUser.lastName = chunks[1];
         self.currentUser.firstName = chunks[0];
@@ -294,4 +294,8 @@
 }
 
 
+- (void)viewDidUnload {
+    [self setNameLabel:nil];
+    [super viewDidUnload];
+}
 @end
