@@ -61,3 +61,8 @@ app.linksManager = new app.modules.LinksManager()
 app.log('[app]: initialize')
 
 @app = app
+
+window.faye = new Faye.Client('http://localhost:9292/faye');
+
+window.faye.subscribe "/messages", (message) ->
+  alert "Got a message: " + message.text

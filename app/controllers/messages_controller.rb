@@ -18,6 +18,8 @@ class MessagesController < ApplicationController
     end
     
     @message.reload
+    broadcast("message", {test: "test"})
+
     if params[:lite_version]
       @hookup = hookup
       render 'messages/show_lite'

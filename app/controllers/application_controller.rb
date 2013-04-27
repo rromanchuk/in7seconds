@@ -16,9 +16,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def broadcast(channel, &block)
-    message = {:channel => channel, :data => capture(&block), :ext => {:auth_token => FAYE_TOKEN}}
-    uri = URI.parse(CONFIG[:faye_url])
+  def broadcast(channel, data)
+    message = {:channel => channel, :data => data, :ext => {:auth_token => FAYE_TOKEN}}
+    uri = URI.parse(CONFIG[:faye_host])
     Net::HTTP.post_form(uri, :message => message.to_json)
   end
 
