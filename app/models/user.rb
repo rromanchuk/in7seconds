@@ -336,11 +336,9 @@ class User < ActiveRecord::Base
     self.birthday = facebook_user.birthday
     #self.location = facebook_user.location.name unless facebook_user.location.blank?
     self.gender = (facebook_user.gender == "male") ? USER_MALE : USER_FEMALE
-    puts "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=100&height=100"
-    self.photo_url "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=640&height=640"
+    self.photo_url = "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=640&height=640"
     self.is_active = true;
     #photo_from_url "http://www.warrenphotographic.co.uk/photography/cats/21495.jpg"
-
     save
   end
 
