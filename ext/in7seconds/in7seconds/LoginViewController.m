@@ -45,6 +45,8 @@
 }
 
 - (IBAction)didTapFbLogin:(id)sender {
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...") maskType:SVProgressHUDMaskTypeGradient];
+    [[FacebookHelper shared] login];
 }
 
 #pragma mark - VkontakteDelegate

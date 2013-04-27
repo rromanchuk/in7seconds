@@ -112,6 +112,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     [self.delegate applicationWillWillStart];
+    [FBSession.activeSession handleDidBecomeActive];
     
     [Location sharedLocation].delegate = self;
     [[Location sharedLocation] updateUntilDesiredOrTimeout:15.0];
@@ -328,5 +329,14 @@
     [[UAPush shared] registerDeviceToken:deviceToken];
 }
 
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    ALog(@"sourceApplication  is %@ url %@, %@annotation", sourceApplication, url, annotation);
+    return [FBSession.activeSession handleOpenURL:url];
+}
 
 @end
