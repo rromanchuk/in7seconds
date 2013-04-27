@@ -10,6 +10,7 @@ ryan:
   vk_city: san_francisco
   vk_country: usa
   birthday: <%= (Time.now - 18.years).to_s(:db) %>
+  is_active: true
 
 adarsh:
   email:
@@ -22,6 +23,7 @@ adarsh:
   vk_city: moscow
   vk_country: india
   birthday: <%= (Time.now - 18.years).to_s(:db) %>
+  is_active: true
 
 evgeny:
   email:
@@ -34,6 +36,7 @@ evgeny:
   vk_city: moscow
   vk_country: india
   birthday: <%= (Time.now - 18.years).to_s(:db) %>
+  is_active: true
 
 bob:
   email:
@@ -46,6 +49,7 @@ bob:
   vk_city: moscow
   vk_country: india
   birthday: <%= (Time.now - 18.years).to_s(:db) %>
+  is_active: true
 
 felix:
   email:
@@ -58,3 +62,4 @@ felix:
   vk_city: moscow
   vk_country: india
   birthday: <%= (Time.now - 18.years).to_s(:db) %>
+  is_active: true
