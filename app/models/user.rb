@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :token_authenticatable, :omniauthable, :confirmable
          #:validatable
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city, :fbuid
   attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active, :looking_for_gender, :latitude, :longitude, :vk_city, :vk_country, :vk_domain, :vk_graduation, :vk_university_name, :vk_faculty_name, :vk_mobile_phone
 
   has_many :images
@@ -326,10 +326,11 @@ class User < ActiveRecord::Base
     self.first_name = facebook_user.first_name
     self.last_name = facebook_user.last_name
     self.birthday = facebook_user.birthday
-    self.location = facebook_user.location.name unless facebook_user.location.blank?
-    self.gender = (facebook_user.gender == "male") ? USER_SEX_MALE : USER_SEX_FEMALE
+    #self.location = facebook_user.location.name unless facebook_user.location.blank?
+    self.gender = (facebook_user.gender == "male") ? USER_MALE : USER_FEMALE
     puts "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=100&height=100"
-    self.photo_url "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=100&height=100"
+    self.photo_url "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=640&height=640"
+    self.is_active = true;
     #photo_from_url "http://www.warrenphotographic.co.uk/photography/cats/21495.jpg"
 
     save
@@ -339,15 +340,15 @@ class User < ActiveRecord::Base
     user = User.create(:email => facebook_user.email,
           :fbuid => facebook_user.identifier,
           :password => Devise.friendly_token[0,20],
-          :name => facebook_user.name,
           :first_name => facebook_user.first_name,
           :last_name => facebook_user.last_name,
           :birthday => facebook_user.birthday,
-          :location => (facebook_user.location.blank?) ? "" : facebook_user.location.name,
+          #:location => (facebook_user.location.blank?) ? "" : facebook_user.location.name,
           :fb_token => facebook_user.access_token,
           :provider => :facebook,
-          :gender => (facebook_user.gender == "male") ? USER_SEX_MALE : USER_SEX_FEMALE)
-    user.photo_from_url "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=100&height=100"
+          :is_active => true,
+          :photo_url => "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=640&height=640"
+          :gender => (facebook_user.gender == "male") ? USER_MALE : USER_FEMALE)
     return user
   end
 
