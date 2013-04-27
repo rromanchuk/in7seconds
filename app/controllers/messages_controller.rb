@@ -13,10 +13,10 @@ class MessagesController < ApplicationController
     else
       first_message = Message.new(:to_user => hookup, :from_user => current_user, :message => params[:message][:message])
       first_message.save
-      @messages = first_message
+      @message = first_message
     end
     
-
+    @message.reload
     if params[:lite_version]
       @hookup = hookup
       render 'messages/show_lite'
@@ -33,6 +33,11 @@ class MessagesController < ApplicationController
   def thread
     @hookup = User.find(params[:user_id])
     @messages = Message.thread(current_user, @hookup)
+    if @messages.blank?
+      return ''
+    else
+      respond_with @messages
+    end
   end
 
 end
