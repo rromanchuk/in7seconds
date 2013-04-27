@@ -50,4 +50,5 @@ group :development do
   gem 'quiet_assets'
   gem 'rvm-capistrano'
   gem "bullet"
+  gem 'foreman'
 end
