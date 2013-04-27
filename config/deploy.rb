@@ -27,6 +27,9 @@ set :scm, :git
 set :repository,  "git@github.com:/rromanchuk/in7seconds.git"
 set :branch, "master"
 
+# faye
+set :faye_pid, "#{deploy_to}/shared/pids/faye.pid"
+set :faye_config, "#{deploy_to}/current/faye.ru"
 
 after 'deploy:update', 'deploy:cleanup'
 before 'deploy:create_symlink', 'deploy:abort_if_pending_migrations'
@@ -38,6 +41,9 @@ after  "deploy:restart", "delayed_job:start"
 after  "deploy:restart", "deploy:ensure_alive"
 after "deploy:stop",  "delayed_job:stop"
 after "deploy:start", "delayed_job:start"
+before 'deploy:update_code', 'faye:stop'
+after 'deploy:finalize_update', 'faye:start'
+
 
 # tasks
 namespace :deploy do
@@ -58,6 +64,17 @@ namespace :deploy do
     system(cmd) 
   end
 
+end
+
+namespace :faye do
+  desc "Start Faye"
+  task :start do
+    run "cd #{deploy_to}/current && bundle exec rackup #{faye_config} -s thin -E production -D --pid #{faye_pid}"
+  end
+  desc "Stop Faye"
+  task :stop do
+    run "kill `cat #{faye_pid}` || true"
+  end
 end
 
 
