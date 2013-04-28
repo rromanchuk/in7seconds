@@ -1,3 +1,5 @@
+# DEPRECATED
+
 object @message
 cache @message
 
