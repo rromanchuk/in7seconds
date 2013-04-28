@@ -20,6 +20,12 @@ class MessagesController < ApplicationController
     @message.reload
     broadcast("/messages", {test: "test"})
 
+    if @message.from_user == current_user
+      logger.error "is from self"
+    else
+      logger.error "is not from self"
+    end
+
     if params[:lite_version]
       @hookup = hookup
       render 'messages/show_lite'

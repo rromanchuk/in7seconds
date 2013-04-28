@@ -743,9 +743,12 @@ static inline NSAttributedString * NSAttributedStringBySettingColorFromContext(N
                 
                 // Use text color, or default to black
                 id color = [attributes objectForKey:(id)kCTForegroundColorAttributeName];
-
                 if (color) {
-                    CGContextSetStrokeColorWithColor(c, (__bridge CGColorRef)color);
+                    if ([color isKindOfClass:[UIColor class]]) {
+                        CGContextSetStrokeColorWithColor(c, [color CGColor]);
+                    } else {
+                        CGContextSetStrokeColorWithColor(c, (__bridge CGColorRef)color);
+                    }
                 } else {
                     CGContextSetGrayStrokeColor(c, 0.0f, 1.0);
                 }
@@ -933,7 +936,7 @@ afterInheritingLabelAttributesAndConfiguringWithBlock:(NSMutableAttributedString
     CGRect textRect = [self textRectForBounds:rect limitedToNumberOfLines:self.numberOfLines];
 
     // CoreText draws it's text aligned to the bottom, so we move the CTM here to take our vertical offsets into account
-    CGContextTranslateCTM(c, 0.0f, rect.size.height - textRect.origin.y - textRect.size.height);
+    CGContextTranslateCTM(c, rect.origin.x, rect.size.height - textRect.origin.y - textRect.size.height);
 
     // Second, trace the shadow before the actual text, if we have one
     if (self.shadowColor && !self.highlighted) {
