@@ -189,7 +189,7 @@
 #pragma mark UIImagePickerControllerDelegate methods
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [self.slidingViewController dismissModalViewControllerAnimated:NO];
-    [self.slidingViewController slidingViewController];
+    [self.slidingViewController S];
     //self.slidingViewController
 }
 
@@ -303,6 +303,8 @@
 
 - (void)viewDidUnload {
     [self setNameLabel:nil];
+    [self setNotificationEmailSwitch:nil];
+    [self setNotificationPushSwitch:nil];
     [super viewDidUnload];
 }
 @end

@@ -30,7 +30,6 @@
         notification = [notifications lastObject];
         [notification setManagedObjectWithIntermediateObject:restNotification];
     }
-    ALog(@"returning thread");
     return notification;
 
 }

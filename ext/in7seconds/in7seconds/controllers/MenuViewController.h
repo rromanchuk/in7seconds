@@ -33,6 +33,8 @@ typedef enum  {
 @property (weak, nonatomic) IBOutlet ProfileImageView *profileImage;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *notificationEmailSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *notificationPushSwitch;
 
 - (IBAction)didTapLogout:(id)sender;
 - (IBAction)didTapWomen:(id)sender;
