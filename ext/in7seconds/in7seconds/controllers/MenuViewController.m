@@ -99,6 +99,7 @@
 - (IBAction)didTapBirthday:(id)sender {
     
     self.datePicker.delegate = self;
+    self.datePicker.datePicker.date = self.currentUser.birthday;
     [self presentSemiModalViewController:self.datePicker];
 }
 
