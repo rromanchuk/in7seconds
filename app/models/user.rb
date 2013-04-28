@@ -349,6 +349,7 @@ class User < ActiveRecord::Base
           :first_name => facebook_user.first_name,
           :last_name => facebook_user.last_name,
           :birthday => facebook_user.birthday,
+          :looking_for_gender => guess_looking_for((facebook_user.gender == "male") ? USER_MALE : USER_FEMALE),
           #:location => (facebook_user.location.blank?) ? "" : facebook_user.location.name,
           :fb_token => facebook_user.access_token,
           :provider => :facebook,
