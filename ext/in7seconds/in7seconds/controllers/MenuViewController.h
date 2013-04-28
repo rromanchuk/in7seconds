@@ -16,7 +16,7 @@ typedef enum  {
     } LookingForTypes;
 
 @protocol LogoutDelegate;
-@interface MenuViewController : UIViewController <UITableViewDataSource, UITabBarControllerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate>
+@interface MenuViewController : UIViewController <UITableViewDataSource, UITabBarControllerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
 

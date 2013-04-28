@@ -8,6 +8,7 @@
 
 #import "Match+REST.h"
 #import "MutualFriend+REST.h"
+#import "Image+REST.h"
 @implementation Match (REST)
 
 + (Match *)matchWithRestMatch:(RestMatch *)restMatch
@@ -74,6 +75,10 @@
         [mutualFriends addObject:mutualFriend];
     }
     [self addMutualFriends:mutualFriends];
+    
+    for (RestImage *restImage in restMatch.images) {
+        [self addImagesObject:[Image imageWithRestImage:restImage inManagedObjectContext:self.managedObjectContext]];
+    }
 }
 
 

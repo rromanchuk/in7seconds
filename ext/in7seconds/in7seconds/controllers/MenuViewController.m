@@ -188,7 +188,9 @@
 
 #pragma mark UIImagePickerControllerDelegate methods
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [self dismissModalViewControllerAnimated:YES];
+    [self.slidingViewController dismissModalViewControllerAnimated:NO];
+    [self.slidingViewController slidingViewController];
+    //self.slidingViewController
 }
 
 - (IBAction)pictureFromLibrary:(id)sender {
@@ -197,7 +199,8 @@
     [self.imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     self.imagePicker.delegate = self;
     self.imagePicker.allowsEditing = YES;
-    [self presentModalViewController:self.imagePicker animated:YES];
+    [self.slidingViewController presentModalViewController:self.imagePicker animated:YES];
+    //[self presentModalViewController:self.imagePicker animated:YES];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info

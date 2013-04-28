@@ -35,6 +35,7 @@
 @property (atomic, strong) NSString *friendNames;
 @property (atomic, strong) NSString *mutualFriendNames;
 @property (atomic, strong) NSString *mutualGroupNames;
+@property (atomic, strong) NSSet *images;
 
 + (NSDictionary *)mapping;
 + (void)load:(void (^)(NSMutableArray *matches))onLoad
