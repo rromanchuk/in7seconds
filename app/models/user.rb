@@ -405,7 +405,7 @@ class User < ActiveRecord::Base
     # Find active users
     users = filter(User.active.where('gender IN (?)', get_genders)).take(10) if users.blank?
     # Ok find friends on facebook
-    users = filter(User.where(:vkuid => self.friends.map(&:vkuid) ).where('gender IN (?)', get_genders)) if users.blank?
+    users = filter(User.where(:id => self.friends.map(&:id) ).where('gender IN (?)', get_genders)) if users.blank?
     # Ok find anyone on the system in the same city
     users = filter(User.where('gender IN (?)', get_genders).where(vk_city_id: vk_city_id)).take(10) if users.blank?
     # Any one on the system
@@ -418,12 +418,12 @@ class User < ActiveRecord::Base
     if self.relationships.blank?
       return users
     else
-      return users.where('vkuid NOT IN (?)', exclude_vkuids.push(vkuid))
+      return users.where('id NOT IN (?)', exclude_ids.push(id))
     end
   end
 
-  def exclude_vkuids
-    (hookups + pending_hookups + rejected_hookups).map(&:vkuid)
+  def exclude_ids
+    (hookups + pending_hookups + rejected_hookups).map(&:id)
   end
 
   def users_nearby

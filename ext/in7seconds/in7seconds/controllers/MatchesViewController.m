@@ -69,7 +69,7 @@
 {
     ALog(@"setting up frc with hookups %@", self.currentUser.hookups);
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Match"];
-    request.predicate = [NSPredicate predicateWithFormat:@"self IN %@", self.currentUser.hookups];
+    request.predicate = [NSPredicate predicateWithFormat:@"self IN %@", self.currentUser.matches];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
@@ -124,7 +124,7 @@
             for (RestMatch *restMatch in matches) {
                 [_restMatches addObject:[Match matchWithRestMatch:restMatch inManagedObjectContext:self.managedObjectContext]];
             }
-            [self.currentUser addHookups:_restMatches];
+            [self.currentUser addMatches:_restMatches];
             
             NSError *error;
             [self.managedObjectContext save:&error];
