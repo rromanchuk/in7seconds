@@ -1,4 +1,5 @@
 # encoding: utf-8
+# DEPRECATED
 class MessagesController < ApplicationController
   before_filter :authenticate_user!
   respond_to :json

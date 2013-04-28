@@ -1,6 +1,5 @@
 module Api
   module V1
-    
     class TokenAuthenticationsController < ApplicationController 
       skip_before_filter :verify_authenticity_token
       respond_to :json
@@ -31,7 +30,6 @@ module Api
         @user.save
         redirect_to edit_user_registration_path(@user)
       end
-
     end
   end
 end
