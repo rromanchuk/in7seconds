@@ -62,7 +62,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     RestClient *restClient = [RestClient sharedClient];
 
     NSMutableURLRequest *request = [restClient multipartFormRequestWithMethod:@"POST"
-                                                                         path:@"images.json"
+                                                                         path:@"api/v1/images.json"
                                                                    parameters:@{}
                                                     constructingBodyWithBlock:^(id <AFMultipartFormData>formData)
                                     {
