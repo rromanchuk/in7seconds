@@ -1,5 +1,7 @@
 == Starting Rails and Faye
-`foreman start`
+
+ foreman start
+ 
 
 == Testing emails
 1. setup app/mailers/mail_preview.rb
