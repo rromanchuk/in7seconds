@@ -40,6 +40,8 @@
 @dynamic vkGraduation;
 @dynamic vkToken;
 @dynamic vkUniversityName;
+@dynamic emailOptIn;
+@dynamic pushOptIn;
 @dynamic hookups;
 @dynamic images;
 @dynamic matches;

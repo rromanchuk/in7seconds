@@ -26,6 +26,8 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
                                 @"lastName", @"last_name",
                                 @"gender", @"gender",
                                 @"lookingForGender", @"looking_for_gender",
+                                @"emailOptIn", @"email_opt_in",
+                                @"pushOptIn", @"push_opt_in",
                                 @"email", @"email",
                                 @"externalId", @"id",
                                 @"authenticationToken", @"authentication_token",
@@ -120,6 +122,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     ALog(@"UPDATE USER REQUEST: %@", request);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            ALog(@"Update JSON: %@", JSON);
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             //ALog(@"JSON: %@", JSON);
                                                                                             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -150,6 +153,8 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     RestClient *restClient = [RestClient sharedClient];
     //ALog(@"got gender:%@ got looking for %@", user.gender, user.lookingForGender);
     NSDictionary *params = @{@"user[looking_for_gender]": user.lookingForGender,
+                             @"user[email_opt_in]": user.emailOptIn,
+                             @"user[push_opt_in]": user.pushOptIn,
                              @"user[gender]": user.gender,
                              @"user[latitude]": [NSNull nullWhenNil:[Location sharedLocation].latitude],
                              @"user[longitude": [NSNull nullWhenNil:[Location sharedLocation].longitude]

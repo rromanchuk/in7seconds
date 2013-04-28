@@ -61,6 +61,8 @@
     [self.profileImage setProfilePhotoWithURL:self.currentUser.photoUrl];
     self.nameLabel.text = self.currentUser.fullName;
     self.emailTextField.text = self.currentUser.email;
+    self.notificationEmailSwitch.on = [self.currentUser.emailOptIn boolValue];
+    self.notificationPushSwitch.on = [self.currentUser.pushOptIn boolValue];
     // Do any additional setup after loading the view.
     if ([self.currentUser.lookingForGender integerValue] == LookingForBoth) {
         self.lookingForMen.selected = YES;
@@ -71,6 +73,18 @@
         self.lookingForWomen.selected = YES;
     }
     self.genderSegmentControl.selectedSegmentIndex = [self.currentUser.gender integerValue];
+}
+
+- (IBAction)notificationSettingsChanged:(id)sender {
+    _filtersChanged = YES;
+    UISwitch *mySwitch = (UISwitch *)sender;
+    if (mySwitch == self.notificationEmailSwitch) {
+        self.currentUser.emailOptIn = [NSNumber numberWithBool:self.notificationEmailSwitch.on];
+    } else {
+        self.currentUser.pushOptIn = [NSNumber numberWithBool:self.notificationPushSwitch.on];
+    }
+    [self saveContext];
+    [self update];
 }
 
 - (IBAction)didTapLogout:(id)sender {

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427194412) do
+ActiveRecord::Schema.define(:version => 20130428143042) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -150,6 +150,8 @@ ActiveRecord::Schema.define(:version => 20130427194412) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.boolean  "email_opt_in",                                                        :default => true
+    t.boolean  "push_opt_in",                                                         :default => true
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

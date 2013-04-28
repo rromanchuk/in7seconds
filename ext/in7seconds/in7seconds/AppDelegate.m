@@ -122,8 +122,10 @@
             NSString *alias = [NSString stringWithFormat:@"%d", restUser.externalId];
             [[UAPush shared] setAlias:alias];
             [[UAPush shared] updateRegistration];
-            self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
-            [self saveContext];
+            [self.managedObjectContext performBlock:^{
+                self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+                [self saveContext];
+            }];
         } onError:^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
         }];

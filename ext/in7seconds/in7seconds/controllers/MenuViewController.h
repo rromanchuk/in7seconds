@@ -35,6 +35,7 @@ typedef enum  {
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *notificationEmailSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *notificationPushSwitch;
+- (IBAction)notificationSettingsChanged:(id)sender;
 
 - (IBAction)didTapLogout:(id)sender;
 - (IBAction)didTapWomen:(id)sender;
@@ -48,7 +49,6 @@ typedef enum  {
 
 @required
 - (void)didLogout;
-- (void)didUpdateSettings;
 - (void)didChangeFilters;
 
 @end

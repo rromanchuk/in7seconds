@@ -98,6 +98,7 @@
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emailOptIn" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="friendNames" optional="YES" attributeType="String" syncable="YES"/>
@@ -112,6 +113,7 @@
         <attribute name="mutualGroupNames" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mutualGroups" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pushOptIn" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="vkDomain" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vkFacultyName" optional="YES" attributeType="String" syncable="YES"/>
@@ -131,6 +133,6 @@
         <element name="Notification" positionX="160" positionY="192" width="128" height="120"/>
         <element name="PrivateMessage" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Thread" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="User" positionX="160" positionY="192" width="128" height="480"/>
+        <element name="User" positionX="160" positionY="192" width="128" height="510"/>
     </elements>
 </model>

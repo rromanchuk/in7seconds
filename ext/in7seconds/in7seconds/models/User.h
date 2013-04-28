@@ -38,6 +38,8 @@
 @property (nonatomic, retain) NSString * vkGraduation;
 @property (nonatomic, retain) NSString * vkToken;
 @property (nonatomic, retain) NSString * vkUniversityName;
+@property (nonatomic, retain) NSNumber * emailOptIn;
+@property (nonatomic, retain) NSNumber * pushOptIn;
 @property (nonatomic, retain) NSSet *hookups;
 @property (nonatomic, retain) NSSet *images;
 @property (nonatomic, retain) NSSet *matches;

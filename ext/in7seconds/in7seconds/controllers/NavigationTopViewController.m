@@ -59,27 +59,22 @@
     [self performSegueWithIdentifier:@"Login" sender:self];
 }
 
-- (void)didUpdateSettings {
-    self.currentUser = [User currentUser:self.managedObjectContext];
-    NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
-    ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
-    
-}
-
 - (void)didChangeFilters {
     ALog(@"in change filters");
     self.currentUser = [User currentUser:self.managedObjectContext];
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    sharedAppDelegate.currentUser = self.currentUser;
     [self.currentUser removeHookups:self.currentUser.hookups];
+    NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
+    ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
     [self saveContext];
     
     [RestHookup load:^(NSMutableArray *possibleHookups) {
         NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
         for (RestHookup *restHookup in possibleHookups) {
-            ALog(@"adding resthookup %@", restHookup);
             [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
         }
         [self.currentUser addHookups:_restHookups];
-        ALog(@"hookups are%@", self.currentUser.hookups);
         [self saveContext];
         NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
         ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;

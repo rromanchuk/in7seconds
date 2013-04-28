@@ -109,6 +109,8 @@
     self.friendNames = restUser.friendNames;
     self.mutualFriendNames = restUser.mutualFriendNames;
     self.mutualGroupNames = restUser.mutualGroupNames;
+    self.emailOptIn = [NSNumber numberWithBool:restUser.emailOptIn];
+    self.pushOptIn = [NSNumber numberWithBool:restUser.pushOptIn];
     
     for (RestImage *restImage in restUser.images) {
         [self addImagesObject:[Image imageWithRestImage:restImage inManagedObjectContext:self.managedObjectContext]];
