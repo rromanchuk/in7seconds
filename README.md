@@ -1,15 +1,20 @@
-== Starting Rails and Faye
 
+Starting Rails and Faye
+======
  foreman start
  
 
-== Testing emails
+Testing emails
+======
 1. setup app/mailers/mail_preview.rb
 2. http://localhost:3000/mail_view/welcome
 
-== Api
+Api
+======
 
-```
+GET `http://in7secondsdev.com:3000/users/authenticated_user.json?auth_token=2E79U7nCUFBnoqH8Ldav`
+
+```json
 {
    id:767488622,
    vk_token:"9d6d6388e499f53227009db7ed9526762fd6f7fea9388fbf13cb34a08a5302b8c1887879e88542eed0860",
