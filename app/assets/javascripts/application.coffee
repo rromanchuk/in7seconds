@@ -62,7 +62,10 @@ app.log('[app]: initialize')
 
 @app = app
 
-window.faye = new Faye.Client('http://localhost:9292/faye');
 
-window.faye.subscribe "/messages", (message) ->
-  alert "Got a message: " + message.text
+$ ->
+  faye = new Faye.Client("http://localhost:9292/faye")
+  faye.subscribe "/messages", (data) ->
+    console.log "got message"
+    alert "got message"
+

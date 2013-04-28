@@ -29,7 +29,7 @@ set :branch, "master"
 
 # faye
 set :faye_pid, "#{deploy_to}/shared/pids/faye.pid"
-set :faye_config, "#{deploy_to}/current/faye.ru"
+set :faye_config, "#{release_path}/faye.ru"
 
 after 'deploy:update', 'deploy:cleanup'
 before 'deploy:create_symlink', 'deploy:abort_if_pending_migrations'
@@ -69,7 +69,7 @@ end
 namespace :faye do
   desc "Start Faye"
   task :start do
-    run "cd #{deploy_to}/current && bundle exec rackup #{faye_config} -s thin -E production -D --pid #{faye_pid}"
+    run "cd #{release_path} && bundle exec rackup #{faye_config} -s thin -E production -D --pid #{faye_pid}"
   end
   desc "Stop Faye"
   task :stop do

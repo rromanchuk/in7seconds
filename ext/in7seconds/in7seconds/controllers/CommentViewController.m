@@ -283,6 +283,7 @@
         [self.thread addMessagesObject:privateMessage];
         [self saveContext];
         [self checkNoResults];
+        self.commentView.text = nil;
     } onError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];

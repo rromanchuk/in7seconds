@@ -8,6 +8,7 @@
 
 #import "RestObject.h"
 #import "User+REST.h"
+#import "Match+REST.h"
 #import "RestThread.h"
 #import "RestMessage.h"
 @interface RestMessage : RestObject
@@ -19,7 +20,7 @@
 
 + (NSDictionary *)mapping;
 
-+ (void)sendMessageTo:(User *)user
++ (void)sendMessageTo:(Match *)user
           withMessage:(NSString *)message
         onLoad:(void (^)(RestMessage *restMessage))onLoad
        onError:(void (^)(NSError *error))onError;

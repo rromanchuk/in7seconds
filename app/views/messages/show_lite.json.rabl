@@ -11,6 +11,6 @@ node :to_user_id  do |message|
 end
 
 node :is_from_self do |message|
-  message.from_user == @current_user ? true : false
+  message.from_user == current_user ? true : false
 end
 

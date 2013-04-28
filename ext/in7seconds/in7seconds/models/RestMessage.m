@@ -20,7 +20,7 @@
              };
 }
 
-+ (void)sendMessageTo:(User *)user
++ (void)sendMessageTo:(Match *)user
           withMessage:(NSString *)message
                onLoad:(void (^)(RestMessage *restMessage))onLoad
               onError:(void (^)(NSError *error))onError {
