@@ -9,6 +9,10 @@ class Image < ActiveRecord::Base
       :access_key_id => CONFIG[:aws_access],
       :secret_access_key => CONFIG[:aws_secret]
     },
-    :styles => { :thumb => "100x100>" },
+    :styles => { :default => "640x640>" },
     :path => "#{CONFIG[:aws_path]}/users/:attachment/:id/:style/:basename.:extension"
+
+    def photo_url
+      image.url(:default)
+    end
 end

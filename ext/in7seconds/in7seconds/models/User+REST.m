@@ -7,6 +7,7 @@
 //
 
 #import "User+REST.h"
+#import "Image+REST.h"
 #import "RestMutualFriend.h"
 @implementation User (REST)
 + (User *)userWithRestUser:(RestUser *)restUser
@@ -108,6 +109,10 @@
     self.friendNames = restUser.friendNames;
     self.mutualFriendNames = restUser.mutualFriendNames;
     self.mutualGroupNames = restUser.mutualGroupNames;
+    
+    for (RestImage *restImage in restUser.images) {
+        [self addImagesObject:[Image imageWithRestImage:restImage inManagedObjectContext:self.managedObjectContext]];
+    }
 
 }
 

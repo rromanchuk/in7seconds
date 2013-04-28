@@ -5,6 +5,7 @@ class ImagesController < ApplicationController
 
   def create
     @image = current_user.images.build(params[:image])
+    @image.save
     render json: ''
   end
 

@@ -2,11 +2,12 @@
 //  Hookup.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/27/13.
+//  Created by Ryan Romanchuk on 4/28/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
 #import "Hookup.h"
+#import "Image.h"
 #import "MutualFriend.h"
 #import "User.h"
 
@@ -16,6 +17,7 @@
 @dynamic birthday;
 @dynamic city;
 @dynamic country;
+@dynamic createdAt;
 @dynamic email;
 @dynamic externalId;
 @dynamic firstName;
@@ -35,8 +37,8 @@
 @dynamic vkGraduation;
 @dynamic vkToken;
 @dynamic vkUniversityName;
-@dynamic createdAt;
 @dynamic mutualFriends;
 @dynamic user;
+@dynamic images;
 
 @end

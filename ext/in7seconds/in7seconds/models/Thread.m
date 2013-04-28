@@ -2,7 +2,7 @@
 //  Thread.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/27/13.
+//  Created by Ryan Romanchuk on 4/28/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -14,8 +14,8 @@
 
 @implementation Thread
 
-@dynamic updatedAt;
 @dynamic externalId;
+@dynamic updatedAt;
 @dynamic messages;
 @dynamic user;
 @dynamic withMatch;

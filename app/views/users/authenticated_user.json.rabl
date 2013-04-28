@@ -6,3 +6,7 @@ attributes :id, :vk_token, :fb_token, :authentication_token, :updated_at, :first
 node :birthday do |user|
   user.birthday_simple
 end
+
+child :images  do 
+  extends "images/show"
+end

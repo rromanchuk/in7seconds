@@ -1,3 +1,6 @@
+== Starting Rails and Faye
+`foreman start`
+
 == Testing emails
 1. setup app/mailers/mail_preview.rb
 2. http://localhost:3000/mail_view/welcome

@@ -12,9 +12,11 @@
 #import "User+REST.h"
 #import "IndexViewController.h"
 #import "UIImage+Resize.h"
+#import "UAPushUI.h"
 @interface MenuViewController () {
     BOOL _filtersChanged;
 }
+@property UIImagePickerController *imagePicker;
 @end
 
 @implementation MenuViewController
@@ -42,6 +44,8 @@
     self.profileImage.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pictureFromLibrary:)];
     [self.profileImage addGestureRecognizer:tap];
+    
+    //[UAPush openApnsSettings:self animated:YES];
 }
 
 
@@ -188,17 +192,17 @@
 }
 
 - (IBAction)pictureFromLibrary:(id)sender {
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+   self.imagePicker = [[UIImagePickerController alloc] init];
     //imagePicker.showsCameraControls = YES;
-    [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-    imagePicker.delegate = self;
-    imagePicker.allowsEditing = YES;
-    [self presentModalViewController:imagePicker animated:YES];
+    [self.imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    self.imagePicker.delegate = self;
+    self.imagePicker.allowsEditing = YES;
+    [self presentModalViewController:self.imagePicker animated:YES];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-        [self dismissModalViewControllerAnimated:NO];
+        [self.imagePicker dismissModalViewControllerAnimated:NO];
         CGRect cropRect = [[info valueForKey:UIImagePickerControllerCropRect] CGRectValue];
         // don't try to juggle around orientation, rotate from the beginning if needed
         UIImage *image = [[info objectForKey:@"UIImagePickerControllerOriginalImage"] fixOrientation];
@@ -289,7 +293,7 @@
     [RestUser addPhoto:imageData  onLoad:^(RestUser *restUser) {
         
     } onError:^(NSError *error) {
-        
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
 }
 

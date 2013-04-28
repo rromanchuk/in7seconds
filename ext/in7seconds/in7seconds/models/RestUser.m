@@ -9,6 +9,7 @@
 #import "RestUser.h"
 #import "Location.h"
 #import "RestMutualFriend.h"
+#import "RestImage.h"
 static NSString *AUTH_PATH = @"token_authentications.json";
 static NSString *RESOURCE_PATH = @"users";
 static NSString *RELATIONSHIP_PATH = @"relationships";
@@ -48,12 +49,8 @@ static NSString *RELATIONSHIP_PATH = @"relationships";
                                 [NSDate mappingWithKey:@"updatedAt"
                                       dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"updated_at",
                                 nil];
-    if (!is_nested) {
-        [map setObject:[RestUser mappingWithKey:@"possibleHookups" mapping:[RestUser mapping:YES]] forKey:@"possible_hookups"];
-        [map setObject:[RestUser mappingWithKey:@"hookups" mapping:[RestUser mapping:YES]] forKey:@"hookups"];
-    }
-    
     [map setObject:[RestMutualFriend mappingWithKey:@"mutualFriendObjects" mapping:[RestMutualFriend mapping]] forKey:@"mutual_friend_objects"];
+    [map setObject:[RestImage mappingWithKey:@"images" mapping:[RestImage mapping]] forKey:@"images"];
     return map;
 }
 

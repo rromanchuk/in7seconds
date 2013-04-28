@@ -45,6 +45,7 @@
 @property (atomic, strong) NSSet *possibleHookups;
 @property (atomic, strong) NSSet *hookups;
 @property (atomic, strong) NSSet *mutualFriendObjects;
+@property (atomic, strong) NSSet *images;
 
 + (void)addPhoto:(NSMutableData *)photo
           onLoad:(void (^)(RestUser *restUser))onLoad
