@@ -166,7 +166,10 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     }
     
     if (user.birthday) {
-        [p setObject:user.birthday forKey:@"user[birthday]"];
+        NSDateFormatter *format = [[NSDateFormatter alloc] init];
+        [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+        NSString *dateString = [format stringFromDate:user.birthday];
+        [p setObject:dateString forKey:@"user[birthday]"];
     }
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"PUT"
                                                             path:[RESOURCE_PATH stringByAppendingString:@"/update_user.json"]

@@ -2,13 +2,14 @@
 //  Match.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/28/13.
+//  Created by Ryan Romanchuk on 4/29/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
 #import "Match.h"
 #import "Image.h"
 #import "MutualFriend.h"
+#import "Thread.h"
 #import "User.h"
 
 
@@ -37,8 +38,9 @@
 @dynamic vkGraduation;
 @dynamic vkToken;
 @dynamic vkUniversityName;
+@dynamic images;
 @dynamic mutualFriends;
 @dynamic user;
-@dynamic images;
+@dynamic thread;
 
 @end

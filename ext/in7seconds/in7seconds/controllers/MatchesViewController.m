@@ -18,6 +18,7 @@
 
 #import "RestMatch.h"
 #import "Match+REST.h"
+#import "Thread+REST.h"
 #import "AppDelegate.h"
 @interface MatchesViewController ()
 @property (strong, nonatomic) NoChatsView *noResultsFooterView;
@@ -95,7 +96,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    User *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Match *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
     MatchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
     cell.nameLabel.text = user.fullName;
     [cell.profileImage setProfilePhotoWithURL:user.photoUrl];
@@ -105,7 +106,11 @@
     UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];
     [cell.profileImage addGestureRecognizer:tg];
     cell.previewLabel.text = user.fullLocation;
-    cell.commentPreview.hidden = YES;
+    
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
+    NSArray *sortedMessages = [user.thread.messages sortedArrayUsingDescriptors:sortDescriptors];
+    PrivateMessage *message = [sortedMessages lastObject];
+    cell.commentPreview.text = message.message;
     return cell;
 }
 

@@ -2,14 +2,14 @@
 //  Match.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/28/13.
+//  Created by Ryan Romanchuk on 4/29/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Image, MutualFriend, User;
+@class Image, MutualFriend, Thread, User;
 
 @interface Match : NSManagedObject
 
@@ -36,21 +36,22 @@
 @property (nonatomic, retain) NSString * vkGraduation;
 @property (nonatomic, retain) NSString * vkToken;
 @property (nonatomic, retain) NSString * vkUniversityName;
+@property (nonatomic, retain) NSSet *images;
 @property (nonatomic, retain) NSSet *mutualFriends;
 @property (nonatomic, retain) User *user;
-@property (nonatomic, retain) NSSet *images;
+@property (nonatomic, retain) Thread *thread;
 @end
 
 @interface Match (CoreDataGeneratedAccessors)
-
-- (void)addMutualFriendsObject:(MutualFriend *)value;
-- (void)removeMutualFriendsObject:(MutualFriend *)value;
-- (void)addMutualFriends:(NSSet *)values;
-- (void)removeMutualFriends:(NSSet *)values;
 
 - (void)addImagesObject:(Image *)value;
 - (void)removeImagesObject:(Image *)value;
 - (void)addImages:(NSSet *)values;
 - (void)removeImages:(NSSet *)values;
+
+- (void)addMutualFriendsObject:(MutualFriend *)value;
+- (void)removeMutualFriendsObject:(MutualFriend *)value;
+- (void)addMutualFriends:(NSSet *)values;
+- (void)removeMutualFriends:(NSSet *)values;
 
 @end

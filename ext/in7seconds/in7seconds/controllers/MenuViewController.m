@@ -108,6 +108,7 @@
     ALog(@"set date");
     [self dismissSemiModalViewController:viewController];
     self.currentUser.birthday = viewController.datePicker.date;
+    [self.birthdayButton setTitle:[NSString stringWithFormat:@"%@ %@", self.currentUser.yearsOld, NSLocalizedString(@"лет", @"years old")] forState:UIControlStateNormal];
     [self update];
 }
 
@@ -156,17 +157,27 @@
 
 - (void)update {
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...") maskType:SVProgressHUDMaskTypeGradient];
-    [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
-        [SVProgressHUD dismiss];
-        self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
-        [self saveContext];
-        if (_filtersChanged) {
-            [self.delegate didChangeFilters];
-            _filtersChanged = NO;
-        }
-    } onError:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    [self.managedObjectContext performBlock:^{
+        [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
+            [SVProgressHUD dismiss];
+            self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+            
+            NSError *error;
+            [self.managedObjectContext save:&error];
+            
+            AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [sharedAppDelegate writeToDisk];
+
+            
+            if (_filtersChanged) {
+                [self.delegate didChangeFilters];
+                _filtersChanged = NO;
+            }
+        } onError:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        }];
     }];
+    
 }
 
 - (IBAction)genderChanged:(id)sender {
