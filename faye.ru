@@ -23,7 +23,7 @@ end
 Faye::Logging.log_level = :debug
 Faye.logger = lambda { |m| puts m }
 
-
+Faye::WebSocket.load_adapter 'thin'
 faye_server = Faye::RackAdapter.new(:mount => '/faye', :timeout => 45)
 faye_server.add_extension(ServerAuth.new)
 run faye_server

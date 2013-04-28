@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
     end
     
     @message.reload
-    broadcast("message", {test: "test"})
+    broadcast("messages", {test: "test"})
 
     if params[:lite_version]
       @hookup = hookup
