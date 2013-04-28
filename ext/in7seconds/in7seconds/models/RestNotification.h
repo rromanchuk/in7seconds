@@ -9,6 +9,10 @@
 #import "RestObject.h"
 
 @interface RestNotification : RestObject
+@property BOOL isRead;
+@property (strong, atomic) NSString *message;
+@property (strong, atomic) NSString *notificationType;
+@property (strong, atomic) NSDate *createdAt;
 
 + (NSDictionary *)mapping;
 

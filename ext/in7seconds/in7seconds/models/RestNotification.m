@@ -9,5 +9,14 @@
 #import "RestNotification.h"
 
 @implementation RestNotification
-
++ (NSDictionary *)mapping {
+    return @{@"id": @"externalId",
+             @"message": @"message",
+             @"notification_type": @"notificationType",
+             @"is_read": @"isRead",
+             @"created_at": [NSDate mappingWithKey:@"createdAt"
+                                  dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"]
+             };
+    
+}
 @end

@@ -7,7 +7,9 @@
 //
 
 #import "Notification.h"
-
+#import "RestNotification.h"
 @interface Notification (REST)
++ (Notification *)notificationWithRestNotification:(RestNotification *)restNotification
+       inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end
