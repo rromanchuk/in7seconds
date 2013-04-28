@@ -164,7 +164,7 @@ class User < ActiveRecord::Base
   end
 
   def birthday_simple
-    birthday.is_a?(Date) ? birthday.strftime('%Y-%m-%d') : ""
+    birthday.blank? ? "" : birthday.strftime('%Y-%m-%d') 
   end
 
   def country
