@@ -156,11 +156,6 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
                              };
     
     NSMutableDictionary *p = [params mutableCopy];
-    if (user.firstName && user.lastName) {
-        [p setObject:user.firstName forKey:@"user[first_name]"];
-        [p setObject:user.lastName forKey:@"user[last_name]"];
-    }
-    
     if (user.email) {
         [p setObject:user.email forKey:@"user[email]"];
     }
