@@ -71,11 +71,11 @@ BlockGame = Backbone.View.extend
     @log('game stopped')
 
   updateHookup: (liked = false)->
-    return if @destroyed
+    return if @destroyed or not user = @collection.at(@currentUser)
     type = if liked then 'like' else 'dislike'
 
     $.ajax(
-      url: app.api(type, id: @collection.at(@currentUser).get('id'))
+      url: app.api(type, id: user?.get('id'))
       type: 'POST'
       )
 
@@ -115,23 +115,18 @@ BlockGame = Backbone.View.extend
       @loadHookups()
 
   loadHookups: ->
-    data = {}
-    if (last = @collection.last())?
-      data['last_id'] = last.get('id')
-
     $.ajax(
       url: app.api('hookups')
-      data: data
       success: (resp)=>
         return if @destroyed
 
         # FU Ryan. Do something right for once!
-        hookups = for item in resp
-          item.birthday = item.birthday.split('T')[0]
-          item
+        # hookups = for item in resp
+        #   item.birthday = item.birthday.split('T')[0]
+        #   item
 
-        if hookups.length
-          @collection.add(hookups)
+        if resp.length
+          @collection.add(resp)
           @length = @collection.length
         else
           @fullyLoaded = true

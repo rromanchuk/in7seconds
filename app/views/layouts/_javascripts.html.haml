@@ -6,11 +6,11 @@
       host: '#{CONFIG[:host]}'
     },
     endpoints: {
-      profile: '/users/update_user',
-      hookups: '/users/hookups.json',
-      matches: '/users/matches.json',
-      like: '/users/:id/flirt',
-      dislike: '/users/:id/reject'
+      profile: '/api/v1/users/update_user',
+      hookups: '/api/v1/users/hookups.json',
+      matches: '/api/v1/users/matches.json',
+      like: '/api/v1/users/:id/flirt',
+      dislike: '/api/v1/users/:id/reject'
     },
     user: #{current_user_json},
     collections: {},

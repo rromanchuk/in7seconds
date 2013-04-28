@@ -32,11 +32,11 @@ PageMatches = Backbone.View.extend
         return if @destroyed
 
         # FU Ryan. Do something right for once!
-        data = for item in resp
-          item.birthday = item.birthday.split('T')[0]
-          item
+        # data = for item in resp
+        #   item.birthday = item.birthday.split('T')[0]
+        #   item
 
-        @collection.add(data)
+        @collection.add(resp)
 
         @renderMatches() if @collection.length
         @postRender()
