@@ -9,6 +9,8 @@
 #import "ECSlidingViewController.h"
 #import "User+REST.h"
 #import "ProfileImageView.h"
+#import "TDDatePickerController.h"
+
 typedef enum  {
     LookingForMen = 0,
     LookingForWomen = 1,
@@ -34,8 +36,11 @@ typedef enum  {
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *notificationEmailSwitch;
+@property (strong, nonatomic) TDDatePickerController *datePicker;
 @property (weak, nonatomic) IBOutlet UISwitch *notificationPushSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *birthdayButton;
 - (IBAction)notificationSettingsChanged:(id)sender;
+- (IBAction)didTapBirthday:(id)sender;
 
 - (IBAction)didTapLogout:(id)sender;
 - (IBAction)didTapWomen:(id)sender;

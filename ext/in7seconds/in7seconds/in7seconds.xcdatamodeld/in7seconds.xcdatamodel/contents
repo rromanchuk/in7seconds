@@ -60,7 +60,7 @@
         <attribute name="vkToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vkUniversityName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="match" inverseEntity="Image" syncable="YES"/>
-        <relationship name="mutualFriends" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="MutualFriend" inverseName="match" inverseEntity="MutualFriend" syncable="YES"/>
+        <relationship name="mutualFriends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MutualFriend" inverseName="match" inverseEntity="MutualFriend" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="matches" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="MutualFriend" representedClassName="MutualFriend" syncable="YES">

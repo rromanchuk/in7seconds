@@ -13,6 +13,8 @@
 #import "IndexViewController.h"
 #import "UIImage+Resize.h"
 #import "UAPushUI.h"
+
+
 @interface MenuViewController () {
     BOOL _filtersChanged;
 }
@@ -24,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.datePicker = [[TDDatePickerController alloc] initWithNibName:@"TDDatePickerController" bundle:nil];
     [self.logoutButton setTitle:NSLocalizedString(@"Выйти", @"logout button text") forState:UIControlStateNormal];
     
     [self.slidingViewController setAnchorRightRevealAmount:295.0f];
@@ -59,6 +62,12 @@
 - (void)setupProfile {
     ALog(@"setting up profile for %@", self.currentUser);
     [self.profileImage setProfilePhotoWithURL:self.currentUser.photoUrl];
+    if (self.currentUser.birthday && [self.currentUser.yearsOld integerValue] > 0) {
+        [self.birthdayButton setTitle:[NSString stringWithFormat:@"%@ %@", self.currentUser.yearsOld, NSLocalizedString(@"лет", @"years old")] forState:UIControlStateNormal];
+    } else {
+        [self.birthdayButton setTitle:[self.currentUser.yearsOld stringValue] forState:UIControlStateNormal];
+    }
+
     self.nameLabel.text = self.currentUser.fullName;
     self.emailTextField.text = self.currentUser.email;
     self.notificationEmailSwitch.on = [self.currentUser.emailOptIn boolValue];
@@ -85,6 +94,31 @@
     }
     [self saveContext];
     [self update];
+}
+
+- (IBAction)didTapBirthday:(id)sender {
+    
+    self.datePicker.delegate = self;
+    [self presentSemiModalViewController:self.datePicker];
+}
+
+
+-(void)datePickerSetDate:(TDDatePickerController*)viewController {
+    ALog(@"set date");
+    
+    [viewController dismissModalViewControllerAnimated:YES];
+}
+
+-(void)datePickerClearDate:(TDDatePickerController*)viewController {
+    ALog(@"clear date");
+
+    //[viewController dismissModalViewControllerAnimated:YES];
+
+}
+
+-(void)datePickerCancel:(TDDatePickerController*)viewController {
+    ALog(@"did cancel");
+    [self dismissSemiModalViewController:viewController];
 }
 
 - (IBAction)didTapLogout:(id)sender {
@@ -318,6 +352,8 @@
     [self setNameLabel:nil];
     [self setNotificationEmailSwitch:nil];
     [self setNotificationPushSwitch:nil];
+    [self setDatePicker:nil];
+    [self setBirthdayButton:nil];
     [super viewDidUnload];
 }
 @end
