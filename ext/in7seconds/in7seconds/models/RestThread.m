@@ -25,7 +25,7 @@
     
     RestClient *restClient = [RestClient sharedClient];
     NSDictionary *params = @{@"user_id": match.externalId};
-    NSString *path = [NSString stringWithFormat:@"users/%@/messages/thread.json", match.externalId];
+    NSString *path = [NSString stringWithFormat:@"api/v1/users/%@/messages/thread.json", match.externalId];
     
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"GET"
                                                                   path:path

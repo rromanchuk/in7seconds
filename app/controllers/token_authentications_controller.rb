@@ -1,5 +1,5 @@
 # encoding: utf-8
-# token_authentications_controller.rb
+# DEPRECATED
 class TokenAuthenticationsController < ApplicationController 
   skip_before_filter :verify_authenticity_token
   respond_to :json

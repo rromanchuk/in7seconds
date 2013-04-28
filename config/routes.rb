@@ -1,4 +1,6 @@
 In7seconds::Application.routes.draw do
+  
+  # DEPRECATED
   resources :token_authentications, :only => [:create, :destroy]
 
   devise_for :users,
@@ -11,6 +13,7 @@ In7seconds::Application.routes.draw do
     get '/signout'  => 'devise/sessions#destroy',  :as => :signout
   end
 
+  # DEPRECATED
   resources :relationships do
     collection do
       post :flirt
@@ -19,7 +22,9 @@ In7seconds::Application.routes.draw do
   end
 
   match '/users/unsubscribe/:signature' => 'users#unsubscribe', as: 'unsubscribe'
-  resources :images
+  
+
+  # DEPRECATED
   resources :users do
     resources :messages do
       collection do
@@ -38,6 +43,40 @@ In7seconds::Application.routes.draw do
       get :feed
       get :hookups
       get :matches
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :token_authentications, :only => [:create, :destroy]
+      resources :images
+      resources :relationships do
+        collection do
+          post :flirt
+          post :reject
+        end
+      end
+
+      resources :users do
+        resources :messages do
+          collection do
+            get :thread
+          end
+        end
+        member do
+          post :flirt
+          post :reject
+        end
+
+        collection do
+          get :me
+          get :authenticated_user
+          put :update_user
+          get :feed
+          get :hookups
+          get :matches
+        end
+      end
     end
   end
 

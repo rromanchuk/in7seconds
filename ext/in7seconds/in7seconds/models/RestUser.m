@@ -10,9 +10,9 @@
 #import "Location.h"
 #import "RestMutualFriend.h"
 #import "RestImage.h"
-static NSString *AUTH_PATH = @"token_authentications.json";
-static NSString *RESOURCE_PATH = @"users";
-static NSString *RELATIONSHIP_PATH = @"relationships";
+static NSString *AUTH_PATH = @"api/v1/token_authentications.json";
+static NSString *RESOURCE_PATH = @"api/v1/users";
+static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
 
 @implementation RestUser
 

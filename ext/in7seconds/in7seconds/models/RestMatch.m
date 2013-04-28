@@ -10,7 +10,7 @@
 #import "RestMutualFriend.h"
 #import "RestImage.h"
 
-static NSString *RESOURCE_PATH = @"users";
+static NSString *RESOURCE_PATH = @"api/v1/users";
 
 
 @implementation RestMatch

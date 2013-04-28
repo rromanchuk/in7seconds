@@ -189,7 +189,6 @@
 #pragma mark UIImagePickerControllerDelegate methods
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [self.slidingViewController dismissModalViewControllerAnimated:NO];
-    [self.slidingViewController S];
     //self.slidingViewController
 }
 

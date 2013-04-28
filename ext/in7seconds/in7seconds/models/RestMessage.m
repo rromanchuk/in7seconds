@@ -27,7 +27,7 @@
     
     RestClient *restClient = [RestClient sharedClient];
     NSDictionary *params = @{@"message[message]": message, @"lite_version": @"true"};
-    NSString *path = [NSString stringWithFormat:@"users/%@/messages.json", user.externalId];
+    NSString *path = [NSString stringWithFormat:@"api/v1/users/%@/messages.json", user.externalId];
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"POST"
                                                                   path:path
                                                             parameters:params];
