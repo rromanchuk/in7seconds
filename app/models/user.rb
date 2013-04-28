@@ -373,7 +373,7 @@ class User < ActiveRecord::Base
     user
   end
 
-  def self.find_or_create_for_facebook_oauth(facebook_user, signed_in_resource=nil)
+  def self.find_or_create_for_facebook_oauth(facebook_user)
     logger.debug facebook_user.to_yaml
     if user = User.where(:fbuid => facebook_user.identifier).first
       user.update_user_from_fb_graph(facebook_user)

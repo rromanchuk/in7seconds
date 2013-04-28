@@ -118,19 +118,25 @@
     [[Location sharedLocation] updateUntilDesiredOrTimeout:15.0];
     
     if (self.currentUser) {
-        [RestUser reload:^(RestUser *restUser) {
-            NSString *alias = [NSString stringWithFormat:@"%d", restUser.externalId];
-            [[UAPush shared] setAlias:alias];
-            [[UAPush shared] updateRegistration];
-            [self.managedObjectContext performBlock:^{
+        [self.managedObjectContext performBlock:^{
+            [RestUser reload:^(RestUser *restUser) {
+                NSString *alias = [NSString stringWithFormat:@"%d", restUser.externalId];
+                [[UAPush shared] setAlias:alias];
+                [[UAPush shared] updateRegistration];
                 self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
-                [self saveContext];
+                
+                NSError *error;
+                [self.managedObjectContext save:&error];
+            
+                [self writeToDisk];
+
+            } onError:^(NSError *error) {
+                [SVProgressHUD showErrorWithStatus:error.localizedDescription];
             }];
-        } onError:^(NSError *error) {
-            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+
         }];
+        
     }
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -309,10 +315,12 @@
     
     //[[ThreadedUpdates shared] loadPlacesPassivelyWithCurrentLocation];
     //    [Flurry logEvent:@"DID_GET_DESIRED_LOCATION_ACCURACY_APP_LAUNCH"];
-    [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
-        
-    } onError:^(NSError *error) {
-        
+    [self.managedObjectContext performBlock:^{
+        [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
+            
+        } onError:^(NSError *error) {
+            
+        }];
     }];
 }
 

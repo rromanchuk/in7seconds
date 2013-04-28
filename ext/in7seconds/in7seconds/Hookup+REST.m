@@ -70,7 +70,7 @@
     self.mutualFriendNames = restHookup.mutualFriendNames;
     self.mutualGroupNames = restHookup.mutualGroupNames;
     
-    NSMutableSet *mutualFriends;
+    NSMutableSet *mutualFriends = [[NSMutableSet alloc] init];
     for (RestMutualFriend *restMutaulFriend in restHookup.mutualFriendObjects) {
         MutualFriend *mutualFriend = [MutualFriend mutualFriendWithRestMutualFriend:restMutaulFriend inManagedObjectContext:self.managedObjectContext];
         [mutualFriends addObject:mutualFriend];

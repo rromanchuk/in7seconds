@@ -461,23 +461,29 @@
 
 
 - (void)fetchResults {
-    [RestThread loadThreadWithUser:self.otherUser onLoad:^(RestThread *restThread) {
-        ALog(@"rest thread %@", restThread);
-        //if
-        [self.managedObjectContext performBlock:^{
+    [self.managedObjectContext performBlock:^{
+        [RestThread loadThreadWithUser:self.otherUser onLoad:^(RestThread *restThread) {
+            ALog(@"rest thread %@", restThread);
             self.thread = [Thread threadWithRestThread:restThread inManagedObjectContext:self.managedObjectContext];
             [self.currentUser addThreadsObject:self.thread];
-            [self saveContext];
+            NSError *error;
+            [self.managedObjectContext save:&error];
+            
+            AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [sharedAppDelegate writeToDisk];
+            
             [self setupFetchedResultsController];
             [self checkNoResults];
+                        
+            ALog(@"thread %@", restThread);
+            
+        } onError:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
         }];
-        
-        ALog(@"thread %@", restThread);
-        
-    } onError:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+
     }];
-}
+    
+    }
 
 - (IBAction)didTapProfilePhoto:(id)sender {
     NSInteger row = ((UIImageView *)sender).tag;

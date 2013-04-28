@@ -249,22 +249,28 @@
 - (void)fetchPossibleHookups {
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...") maskType:SVProgressHUDMaskTypeGradient];
     _numberOfAttempts++;
-    
-    [RestHookup load:^(NSMutableArray *possibleHookups) {
-        NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
-        for (RestHookup *restHookup in possibleHookups) {
-            ALog(@"adding resthookup %@", restHookup);
-            [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
-        }
-        [self.currentUser addHookups:_restHookups];
-        ALog(@"hookups are%@", self.currentUser.hookups);
-        [self saveContext];
-        [self setupNextHookup];
-        [SVProgressHUD dismiss];
-    } onError:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    [self.managedObjectContext performBlock:^{
+        [RestHookup load:^(NSMutableArray *possibleHookups) {
+            NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
+            for (RestHookup *restHookup in possibleHookups) {
+                ALog(@"adding resthookup %@", restHookup);
+                [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
+            }
+            
+            [self.currentUser addHookups:_restHookups];
+            NSError *error;
+            [self.managedObjectContext save:&error];
+            
+            AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [sharedAppDelegate writeToDisk];
+
+            [self setupNextHookup];
+            [SVProgressHUD dismiss];
+        } onError:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        }];
+
     }];
-    
 }
 
 

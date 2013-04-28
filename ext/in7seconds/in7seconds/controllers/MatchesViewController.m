@@ -117,18 +117,26 @@
 
 
 - (void)fetchResults {
-    [RestMatch load:^(NSMutableArray *matches) {
-        [self.managedObjectContext performBlock:^{
+    [self.managedObjectContext performBlock:^{
+        [RestMatch load:^(NSMutableArray *matches) {
+            
             NSMutableSet *_restMatches = [[NSMutableSet alloc] init];
             for (RestMatch *restMatch in matches) {
                 [_restMatches addObject:[Match matchWithRestMatch:restMatch inManagedObjectContext:self.managedObjectContext]];
             }
             [self.currentUser addHookups:_restMatches];
-            [self saveContext];
+            
+            NSError *error;
+            [self.managedObjectContext save:&error];
+            
+            AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [sharedAppDelegate writeToDisk];
+            
             [self checkNoResults];
+            
+        } onError:^(NSError *error) {
+            
         }];
-    } onError:^(NSError *error) {
-        
     }];
 }
 
