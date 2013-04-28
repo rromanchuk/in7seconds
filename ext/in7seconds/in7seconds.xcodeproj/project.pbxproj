@@ -45,22 +45,6 @@
 		94A980B116EB7A620036E52C /* enter-textfield-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A980AF16EB7A620036E52C /* enter-textfield-bg.png */; };
 		94A980B216EB7A620036E52C /* enter-textfield-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A980B016EB7A620036E52C /* enter-textfield-bg@2x.png */; };
 		94A980B516ECB4060036E52C /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A980B416ECB4040036E52C /* UserProfileViewController.m */; };
-		94BFC5F8172D190300A3625B /* bottom-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5E8172D190300A3625B /* bottom-detail.png */; };
-		94BFC5F9172D190300A3625B /* bottom-detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5E9172D190300A3625B /* bottom-detail@2x.png */; };
-		94BFC5FA172D190300A3625B /* middle-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5EA172D190300A3625B /* middle-detail.png */; };
-		94BFC5FB172D190300A3625B /* middle-detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5EB172D190300A3625B /* middle-detail@2x.png */; };
-		94BFC5FC172D190300A3625B /* top-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5EC172D190300A3625B /* top-detail.png */; };
-		94BFC5FD172D190300A3625B /* top-detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5ED172D190300A3625B /* top-detail@2x.png */; };
-		94BFC5FE172D190300A3625B /* UALocationSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5EE172D190300A3625B /* UALocationSettingsViewController.xib */; };
-		94BFC5FF172D190300A3625B /* UAMapPresentationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5EF172D190300A3625B /* UAMapPresentationViewController.xib */; };
-		94BFC600172D190300A3625B /* UAPushLocalization.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5F0172D190300A3625B /* UAPushLocalization.bundle */; };
-		94BFC601172D190300A3625B /* UAPushMoreSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5F1172D190300A3625B /* UAPushMoreSettingsView.xib */; };
-		94BFC602172D190300A3625B /* UAPushSettingsAddTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5F2172D190300A3625B /* UAPushSettingsAddTagViewController.xib */; };
-		94BFC603172D190300A3625B /* UAPushSettingsAliasView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5F3172D190300A3625B /* UAPushSettingsAliasView.xib */; };
-		94BFC604172D190300A3625B /* UAPushSettingsSoundsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5F4172D190300A3625B /* UAPushSettingsSoundsViewController.xib */; };
-		94BFC605172D190300A3625B /* UAPushSettingsTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5F5172D190300A3625B /* UAPushSettingsTagsViewController.xib */; };
-		94BFC606172D190300A3625B /* UAPushSettingsTokenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5F6172D190300A3625B /* UAPushSettingsTokenView.xib */; };
-		94BFC607172D190300A3625B /* UAPushSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BFC5F7172D190300A3625B /* UAPushSettingsView.xib */; };
 		94BFC622172D24D600A3625B /* RestImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BFC621172D24D600A3625B /* RestImage.m */; };
 		94BFC625172D25C500A3625B /* Image+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BFC624172D25C500A3625B /* Image+REST.m */; };
 		94BFC628172D272D00A3625B /* Hookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BFC627172D272C00A3625B /* Hookup.m */; };
@@ -238,22 +222,6 @@
 		94A980B016EB7A620036E52C /* enter-textfield-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enter-textfield-bg@2x.png"; sourceTree = "<group>"; };
 		94A980B316ECB4030036E52C /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = controllers/UserProfileViewController.h; sourceTree = "<group>"; };
 		94A980B416ECB4040036E52C /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = controllers/UserProfileViewController.m; sourceTree = "<group>"; };
-		94BFC5E8172D190300A3625B /* bottom-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom-detail.png"; sourceTree = "<group>"; };
-		94BFC5E9172D190300A3625B /* bottom-detail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom-detail@2x.png"; sourceTree = "<group>"; };
-		94BFC5EA172D190300A3625B /* middle-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "middle-detail.png"; sourceTree = "<group>"; };
-		94BFC5EB172D190300A3625B /* middle-detail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "middle-detail@2x.png"; sourceTree = "<group>"; };
-		94BFC5EC172D190300A3625B /* top-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top-detail.png"; sourceTree = "<group>"; };
-		94BFC5ED172D190300A3625B /* top-detail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top-detail@2x.png"; sourceTree = "<group>"; };
-		94BFC5EE172D190300A3625B /* UALocationSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UALocationSettingsViewController.xib; sourceTree = "<group>"; };
-		94BFC5EF172D190300A3625B /* UAMapPresentationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAMapPresentationViewController.xib; sourceTree = "<group>"; };
-		94BFC5F0172D190300A3625B /* UAPushLocalization.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UAPushLocalization.bundle; sourceTree = "<group>"; };
-		94BFC5F1172D190300A3625B /* UAPushMoreSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAPushMoreSettingsView.xib; sourceTree = "<group>"; };
-		94BFC5F2172D190300A3625B /* UAPushSettingsAddTagViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAPushSettingsAddTagViewController.xib; sourceTree = "<group>"; };
-		94BFC5F3172D190300A3625B /* UAPushSettingsAliasView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAPushSettingsAliasView.xib; sourceTree = "<group>"; };
-		94BFC5F4172D190300A3625B /* UAPushSettingsSoundsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAPushSettingsSoundsViewController.xib; sourceTree = "<group>"; };
-		94BFC5F5172D190300A3625B /* UAPushSettingsTagsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAPushSettingsTagsViewController.xib; sourceTree = "<group>"; };
-		94BFC5F6172D190300A3625B /* UAPushSettingsTokenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAPushSettingsTokenView.xib; sourceTree = "<group>"; };
-		94BFC5F7172D190300A3625B /* UAPushSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAPushSettingsView.xib; sourceTree = "<group>"; };
 		94BFC620172D24D600A3625B /* RestImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestImage.h; sourceTree = "<group>"; };
 		94BFC621172D24D600A3625B /* RestImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestImage.m; sourceTree = "<group>"; };
 		94BFC623172D25C500A3625B /* Image+REST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Image+REST.h"; sourceTree = "<group>"; };
@@ -496,45 +464,6 @@
 			name = Base;
 			sourceTree = "<group>";
 		};
-		94BFC5E5172D18E600A3625B /* AirshipResources */ = {
-			isa = PBXGroup;
-			children = (
-				94BFC5E6172D190300A3625B /* Resources */,
-			);
-			name = AirshipResources;
-			sourceTree = "<group>";
-		};
-		94BFC5E6172D190300A3625B /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				94BFC5E7172D190300A3625B /* Shared */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		94BFC5E7172D190300A3625B /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				94BFC5E8172D190300A3625B /* bottom-detail.png */,
-				94BFC5E9172D190300A3625B /* bottom-detail@2x.png */,
-				94BFC5EA172D190300A3625B /* middle-detail.png */,
-				94BFC5EB172D190300A3625B /* middle-detail@2x.png */,
-				94BFC5EC172D190300A3625B /* top-detail.png */,
-				94BFC5ED172D190300A3625B /* top-detail@2x.png */,
-				94BFC5EE172D190300A3625B /* UALocationSettingsViewController.xib */,
-				94BFC5EF172D190300A3625B /* UAMapPresentationViewController.xib */,
-				94BFC5F0172D190300A3625B /* UAPushLocalization.bundle */,
-				94BFC5F1172D190300A3625B /* UAPushMoreSettingsView.xib */,
-				94BFC5F2172D190300A3625B /* UAPushSettingsAddTagViewController.xib */,
-				94BFC5F3172D190300A3625B /* UAPushSettingsAliasView.xib */,
-				94BFC5F4172D190300A3625B /* UAPushSettingsSoundsViewController.xib */,
-				94BFC5F5172D190300A3625B /* UAPushSettingsTagsViewController.xib */,
-				94BFC5F6172D190300A3625B /* UAPushSettingsTokenView.xib */,
-				94BFC5F7172D190300A3625B /* UAPushSettingsView.xib */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
 		94D09CC316CBEA4B0064F886 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,7 +519,6 @@
 		FA70025316CAECB20098A5B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				94BFC5E5172D18E600A3625B /* AirshipResources */,
 				94D09CCD16CBF0CC0064F886 /* CoreData.framework */,
 				FA70025416CAECB20098A5B7 /* UIKit.framework */,
 				FA70025616CAECB20098A5B7 /* Foundation.framework */,
@@ -1009,22 +937,6 @@
 				94FF9491172BDF3700563C1A /* facebook-login@2x.png in Resources */,
 				94FF9492172BDF3700563C1A /* vkontakte-login.png in Resources */,
 				94FF9493172BDF3700563C1A /* vkontakte-login@2x.png in Resources */,
-				94BFC5F8172D190300A3625B /* bottom-detail.png in Resources */,
-				94BFC5F9172D190300A3625B /* bottom-detail@2x.png in Resources */,
-				94BFC5FA172D190300A3625B /* middle-detail.png in Resources */,
-				94BFC5FB172D190300A3625B /* middle-detail@2x.png in Resources */,
-				94BFC5FC172D190300A3625B /* top-detail.png in Resources */,
-				94BFC5FD172D190300A3625B /* top-detail@2x.png in Resources */,
-				94BFC5FE172D190300A3625B /* UALocationSettingsViewController.xib in Resources */,
-				94BFC5FF172D190300A3625B /* UAMapPresentationViewController.xib in Resources */,
-				94BFC600172D190300A3625B /* UAPushLocalization.bundle in Resources */,
-				94BFC601172D190300A3625B /* UAPushMoreSettingsView.xib in Resources */,
-				94BFC602172D190300A3625B /* UAPushSettingsAddTagViewController.xib in Resources */,
-				94BFC603172D190300A3625B /* UAPushSettingsAliasView.xib in Resources */,
-				94BFC604172D190300A3625B /* UAPushSettingsSoundsViewController.xib in Resources */,
-				94BFC605172D190300A3625B /* UAPushSettingsTagsViewController.xib in Resources */,
-				94BFC606172D190300A3625B /* UAPushSettingsTokenView.xib in Resources */,
-				94BFC607172D190300A3625B /* UAPushSettingsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

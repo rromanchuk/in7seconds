@@ -11,6 +11,7 @@
 #import "IndexViewController.h"
 #import "RestHookup.h"
 #import "Hookup+REST.h"
+#import "Location.h"
 @interface InitialViewController ()
 
 @end
@@ -32,7 +33,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout)
                                                  name:@"UserNotAuthorized" object:nil];
 
-    [self setup];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -61,7 +61,9 @@
     nc.managedObjectContext = self.managedObjectContext;
     ((IndexViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
     ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
+    ((MenuViewController *)nc.slidingViewController.underLeftViewController).delegate = self;
     
+    //((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
 }
 
 #pragma mark LoginDelegate methods
@@ -70,7 +72,49 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)didFbLogin:(User *)user {
+    self.currentUser = user;
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissModalViewControllerAnimated:YES];
+}
 
+#pragma mark - LogoutDelegate delegate methods
+- (void) didLogout
+{
+    ALog(@"in logout");
+    [[Location sharedLocation] stopUpdatingLocation:@"logout"];
+    [[[RestClient sharedClient] operationQueue] cancelAllOperations];
+    [RestUser resetIdentifiers];
+    [[Vkontakte sharedInstance] logout];
+    
+    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [sharedAppDelegate resetWindowToInitialView];
+}
+
+- (void)didChangeFilters {
+    ALog(@"in change filters");
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    sharedAppDelegate.currentUser = self.currentUser;
+    [self.currentUser removeHookups:self.currentUser.hookups];
+    NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
+    ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
+    [self saveContext];
+    
+    [RestHookup load:^(NSMutableArray *possibleHookups) {
+        NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
+        for (RestHookup *restHookup in possibleHookups) {
+            [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
+        }
+        [self.currentUser addHookups:_restHookups];
+        [self saveContext];
+        NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
+        ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
+    } onError:^(NSError *error) {
+        
+    }];
+}
 
 - (void)saveContext
 {

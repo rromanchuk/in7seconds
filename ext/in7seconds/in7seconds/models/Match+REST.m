@@ -23,19 +23,19 @@
     ALog(@"");
 
     NSError *error = nil;
-    NSArray *hookups = [context executeFetchRequest:request error:&error];
+    NSArray *matches = [context executeFetchRequest:request error:&error];
     //ALog(@"looking for user with externalId %d got %@ from restUser %@ with context %@", restUser.externalId, users, restUser, context);
-    if (hookups && ([hookups count] > 1)) {
+    if (matches && ([matches count] > 1)) {
         // handle error
         ALog(@"not returning a user");
-    } else if (![hookups count]) {
+    } else if (![matches count]) {
         match = [NSEntityDescription insertNewObjectForEntityForName:@"Match"
                                                inManagedObjectContext:context];
         
         [match setManagedObjectWithIntermediateObject:restMatch];
         
     } else {
-        match = [hookups lastObject];
+        match = [matches lastObject];
         [match setManagedObjectWithIntermediateObject:restMatch];
     }
     

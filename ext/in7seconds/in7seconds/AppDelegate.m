@@ -72,6 +72,8 @@
     
     
     [Location sharedLocation].delegate = self;
+    self.initalStoryboard = self.window.rootViewController.storyboard;
+    
     InitialViewController *vc = (InitialViewController *)self.window.rootViewController;
     vc.managedObjectContext = self.managedObjectContext;
     self.currentUser = [User currentUser:self.managedObjectContext];
@@ -346,6 +348,23 @@
 {
     ALog(@"sourceApplication  is %@ url %@, %@annotation", sourceApplication, url, annotation);
     return [FBSession.activeSession handleOpenURL:url];
+}
+
+
+- (void)resetWindowToInitialView
+{
+    for (UIView* view in self.window.subviews)
+    {
+        [view removeFromSuperview];
+    }
+    
+    UIViewController *initialScene = [_initalStoryboard instantiateInitialViewController];
+    self.window.rootViewController = initialScene;
+    
+    InitialViewController *vc = (InitialViewController *)self.window.rootViewController;
+    vc.managedObjectContext = self.managedObjectContext;
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    vc.currentUser = self.currentUser;
 }
 
 @end

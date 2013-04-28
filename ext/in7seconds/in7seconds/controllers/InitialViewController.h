@@ -11,7 +11,7 @@
 #import "LoginViewController.h"
 #import "MenuViewController.h"
 
-@interface InitialViewController : ECSlidingViewController <LoginDelegate>
+@interface InitialViewController : ECSlidingViewController <LoginDelegate, LogoutDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
 @end
