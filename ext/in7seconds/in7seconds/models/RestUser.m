@@ -164,6 +164,10 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     if (user.email) {
         [p setObject:user.email forKey:@"user[email]"];
     }
+    
+    if (user.birthday) {
+        [p setObject:user.birthday forKey:@"user[birthday]"];
+    }
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"PUT"
                                                             path:[RESOURCE_PATH stringByAppendingString:@"/update_user.json"]
                                                       parameters:p];

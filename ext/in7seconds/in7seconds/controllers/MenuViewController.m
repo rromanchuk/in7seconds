@@ -65,7 +65,7 @@
     if (self.currentUser.birthday && [self.currentUser.yearsOld integerValue] > 0) {
         [self.birthdayButton setTitle:[NSString stringWithFormat:@"%@ %@", self.currentUser.yearsOld, NSLocalizedString(@"лет", @"years old")] forState:UIControlStateNormal];
     } else {
-        [self.birthdayButton setTitle:[self.currentUser.yearsOld stringValue] forState:UIControlStateNormal];
+        [self.birthdayButton setTitle:@"Выставите свой возраст в настройках" forState:UIControlStateNormal];
     }
 
     self.nameLabel.text = self.currentUser.fullName;
@@ -103,20 +103,21 @@
 }
 
 
--(void)datePickerSetDate:(TDDatePickerController*)viewController {
+- (void)datePickerSetDate:(TDDatePickerController*)viewController {
     ALog(@"set date");
-    
-    [viewController dismissModalViewControllerAnimated:YES];
+    [self dismissSemiModalViewController:viewController];
+    self.currentUser.birthday = viewController.datePicker.date;
+    [self update];
 }
 
--(void)datePickerClearDate:(TDDatePickerController*)viewController {
+- (void)datePickerClearDate:(TDDatePickerController*)viewController {
     ALog(@"clear date");
-
+    viewController.datePicker.date = self.currentUser.birthday;
     //[viewController dismissModalViewControllerAnimated:YES];
 
 }
 
--(void)datePickerCancel:(TDDatePickerController*)viewController {
+- (void)datePickerCancel:(TDDatePickerController*)viewController {
     ALog(@"did cancel");
     [self dismissSemiModalViewController:viewController];
 }
