@@ -18,6 +18,8 @@ typedef enum  {
     } LookingForTypes;
 
 @protocol LogoutDelegate;
+@protocol UserSettingsDelegate;
+
 @interface MenuViewController : UIViewController <UITableViewDataSource, UITabBarControllerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
@@ -30,6 +32,8 @@ typedef enum  {
 @property (weak, nonatomic) IBOutlet UIButton *lookingForWomen;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (weak, nonatomic) id <LogoutDelegate> delegate;
+@property (weak, nonatomic) id <UserSettingsDelegate> settingsDelegate;
+
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet ProfileImageView *profileImage;
@@ -54,6 +58,12 @@ typedef enum  {
 
 @required
 - (void)didLogout;
+
+@end
+
+@protocol UserSettingsDelegate <NSObject>
+
+@required
 - (void)didChangeFilters;
 
 @end

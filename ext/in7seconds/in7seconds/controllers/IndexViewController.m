@@ -30,18 +30,18 @@
 {
     [super viewDidLoad];
     [self noResultsLeft];
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(revealMenu:)];
     
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(revealMenu:)];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chat_icon"] target:self action:@selector(didTapMatches:)];
     
 
     self.userImageView.delegate = self;
     _numberOfAttempts = 0;
-   	// Do any additional setup after loading the view.
         
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(topDidAppear) name:@"ECSlidingViewTopDidReset" object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftViewWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
+    
+    ((MenuViewController *)self.slidingViewController.underLeftViewController).settingsDelegate = self;
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation-logo"]];
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -351,6 +351,36 @@
     if (flipNumberView.value == 0) {
         [self didTapUnlike:self];
     }
+    
+}
+
+#pragma mark - UserSettingsDelegate
+- (void)didChangeFilters {
+    ALog(@"in change filters");
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    sharedAppDelegate.currentUser = self.currentUser;
+    [self.currentUser removeHookups:self.currentUser.hookups];
+    
+    [self.managedObjectContext performBlock:^{
+        [RestHookup load:^(NSMutableArray *possibleHookups) {
+            NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
+            for (RestHookup *restHookup in possibleHookups) {
+                [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
+            }
+            [self.currentUser addHookups:_restHookups];
+            
+            NSError *error;
+            [self.managedObjectContext save:&error];
+            
+            [sharedAppDelegate writeToDisk];
+            
+        } onError:^(NSError *error) {
+            
+        }];
+
+    }];
+    
     
 }
 

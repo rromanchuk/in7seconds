@@ -63,7 +63,6 @@
     ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
     ((MenuViewController *)nc.slidingViewController.underLeftViewController).delegate = self;
     
-    //((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
 }
 
 #pragma mark LoginDelegate methods
@@ -90,30 +89,6 @@
     [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [sharedAppDelegate resetWindowToInitialView];
-}
-
-- (void)didChangeFilters {
-    ALog(@"in change filters");
-    self.currentUser = [User currentUser:self.managedObjectContext];
-    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    sharedAppDelegate.currentUser = self.currentUser;
-    [self.currentUser removeHookups:self.currentUser.hookups];
-    NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
-    ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
-    [self saveContext];
-    
-    [RestHookup load:^(NSMutableArray *possibleHookups) {
-        NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
-        for (RestHookup *restHookup in possibleHookups) {
-            [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
-        }
-        [self.currentUser addHookups:_restHookups];
-        [self saveContext];
-        NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
-        ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
-    } onError:^(NSError *error) {
-        
-    }];
 }
 
 - (void)saveContext

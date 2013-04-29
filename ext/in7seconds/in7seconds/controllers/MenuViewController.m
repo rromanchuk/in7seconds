@@ -154,7 +154,6 @@
     }    
 }
 
-
 - (void)update {
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...") maskType:SVProgressHUDMaskTypeGradient];
     [self.managedObjectContext performBlock:^{
@@ -167,10 +166,10 @@
             
             AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             [sharedAppDelegate writeToDisk];
-
             
             if (_filtersChanged) {
-                [self.delegate didChangeFilters];
+                ALog(@"filters changed with delegate %@", self.settingsDelegate);
+                [self.settingsDelegate didChangeFilters];
                 _filtersChanged = NO;
             }
         } onError:^(NSError *error) {
@@ -211,7 +210,6 @@
     [self update];
     return YES;
 }
-
 
 - (void)setupSegmentControl {
     //[self.genderSegmentControl setFrame:CGRectMake(self.genderSegmentControl.frame.origin.x, self.genderSegmentControl.frame.origin.y, 249, 44)];
