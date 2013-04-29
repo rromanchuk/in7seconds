@@ -50,6 +50,7 @@ In7seconds::Application.routes.draw do
     namespace :v1 do
       resources :token_authentications, :only => [:create, :destroy]
       resources :images
+      resources :notifications
       resources :relationships do
         collection do
           post :flirt

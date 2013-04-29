@@ -19,4 +19,48 @@
              };
     
 }
+
++ (void)reload:(void (^)(NSArray *notifications))onLoad
+       onError:(void (^)(NSError *error))onError {
+    
+    RestClient *restClient = [RestClient sharedClient];
+    NSString *path = @"api/v1/notifications.json";
+    
+    NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"GET"
+                                                                  path:path
+                                                            parameters:nil];
+    ALog(@"load notifications: %@", request);
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            ALog(@"JSON: %@", JSON);
+                                                                                            
+                                                                                            
+                                                                                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                                                                                NSMutableArray *restNotifications = [[NSMutableArray alloc] init];
+                                                                                                for (id _restNotification in JSON) {
+                                                                                                    RestNotification *restNotification = [RestNotification objectFromJSONObject:_restNotification mapping:[RestNotification mapping]];
+                                                                                                    [restNotifications addObject:restNotification];
+                                                                                                }
+                                                                                                
+                                                                                                
+                                                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                                                    if (onLoad)
+                                                                                                        onLoad(restNotifications);
+                                                                                                });
+                                                                                                
+                                                                                            });
+                                                                                            
+                                                                                            
+                                                                                        }
+                                                                                        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            NSError *customError = [RestObject customError:error withServerResponse:response andJson:JSON];
+                                                                                            if (onError)
+                                                                                                onError(customError);
+                                                                                        }];
+    [[UIApplication sharedApplication] showNetworkActivityIndicator];
+    [operation start];
+}
 @end

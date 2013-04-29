@@ -11,6 +11,7 @@
 #import "MatchesViewController.h"
 #import "CommentViewController.h"
 #import "UserProfileViewController.h"
+#import "NotificationsViewController.h"
 #import "RestHookup.h"
 #import "Hookup+REST.h"
 #import "Match+REST.h"
@@ -43,7 +44,14 @@
     
     ((MenuViewController *)self.slidingViewController.underLeftViewController).settingsDelegate = self;
     
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation-logo"]];
+    UIImage *notificationsImage = [UIImage imageNamed:@"navigation-logo"];
+    UIButton *notificationButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [notificationButton addTarget:self action:@selector(didSelectNotifications:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [notificationButton setBackgroundImage:notificationsImage forState:UIControlStateNormal];
+    [notificationButton setFrame:CGRectMake(0, 0, 125, 27)];
+
+    self.navigationItem.titleView = notificationButton;
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     sharedAppDelegate.delegate = self;
     
@@ -123,6 +131,10 @@
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
         vc.otherUser = self.otherUser;
+    } else if ([segue.identifier isEqualToString:@"Notifications"]) {
+        NotificationsViewController *vc = (NotificationsViewController *)segue.destinationViewController;
+        vc.managedObjectContext = self.managedObjectContext;
+        vc.currentUser = self.currentUser;
     }
 }
 
@@ -382,6 +394,10 @@
     }];
     
     
+}
+#pragma mark - user events
+- (IBAction)didSelectNotifications:(id)sender {
+    [self performSegueWithIdentifier:@"Notifications" sender:self];
 }
 
 @end

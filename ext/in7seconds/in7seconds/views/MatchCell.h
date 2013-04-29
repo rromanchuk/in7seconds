@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet ProfileImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *previewLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentPreview;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end

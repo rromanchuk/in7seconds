@@ -7,6 +7,10 @@
 //
 
 #import "NotificationsViewController.h"
+#import "BaseUIView.h"
+#import "RestNotification.h"
+#import "Notification+REST.h"
+#import "AppDelegate.h"
 
 @interface NotificationsViewController ()
 
@@ -14,19 +18,13 @@
 
 @implementation NotificationsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
+    self.tableView.backgroundView = [[BaseUIView alloc] init];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,27 +45,33 @@
 //                                                                                   cacheName:nil];
 //}
 //
-//- (void)fetchResults:(id)refreshControl {
-//    [self.managedObjectContext performBlock:^{
-//        [RestNotification load:^(NSSet *notificationItems) {
-//            for (RestNotification *restNotification in notificationItems) {
-//                Notification *notification = [Notification notificatonWithRestNotification:restNotification inManagedObjectContext:self.managedObjectContext];
-//                [self.currentUser addNotificationsObject:notification];
-//                
-//            }
-//            NSError *error;
-//            [self.managedObjectContext save:&error];
-//            [refreshControl endRefreshing];
-//            AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//            [sharedAppDelegate writeToDisk];
-//            [self.tableView reloadData];
-//            
-//        } onError:^(NSError *error) {
-//            DLog(@"Problem loading notifications %@", error);
-//            [refreshControl endRefreshing];
-//        }];
-//        
-//    }];
-//}
+- (void)fetchResults:(id)refreshControl {
+    [self.managedObjectContext performBlock:^{
+        [RestNotification load:^(NSSet *notificationItems) {
+            for (RestNotification *restNotification in notificationItems) {
+                Notification *notification = [Notification notificatonWithRestNotification:restNotification inManagedObjectContext:self.managedObjectContext];
+                [self.currentUser addNotificationsObject:notification];
+                
+            }
+            NSError *error;
+            [self.managedObjectContext save:&error];
+            [refreshControl endRefreshing];
+            AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [sharedAppDelegate writeToDisk];
+            [self.tableView reloadData];
+            
+        } onError:^(NSError *error) {
+            DLog(@"Problem loading notifications %@", error);
+            [refreshControl endRefreshing];
+        }];
+        
+    }];
+}
+
+- (void)back {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 
 @end

@@ -20,7 +20,10 @@
 #import "Match+REST.h"
 #import "Thread+REST.h"
 #import "AppDelegate.h"
-@interface MatchesViewController ()
+@interface MatchesViewController () {
+    NSDateFormatter *_fm;
+    
+}
 @property (strong, nonatomic) NoChatsView *noResultsFooterView;
 
 @end
@@ -32,6 +35,8 @@
     {
         self.noResultsFooterView = (NoChatsView *)[[[NSBundle mainBundle] loadNibNamed:@"NoChatsView" owner:self options:nil] objectAtIndex:0];
         self.noResultsFooterView.messageLabel.text = NSLocalizedString(@"У тебя еще нет совпадений. Чтобы они появились, просто начни отмечать понравившихся тебе людей :)", @"no matches");
+        _fm = [[NSDateFormatter alloc] init];
+        [_fm setDateFormat:@"d MMM"];
     }
     return self;
 }
@@ -111,6 +116,13 @@
     NSArray *sortedMessages = [user.thread.messages sortedArrayUsingDescriptors:sortDescriptors];
     PrivateMessage *message = [sortedMessages lastObject];
     cell.commentPreview.text = message.message;
+    
+    
+    if (message) {
+        cell.dateLabel.text = [_fm stringFromDate:message.createdAt];
+    } else {
+        cell.dateLabel.text = [_fm stringFromDate:message.createdAt];
+    }
     return cell;
 }
 

@@ -15,5 +15,6 @@
 @property (strong, atomic) NSDate *createdAt;
 
 + (NSDictionary *)mapping;
-
++ (void)reload:(void (^)(NSArray *notifications))onLoad
+       onError:(void (^)(NSError *error))onError;
 @end
