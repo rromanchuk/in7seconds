@@ -2,7 +2,7 @@
 //  User.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/29/13.
+//  Created by Ryan Romanchuk on 4/30/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -10,6 +10,7 @@
 #import "Hookup.h"
 #import "Image.h"
 #import "Match.h"
+#import "Notification.h"
 #import "Thread.h"
 
 
@@ -46,5 +47,6 @@
 @dynamic images;
 @dynamic matches;
 @dynamic threads;
+@dynamic notifications;
 
 @end

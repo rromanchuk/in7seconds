@@ -154,9 +154,7 @@
 		FAC6947A17286B9E008E964F /* RestThread.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6947917286B9C008E964F /* RestThread.m */; };
 		FAC694E4172DBFD1008E964F /* MutualFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694E3172DBFCF008E964F /* MutualFriend.m */; };
 		FAC694E7172DBFD8008E964F /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694E6172DBFD6008E964F /* PrivateMessage.m */; };
-		FAC694EA172DBFDF008E964F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694E9172DBFDE008E964F /* User.m */; };
 		FAC694ED172DBFE4008E964F /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694EC172DBFE2008E964F /* Match.m */; };
-		FAC694F0172DBFEB008E964F /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694EF172DBFE9008E964F /* Notification.m */; };
 		FAC694F3172DBFEF008E964F /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694F2172DBFEE008E964F /* Image.m */; };
 		FAC694F6172DBFF4008E964F /* Hookup.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694F5172DBFF3008E964F /* Hookup.m */; };
 		FAC694F9172DBFFB008E964F /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694F8172DBFFA008E964F /* Thread.m */; };
@@ -164,6 +162,8 @@
 		FAC69505172E35DC008E964F /* TDDatePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC694FE172E35DC008E964F /* TDDatePickerController.xib */; };
 		FAC69506172E35DC008E964F /* TDSemiModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69501172E35DC008E964F /* TDSemiModalViewController.m */; };
 		FAC69507172E35DC008E964F /* UIViewController+TDSemiModalExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69503172E35DC008E964F /* UIViewController+TDSemiModalExtension.m */; };
+		FAC6950A172F1AB8008E964F /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69509172F1AB6008E964F /* Notification.m */; };
+		FAC69513172F1BC4008E964F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69512172F1BC2008E964F /* User.m */; };
 		FAE1AC4616D6BC3500B18144 /* NSNull+NullAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE1AC4516D6BC3500B18144 /* NSNull+NullAddition.m */; };
 /* End PBXBuildFile section */
 
@@ -307,8 +307,6 @@
 		FA73B10D171B3EE100D084CB /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RoundedCorner.m"; path = "categories/UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		FA73B10F171B3F5F00D084CB /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Alpha.h"; path = "categories/UIImage+Alpha.h"; sourceTree = "<group>"; };
 		FA73B110171B3F5F00D084CB /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Alpha.m"; path = "categories/UIImage+Alpha.m"; sourceTree = "<group>"; };
-		FA73B112171B42A200D084CB /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
-		FA73B113171B42B600D084CB /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
 		FA7F38D716E7CA8B00EA2C0B /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentViewController.h; path = controllers/CommentViewController.h; sourceTree = "<group>"; };
 		FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentViewController.m; path = controllers/CommentViewController.m; sourceTree = "<group>"; };
 		FA7F38E116EBBF9400EA2C0B /* WhiteBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteBubble.h; sourceTree = "<group>"; };
@@ -388,12 +386,8 @@
 		FAC694E3172DBFCF008E964F /* MutualFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutualFriend.m; path = models/MutualFriend.m; sourceTree = "<group>"; };
 		FAC694E5172DBFD4008E964F /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateMessage.h; path = models/PrivateMessage.h; sourceTree = "<group>"; };
 		FAC694E6172DBFD6008E964F /* PrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivateMessage.m; path = models/PrivateMessage.m; sourceTree = "<group>"; };
-		FAC694E8172DBFDC008E964F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
-		FAC694E9172DBFDE008E964F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
 		FAC694EB172DBFE1008E964F /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Match.h; path = models/Match.h; sourceTree = "<group>"; };
 		FAC694EC172DBFE2008E964F /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Match.m; path = models/Match.m; sourceTree = "<group>"; };
-		FAC694EE172DBFE8008E964F /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = models/Notification.h; sourceTree = "<group>"; };
-		FAC694EF172DBFE9008E964F /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notification.m; path = models/Notification.m; sourceTree = "<group>"; };
 		FAC694F1172DBFEC008E964F /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = models/Image.h; sourceTree = "<group>"; };
 		FAC694F2172DBFEE008E964F /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Image.m; path = models/Image.m; sourceTree = "<group>"; };
 		FAC694F4172DBFF2008E964F /* Hookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hookup.h; path = models/Hookup.h; sourceTree = "<group>"; };
@@ -408,6 +402,10 @@
 		FAC69501172E35DC008E964F /* TDSemiModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDSemiModalViewController.m; sourceTree = "<group>"; };
 		FAC69502172E35DC008E964F /* UIViewController+TDSemiModalExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TDSemiModalExtension.h"; sourceTree = "<group>"; };
 		FAC69503172E35DC008E964F /* UIViewController+TDSemiModalExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TDSemiModalExtension.m"; sourceTree = "<group>"; };
+		FAC69508172F1AB3008E964F /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = models/Notification.h; sourceTree = "<group>"; };
+		FAC69509172F1AB6008E964F /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notification.m; path = models/Notification.m; sourceTree = "<group>"; };
+		FAC69511172F1BC0008E964F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
+		FAC69512172F1BC2008E964F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
 		FAE1AC4416D6BC3500B18144 /* NSNull+NullAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+NullAddition.h"; sourceTree = "<group>"; };
 		FAE1AC4516D6BC3500B18144 /* NSNull+NullAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+NullAddition.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -479,18 +477,18 @@
 		94D09CC316CBEA4B0064F886 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				FAC69511172F1BC0008E964F /* User.h */,
+				FAC69512172F1BC2008E964F /* User.m */,
+				FAC69508172F1AB3008E964F /* Notification.h */,
+				FAC69509172F1AB6008E964F /* Notification.m */,
 				FAC694F7172DBFF9008E964F /* Thread.h */,
 				FAC694F8172DBFFA008E964F /* Thread.m */,
 				FAC694F4172DBFF2008E964F /* Hookup.h */,
 				FAC694F5172DBFF3008E964F /* Hookup.m */,
 				FAC694F1172DBFEC008E964F /* Image.h */,
 				FAC694F2172DBFEE008E964F /* Image.m */,
-				FAC694EE172DBFE8008E964F /* Notification.h */,
-				FAC694EF172DBFE9008E964F /* Notification.m */,
 				FAC694EB172DBFE1008E964F /* Match.h */,
 				FAC694EC172DBFE2008E964F /* Match.m */,
-				FAC694E8172DBFDC008E964F /* User.h */,
-				FAC694E9172DBFDE008E964F /* User.m */,
 				FAC694E5172DBFD4008E964F /* PrivateMessage.h */,
 				FAC694E6172DBFD6008E964F /* PrivateMessage.m */,
 				FAC694E2172DBFCC008E964F /* MutualFriend.h */,
@@ -557,8 +555,6 @@
 				FA70026C16CAECB20098A5B7 /* MainStoryboard.storyboard */,
 				FA70025B16CAECB20098A5B7 /* Supporting Files */,
 				FA7002B916CAF42E0098A5B7 /* in7seconds.xcdatamodeld */,
-				FA73B112171B42A200D084CB /* User.h */,
-				FA73B113171B42B600D084CB /* User.m */,
 				942544E416EF87A000FA79FB /* NoChatsView.xib */,
 			);
 			path = in7seconds;
@@ -1092,15 +1088,15 @@
 				94BFC625172D25C500A3625B /* Image+REST.m in Sources */,
 				FAC694E4172DBFD1008E964F /* MutualFriend.m in Sources */,
 				FAC694E7172DBFD8008E964F /* PrivateMessage.m in Sources */,
-				FAC694EA172DBFDF008E964F /* User.m in Sources */,
 				FAC694ED172DBFE4008E964F /* Match.m in Sources */,
-				FAC694F0172DBFEB008E964F /* Notification.m in Sources */,
 				FAC694F3172DBFEF008E964F /* Image.m in Sources */,
 				FAC694F6172DBFF4008E964F /* Hookup.m in Sources */,
 				FAC694F9172DBFFB008E964F /* Thread.m in Sources */,
 				FAC69504172E35DC008E964F /* TDDatePickerController.m in Sources */,
 				FAC69506172E35DC008E964F /* TDSemiModalViewController.m in Sources */,
 				FAC69507172E35DC008E964F /* UIViewController+TDSemiModalExtension.m in Sources */,
+				FAC6950A172F1AB8008E964F /* Notification.m in Sources */,
+				FAC69513172F1BC4008E964F /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

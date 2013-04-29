@@ -2,14 +2,14 @@
 //  User.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/29/13.
+//  Created by Ryan Romanchuk on 4/30/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Hookup, Image, Match, Thread;
+@class Hookup, Image, Match, Notification, Thread;
 
 @interface User : NSManagedObject
 
@@ -44,6 +44,7 @@
 @property (nonatomic, retain) NSSet *images;
 @property (nonatomic, retain) NSSet *matches;
 @property (nonatomic, retain) NSSet *threads;
+@property (nonatomic, retain) NSSet *notifications;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
@@ -67,5 +68,10 @@
 - (void)removeThreadsObject:(Thread *)value;
 - (void)addThreads:(NSSet *)values;
 - (void)removeThreads:(NSSet *)values;
+
+- (void)addNotificationsObject:(Notification *)value;
+- (void)removeNotificationsObject:(Notification *)value;
+- (void)addNotifications:(NSSet *)values;
+- (void)removeNotifications:(NSSet *)values;
 
 @end
