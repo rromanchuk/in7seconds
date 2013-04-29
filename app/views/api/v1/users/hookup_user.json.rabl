@@ -4,7 +4,7 @@ attributes :id, :updated_at, :first_name, :last_name, :gender, :email, :photo_ur
 
 
 child :images  do 
-  extends "images/show"
+  extends "api/v1/images/show"
 end
 
 node :birthday do |user|
@@ -21,7 +21,7 @@ end
 
 node :mutual_friend_objects do |user|
   user.mutual_friends(current_user).map do |mutual_friend| 
-    partial("users/mutual_user", :object => mutual_friend) 
+    partial("api/v1/users/mutual_user", :object => mutual_friend) 
   end
 end
 

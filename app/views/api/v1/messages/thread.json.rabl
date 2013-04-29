@@ -2,7 +2,7 @@ object false
 
 
 node :with_match do
-  partial("users/hookup_user", :object =>  @hookup )
+  partial("api/v1/users/hookup_user", :object =>  @hookup )
 end
 
 node :id do
@@ -10,5 +10,5 @@ node :id do
 end
 
 child @messages  do 
-  extends "messages/show_lite"
+  extends "api/v1/messages/show"
 end

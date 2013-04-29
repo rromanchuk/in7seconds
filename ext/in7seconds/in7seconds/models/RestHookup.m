@@ -64,7 +64,10 @@ static NSString *RESOURCE_PATH = @"api/v1/users";
                                                                                                  NSMutableArray *restHookups = [[NSMutableArray alloc] init];
                                                                                                 for (id jsonObj in JSON) {
                                                                                                     RestHookup *restHookup = [RestHookup objectFromJSONObject:jsonObj mapping:[RestHookup mapping]];
-                                                                                                    [restHookups addObject:restHookup];
+                                                                                                    if (restHookup) {
+                                                                                                        [restHookups addObject:restHookup];
+                                                                                                    }
+                                                                                                
                                                                                                 }
                                                                                                 
                                                                                                 

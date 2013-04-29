@@ -8,5 +8,5 @@ node :birthday do |user|
 end
 
 child :images  do 
-  extends "images/show"
+  extends "api/v1/images/show"
 end
