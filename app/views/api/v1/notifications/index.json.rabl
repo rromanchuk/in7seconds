@@ -1,3 +1,3 @@
 collection @notifications
 cache @notifications
-extends "api/vi/notifications/show"
+extends "api/v1/notifications/show"

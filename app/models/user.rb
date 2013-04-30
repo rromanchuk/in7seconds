@@ -45,6 +45,8 @@ class User < ActiveRecord::Base
   has_many :messages_received,  :class_name => 'Message', :foreign_key => 'to_user_id'
   has_many :messages_sent,      :class_name => 'Message', :foreign_key => 'from_user_id'
 
+  has_many :notifications, :class_name => 'Notification', :foreign_key => 'receiver_id'
+
   belongs_to :vk_country
   belongs_to :vk_city
 

@@ -24,7 +24,8 @@
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     self.tableView.backgroundView = [[BaseUIView alloc] init];
-
+    [self setupFetchedResultsController];
+    [self fetchResults];
 }
 
 
@@ -39,7 +40,7 @@
                                                                                    cacheName:nil];
 }
 
-- (void)fetchResults:(id)refreshControl {
+- (void)fetchResults {
     [self.managedObjectContext performBlock:^{
         [RestNotification reload:^(NSArray *notifications) {
             for (RestNotification *restNotification in notifications) {
