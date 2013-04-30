@@ -17,6 +17,7 @@
 
 @interface MenuViewController () {
     BOOL _filtersChanged;
+    BOOL _isFetching;
 }
 @property UIImagePickerController *imagePicker;
 @end
@@ -155,8 +156,8 @@
 }
 
 - (void)update {
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...") maskType:SVProgressHUDMaskTypeGradient];
     [self.managedObjectContext performBlock:^{
+        _isFetching  = YES;
         [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
             [SVProgressHUD dismiss];
             self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
@@ -172,8 +173,10 @@
                 [self.settingsDelegate didChangeFilters];
                 _filtersChanged = NO;
             }
+            _isFetching = NO;
         } onError:^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+            _isFetching = NO;
         }];
     }];
     

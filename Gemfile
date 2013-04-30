@@ -6,7 +6,7 @@ gem 'devise'
 
 gem "omniauth-facebook"
 gem 'awesome_print'
-gem 'rabl'
+gem 'rabl', :git => 'git@github.com:nesquena/rabl.git'
 gem 'fb_graph'
 gem 'paperclip'
 gem 'aws-sdk'
@@ -51,4 +51,5 @@ group :development do
   gem 'rvm-capistrano'
   gem "bullet"
   gem 'foreman'
+  gem "better_errors"
 end

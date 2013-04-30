@@ -12,6 +12,8 @@
 #import "Notification+REST.h"
 #import "AppDelegate.h"
 
+#import "NotificationCell.h"
+
 @interface NotificationsViewController ()
 
 @end
@@ -22,6 +24,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Уведомления";
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     self.tableView.backgroundView = [[BaseUIView alloc] init];
     [self setupFetchedResultsController];
@@ -62,6 +65,60 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"NotificationCell";
+    NotificationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[NotificationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    
+    Notification *notification = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    if (![notification.isRead boolValue]) {
+        UIView *bgColorView = [[UIView alloc] init];
+        bgColorView.backgroundColor = RGBCOLOR(245, 201, 216);
+        cell.backgroundView = bgColorView;
+        cell.notificationLabel.backgroundColor = RGBCOLOR(245, 201, 216);
+        cell.isNotRead = YES;
+    } else {
+        cell.backgroundView = nil;
+        cell.notificationLabel.backgroundColor = [UIColor backgroundColor];
+        cell.isNotRead = NO;
+    }
+    
+    DLog(@"users name is %@", notification.sender.fullName);
+    NSString *text;
+//    if ([notification.notificationType integerValue] == NotificationTypeNewComment ) {
+//        text = [NSString stringWithFormat:@"%@ %@ %@.", notification.sender.fullName, NSLocalizedString(@"LEFT_A_COMMENT", @"Copy for commenting"), notification.placeTitle];
+//    } else if ([notification.notificationType integerValue] == NotificationTypeNewFriend) {
+//        text = [NSString stringWithFormat:@"%@ %@.", notification.sender.fullName, NSLocalizedString(@"FOLLOWED_YOU", @"Copy for following")];
+//    }
+    cell.notificationLabel.text = notification.message;
+    cell.notificationLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+    cell.notificationLabel.lineBreakMode = UILineBreakModeWordWrap;
+    cell.notificationLabel.numberOfLines = 0;
+    
+    //[cell.profilePhotoView setProfileImageForUser:notification.sender];
+    return cell;
+}
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    Notification *notification = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//    notification.isRead = [NSNumber numberWithBool:YES];
+//    NSError *error;
+//    [self.managedObjectContext save:&error];
+//    [self.tableView reloadData];
+//    if ([notification.notificationType integerValue] == NotificationTypeNewComment) {
+//        [self performSegueWithIdentifier:@"CheckinShow" sender:notification];
+//    } else {
+//        [self performSegueWithIdentifier:@"UserShow" sender:notification.sender];
+//    }
+//    
+//}
 
 
 @end

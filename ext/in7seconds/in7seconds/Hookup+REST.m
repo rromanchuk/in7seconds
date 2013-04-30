@@ -43,7 +43,7 @@
 
 + (Hookup *)hookupWithExternalId:(NSNumber *)externalId
           inManagedObjectContext:(NSManagedObjectContext *)context {
-    
+    return nil;
 }
 
 
@@ -59,6 +59,7 @@
     self.vkFacultyName = restHookup.vkFacultyName;
     
     self.gender = [NSNumber numberWithInteger:restHookup.gender];
+    self.lookingForGender = [NSNumber numberWithInteger:restHookup.lookingForGender];
     self.country = restHookup.country;
     self.city = restHookup.city;
     self.mutualFriendsNum = [NSNumber numberWithInteger:restHookup.mutualFriendsNum];

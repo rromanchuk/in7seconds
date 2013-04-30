@@ -20,6 +20,7 @@ static NSString *RESOURCE_PATH = @"api/v1/users";
                                 @"firstName", @"first_name",
                                 @"lastName", @"last_name",
                                 @"gender", @"gender",
+                                @"lookingForGender", @"looking_for_gender",
                                 @"email", @"email",
                                 @"externalId", @"id",
                                 @"vkUniversityName", @"vk_university_name",

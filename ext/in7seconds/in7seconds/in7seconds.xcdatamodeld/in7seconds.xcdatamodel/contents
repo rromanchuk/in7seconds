@@ -14,6 +14,7 @@
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lookingForGender" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="mutualFriendNames" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mutualFriendsNum" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="mutualGroupNames" optional="YES" attributeType="String" syncable="YES"/>
@@ -129,7 +130,7 @@
         <relationship name="threads" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Thread" inverseName="user" inverseEntity="Thread" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Hookup" positionX="160" positionY="192" width="128" height="435"/>
+        <element name="Hookup" positionX="160" positionY="192" width="128" height="450"/>
         <element name="Image" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Match" positionX="160" positionY="192" width="128" height="450"/>
         <element name="MutualFriend" positionX="160" positionY="192" width="128" height="135"/>

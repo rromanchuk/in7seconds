@@ -19,10 +19,13 @@
     NSInteger _numberOfAttempts;
     BOOL _noResults;
     BOOL _modalOpen;
+    BOOL _isFetching;
 }
 
 @property (strong, nonatomic) JDFlipNumberView *countdown;
 @property (strong, nonatomic) Hookup *otherUser;
+@property (strong, nonatomic) NSMutableSet *hookups;
+
 @end
 
 @implementation IndexViewController
@@ -30,6 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.hookups = [[NSMutableSet alloc] init];
+    [self fetchHookups];
     [self noResultsLeft];
     
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(revealMenu:)];
@@ -153,10 +158,10 @@
         if (_modalOpen == NO) {
             [self startCountdown];
         }
-    } else if ([self.currentUser.hookups count] > 0) {
+    } else if ([self.hookups count] > 0) {
         [self setupNextHookup];
     }
-    else {
+    else if(!_isFetching) {
         [self fetchPossibleHookups];
     }
 }
@@ -259,9 +264,12 @@
 }
 
 - (void)fetchPossibleHookups {
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...") maskType:SVProgressHUDMaskTypeGradient];
+    if (_isFetching)
+        return;
+    
     _numberOfAttempts++;
     [self.managedObjectContext performBlock:^{
+        _isFetching = YES;
         [RestHookup load:^(NSMutableArray *possibleHookups) {
             NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
             for (RestHookup *restHookup in possibleHookups) {
@@ -276,10 +284,10 @@
             AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             [sharedAppDelegate writeToDisk];
 
-            [self setupNextHookup];
-            [SVProgressHUD dismiss];
+            [self fetchHookups];
+            _isFetching = NO;
         } onError:^(NSError *error) {
-            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+            _isFetching = NO;
         }];
 
     }];
@@ -372,32 +380,38 @@
     self.currentUser = [User currentUser:self.managedObjectContext];
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     sharedAppDelegate.currentUser = self.currentUser;
-    [self.currentUser removeHookups:self.currentUser.hookups];
     
-    [self.managedObjectContext performBlock:^{
-        [RestHookup load:^(NSMutableArray *possibleHookups) {
-            NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
-            for (RestHookup *restHookup in possibleHookups) {
-                [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
-            }
-            [self.currentUser addHookups:_restHookups];
-            
-            NSError *error;
-            [self.managedObjectContext save:&error];
-            
-            [sharedAppDelegate writeToDisk];
-            
-        } onError:^(NSError *error) {
-            
-        }];
-
-    }];
-    
+    self.hookups = [[NSMutableSet alloc] init];
+    [self fetchPossibleHookups];
     
 }
 #pragma mark - user events
 - (IBAction)didSelectNotifications:(id)sender {
     [self performSegueWithIdentifier:@"Notifications" sender:self];
+}
+
+- (void)fetchHookups {
+    NSArray *lookingFor;
+    //if ([self.currentUser.lookingForGender integerValue] == LookingForBoth) {
+    if (YES) {
+        lookingFor = @[[NSNumber numberWithInteger:LookingForMen], [NSNumber numberWithInteger:LookingForWomen]];
+    } else if ([self.currentUser.lookingForGender integerValue] == LookingForMen) {
+        lookingFor = @[[NSNumber numberWithInteger:LookingForMen]];
+    } else {
+        lookingFor = @[[NSNumber numberWithInteger:LookingForWomen]];
+    }
+    ALog(@"Looking for array is %@", lookingFor);
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hookup"];
+    //request.predicate = [NSPredicate predicateWithFormat:@"user = %@ AND gender IN %@", self.currentUser, lookingFor];
+    request.predicate = [NSPredicate predicateWithFormat:@"user = %@ AND gender IN %@", self.currentUser, lookingFor];
+    //request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
+    NSError *error;
+    NSArray *hookups = [self.managedObjectContext executeFetchRequest:request error:&error];
+    [self.hookups addObjectsFromArray:hookups];
+    ALog(@"There are %d hookups", [self.hookups count])
+    if (!self.otherUser) {
+        [self setupNextHookup];
+    }
 }
 
 @end
