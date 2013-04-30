@@ -1,2 +1,2 @@
 collection @hookups
-extends "users/hookup_user"
+extends "api/v1/users/hookup_user"
