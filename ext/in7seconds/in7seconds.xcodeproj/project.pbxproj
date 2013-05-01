@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		90455B5C1D5F434F8877A20B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9F46389CB045FD9589A9AC /* libPods.a */; };
+		9404B4FB1730FE840052E4CE /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B4FA1730FE840052E4CE /* Match.m */; };
+		9404B4FE1730FE840052E4CE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B4FD1730FE840052E4CE /* User.m */; };
+		9404B5011730FE840052E4CE /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B5001730FE840052E4CE /* Image.m */; };
+		9404B5041730FE850052E4CE /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B5031730FE850052E4CE /* Notification.m */; };
+		9404B5071730FE850052E4CE /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B5061730FE850052E4CE /* Thread.m */; };
+		9404B50A1730FE860052E4CE /* MutualFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B5091730FE860052E4CE /* MutualFriend.m */; };
+		9404B50D1730FE860052E4CE /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B50C1730FE860052E4CE /* PrivateMessage.m */; };
+		9404B5101730FE860052E4CE /* Hookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B50F1730FE860052E4CE /* Hookup.m */; };
 		942544E516EF87A100FA79FB /* NoChatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 942544E416EF87A000FA79FB /* NoChatsView.xib */; };
 		942544E816EF888200FA79FB /* NoChatsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 942544E716EF888200FA79FB /* NoChatsView.m */; };
 		9484987616CBFE96000083DE /* UIBarButtonItem+Borderless.m in Sources */ = {isa = PBXBuildFile; fileRef = 9484987516CBFE96000083DE /* UIBarButtonItem+Borderless.m */; };
@@ -152,18 +160,10 @@
 		FAC6943117271336008E964F /* RestMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6943017271335008E964F /* RestMatch.m */; };
 		FAC694771728689F008E964F /* Thread+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694761728689E008E964F /* Thread+REST.m */; };
 		FAC6947A17286B9E008E964F /* RestThread.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6947917286B9C008E964F /* RestThread.m */; };
-		FAC694E4172DBFD1008E964F /* MutualFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694E3172DBFCF008E964F /* MutualFriend.m */; };
-		FAC694E7172DBFD8008E964F /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694E6172DBFD6008E964F /* PrivateMessage.m */; };
-		FAC694ED172DBFE4008E964F /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694EC172DBFE2008E964F /* Match.m */; };
-		FAC694F3172DBFEF008E964F /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694F2172DBFEE008E964F /* Image.m */; };
-		FAC694F9172DBFFB008E964F /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694F8172DBFFA008E964F /* Thread.m */; };
 		FAC69504172E35DC008E964F /* TDDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC694FD172E35DC008E964F /* TDDatePickerController.m */; };
 		FAC69505172E35DC008E964F /* TDDatePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC694FE172E35DC008E964F /* TDDatePickerController.xib */; };
 		FAC69506172E35DC008E964F /* TDSemiModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69501172E35DC008E964F /* TDSemiModalViewController.m */; };
 		FAC69507172E35DC008E964F /* UIViewController+TDSemiModalExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69503172E35DC008E964F /* UIViewController+TDSemiModalExtension.m */; };
-		FAC6950A172F1AB8008E964F /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69509172F1AB6008E964F /* Notification.m */; };
-		FAC69513172F1BC4008E964F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69512172F1BC2008E964F /* User.m */; };
-		FAC6951C173082F5008E964F /* Hookup.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6951B173082F2008E964F /* Hookup.m */; };
 		FAE1AC4616D6BC3500B18144 /* NSNull+NullAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE1AC4516D6BC3500B18144 /* NSNull+NullAddition.m */; };
 /* End PBXBuildFile section */
 
@@ -178,6 +178,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9404B4F91730FE840052E4CE /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Match.h; path = models/Match.h; sourceTree = "<group>"; };
+		9404B4FA1730FE840052E4CE /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Match.m; path = models/Match.m; sourceTree = "<group>"; };
+		9404B4FC1730FE840052E4CE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
+		9404B4FD1730FE840052E4CE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
+		9404B4FF1730FE840052E4CE /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = models/Image.h; sourceTree = "<group>"; };
+		9404B5001730FE840052E4CE /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Image.m; path = models/Image.m; sourceTree = "<group>"; };
+		9404B5021730FE850052E4CE /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = models/Notification.h; sourceTree = "<group>"; };
+		9404B5031730FE850052E4CE /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notification.m; path = models/Notification.m; sourceTree = "<group>"; };
+		9404B5051730FE850052E4CE /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Thread.h; path = models/Thread.h; sourceTree = "<group>"; };
+		9404B5061730FE850052E4CE /* Thread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Thread.m; path = models/Thread.m; sourceTree = "<group>"; };
+		9404B5081730FE860052E4CE /* MutualFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutualFriend.h; path = models/MutualFriend.h; sourceTree = "<group>"; };
+		9404B5091730FE860052E4CE /* MutualFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutualFriend.m; path = models/MutualFriend.m; sourceTree = "<group>"; };
+		9404B50B1730FE860052E4CE /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateMessage.h; path = models/PrivateMessage.h; sourceTree = "<group>"; };
+		9404B50C1730FE860052E4CE /* PrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivateMessage.m; path = models/PrivateMessage.m; sourceTree = "<group>"; };
+		9404B50E1730FE860052E4CE /* Hookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hookup.h; path = models/Hookup.h; sourceTree = "<group>"; };
+		9404B50F1730FE860052E4CE /* Hookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hookup.m; path = models/Hookup.m; sourceTree = "<group>"; };
 		942544E416EF87A000FA79FB /* NoChatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoChatsView.xib; sourceTree = "<group>"; };
 		942544E616EF888200FA79FB /* NoChatsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoChatsView.h; path = views/NoChatsView.h; sourceTree = "<group>"; };
 		942544E716EF888200FA79FB /* NoChatsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoChatsView.m; path = views/NoChatsView.m; sourceTree = "<group>"; };
@@ -382,16 +398,6 @@
 		FAC694761728689E008E964F /* Thread+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Thread+REST.m"; path = "categories/Thread+REST.m"; sourceTree = "<group>"; };
 		FAC6947817286B9A008E964F /* RestThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestThread.h; path = models/RestThread.h; sourceTree = "<group>"; };
 		FAC6947917286B9C008E964F /* RestThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestThread.m; path = models/RestThread.m; sourceTree = "<group>"; };
-		FAC694E2172DBFCC008E964F /* MutualFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutualFriend.h; path = models/MutualFriend.h; sourceTree = "<group>"; };
-		FAC694E3172DBFCF008E964F /* MutualFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutualFriend.m; path = models/MutualFriend.m; sourceTree = "<group>"; };
-		FAC694E5172DBFD4008E964F /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateMessage.h; path = models/PrivateMessage.h; sourceTree = "<group>"; };
-		FAC694E6172DBFD6008E964F /* PrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivateMessage.m; path = models/PrivateMessage.m; sourceTree = "<group>"; };
-		FAC694EB172DBFE1008E964F /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Match.h; path = models/Match.h; sourceTree = "<group>"; };
-		FAC694EC172DBFE2008E964F /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Match.m; path = models/Match.m; sourceTree = "<group>"; };
-		FAC694F1172DBFEC008E964F /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = models/Image.h; sourceTree = "<group>"; };
-		FAC694F2172DBFEE008E964F /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Image.m; path = models/Image.m; sourceTree = "<group>"; };
-		FAC694F7172DBFF9008E964F /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Thread.h; path = models/Thread.h; sourceTree = "<group>"; };
-		FAC694F8172DBFFA008E964F /* Thread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Thread.m; path = models/Thread.m; sourceTree = "<group>"; };
 		FAC694FC172E35DC008E964F /* TDDatePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDatePickerController.h; sourceTree = "<group>"; };
 		FAC694FD172E35DC008E964F /* TDDatePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDatePickerController.m; sourceTree = "<group>"; };
 		FAC694FE172E35DC008E964F /* TDDatePickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDDatePickerController.xib; sourceTree = "<group>"; };
@@ -400,12 +406,6 @@
 		FAC69501172E35DC008E964F /* TDSemiModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDSemiModalViewController.m; sourceTree = "<group>"; };
 		FAC69502172E35DC008E964F /* UIViewController+TDSemiModalExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TDSemiModalExtension.h"; sourceTree = "<group>"; };
 		FAC69503172E35DC008E964F /* UIViewController+TDSemiModalExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TDSemiModalExtension.m"; sourceTree = "<group>"; };
-		FAC69508172F1AB3008E964F /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = models/Notification.h; sourceTree = "<group>"; };
-		FAC69509172F1AB6008E964F /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notification.m; path = models/Notification.m; sourceTree = "<group>"; };
-		FAC69511172F1BC0008E964F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
-		FAC69512172F1BC2008E964F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
-		FAC6951A173082F0008E964F /* Hookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hookup.h; path = models/Hookup.h; sourceTree = "<group>"; };
-		FAC6951B173082F2008E964F /* Hookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hookup.m; path = models/Hookup.m; sourceTree = "<group>"; };
 		FAE1AC4416D6BC3500B18144 /* NSNull+NullAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+NullAddition.h"; sourceTree = "<group>"; };
 		FAE1AC4516D6BC3500B18144 /* NSNull+NullAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+NullAddition.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -477,22 +477,22 @@
 		94D09CC316CBEA4B0064F886 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				FAC6951A173082F0008E964F /* Hookup.h */,
-				FAC6951B173082F2008E964F /* Hookup.m */,
-				FAC69511172F1BC0008E964F /* User.h */,
-				FAC69512172F1BC2008E964F /* User.m */,
-				FAC69508172F1AB3008E964F /* Notification.h */,
-				FAC69509172F1AB6008E964F /* Notification.m */,
-				FAC694F7172DBFF9008E964F /* Thread.h */,
-				FAC694F8172DBFFA008E964F /* Thread.m */,
-				FAC694F1172DBFEC008E964F /* Image.h */,
-				FAC694F2172DBFEE008E964F /* Image.m */,
-				FAC694EB172DBFE1008E964F /* Match.h */,
-				FAC694EC172DBFE2008E964F /* Match.m */,
-				FAC694E5172DBFD4008E964F /* PrivateMessage.h */,
-				FAC694E6172DBFD6008E964F /* PrivateMessage.m */,
-				FAC694E2172DBFCC008E964F /* MutualFriend.h */,
-				FAC694E3172DBFCF008E964F /* MutualFriend.m */,
+				9404B50E1730FE860052E4CE /* Hookup.h */,
+				9404B50F1730FE860052E4CE /* Hookup.m */,
+				9404B50B1730FE860052E4CE /* PrivateMessage.h */,
+				9404B50C1730FE860052E4CE /* PrivateMessage.m */,
+				9404B5081730FE860052E4CE /* MutualFriend.h */,
+				9404B5091730FE860052E4CE /* MutualFriend.m */,
+				9404B5051730FE850052E4CE /* Thread.h */,
+				9404B5061730FE850052E4CE /* Thread.m */,
+				9404B5021730FE850052E4CE /* Notification.h */,
+				9404B5031730FE850052E4CE /* Notification.m */,
+				9404B4FF1730FE840052E4CE /* Image.h */,
+				9404B5001730FE840052E4CE /* Image.m */,
+				9404B4FC1730FE840052E4CE /* User.h */,
+				9404B4FD1730FE840052E4CE /* User.m */,
+				9404B4F91730FE840052E4CE /* Match.h */,
+				9404B4FA1730FE840052E4CE /* Match.m */,
 				FAC6944717271A83008E964F /* categories */,
 			);
 			name = CoreData;
@@ -1086,17 +1086,17 @@
 				94FF9496172BE08300563C1A /* FacebookHelper.m in Sources */,
 				94BFC622172D24D600A3625B /* RestImage.m in Sources */,
 				94BFC625172D25C500A3625B /* Image+REST.m in Sources */,
-				FAC694E4172DBFD1008E964F /* MutualFriend.m in Sources */,
-				FAC694E7172DBFD8008E964F /* PrivateMessage.m in Sources */,
-				FAC694ED172DBFE4008E964F /* Match.m in Sources */,
-				FAC694F3172DBFEF008E964F /* Image.m in Sources */,
-				FAC694F9172DBFFB008E964F /* Thread.m in Sources */,
 				FAC69504172E35DC008E964F /* TDDatePickerController.m in Sources */,
 				FAC69506172E35DC008E964F /* TDSemiModalViewController.m in Sources */,
 				FAC69507172E35DC008E964F /* UIViewController+TDSemiModalExtension.m in Sources */,
-				FAC6950A172F1AB8008E964F /* Notification.m in Sources */,
-				FAC69513172F1BC4008E964F /* User.m in Sources */,
-				FAC6951C173082F5008E964F /* Hookup.m in Sources */,
+				9404B4FB1730FE840052E4CE /* Match.m in Sources */,
+				9404B4FE1730FE840052E4CE /* User.m in Sources */,
+				9404B5011730FE840052E4CE /* Image.m in Sources */,
+				9404B5041730FE850052E4CE /* Notification.m in Sources */,
+				9404B5071730FE850052E4CE /* Thread.m in Sources */,
+				9404B50A1730FE860052E4CE /* MutualFriend.m in Sources */,
+				9404B50D1730FE860052E4CE /* PrivateMessage.m in Sources */,
+				9404B5101730FE860052E4CE /* Hookup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,7 +2,7 @@
 //  Match.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/29/13.
+//  Created by Ryan Romanchuk on 5/1/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -38,8 +38,8 @@
 @property (nonatomic, retain) NSString * vkUniversityName;
 @property (nonatomic, retain) NSSet *images;
 @property (nonatomic, retain) NSSet *mutualFriends;
-@property (nonatomic, retain) User *user;
 @property (nonatomic, retain) Thread *thread;
+@property (nonatomic, retain) User *user;
 @end
 
 @interface Match (CoreDataGeneratedAccessors)

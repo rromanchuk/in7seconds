@@ -18,6 +18,7 @@
 @dynamic city;
 @dynamic country;
 @dynamic createdAt;
+@dynamic didRate;
 @dynamic email;
 @dynamic externalId;
 @dynamic firstName;
@@ -27,6 +28,7 @@
 @dynamic lastName;
 @dynamic latitude;
 @dynamic longitude;
+@dynamic lookingForGender;
 @dynamic mutualFriendNames;
 @dynamic mutualFriendsNum;
 @dynamic mutualGroupNames;
@@ -37,8 +39,6 @@
 @dynamic vkGraduation;
 @dynamic vkToken;
 @dynamic vkUniversityName;
-@dynamic lookingForGender;
-@dynamic didRate;
 @dynamic images;
 @dynamic mutualFriends;
 @dynamic user;

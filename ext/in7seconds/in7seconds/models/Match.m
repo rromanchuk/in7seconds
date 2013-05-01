@@ -2,7 +2,7 @@
 //  Match.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/29/13.
+//  Created by Ryan Romanchuk on 5/1/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -40,7 +40,7 @@
 @dynamic vkUniversityName;
 @dynamic images;
 @dynamic mutualFriends;
-@dynamic user;
 @dynamic thread;
+@dynamic user;
 
 @end

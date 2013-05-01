@@ -201,7 +201,7 @@
             return;
         }
     } onError:^(NSError *error) {
-        [self setupNextHookup];
+        
     }];
 }
 
@@ -229,9 +229,9 @@
 
 - (void)setupNextHookup {
     self.otherUser = nil;    
-    if (self.currentUser && self.currentUser.hookups) {
+    if (self.currentUser && self.hookups) {
         [self foundResults];
-        self.otherUser = [self.currentUser.hookups anyObject];
+        self.otherUser = [self.hookups anyObject];
         if (!self.otherUser && _numberOfAttempts < 3) {
             [self fetchPossibleHookups];
             return;

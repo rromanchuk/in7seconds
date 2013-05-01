@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSString * city;
 @property (nonatomic, retain) NSString * country;
 @property (nonatomic, retain) NSDate * createdAt;
+@property (nonatomic, retain) NSNumber * didRate;
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSNumber * externalId;
 @property (nonatomic, retain) NSString * firstName;
@@ -26,6 +27,7 @@
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
+@property (nonatomic, retain) NSNumber * lookingForGender;
 @property (nonatomic, retain) NSString * mutualFriendNames;
 @property (nonatomic, retain) NSNumber * mutualFriendsNum;
 @property (nonatomic, retain) NSString * mutualGroupNames;
@@ -36,8 +38,6 @@
 @property (nonatomic, retain) NSString * vkGraduation;
 @property (nonatomic, retain) NSString * vkToken;
 @property (nonatomic, retain) NSString * vkUniversityName;
-@property (nonatomic, retain) NSNumber * lookingForGender;
-@property (nonatomic, retain) NSNumber * didRate;
 @property (nonatomic, retain) NSSet *images;
 @property (nonatomic, retain) NSSet *mutualFriends;
 @property (nonatomic, retain) User *user;
