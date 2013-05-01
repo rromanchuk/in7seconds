@@ -163,7 +163,7 @@
 		FAC69507172E35DC008E964F /* UIViewController+TDSemiModalExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69503172E35DC008E964F /* UIViewController+TDSemiModalExtension.m */; };
 		FAC6950A172F1AB8008E964F /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69509172F1AB6008E964F /* Notification.m */; };
 		FAC69513172F1BC4008E964F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69512172F1BC2008E964F /* User.m */; };
-		FAC69516173050E3008E964F /* Hookup.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC69515173050E0008E964F /* Hookup.m */; };
+		FAC6951C173082F5008E964F /* Hookup.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC6951B173082F2008E964F /* Hookup.m */; };
 		FAE1AC4616D6BC3500B18144 /* NSNull+NullAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE1AC4516D6BC3500B18144 /* NSNull+NullAddition.m */; };
 /* End PBXBuildFile section */
 
@@ -404,8 +404,8 @@
 		FAC69509172F1AB6008E964F /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notification.m; path = models/Notification.m; sourceTree = "<group>"; };
 		FAC69511172F1BC0008E964F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
 		FAC69512172F1BC2008E964F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
-		FAC69514173050DE008E964F /* Hookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hookup.h; path = models/Hookup.h; sourceTree = "<group>"; };
-		FAC69515173050E0008E964F /* Hookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hookup.m; path = models/Hookup.m; sourceTree = "<group>"; };
+		FAC6951A173082F0008E964F /* Hookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hookup.h; path = models/Hookup.h; sourceTree = "<group>"; };
+		FAC6951B173082F2008E964F /* Hookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hookup.m; path = models/Hookup.m; sourceTree = "<group>"; };
 		FAE1AC4416D6BC3500B18144 /* NSNull+NullAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+NullAddition.h"; sourceTree = "<group>"; };
 		FAE1AC4516D6BC3500B18144 /* NSNull+NullAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+NullAddition.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -477,8 +477,8 @@
 		94D09CC316CBEA4B0064F886 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				FAC69514173050DE008E964F /* Hookup.h */,
-				FAC69515173050E0008E964F /* Hookup.m */,
+				FAC6951A173082F0008E964F /* Hookup.h */,
+				FAC6951B173082F2008E964F /* Hookup.m */,
 				FAC69511172F1BC0008E964F /* User.h */,
 				FAC69512172F1BC2008E964F /* User.m */,
 				FAC69508172F1AB3008E964F /* Notification.h */,
@@ -1096,7 +1096,7 @@
 				FAC69507172E35DC008E964F /* UIViewController+TDSemiModalExtension.m in Sources */,
 				FAC6950A172F1AB8008E964F /* Notification.m in Sources */,
 				FAC69513172F1BC4008E964F /* User.m in Sources */,
-				FAC69516173050E3008E964F /* Hookup.m in Sources */,
+				FAC6951C173082F5008E964F /* Hookup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

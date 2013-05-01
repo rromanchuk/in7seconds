@@ -2,7 +2,7 @@
 //  Hookup.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/30/13.
+//  Created by Ryan Romanchuk on 5/1/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -37,6 +37,7 @@
 @property (nonatomic, retain) NSString * vkToken;
 @property (nonatomic, retain) NSString * vkUniversityName;
 @property (nonatomic, retain) NSNumber * lookingForGender;
+@property (nonatomic, retain) NSNumber * didRate;
 @property (nonatomic, retain) NSSet *images;
 @property (nonatomic, retain) NSSet *mutualFriends;
 @property (nonatomic, retain) User *user;

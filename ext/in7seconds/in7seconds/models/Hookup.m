@@ -2,7 +2,7 @@
 //  Hookup.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/30/13.
+//  Created by Ryan Romanchuk on 5/1/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -38,6 +38,7 @@
 @dynamic vkToken;
 @dynamic vkUniversityName;
 @dynamic lookingForGender;
+@dynamic didRate;
 @dynamic images;
 @dynamic mutualFriends;
 @dynamic user;

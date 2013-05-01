@@ -189,7 +189,8 @@
         return;
     }
     Hookup *otherUser = self.otherUser;
-    [self.currentUser removeHookupsObject:self.otherUser];
+    [self.hookups removeObject:self.otherUser];
+    self.otherUser.didRate = [NSNumber numberWithBool:YES];
     [self saveContext];
     [self setupNextHookup];
     [RestUser flirtWithUser:otherUser onLoad:^(RestMatch *restMatch) {
@@ -212,7 +213,8 @@
         return;
     }
     Hookup *otherUser = self.otherUser;
-    [self.currentUser removeHookupsObject:self.otherUser];
+    [self.hookups removeObject:self.otherUser];
+    self.otherUser.didRate = [NSNumber numberWithBool:YES];
     [self saveContext];
     [self setupNextHookup];
     [RestUser rejectUser:otherUser onLoad:^(BOOL success) {
@@ -403,7 +405,7 @@
     ALog(@"Looking for array is %@", lookingFor);
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hookup"];
     //request.predicate = [NSPredicate predicateWithFormat:@"user = %@ AND gender IN %@", self.currentUser, lookingFor];
-    request.predicate = [NSPredicate predicateWithFormat:@"user = %@ AND gender IN %@", self.currentUser, lookingFor];
+    request.predicate = [NSPredicate predicateWithFormat:@"user == %@ AND didRate == %@ AND gender IN %@", self.currentUser, [NSNumber numberWithBool:NO], lookingFor];
     //request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
     NSError *error;
     NSArray *hookups = [self.managedObjectContext executeFetchRequest:request error:&error];
