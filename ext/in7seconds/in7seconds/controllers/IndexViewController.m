@@ -34,9 +34,9 @@
 {
     [super viewDidLoad];
     self.hookups = [[NSMutableSet alloc] init];
-    [self fetchHookups];
     [self noResultsLeft];
-    
+    [self fetchHookups];
+        
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(revealMenu:)];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chat_icon"] target:self action:@selector(didTapMatches:)];
     
@@ -228,6 +228,10 @@
 }
 
 - (void)setupNextHookup {
+    if ([self.hookups count] < 10) {
+        [self fetchPossibleHookups];
+    }
+    
     self.otherUser = nil;    
     if (self.currentUser && self.hookups) {
         [self foundResults];
@@ -272,6 +276,8 @@
     _numberOfAttempts++;
     [self.managedObjectContext performBlock:^{
         _isFetching = YES;
+        if(_noResults)
+           [self.activityIndicator startAnimating];
         [RestHookup load:^(NSMutableArray *possibleHookups) {
             NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
             for (RestHookup *restHookup in possibleHookups) {
@@ -285,11 +291,12 @@
             
             AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             [sharedAppDelegate writeToDisk];
-
             [self fetchHookups];
             _isFetching = NO;
+            [self.activityIndicator stopAnimating];
         } onError:^(NSError *error) {
             _isFetching = NO;
+            [self.activityIndicator stopAnimating];
         }];
 
     }];
@@ -416,4 +423,8 @@
     }
 }
 
+- (void)viewDidUnload {
+    [self setActivityIndicator:nil];
+    [super viewDidUnload];
+}
 @end

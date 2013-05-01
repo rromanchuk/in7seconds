@@ -8,6 +8,7 @@ class Mailer < ActionMailer::Base
   end
 
   def fuck(receiver, hookup)
+    return unless receiver.email_opt_in?
     @user = receiver
     if receiver.email.blank?
       Notification.no_email(receiver)
@@ -18,6 +19,7 @@ class Mailer < ActionMailer::Base
   end
 
   def private_message(receiver, sender, message)
+    return unless receiver.email_opt_in?
     @user = receiver
     @message = message
     mail to: receiver.email, :bcc => "support@in7seconds.com", subject: "#{sender.first_name} отправил вам сообщение."

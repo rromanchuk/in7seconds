@@ -406,26 +406,25 @@ class User < ActiveRecord::Base
     users = users_nearby
     
     # Find active users
-    if users.length < 50
+    if users.length < 30
       active_users = filter(User.active.where('gender IN (?)', get_genders)).take(50)
       users = users.concat(active_users)
     end
 
-    
     # Ok find friends on facebook
-    if users.length < 50
+    if users.length < 30
       friends = filter(User.where(:id => self.friends.map(&:id) ).where('gender IN (?)', get_genders))
       users = users.concat(friends)
     end
     
     # Ok find anyone on the system in the same city
-    if users.length < 50
+    if users.length < 30
       local_users = filter(User.where('gender IN (?)', get_genders).where(vk_city_id: vk_city_id)).take(50)
       users = users.concat(local_users )
     end
     
     # Any one on the system
-    if users.length < 50
+    if users.length < 30
       all_users = filter(User.where('gender IN (?)', get_genders)).take(50)
       users = users.concat(all_users)
     end
