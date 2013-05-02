@@ -87,7 +87,7 @@
         offsetX += 10 + userNameLabel.frame.size.width;
     }
     
-    [self.scrollView setContentSize:CGSizeMake(offsetX, 70)];
+    [self.scrollView setContentSize:CGSizeMake(offsetX, 69)];
 }
 
 - (void)back {
