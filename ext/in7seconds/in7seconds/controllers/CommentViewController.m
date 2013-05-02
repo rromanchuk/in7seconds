@@ -68,11 +68,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification object:nil];
     
-    if (self.otherUser.thread) {
+    
+    self.thread = self.otherUser.thread;
+    if (self.thread) {
         [self setupFetchedResultsController];
     }
     
-    [self setupFetchedResultsController];
     [self checkNoResults];
     
     
