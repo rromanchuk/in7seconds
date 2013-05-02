@@ -68,8 +68,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification object:nil];
     
+    if (self.otherUser.thread) {
+        [self setupFetchedResultsController];
+    }
     
-    // Let's make sure comments are current and ask the server (this will automatically update the feed as well)
     [self setupFetchedResultsController];
     [self checkNoResults];
     
@@ -472,7 +474,9 @@
             AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             [sharedAppDelegate writeToDisk];
             
-            [self setupFetchedResultsController];
+            if (!self.fetchedResultsController) {
+                [self setupFetchedResultsController];
+            }
             [self checkNoResults];
                         
             ALog(@"thread %@", restThread);

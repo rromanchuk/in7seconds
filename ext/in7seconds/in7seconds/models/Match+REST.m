@@ -47,7 +47,7 @@
 - (void)setManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {
     RestMatch *restMatch = (RestMatch *) intermediateObject;
     ALog(@"");
-
+    self.createdAt = restMatch.createdAt;
     self.firstName = restMatch.firstName;
     self.lastName = restMatch.lastName;
     self.email = restMatch.email;
