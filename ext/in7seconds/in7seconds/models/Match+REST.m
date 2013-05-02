@@ -69,12 +69,13 @@
     self.mutualFriendNames = restMatch.mutualFriendNames;
     self.mutualGroupNames = restMatch.mutualGroupNames;
     
-    NSMutableSet *mutualFriends = [[NSMutableSet alloc] init];
     for (RestMutualFriend *restMutaulFriend in restMatch.mutualFriendObjects) {
+        ALog(@"adding mutualFriend");
         MutualFriend *mutualFriend = [MutualFriend mutualFriendWithRestMutualFriend:restMutaulFriend inManagedObjectContext:self.managedObjectContext];
-        [mutualFriends addObject:mutualFriend];
+        ALog("mutualFriend managed object %@", mutualFriend);
+        [self addMutualFriendsObject:mutualFriend];
     }
-    [self addMutualFriends:mutualFriends];
+    
     
     for (RestImage *restImage in restMatch.images) {
         [self addImagesObject:[Image imageWithRestImage:restImage inManagedObjectContext:self.managedObjectContext]];

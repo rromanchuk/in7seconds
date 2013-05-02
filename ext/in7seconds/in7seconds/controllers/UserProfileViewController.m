@@ -67,7 +67,7 @@
 - (void)setupMutualFriends {
     int offsetX = 15;
     //OstronautFilterType filterType;
-    //ALog(@"other user %@", self.otherUser);
+    ALog(@"other user %@", self.otherUser);
     //ALog(@"current user is %@", self.currentUser);
     for (MutualFriend *mutualFriend in self.otherUser.mutualFriends) {
         ALog(@"in mutal friend loop");
@@ -88,11 +88,14 @@
     }
     
     [self.scrollView setContentSize:CGSizeMake(offsetX, 70)];
-    
 }
 
 - (void)back {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)fetch {
+    
 }
 
 @end
