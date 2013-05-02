@@ -343,11 +343,16 @@
                                 <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" id="3mD-oQ-uNE">
+                                <rect key="frame" x="150" y="280" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="lIV-Yn-ccr"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="3mD-oQ-uNE" id="6V5-ov-T9c"/>
                         <outlet property="infoBanner" destination="1TP-4s-6JG" id="l9h-DV-upV"/>
                         <outlet property="infoButton" destination="IbW-aK-uuE" id="VdV-Ov-dKi"/>
                         <outlet property="likeButton" destination="SJt-G6-rU9" id="4RK-U2-ZXh"/>

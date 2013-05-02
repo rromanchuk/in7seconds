@@ -119,9 +119,11 @@
     
     
     if (message) {
+        ALog(@"message");
         cell.dateLabel.text = [_fm stringFromDate:message.createdAt];
     } else {
-        cell.dateLabel.text = [_fm stringFromDate:message.createdAt];
+        ALog(@"match created");
+        cell.dateLabel.text = [_fm stringFromDate:user.createdAt];
     }
     return cell;
 }
