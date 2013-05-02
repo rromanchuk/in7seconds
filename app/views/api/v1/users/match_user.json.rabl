@@ -11,10 +11,6 @@ node :birthday do |user|
   user.birthday_simple
 end
 
-node :mutual_friends do |user|
-  user.mutual_friends(current_user).length
-end
-
 node :mutual_friends_num do |user|
   user.mutual_friends_num(current_user)
 end
