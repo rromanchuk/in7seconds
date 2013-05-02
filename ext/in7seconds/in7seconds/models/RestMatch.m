@@ -64,7 +64,10 @@ static NSString *RESOURCE_PATH = @"api/v1/users";
                                                                                                 for (id jsonObj in JSON) {
                                                                                                     ALog(@"restMatch JSON: %@", jsonObj);
                                                                                                     RestMatch *restMatch = [RestMatch objectFromJSONObject:jsonObj mapping:[RestMatch mapping]];
-                                                                                                    [restMatches addObject:restMatch];
+                                                                                                    if (restMatch) {
+                                                                                                        [restMatches addObject:restMatch];
+                                                                                                    }
+                                                                                                    
                                                                                                 }
                                                                                                 
                                                                                                 

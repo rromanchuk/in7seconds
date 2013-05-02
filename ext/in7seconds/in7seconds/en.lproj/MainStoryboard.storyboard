@@ -416,7 +416,7 @@
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="14 февр" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nyJ-A0-q8V">
-                                            <rect key="frame" x="230" y="9" width="70" height="21"/>
+                                            <rect key="frame" x="225" y="9" width="70" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                             <color key="textColor" red="0.79607843137254897" green="0.79607843137254897" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
@@ -943,7 +943,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="1PX-uE-6VX"/>
-        <segue reference="w1L-Nh-4Xb"/>
+        <segue reference="hf1-0m-qN0"/>
+        <segue reference="hjQ-Dw-AsQ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -21,7 +21,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Remove the default black bottom border
+    UIView *overlayView = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 1)];
+    [overlayView setBackgroundColor:RGBCOLOR(223.0, 223.0, 223.0)];
+    [self.navigationBar addSubview:overlayView]; // navBar is your UINavigationBar instance
+    self.navigationBar.clipsToBounds = YES;
+
 }
 
 - (void)didReceiveMemoryWarning
