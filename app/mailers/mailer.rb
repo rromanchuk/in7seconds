@@ -38,4 +38,9 @@ class Mailer < ActionMailer::Base
     mail to: 'stats@piclar.com', subject: 'in7seconds Stats'
   end
 
+  def pending_requests(receiver)
+    return unless receiver.email_opt_in?
+    mail to: receiver.email, :bcc => "support@in7seconds.com", subject: ""
+  end
+
 end
