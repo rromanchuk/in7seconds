@@ -44,19 +44,27 @@
     } else {
         self.mutualGroupsLabel.text = self.otherUser.mutualGroupNames;
     }
-        
+    [self.mutualGroupsLabel sizeToFit];
     
-       
+    
+    [self.userGroupsHeader setFrame:CGRectMake(self.mutualGroupsLabel.frame.origin.x, (self.mutualGroupsLabel.frame.origin.y + self.mutualGroupsLabel.frame.size.height) + 10, self.userGroupsHeader.frame.size.width, self.userGroupsHeader.frame.size.height)];
+    [self.userGroupsLabel setFrame:CGRectMake(self.mutualGroupsLabel.frame.origin.x, (self.userGroupsHeader.frame.origin.y + self.userGroupsHeader.frame.size.height), self.userGroupsLabel.frame.size.width, self.userGroupsLabel.frame.size.height)];
     if (self.otherUser.groupNames.length == 0) {
         self.userGroupsLabel.text = @"отсутствующий";
     } else {
         self.userGroupsLabel.text = self.otherUser.groupNames;
-        [self.userGroupsLabel sizeToFit];
     }
+    [self.userGroupsLabel sizeToFit];
     
+    
+    [self.educationHeader setFrame:CGRectMake(self.userGroupsLabel.frame.origin.x, (self.userGroupsLabel.frame.origin.y + self.userGroupsLabel.frame.size.height) + 10, self.educationHeader.frame.size.width, self.educationHeader.frame.size.height)];
+    [self.educationLabel setFrame:CGRectMake(self.educationHeader.frame.origin.x, (self.educationHeader.frame.origin.y + self.educationHeader.frame.size.height), self.educationLabel.frame.size.width, self.educationLabel.frame.size.height)];
     self.educationLabel.text = self.otherUser.schoolInfo;
     [self.educationLabel sizeToFit];
     
+    [self.vkHeader setFrame:CGRectMake(self.educationLabel.frame.origin.x, (self.educationLabel.frame.origin.y + self.educationLabel.frame.size.height) + 10, self.educationLabel.frame.size.width, self.educationLabel.frame.size.height)];
+    
+    [self.vkUrlTextView setFrame:CGRectMake(self.vkHeader.frame.origin.x, (self.vkHeader.frame.origin.y + self.vkHeader.frame.size.height), self.vkUrlTextView.frame.size.width, self.vkUrlTextView.frame.size.height)];
     self.vkUrlTextView.text = self.otherUser.vkUrl;
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     
@@ -71,13 +79,13 @@
     //ALog(@"current user is %@", self.currentUser);
     for (MutualFriend *mutualFriend in self.otherUser.mutualFriends) {
         ALog(@"in mutal friend loop");
-        ProfileImageView *userImageView = [[ProfileImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+        UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(offsetX, 0, 50, 50)];
         userImageView.layer.borderWidth = 1;
-        [userImageView setProfilePhotoWithURL:mutualFriend.photoUrl];
+        [userImageView setImageWithURL:[NSURL URLWithString:mutualFriend.photoUrl]];
         
         [self.scrollView addSubview:userImageView];
         
-        UILabel *userNameLabel = [[UILabel alloc] initWithFrame: CGRectMake(offsetX, userImageView.frame.size.height + 4, userImageView.frame.size.width, 10.0)];
+        UILabel *userNameLabel = [[UILabel alloc] initWithFrame: CGRectMake(userImageView.frame.origin.x, userImageView.frame.size.height + 4, userImageView.frame.size.width, 10.0)];
         userNameLabel.text = mutualFriend.firstName;
         userNameLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:10.0];
         userNameLabel.textAlignment = NSTextAlignmentCenter;
@@ -98,4 +106,8 @@
     
 }
 
+- (void)viewDidUnload {
+    [self setVkHeader:nil];
+    [super viewDidUnload];
+}
 @end

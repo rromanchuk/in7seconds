@@ -34,5 +34,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *educationHeader;
 
 
+@property (weak, nonatomic) IBOutlet UILabel *vkHeader;
 @property (weak, nonatomic) IBOutlet UITextView *vkUrlTextView;
 @end

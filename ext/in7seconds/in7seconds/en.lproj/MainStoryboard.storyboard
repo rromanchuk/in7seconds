@@ -759,7 +759,7 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="eb5-qE-QVY">
-                                                    <rect key="frame" x="138" y="152" width="182" height="69"/>
+                                                    <rect key="frame" x="147" y="156" width="173" height="69"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </scrollView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="интересов" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R1W-yc-qqg">
@@ -843,6 +843,7 @@
                         <outlet property="scrollView" destination="eb5-qE-QVY" id="kiW-45-iL7"/>
                         <outlet property="userGroupsHeader" destination="R1W-yc-qqg" id="FMk-HU-rXU"/>
                         <outlet property="userGroupsLabel" destination="3CS-1t-LNw" id="KTj-Xy-v9z"/>
+                        <outlet property="vkHeader" destination="Ehf-ga-Jtg" id="1xf-76-dkl"/>
                         <outlet property="vkUrlTextView" destination="aJF-eR-bec" id="v0p-vq-fl4"/>
                     </connections>
                 </tableViewController>
@@ -968,9 +969,12 @@
         <class className="IndexViewController" superclassName="ECSlidingViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IndexViewController.h"/>
             <relationships>
+                <relationship kind="action" name="didSelectNotifications:"/>
                 <relationship kind="action" name="didTapInfo:"/>
                 <relationship kind="action" name="didTapLike:"/>
+                <relationship kind="action" name="didTapMatches:"/>
                 <relationship kind="action" name="didTapUnlike:"/>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="infoBanner" candidateClass="UIView"/>
                 <relationship kind="outlet" name="infoButton" candidateClass="UIButton"/>
@@ -1087,6 +1091,7 @@
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="userGroupsHeader" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userGroupsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="vkHeader" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="vkUrlTextView" candidateClass="UITextView"/>
             </relationships>
         </class>
