@@ -43,6 +43,7 @@ In7seconds::Application.routes.draw do
       get :feed
       get :hookups
       get :matches
+      get :mutual_friends
     end
   end
 

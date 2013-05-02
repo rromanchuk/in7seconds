@@ -16,12 +16,12 @@ node :mutual_friends do |user|
 end
 
 node :mutual_friends_num do |user|
-  user.mutual_friends(current_user).length
+  user.mutual_friends_num(current_user)
 end
 
 node :mutual_friend_objects do |user|
   user.mutual_friends(current_user).map do |mutual_friend| 
-    partial("api/v1/users/mutual_user", :object => mutual_friend) 
+    partial("api/v1/users/mutual_friend", :object => mutual_friend) 
   end
 end
 

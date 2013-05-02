@@ -232,7 +232,13 @@ class User < ActiveRecord::Base
   end
 
   def mutual_friends(hookup)
-    self.friends.includes([:vk_country, :vk_city, :friends, :groups]) & hookup.friends.includes([:vk_country, :vk_city, :friends, :groups])
+    Rails.cache.fetch("#{self.cache_key}_mutual_friends") do
+      self.friends & hookup.friends
+    end
+  end
+
+  def mutual_friends_num(hookup)
+    mutual_friends(hookup).length
   end
 
   def mutual_groups(hookup)

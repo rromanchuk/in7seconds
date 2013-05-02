@@ -15,6 +15,11 @@ module Api
         respond_with @matches
       end
 
+      def mutual_friends
+        match_user = User.find(params[:match_id])
+        @mutual_friends = match_user.mutual_friends(current_user)
+      end
+
       def flirt
         hookup = User.find(params[:id])
         if current_user.is_requested?(hookup)
