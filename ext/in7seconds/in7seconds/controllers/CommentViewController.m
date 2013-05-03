@@ -18,6 +18,8 @@
 #import "RestThread.h"
 #import "AppDelegate.h"
 
+#import "UserProfileViewController.h"
+
 // views
 #import "BaseUIView.h"
 #import "NoChatsView.h"
@@ -42,8 +44,13 @@
 }
 
 
-- (void)performSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"UserProfile"]) {
+        UserProfileViewController *vc = (UserProfileViewController *)segue.destinationViewController;
+        vc.managedObjectContext = self.managedObjectContext;
+        vc.currentUser = self.currentUser;
+        vc.otherUser = self.otherUser;
+    }
 }
 
 - (void)viewDidLoad
@@ -163,17 +170,15 @@
         [cell.blueBubble setMessage:message.message];
         [cell.profileImage setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
         cell.dateLabel.text = [_df stringFromDate:message.createdAt];
+        cell.profileImage.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];
+        [cell.profileImage addGestureRecognizer:tg];
         return cell;
     } else {
         CurrentUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CurrentUserChatCell"];
         [cell.whiteBubble setMessage:message.message];
         cell.dateLabel.text = [_df stringFromDate:message.createdAt];
-        [cell.profilePhoto setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];
-        cell.profilePhoto.tag = indexPath.row;
-        cell.profilePhoto.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];
-        [cell.profilePhoto addGestureRecognizer:tg];
-        //[cell.imageView setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];
+        [cell.profilePhoto setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];        
         return cell;
     }
 
@@ -487,13 +492,13 @@
         }];
 
     }];
-    
-    }
+}
 
 - (IBAction)didTapProfilePhoto:(id)sender {
-    NSInteger row = ((UIImageView *)sender).tag;
+    NSInteger row = ((UITapGestureRecognizer *)sender).view.tag;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
     Match *match = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"UserProfile" sender:match];
     
 }
 @end
