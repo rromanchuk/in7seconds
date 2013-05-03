@@ -2,7 +2,7 @@
 %html.no-js{:class=>(yield :html_classes).blank? ? nil : (yield :html_classes), :lang=>'ru-RU'}
   %head
     = render :partial => 'layouts/meta'
-    = javascript_include_tag "http://localhost:9292/faye.js"
+    = javascript_include_tag CONFIG[:faye_host] + ".js"
   %body
     #l-wrap
       = render :partial => 'layouts/header'

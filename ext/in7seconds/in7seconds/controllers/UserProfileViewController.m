@@ -69,7 +69,7 @@
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     
     [self setupMutualFriends];
-    
+    [self setupUserImages];
 }
 
 - (void)setupUserImages {
