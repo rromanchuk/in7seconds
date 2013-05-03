@@ -2,11 +2,12 @@
 //  Notification.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 5/1/13.
+//  Created by Ryan Romanchuk on 5/3/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
 #import "Notification.h"
+#import "Match.h"
 #import "User.h"
 
 
@@ -18,5 +19,6 @@
 @dynamic message;
 @dynamic notificationType;
 @dynamic user;
+@dynamic sender;
 
 @end

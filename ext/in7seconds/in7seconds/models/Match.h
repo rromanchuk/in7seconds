@@ -2,14 +2,14 @@
 //  Match.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 5/1/13.
+//  Created by Ryan Romanchuk on 5/3/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Image, MutualFriend, Thread, User;
+@class Image, MutualFriend, Notification, Thread, User;
 
 @interface Match : NSManagedObject
 
@@ -40,6 +40,7 @@
 @property (nonatomic, retain) NSSet *mutualFriends;
 @property (nonatomic, retain) Thread *thread;
 @property (nonatomic, retain) User *user;
+@property (nonatomic, retain) NSSet *sentNotifcation;
 @end
 
 @interface Match (CoreDataGeneratedAccessors)
@@ -53,5 +54,10 @@
 - (void)removeMutualFriendsObject:(MutualFriend *)value;
 - (void)addMutualFriends:(NSSet *)values;
 - (void)removeMutualFriends:(NSSet *)values;
+
+- (void)addSentNotifcationObject:(Notification *)value;
+- (void)removeSentNotifcationObject:(Notification *)value;
+- (void)addSentNotifcation:(NSSet *)values;
+- (void)removeSentNotifcation:(NSSet *)values;
 
 @end

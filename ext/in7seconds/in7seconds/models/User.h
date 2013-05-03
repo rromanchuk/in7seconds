@@ -2,7 +2,7 @@
 //  User.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 5/1/13.
+//  Created by Ryan Romanchuk on 5/3/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -38,7 +38,6 @@
 @property (nonatomic, retain) NSString * vkDomain;
 @property (nonatomic, retain) NSString * vkFacultyName;
 @property (nonatomic, retain) NSString * vkGraduation;
-@property (nonatomic, retain) NSString * vkToken;
 @property (nonatomic, retain) NSString * vkUniversityName;
 @property (nonatomic, retain) NSSet *hookups;
 @property (nonatomic, retain) NSSet *images;

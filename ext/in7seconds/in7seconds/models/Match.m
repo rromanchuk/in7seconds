@@ -2,13 +2,14 @@
 //  Match.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 5/1/13.
+//  Created by Ryan Romanchuk on 5/3/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
 #import "Match.h"
 #import "Image.h"
 #import "MutualFriend.h"
+#import "Notification.h"
 #import "Thread.h"
 #import "User.h"
 
@@ -42,5 +43,6 @@
 @dynamic mutualFriends;
 @dynamic thread;
 @dynamic user;
+@dynamic sentNotifcation;
 
 @end
