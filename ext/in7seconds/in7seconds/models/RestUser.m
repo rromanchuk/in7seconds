@@ -31,8 +31,6 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
                                 @"email", @"email",
                                 @"externalId", @"id",
                                 @"authenticationToken", @"authentication_token",
-                                @"fbToken", @"fb_token",
-                                @"vkToken", @"vk_token",
                                 @"vkUniversityName", @"vk_university_name",
                                 @"vkGraduation", @"vk_graduation",
                                 @"vkFalcultyName", @"vk_falculty_name",

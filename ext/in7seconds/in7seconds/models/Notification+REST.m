@@ -7,7 +7,7 @@
 //
 
 #import "Notification+REST.h"
-
+#import "Match+REST.h"
 @implementation Notification (REST)
 + (Notification *)notificationWithRestNotification:(RestNotification *)restNotification
                             inManagedObjectContext:(NSManagedObjectContext *)context {
@@ -42,6 +42,6 @@
     self.isRead = [NSNumber numberWithBool:restNotification.isRead];
     self.notificationType = restNotification.notificationType;
     self.createdAt = restNotification.createdAt;
-    
+    self.sender = [Match matchWithRestMatch:restNotification.sender inManagedObjectContext:self.managedObjectContext];
 }
 @end

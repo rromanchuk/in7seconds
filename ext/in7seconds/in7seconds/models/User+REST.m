@@ -91,12 +91,10 @@
     self.photoUrl = restUser.photoUrl;
     self.externalId = [NSNumber numberWithInt:restUser.externalId];
     self.authenticationToken = restUser.authenticationToken;
-    self.vkToken = restUser.vkToken;
     self.vkUniversityName = restUser.vkUniversityName;
     self.vkGraduation = restUser.vkGraduation;
     self.vkFacultyName = restUser.vkFacultyName;
-    
-    //self.fbToken = restUser.fbToken;
+
     self.gender = [NSNumber numberWithInteger:restUser.gender];
     self.country = restUser.country;
     self.city = restUser.city;

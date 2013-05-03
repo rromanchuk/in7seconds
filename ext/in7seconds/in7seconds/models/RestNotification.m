@@ -14,6 +14,7 @@
              @"message": @"message",
              @"notification_type": @"notificationType",
              @"is_read": @"isRead",
+             @"sender": [RestMatch mappingWithKey:@"sender" mapping:[RestMatch mapping]],
              @"created_at": [NSDate mappingWithKey:@"createdAt"
                                   dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"]
              };

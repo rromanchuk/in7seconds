@@ -82,11 +82,11 @@
         UIView *bgColorView = [[UIView alloc] init];
         bgColorView.backgroundColor = RGBCOLOR(245, 201, 216);
         cell.backgroundView = bgColorView;
-        cell.notificationLabel.backgroundColor = RGBCOLOR(245, 201, 216);
+        cell.notficationLabel.backgroundColor = RGBCOLOR(245, 201, 216);
         cell.isNotRead = YES;
     } else {
         cell.backgroundView = nil;
-        cell.notificationLabel.backgroundColor = [UIColor backgroundColor];
+        cell.notficationLabel.backgroundColor = [UIColor backgroundColor];
         cell.isNotRead = NO;
     }
     
@@ -97,11 +97,10 @@
 //    } else if ([notification.notificationType integerValue] == NotificationTypeNewFriend) {
 //        text = [NSString stringWithFormat:@"%@ %@.", notification.sender.fullName, NSLocalizedString(@"FOLLOWED_YOU", @"Copy for following")];
 //    }
-    cell.notificationLabel.text = notification.message;
-    cell.notificationLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
-    cell.notificationLabel.lineBreakMode = UILineBreakModeWordWrap;
-    cell.notificationLabel.numberOfLines = 0;
-    
+    cell.notficationLabel.text = notification.message;
+    cell.notficationLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+    cell.notficationLabel.lineBreakMode = UILineBreakModeWordWrap;
+    cell.notficationLabel.numberOfLines = 0;
     //[cell.profilePhotoView setProfileImageForUser:notification.sender];
     return cell;
 }

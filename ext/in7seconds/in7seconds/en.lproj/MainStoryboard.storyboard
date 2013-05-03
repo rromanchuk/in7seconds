@@ -700,10 +700,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="591"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="AiT-bI-kN2" customClass="ProfileImageView">
-                                                    <rect key="frame" x="20" y="20" width="280" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jqs-1v-Qqa">
                                                     <rect key="frame" x="20" y="158" width="58" height="58"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -808,6 +804,16 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                 </textView>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsVerticalScrollIndicator="NO" id="ZYV-D0-qFy">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="AiT-bI-kN2" customClass="ProfileImageView">
+                                                            <rect key="frame" x="20" y="20" width="280" height="128"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                </scrollView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -843,6 +849,7 @@
                         <outlet property="scrollView" destination="eb5-qE-QVY" id="kiW-45-iL7"/>
                         <outlet property="userGroupsHeader" destination="R1W-yc-qqg" id="FMk-HU-rXU"/>
                         <outlet property="userGroupsLabel" destination="3CS-1t-LNw" id="KTj-Xy-v9z"/>
+                        <outlet property="userImagesScrollView" destination="ZYV-D0-qFy" id="CLX-TF-txm"/>
                         <outlet property="vkHeader" destination="Ehf-ga-Jtg" id="1xf-76-dkl"/>
                         <outlet property="vkUrlTextView" destination="aJF-eR-bec" id="v0p-vq-fl4"/>
                     </connections>
@@ -891,20 +898,22 @@
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" id="q9e-sT-51D" customClass="TTTAttributedLabel">
-                                            <rect key="frame" x="52" y="10" width="244" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="S0S-IE-44C" customClass="ProfileImageView">
-                                            <rect key="frame" x="5" y="12" width="32" height="32"/>
+                                            <rect key="frame" x="5" y="17" width="32" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Tf-VU-s3N">
+                                            <rect key="frame" x="45" y="12" width="235" height="41"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <outlet property="notificationLabel" destination="q9e-sT-51D" id="bUK-ZJ-4MP"/>
+                                    <outlet property="notficationLabel" destination="6Tf-VU-s3N" id="1Bz-3s-Sam"/>
                                     <outlet property="profilePhotoView" destination="S0S-IE-44C" id="amc-Sq-pUB"/>
                                 </connections>
                             </tableViewCell>
@@ -969,12 +978,9 @@
         <class className="IndexViewController" superclassName="ECSlidingViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IndexViewController.h"/>
             <relationships>
-                <relationship kind="action" name="didSelectNotifications:"/>
                 <relationship kind="action" name="didTapInfo:"/>
                 <relationship kind="action" name="didTapLike:"/>
-                <relationship kind="action" name="didTapMatches:"/>
                 <relationship kind="action" name="didTapUnlike:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="infoBanner" candidateClass="UIView"/>
                 <relationship kind="outlet" name="infoButton" candidateClass="UIButton"/>
@@ -1055,7 +1061,7 @@
         <class className="NotificationCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NotificationCell.h"/>
             <relationships>
-                <relationship kind="outlet" name="notificationLabel" candidateClass="TTTAttributedLabel"/>
+                <relationship kind="outlet" name="notficationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="profilePhotoView" candidateClass="ProfileImageView"/>
             </relationships>
         </class>
@@ -1073,9 +1079,6 @@
         <class className="ProfileImageView" superclassName="UIImageView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileImageView.h"/>
         </class>
-        <class className="TTTAttributedLabel" superclassName="UILabel">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTTAttributedLabel.h"/>
-        </class>
         <class className="UserProfileViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UserProfileViewController.h"/>
             <relationships>
@@ -1091,6 +1094,7 @@
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="userGroupsHeader" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userGroupsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userImagesScrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="vkHeader" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="vkUrlTextView" candidateClass="UITextView"/>
             </relationships>

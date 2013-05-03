@@ -8,10 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		90455B5C1D5F434F8877A20B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9F46389CB045FD9589A9AC /* libPods.a */; };
-		9404B4FB1730FE840052E4CE /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B4FA1730FE840052E4CE /* Match.m */; };
-		9404B4FE1730FE840052E4CE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B4FD1730FE840052E4CE /* User.m */; };
 		9404B5011730FE840052E4CE /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B5001730FE840052E4CE /* Image.m */; };
-		9404B5041730FE850052E4CE /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B5031730FE850052E4CE /* Notification.m */; };
 		9404B5071730FE850052E4CE /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B5061730FE850052E4CE /* Thread.m */; };
 		9404B50A1730FE860052E4CE /* MutualFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B5091730FE860052E4CE /* MutualFriend.m */; };
 		9404B50D1730FE860052E4CE /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B50C1730FE860052E4CE /* PrivateMessage.m */; };
@@ -65,6 +62,9 @@
 		94D09CD116CBF2260064F886 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CD016CBF2260064F886 /* InitialViewController.m */; };
 		94D09CD416CBF3830064F886 /* NavigationTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CD316CBF3830064F886 /* NavigationTopViewController.m */; };
 		94D09CD716CBF4060064F886 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CD616CBF4060064F886 /* MenuViewController.m */; };
+		94FB84F11733B17A001A74D3 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FB84F01733B17A001A74D3 /* Notification.m */; };
+		94FB84F41733B17B001A74D3 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FB84F31733B17B001A74D3 /* Match.m */; };
+		94FB84F71733B23F001A74D3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FB84F61733B23F001A74D3 /* User.m */; };
 		94FF9488172A5D6400563C1A /* Notification+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FF9487172A5D6200563C1A /* Notification+REST.m */; };
 		94FF948B172A606800563C1A /* RestNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FF948A172A606600563C1A /* RestNotification.m */; };
 		94FF9490172BDF3700563C1A /* facebook-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FF948C172BDF3700563C1A /* facebook-login.png */; };
@@ -178,14 +178,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9404B4F91730FE840052E4CE /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Match.h; path = models/Match.h; sourceTree = "<group>"; };
-		9404B4FA1730FE840052E4CE /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Match.m; path = models/Match.m; sourceTree = "<group>"; };
-		9404B4FC1730FE840052E4CE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
-		9404B4FD1730FE840052E4CE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
 		9404B4FF1730FE840052E4CE /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = models/Image.h; sourceTree = "<group>"; };
 		9404B5001730FE840052E4CE /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Image.m; path = models/Image.m; sourceTree = "<group>"; };
-		9404B5021730FE850052E4CE /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = models/Notification.h; sourceTree = "<group>"; };
-		9404B5031730FE850052E4CE /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notification.m; path = models/Notification.m; sourceTree = "<group>"; };
 		9404B5051730FE850052E4CE /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Thread.h; path = models/Thread.h; sourceTree = "<group>"; };
 		9404B5061730FE850052E4CE /* Thread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Thread.m; path = models/Thread.m; sourceTree = "<group>"; };
 		9404B5081730FE860052E4CE /* MutualFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutualFriend.h; path = models/MutualFriend.h; sourceTree = "<group>"; };
@@ -264,6 +258,12 @@
 		94D09CD316CBF3830064F886 /* NavigationTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationTopViewController.m; path = controllers/NavigationTopViewController.m; sourceTree = "<group>"; };
 		94D09CD516CBF4060064F886 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = controllers/MenuViewController.h; sourceTree = "<group>"; };
 		94D09CD616CBF4060064F886 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = controllers/MenuViewController.m; sourceTree = "<group>"; };
+		94FB84EF1733B17A001A74D3 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = models/Notification.h; sourceTree = "<group>"; };
+		94FB84F01733B17A001A74D3 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notification.m; path = models/Notification.m; sourceTree = "<group>"; };
+		94FB84F21733B17A001A74D3 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Match.h; path = models/Match.h; sourceTree = "<group>"; };
+		94FB84F31733B17B001A74D3 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Match.m; path = models/Match.m; sourceTree = "<group>"; };
+		94FB84F51733B23F001A74D3 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
+		94FB84F61733B23F001A74D3 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
 		94FF9486172A5D6100563C1A /* Notification+REST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Notification+REST.h"; path = "models/Notification+REST.h"; sourceTree = "<group>"; };
 		94FF9487172A5D6200563C1A /* Notification+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Notification+REST.m"; path = "models/Notification+REST.m"; sourceTree = "<group>"; };
 		94FF9489172A606500563C1A /* RestNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestNotification.h; path = models/RestNotification.h; sourceTree = "<group>"; };
@@ -477,6 +477,12 @@
 		94D09CC316CBEA4B0064F886 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				94FB84F51733B23F001A74D3 /* User.h */,
+				94FB84F61733B23F001A74D3 /* User.m */,
+				94FB84F21733B17A001A74D3 /* Match.h */,
+				94FB84F31733B17B001A74D3 /* Match.m */,
+				94FB84EF1733B17A001A74D3 /* Notification.h */,
+				94FB84F01733B17A001A74D3 /* Notification.m */,
 				9404B50E1730FE860052E4CE /* Hookup.h */,
 				9404B50F1730FE860052E4CE /* Hookup.m */,
 				9404B50B1730FE860052E4CE /* PrivateMessage.h */,
@@ -485,14 +491,8 @@
 				9404B5091730FE860052E4CE /* MutualFriend.m */,
 				9404B5051730FE850052E4CE /* Thread.h */,
 				9404B5061730FE850052E4CE /* Thread.m */,
-				9404B5021730FE850052E4CE /* Notification.h */,
-				9404B5031730FE850052E4CE /* Notification.m */,
 				9404B4FF1730FE840052E4CE /* Image.h */,
 				9404B5001730FE840052E4CE /* Image.m */,
-				9404B4FC1730FE840052E4CE /* User.h */,
-				9404B4FD1730FE840052E4CE /* User.m */,
-				9404B4F91730FE840052E4CE /* Match.h */,
-				9404B4FA1730FE840052E4CE /* Match.m */,
 				FAC6944717271A83008E964F /* categories */,
 			);
 			name = CoreData;
@@ -1089,14 +1089,14 @@
 				FAC69504172E35DC008E964F /* TDDatePickerController.m in Sources */,
 				FAC69506172E35DC008E964F /* TDSemiModalViewController.m in Sources */,
 				FAC69507172E35DC008E964F /* UIViewController+TDSemiModalExtension.m in Sources */,
-				9404B4FB1730FE840052E4CE /* Match.m in Sources */,
-				9404B4FE1730FE840052E4CE /* User.m in Sources */,
 				9404B5011730FE840052E4CE /* Image.m in Sources */,
-				9404B5041730FE850052E4CE /* Notification.m in Sources */,
 				9404B5071730FE850052E4CE /* Thread.m in Sources */,
 				9404B50A1730FE860052E4CE /* MutualFriend.m in Sources */,
 				9404B50D1730FE860052E4CE /* PrivateMessage.m in Sources */,
 				9404B5101730FE860052E4CE /* Hookup.m in Sources */,
+				94FB84F11733B17A001A74D3 /* Notification.m in Sources */,
+				94FB84F41733B17B001A74D3 /* Match.m in Sources */,
+				94FB84F71733B23F001A74D3 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

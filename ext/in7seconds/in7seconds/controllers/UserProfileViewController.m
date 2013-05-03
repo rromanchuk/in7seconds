@@ -62,7 +62,7 @@
     self.educationLabel.text = self.otherUser.schoolInfo;
     [self.educationLabel sizeToFit];
     
-    [self.vkHeader setFrame:CGRectMake(self.educationLabel.frame.origin.x, (self.educationLabel.frame.origin.y + self.educationLabel.frame.size.height) + 10, self.educationLabel.frame.size.width, self.educationLabel.frame.size.height)];
+    [self.vkHeader setFrame:CGRectMake(self.educationLabel.frame.origin.x, (self.educationLabel.frame.origin.y + self.educationLabel.frame.size.height) + 10, self.vkHeader.frame.size.width, self.educationLabel.frame.size.height)];
     
     [self.vkUrlTextView setFrame:CGRectMake(self.vkHeader.frame.origin.x, (self.vkHeader.frame.origin.y + self.vkHeader.frame.size.height), self.vkUrlTextView.frame.size.width, self.vkUrlTextView.frame.size.height)];
     self.vkUrlTextView.text = self.otherUser.vkUrl;
@@ -70,6 +70,16 @@
     
     [self setupMutualFriends];
     
+}
+
+- (void)setupUserImages {
+    NSInteger page = 1;
+    for (Image *_image in self.otherUser.images) {
+        int offsetX = (self.profileImage.frame.origin.x + 320) * page;
+        ProfileImageView *image = [[ProfileImageView alloc] initWithFrame:CGRectMake(offsetX, self.profileImage.frame.origin.y, self.profileImage.frame.size.width, self.profileImage.frame.size.height)];
+        [self.userImagesScrollView addSubview:image];
+        page++;
+    }
 }
 
 - (void)setupMutualFriends {
@@ -108,6 +118,7 @@
 
 - (void)viewDidUnload {
     [self setVkHeader:nil];
+    [self setUserImagesScrollView:nil];
     [super viewDidUnload];
 }
 @end

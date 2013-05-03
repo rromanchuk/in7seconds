@@ -63,6 +63,7 @@
         <attribute name="vkUniversityName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="match" inverseEntity="Image" syncable="YES"/>
         <relationship name="mutualFriends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MutualFriend" inverseName="match" inverseEntity="MutualFriend" syncable="YES"/>
+        <relationship name="sentNotifcation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Notification" inverseName="sender" inverseEntity="Notification" syncable="YES"/>
         <relationship name="thread" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Thread" inverseName="withMatch" inverseEntity="Thread" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="matches" inverseEntity="User" syncable="YES"/>
     </entity>
@@ -80,6 +81,7 @@
         <attribute name="isRead" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notificationType" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="sender" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Match" inverseName="sentNotifcation" inverseEntity="Match" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="notifications" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="PrivateMessage" representedClassName="PrivateMessage" syncable="YES">
@@ -122,7 +124,6 @@
         <attribute name="vkDomain" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vkFacultyName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vkGraduation" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="vkToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vkUniversityName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="hookups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Hookup" inverseName="user" inverseEntity="Hookup" syncable="YES"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="user" inverseEntity="Image" syncable="YES"/>
@@ -133,11 +134,11 @@
     <elements>
         <element name="Hookup" positionX="160" positionY="192" width="128" height="465"/>
         <element name="Image" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Match" positionX="160" positionY="192" width="128" height="450"/>
+        <element name="Match" positionX="160" positionY="192" width="128" height="465"/>
         <element name="MutualFriend" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="Notification" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="Notification" positionX="160" positionY="192" width="128" height="150"/>
         <element name="PrivateMessage" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Thread" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="User" positionX="160" positionY="192" width="128" height="525"/>
+        <element name="User" positionX="160" positionY="192" width="128" height="510"/>
     </elements>
 </model>
