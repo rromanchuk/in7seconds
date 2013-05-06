@@ -47,6 +47,12 @@ In7seconds::Application.routes.draw do
     end
   end
 
+  namespace :admin do 
+    resources :users do 
+
+    end
+  end
+
   namespace :api do
     namespace :v1 do
       resources :token_authentications, :only => [:create, :destroy]
