@@ -22,7 +22,8 @@ class Mailer < ActionMailer::Base
     return unless receiver.email_opt_in?
     @user = receiver
     @message = message
-    mail to: receiver.email, :bcc => "support@in7seconds.com", subject: "#{sender.first_name} отправил вам сообщение."
+    s_sent = (sender.gender == User::GENDER_MALE) ? "отправил" : "отправила"
+    mail to: receiver.email, :bcc => "support@in7seconds.com", subject: "#{sender.first_name} #{s_sent} вам сообщение."
   end
 
    def daily_stats

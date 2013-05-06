@@ -396,7 +396,7 @@
 }
 #pragma mark - user events
 - (IBAction)didSelectNotifications:(id)sender {
-    [self performSegueWithIdentifier:@"Notifications" sender:self];
+    //[self performSegueWithIdentifier:@"Notifications" sender:self];
 }
 
 - (void)fetchHookups {
