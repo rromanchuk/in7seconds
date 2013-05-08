@@ -72,6 +72,7 @@ class User < ActiveRecord::Base
   after_create :get_groups, :if => :canCrawlVk?
   after_create :get_friends, :if => :canCrawlVk?
   after_create :welcome_email, :if => :is_active?
+  after_create :get_photos, :if => :is_active?
   before_destroy :remove_relationships
   
   before_save :require_confirmation, :on => :create
@@ -265,7 +266,7 @@ class User < ActiveRecord::Base
   end
   handle_asynchronously :get_photos
 
-  
+
   def get_friends
     vk_client.friends.get(fields: VK_FIELDS, lang:"ru", uid: vkuid) do |friend|
       puts "#{friend.first_name} '#{friend.screen_name}' #{friend.last_name}"

@@ -20,7 +20,7 @@ module Api
         end
         
         @message.reload
-        broadcast("/messages", {test: "test"})
+        #broadcast("/messages", {test: "test"})
 
         if @message.from_user == current_user
           logger.error "is from self"
