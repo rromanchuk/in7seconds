@@ -15,10 +15,10 @@ VkontakteApi.configure do |config|
   config.logger = Rails.logger
   
   # log requests' URLs
-  # config.log_requests = true
+  config.log_requests = true
   
   # log response JSON after errors
-  # config.log_errors = true
+  config.log_errors = true
   
   # log response JSON after successful responses
   config.log_responses = true

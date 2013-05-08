@@ -260,6 +260,12 @@ class User < ActiveRecord::Base
   end
   handle_asynchronously :get_groups
 
+  def get_photos
+
+  end
+  handle_asynchronously :get_photos
+
+  
   def get_friends
     vk_client.friends.get(fields: VK_FIELDS, lang:"ru", uid: vkuid) do |friend|
       puts "#{friend.first_name} '#{friend.screen_name}' #{friend.last_name}"
