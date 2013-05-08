@@ -49,7 +49,10 @@ In7seconds::Application.routes.draw do
 
   namespace :admin do 
     resources :users do 
-
+      member do
+        post :flirt
+        post :reject
+      end
     end
   end
 
