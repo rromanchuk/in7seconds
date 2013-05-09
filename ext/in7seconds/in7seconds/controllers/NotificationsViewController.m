@@ -10,6 +10,8 @@
 #import "BaseUIView.h"
 #import "RestNotification.h"
 #import "Notification+REST.h"
+#import "Match+REST.h"
+
 #import "AppDelegate.h"
 
 #import "NotificationCell.h"
@@ -101,6 +103,13 @@
     cell.notficationLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
     cell.notficationLabel.lineBreakMode = UILineBreakModeWordWrap;
     cell.notficationLabel.numberOfLines = 0;
+    
+    if (notification.sender) {
+        cell.profilePhotoView.hidden = NO;
+        [cell.profilePhotoView setProfilePhotoWithURL:notification.sender.photoUrl];
+    } else {
+        cell.profilePhotoView.hidden = YES;
+    }
     //[cell.profilePhotoView setProfileImageForUser:notification.sender];
     return cell;
 }
