@@ -11,7 +11,8 @@
     - if @city
       %small.b-mu-location= @city + if @country? then ', ' + @country else ''
 
-  .b-mu-contacts
-    %a.vk(target="_blank", href="http://vk.com/#{@vk_domain}")
+  - if @vk_domain
+    .b-mu-contacts
+      %a.vk(target="_blank", href="http://vk.com/#{@vk_domain}")
 
   
