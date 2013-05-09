@@ -12,6 +12,7 @@
 
 #import  <QuartzCore/QuartzCore.h>
 #import "Hookup+REST.h"
+#import "Image+REST.h"
 #import "MutualFriend+REST.h"
 #import "ImageBrowser.h"
 #define TRANSPARENT_BOUNDS CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] applicationFrame]), 150)
@@ -34,7 +35,13 @@
     self.imageBrowser = [[ImageBrowser alloc] initWithFrame:TRANSPARENT_BOUNDS];
     self.imageBrowser.frame = CGRectOffset(TRANSPARENT_BOUNDS, 0, -CGRectGetHeight(TRANSPARENT_BOUNDS));
     //self.imageBrowser.backgroundColor = [UIColor blackColor];
-    [self.imageBrowser setImages:[self.otherUser.images allObjects]];
+    NSMutableArray *images = [[NSMutableArray alloc] init];
+    [images addObject:self.otherUser.photoUrl];
+    for (Image *image in self.otherUser.images) {
+        [images addObject:image.photoUrl];
+    }
+    
+    [self.imageBrowser setImages:images];
     [self.tableView addSubview:self.imageBrowser];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchGesture)];

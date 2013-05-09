@@ -1,6 +1,7 @@
 !!!
 %html.no-js.splash{:class=>(yield :html_classes).blank? ? nil : (yield :html_classes), :lang=>'ru-RU'}
   %head
+    = csrf_meta_tags
     = render :partial => 'layouts/meta'
 
   %body
