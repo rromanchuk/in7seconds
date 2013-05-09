@@ -11,6 +11,7 @@
 #import "IndexViewController.h"
 #import "RestHookup.h"
 #import "Hookup+REST.h"
+#import "Location.h"
 @interface InitialViewController ()
 
 @end
@@ -32,7 +33,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout)
                                                  name:@"UserNotAuthorized" object:nil];
 
-    [self setup];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -61,6 +61,7 @@
     nc.managedObjectContext = self.managedObjectContext;
     ((IndexViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
     ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
+    ((MenuViewController *)nc.slidingViewController.underLeftViewController).delegate = self;
     
 }
 
@@ -70,7 +71,25 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)didFbLogin:(User *)user {
+    self.currentUser = user;
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissModalViewControllerAnimated:YES];
+}
 
+#pragma mark - LogoutDelegate delegate methods
+- (void) didLogout
+{
+    ALog(@"in logout");
+    [[Location sharedLocation] stopUpdatingLocation:@"logout"];
+    [[[RestClient sharedClient] operationQueue] cancelAllOperations];
+    [RestUser resetIdentifiers];
+    [[Vkontakte sharedInstance] logout];
+    
+    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [sharedAppDelegate resetWindowToInitialView];
+}
 
 - (void)saveContext
 {

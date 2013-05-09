@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :token_authenticatable, :omniauthable, :confirmable
          #:validatable
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city, :fbuid
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city, :fbuid, :email_opt_in, :push_opt_in
   attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active, :looking_for_gender, :latitude, :longitude, :vk_city, :vk_country, :vk_domain, :vk_graduation, :vk_university_name, :vk_faculty_name, :vk_mobile_phone
 
   has_many :images
@@ -45,6 +45,8 @@ class User < ActiveRecord::Base
   has_many :messages_received,  :class_name => 'Message', :foreign_key => 'to_user_id'
   has_many :messages_sent,      :class_name => 'Message', :foreign_key => 'from_user_id'
 
+  has_many :notifications, :class_name => 'Notification', :foreign_key => 'receiver_id'
+
   belongs_to :vk_country
   belongs_to :vk_city
 
@@ -70,6 +72,7 @@ class User < ActiveRecord::Base
   after_create :get_groups, :if => :canCrawlVk?
   after_create :get_friends, :if => :canCrawlVk?
   after_create :welcome_email, :if => :is_active?
+  after_create :get_photos, :if => :is_active?
   before_destroy :remove_relationships
   
   before_save :require_confirmation, :on => :create
@@ -164,7 +167,7 @@ class User < ActiveRecord::Base
   end
 
   def birthday_simple
-    birthday.is_a?(Date) ? birthday.strftime('%Y-%m-%d') : ""
+    birthday.blank? ? "" : birthday.strftime('%Y-%m-%d') 
   end
 
   def country
@@ -230,7 +233,13 @@ class User < ActiveRecord::Base
   end
 
   def mutual_friends(hookup)
-    self.friends.includes([:vk_country, :vk_city, :friends, :groups]) & hookup.friends.includes([:vk_country, :vk_city, :friends, :groups])
+    Rails.cache.fetch("#{self.cache_key}_mutual_friends") do
+      self.friends & hookup.friends
+    end
+  end
+
+  def mutual_friends_num(hookup)
+    mutual_friends(hookup).length
   end
 
   def mutual_groups(hookup)
@@ -251,6 +260,16 @@ class User < ActiveRecord::Base
     end
   end
   handle_asynchronously :get_groups
+
+  def get_photos
+    vk_client.photos.getUserPhotos.each do |photo|
+      if photo.is_a?(Hash)
+        image = Image.where(external_id: photo.pid, provider: :vkontakte).first_or_create(remote_url: photo.src_big)
+        self.images << image unless self.images.exists?(image)
+      end
+    end
+  end
+  handle_asynchronously :get_photos
 
   def get_friends
     vk_client.friends.get(fields: VK_FIELDS, lang:"ru", uid: vkuid) do |friend|
@@ -323,7 +342,7 @@ class User < ActiveRecord::Base
           :is_active => true,
           :email => (vk_user.email.blank?) ? '' : vk_user.email)
     
-    
+    user.images << Image.create(provider: :vkontakte_profile, remote_url: vk_user.photo_big)
     user
   end
 
@@ -373,7 +392,7 @@ class User < ActiveRecord::Base
     user
   end
 
-  def self.find_or_create_for_facebook_oauth(facebook_user, signed_in_resource=nil)
+  def self.find_or_create_for_facebook_oauth(facebook_user)
     logger.debug facebook_user.to_yaml
     if user = User.where(:fbuid => facebook_user.identifier).first
       user.update_user_from_fb_graph(facebook_user)
@@ -402,14 +421,30 @@ class User < ActiveRecord::Base
   def possible_hookups
     # First find nearby users
     users = users_nearby
+    
     # Find active users
-    users = filter(User.active.where('gender IN (?)', get_genders)).take(10) if users.blank?
+    if users.length < 30
+      active_users = filter(User.active.where('gender IN (?)', get_genders)).take(50)
+      users = users.concat(active_users)
+    end
+
     # Ok find friends on facebook
-    users = filter(User.where(:vkuid => self.friends.map(&:vkuid) ).where('gender IN (?)', get_genders)) if users.blank?
+    if users.length < 30
+      friends = filter(User.where(:id => self.friends.map(&:id) ).where('gender IN (?)', get_genders))
+      users = users.concat(friends)
+    end
+    
     # Ok find anyone on the system in the same city
-    users = filter(User.where('gender IN (?)', get_genders).where(vk_city_id: vk_city_id)).take(10) if users.blank?
+    if users.length < 30
+      local_users = filter(User.where('gender IN (?)', get_genders).where(vk_city_id: vk_city_id)).take(50)
+      users = users.concat(local_users )
+    end
+    
     # Any one on the system
-    users = filter(User.where('gender IN (?)', get_genders)).take(10) if users.blank?
+    if users.length < 30
+      all_users = filter(User.where('gender IN (?)', get_genders)).take(50)
+      users = users.concat(all_users)
+    end
     
     users
   end
@@ -418,19 +453,19 @@ class User < ActiveRecord::Base
     if self.relationships.blank?
       return users
     else
-      return users.where('vkuid NOT IN (?)', exclude_vkuids.push(vkuid))
+      return users.where('id NOT IN (?)', exclude_ids.push(id))
     end
   end
 
-  def exclude_vkuids
-    (hookups + pending_hookups + rejected_hookups).map(&:vkuid)
+  def exclude_ids
+    (hookups + pending_hookups + rejected_hookups).map(&:id)
   end
 
   def users_nearby
     if self.geocoded?
       users = self.nearbys(30)
       unless users.blank? 
-        users = filter(users.where('gender IN (?)', get_genders)).take(10) 
+        users = filter(users.where('gender IN (?)', get_genders)).take(30) 
         return users
       end
     end

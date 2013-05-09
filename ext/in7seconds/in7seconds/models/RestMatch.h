@@ -29,12 +29,13 @@
 @property (atomic, strong) NSString *vkFacultyName;
 @property (atomic, strong) NSString *vkDomain;
 
-@property (atomic, strong) NSSet *mutualFriendObjects;
 
 @property (atomic, strong) NSString *groupNames;
 @property (atomic, strong) NSString *friendNames;
 @property (atomic, strong) NSString *mutualFriendNames;
 @property (atomic, strong) NSString *mutualGroupNames;
+
+@property (atomic, strong) NSSet *mutualFriendObjects;
 @property (atomic, strong) NSSet *images;
 
 + (NSDictionary *)mapping;

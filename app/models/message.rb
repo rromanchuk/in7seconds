@@ -36,7 +36,8 @@ class Message < ActiveRecord::Base
     Notification.private_message(self.from_user, self.to_user, self.message)
     Mailer.delay.private_message(to_user, from_user, message)
   end
-  
+  handle_asynchronously :notify
+
   def update_thread_id
     update_attributes(thread_id: first_message.id)
   end

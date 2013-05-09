@@ -30,5 +30,5 @@
 
 @required
 - (void)didVkLogin:(User *)user;
-
+- (void)didFbLogin:(User *)user;
 @end

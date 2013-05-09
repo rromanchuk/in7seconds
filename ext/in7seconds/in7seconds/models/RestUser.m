@@ -26,11 +26,11 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
                                 @"lastName", @"last_name",
                                 @"gender", @"gender",
                                 @"lookingForGender", @"looking_for_gender",
+                                @"emailOptIn", @"email_opt_in",
+                                @"pushOptIn", @"push_opt_in",
                                 @"email", @"email",
                                 @"externalId", @"id",
                                 @"authenticationToken", @"authentication_token",
-                                @"fbToken", @"fb_token",
-                                @"vkToken", @"vk_token",
                                 @"vkUniversityName", @"vk_university_name",
                                 @"vkGraduation", @"vk_graduation",
                                 @"vkFalcultyName", @"vk_falculty_name",
@@ -63,7 +63,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
 
     NSMutableURLRequest *request = [restClient multipartFormRequestWithMethod:@"POST"
                                                                          path:@"api/v1/images.json"
-                                                                   parameters:@{}
+                                                                   parameters:nil
                                                     constructingBodyWithBlock:^(id <AFMultipartFormData>formData)
                                     {
                                         
@@ -120,6 +120,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     ALog(@"UPDATE USER REQUEST: %@", request);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            ALog(@"Update JSON: %@", JSON);
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             //ALog(@"JSON: %@", JSON);
                                                                                             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -150,6 +151,8 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     RestClient *restClient = [RestClient sharedClient];
     //ALog(@"got gender:%@ got looking for %@", user.gender, user.lookingForGender);
     NSDictionary *params = @{@"user[looking_for_gender]": user.lookingForGender,
+                             @"user[email_opt_in]": user.emailOptIn,
+                             @"user[push_opt_in]": user.pushOptIn,
                              @"user[gender]": user.gender,
                              @"user[latitude]": [NSNull nullWhenNil:[Location sharedLocation].latitude],
                              @"user[longitude": [NSNull nullWhenNil:[Location sharedLocation].longitude]
@@ -158,6 +161,13 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     NSMutableDictionary *p = [params mutableCopy];
     if (user.email) {
         [p setObject:user.email forKey:@"user[email]"];
+    }
+    
+    if (user.birthday) {
+        NSDateFormatter *format = [[NSDateFormatter alloc] init];
+        [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+        NSString *dateString = [format stringFromDate:user.birthday];
+        [p setObject:dateString forKey:@"user[birthday]"];
     }
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"PUT"
                                                             path:[RESOURCE_PATH stringByAppendingString:@"/update_user.json"]

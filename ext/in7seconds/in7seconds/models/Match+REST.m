@@ -23,19 +23,19 @@
     ALog(@"");
 
     NSError *error = nil;
-    NSArray *hookups = [context executeFetchRequest:request error:&error];
+    NSArray *matches = [context executeFetchRequest:request error:&error];
     //ALog(@"looking for user with externalId %d got %@ from restUser %@ with context %@", restUser.externalId, users, restUser, context);
-    if (hookups && ([hookups count] > 1)) {
+    if (matches && ([matches count] > 1)) {
         // handle error
         ALog(@"not returning a user");
-    } else if (![hookups count]) {
+    } else if (![matches count]) {
         match = [NSEntityDescription insertNewObjectForEntityForName:@"Match"
                                                inManagedObjectContext:context];
         
         [match setManagedObjectWithIntermediateObject:restMatch];
         
     } else {
-        match = [hookups lastObject];
+        match = [matches lastObject];
         [match setManagedObjectWithIntermediateObject:restMatch];
     }
     
@@ -47,7 +47,7 @@
 - (void)setManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {
     RestMatch *restMatch = (RestMatch *) intermediateObject;
     ALog(@"");
-
+    self.createdAt = restMatch.createdAt;
     self.firstName = restMatch.firstName;
     self.lastName = restMatch.lastName;
     self.email = restMatch.email;
@@ -69,12 +69,13 @@
     self.mutualFriendNames = restMatch.mutualFriendNames;
     self.mutualGroupNames = restMatch.mutualGroupNames;
     
-    NSMutableSet *mutualFriends;
     for (RestMutualFriend *restMutaulFriend in restMatch.mutualFriendObjects) {
+        ALog(@"adding mutualFriend");
         MutualFriend *mutualFriend = [MutualFriend mutualFriendWithRestMutualFriend:restMutaulFriend inManagedObjectContext:self.managedObjectContext];
-        [mutualFriends addObject:mutualFriend];
+        ALog("mutualFriend managed object %@", mutualFriend);
+        [self addMutualFriendsObject:mutualFriend];
     }
-    [self addMutualFriends:mutualFriends];
+    
     
     for (RestImage *restImage in restMatch.images) {
         [self addImagesObject:[Image imageWithRestImage:restImage inManagedObjectContext:self.managedObjectContext]];

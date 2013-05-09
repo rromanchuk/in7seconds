@@ -15,6 +15,7 @@
                                        @"firstName", @"first_name",
                                        @"lastName", @"last_name",
                                        @"photoUrl", @"photo_url",
+                                       @"externalId", @"id",
                                        nil];
 
 }

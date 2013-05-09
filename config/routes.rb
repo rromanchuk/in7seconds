@@ -43,6 +43,16 @@ In7seconds::Application.routes.draw do
       get :feed
       get :hookups
       get :matches
+      get :mutual_friends
+    end
+  end
+
+  namespace :admin do 
+    resources :users do 
+      member do
+        post :flirt
+        post :reject
+      end
     end
   end
 
@@ -50,6 +60,7 @@ In7seconds::Application.routes.draw do
     namespace :v1 do
       resources :token_authentications, :only => [:create, :destroy]
       resources :images
+      resources :notifications
       resources :relationships do
         collection do
           post :flirt

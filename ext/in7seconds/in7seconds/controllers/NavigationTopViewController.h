@@ -8,7 +8,7 @@
 
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
-@interface NavigationTopViewController : UINavigationController <LogoutDelegate>
+@interface NavigationTopViewController : UINavigationController
 @property (strong, nonatomic) User *currentUser;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 

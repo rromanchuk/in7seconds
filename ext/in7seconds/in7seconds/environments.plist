@@ -15,7 +15,7 @@
 		<key>DEVELOPMENT_APP_KEY</key>
 		<string>t3YC1EwhSX2B-jl0XP2nvg</string>
 		<key>vkScopes</key>
-		<string>friends,photos,status,wall,offline,notify</string>
+		<string>friends,photos,offline,notify</string>
 		<key>vkAppId</key>
 		<string>3450705</string>
 		<key>vkAppSecret</key>

@@ -15,9 +15,14 @@ class MailPreview < MailView
       Mailer.daily_stats
     end
 
-    def private_message
-      user1 = User.first
-      user2 = User.last
-      Mailer.private_message(user1, user2, "Hey, nice meeting you")
+  def private_message
+    user1 = User.first
+    user2 = User.last
+    Mailer.private_message(user1, user2, "Hey, nice meeting you")
+  end
+
+  def pending_requests
+    user = User.first
+    Mailer.pending_requests(user)
   end
 end

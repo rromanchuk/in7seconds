@@ -13,8 +13,11 @@
 #import "IndexViewController.h"
 #import "UIImage+Resize.h"
 #import "UAPushUI.h"
+
+
 @interface MenuViewController () {
     BOOL _filtersChanged;
+    BOOL _isFetching;
 }
 @property UIImagePickerController *imagePicker;
 @end
@@ -24,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.datePicker = [[TDDatePickerController alloc] initWithNibName:@"TDDatePickerController" bundle:nil];
     [self.logoutButton setTitle:NSLocalizedString(@"Выйти", @"logout button text") forState:UIControlStateNormal];
     
     [self.slidingViewController setAnchorRightRevealAmount:295.0f];
@@ -59,8 +63,16 @@
 - (void)setupProfile {
     ALog(@"setting up profile for %@", self.currentUser);
     [self.profileImage setProfilePhotoWithURL:self.currentUser.photoUrl];
+    if (self.currentUser.birthday && [self.currentUser.yearsOld integerValue] > 0) {
+        [self.birthdayButton setTitle:[NSString stringWithFormat:@"%@ %@", self.currentUser.yearsOld, NSLocalizedString(@"лет", @"years old")] forState:UIControlStateNormal];
+    } else {
+        [self.birthdayButton setTitle:@"Выставите свой возраст в настройках" forState:UIControlStateNormal];
+    }
+
     self.nameLabel.text = self.currentUser.fullName;
     self.emailTextField.text = self.currentUser.email;
+    self.notificationEmailSwitch.on = [self.currentUser.emailOptIn boolValue];
+    self.notificationPushSwitch.on = [self.currentUser.pushOptIn boolValue];
     // Do any additional setup after loading the view.
     if ([self.currentUser.lookingForGender integerValue] == LookingForBoth) {
         self.lookingForMen.selected = YES;
@@ -71,6 +83,46 @@
         self.lookingForWomen.selected = YES;
     }
     self.genderSegmentControl.selectedSegmentIndex = [self.currentUser.gender integerValue];
+}
+
+- (IBAction)notificationSettingsChanged:(id)sender {
+    _filtersChanged = YES;
+    UISwitch *mySwitch = (UISwitch *)sender;
+    if (mySwitch == self.notificationEmailSwitch) {
+        self.currentUser.emailOptIn = [NSNumber numberWithBool:self.notificationEmailSwitch.on];
+    } else {
+        self.currentUser.pushOptIn = [NSNumber numberWithBool:self.notificationPushSwitch.on];
+    }
+    [self saveContext];
+    [self update];
+}
+
+- (IBAction)didTapBirthday:(id)sender {
+    
+    self.datePicker.delegate = self;
+    self.datePicker.datePicker.date = self.currentUser.birthday;
+    [self presentSemiModalViewController:self.datePicker];
+}
+
+
+- (void)datePickerSetDate:(TDDatePickerController*)viewController {
+    ALog(@"set date");
+    [self dismissSemiModalViewController:viewController];
+    self.currentUser.birthday = viewController.datePicker.date;
+    [self.birthdayButton setTitle:[NSString stringWithFormat:@"%@ %@", self.currentUser.yearsOld, NSLocalizedString(@"лет", @"years old")] forState:UIControlStateNormal];
+    [self update];
+}
+
+- (void)datePickerClearDate:(TDDatePickerController*)viewController {
+    ALog(@"clear date");
+    viewController.datePicker.date = self.currentUser.birthday;
+    //[viewController dismissModalViewControllerAnimated:YES];
+
+}
+
+- (void)datePickerCancel:(TDDatePickerController*)viewController {
+    ALog(@"did cancel");
+    [self dismissSemiModalViewController:viewController];
 }
 
 - (IBAction)didTapLogout:(id)sender {
@@ -103,20 +155,31 @@
     }    
 }
 
-
 - (void)update {
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...") maskType:SVProgressHUDMaskTypeGradient];
-    [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
-        [SVProgressHUD dismiss];
-        self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
-        [self saveContext];
-        if (_filtersChanged) {
-            [self.delegate didChangeFilters];
-            _filtersChanged = NO;
-        }
-    } onError:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    [self.managedObjectContext performBlock:^{
+        _isFetching  = YES;
+        [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
+            [SVProgressHUD dismiss];
+            self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+            
+            NSError *error;
+            [self.managedObjectContext save:&error];
+            
+            AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [sharedAppDelegate writeToDisk];
+            
+            if (_filtersChanged) {
+                ALog(@"filters changed with delegate %@", self.settingsDelegate);
+                [self.settingsDelegate didChangeFilters];
+                _filtersChanged = NO;
+            }
+            _isFetching = NO;
+        } onError:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+            _isFetching = NO;
+        }];
     }];
+    
 }
 
 - (IBAction)genderChanged:(id)sender {
@@ -150,7 +213,6 @@
     [self update];
     return YES;
 }
-
 
 - (void)setupSegmentControl {
     //[self.genderSegmentControl setFrame:CGRectMake(self.genderSegmentControl.frame.origin.x, self.genderSegmentControl.frame.origin.y, 249, 44)];
@@ -304,6 +366,8 @@
     [self setNameLabel:nil];
     [self setNotificationEmailSwitch:nil];
     [self setNotificationPushSwitch:nil];
+    [self setDatePicker:nil];
+    [self setBirthdayButton:nil];
     [super viewDidUnload];
 }
 @end

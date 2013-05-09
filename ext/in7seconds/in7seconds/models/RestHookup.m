@@ -20,6 +20,7 @@ static NSString *RESOURCE_PATH = @"api/v1/users";
                                 @"firstName", @"first_name",
                                 @"lastName", @"last_name",
                                 @"gender", @"gender",
+                                @"lookingForGender", @"looking_for_gender",
                                 @"email", @"email",
                                 @"externalId", @"id",
                                 @"vkUniversityName", @"vk_university_name",
@@ -37,7 +38,7 @@ static NSString *RESOURCE_PATH = @"api/v1/users";
                                 @"vkDomain", @"vk_domain",
                                 [NSDate mappingWithKey:@"birthday"
                                       dateFormatString:@"yyyy-MM-dd"], @"birthday",
-                                [NSDate mappingWithKey:@"updatedAt"
+                                [NSDate mappingWithKey:@"createdAt"
                                       dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"created_at",
                                 nil];
         
@@ -64,7 +65,10 @@ static NSString *RESOURCE_PATH = @"api/v1/users";
                                                                                                  NSMutableArray *restHookups = [[NSMutableArray alloc] init];
                                                                                                 for (id jsonObj in JSON) {
                                                                                                     RestHookup *restHookup = [RestHookup objectFromJSONObject:jsonObj mapping:[RestHookup mapping]];
-                                                                                                    [restHookups addObject:restHookup];
+                                                                                                    if (restHookup) {
+                                                                                                        [restHookups addObject:restHookup];
+                                                                                                    }
+                                                                                                
                                                                                                 }
                                                                                                 
                                                                                                 

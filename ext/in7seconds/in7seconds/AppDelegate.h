@@ -19,11 +19,14 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (strong, nonatomic) User *currentUser;
+@property (strong, nonatomic) UIStoryboard *initalStoryboard;
+
 
 @property (weak, nonatomic) id <ApplicationLifecycleDelegate> delegate;
 //@property (strong, nonatomic) NotificationHandler *notificationHandler;
 - (void)writeToDisk;
 - (void)resetCoreData;
+- (void)resetWindowToInitialView;
 @end
 
 @protocol ApplicationLifecycleDelegate <NSObject>

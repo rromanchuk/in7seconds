@@ -7,13 +7,15 @@
 //
 
 #import "RestObject.h"
-
+#import "RestMatch.h"
 @interface RestNotification : RestObject
 @property BOOL isRead;
 @property (strong, atomic) NSString *message;
 @property (strong, atomic) NSString *notificationType;
 @property (strong, atomic) NSDate *createdAt;
+@property (strong, atomic) RestMatch *sender;
 
 + (NSDictionary *)mapping;
-
++ (void)reload:(void (^)(NSArray *notifications))onLoad
+       onError:(void (^)(NSError *error))onError;
 @end

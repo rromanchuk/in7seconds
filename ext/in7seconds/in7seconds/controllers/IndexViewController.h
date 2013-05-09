@@ -15,7 +15,7 @@
 #import "AppDelegate.h"
 #import "JDFlipNumberView.h"
 
-@interface IndexViewController : ECSlidingViewController <ImageLoadedDelegate, MatchModalDelegate, ApplicationLifecycleDelegate, JDFlipNumberViewDelegate>
+@interface IndexViewController : ECSlidingViewController <ImageLoadedDelegate, MatchModalDelegate, ApplicationLifecycleDelegate, JDFlipNumberViewDelegate, UserSettingsDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UILabel *noResultsLabel;
 @property (weak, nonatomic) IBOutlet UIView *infoBanner;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 
 

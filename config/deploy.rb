@@ -6,6 +6,7 @@ require "whenever/capistrano"
 
 set :application, "in7seconds"
 set :rails_env, 'production'
+set :keep_releases, 2
 
 set :rvm_ruby_string, '2.0.0' # Or whatever env you want it to run in.
 

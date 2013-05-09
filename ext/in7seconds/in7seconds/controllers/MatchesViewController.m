@@ -18,8 +18,12 @@
 
 #import "RestMatch.h"
 #import "Match+REST.h"
+#import "Thread+REST.h"
 #import "AppDelegate.h"
-@interface MatchesViewController ()
+@interface MatchesViewController () {
+    NSDateFormatter *_fm;
+    
+}
 @property (strong, nonatomic) NoChatsView *noResultsFooterView;
 
 @end
@@ -31,6 +35,8 @@
     {
         self.noResultsFooterView = (NoChatsView *)[[[NSBundle mainBundle] loadNibNamed:@"NoChatsView" owner:self options:nil] objectAtIndex:0];
         self.noResultsFooterView.messageLabel.text = NSLocalizedString(@"У тебя еще нет совпадений. Чтобы они появились, просто начни отмечать понравившихся тебе людей :)", @"no matches");
+        _fm = [[NSDateFormatter alloc] init];
+        [_fm setDateFormat:@"d MMM"];
     }
     return self;
 }
@@ -67,9 +73,8 @@
 #pragma mark CoreData methods
 - (void)setupFetchedResultsController // attaches an NSFetchRequest to this UITableViewController
 {
-    ALog(@"setting up frc with hookups %@", self.currentUser.hookups);
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Match"];
-    request.predicate = [NSPredicate predicateWithFormat:@"self IN %@", self.currentUser.hookups];
+    request.predicate = [NSPredicate predicateWithFormat:@"self IN %@", self.currentUser.matches];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
@@ -96,7 +101,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    User *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Match *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
     MatchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
     cell.nameLabel.text = user.fullName;
     [cell.profileImage setProfilePhotoWithURL:user.photoUrl];
@@ -106,7 +111,20 @@
     UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];
     [cell.profileImage addGestureRecognizer:tg];
     cell.previewLabel.text = user.fullLocation;
-    cell.commentPreview.hidden = YES;
+    
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
+    NSArray *sortedMessages = [user.thread.messages sortedArrayUsingDescriptors:sortDescriptors];
+    PrivateMessage *message = [sortedMessages lastObject];
+    cell.commentPreview.text = message.message;
+    
+    
+    if (message) {
+        ALog(@"message");
+        cell.dateLabel.text = [_fm stringFromDate:message.createdAt];
+    } else {
+        ALog(@"match created");
+        cell.dateLabel.text = [_fm stringFromDate:user.createdAt];
+    }
     return cell;
 }
 
@@ -117,18 +135,26 @@
 
 
 - (void)fetchResults {
-    [RestMatch load:^(NSMutableArray *matches) {
-        [self.managedObjectContext performBlock:^{
+    [self.managedObjectContext performBlock:^{
+        [RestMatch load:^(NSMutableArray *matches) {
+            
             NSMutableSet *_restMatches = [[NSMutableSet alloc] init];
             for (RestMatch *restMatch in matches) {
                 [_restMatches addObject:[Match matchWithRestMatch:restMatch inManagedObjectContext:self.managedObjectContext]];
             }
-            [self.currentUser addHookups:_restMatches];
-            [self saveContext];
+            [self.currentUser addMatches:_restMatches];
+            
+            NSError *error;
+            [self.managedObjectContext save:&error];
+            
+            AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [sharedAppDelegate writeToDisk];
+            
             [self checkNoResults];
+            
+        } onError:^(NSError *error) {
+            
         }];
-    } onError:^(NSError *error) {
-        
     }];
 }
 

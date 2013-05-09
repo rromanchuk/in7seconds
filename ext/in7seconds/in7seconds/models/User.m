@@ -2,7 +2,7 @@
 //  User.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 4/28/13.
+//  Created by Ryan Romanchuk on 5/3/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -10,6 +10,7 @@
 #import "Hookup.h"
 #import "Image.h"
 #import "Match.h"
+#import "Notification.h"
 #import "Thread.h"
 
 
@@ -20,6 +21,7 @@
 @dynamic city;
 @dynamic country;
 @dynamic email;
+@dynamic emailOptIn;
 @dynamic externalId;
 @dynamic firstName;
 @dynamic friendNames;
@@ -34,15 +36,16 @@
 @dynamic mutualGroupNames;
 @dynamic mutualGroups;
 @dynamic photoUrl;
+@dynamic pushOptIn;
 @dynamic updatedAt;
 @dynamic vkDomain;
 @dynamic vkFacultyName;
 @dynamic vkGraduation;
-@dynamic vkToken;
 @dynamic vkUniversityName;
 @dynamic hookups;
 @dynamic images;
 @dynamic matches;
+@dynamic notifications;
 @dynamic threads;
 
 @end

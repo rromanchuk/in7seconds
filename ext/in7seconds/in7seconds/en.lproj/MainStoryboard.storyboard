@@ -13,7 +13,6 @@
                     </navigationBar>
                     <connections>
                         <segue destination="PtS-j9-yLv" kind="relationship" relationship="rootViewController" id="PrE-sa-oWF"/>
-                        <segue destination="uDf-1G-bJ7" kind="modal" identifier="Login" id="InG-Xj-6EH"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLE-wd-UZE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -46,7 +45,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dMf-Bg-gE4">
-                                <rect key="frame" x="32" y="404" width="257" height="47"/>
+                                <rect key="frame" x="9" y="404" width="257" height="47"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Выйти" backgroundImage="logout_button@2x.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,7 +59,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0ht-gZ-hZl">
-                                <rect key="frame" x="32" y="316" width="102" height="56"/>
+                                <rect key="frame" x="9" y="316" width="102" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="off@2x.png">
@@ -76,7 +75,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WcR-BA-U5Z">
-                                <rect key="frame" x="187" y="316" width="102" height="56"/>
+                                <rect key="frame" x="164" y="316" width="102" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="off@2x.png">
@@ -92,7 +91,7 @@
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="rZ8-Sq-1zi">
-                                <rect key="frame" x="6" y="147" width="280" height="44"/>
+                                <rect key="frame" x="6" y="163" width="280" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Мужчина"/>
@@ -103,35 +102,35 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Кто я:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ASO-Zq-NnO">
-                                <rect key="frame" x="9" y="118" width="280" height="21"/>
+                                <rect key="frame" x="9" y="134" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                 <color key="textColor" red="0.24313725489999999" green="0.23137254900000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Кого хочу найти:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fVb-aC-c6O">
-                                <rect key="frame" x="32" y="263" width="257" height="21"/>
+                                <rect key="frame" x="9" y="270" width="257" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                 <color key="textColor" red="0.24313725490196078" green="0.23137254901960785" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Мужчину" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3b8-xc-nXI">
-                                <rect key="frame" x="32" y="287" width="102" height="21"/>
+                                <rect key="frame" x="9" y="287" width="102" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.24313725489999999" green="0.23137254900000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" red="0.24313725489999999" green="0.23137254900000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Женщину" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lHN-rT-DKo">
-                                <rect key="frame" x="187" y="287" width="102" height="21"/>
+                                <rect key="frame" x="164" y="287" width="102" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.24313725489999999" green="0.23137254900000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" red="0.24313725489999999" green="0.23137254900000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P6k-Mf-jwU">
-                                <rect key="frame" x="32" y="385" width="257" height="21"/>
+                                <rect key="frame" x="9" y="385" width="257" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                                 <color key="textColor" red="0.24313725489999999" green="0.23137254900000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -166,6 +165,9 @@
                                 <rect key="frame" x="120" y="107" width="79" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" red="0.24313725490196078" green="0.23137254901960785" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="notificationSettingsChanged:" destination="Bm8-fS-JEv" eventType="valueChanged" id="Mdj-pg-IwP"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="эл. почта" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PcW-9H-5eX">
                                 <rect key="frame" x="120" y="84" width="80" height="21"/>
@@ -178,18 +180,44 @@
                                 <rect key="frame" x="209" y="107" width="79" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" red="0.24313725490196078" green="0.23137254901960785" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="notificationSettingsChanged:" destination="Bm8-fS-JEv" eventType="valueChanged" id="0Xd-Cp-WIB"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Push-уведомления" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7oK-Hw-lXU">
-                                <rect key="frame" x="209" y="84" width="111" height="21"/>
+                                <rect key="frame" x="203" y="84" width="97" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                                 <color key="textColor" red="0.24313725489999999" green="0.23137254900000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Мне:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Utn-6T-76r">
+                                <rect key="frame" x="9" y="212" width="257" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.24313725489999999" green="0.23137254900000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Zf2-Fb-syT">
+                                <rect key="frame" x="9" y="234" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <state key="normal" title="25 Лет">
+                                    <color key="titleColor" red="0.24313725490196078" green="0.23137254901960785" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapBirthday:" destination="Bm8-fS-JEv" eventType="touchUpInside" id="Zt9-X1-VUD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="birthdayButton" destination="Zf2-Fb-syT" id="m6k-Ic-mSf"/>
                         <outlet property="emailTextField" destination="TSF-hb-D4E" id="Xkb-Wc-Z5d"/>
                         <outlet property="genderSegmentControl" destination="rZ8-Sq-1zi" id="2ep-3a-z5f"/>
                         <outlet property="iAmLabel" destination="ASO-Zq-NnO" id="RSa-xH-n0L"/>
@@ -315,11 +343,16 @@
                                 <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" id="3mD-oQ-uNE">
+                                <rect key="frame" x="150" y="280" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="lIV-Yn-ccr"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="3mD-oQ-uNE" id="6V5-ov-T9c"/>
                         <outlet property="infoBanner" destination="1TP-4s-6JG" id="l9h-DV-upV"/>
                         <outlet property="infoButton" destination="IbW-aK-uuE" id="VdV-Ov-dKi"/>
                         <outlet property="likeButton" destination="SJt-G6-rU9" id="4RK-U2-ZXh"/>
@@ -334,6 +367,7 @@
                         <segue destination="Ujj-87-9Zu" kind="modal" identifier="NewMatch" id="sSy-fW-JD7"/>
                         <segue destination="q9A-pi-12M" kind="push" identifier="DirectToChat" id="w1L-Nh-4Xb"/>
                         <segue destination="SDa-LR-4qD" kind="push" identifier="UserProfile" id="1PX-uE-6VX"/>
+                        <segue destination="M9T-Gr-qfX" kind="push" identifier="Notifications" id="q3U-WC-9dF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2d3-TX-Xo8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -361,7 +395,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Брюс Ли" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oQF-iK-85G">
-                                            <rect key="frame" x="80" y="9" width="213" height="21"/>
+                                            <rect key="frame" x="80" y="9" width="142" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                             <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
@@ -375,10 +409,17 @@
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.30000000000000016" contentMode="left" text="окей" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p3u-wy-hXo">
-                                            <rect key="frame" x="80" y="51" width="195" height="18"/>
+                                            <rect key="frame" x="80" y="46" width="195" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                             <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="14 февр" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nyJ-A0-q8V">
+                                            <rect key="frame" x="225" y="9" width="70" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.79607843137254897" green="0.79607843137254897" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
@@ -386,6 +427,7 @@
                                 </view>
                                 <connections>
                                     <outlet property="commentPreview" destination="p3u-wy-hXo" id="amY-YW-5if"/>
+                                    <outlet property="dateLabel" destination="nyJ-A0-q8V" id="AHm-fN-yrz"/>
                                     <outlet property="nameLabel" destination="oQF-iK-85G" id="uEG-QY-jbi"/>
                                     <outlet property="previewLabel" destination="FUc-d2-vm5" id="rbz-f0-JOu"/>
                                     <outlet property="profileImage" destination="fpt-SD-auJ" id="WTJ-4f-DsC"/>
@@ -503,6 +545,7 @@
                     <connections>
                         <outlet property="footerView" destination="QuW-5Q-f2R" id="Ujt-D2-Wd8"/>
                         <outlet property="tableView" destination="PUr-lt-Ah4" id="UOf-3Y-NY1"/>
+                        <segue destination="SDa-LR-4qD" kind="push" identifier="UserProfile" id="sDb-UD-hd7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tgh-vo-D9L" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -563,7 +606,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="muH-Kt-KEj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-543" y="-929"/>
+            <point key="canvasLocation" x="-570" y="-928"/>
         </scene>
         <!--Match View Controller-->
         <scene sceneID="AvQ-Xf-ZGx">
@@ -658,12 +701,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="591"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="AiT-bI-kN2" customClass="ProfileImageView">
-                                                    <rect key="frame" x="20" y="20" width="280" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jqs-1v-Qqa">
-                                                    <rect key="frame" x="20" y="158" width="58" height="58"/>
+                                                    <rect key="frame" x="20" y="43" width="58" height="58"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <state key="normal" title="20" backgroundImage="green_circle@2x.png">
@@ -675,7 +714,7 @@
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="seK-RF-ZPO">
-                                                    <rect key="frame" x="20" y="224" width="58" height="58"/>
+                                                    <rect key="frame" x="20" y="118" width="58" height="58"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <state key="normal" title="20" backgroundImage="blue_circle@2x.png">
@@ -687,21 +726,21 @@
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Общих друзей" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eZK-o7-v6I">
-                                                    <rect key="frame" x="86" y="165" width="55" height="43"/>
+                                                    <rect key="frame" x="86" y="50" width="55" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Общих интересов" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ekw-aG-nr9">
-                                                    <rect key="frame" x="86" y="224" width="214" height="21"/>
+                                                    <rect key="frame" x="86" y="118" width="214" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hgj-Vb-esQ">
-                                                    <rect key="frame" x="86" y="244" width="222" height="63"/>
+                                                    <rect key="frame" x="86" y="138" width="222" height="63"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <string key="text">веб, типографика, здоровый образ жизни, онлайн игры, ролики, Объять необъятное: 
 гастроэнтерология, кошки, горные лыжи, путешествия, друзья</string>
@@ -709,26 +748,19 @@
                                                     <color key="textColor" red="0.62352941176470589" green="0.66274509803921566" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="веб, типографика, здоровый образ жизни, онлайн игры, ролики" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nun-fn-HM2">
-                                                    <rect key="frame" x="147" y="168" width="104" height="37"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
-                                                    <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" id="eb5-qE-QVY">
-                                                    <rect key="frame" x="136" y="152" width="179" height="69"/>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="eb5-qE-QVY">
+                                                    <rect key="frame" x="147" y="41" width="173" height="69"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </scrollView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="интересов" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R1W-yc-qqg">
-                                                    <rect key="frame" x="86" y="315" width="214" height="21"/>
+                                                    <rect key="frame" x="86" y="209" width="214" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3CS-1t-LNw">
-                                                    <rect key="frame" x="86" y="336" width="222" height="65"/>
+                                                    <rect key="frame" x="86" y="230" width="222" height="65"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <string key="text">веб, типографика, здоровый образ жизни, онлайн игры, ролики, Объять необъятное: 
 гастроэнтерология, кошки, горные лыжи, путешествия, друзья</string>
@@ -737,28 +769,28 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Образование" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NJn-Q8-RNY">
-                                                    <rect key="frame" x="86" y="404" width="214" height="21"/>
+                                                    <rect key="frame" x="86" y="298" width="214" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="веб, типографика, " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d2N-lh-vrA">
-                                                    <rect key="frame" x="88" y="426" width="222" height="28"/>
+                                                    <rect key="frame" x="86" y="320" width="222" height="28"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
                                                     <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Страница ВКонтакте" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ehf-ga-Jtg">
-                                                    <rect key="frame" x="86" y="457" width="214" height="21"/>
+                                                    <rect key="frame" x="86" y="356" width="214" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="http://vk.com/rromanchuk" id="aJF-eR-bec">
-                                                    <rect key="frame" x="79" y="479" width="214" height="41"/>
+                                                    <rect key="frame" x="79" y="378" width="214" height="41"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <color key="textColor" red="0.62352941179999999" green="0.66274509800000003" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -793,20 +825,19 @@
                         <outlet property="educationLabel" destination="d2N-lh-vrA" id="K7D-p5-Hf7"/>
                         <outlet property="mutalFriendsButton" destination="jqs-1v-Qqa" id="lqg-Rk-XcM"/>
                         <outlet property="mutualFriendsHeader" destination="eZK-o7-v6I" id="k24-5t-bS9"/>
-                        <outlet property="mutualFriendsLabel" destination="nun-fn-HM2" id="ErV-IV-eEz"/>
                         <outlet property="mutualGroupsButton" destination="seK-RF-ZPO" id="8cm-cu-Xd0"/>
                         <outlet property="mutualGroupsHeading" destination="ekw-aG-nr9" id="3Gr-TL-RDj"/>
                         <outlet property="mutualGroupsLabel" destination="Hgj-Vb-esQ" id="uPA-Vp-I8C"/>
-                        <outlet property="profileImage" destination="AiT-bI-kN2" id="g8P-WV-c1i"/>
                         <outlet property="scrollView" destination="eb5-qE-QVY" id="kiW-45-iL7"/>
                         <outlet property="userGroupsHeader" destination="R1W-yc-qqg" id="FMk-HU-rXU"/>
                         <outlet property="userGroupsLabel" destination="3CS-1t-LNw" id="KTj-Xy-v9z"/>
+                        <outlet property="vkHeader" destination="Ehf-ga-Jtg" id="1xf-76-dkl"/>
                         <outlet property="vkUrlTextView" destination="aJF-eR-bec" id="v0p-vq-fl4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q2r-MF-gAZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="762" y="324"/>
+            <point key="canvasLocation" x="873" y="402"/>
         </scene>
         <!--Vkontakte View Controller-->
         <scene sceneID="xIX-93-nbs">
@@ -837,7 +868,7 @@
             <objects>
                 <tableViewController id="M9T-Gr-qfX" customClass="NotificationsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="66" sectionHeaderHeight="22" sectionFooterHeight="22" id="Pwk-Ci-5DN">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -848,20 +879,22 @@
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" id="q9e-sT-51D" customClass="TTTAttributedLabel">
-                                            <rect key="frame" x="52" y="10" width="244" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="S0S-IE-44C" customClass="ProfileImageView">
-                                            <rect key="frame" x="5" y="12" width="32" height="32"/>
+                                            <rect key="frame" x="5" y="17" width="32" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Tf-VU-s3N">
+                                            <rect key="frame" x="45" y="12" width="235" height="41"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <outlet property="notificationLabel" destination="q9e-sT-51D" id="bUK-ZJ-4MP"/>
+                                    <outlet property="notficationLabel" destination="6Tf-VU-s3N" id="1Bz-3s-Sam"/>
                                     <outlet property="profilePhotoView" destination="S0S-IE-44C" id="amc-Sq-pUB"/>
                                 </connections>
                             </tableViewCell>
@@ -929,6 +962,7 @@
                 <relationship kind="action" name="didTapInfo:"/>
                 <relationship kind="action" name="didTapLike:"/>
                 <relationship kind="action" name="didTapUnlike:"/>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="infoBanner" candidateClass="UIView"/>
                 <relationship kind="outlet" name="infoButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="likeButton" candidateClass="UIButton"/>
@@ -958,6 +992,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="commentPreview" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="previewLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="profileImage" candidateClass="ProfileImageView"/>
@@ -981,11 +1016,13 @@
         <class className="MenuViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
             <relationships>
+                <relationship kind="action" name="didTapBirthday:"/>
                 <relationship kind="action" name="didTapLogout:"/>
                 <relationship kind="action" name="didTapMen:"/>
                 <relationship kind="action" name="didTapWomen:"/>
                 <relationship kind="action" name="genderChanged:"/>
-                <relationship kind="action" name="pictureFromLibrary:"/>
+                <relationship kind="action" name="notificationSettingsChanged:"/>
+                <relationship kind="outlet" name="birthdayButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="genderSegmentControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="iAmLabel" candidateClass="UILabel"/>
@@ -1005,7 +1042,7 @@
         <class className="NotificationCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NotificationCell.h"/>
             <relationships>
-                <relationship kind="outlet" name="notificationLabel" candidateClass="TTTAttributedLabel"/>
+                <relationship kind="outlet" name="notficationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="profilePhotoView" candidateClass="ProfileImageView"/>
             </relationships>
         </class>
@@ -1023,24 +1060,24 @@
         <class className="ProfileImageView" superclassName="UIImageView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileImageView.h"/>
         </class>
-        <class className="TTTAttributedLabel" superclassName="UILabel">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTTAttributedLabel.h"/>
-        </class>
         <class className="UserProfileViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UserProfileViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="educationHeader" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="educationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="headerScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="mutalFriendsButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="mutualFriendsHeader" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="mutualFriendsLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="mutualGroupsButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="mutualGroupsHeading" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="mutualGroupsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="profileImage" candidateClass="ProfileImageView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="userGroupsHeader" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userGroupsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userProfileImage" candidateClass="ProfileImageView"/>
+                <relationship kind="outlet" name="vkHeader" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="vkUrlTextView" candidateClass="UITextView"/>
             </relationships>
         </class>
@@ -1060,8 +1097,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="InG-Xj-6EH"/>
-        <segue reference="w1L-Nh-4Xb"/>
-        <segue reference="1PX-uE-6VX"/>
+        <segue reference="hjQ-Dw-AsQ"/>
+        <segue reference="sDb-UD-hd7"/>
     </inferredMetricsTieBreakers>
 </document>

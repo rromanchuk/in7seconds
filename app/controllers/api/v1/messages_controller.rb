@@ -20,7 +20,7 @@ module Api
         end
         
         @message.reload
-        broadcast("/messages", {test: "test"})
+        #broadcast("/messages", {test: "test"})
 
         if @message.from_user == current_user
           logger.error "is from self"
@@ -28,12 +28,7 @@ module Api
           logger.error "is not from self"
         end
 
-        if params[:lite_version]
-          @hookup = hookup
-          render 'messages/show_lite'
-        else
-          render :show
-        end
+        render 'api/v1/messages/show'
       end
 
       def index

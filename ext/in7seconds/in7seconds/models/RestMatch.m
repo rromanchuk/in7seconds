@@ -58,12 +58,16 @@ static NSString *RESOURCE_PATH = @"api/v1/users";
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
-                                                                                            //ALog(@"JSON: %@", JSON);
+                                                                                            ALog(@"JSON: %@", JSON);
                                                                                             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                                                                                 NSMutableArray *restMatches = [[NSMutableArray alloc] init];
                                                                                                 for (id jsonObj in JSON) {
+                                                                                                    ALog(@"restMatch JSON: %@", jsonObj);
                                                                                                     RestMatch *restMatch = [RestMatch objectFromJSONObject:jsonObj mapping:[RestMatch mapping]];
-                                                                                                    [restMatches addObject:restMatch];
+                                                                                                    if (restMatch) {
+                                                                                                        [restMatches addObject:restMatch];
+                                                                                                    }
+                                                                                                    
                                                                                                 }
                                                                                                 
                                                                                                 

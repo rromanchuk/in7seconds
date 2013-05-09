@@ -91,12 +91,10 @@
     self.photoUrl = restUser.photoUrl;
     self.externalId = [NSNumber numberWithInt:restUser.externalId];
     self.authenticationToken = restUser.authenticationToken;
-    self.vkToken = restUser.vkToken;
     self.vkUniversityName = restUser.vkUniversityName;
     self.vkGraduation = restUser.vkGraduation;
     self.vkFacultyName = restUser.vkFacultyName;
-    
-    //self.fbToken = restUser.fbToken;
+
     self.gender = [NSNumber numberWithInteger:restUser.gender];
     self.country = restUser.country;
     self.city = restUser.city;
@@ -109,6 +107,8 @@
     self.friendNames = restUser.friendNames;
     self.mutualFriendNames = restUser.mutualFriendNames;
     self.mutualGroupNames = restUser.mutualGroupNames;
+    self.emailOptIn = [NSNumber numberWithBool:restUser.emailOptIn];
+    self.pushOptIn = [NSNumber numberWithBool:restUser.pushOptIn];
     
     for (RestImage *restImage in restUser.images) {
         [self addImagesObject:[Image imageWithRestImage:restImage inManagedObjectContext:self.managedObjectContext]];

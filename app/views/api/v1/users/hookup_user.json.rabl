@@ -1,27 +1,23 @@
 object @user
-cache @user
-attributes :id, :updated_at, :first_name, :last_name, :gender, :email, :photo_url, :looking_for_gender, :country, :city, :vk_domain, :vk_university_name, :vk_graduation, :vk_faculty_name
+cache ['hookup_user', root_object]
+attributes :id, :created_at, :first_name, :last_name, :gender, :email, :photo_url, :looking_for_gender, :country, :city, :vk_domain, :vk_university_name, :vk_graduation, :vk_faculty_name
 
 
 child :images  do 
-  extends "images/show"
+  extends "api/v1/images/show"
 end
 
 node :birthday do |user|
   user.birthday_simple
 end
 
-node :mutual_friends do |user|
-  user.mutual_friends(current_user).length
-end
-
 node :mutual_friends_num do |user|
-  user.mutual_friends(current_user).length
+  user.mutual_friends_num(current_user)
 end
 
 node :mutual_friend_objects do |user|
   user.mutual_friends(current_user).map do |mutual_friend| 
-    partial("users/mutual_user", :object => mutual_friend) 
+    partial("api/v1/users/mutual_friend", :object => mutual_friend) 
   end
 end
 

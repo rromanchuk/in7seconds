@@ -18,6 +18,8 @@
 #import "RestThread.h"
 #import "AppDelegate.h"
 
+#import "UserProfileViewController.h"
+
 // views
 #import "BaseUIView.h"
 #import "NoChatsView.h"
@@ -42,8 +44,13 @@
 }
 
 
-- (void)performSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"UserProfile"]) {
+        UserProfileViewController *vc = (UserProfileViewController *)segue.destinationViewController;
+        vc.managedObjectContext = self.managedObjectContext;
+        vc.currentUser = self.currentUser;
+        vc.otherUser = self.otherUser;
+    }
 }
 
 - (void)viewDidLoad
@@ -69,8 +76,11 @@
                                                  name:UIKeyboardWillHideNotification object:nil];
     
     
-    // Let's make sure comments are current and ask the server (this will automatically update the feed as well)
-    [self setupFetchedResultsController];
+    self.thread = self.otherUser.thread;
+    if (self.thread) {
+        [self setupFetchedResultsController];
+    }
+    
     [self checkNoResults];
     
     
@@ -160,17 +170,15 @@
         [cell.blueBubble setMessage:message.message];
         [cell.profileImage setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
         cell.dateLabel.text = [_df stringFromDate:message.createdAt];
+        cell.profileImage.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];
+        [cell.profileImage addGestureRecognizer:tg];
         return cell;
     } else {
         CurrentUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CurrentUserChatCell"];
         [cell.whiteBubble setMessage:message.message];
         cell.dateLabel.text = [_df stringFromDate:message.createdAt];
-        [cell.profilePhoto setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];
-        cell.profilePhoto.tag = indexPath.row;
-        cell.profilePhoto.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];
-        [cell.profilePhoto addGestureRecognizer:tg];
-        //[cell.imageView setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];
+        [cell.profilePhoto setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];        
         return cell;
     }
 
@@ -461,28 +469,36 @@
 
 
 - (void)fetchResults {
-    [RestThread loadThreadWithUser:self.otherUser onLoad:^(RestThread *restThread) {
-        ALog(@"rest thread %@", restThread);
-        //if
-        [self.managedObjectContext performBlock:^{
+    [self.managedObjectContext performBlock:^{
+        [RestThread loadThreadWithUser:self.otherUser onLoad:^(RestThread *restThread) {
+            ALog(@"rest thread %@", restThread);
             self.thread = [Thread threadWithRestThread:restThread inManagedObjectContext:self.managedObjectContext];
             [self.currentUser addThreadsObject:self.thread];
-            [self saveContext];
-            [self setupFetchedResultsController];
+            NSError *error;
+            [self.managedObjectContext save:&error];
+            
+            AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [sharedAppDelegate writeToDisk];
+            
+            if (!self.fetchedResultsController) {
+                [self setupFetchedResultsController];
+            }
             [self checkNoResults];
+                        
+            ALog(@"thread %@", restThread);
+            
+        } onError:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
         }];
-        
-        ALog(@"thread %@", restThread);
-        
-    } onError:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+
     }];
 }
 
 - (IBAction)didTapProfilePhoto:(id)sender {
-    NSInteger row = ((UIImageView *)sender).tag;
+    NSInteger row = ((UITapGestureRecognizer *)sender).view.tag;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
     Match *match = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"UserProfile" sender:match];
     
 }
 @end

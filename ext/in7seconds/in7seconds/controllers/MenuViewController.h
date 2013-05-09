@@ -9,6 +9,8 @@
 #import "ECSlidingViewController.h"
 #import "User+REST.h"
 #import "ProfileImageView.h"
+#import "TDDatePickerController.h"
+
 typedef enum  {
     LookingForMen = 0,
     LookingForWomen = 1,
@@ -16,6 +18,8 @@ typedef enum  {
     } LookingForTypes;
 
 @protocol LogoutDelegate;
+@protocol UserSettingsDelegate;
+
 @interface MenuViewController : UIViewController <UITableViewDataSource, UITabBarControllerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
@@ -28,13 +32,19 @@ typedef enum  {
 @property (weak, nonatomic) IBOutlet UIButton *lookingForWomen;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (weak, nonatomic) id <LogoutDelegate> delegate;
+@property (weak, nonatomic) id <UserSettingsDelegate> settingsDelegate;
+
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet ProfileImageView *profileImage;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *notificationEmailSwitch;
+@property (strong, nonatomic) TDDatePickerController *datePicker;
 @property (weak, nonatomic) IBOutlet UISwitch *notificationPushSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *birthdayButton;
+- (IBAction)notificationSettingsChanged:(id)sender;
+- (IBAction)didTapBirthday:(id)sender;
 
 - (IBAction)didTapLogout:(id)sender;
 - (IBAction)didTapWomen:(id)sender;
@@ -48,7 +58,12 @@ typedef enum  {
 
 @required
 - (void)didLogout;
-- (void)didUpdateSettings;
+
+@end
+
+@protocol UserSettingsDelegate <NSObject>
+
+@required
 - (void)didChangeFilters;
 
 @end

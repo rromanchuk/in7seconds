@@ -16,15 +16,14 @@
 @property NSInteger mutualGroups;
 @property NSInteger mutualFriendsNum;
 
+@property BOOL emailOptIn;
+@property BOOL pushOptIn;
+
 // Identifiers
 @property (atomic, strong) NSString *authenticationToken;
-@property (atomic, strong) NSString *fbToken;
-@property (atomic, strong) NSString *vkToken;
 @property (atomic, strong) NSString *vkUniversityName;
 @property (atomic, strong) NSString *vkGraduation;
 @property (atomic, strong) NSString *vkFacultyName;
-
-
 
 // Attributes
 @property (atomic, strong) NSString *firstName;

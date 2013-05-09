@@ -11,6 +11,7 @@
 #import "MatchesViewController.h"
 #import "CommentViewController.h"
 #import "UserProfileViewController.h"
+#import "NotificationsViewController.h"
 #import "RestHookup.h"
 #import "Hookup+REST.h"
 #import "Match+REST.h"
@@ -18,10 +19,13 @@
     NSInteger _numberOfAttempts;
     BOOL _noResults;
     BOOL _modalOpen;
+    BOOL _isFetching;
 }
 
 @property (strong, nonatomic) JDFlipNumberView *countdown;
 @property (strong, nonatomic) Hookup *otherUser;
+@property (strong, nonatomic) NSMutableSet *hookups;
+
 @end
 
 @implementation IndexViewController
@@ -29,21 +33,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.hookups = [[NSMutableSet alloc] init];
     [self noResultsLeft];
+    [self fetchHookups];
+        
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(revealMenu:)];
-    
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chat_icon"] target:self action:@selector(didTapMatches:)];
     
 
     self.userImageView.delegate = self;
     _numberOfAttempts = 0;
-   	// Do any additional setup after loading the view.
         
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(topDidAppear) name:@"ECSlidingViewTopDidReset" object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftViewWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
     
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigation-logo"]];
+    ((MenuViewController *)self.slidingViewController.underLeftViewController).settingsDelegate = self;
+    
+    UIImage *notificationsImage = [UIImage imageNamed:@"navigation-logo"];
+    UIButton *notificationButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [notificationButton addTarget:self action:@selector(didSelectNotifications:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [notificationButton setBackgroundImage:notificationsImage forState:UIControlStateNormal];
+    [notificationButton setFrame:CGRectMake(0, 0, 125, 27)];
+
+    self.navigationItem.titleView = notificationButton;
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     sharedAppDelegate.delegate = self;
     
@@ -123,6 +136,10 @@
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
         vc.otherUser = self.otherUser;
+    } else if ([segue.identifier isEqualToString:@"Notifications"]) {
+        NotificationsViewController *vc = (NotificationsViewController *)segue.destinationViewController;
+        vc.managedObjectContext = self.managedObjectContext;
+        vc.currentUser = self.currentUser;
     }
 }
 
@@ -141,10 +158,10 @@
         if (_modalOpen == NO) {
             [self startCountdown];
         }
-    } else if ([self.currentUser.hookups count] > 0) {
+    } else if ([self.hookups count] > 0) {
         [self setupNextHookup];
     }
-    else {
+    else if(!_isFetching) {
         [self fetchPossibleHookups];
     }
 }
@@ -172,7 +189,8 @@
         return;
     }
     Hookup *otherUser = self.otherUser;
-    [self.currentUser removeHookupsObject:self.otherUser];
+    [self.hookups removeObject:self.otherUser];
+    self.otherUser.didRate = [NSNumber numberWithBool:YES];
     [self saveContext];
     [self setupNextHookup];
     [RestUser flirtWithUser:otherUser onLoad:^(RestMatch *restMatch) {
@@ -183,7 +201,7 @@
             return;
         }
     } onError:^(NSError *error) {
-        [self setupNextHookup];
+        
     }];
 }
 
@@ -195,7 +213,8 @@
         return;
     }
     Hookup *otherUser = self.otherUser;
-    [self.currentUser removeHookupsObject:self.otherUser];
+    [self.hookups removeObject:self.otherUser];
+    self.otherUser.didRate = [NSNumber numberWithBool:YES];
     [self saveContext];
     [self setupNextHookup];
     [RestUser rejectUser:otherUser onLoad:^(BOOL success) {
@@ -209,10 +228,14 @@
 }
 
 - (void)setupNextHookup {
+    if ([self.hookups count] < 10) {
+        [self fetchPossibleHookups];
+    }
+    
     self.otherUser = nil;    
-    if (self.currentUser && self.currentUser.hookups) {
+    if (self.currentUser && self.hookups) {
         [self foundResults];
-        self.otherUser = [self.currentUser.hookups anyObject];
+        self.otherUser = [self.hookups anyObject];
         if (!self.otherUser && _numberOfAttempts < 3) {
             [self fetchPossibleHookups];
             return;
@@ -242,29 +265,39 @@
         } else {
             self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.otherUser.lastName, self.otherUser.firstName];
         }
-        
     }
 }
 
 - (void)fetchPossibleHookups {
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Загрузка...", @"Loading...") maskType:SVProgressHUDMaskTypeGradient];
+    if (_isFetching)
+        return;
+    
     _numberOfAttempts++;
-    
-    [RestHookup load:^(NSMutableArray *possibleHookups) {
-        NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
-        for (RestHookup *restHookup in possibleHookups) {
-            ALog(@"adding resthookup %@", restHookup);
-            [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
-        }
-        [self.currentUser addHookups:_restHookups];
-        ALog(@"hookups are%@", self.currentUser.hookups);
-        [self saveContext];
-        [self setupNextHookup];
-        [SVProgressHUD dismiss];
-    } onError:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    [self.managedObjectContext performBlock:^{
+        _isFetching = YES;
+        if(_noResults)
+           [self.activityIndicator startAnimating];
+        [RestHookup load:^(NSMutableArray *possibleHookups) {
+            NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
+            for (RestHookup *restHookup in possibleHookups) {
+                ALog(@"adding resthookup %@", restHookup);
+                [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
+            }
+            
+            [self.currentUser addHookups:_restHookups];
+            NSError *error;
+            [self.managedObjectContext save:&error];
+            
+            AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [sharedAppDelegate writeToDisk];
+            [self fetchHookups];
+            _isFetching = NO;
+            [self.activityIndicator stopAnimating];
+        } onError:^(NSError *error) {
+            _isFetching = NO;
+            [self.activityIndicator stopAnimating];
+        }];
     }];
-    
 }
 
 
@@ -293,7 +326,6 @@
     if (self.otherUser && (self.isViewLoaded && self.view.window)) {
         [self startCountdown];
     }
-    
 }
 
 - (void)foundResults {
@@ -345,7 +377,50 @@
     if (flipNumberView.value == 0) {
         [self didTapUnlike:self];
     }
-    
 }
 
+#pragma mark - UserSettingsDelegate
+- (void)didChangeFilters {
+    ALog(@"in change filters");
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    sharedAppDelegate.currentUser = self.currentUser;
+    
+    self.hookups = [[NSMutableSet alloc] init];
+    [self fetchPossibleHookups];
+}
+
+#pragma mark - user events
+- (IBAction)didSelectNotifications:(id)sender {
+    [self performSegueWithIdentifier:@"Notifications" sender:self];
+}
+
+- (void)fetchHookups {
+    NSArray *lookingFor;
+    //if ([self.currentUser.lookingForGender integerValue] == LookingForBoth) {
+    if (YES) {
+        lookingFor = @[[NSNumber numberWithInteger:LookingForMen], [NSNumber numberWithInteger:LookingForWomen]];
+    } else if ([self.currentUser.lookingForGender integerValue] == LookingForMen) {
+        lookingFor = @[[NSNumber numberWithInteger:LookingForMen]];
+    } else {
+        lookingFor = @[[NSNumber numberWithInteger:LookingForWomen]];
+    }
+    ALog(@"Looking for array is %@", lookingFor);
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hookup"];
+    //request.predicate = [NSPredicate predicateWithFormat:@"user = %@ AND gender IN %@", self.currentUser, lookingFor];
+    request.predicate = [NSPredicate predicateWithFormat:@"user == %@ AND didRate == %@ AND gender IN %@", self.currentUser, [NSNumber numberWithBool:NO], lookingFor];
+    //request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
+    NSError *error;
+    NSArray *hookups = [self.managedObjectContext executeFetchRequest:request error:&error];
+    [self.hookups addObjectsFromArray:hookups];
+    ALog(@"There are %d hookups", [self.hookups count])
+    if (!self.otherUser) {
+        [self setupNextHookup];
+    }
+}
+
+- (void)viewDidUnload {
+    [self setActivityIndicator:nil];
+    [super viewDidUnload];
+}
 @end
