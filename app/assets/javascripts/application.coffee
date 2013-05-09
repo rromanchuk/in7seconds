@@ -43,6 +43,13 @@ app.dom.html.addClass('android android' + app.browser.isAndroid) if app.browser.
 # app.analytics = new app.modules.Analytics()
 # app.notifications = new app.modules.Notifications()
 
+# Security
+app.env.csrf = $('meta[name="csrf-token"]').attr('content')
+$.ajaxSetup(
+  beforeSend: (xhr, settings)->
+    xhr.setRequestHeader('X-CSRF-Token', app.env.csrf)
+)
+
 if app.user
   app.header = new app.modules.Header()
 
@@ -63,9 +70,9 @@ app.log('[app]: initialize')
 @app = app
 
 
-$ ->
-  faye = new Faye.Client("http://localhost:9292/faye")
-  faye.subscribe "/messages", (data) ->
-    console.log "got message"
-    alert "got message"
+# $ ->
+#   faye = new Faye.Client("http://localhost:9292/faye")
+#   faye.subscribe "/messages", (data) ->
+#     console.log "got message"
+#     alert "got message"
 
