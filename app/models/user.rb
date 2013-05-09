@@ -264,7 +264,7 @@ class User < ActiveRecord::Base
   def get_photos
     vk_client.photos.getUserPhotos.each do |photo|
       if photo.is_a?(Hash)
-        image = Image.where(external_id: photo.pid, provider: :vkontakte).first_or_create
+        image = Image.where(external_id: photo.pid, provider: :vkontakte).first_or_create(remote_url: photo.src_big)
         self.images << image unless self.images.exists?(image)
       end
     end
@@ -342,7 +342,7 @@ class User < ActiveRecord::Base
           :is_active => true,
           :email => (vk_user.email.blank?) ? '' : vk_user.email)
     
-    
+    user.images << Image.create(provider: :vkontakte_profile, remote_url: vk_user.photo_big)
     user
   end
 

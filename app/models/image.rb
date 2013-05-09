@@ -1,5 +1,5 @@
 class Image < ActiveRecord::Base
-  attr_accessible :image, :provider, :external_id
+  attr_accessible :image, :provider, :external_id, :remote_url
   belongs_to :user
 
    has_attached_file :image,

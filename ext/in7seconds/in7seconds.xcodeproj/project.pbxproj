@@ -15,6 +15,9 @@
 		9404B5101730FE860052E4CE /* Hookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B50F1730FE860052E4CE /* Hookup.m */; };
 		942544E516EF87A100FA79FB /* NoChatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 942544E416EF87A000FA79FB /* NoChatsView.xib */; };
 		942544E816EF888200FA79FB /* NoChatsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 942544E716EF888200FA79FB /* NoChatsView.m */; };
+		943837D3173BD42200052C47 /* ImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 943837D2173BD42200052C47 /* ImageBrowser.m */; };
+		943837D6173BD4AE00052C47 /* SSScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 943837D5173BD4AD00052C47 /* SSScrollView.m */; };
+		943837D9173BD4FD00052C47 /* ImageScrollViewPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 943837D8173BD4FC00052C47 /* ImageScrollViewPage.m */; };
 		9484987616CBFE96000083DE /* UIBarButtonItem+Borderless.m in Sources */ = {isa = PBXBuildFile; fileRef = 9484987516CBFE96000083DE /* UIBarButtonItem+Borderless.m */; };
 		9484988A16CD1EBB000083DE /* UIColor+Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 9484988916CD1EBB000083DE /* UIColor+Defaults.m */; };
 		9484988F16CD1F69000083DE /* BaseUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9484988E16CD1F69000083DE /* BaseUIView.m */; };
@@ -188,6 +191,12 @@
 		942544E416EF87A000FA79FB /* NoChatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoChatsView.xib; sourceTree = "<group>"; };
 		942544E616EF888200FA79FB /* NoChatsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoChatsView.h; path = views/NoChatsView.h; sourceTree = "<group>"; };
 		942544E716EF888200FA79FB /* NoChatsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoChatsView.m; path = views/NoChatsView.m; sourceTree = "<group>"; };
+		943837D1173BD42200052C47 /* ImageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageBrowser.h; path = views/ImageBrowser.h; sourceTree = "<group>"; };
+		943837D2173BD42200052C47 /* ImageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageBrowser.m; path = views/ImageBrowser.m; sourceTree = "<group>"; };
+		943837D4173BD4AD00052C47 /* SSScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSScrollView.h; path = views/SSScrollView.h; sourceTree = "<group>"; };
+		943837D5173BD4AD00052C47 /* SSScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSScrollView.m; path = views/SSScrollView.m; sourceTree = "<group>"; };
+		943837D7173BD4FC00052C47 /* ImageScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageScrollViewPage.h; path = views/ImageScrollViewPage.h; sourceTree = "<group>"; };
+		943837D8173BD4FC00052C47 /* ImageScrollViewPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageScrollViewPage.m; path = views/ImageScrollViewPage.m; sourceTree = "<group>"; };
 		9484987416CBFE96000083DE /* UIBarButtonItem+Borderless.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIBarButtonItem+Borderless.h"; path = "categories/UIBarButtonItem+Borderless.h"; sourceTree = "<group>"; };
 		9484987516CBFE96000083DE /* UIBarButtonItem+Borderless.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIBarButtonItem+Borderless.m"; path = "categories/UIBarButtonItem+Borderless.m"; sourceTree = "<group>"; };
 		9484988816CD1EBB000083DE /* UIColor+Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Defaults.h"; path = "categories/UIColor+Defaults.h"; sourceTree = "<group>"; };
@@ -433,6 +442,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		943837D0173BD3E500052C47 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				94A980B316ECB4030036E52C /* UserProfileViewController.h */,
+				94A980B416ECB4040036E52C /* UserProfileViewController.m */,
+				943837D1173BD42200052C47 /* ImageBrowser.h */,
+				943837D2173BD42200052C47 /* ImageBrowser.m */,
+				943837D4173BD4AD00052C47 /* SSScrollView.h */,
+				943837D5173BD4AD00052C47 /* SSScrollView.m */,
+				943837D7173BD4FC00052C47 /* ImageScrollViewPage.h */,
+				943837D8173BD4FC00052C47 /* ImageScrollViewPage.m */,
+			);
+			name = UserProfile;
+			sourceTree = "<group>";
+		};
 		9484988B16CD1F3B000083DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -661,6 +685,7 @@
 		FA70029016CAECC40098A5B7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				943837D0173BD3E500052C47 /* UserProfile */,
 				FA7002B616CAF0F30098A5B7 /* LoginViewController.h */,
 				FA7002B716CAF0F30098A5B7 /* LoginViewController.m */,
 				FA7002C616CAF5F00098A5B7 /* VkontakteViewController.h */,
@@ -681,8 +706,6 @@
 				FA7F38D816E7CA8B00EA2C0B /* CommentViewController.m */,
 				94A9808216E9E34C0036E52C /* MatchViewController.h */,
 				94A9808316E9E34C0036E52C /* MatchViewController.m */,
-				94A980B316ECB4030036E52C /* UserProfileViewController.h */,
-				94A980B416ECB4040036E52C /* UserProfileViewController.m */,
 				FA73B103171A040B00D084CB /* NotificationsViewController.h */,
 				FA73B104171A041000D084CB /* NotificationsViewController.m */,
 			);
@@ -1085,6 +1108,9 @@
 				94FB84F11733B17A001A74D3 /* Notification.m in Sources */,
 				94FB84F41733B17B001A74D3 /* Match.m in Sources */,
 				94FB84F71733B23F001A74D3 /* User.m in Sources */,
+				943837D3173BD42200052C47 /* ImageBrowser.m in Sources */,
+				943837D6173BD4AE00052C47 /* SSScrollView.m in Sources */,
+				943837D9173BD4FD00052C47 /* ImageScrollViewPage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

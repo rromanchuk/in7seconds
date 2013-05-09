@@ -25,7 +25,7 @@ module Api
         if current_user.is_requested?(hookup)
           User.fuck(current_user, hookup)
           @user = hookup
-          render 'users/hookup_user'
+          render 'api/v1/users/hookup_user'
           return
         else
           current_user.flirt(hookup)

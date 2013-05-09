@@ -13,7 +13,7 @@
 #import  <QuartzCore/QuartzCore.h>
 #import "Hookup+REST.h"
 #import "MutualFriend+REST.h"
-
+#import "ImageBrowser.h"
 #define TRANSPARENT_BOUNDS CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] applicationFrame]), 150)
 #define DRAGGING_OPEN_OFFSET  40
 #define DRAGGING_CLOSE_OFFSET 20
@@ -22,8 +22,7 @@
     BOOL          _isImageBrowseOpened;
 }
 
-@property (strong, nonatomic) UIScrollView *headerScrollView;
-
+@property (strong, nonatomic) ImageBrowser *imageBrowser;
 @end
 
 @implementation UserProfileViewController
@@ -32,19 +31,16 @@
     
     self.tableView.contentInset = UIEdgeInsetsMake(CGRectGetHeight(TRANSPARENT_BOUNDS), 0, 0, 0);
 
-    self.headerScrollView = [[UIScrollView alloc] initWithFrame:TRANSPARENT_BOUNDS];
-    self.headerScrollView.frame = CGRectOffset(TRANSPARENT_BOUNDS, 0, -CGRectGetHeight(TRANSPARENT_BOUNDS));
-    self.headerScrollView.backgroundColor = [UIColor blackColor];
-    [self.tableView addSubview:self.headerScrollView];
+    self.imageBrowser = [[ImageBrowser alloc] initWithFrame:TRANSPARENT_BOUNDS];
+    self.imageBrowser.frame = CGRectOffset(TRANSPARENT_BOUNDS, 0, -CGRectGetHeight(TRANSPARENT_BOUNDS));
+    //self.imageBrowser.backgroundColor = [UIColor blackColor];
+    [self.imageBrowser setImages:[self.otherUser.images allObjects]];
+    [self.tableView addSubview:self.imageBrowser];
     
-    
-    
-    // To close/open by tap
-//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchGesture)];
-//    tapGesture.numberOfTapsRequired = 1;
-//    tapGesture.numberOfTouchesRequired = 1;
-//    [_imageBrowser addGestureRecognizer:tapGesture];
-
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchGesture)];
+    tapGesture.numberOfTapsRequired = 1;
+    tapGesture.numberOfTouchesRequired = 1;
+    [self.imageBrowser addGestureRecognizer:tapGesture];
     
 }
 
@@ -125,7 +121,7 @@
         frame.size.height = -scrollView.contentOffset.y;
     }
     
-    self.headerScrollView.frame = frame;
+    self.imageBrowser.frame = frame;
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
@@ -219,7 +215,6 @@
 
 - (void)viewDidUnload {
     [self setVkHeader:nil];
-    [self setHeaderScrollView:nil];
     [super viewDidUnload];
 }
 @end
