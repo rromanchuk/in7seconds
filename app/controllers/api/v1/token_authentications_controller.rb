@@ -21,7 +21,7 @@ module Api
         @user.ensure_authentication_token!
         @user.save
         sign_in(@user)
-        render "users/authenticated_user"
+        render "api/v1/users/authenticated_user"
       end
 
       def destroy

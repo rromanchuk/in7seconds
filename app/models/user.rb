@@ -262,10 +262,14 @@ class User < ActiveRecord::Base
   handle_asynchronously :get_groups
 
   def get_photos
-
+    vk_client.photos.getUserPhotos.each do |photo|
+      if photo.is_a?(Hash)
+        image = Image.where(external_id: photo.pid, provider: :vkontakte).first_or_create
+        self.images << image unless self.images.exists?(image)
+      end
+    end
   end
   handle_asynchronously :get_photos
-
 
   def get_friends
     vk_client.friends.get(fields: VK_FIELDS, lang:"ru", uid: vkuid) do |friend|

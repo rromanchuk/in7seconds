@@ -265,7 +265,6 @@
         } else {
             self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.otherUser.lastName, self.otherUser.firstName];
         }
-        
     }
 }
 
@@ -298,7 +297,6 @@
             _isFetching = NO;
             [self.activityIndicator stopAnimating];
         }];
-
     }];
 }
 
@@ -328,7 +326,6 @@
     if (self.otherUser && (self.isViewLoaded && self.view.window)) {
         [self startCountdown];
     }
-    
 }
 
 - (void)foundResults {
@@ -380,7 +377,6 @@
     if (flipNumberView.value == 0) {
         [self didTapUnlike:self];
     }
-    
 }
 
 #pragma mark - UserSettingsDelegate
@@ -392,11 +388,11 @@
     
     self.hookups = [[NSMutableSet alloc] init];
     [self fetchPossibleHookups];
-    
 }
+
 #pragma mark - user events
 - (IBAction)didSelectNotifications:(id)sender {
-    //[self performSegueWithIdentifier:@"Notifications" sender:self];
+    [self performSegueWithIdentifier:@"Notifications" sender:self];
 }
 
 - (void)fetchHookups {

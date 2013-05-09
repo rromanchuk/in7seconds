@@ -8,11 +8,11 @@
 
 #import "User+REST.h"
 #import "ProfileImageView.h"
-@interface UserProfileViewController : UITableViewController
+@interface UserProfileViewController : UITableViewController <UIScrollViewDelegate>
+
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
 @property (strong, nonatomic) Hookup *otherUser;
-@property (weak, nonatomic) IBOutlet ProfileImageView *profileImage;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *mutualFriendsHeader;
@@ -33,7 +33,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *educationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *educationHeader;
 
-@property (weak, nonatomic) IBOutlet UIScrollView *userImagesScrollView;
 
 @property (weak, nonatomic) IBOutlet UILabel *vkHeader;
 @property (weak, nonatomic) IBOutlet UITextView *vkUrlTextView;

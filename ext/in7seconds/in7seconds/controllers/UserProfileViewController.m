@@ -8,19 +8,52 @@
 
 #import "UserProfileViewController.h"
 #import "BaseUIView.h"
+#import "UITableView+ZGParallelView.h"
+
 #import  <QuartzCore/QuartzCore.h>
 #import "Hookup+REST.h"
 #import "MutualFriend+REST.h"
-@interface UserProfileViewController ()
+
+#define TRANSPARENT_BOUNDS CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] applicationFrame]), 150)
+#define DRAGGING_OPEN_OFFSET  40
+#define DRAGGING_CLOSE_OFFSET 20
+
+@interface UserProfileViewController () {
+    BOOL          _isImageBrowseOpened;
+}
+
+@property (strong, nonatomic) UIScrollView *headerScrollView;
 
 @end
 
 @implementation UserProfileViewController
 
+- (void)addImageBrowser {
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(CGRectGetHeight(TRANSPARENT_BOUNDS), 0, 0, 0);
+
+    self.headerScrollView = [[UIScrollView alloc] initWithFrame:TRANSPARENT_BOUNDS];
+    self.headerScrollView.frame = CGRectOffset(TRANSPARENT_BOUNDS, 0, -CGRectGetHeight(TRANSPARENT_BOUNDS));
+    self.headerScrollView.backgroundColor = [UIColor blackColor];
+    [self.tableView addSubview:self.headerScrollView];
+    
+    
+    
+    // To close/open by tap
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchGesture)];
+//    tapGesture.numberOfTapsRequired = 1;
+//    tapGesture.numberOfTouchesRequired = 1;
+//    [_imageBrowser addGestureRecognizer:tapGesture];
+
+    
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self addImageBrowser];
+    self.scrollView.delegate = self;
+    
     self.tableView.backgroundView = [[BaseUIView alloc] init];
     if (self.otherUser.birthday && [self.otherUser.yearsOld integerValue] > 0) {
         self.title = [NSString stringWithFormat:@"%@, %@", self.otherUser.firstName, self.otherUser.yearsOld];
@@ -29,7 +62,7 @@
     }
     
     
-    [self.profileImage setProfilePhotoWithURL:self.otherUser.photoUrl];
+    //[self.userProfileImage setProfilePhotoWithURL:self.otherUser.photoUrl];
     [self.mutalFriendsButton setTitle:[NSString stringWithFormat:@"%@", self.otherUser.mutualFriendsNum] forState:UIControlStateNormal];
     [self.mutualGroupsButton setTitle:[NSString stringWithFormat:@"%@", self.otherUser.mutualGroups] forState:UIControlStateNormal];
     
@@ -69,18 +102,86 @@
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     
     [self setupMutualFriends];
-    [self setupUserImages];
+    //[self setupUserImages];
 }
 
-- (void)setupUserImages {
-    NSInteger page = 1;
-    for (Image *_image in self.otherUser.images) {
-        int offsetX = (self.profileImage.frame.origin.x + 320) * page;
-        ProfileImageView *image = [[ProfileImageView alloc] initWithFrame:CGRectMake(offsetX, self.profileImage.frame.origin.y, self.profileImage.frame.size.width, self.profileImage.frame.size.height)];
-        [self.userImagesScrollView addSubview:image];
-        page++;
+
+#pragma mark - Tools
+- (void) swithTo:(BOOL) isOpen {
+    
+    self.tableView.userInteractionEnabled = NO;
+    [self.tableView setContentOffset:CGPointMake(0, (isOpen ? -CGRectGetHeight(self.tableView.frame) : -CGRectGetHeight(TRANSPARENT_BOUNDS)))
+                        animated:YES];
+}
+
+#pragma mark - UIScrollView Delegate
+// any offset changes
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    CGRect frame = CGRectOffset(TRANSPARENT_BOUNDS, 0, -CGRectGetHeight(TRANSPARENT_BOUNDS));
+    
+    if (scrollView.contentOffset.y <= -CGRectGetHeight(TRANSPARENT_BOUNDS)) {
+        frame.origin.y = scrollView.contentOffset.y;
+        frame.size.height = -scrollView.contentOffset.y;
+    }
+    
+    self.headerScrollView.frame = frame;
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
+                     withVelocity:(CGPoint)velocity
+              targetContentOffset:(inout CGPoint *)targetContentOffset {
+    
+    // long, but it is clear
+    BOOL mainCondition = (scrollView.contentOffset.y >= - CGRectGetHeight(scrollView.frame));
+    if (mainCondition && !_isImageBrowseOpened && scrollView.contentOffset.y <= - (CGRectGetHeight(TRANSPARENT_BOUNDS) + DRAGGING_OPEN_OFFSET))
+        *targetContentOffset = CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y);
+    else if (mainCondition && _isImageBrowseOpened && scrollView.contentOffset.y >= - (CGRectGetHeight(scrollView.frame) - DRAGGING_CLOSE_OFFSET))
+        *targetContentOffset = CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y);
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    
+    BOOL mainCondition = (scrollView.contentOffset.y >= - CGRectGetHeight(scrollView.frame));
+    if (mainCondition && !_isImageBrowseOpened && scrollView.contentOffset.y <= - (CGRectGetHeight(TRANSPARENT_BOUNDS) + DRAGGING_OPEN_OFFSET)) {
+        
+        [self swithTo:YES];
+    } else if (mainCondition && _isImageBrowseOpened && scrollView.contentOffset.y >= - (CGRectGetHeight(scrollView.frame) - DRAGGING_CLOSE_OFFSET)) {
+        
+        [self swithTo:NO];
     }
 }
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    
+    if (_isImageBrowseOpened) {
+        scrollView.contentInset = UIEdgeInsetsMake(CGRectGetHeight(TRANSPARENT_BOUNDS), 0, 0, 0);
+        
+        [self.tableView reloadData];
+        _isImageBrowseOpened = NO;
+    } else {
+        
+        scrollView.contentInset = UIEdgeInsetsMake(CGRectGetHeight(scrollView.frame), 0, 0, 0);
+        CGSize size = scrollView.contentSize;
+        size.height = -CGRectGetHeight(scrollView.frame);
+        scrollView.contentSize = size;
+        
+        _isImageBrowseOpened = YES;
+    }
+    
+    scrollView.userInteractionEnabled = YES;
+}
+
+
+//- (void)setupUserImages {
+//    NSInteger page = 1;
+//    for (Image *_image in self.otherUser.images) {
+//        int offsetX = (self.userProfileImage.frame.origin.x + 320) * page;
+//        ProfileImageView *image = [[ProfileImageView alloc] initWithFrame:CGRectMake(offsetX, self.userProfileImage.frame.origin.y, self.userProfileImage.frame.size.width, self.userProfileImage.frame.size.height)];
+//        [self.headerScrollView addSubview:image];
+//        page++;
+//    }
+//}
 
 - (void)setupMutualFriends {
     int offsetX = 15;
@@ -118,7 +219,7 @@
 
 - (void)viewDidUnload {
     [self setVkHeader:nil];
-    [self setUserImagesScrollView:nil];
+    [self setHeaderScrollView:nil];
     [super viewDidUnload];
 }
 @end

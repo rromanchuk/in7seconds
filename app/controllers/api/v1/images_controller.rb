@@ -7,9 +7,10 @@ module Api
 
       def create
         @image = current_user.images.build(params[:image])
+        @image.provider = :phone
         @image.save
         @user = current_user.reload
-        render 'users/authenticate_user'
+        render 'api/v1/users/authenticate_user'
       end
 
     end
