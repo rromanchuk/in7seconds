@@ -16,4 +16,5 @@ table.table
           img src=requested.photo_url style="width:50px;height:50px;"
       td
         - unless current_user.relationships.exists?(hookup_id: user.id)
-          = button_to('Request', flirt_admin_user_path(user), :class => 'btn btn-large btn-primary')
+          = button_to('Request', flirt_admin_user_path(user), :class => 'btn btn-mini')
+        = button_to('Send Pending Reminder', send_pending_reminder_admin_user_path(user), :class => 'btn btn-mini')
