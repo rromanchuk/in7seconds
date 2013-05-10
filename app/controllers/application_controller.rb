@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  #protect_from_forgery
+  protect_from_forgery
   #skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
   helper_method :current_user_json
   before_filter :prepare_for_mobile
@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
 
   def current_user_json
     if current_user
-      
-      Rabl.render(current_user, 'users/simple_user', :view_path => 'app/views', :format => :json )
+      @user = current_user
+      Rabl.render(current_user, 'api/v1/users/show', :view_path => 'app/views', :format => :json )
     else
       {}.to_json
     end
