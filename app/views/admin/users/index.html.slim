@@ -2,8 +2,8 @@ table.table
  thead
   tr
     th User
-    th Requested (Active only)
-    th Pending (Active only)
+    th Liked by (Active only)
+    th Liked other (Active only)
     th Actions 
   - @users.each do |user|
     tr
@@ -15,6 +15,5 @@ table.table
         - user.pending_hookups.active.each do |requested|
           img src=requested.photo_url style="width:50px;height:50px;"
       td
-        - unless current_user.relationships.exists?(hookup_id: user.id)
-          = button_to('Request', flirt_admin_user_path(user), :class => 'btn btn-mini')
+        = button_to('Request', flirt_admin_user_path(user), :class => 'btn btn-mini')
         = button_to('Send Pending Reminder', send_pending_reminder_admin_user_path(user), :class => 'btn btn-mini')
