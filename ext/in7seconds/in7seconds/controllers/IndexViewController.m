@@ -285,8 +285,11 @@
                 ALog(@"adding resthookup %@", restHookup);
                 [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
             }
-            
             [self.currentUser addHookups:_restHookups];
+            
+            if ([_restHookups count] > 0 )
+                _numberOfAttempts = 0;
+            
             NSError *error;
             [self.managedObjectContext save:&error];
             
@@ -295,6 +298,7 @@
             [self fetchHookups];
             _isFetching = NO;
             [self.activityIndicator stopAnimating];
+            
         } onError:^(NSError *error) {
             _isFetching = NO;
             [self.activityIndicator stopAnimating];
@@ -414,6 +418,9 @@
     NSError *error;
     NSArray *hookups = [self.managedObjectContext executeFetchRequest:request error:&error];
     [self.hookups addObjectsFromArray:hookups];
+    for (Hookup *hookup in self.hookups) {
+        ALog(@"User %@ gender %@", hookup.fullName, hookup.gender );
+    }
     //ALog(@"There are %d hookups", [self.hookups count])
     if (!self.otherUser) {
         [self setupNextHookup];

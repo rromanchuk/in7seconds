@@ -146,6 +146,14 @@ class User < ActiveRecord::Base
      self[:email] || ""
   end
 
+  def latitude
+    self[:latitude] || 0
+  end
+
+  def longitude
+    self[:longitude] || 0
+  end
+
   def looking_for_gender
     self[:looking_for_gender] || 0
   end
