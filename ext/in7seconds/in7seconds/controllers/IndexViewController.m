@@ -390,6 +390,7 @@
     
     self.hookups = [[NSMutableSet alloc] init];
     [self fetchPossibleHookups];
+    [self fetchHookups];
 }
 
 #pragma mark - user events
@@ -399,8 +400,7 @@
 
 - (void)fetchHookups {
     NSArray *lookingFor;
-    //if ([self.currentUser.lookingForGender integerValue] == LookingForBoth) {
-    if (YES) {
+    if ([self.currentUser.lookingForGender integerValue] == LookingForBoth) {
         lookingFor = @[[NSNumber numberWithInteger:LookingForMen], [NSNumber numberWithInteger:LookingForWomen]];
     } else if ([self.currentUser.lookingForGender integerValue] == LookingForMen) {
         lookingFor = @[[NSNumber numberWithInteger:LookingForMen]];
