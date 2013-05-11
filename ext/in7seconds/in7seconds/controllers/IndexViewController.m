@@ -70,7 +70,8 @@
 }
 
 - (void)leftViewWillAppear {
-    ALog(@"left fiew will appear with user");
+    ALog(@"left view will appear with user");
+    _modalOpen = YES;
     [self stopCountdown];
 }
 
