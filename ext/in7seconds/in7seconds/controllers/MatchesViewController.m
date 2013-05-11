@@ -112,7 +112,7 @@
     [cell.profileImage addGestureRecognizer:tg];
     
     
-    if (user.latitude && [user.latitude integerValue] > 0) {
+    if (user.latitude && [user.latitude integerValue] > 0 && [self.currentUser.latitude integerValue] > 0) {
         cell.previewLabel.text = [NSString stringWithFormat:@"в %@ от тебя", [user getDistanceFrom:self.currentUser]];
     } else {
         cell.previewLabel.text = user.fullLocation;
