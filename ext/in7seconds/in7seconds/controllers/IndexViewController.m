@@ -115,6 +115,7 @@
         vc.currentUser = self.currentUser;
     } else if ([segue.identifier isEqualToString:@"NewMatch"]) {
         [Flurry logEvent:@"Found_New_Match"];
+        _modalOpen = YES;
         [self stopCountdown];
         MatchViewController *vc = (MatchViewController *)segue.destinationViewController;
         vc.currentUser = self.currentUser;
@@ -137,6 +138,8 @@
         vc.currentUser = self.currentUser;
         vc.otherUser = self.otherUser;
     } else if ([segue.identifier isEqualToString:@"Notifications"]) {
+        _modalOpen = YES;
+        [self stopCountdown];
         NotificationsViewController *vc = (NotificationsViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
@@ -329,7 +332,7 @@
 }
 
 - (void)imageLoaded {
-    if (self.otherUser && (self.isViewLoaded && self.view.window)) {
+    if (self.otherUser && (self.isViewLoaded && self.view.window) && !_modalOpen) {
         [self startCountdown];
     }
 }
@@ -392,6 +395,7 @@
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     sharedAppDelegate.currentUser = self.currentUser;
     
+    self.otherUser = nil;
     self.hookups = [[NSMutableSet alloc] init];
     [self fetchPossibleHookups];
     [self fetchHookups];
