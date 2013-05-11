@@ -113,7 +113,7 @@
     
     
     if (user.latitude && [user.latitude integerValue] > 0) {
-        cell.previewLabel.text = [NSString stringWithFormat:@"Примерно в %@ от тебя", [user getDistanceFrom:self.currentUser]];
+        cell.previewLabel.text = [NSString stringWithFormat:@"в %@ от тебя", [user getDistanceFrom:self.currentUser]];
     } else {
         cell.previewLabel.text = user.fullLocation;
     }
