@@ -19,7 +19,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     #vk_user.merge!(email: params[:email])
     @user = User.find_or_create_for_vkontakte_oauth(vk_user, auth.credentials.token)
     @user.ensure_authentication_token!
-    @user.vk_token_expiration = auth.credentials.expires_at
+    
+    #seconds from now
+    #@user.vk_token_expiration = auth.credentials.expires_at
+    
     @user.save
     sign_in(@user)
     redirect_to feed_path

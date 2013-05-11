@@ -9,6 +9,9 @@
 #import "Match+REST.h"
 #import "MutualFriend+REST.h"
 #import "Image+REST.h"
+#import "User+REST.h"
+#import <MapKit/MapKit.h>
+
 @implementation Match (REST)
 
 + (Match *)matchWithRestMatch:(RestMatch *)restMatch
@@ -68,6 +71,8 @@
     self.friendNames = restMatch.friendNames;
     self.mutualFriendNames = restMatch.mutualFriendNames;
     self.mutualGroupNames = restMatch.mutualGroupNames;
+    self.latitude = [NSNumber numberWithFloat:restMatch.latitude];
+    self.longitude = [NSNumber numberWithFloat:restMatch.longitude];
     
     for (RestMutualFriend *restMutaulFriend in restMatch.mutualFriendObjects) {
         ALog(@"adding mutualFriend");
@@ -136,6 +141,23 @@
                                                fromDate:fromDate toDate:toDate options:0];
     
     return [NSNumber numberWithInteger:[difference year]];
+}
+
+
+- (NSString *)getDistanceFrom:(User *)user {
+    CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude: [user.latitude doubleValue] longitude:[user.longitude doubleValue]];
+    CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:[self.latitude doubleValue] longitude:[self.longitude doubleValue]];
+    int distance = [[NSNumber numberWithDouble:[targetLocation distanceFromLocation:currentLocation]] integerValue];
+    DLog(@"%@ is %g meters away", place.title, [place.distance doubleValue]);
+    NSString *measurement;
+    if (distance > 1000) {
+        distance = distance / 1000;
+        measurement = NSLocalizedString(@"км", nil);
+    } else {
+        measurement = NSLocalizedString(@"м", nil);
+    }
+    
+    return [NSString stringWithFormat:@"%d%@", distance, measurement];
 }
 
 @end

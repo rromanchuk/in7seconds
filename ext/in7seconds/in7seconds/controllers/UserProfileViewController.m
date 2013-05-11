@@ -108,6 +108,10 @@
     //[self setupUserImages];
 }
 
+- (void)touchGesture {
+    
+    [self swithTo:!_isImageBrowseOpened];
+}
 
 #pragma mark - Tools
 - (void) swithTo:(BOOL) isOpen {

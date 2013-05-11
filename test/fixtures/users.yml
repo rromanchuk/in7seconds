@@ -11,6 +11,8 @@ ryan:
   vk_country: usa
   birthday: <%= (Time.now - 18.years).to_s(:db) %>
   is_active: true
+  latitude: 37.3938261792
+  longitude: -122.0414431970
 
 adarsh:
   email:
@@ -24,6 +26,8 @@ adarsh:
   vk_country: india
   birthday: <%= (Time.now - 18.years).to_s(:db) %>
   is_active: true
+  latitude: 37.3938261792
+  longitude: -122.0414431970
 
 evgeny:
   email:
@@ -37,6 +41,8 @@ evgeny:
   vk_country: india
   birthday: <%= (Time.now - 18.years).to_s(:db) %>
   is_active: true
+  latitude: 37.3938261792
+  longitude: -122.0414431970
 
 bob:
   email:
@@ -50,6 +56,8 @@ bob:
   vk_country: india
   birthday: <%= (Time.now - 18.years).to_s(:db) %>
   is_active: true
+  latitude: 37.3938261792
+  longitude: -122.0414431970
 
 felix:
   email:
@@ -63,3 +71,5 @@ felix:
   vk_country: india
   birthday: <%= (Time.now - 18.years).to_s(:db) %>
   is_active: true
+  latitude: 37.3938261792
+  longitude: -122.0414431970

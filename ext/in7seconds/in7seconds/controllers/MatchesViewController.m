@@ -110,7 +110,15 @@
     cell.profileImage.userInteractionEnabled = YES;
     UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];
     [cell.profileImage addGestureRecognizer:tg];
-    cell.previewLabel.text = user.fullLocation;
+    
+    
+    if (user.latitude && [user.latitude integerValue] > 0) {
+        cell.previewLabel.text = [NSString stringWithFormat:@"Примерно в %@ от тебя", [user getDistanceFrom:self.currentUser]];
+    } else {
+        cell.previewLabel.text = user.fullLocation;
+    }
+
+    
     
     NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
     NSArray *sortedMessages = [user.thread.messages sortedArrayUsingDescriptors:sortDescriptors];
@@ -179,4 +187,6 @@
     Match *match = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [self performSegueWithIdentifier:@"UserProfile" sender:match];
 }
+
+
 @end

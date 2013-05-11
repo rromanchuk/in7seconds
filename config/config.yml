@@ -21,8 +21,8 @@ development:
   description: In 7 Seconds находит интересных людей неподалеку и соединяет вас, если симпатии взаимны. Это анонимно до тех пор, пока вы не понравитесь тому, кто вам нравится.
   host: in7secondsdev.com:3000
   asset_host: in7secondsdev.com:3000
-  fb_app_id: 251326115000725
-  fb_app_secret: 84f74e5f9546de6410610df76cc0521c
+  fb_app_id: 568003499900034
+  fb_app_secret: c9bb5da44bff29b9af0aa1d232475880
   aws_access: 0SPGHF9VGDTQXENQC282
   aws_secret: 9zscLw+Y+Mh437fHaG1h+BUCtjViDrCP8ipmJImy
   aws_bucket: ostronaut-dev

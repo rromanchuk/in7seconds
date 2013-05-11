@@ -527,4 +527,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.update_photos
+    User.active.each do |user|
+      user.get_photos
+      sleep 2
+    end
+  end
+
 end

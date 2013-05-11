@@ -15,6 +15,8 @@
 @property NSInteger lookingForGender;
 @property NSInteger mutualGroups;
 @property NSInteger mutualFriendsNum;
+@property float latitude;
+@property float longitude;
 
 @property BOOL emailOptIn;
 @property BOOL pushOptIn;
