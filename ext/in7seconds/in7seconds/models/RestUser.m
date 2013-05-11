@@ -44,6 +44,8 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
                                 @"city", @"city",
                                 @"country", @"country",
                                 @"vkDomain", @"vk_domain",
+                                @"latitude", @"latitude",
+                                @"longitude", @"longitude",
                                 [NSDate mappingWithKey:@"birthday"
                                       dateFormatString:@"yyyy-MM-dd"], @"birthday",
                                 [NSDate mappingWithKey:@"updatedAt"

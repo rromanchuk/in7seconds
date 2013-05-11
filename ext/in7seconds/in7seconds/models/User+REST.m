@@ -109,6 +109,8 @@
     self.mutualGroupNames = restUser.mutualGroupNames;
     self.emailOptIn = [NSNumber numberWithBool:restUser.emailOptIn];
     self.pushOptIn = [NSNumber numberWithBool:restUser.pushOptIn];
+    self.latitude = [NSNumber numberWithFloat:restUser.latitude];
+    self.longitude = [NSNumber numberWithFloat:restUser.longitude];
     
     for (RestImage *restImage in restUser.images) {
         [self addImagesObject:[Image imageWithRestImage:restImage inManagedObjectContext:self.managedObjectContext]];

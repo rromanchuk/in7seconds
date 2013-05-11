@@ -13,7 +13,8 @@
 @property NSInteger lookingForGender;
 @property NSInteger mutualGroups;
 @property NSInteger mutualFriendsNum;
-
+@property float latitude;
+@property float longitude;
 // Attributes
 @property (atomic, strong) NSString *firstName;
 @property (atomic, strong) NSString *lastName;

@@ -228,7 +228,7 @@
 }
 
 - (void)setupNextHookup {
-    if ([self.hookups count] < 10) {
+    if ([self.hookups count] < 10 && !_isFetching) {
         [self fetchPossibleHookups];
     }
     
@@ -265,6 +265,8 @@
         } else {
             self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.otherUser.lastName, self.otherUser.firstName];
         }
+    } else {
+        [self foundResults];
     }
 }
 
@@ -405,7 +407,6 @@
     } else {
         lookingFor = @[[NSNumber numberWithInteger:LookingForWomen]];
     }
-    ALog(@"Looking for array is %@", lookingFor);
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hookup"];
     //request.predicate = [NSPredicate predicateWithFormat:@"user = %@ AND gender IN %@", self.currentUser, lookingFor];
     request.predicate = [NSPredicate predicateWithFormat:@"user == %@ AND didRate == %@ AND gender IN %@", self.currentUser, [NSNumber numberWithBool:NO], lookingFor];
@@ -413,7 +414,7 @@
     NSError *error;
     NSArray *hookups = [self.managedObjectContext executeFetchRequest:request error:&error];
     [self.hookups addObjectsFromArray:hookups];
-    ALog(@"There are %d hookups", [self.hookups count])
+    //ALog(@"There are %d hookups", [self.hookups count])
     if (!self.otherUser) {
         [self setupNextHookup];
     }
