@@ -152,6 +152,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
        onError:(void (^)(NSError *error))onError {
     RestClient *restClient = [RestClient sharedClient];
     //ALog(@"got gender:%@ got looking for %@", user.gender, user.lookingForGender);
+    ALog(@"lat: %@ lng: %@", [Location sharedLocation].latitude, [Location sharedLocation].longitude);
     NSDictionary *params = @{@"user[looking_for_gender]": user.lookingForGender,
                              @"user[email_opt_in]": user.emailOptIn,
                              @"user[push_opt_in]": user.pushOptIn,

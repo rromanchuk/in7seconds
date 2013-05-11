@@ -75,9 +75,9 @@
     self.longitude = [NSNumber numberWithFloat:restMatch.longitude];
     
     for (RestMutualFriend *restMutaulFriend in restMatch.mutualFriendObjects) {
-        ALog(@"adding mutualFriend");
+        //ALog(@"adding mutualFriend");
         MutualFriend *mutualFriend = [MutualFriend mutualFriendWithRestMutualFriend:restMutaulFriend inManagedObjectContext:self.managedObjectContext];
-        ALog("mutualFriend managed object %@", mutualFriend);
+        //ALog("mutualFriend managed object %@", mutualFriend);
         [self addMutualFriendsObject:mutualFriend];
     }
     
@@ -145,10 +145,10 @@
 
 
 - (NSString *)getDistanceFrom:(User *)user {
-    CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude: [user.latitude doubleValue] longitude:[user.longitude doubleValue]];
+    CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude:[user.latitude doubleValue] longitude:[user.longitude doubleValue]];
     CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:[self.latitude doubleValue] longitude:[self.longitude doubleValue]];
     int distance = [[NSNumber numberWithDouble:[targetLocation distanceFromLocation:currentLocation]] integerValue];
-    DLog(@"%@ is %g meters away", place.title, [place.distance doubleValue]);
+    //ALog(@"user is %d meters away target %@ current %@", distance, targetLocation, currentLocation);
     NSString *measurement;
     if (distance > 1000) {
         distance = distance / 1000;
