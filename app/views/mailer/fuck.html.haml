@@ -9,7 +9,7 @@
   это всего за 4 #{Russian.p(4, "секунда", "секунды", "секунд")}.
 
 %p 
-  %a{:href=>('http://vk.com/')}= @params[:hookup].first_name
+  %a{:href=>('http://vk.com/' + @params[:hookup].vk_domain)}= @params[:hookup].first_name
   наверняка уже ждет от тебя сообщения, лучше напиши
   - if !@params[:hookup].gender
     ему
@@ -21,7 +21,7 @@
   - else
     ее
   профиль на ВКонтакте: 
-  %a{:href=>('http://vk.com/')}
+  %a{:href=>('http://vk.com/' + @params[:hookup].vk_domain)}
     http://vk.com/#{@params[:hookup].vk_domain}
 
 %p 
