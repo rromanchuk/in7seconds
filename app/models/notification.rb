@@ -30,8 +30,9 @@ class Notification < ActiveRecord::Base
     Notification.send_notification!([receiver.id], message)
   end
 
-  def self.notify_requested_hookups(receiver, num_requested)
+  def self.notify_requested_hookups(receiver)
     return unless receiver.push_opt_in?
+    num_requested = "#{receiver.requested_hookups.length}"
     people = (num_requested.to_i == 2) ? 'человека' : 'человек'
     message = I18n.t('notifications.pending_hookups', num_users: num_requested, people: people)
     Notification.create(receiver_id: receiver.id, notification_type: NOTIFICATION_MATCH_REMINDER, message: message)

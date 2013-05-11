@@ -170,6 +170,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def vk_domain
+    self[:vk_domain] || ""
+  end
+
+  def vk_university_name
+    self[:vk_university_name] || ""
+  end
+
   def birthday
     self[:birthday] || ""
   end
