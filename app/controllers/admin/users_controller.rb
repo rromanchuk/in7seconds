@@ -27,7 +27,8 @@ module Admin
         hookup = User.find(params[:id])
         requested = hookup.requested_hookups
         unless requested.blank?
-          Notification.notify_requested_hookups(hookup, "#{requested.count}")
+          Notification.notify_requested_hookups(hookup)
+          Mailer.delay.pending_requests(hookup)
         end
 
         redirect_to session[:return_to]
