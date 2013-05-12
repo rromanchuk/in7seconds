@@ -26,7 +26,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user.save
     sign_in(@user)
     redirect_to feed_path
-
   end
 
 end

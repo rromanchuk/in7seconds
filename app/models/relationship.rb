@@ -9,19 +9,24 @@ class Relationship < ActiveRecord::Base
   scope :matches, lambda { where(status: "accepted") }
   scope :matches_yesterday, lambda { added_yesterday.where(status: "accepted") }
 
-  after_save :notify
+  after_save :check_notify
 
-  def notify
+  def check_notify
     if self.status_changed?
       changes = self.status_change
       if changes[1] == 'accepted'
-        Notification.fuck(self.user, self.hookup)
-        Notification.fuck(self.hookup, self.user)
-        Mailer.delay.fuck(self.user, self.hookup)
-        Mailer.delay.fuck(self.hookup, self.user)
+        notify_match
       end
     end
   end
+
+  def notify_match
+    Notification.fuck(self.user, self.hookup)
+    Notification.fuck(self.hookup, self.user)
+    Mailer.fuck(self.user, self.hookup)
+    Mailer.fuck(self.hookup, self.user)
+  end
+  handle_asynchronously :notify_match
 
   # send push notifications to users who have potential hookups waiting
   def self.notify_requested_hookups
@@ -29,7 +34,7 @@ class Relationship < ActiveRecord::Base
       requested = user.requested_hookups
       unless requested.blank?
         Notification.notify_requested_hookups(user)
-        Mailer.pending_requests(user)
+        Mailer.delay.pending_requests(user)
       end
     end
   end
