@@ -28,13 +28,18 @@ class Relationship < ActiveRecord::Base
   end
   handle_asynchronously :notify_match
 
+  def notify_pending
+    Notification.notify_requested_hookups(self)
+    Mailer.pending_requests(self)
+  end
+  handle_asynchronously :notify_pending
+
   # send push notifications to users who have potential hookups waiting
   def self.notify_requested_hookups
     User.active.each do |user|
       requested = user.requested_hookups
       unless requested.blank?
-        Notification.notify_requested_hookups(user)
-        Mailer.delay.pending_requests(user)
+        user.notify_pending
       end
     end
   end
