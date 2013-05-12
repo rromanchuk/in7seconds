@@ -5,6 +5,7 @@ module Api
       before_filter :authenticate_user!
       respond_to :json
 
+      # DEPRECATED SOON TO BE DELETED - USE MEMEBER ON USERS_CONTROLLER
       def flirt
         hookup = User.find(params[:relationship][:hookup_id])
         if current_user.is_requested?(hookup)
@@ -18,6 +19,7 @@ module Api
         render json: ''
       end
 
+      # DEPRECATED SOON TO BE DELETED - USE  MEMBER ON USERS_CONTROLLER
       def reject
         @hookup = User.find(params[:relationship][:hookup_id])
         current_user.reject(@hookup)

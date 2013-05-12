@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
   before_filter :authenticate_user!
   respond_to :json
 
+  # DEPRECATED SOON TO BE DELETED
   def create
     hookup = User.find(params[:user_id])
     
@@ -35,11 +36,13 @@ class MessagesController < ApplicationController
     end
   end
 
+  # DEPRECATED SOON TO BE DELETED
   def index
     hookup = User.find(params[:user_id])
     @messages = Message.thread(current_user, hookup)
   end
 
+  # DEPRECATED SOON TO BE DELETED
   def thread
     @hookup = User.find(params[:user_id])
     @messages = Message.thread(current_user, @hookup)

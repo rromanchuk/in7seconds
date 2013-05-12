@@ -4,6 +4,7 @@ class TokenAuthenticationsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   respond_to :json
 
+  # DEPRECATED SOON TO BE DELETED
   def create
     if params[:platform] == "facebook"
       facebook_user = FbGraph::User.fetch(params[:user_id], :access_token => params[:access_token])
@@ -24,6 +25,7 @@ class TokenAuthenticationsController < ApplicationController
     render "users/authenticated_user"
   end
 
+  # DEPRECATED SOON TO BE DELETED
   def destroy
     @user = User.criteria.id(params[:id]).first
     @user.authentication_token = nil
