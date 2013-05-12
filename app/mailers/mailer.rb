@@ -26,7 +26,14 @@ class Mailer < ActionMailer::Base
     mail to: receiver.email, :bcc => "support@in7seconds.com", subject: "#{sender.first_name} #{s_sent} вам сообщение."
   end
 
-   def daily_stats
+  def pending_requests(receiver)
+    return unless receiver.email_opt_in?
+    @num_requested = receiver.requested_hookups.length
+    @people = (num_requested == 2) ? 'человека' : 'человек'
+    mail to: receiver.email, :bcc => "support@in7seconds.com", subject: "Кто-то только что отметил тебя!"
+  end
+
+  def daily_stats
     @total_users = User.active.count
     @total_users_yesterday = User.added_yesterday.count
     @toal_ratings = Relationship.count
@@ -37,13 +44,6 @@ class Mailer < ActionMailer::Base
     @names = User.active.map(&:name).join(", ")
 
     mail to: 'stats@piclar.com', subject: 'in7seconds Stats'
-  end
-
-  def pending_requests(receiver)
-    return unless receiver.email_opt_in?
-    @num_requested = receiver.requested_hookups.length
-    @people = (num_requested == 2) ? 'человека' : 'человек'
-    mail to: receiver.email, :bcc => "support@in7seconds.com", subject: ""
   end
 
 end
