@@ -7,7 +7,7 @@ module Admin
     FB_ADMINS = [225311, 7300784]
     
     def check_admin
-      if ADMINS.include?(current_user.vkuid) or FB_ADMINS.include?(current_user.fbuid)
+      if current_user && (ADMINS.include?(current_user.vkuid) or FB_ADMINS.include?(current_user.fbuid))
 
       else
         redirect_to root_path
