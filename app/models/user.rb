@@ -178,6 +178,10 @@ class User < ActiveRecord::Base
     self[:vk_university_name] || ""
   end
 
+  def vk_faculty_name
+    self[:vk_faculty_name] || ""
+  end
+
   def birthday
     self[:birthday] || ""
   end
