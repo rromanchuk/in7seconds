@@ -8,6 +8,10 @@ module Admin
         @users = User.active
       end
 
+      def show
+        @user = User.find(params[:id])
+      end
+
       def flirt
         session[:return_to] ||= request.referer
         hookup = User.find(params[:id])
