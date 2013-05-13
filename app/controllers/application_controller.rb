@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  #skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
   helper_method :current_user_json
   before_filter :prepare_for_mobile
 
@@ -17,17 +16,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def broadcast(channel, data)
-    message = {:channel => channel, :data => data, :ext => {:auth_token => FAYE_TOKEN}}
-    uri = URI.parse(CONFIG[:faye_host])
-    Net::HTTP.post_form(uri, :message => message.to_json)
+  def reconnect_with_facebook
+    if current_user && current_user.facebook_token_expired?
+      redirect_to user_omniauth_authorize_path(:facebook)
+    end
   end
-
-  unless Rails.application.config.consider_all_requests_local
-    rescue_from Exception, with: lambda { |exception| render_error 500, exception }
-    rescue_from ActionController::RoutingError, ActionController::UnknownController, ::AbstractController::ActionNotFound, ActiveRecord::RecordNotFound, with: lambda { |exception| render_error 404, exception }
-  end
-  
   
   def mobile_device?
     if session[:mobile_param]

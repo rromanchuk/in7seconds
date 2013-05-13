@@ -6,6 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.find_or_create_for_facebook_oauth(facebook_user)
     
     @user.ensure_authentication_token!
+    @user.fb_token_expiration = Time.at(auth.credentials.expires_at)
     @user.save
     sign_in(@user)
     redirect_to feed_path
@@ -21,7 +22,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user.ensure_authentication_token!
     
     #seconds from now
-    #@user.vk_token_expiration = auth.credentials.expires_at
+    @user.vk_token_expiration = Time.at(auth.credentials.expires_at)
     
     @user.save
     sign_in(@user)

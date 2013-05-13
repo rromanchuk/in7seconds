@@ -69,10 +69,11 @@ class User < ActiveRecord::Base
 
   reverse_geocoded_by :latitude, :longitude
 
-  after_create :get_groups, :if => :canCrawlVk?
-  after_create :get_friends, :if => :canCrawlVk?
+  after_create :get_groups, :if => :is_active?
+  after_create :get_friends, :if => :is_active?
+  after_create :get_photos, :if => :if => :is_active?
+  
   after_create :welcome_email, :if => :is_active?
-  after_create :get_photos, :if => :is_active?
   before_destroy :remove_relationships
   
   before_save :require_confirmation, :on => :create
@@ -198,12 +199,24 @@ class User < ActiveRecord::Base
     end
   end
 
-  def facebookUser?
+  def canCrawlVk?
+    has_vkontakte? && is_active? && !vk_token_expired?
+  end
+
+  def fb_token_expired?
+    fb_token_expiration < Time.now
+  end
+
+  def vk_token_expired?
+    vk_token_expiration < Time.now
+  end
+
+  def has_facebook?
     fb_token?
   end
 
-  def canCrawlVk?
-    !fb_token? && is_active?
+  def has_vkontakte?
+    vk_token?
   end
 
   def mutual_group_names(hookup)
@@ -272,49 +285,55 @@ class User < ActiveRecord::Base
   end
 
   def get_groups
-    vk_client.getGroupsFull.each do |g|
-      puts "adding #{g.name}"
-      group = Group.where(gid: g.gid, provider: "vk").first_or_create
-      group.update_attributes(name: g.name, photo: g.photo)
-      self.groups << group unless self.groups.exists?(group)
+    if canCrawlVk?
+      vk_client.getGroupsFull.each do |g|
+        puts "adding #{g.name}"
+        group = Group.where(gid: g.gid, provider: "vk").first_or_create
+        group.update_attributes(name: g.name, photo: g.photo)
+        self.groups << group unless self.groups.exists?(group)
+      end
     end
   end
   handle_asynchronously :get_groups
 
   def get_photos
-    vk_client.photos.getUserPhotos.each do |photo|
-      if photo.is_a?(Hash)
-        image = Image.where(external_id: photo.pid, provider: :vkontakte).first_or_create(remote_url: photo.src_big)
-        self.images << image unless self.images.exists?(image)
+    if canCrawlVk?
+      vk_client.photos.getUserPhotos.each do |photo|
+        if photo.is_a?(Hash)
+          image = Image.where(external_id: photo.pid, provider: :vkontakte).first_or_create(remote_url: photo.src_big)
+          self.images << image unless self.images.exists?(image)
+        end
       end
     end
   end
   handle_asynchronously :get_photos
 
   def get_friends
-    vk_client.friends.get(fields: VK_FIELDS, lang:"ru", uid: vkuid) do |friend|
-      puts "#{friend.first_name} '#{friend.screen_name}' #{friend.last_name}"
-      puts friend.to_yaml
-      user = User.where(vkuid: friend.uid).first_or_create(:password => Devise.friendly_token[0,20],
-          :first_name => friend.first_name,
-          :last_name => friend.last_name,
-          :birthday => friend.bdate,
-          :vk_city => VkCity.where(cid: friend.city).first_or_create,
-          :vk_country => VkCountry.where(cid: friend.country).first_or_create,
-          :gender => gender_for_vk_gender(friend.sex),
-          :looking_for_gender => guess_looking_for(gender_for_vk_gender(friend.sex)),
-          :provider => :vkontakte,
-          :photo_url => friend.photo_big,
-          :vk_domain => friend.domain, 
-          :vk_graduation => friend.graduation,
-          :vk_university_name => friend.university_name,
-          :vk_faculty_name => friend.faculty_name,
-          :vk_mobile_phone => friend.mobile_phone,
-          :is_active => false)
+    if canCrawlVk?
+      vk_client.friends.get(fields: VK_FIELDS, lang:"ru", uid: vkuid) do |friend|
+        puts "#{friend.first_name} '#{friend.screen_name}' #{friend.last_name}"
+        puts friend.to_yaml
+        user = User.where(vkuid: friend.uid).first_or_create(:password => Devise.friendly_token[0,20],
+            :first_name => friend.first_name,
+            :last_name => friend.last_name,
+            :birthday => friend.bdate,
+            :vk_city => VkCity.where(cid: friend.city).first_or_create,
+            :vk_country => VkCountry.where(cid: friend.country).first_or_create,
+            :gender => gender_for_vk_gender(friend.sex),
+            :looking_for_gender => guess_looking_for(gender_for_vk_gender(friend.sex)),
+            :provider => :vkontakte,
+            :photo_url => friend.photo_big,
+            :vk_domain => friend.domain, 
+            :vk_graduation => friend.graduation,
+            :vk_university_name => friend.university_name,
+            :vk_faculty_name => friend.faculty_name,
+            :vk_mobile_phone => friend.mobile_phone,
+            :is_active => false)
 
-      self.friends << user unless self.friends.exists?(user)
+        self.friends << user unless self.friends.exists?(user)
+      end
+      save
     end
-    save
   end
   handle_asynchronously :get_friends
 

@@ -1,6 +1,6 @@
 module Api
   module V1
-    class NotificationsController < ApplicationController
+    class NotificationsController < Api::BaseController
       before_filter :authenticate_user!
       respond_to :json
       def index
