@@ -443,26 +443,26 @@ class User < ActiveRecord::Base
     users = users_nearby
     
     # Find active users
-    if users.length < 30
-      active_users = filter(User.active.where('gender IN (?)', get_genders)).take(50)
+    if users.length < 20
+      active_users = filter(User.active.where('gender IN (?)', get_genders)).take(20)
       users = users.concat(active_users)
     end
 
     # Ok find friends on facebook
-    if users.length < 30
+    if users.length < 20
       friends = filter(User.where(:id => self.friends.map(&:id) ).where('gender IN (?)', get_genders))
       users = users.concat(friends)
     end
     
     # Ok find anyone on the system in the same city
-    if users.length < 30
-      local_users = filter(User.where('gender IN (?)', get_genders).where(vk_city_id: vk_city_id)).take(50)
+    if users.length < 20
+      local_users = filter(User.where('gender IN (?)', get_genders).where(vk_city_id: vk_city_id)).take(20)
       users = users.concat(local_users )
     end
     
     # Any one on the system
-    if users.length < 30
-      all_users = filter(User.where('gender IN (?)', get_genders)).take(50)
+    if users.length < 20
+      all_users = filter(User.where('gender IN (?)', get_genders)).take(20)
       users = users.concat(all_users)
     end
     
@@ -483,9 +483,9 @@ class User < ActiveRecord::Base
 
   def users_nearby
     if self.geocoded?
-      users = self.nearbys(30)
+      users = self.nearbys(20)
       unless users.blank? 
-        users = filter(users.where('gender IN (?)', get_genders)).take(30) 
+        users = filter(users.where('gender IN (?)', get_genders)).take(20) 
         return users
       end
     end
