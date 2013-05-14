@@ -389,8 +389,6 @@ class User < ActiveRecord::Base
           :vk_mobile_phone => vk_user.mobile_phone,
           :is_active => true,
           :email => (vk_user.email.blank?) ? '' : vk_user.email)
-    
-    user.images << Image.create(provider: :vkontakte_profile, remote_url: vk_user.photo_big)
     user
   end
 
