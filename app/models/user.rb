@@ -204,11 +204,19 @@ class User < ActiveRecord::Base
   end
 
   def fb_token_expired?
-    fb_token_expiration < Time.now
+    if fb_token_expiration
+      fb_token_expiration < Time.now
+    else
+      true
+    end
   end
 
   def vk_token_expired?
-    vk_token_expiration < Time.now
+    if vk_token_expiration
+      vk_token_expiration < Time.now
+    else
+      true
+    end
   end
 
   def has_facebook?
