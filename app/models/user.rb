@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
 
   after_create :get_groups, :if => :is_active?
   after_create :get_friends, :if => :is_active?
-  after_create :get_photos, :if => :if => :is_active?
+  after_create :get_photos, :if => :is_active?
   
   after_create :welcome_email, :if => :is_active?
   before_destroy :remove_relationships
