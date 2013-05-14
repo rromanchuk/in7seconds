@@ -199,7 +199,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def canCrawlVk?
+  def can_crawl_vk?
     has_vkontakte? && is_active? && !vk_token_expired?
   end
 
@@ -212,11 +212,12 @@ class User < ActiveRecord::Base
   end
 
   def vk_token_expired?
-    if vk_token_expiration
-      vk_token_expiration < Time.now
-    else
-      true
-    end
+    # if vk_token_expiration
+    #   vk_token_expiration < Time.now
+    # else
+    #   true
+    # end
+    false
   end
 
   def has_facebook?
@@ -293,7 +294,7 @@ class User < ActiveRecord::Base
   end
 
   def get_groups
-    if canCrawlVk?
+    if can_crawl_vk?
       vk_client.getGroupsFull.each do |g|
         puts "adding #{g.name}"
         group = Group.where(gid: g.gid, provider: "vk").first_or_create
@@ -305,7 +306,7 @@ class User < ActiveRecord::Base
   handle_asynchronously :get_groups
 
   def get_photos
-    if canCrawlVk?
+    if can_crawl_vk?
       vk_client.photos.getUserPhotos.each do |photo|
         if photo.is_a?(Hash)
           image = Image.where(external_id: photo.pid, provider: :vkontakte).first_or_create(remote_url: photo.src_big)
@@ -317,7 +318,7 @@ class User < ActiveRecord::Base
   handle_asynchronously :get_photos
 
   def get_friends
-    if canCrawlVk?
+    if can_crawl_vk?
       vk_client.friends.get(fields: VK_FIELDS, lang:"ru", uid: vkuid) do |friend|
         puts "#{friend.first_name} '#{friend.screen_name}' #{friend.last_name}"
         puts friend.to_yaml
