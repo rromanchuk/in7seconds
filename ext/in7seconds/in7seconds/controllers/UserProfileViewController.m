@@ -40,7 +40,7 @@
     for (Image *image in self.otherUser.images) {
         [images addObject:image.photoUrl];
     }
-    
+    ALog(@"images are %@", images);
     [self.imageBrowser setImages:images];
     [self.tableView addSubview:self.imageBrowser];
     

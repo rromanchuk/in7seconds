@@ -13,6 +13,10 @@ class Image < ActiveRecord::Base
     :path => "#{CONFIG[:aws_path]}/users/:attachment/:id/:style/:basename.:extension"
 
     def photo_url
-      image.url(:default)
+      if image?
+        image.url(:default)
+      else
+        remote_url
+      end
     end
 end
