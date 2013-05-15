@@ -71,14 +71,13 @@
 
 - (void)leftViewWillAppear {
     ALog(@"left view will appear with user");
-    _modalOpen = YES;
     [self stopCountdown];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    ALog(@"View will appear");
     _modalOpen = NO;
-
     if (self.currentUser) {
         [self topDidAppear];
     }
@@ -89,6 +88,16 @@
     [self stopCountdown];
 }
 
+- (void)viewDidUnload {
+    [self setActivityIndicator:nil];
+    [super viewDidUnload];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"UserNotAuthorized"
+                                                  object:nil];
+}
 
 - (NSString *)getDistance {
     CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude: [self.currentUser.latitude doubleValue] longitude:[self.currentUser.longitude doubleValue]];
@@ -153,8 +162,6 @@
     [self.slidingViewController anchorTopViewTo:ECRight];
 }
 
-
-
 - (void)topDidAppear {
     [((MenuViewController *)self.slidingViewController.underLeftViewController).view endEditing:YES];
     
@@ -183,6 +190,164 @@
 
 - (void)startCountdownAnimation {
     [self.countdown animateDownWithTimeInterval: 1.0];
+}
+
+
+- (void)setupNextHookup {
+    if ([self.hookups count] < 10 && !_isFetching) {
+        [self fetchPossibleHookups];
+    }
+    
+    self.otherUser = nil;    
+    if (self.currentUser && [self.hookups count] > 0) {
+        self.otherUser = [self.hookups anyObject];
+        ALog(@"other user is setup %@", self.otherUser);
+        ALog(@"hookups are %@", self.hookups);
+        if (_noResults)
+            [self foundResults];
+        
+        
+        [self.userImageView setProfilePhotoWithURL:self.otherUser.photoUrl];
+        if (self.otherUser.latitude && [self.otherUser.latitude integerValue] > 0) {
+            self.locationLabel.text = [NSString stringWithFormat:@"Примерно в %@ от тебя", [self getDistance]];
+        } else {
+          self.locationLabel.text = self.otherUser.fullLocation;
+        }
+        
+        self.mutualFriendsLabel.text = [NSString stringWithFormat:@"%@ общих друзей", self.otherUser.mutualFriendsNum];
+        self.mutualGroupsLabel.text = [NSString stringWithFormat:@"%@ общих интересов", self.otherUser.mutualGroups];
+        ALog(@"birthday %@", self.otherUser.birthday);
+        if (self.otherUser.birthday && [self.otherUser.yearsOld integerValue] > 0) {
+            self.nameLabel.text = [NSString stringWithFormat:@"%@ %@, %@ %@", self.otherUser.lastName, self.otherUser.firstName, self.otherUser.yearsOld, NSLocalizedString(@"лет", @"years old")];
+        } else {
+            self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.otherUser.lastName, self.otherUser.firstName];
+        }
+    } else {
+        if (_numberOfAttempts < 3) 
+            [self fetchPossibleHookups];
+
+        [self noResultsLeft];
+    }
+}
+
+#pragma mark - Server fetching
+- (void)fetchPossibleHookups {
+    if (_isFetching)
+        return;
+    
+    _numberOfAttempts++;
+    _isFetching = YES;
+    [self.managedObjectContext performBlock:^{
+        if(_noResults)
+           [self.activityIndicator startAnimating];
+        [RestHookup load:^(NSMutableArray *possibleHookups) {
+            NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
+            for (RestHookup *restHookup in possibleHookups) {
+                [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
+            }
+            [self.currentUser addHookups:_restHookups];
+            
+            if ([_restHookups count] > 0 )
+                _numberOfAttempts = 0;
+            
+            NSError *error;
+            [self.managedObjectContext save:&error];
+            
+            AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [sharedAppDelegate writeToDisk];
+            [self fetchHookups];
+            [self.activityIndicator stopAnimating];
+            _isFetching = NO;
+            
+        } onError:^(NSError *error) {
+            [self.activityIndicator stopAnimating];
+            _isFetching = NO;
+        }];
+    }];
+}
+
+- (void)imageLoaded {
+    if (self.otherUser && (self.isViewLoaded && self.view.window) && !_modalOpen) {
+        [self startCountdown];
+    }
+}
+
+- (void)foundResults {
+    ALog(@"foundResults");
+    _noResults = NO;
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdown.hidden = self.userImageView.hidden = self.infoBanner.hidden = NO;
+    self.noResultsLabel.hidden = YES;
+}
+
+- (void)noResultsLeft {
+    ALog(@"noResultsLeft");
+    [self stopCountdown];
+    _noResults = YES;
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdown.hidden = self.userImageView.hidden = self.infoBanner.hidden  = YES;
+    self.noResultsLabel.hidden = NO;
+}
+
+#pragma mark ApplicationLifecycleDelegate methods
+- (void)applicationWillExit {
+    [self stopCountdown];
+}
+
+- (void)applicationWillWillStart {
+    _numberOfAttempts = 0;
+    if (self.otherUser) {
+        [self startCountdown];
+    }
+}
+
+
+#pragma mark MatchModalDelegate methods
+- (void)userWantsToChat:(Match *)matchUser {
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [self performSegueWithIdentifier:@"DirectToChat" sender:matchUser];
+    self.otherUser = nil;
+}
+
+- (void)userWantsToRate {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self setupNextHookup];
+}
+
+
+
+#pragma mark - JDFlipNumberViewDelegate
+- (void)flipNumberView:(JDFlipNumberView *)flipNumberView didChangeValueAnimated:(BOOL)animated {
+    ALog(@"delegate callback %d", flipNumberView.value);
+    if (flipNumberView.value == 0) {
+        [self didTapUnlike:self];
+    }
+}
+
+#pragma mark - UserSettingsDelegate
+- (void)didChangeFilters {
+    ALog(@"in change filters");
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    sharedAppDelegate.currentUser = self.currentUser;
+    
+    self.otherUser = nil;
+    self.hookups = [[NSMutableSet alloc] init];
+    [self fetchPossibleHookups];
+    [self fetchHookups];
+}
+
+#pragma mark - user events
+
+- (IBAction)didTapMatches:(id)sender {
+    [self performSegueWithIdentifier:@"Matches" sender:nil];
+}
+
+
+- (IBAction)didSelectNotifications:(id)sender {
+    [self performSegueWithIdentifier:@"Notifications" sender:self];
+}
+
+- (IBAction)didTapInfo:(id)sender {
+    [self performSegueWithIdentifier:@"UserProfile" sender:self];
 }
 
 - (IBAction)didTapLike:(id)sender {
@@ -227,186 +392,7 @@
     }];
 }
 
-- (IBAction)didTapMatches:(id)sender {
-    [self performSegueWithIdentifier:@"Matches" sender:nil];
-}
-
-- (void)setupNextHookup {
-    if ([self.hookups count] < 10 && !_isFetching) {
-        [self fetchPossibleHookups];
-    }
-    
-    self.otherUser = nil;    
-    if (self.currentUser && self.hookups) {
-        [self foundResults];
-        self.otherUser = [self.hookups anyObject];
-        if (!self.otherUser && _numberOfAttempts < 3) {
-            [self fetchPossibleHookups];
-            return;
-        } else if (!self.otherUser){
-            //NO RESULTS LEFT
-            [self noResultsLeft];
-            ALog(@"No more results found");
-            return;
-        }
-        if (_noResults)
-            [self foundResults];
-        
-        [self.userImageView setProfilePhotoWithURL:self.otherUser.photoUrl];
-        
-        //ALog(@"latitude is %f", self.otherUser.latitude);
-        if (self.otherUser.latitude && [self.otherUser.latitude integerValue] > 0) {
-            self.locationLabel.text = [NSString stringWithFormat:@"Примерно в %@ от тебя", [self getDistance]];
-        } else {
-          self.locationLabel.text = self.otherUser.fullLocation;
-        }
-        
-        self.mutualFriendsLabel.text = [NSString stringWithFormat:@"%@ общих друзей", self.otherUser.mutualFriendsNum];
-        self.mutualGroupsLabel.text = [NSString stringWithFormat:@"%@ общих интересов", self.otherUser.mutualGroups];
-        ALog(@"birthday %@", self.otherUser.birthday);
-        if (self.otherUser.birthday && [self.otherUser.yearsOld integerValue] > 0) {
-            self.nameLabel.text = [NSString stringWithFormat:@"%@ %@, %@ %@", self.otherUser.lastName, self.otherUser.firstName, self.otherUser.yearsOld, NSLocalizedString(@"лет", @"years old")];
-        } else {
-            self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.otherUser.lastName, self.otherUser.firstName];
-        }
-    } else {
-        [self foundResults];
-    }
-}
-
-- (void)fetchPossibleHookups {
-    if (_isFetching)
-        return;
-    
-    _numberOfAttempts++;
-    [self.managedObjectContext performBlock:^{
-        _isFetching = YES;
-        if(_noResults)
-           [self.activityIndicator startAnimating];
-        [RestHookup load:^(NSMutableArray *possibleHookups) {
-            NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
-            for (RestHookup *restHookup in possibleHookups) {
-                ALog(@"adding resthookup %@", restHookup);
-                [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
-            }
-            [self.currentUser addHookups:_restHookups];
-            
-            if ([_restHookups count] > 0 )
-                _numberOfAttempts = 0;
-            
-            NSError *error;
-            [self.managedObjectContext save:&error];
-            
-            AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            [sharedAppDelegate writeToDisk];
-            [self fetchHookups];
-            _isFetching = NO;
-            [self.activityIndicator stopAnimating];
-            
-        } onError:^(NSError *error) {
-            _isFetching = NO;
-            [self.activityIndicator stopAnimating];
-        }];
-    }];
-}
-
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:@"UserNotAuthorized"
-                                                  object:nil];
-}
-
-- (void)saveContext
-{
-    NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
-        if ([_managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        }
-    }
-    
-    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [sharedAppDelegate writeToDisk];
-}
-
-- (void)imageLoaded {
-    if (self.otherUser && (self.isViewLoaded && self.view.window) && !_modalOpen) {
-        [self startCountdown];
-    }
-}
-
-- (void)foundResults {
-    _noResults = NO;
-    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdown.hidden = self.userImageView.hidden = self.infoBanner.hidden = NO;
-    self.noResultsLabel.hidden = YES;
-}
-
-- (void)noResultsLeft {
-    [self stopCountdown];
-    _noResults = YES;
-    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdown.hidden = self.userImageView.hidden = self.infoBanner.hidden  = YES;
-    self.noResultsLabel.hidden = NO;
-}
-
-#pragma mark ApplicationLifecycleDelegate methods
-- (void)applicationWillExit {
-    [self stopCountdown];
-}
-
-- (void)applicationWillWillStart {
-    _numberOfAttempts = 0;
-    if (self.otherUser) {
-        [self startCountdown];
-    }
-}
-
-
-#pragma mark MatchModalDelegate methods
-- (void)userWantsToChat:(Match *)matchUser {
-    [self dismissViewControllerAnimated:NO completion:nil];
-    [self performSegueWithIdentifier:@"DirectToChat" sender:matchUser];
-    self.otherUser = nil;
-}
-
-- (void)userWantsToRate {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self setupNextHookup];
-}
-
-- (IBAction)didTapInfo:(id)sender {
-    [self performSegueWithIdentifier:@"UserProfile" sender:self];
-}
-
-
-#pragma mark - JDFlipNumberViewDelegate
-- (void)flipNumberView:(JDFlipNumberView *)flipNumberView didChangeValueAnimated:(BOOL)animated {
-    ALog(@"delegate callback %d", flipNumberView.value);
-    if (flipNumberView.value == 0) {
-        [self didTapUnlike:self];
-    }
-}
-
-#pragma mark - UserSettingsDelegate
-- (void)didChangeFilters {
-    ALog(@"in change filters");
-    self.currentUser = [User currentUser:self.managedObjectContext];
-    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    sharedAppDelegate.currentUser = self.currentUser;
-    
-    self.otherUser = nil;
-    self.hookups = [[NSMutableSet alloc] init];
-    [self fetchPossibleHookups];
-    [self fetchHookups];
-}
-
-#pragma mark - user events
-- (IBAction)didSelectNotifications:(id)sender {
-    [self performSegueWithIdentifier:@"Notifications" sender:self];
-}
-
+#pragma mark - setup hookups
 - (void)fetchHookups {
     NSArray *lookingFor;
     if ([self.currentUser.lookingForGender integerValue] == LookingForBoth) {
@@ -422,6 +408,7 @@
     //request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
     NSError *error;
     NSArray *hookups = [self.managedObjectContext executeFetchRequest:request error:&error];
+    ALog(@"Found hookups %@", hookups);
     [self.hookups addObjectsFromArray:hookups];
     for (Hookup *hookup in self.hookups) {
         ALog(@"User %@ gender %@", hookup.fullName, hookup.gender );
@@ -432,8 +419,19 @@
     }
 }
 
-- (void)viewDidUnload {
-    [self setActivityIndicator:nil];
-    [super viewDidUnload];
+#pragma mark - Coredata saving
+- (void)saveContext
+{
+    NSError *error = nil;
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        if ([_managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        }
+    }
+    
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [sharedAppDelegate writeToDisk];
 }
 @end

@@ -31,7 +31,6 @@
         image = [threads lastObject];
         [image setManagedObjectWithIntermediateObject:restImage];
     }
-    ALog(@"returning thread");
     return image;
 }
 

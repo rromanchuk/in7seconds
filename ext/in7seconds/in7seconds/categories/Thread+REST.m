@@ -36,7 +36,6 @@
         thread = [threads lastObject];
         [thread setManagedObjectWithIntermediateObject:restThread];
     }
-    ALog(@"returning thread");
     return thread;
 }
 
