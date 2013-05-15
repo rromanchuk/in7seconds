@@ -89,9 +89,7 @@
                   [self saveContext];
                   [RestUser setCurrentUserId:restUser.externalId];
                   [RestUser setCurrentUserToken:restUser.authenticationToken];
-                  NSString *alias = [NSString stringWithFormat:@"%d", restUser.externalId];
-                  [[UAPush shared] setAlias:alias];
-                  [[UAPush shared] updateRegistration];
+                  [self setIdentifiers:user];
                   [SVProgressHUD dismiss];
                   [self.delegate didVkLogin:user];
                   [self dismissViewControllerAnimated:YES completion:^(void) {
@@ -132,9 +130,7 @@
     [self saveContext];
     [RestUser setCurrentUserId:restUser.externalId];
     [RestUser setCurrentUserToken:restUser.authenticationToken];
-    NSString *alias = [NSString stringWithFormat:@"%d", restUser.externalId];
-    [[UAPush shared] setAlias:alias];
-    [[UAPush shared] updateRegistration];
+    [self setIdentifiers:user];
     [SVProgressHUD dismiss];
     [self.delegate didFbLogin:user];
 }
@@ -145,6 +141,23 @@
 
 - (void)fbSessionValid:(RestUser *)restUser {
     [self fbDidLogin:restUser];
+}
+
+- (void)setIdentifiers:(User *)user {
+    
+    NSString *alias = [NSString stringWithFormat:@"%@", user.externalId];
+    [[UAPush shared] setAlias:alias];
+    [[UAPush shared] updateRegistration];
+    [Flurry setUserID:alias];
+    if ([user.gender boolValue]) {
+        [Flurry setGender:@"f"];
+    } else {
+        [Flurry setGender:@"m"];
+    }
+    if ([user.yearsOld integerValue] > 0) {
+        [Flurry setAge:[user.yearsOld integerValue]];
+    }
+
 }
 - (void)saveContext
 {

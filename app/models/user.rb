@@ -464,6 +464,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  # fetch the requested users that the user is sexually interested in
+  def requested_that_user_may_like
+    requested_hookups.reject! do |requested|
+      (self.get_genders & requested.get_genders).length == 0
+    end
+    requested_hookups
+  end
+
   def possible_hookups
     # First find nearby users
     users = users_nearby

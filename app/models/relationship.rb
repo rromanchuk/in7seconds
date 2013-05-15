@@ -37,8 +37,9 @@ class Relationship < ActiveRecord::Base
   # send push notifications to users who have potential hookups waiting
   def self.notify_requested_hookups
     User.active.each do |user|
-      requested = user.requested_hookups
-      unless requested.blank?
+      requested = user.requested_that_user_may_like
+      past_notifications = user.notifications.where(notification_type: Notification::NOTIFICATION_MATCH_REMINDER).where('created_at > ?', Time.now - 3.days)
+      if !requested.blank? && past_notifications == 0
         user.notify_pending
       end
     end
