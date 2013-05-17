@@ -105,6 +105,7 @@
     cell.notficationLabel.numberOfLines = 0;
     
     if (notification.sender) {
+        DLog(@"sender is %@", notification.sender);
         cell.profilePhotoView.hidden = NO;
         [cell.profilePhotoView setProfilePhotoWithURL:notification.sender.photoUrl];
     } else {
