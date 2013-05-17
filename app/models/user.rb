@@ -52,6 +52,8 @@ class User < ActiveRecord::Base
 
   scope :active, where(is_active: true)
   scope :with_geo_location, where('latitude IS NOT NULL')
+  scope :men, where(gender: false)
+  scope :women, where(gender: true)
   
   LOOKING_FOR_MALE = 0
   LOOKING_FOR_FEMALE = 1
