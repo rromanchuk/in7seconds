@@ -25,8 +25,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *unlikeButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
-- (IBAction)didTapUnlike:(id)sender;
-- (IBAction)didTapLike:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
@@ -35,7 +34,8 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 
-
+- (IBAction)didTapUnlike:(id)sender;
+- (IBAction)didTapLike:(id)sender;
 - (IBAction)didTapInfo:(id)sender;
 
 @end

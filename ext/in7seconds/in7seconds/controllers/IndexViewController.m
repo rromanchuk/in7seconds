@@ -34,7 +34,7 @@
 {
     [super viewDidLoad];
     self.hookups = [[NSMutableSet alloc] init];
-    [self noResultsLeft];
+    
     [self fetchHookups];
         
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(revealMenu:)];
@@ -67,6 +67,8 @@
     [self.view addSubview:self.countdown];
     self.countdown.delegate = self;
     self.userImageView.notifyImageLoad = YES;
+    
+    [self noResultsLeft];
 }
 
 - (void)leftViewWillAppear {
@@ -191,7 +193,6 @@
 - (void)startCountdownAnimation {
     [self.countdown animateDownWithTimeInterval: 1.0];
 }
-
 
 - (void)setupNextHookup {
     if ([self.hookups count] < 10 && !_isFetching) {
@@ -403,7 +404,6 @@
         lookingFor = @[[NSNumber numberWithInteger:LookingForWomen]];
     }
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hookup"];
-    //request.predicate = [NSPredicate predicateWithFormat:@"user = %@ AND gender IN %@", self.currentUser, lookingFor];
     request.predicate = [NSPredicate predicateWithFormat:@"user == %@ AND didRate == %@ AND gender IN %@", self.currentUser, [NSNumber numberWithBool:NO], lookingFor];
     //request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
     NSError *error;

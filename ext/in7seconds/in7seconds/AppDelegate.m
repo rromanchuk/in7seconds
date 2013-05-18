@@ -16,6 +16,9 @@
 #import "Facebook.h"
 #import "Appirater.h"
 #import "NavigationTopViewController.h"
+#import "RestHookup.h"
+#import "Hookup+REST.h"
+
 @implementation AppDelegate
 @synthesize window = _window;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -129,9 +132,8 @@
                 
                 NSError *error;
                 [self.managedObjectContext save:&error];
-            
                 [self writeToDisk];
-
+                [self fetchHookups];
             } onError:^(NSError *error) {
                 [SVProgressHUD showErrorWithStatus:error.localizedDescription];
             }];
@@ -141,12 +143,32 @@
     }
 }
 
+- (void)fetchHookups {
+    [self.managedObjectContext performBlock:^{
+        [RestHookup load:^(NSMutableArray *possibleHookups) {
+            NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
+            for (RestHookup *restHookup in possibleHookups) {
+                [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
+            }
+            [self.currentUser addHookups:_restHookups];
+            
+            NSError *error;
+            [self.managedObjectContext save:&error];
+            [self writeToDisk];
+            
+            
+        } onError:^(NSError *error) {
+            
+        }];
+    }];
+
+}
+
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     [UAirship land];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
 
 - (void)theme {
     UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
@@ -155,7 +177,6 @@
     navigationBarAppearance.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue" size:20.0], UITextAttributeFont,
                                                    RGBACOLOR(159, 169, 172, 1.0), UITextAttributeTextColor,
                                                    [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset, nil];
-
 }
 
 - (void)writeToDisk {
