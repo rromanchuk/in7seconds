@@ -18,6 +18,18 @@
 
 @implementation InitialViewController
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if(self = [super initWithCoder:aDecoder])
+    {
+        self.notificationBanner = (NotificationBanner *)[[[NSBundle mainBundle] loadNibNamed:@"NotificationBanner" owner:self options:nil] objectAtIndex:0];
+        [self.notificationBanner.dismissButton addTarget:self action:@selector(didDismissNotificationBanner:) forControlEvents:UIControlEventTouchUpInside];
+        [self.notificationBanner.notificationTextLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapNotificationBanner:)]];
+        self.isChildNavigationalStack = NO;
+    }
+    return self;
+}
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Login"]) {        
         LoginViewController *vc = (LoginViewController *)segue.destinationViewController;

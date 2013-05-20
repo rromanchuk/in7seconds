@@ -109,6 +109,8 @@
 		FA7F38E916ECE94700EA2C0B /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7F38E816ECE94700EA2C0B /* ProfileCell.m */; };
 		FA809FEA16D040FD003920E6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA809FE916D040FD003920E6 /* Crashlytics.framework */; };
 		FA809FEE16D2BD58003920E6 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA809FED16D2BD58003920E6 /* AddressBook.framework */; };
+		FA82642217495BE200B51936 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA82642117495BE200B51936 /* NotificationView.xib */; };
+		FA82642517495CBE00B51936 /* NotificationBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = FA82642417495CBE00B51936 /* NotificationBanner.m */; };
 		FAA2CC9216DC00C900C22D76 /* interests_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC6E16DC00C900C22D76 /* interests_icon.png */; };
 		FAA2CC9316DC00C900C22D76 /* interests_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC6F16DC00C900C22D76 /* interests_icon@2x.png */; };
 		FAA2CC9416DC00C900C22D76 /* like_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC7016DC00C900C22D76 /* like_icon.png */; };
@@ -352,6 +354,9 @@
 		FA809FEB16D2B641003920E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA809FEC16D2B642003920E6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA809FED16D2BD58003920E6 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		FA82642117495BE200B51936 /* NotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
+		FA82642317495CBE00B51936 /* NotificationBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationBanner.h; path = views/NotificationBanner.h; sourceTree = "<group>"; };
+		FA82642417495CBE00B51936 /* NotificationBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationBanner.m; path = views/NotificationBanner.m; sourceTree = "<group>"; };
 		FAA2CC6E16DC00C900C22D76 /* interests_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = interests_icon.png; path = assets/interests_icon.png; sourceTree = "<group>"; };
 		FAA2CC6F16DC00C900C22D76 /* interests_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "interests_icon@2x.png"; path = "assets/interests_icon@2x.png"; sourceTree = "<group>"; };
 		FAA2CC7016DC00C900C22D76 /* like_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = like_icon.png; path = assets/like_icon.png; sourceTree = "<group>"; };
@@ -493,6 +498,8 @@
 				942544E716EF888200FA79FB /* NoChatsView.m */,
 				FA73B106171A057F00D084CB /* NotificationCell.h */,
 				FA73B107171A058000D084CB /* NotificationCell.m */,
+				FA82642317495CBE00B51936 /* NotificationBanner.h */,
+				FA82642417495CBE00B51936 /* NotificationBanner.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -585,6 +592,7 @@
 				FA70025B16CAECB20098A5B7 /* Supporting Files */,
 				FA7002B916CAF42E0098A5B7 /* in7seconds.xcdatamodeld */,
 				942544E416EF87A000FA79FB /* NoChatsView.xib */,
+				FA82642117495BE200B51936 /* NotificationView.xib */,
 			);
 			path = in7seconds;
 			sourceTree = "<group>";
@@ -996,6 +1004,7 @@
 				94FF9492172BDF3700563C1A /* vkontakte-login.png in Resources */,
 				94FF9493172BDF3700563C1A /* vkontakte-login@2x.png in Resources */,
 				FAC69505172E35DC008E964F /* TDDatePickerController.xib in Resources */,
+				FA82642217495BE200B51936 /* NotificationView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1126,6 +1135,7 @@
 				943837D3173BD42200052C47 /* ImageBrowser.m in Sources */,
 				943837D6173BD4AE00052C47 /* SSScrollView.m in Sources */,
 				943837D9173BD4FD00052C47 /* ImageScrollViewPage.m in Sources */,
+				FA82642517495CBE00B51936 /* NotificationBanner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
