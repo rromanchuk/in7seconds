@@ -38,7 +38,7 @@ class Mailer < ActionMailer::Base
     @total_users_yesterday = User.added_yesterday.count
     @toal_ratings = Relationship.count
     @total_matches = Relationship.matches_yesterday.count
-    @percent_female = User.active.women.length / User.active.length
+    @percent_female = User.active.women.length.to_f / User.active.length.to_f
 
     @total_ratings_yesterday = Relationship.added_yesterday.count
     @users_with_geo_location = User.with_geo_location.count
