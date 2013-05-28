@@ -7,7 +7,7 @@
 //
 
 #import "NotificationBanner.h"
-
+#import <QuartzCore/QuartzCore.h>
 @implementation NotificationBanner
 
 - (id)initWithFrame:(CGRect)frame
@@ -50,8 +50,8 @@
 
 
 - (void)setupView {
-    NSURL *url = [NSURL URLWithString:self.user.remoteProfilePhotoUrl];
-    [self.imageView setImageWithURL:url];
+    //NSURL *url = [NSURL URLWithString:self.user.remoteProfilePhotoUrl];
+    //[self.imageView setImageWithURL:url];
 }
 
 
