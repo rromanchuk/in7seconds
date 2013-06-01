@@ -42,7 +42,7 @@ module Admin
         session[:return_to] ||= request.referer
         hookup = User.find(params[:id])
         Notification.custom(hookup, params[:message])
-        respond_with true
+        render :json => {}
       end
 
       def send_pending_reminder

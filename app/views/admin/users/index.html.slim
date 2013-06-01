@@ -43,7 +43,10 @@ javascript:
        $.ajax({
         type: "POST",
         url: '/admin/users/' + input.data('userId') + '/send_notification.json',
-        data: {"message": input.val()}
+        data: {"message": input.val()},
+        success: function() {
+          $('a.notif').popover('hide');
+        }
       });
     });
   });
