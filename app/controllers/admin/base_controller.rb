@@ -5,7 +5,7 @@ module Admin
     respond_to :html, :json
 
     ADMINS = [41526347, 2048071, 4807674, 54267159, 201331745]
-    FB_ADMINS = [225311, 7300784, 1071841049]
+    FB_ADMINS = [225311, 7300784, 1071841049, 759795370]
     
     def check_admin
       if current_user && (ADMINS.include?(current_user.vkuid) or FB_ADMINS.include?(current_user.fbuid))
