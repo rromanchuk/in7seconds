@@ -33,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [NotificationHandler shared].delegate = self;
     // Remove the default black bottom border
     UIView *overlayView = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 1)];
     [overlayView setBackgroundColor:RGBCOLOR(223.0, 223.0, 223.0)];

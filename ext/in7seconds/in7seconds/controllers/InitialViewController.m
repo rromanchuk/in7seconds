@@ -31,7 +31,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [NotificationHandler shared].delegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout)
                                                  name:@"UserNotAuthorized" object:nil];
 
