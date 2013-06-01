@@ -27,14 +27,14 @@ class Notification < ActiveRecord::Base
   def self.private_message(sender, hookup, message)
     return unless hookup.push_opt_in?
     Notification.create(receiver_id: hookup.id, sender_id: sender.id, notification_type: NOTIFICATION_PRIVATE_MESSAGE, message: "#{sender.first_name}: #{message}")
-    Notification.send_notification!([hookup.id], "#{sender.first_name}: #{message}", {type: NOTIFICATION_PRIVATE_MESSAGE})
+    Notification.send_notification!([hookup.id], "#{sender.first_name}: #{message}", {type: NOTIFICATION_PRIVATE_MESSAGE, sender_id: sender.id})
   end
   
   def self.fuck(receiver, hookup)
     return unless receiver.push_opt_in?
     message = (hookup.gender) ? I18n.t('notifications.fuck.f', user: hookup.first_name) : I18n.t('notifications.fuck.m', user: hookup.first_name)
     Notification.create(receiver_id: receiver.id, sender_id: hookup.id, notification_type: NOTIFICATION_MATCH, message: message)
-    Notification.send_notification!([receiver.id], message, {type: NOTIFICATION_MATCH})
+    Notification.send_notification!([receiver.id], message, {type: NOTIFICATION_MATCH, sender_id: hookup.id})
   end
 
   def self.notify_requested_hookups(receiver)

@@ -15,5 +15,6 @@
 @property (strong, nonatomic) User *currentUser;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NotificationBanner *notificationBanner;
+@property BOOL isChildNavigationalStack;
 
 @end

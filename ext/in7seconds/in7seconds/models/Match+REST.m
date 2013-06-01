@@ -46,6 +46,26 @@
 
 }
 
++ (Match *)matchWithExternalId:(NSNumber *)externalId
+      inManagedObjectContext:(NSManagedObjectContext *)context {
+    
+    Match *match;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Match"];
+    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", externalId];
+    
+    NSError *error = nil;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    if (!matches || ([matches count] > 1)) {
+        // handle error
+        match = nil;
+    } else if (![matches count]) {
+        match = nil;
+    } else {
+        match = [matches lastObject];
+    }
+    
+    return match;
+}
 
 - (void)setManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {
     RestMatch *restMatch = (RestMatch *) intermediateObject;
