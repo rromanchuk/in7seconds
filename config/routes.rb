@@ -47,8 +47,12 @@ In7seconds::Application.routes.draw do
     end
   end
 
-  namespace :admin do 
+  namespace :admin do
+    resources :notifications
     resources :users do 
+      collection do
+        get :stats
+      end
       member do
         post :flirt
         post :send_pending_reminder

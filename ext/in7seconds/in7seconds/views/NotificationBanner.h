@@ -6,7 +6,7 @@
 //
 //
 
-
+#import "User+REST.h"
 @interface NotificationBanner : UIView
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UILabel *notificationTextLabel;
