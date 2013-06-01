@@ -15,6 +15,8 @@
 		9404B5101730FE860052E4CE /* Hookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B50F1730FE860052E4CE /* Hookup.m */; };
 		942544E516EF87A100FA79FB /* NoChatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 942544E416EF87A000FA79FB /* NoChatsView.xib */; };
 		942544E816EF888200FA79FB /* NoChatsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 942544E716EF888200FA79FB /* NoChatsView.m */; };
+		942A4F1A175A1A3000A99482 /* notification-dismiss@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 942A4F18175A1A3000A99482 /* notification-dismiss@2x.png */; };
+		942A4F1B175A1A3000A99482 /* notification-dismiss.png in Resources */ = {isa = PBXBuildFile; fileRef = 942A4F19175A1A3000A99482 /* notification-dismiss.png */; };
 		943837D3173BD42200052C47 /* ImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 943837D2173BD42200052C47 /* ImageBrowser.m */; };
 		943837D6173BD4AE00052C47 /* SSScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 943837D5173BD4AD00052C47 /* SSScrollView.m */; };
 		943837D9173BD4FD00052C47 /* ImageScrollViewPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 943837D8173BD4FC00052C47 /* ImageScrollViewPage.m */; };
@@ -208,6 +210,8 @@
 		942544E416EF87A000FA79FB /* NoChatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoChatsView.xib; sourceTree = "<group>"; };
 		942544E616EF888200FA79FB /* NoChatsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoChatsView.h; path = views/NoChatsView.h; sourceTree = "<group>"; };
 		942544E716EF888200FA79FB /* NoChatsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoChatsView.m; path = views/NoChatsView.m; sourceTree = "<group>"; };
+		942A4F18175A1A3000A99482 /* notification-dismiss@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification-dismiss@2x.png"; sourceTree = "<group>"; };
+		942A4F19175A1A3000A99482 /* notification-dismiss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification-dismiss.png"; sourceTree = "<group>"; };
 		943837D1173BD42200052C47 /* ImageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageBrowser.h; path = views/ImageBrowser.h; sourceTree = "<group>"; };
 		943837D2173BD42200052C47 /* ImageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageBrowser.m; path = views/ImageBrowser.m; sourceTree = "<group>"; };
 		943837D4173BD4AD00052C47 /* SSScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSScrollView.h; path = views/SSScrollView.h; sourceTree = "<group>"; };
@@ -637,6 +641,8 @@
 		FA70028F16CAECBD0098A5B7 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				942A4F18175A1A3000A99482 /* notification-dismiss@2x.png */,
+				942A4F19175A1A3000A99482 /* notification-dismiss.png */,
 				94FF948C172BDF3700563C1A /* facebook-login.png */,
 				94FF948D172BDF3700563C1A /* facebook-login@2x.png */,
 				94FF948E172BDF3700563C1A /* vkontakte-login.png */,
@@ -1010,6 +1016,8 @@
 				94FF9493172BDF3700563C1A /* vkontakte-login@2x.png in Resources */,
 				FAC69505172E35DC008E964F /* TDDatePickerController.xib in Resources */,
 				FA82642217495BE200B51936 /* NotificationBanner.xib in Resources */,
+				942A4F1A175A1A3000A99482 /* notification-dismiss@2x.png in Resources */,
+				942A4F1B175A1A3000A99482 /* notification-dismiss.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1205,7 +1213,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Romanchuk (RJ6W6Q2JLW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Romanchuk";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1221,7 +1229,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "037BA528-7865-4409-BBDE-5499E3BC90A6";
+				PROVISIONING_PROFILE = "AD0A1886-D2F7-49D2-AF68-81D1140C4DAC";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -1230,7 +1238,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF7F3663B2C24854B8CFE612 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Romanchuk (RJ6W6Q2JLW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Romanchuk";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1243,7 +1251,7 @@
 					"\"$(SRCROOT)/Airship\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "037BA528-7865-4409-BBDE-5499E3BC90A6";
+				PROVISIONING_PROFILE = "AD0A1886-D2F7-49D2-AF68-81D1140C4DAC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;
@@ -1277,7 +1285,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Romanchuk (RJ6W6Q2JLW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Romanchuk";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1293,7 +1301,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "037BA528-7865-4409-BBDE-5499E3BC90A6";
+				PROVISIONING_PROFILE = "AD0A1886-D2F7-49D2-AF68-81D1140C4DAC";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1319,7 +1327,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "EB48B7A8-A7EE-4C5F-B293-84B57068FC4F";
+				PROVISIONING_PROFILE = "AD0A1886-D2F7-49D2-AF68-81D1140C4DAC";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1329,7 +1337,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF7F3663B2C24854B8CFE612 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Romanchuk (RJ6W6Q2JLW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Romanchuk";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1342,7 +1350,7 @@
 					"\"$(SRCROOT)/Airship\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "037BA528-7865-4409-BBDE-5499E3BC90A6";
+				PROVISIONING_PROFILE = "AD0A1886-D2F7-49D2-AF68-81D1140C4DAC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1364,7 +1372,7 @@
 					"\"$(SRCROOT)/Airship\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EB48B7A8-A7EE-4C5F-B293-84B57068FC4F";
+				PROVISIONING_PROFILE = "AD0A1886-D2F7-49D2-AF68-81D1140C4DAC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
