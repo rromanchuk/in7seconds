@@ -1,5 +1,5 @@
 # encoding: utf-8
-class Notification < ActiveRecord::Base
+class Notification < ActiveRecord::admin_notice
   belongs_to :sender, :class_name => "User", :foreign_key => "sender_id"
   belongs_to :receiver, :class_name => "User", :foreign_key => "receiver_id"
 
@@ -42,6 +42,7 @@ class Notification < ActiveRecord::Base
   def self.send_notification!(aliases, message, extra={})
     notification = { aliases: aliases.map(&:to_s), aps: {:alert => message, :badge => 1}, extra: extra }
     Urbanairship.push(notification)
+    Mailer.delay.admin_notice(message)
   end
 
 
