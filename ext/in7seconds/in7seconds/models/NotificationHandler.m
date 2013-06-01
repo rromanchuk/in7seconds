@@ -32,7 +32,7 @@
 
 
 - (void)displayNotificationAlert:(NSString *)alertMessage {
-	
+	ALog(@"did receive notification");
     //	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: UA_PU_TR(@"UA_Notification_Title")
     //                                                    message: alertMessage
     //                                                   delegate: nil
@@ -127,7 +127,6 @@
 // */
 //- (void)handleBackgroundNotification:(NSDictionary *)notification;
 //
-
 
 
 - (void)handleBadgeUpdate:(int)badgeNumber {
