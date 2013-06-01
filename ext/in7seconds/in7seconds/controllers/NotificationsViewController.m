@@ -111,7 +111,6 @@
     } else {
         cell.profilePhotoView.hidden = YES;
     }
-    //[cell.profilePhotoView setProfileImageForUser:notification.sender];
     return cell;
 }
 
