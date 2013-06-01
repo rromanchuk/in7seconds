@@ -4,7 +4,7 @@ module Admin
     before_filter :authenticate_user!, :check_admin
     respond_to :html, :json
 
-    ADMINS = [41526347, 2048071, 4807674, 54267159]
+    ADMINS = [41526347, 2048071, 4807674, 54267159, 201331745]
     FB_ADMINS = [225311, 7300784, 1071841049]
     
     def check_admin
