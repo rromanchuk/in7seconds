@@ -156,13 +156,11 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     NSDictionary *params = @{@"user[looking_for_gender]": user.lookingForGender,
                              @"user[email_opt_in]": user.emailOptIn,
                              @"user[push_opt_in]": user.pushOptIn,
-                             @"user[gender]": user.gender,
-                             @"user[latitude]": [NSNull nullWhenNil:[Location sharedLocation].latitude],
-                             @"user[longitude": [NSNull nullWhenNil:[Location sharedLocation].longitude]
+                             @"user[gender]": user.gender
                              };
     
     NSMutableDictionary *p = [params mutableCopy];
-    if (user.email) {
+    if (user.email.length > 0) {
         [p setObject:user.email forKey:@"user[email]"];
     }
     
@@ -172,6 +170,12 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
         NSString *dateString = [format stringFromDate:user.birthday];
         [p setObject:dateString forKey:@"user[birthday]"];
     }
+    
+    if ([Location sharedLocation].longitude > 0) {
+        [p setObject:[Location sharedLocation].latitude forKey:@"user[latitude]"];
+        [p setObject:[Location sharedLocation].longitude forKey:@"user[longitude"];
+    }
+    
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"PUT"
                                                             path:[RESOURCE_PATH stringByAppendingString:@"/update_user.json"]
                                                       parameters:p];
