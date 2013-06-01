@@ -18,6 +18,7 @@
 #import "NavigationTopViewController.h"
 #import "RestHookup.h"
 #import "Hookup+REST.h"
+#import "NotificationHandler.h"
 
 @implementation AppDelegate
 @synthesize window = _window;
@@ -58,6 +59,7 @@
     [takeOffOptions setValue:airshipConfigOptions forKey:UAirshipTakeOffOptionsAirshipConfigKey];
     
     [UAirship takeOff:takeOffOptions];
+    [UAPush shared].delegate = [NotificationHandler shared];
     [[UAPush shared] setAutobadgeEnabled:YES];
 
     // Set the icon badge to zero on startup (optional)

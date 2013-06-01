@@ -18,6 +18,18 @@
 
 @implementation NavigationTopViewController 
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if(self = [super initWithCoder:aDecoder])
+    {
+        self.notificationBanner = (NotificationBanner *)[[[NSBundle mainBundle] loadNibNamed:@"NotificationBanner" owner:self options:nil] objectAtIndex:0];
+        [self.notificationBanner.dismissButton addTarget:self action:@selector(didDismissNotificationBanner:) forControlEvents:UIControlEventTouchUpInside];
+        [self.notificationBanner.notificationTextLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapNotificationBanner:)]];
+        //self.isChildNavigationalStack = NO;
+    }
+    return self;
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -29,11 +41,6 @@
 
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 - (void)viewWillAppear:(BOOL)animated
@@ -60,6 +67,61 @@
     
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [sharedAppDelegate writeToDisk];
+}
+
+
+#pragma mark - NotificationDisplayModalDelegate methods
+- (void)presentIncomingNotification:(NSDictionary *)customData notification:(NSDictionary *)notification {
+    
+}
+
+- (void)presentNotificationApplicationLaunch:(NSDictionary *)customData {
+    
+}
+
+
+#pragma mark - Notification banner methods
+
+- (void)showNotificationBanner {
+    [self.notificationBanner setupView];
+    
+    
+    self.notificationBanner.alpha = 0.0;
+    if ([self.visibleViewController respondsToSelector:@selector(tableView)] || [self.visibleViewController respondsToSelector:@selector(collectionView)]) {
+        ALog(@"has table view!!!!");
+        //[self.visibleViewController.view.superview addSubview:self.notificationBanner];
+        [self.visibleViewController.view.superview insertSubview:self.notificationBanner aboveSubview:self.visibleViewController.view.superview];
+    } else {
+        ALog(@"has no table view!!!");
+        [self.visibleViewController.view insertSubview:self.notificationBanner aboveSubview:self.visibleViewController.view];
+    }
+    
+    
+    [NotificationBanner animateWithDuration:2.0
+                                      delay:0.0
+                                    options:UIViewAnimationOptionCurveLinear
+                                 animations:^{
+                                     self.notificationBanner.alpha = 1.0;
+                                 }
+                                 completion:^(BOOL finished) {
+                                     [self performSelector:@selector(hideNotificationBanner) withObject:nil afterDelay:5.0];
+                                 }
+     ];
+}
+
+- (void)hideNotificationBanner {
+    
+    [NotificationBanner animateWithDuration:2.0
+                                      delay:0.0
+                                    options:UIViewAnimationOptionCurveLinear
+                                 animations:^{
+                                     self.notificationBanner.alpha = 0.0;
+                                 }
+                                 completion:^(BOOL finished) {
+                                     [self.notificationBanner removeFromSuperview];
+                                 }
+     ];
+    
 }
 
 

@@ -18,17 +18,6 @@
 
 @implementation InitialViewController
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    if(self = [super initWithCoder:aDecoder])
-    {
-        self.notificationBanner = (NotificationBanner *)[[[NSBundle mainBundle] loadNibNamed:@"NotificationBanner" owner:self options:nil] objectAtIndex:0];
-        [self.notificationBanner.dismissButton addTarget:self action:@selector(didDismissNotificationBanner:) forControlEvents:UIControlEventTouchUpInside];
-        [self.notificationBanner.notificationTextLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapNotificationBanner:)]];
-        self.isChildNavigationalStack = NO;
-    }
-    return self;
-}
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Login"]) {        
@@ -42,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [NotificationHandler shared].delegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout)
                                                  name:@"UserNotAuthorized" object:nil];
 
@@ -55,6 +45,8 @@
         [self performSegueWithIdentifier:@"Login" sender:self];
     }
 }
+
+
 
 - (void)setup {
     

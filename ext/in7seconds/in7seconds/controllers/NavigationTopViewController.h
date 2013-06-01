@@ -8,8 +8,12 @@
 
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
-@interface NavigationTopViewController : UINavigationController
+#import "NotificationHandler.h"
+#import "NotificationBanner.h"
+
+@interface NavigationTopViewController : UINavigationController <NotificationDisplayModalDelegate>
 @property (strong, nonatomic) User *currentUser;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NotificationBanner *notificationBanner;
 
 @end

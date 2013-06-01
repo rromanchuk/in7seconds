@@ -111,6 +111,7 @@
 		FA809FEE16D2BD58003920E6 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA809FED16D2BD58003920E6 /* AddressBook.framework */; };
 		FA82642217495BE200B51936 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA82642117495BE200B51936 /* NotificationView.xib */; };
 		FA82642517495CBE00B51936 /* NotificationBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = FA82642417495CBE00B51936 /* NotificationBanner.m */; };
+		FA98E5500000069E00687BCA /* NotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = FA98E54F0000069E00687BCA /* NotificationHandler.m */; };
 		FAA2CC9216DC00C900C22D76 /* interests_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC6E16DC00C900C22D76 /* interests_icon.png */; };
 		FAA2CC9316DC00C900C22D76 /* interests_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC6F16DC00C900C22D76 /* interests_icon@2x.png */; };
 		FAA2CC9416DC00C900C22D76 /* like_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC7016DC00C900C22D76 /* like_icon.png */; };
@@ -357,6 +358,8 @@
 		FA82642117495BE200B51936 /* NotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
 		FA82642317495CBE00B51936 /* NotificationBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationBanner.h; path = views/NotificationBanner.h; sourceTree = "<group>"; };
 		FA82642417495CBE00B51936 /* NotificationBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationBanner.m; path = views/NotificationBanner.m; sourceTree = "<group>"; };
+		FA98E54E0000069E00687BCA /* NotificationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationHandler.h; path = models/NotificationHandler.h; sourceTree = "<group>"; };
+		FA98E54F0000069E00687BCA /* NotificationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationHandler.m; path = models/NotificationHandler.m; sourceTree = "<group>"; };
 		FAA2CC6E16DC00C900C22D76 /* interests_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = interests_icon.png; path = assets/interests_icon.png; sourceTree = "<group>"; };
 		FAA2CC6F16DC00C900C22D76 /* interests_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "interests_icon@2x.png"; path = "assets/interests_icon@2x.png"; sourceTree = "<group>"; };
 		FAA2CC7016DC00C900C22D76 /* like_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = like_icon.png; path = assets/like_icon.png; sourceTree = "<group>"; };
@@ -803,6 +806,8 @@
 		FAAA96C916D907D900F8CD3D /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
+				FA98E54E0000069E00687BCA /* NotificationHandler.h */,
+				FA98E54F0000069E00687BCA /* NotificationHandler.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -1136,6 +1141,7 @@
 				943837D6173BD4AE00052C47 /* SSScrollView.m in Sources */,
 				943837D9173BD4FD00052C47 /* ImageScrollViewPage.m in Sources */,
 				FA82642517495CBE00B51936 /* NotificationBanner.m in Sources */,
+				FA98E5500000069E00687BCA /* NotificationHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
