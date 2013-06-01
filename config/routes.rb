@@ -56,6 +56,7 @@ In7seconds::Application.routes.draw do
       member do
         post :flirt
         post :send_pending_reminder
+        post :send_notification
       end
     end
   end

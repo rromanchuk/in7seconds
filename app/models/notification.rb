@@ -7,6 +7,7 @@ class Notification < ActiveRecord::Base
   NOTIFICATION_PRIVATE_MESSAGE = 'private_message'
   NOTIFICATION_MATCH = 'match'
   NOTIFICATION_MATCH_REMINDER = "match_reminder"
+  NOTIFICATION_CUSTOM = "custom"
   # validates_inclusion_of :notification_type, :in => [NOTIFICATION_TYPE_NEW_COMMENT, NOTIFICATION_TYPE_NEW_FRIEND]
 
   attr_accessible :sender, :receiver, :notification_type, :sender_id, :receiver_id, :message
@@ -15,6 +16,12 @@ class Notification < ActiveRecord::Base
     return unless user.push_opt_in?
     Notification.create(receiver_id: user.id, notification_type: NOTIFICATION_TYPE_NO_EMAIL, message: I18n.t('notifications.no_email'))
     Notification.send_notification!([user.id], I18n.t('notifications.no_email'), {type: NOTIFICATION_TYPE_NO_EMAIL})
+  end
+
+  def self.custom(hookup, message)
+    return unless hookup.push_opt_in?
+    Notification.create(receiver_id: hookup.id, notification_type: NOTIFICATION_CUSTOM, message: message)
+    Notification.send_notification!([hookup.id], message, {type: NOTIFICATION_CUSTOM})
   end
 
   def self.private_message(sender, hookup, message)

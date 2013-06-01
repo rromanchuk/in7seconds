@@ -7,6 +7,11 @@ module Admin
       def index
         @notifications = Notification.all
       end
+
+      def new
+
+      end
+      
     end
-    
+
 end

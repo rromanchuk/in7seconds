@@ -38,6 +38,12 @@ module Admin
         redirect_to session[:return_to]
       end
 
+      def send_notification
+        session[:return_to] ||= request.referer
+        hookup = User.find(params[:id])
+        Notification.custom(hookup, params[:message])
+        respond_with true
+      end
 
       def send_pending_reminder
         session[:return_to] ||= request.referer

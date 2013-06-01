@@ -12,24 +12,39 @@ table.table
     tr
       td 
         #{user.name}
-        a href=admin_user_path(user)
+        a.tip href=admin_user_path(user)
           img src=user.photo_url style="width:50px;height:50px;"
       td
         - user.requested_hookups.active.each do |requested|
-          a href=admin_user_path(requested) data-toggle="tooltip" title=requested.first_name
+          a.tip href=admin_user_path(requested) data-toggle="tooltip" title=requested.first_name
             img src=requested.photo_url style="width:50px;height:50px;"
       td
         - user.pending_hookups.active.each do |requested|
-          a href=admin_user_path(requested) data-toggle="tooltip" title=requested.first_name
+          a.tip href=admin_user_path(requested) data-toggle="tooltip" title=requested.first_name
             img src=requested.photo_url style="width:50px;height:50px;"
       td
         - user.hookups.each do |hookup|
-          a href=admin_user_path(hookup) data-toggle="tooltip" title=hookup.first_name
+          a.tip href=admin_user_path(hookup) data-toggle="tooltip" title=hookup.first_name
             img src=hookup.photo_url style="width:50px;height:50px;"
       td
         = button_to('Request', flirt_admin_user_path(user), :class => 'btn btn-mini')
         = button_to('Send Pending Reminder', send_pending_reminder_admin_user_path(user), :class => 'btn btn-mini')
-
+        a.btn.btn-mini.notif data-title="Message" data-html="true" data-content="<input type='text' data-user-id='#{user.id}'></input> <a href='#' class='btn send-notif'>Submit</a>" Send Notification 
 
 javascript:
-  $('a').tooltip({})
+  $('a.tip').tooltip({});
+  $('a.notif').popover({});
+  $(function () {
+    $('body').on('click', '.send-notif', function (e) {
+       console.log("notif clicked");
+       console.log(e)
+       var input = $(e.currentTarget).siblings('input');
+       console.log(input);
+       $.ajax({
+        type: "POST",
+        url: '/admin/users/' + input.data('userId') + '/send_notification.json',
+        data: {"message": input.val()}
+      });
+    });
+  });
+  
