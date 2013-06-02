@@ -221,7 +221,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
-                                                                                            ALog(@"JSON: %@", JSON);
+                                                                                            //ALog(@"JSON: %@", JSON);
                                                                                             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                                                                                 RestUser *user = [RestUser objectFromJSONObject:JSON mapping:[RestUser mapping]];
                                                                                                 
@@ -291,7 +291,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
-                                                                                            ALog(@"JSON: %@", JSON);
+                                                                                            //ALog(@"JSON: %@", JSON);
                                                                                             if (onLoad)
                                                                                                 onLoad(YES);
                                                                                         }
@@ -319,7 +319,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
-                                                                                            ALog(@"JSON: %@", JSON);
+                                                                                            //ALog(@"JSON: %@", JSON);
                                                                                             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                                                                                 RestMatch *restMatch = [RestMatch objectFromJSONObject:JSON mapping:[RestMatch mapping]];
                                                                                                 

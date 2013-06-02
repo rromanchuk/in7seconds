@@ -43,8 +43,6 @@
 
 }
 
-
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -135,8 +133,8 @@
                 
                 AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 [sharedAppDelegate writeToDisk];
-                Match *match = [Match matchWithExternalId:[[customData objectForKey:@"extra"] objectForKey:@"user_id"] inManagedObjectContext:[NotificationHandler shared].managedObjectContext];
-                [self.visibleViewController performSegueWithIdentifier:@"CommentThread" sender:match];
+                Match *match = [Match matchWithExternalId:[[customData objectForKey:@"extra"] objectForKey:@"sender_id"] inManagedObjectContext:[NotificationHandler shared].managedObjectContext];
+                [self.visibleViewController performSegueWithIdentifier:@"DirectToChat" sender:match];
                 [SVProgressHUD dismiss];
                 
             } onError:^(NSError *error) {

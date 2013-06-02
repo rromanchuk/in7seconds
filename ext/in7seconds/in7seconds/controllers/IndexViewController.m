@@ -33,6 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self noResultsLeft];
+    
     self.hookups = [[NSMutableSet alloc] init];
     
     [self fetchHookups];
@@ -67,8 +69,7 @@
     [self.view addSubview:self.countdown];
     self.countdown.delegate = self;
     self.userImageView.notifyImageLoad = YES;
-    
-    [self noResultsLeft];
+    [self fetchHookups];
 }
 
 - (void)leftViewWillAppear {
@@ -205,8 +206,12 @@
         self.otherUser = [self.hookups anyObject];
         ALog(@"other user is setup %@", self.otherUser);
         ALog(@"hookups are %@", self.hookups);
-        if (_noResults)
-            [self foundResults];
+        [self foundResults];
+        if (_noResults) {
+           [self foundResults];
+            ALog(@"FOUND RESULTS, SHOWING UI!");
+        }
+        
         
         
         [self.userImageView setProfilePhotoWithURL:self.otherUser.photoUrl];
@@ -285,7 +290,7 @@
     ALog(@"noResultsLeft");
     [self stopCountdown];
     _noResults = YES;
-    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdown.hidden = self.userImageView.hidden = self.infoBanner.hidden  = YES;
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdown.hidden = self.userImageView.hidden = self.infoBanner.hidden = YES;
     self.noResultsLabel.hidden = NO;
 }
 
