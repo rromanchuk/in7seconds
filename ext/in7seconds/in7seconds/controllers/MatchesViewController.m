@@ -167,9 +167,9 @@
             [sharedAppDelegate writeToDisk];
             
             [self checkNoResults];
-            
+            [refreshControl endRefreshing];
         } onError:^(NSError *error) {
-            
+            [refreshControl endRefreshing];
         }];
     }];
 }

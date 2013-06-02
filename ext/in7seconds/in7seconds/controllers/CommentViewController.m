@@ -486,9 +486,10 @@
             [self checkNoResults];
                         
             ALog(@"thread %@", restThread);
-            
+            [refreshControl endRefreshing];
         } onError:^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+            [refreshControl endRefreshing];
         }];
 
     }];
