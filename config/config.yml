@@ -45,8 +45,8 @@ production:
   description: In 7 Seconds находит интересных людей неподалеку и соединяет вас, если симпатии взаимны. Это анонимно до тех пор, пока вы не понравитесь тому, кто вам нравится.
   host: in7seconds.com
   asset_host: in7seconds.com
-  fb_app_id: 416377108420491
-  fb_app_secret: d63ab873eee7b992ad53b816b848bbba
+  fb_app_id: 138127329695553
+  fb_app_secret: 66c9d571c4c96c37f91d0ede9744a388
   aws_access: 0SPGHF9VGDTQXENQC282
   aws_secret: 9zscLw+Y+Mh437fHaG1h+BUCtjViDrCP8ipmJImy
   aws_bucket: in7seconds
