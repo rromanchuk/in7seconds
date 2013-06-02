@@ -207,12 +207,6 @@
         ALog(@"other user is setup %@", self.otherUser);
         ALog(@"hookups are %@", self.hookups);
         [self foundResults];
-        if (_noResults) {
-           [self foundResults];
-            ALog(@"FOUND RESULTS, SHOWING UI!");
-        }
-        
-        
         
         [self.userImageView setProfilePhotoWithURL:self.otherUser.photoUrl];
         if (self.otherUser.latitude && [self.otherUser.latitude integerValue] > 0) {
