@@ -97,10 +97,11 @@
                 
                 AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 [sharedAppDelegate writeToDisk];
-                
-                self.notificationBanner.sender = [Match matchWithExternalId:[[customData objectForKey:@"extra"] objectForKey:@"user_id"] inManagedObjectContext:[NotificationHandler shared].managedObjectContext];
+                Match *match = [Match matchWithExternalId:[[customData objectForKey:@"extra"] objectForKey:@"sender_id"] inManagedObjectContext:[NotificationHandler shared].managedObjectContext];
+                ALog(@"found other match user %@", match);
+                self.notificationBanner.sender = match;
                 self.notificationBanner.notificationTextLabel.text = alert;
-                self.notificationBanner.segueTo = @"CommentThread";
+                self.notificationBanner.segueTo = @"DirectToChat";
                 
                 [self showNotificationBanner];
 
@@ -157,7 +158,9 @@
     if ([self.visibleViewController respondsToSelector:@selector(tableView)] || [self.visibleViewController respondsToSelector:@selector(collectionView)]) {
         ALog(@"has table view!!!!");
         //[self.visibleViewController.view.superview addSubview:self.notificationBanner];
-        [self.visibleViewController.view.superview insertSubview:self.notificationBanner aboveSubview:self.visibleViewController.view.superview];
+        //[self.visibleViewController.view.superview insertSubview:self.notificationBanner aboveSubview:self.visibleViewController.view.superview];
+        //[self.navigationController.view.superview addSubview:self.notificationBanner];
+        [self.view addSubview:self.notificationBanner];
     } else {
         ALog(@"has no table view!!!");
         [self.visibleViewController.view insertSubview:self.notificationBanner aboveSubview:self.visibleViewController.view];

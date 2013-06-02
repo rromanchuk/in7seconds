@@ -141,6 +141,7 @@
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser; 
         vc.otherUser = (Match *)sender;
+        ALog(@"set other user as %@", vc.otherUser);
     } else if ([segue.identifier isEqualToString:@"UserProfile"]) {
         [Flurry logEvent:@"View_User_Profile"];
         [self stopCountdown];
