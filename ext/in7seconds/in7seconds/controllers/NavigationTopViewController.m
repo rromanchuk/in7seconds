@@ -98,6 +98,7 @@
                 Match *match = [Match matchWithExternalId:[[customData objectForKey:@"extra"] objectForKey:@"sender_id"] inManagedObjectContext:[NotificationHandler shared].managedObjectContext];
                 ALog(@"found other match user %@", match);
                 self.notificationBanner.sender = match;
+                self.notificationBanner.match = match;
                 self.notificationBanner.notificationTextLabel.text = alert;
                 self.notificationBanner.segueTo = @"DirectToChat";
                 
