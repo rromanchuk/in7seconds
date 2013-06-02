@@ -208,7 +208,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   require "omniauth-facebook"
   require "omniauth-vkontakte"
-  config.omniauth :facebook, CONFIG[:fb_app_id], CONFIG[:fb_app_secret]
+  config.omniauth :facebook, CONFIG[:fb_app_id], CONFIG[:fb_app_secret], :scope => 'email'
   config.omniauth :vkontakte, CONFIG[:vk_app_id], CONFIG[:vk_secret], :scope => 'friends,photos,offline,notify'
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
