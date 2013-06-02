@@ -17,7 +17,6 @@
 #import "NotificationCell.h"
 
 @interface NotificationsViewController ()
-
 @end
 
 @implementation NotificationsViewController
@@ -29,8 +28,13 @@
     self.title = @"Уведомления";
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     self.tableView.backgroundView = [[BaseUIView alloc] init];
+    
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchResults:) forControlEvents:UIControlEventValueChanged];
+    
     [self setupFetchedResultsController];
-    [self fetchResults];
+    [self fetchResults:nil];
 }
 
 
@@ -45,7 +49,7 @@
                                                                                    cacheName:nil];
 }
 
-- (void)fetchResults {
+- (void)fetchResults:(id)refreshControl {
     [self.managedObjectContext performBlock:^{
         [RestNotification reload:^(NSArray *notifications) {
             for (RestNotification *restNotification in notifications) {
@@ -57,8 +61,9 @@
             
             AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             [sharedAppDelegate writeToDisk];
+            [refreshControl endRefreshing];
         } onError:^(NSError *error) {
-            
+            [refreshControl endRefreshing];
         }];
     }];
 }
@@ -105,7 +110,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else {
         cell.profilePhotoView.hidden = YES;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     return cell;
 }
@@ -116,7 +121,7 @@
     NSError *error;
     [self.managedObjectContext save:&error];
     [self.tableView reloadData];
-    if ([notification.notificationType isEqualToString:@"PrivateMessage"]) {
+    if (notification.sender) {
         [self performSegueWithIdentifier:@"DirectToChat" sender:notification.sender];
     } 
     

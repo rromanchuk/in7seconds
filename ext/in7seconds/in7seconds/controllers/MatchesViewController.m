@@ -56,7 +56,12 @@
     self.title = NSLocalizedString(@"Симпатии", nil);
     self.tableView.backgroundView = [[BaseUIView alloc] init];
     [[UAPush shared] resetBadge];
-    [self fetchResults];
+    
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchResults:) forControlEvents:UIControlEventValueChanged];
+    
+    [self fetchResults:nil];
 	// Do any additional setup after loading the view.
 }
 
@@ -145,7 +150,7 @@
 }
 
 
-- (void)fetchResults {
+- (void)fetchResults:(id)refreshControl {
     [self.managedObjectContext performBlock:^{
         [RestMatch load:^(NSMutableArray *matches) {
             

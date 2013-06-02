@@ -27,6 +27,8 @@
 @property (strong, nonatomic) NoChatsView *noResultsFooterView;
 @property (nonatomic) BOOL beganUpdates;
 @property (strong) Thread *thread;
+@property (strong) UIRefreshControl *refreshControl;
+
 @end
 
 @implementation CommentViewController {
@@ -60,8 +62,11 @@
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     self.title = self.otherUser.fullName;
     self.tableView.backgroundView = [[BaseUIView alloc] init];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.tableView addSubview:self.refreshControl];
+    [self fetchResults:nil];
 
-    [self fetchResults];
     _df = [[NSDateFormatter alloc] init];
     [_df setDateFormat:@"dd-MM-yyyy, HH:mm"];
 }
@@ -82,11 +87,6 @@
     }
     
     [self checkNoResults];
-    
-    
-//    [self updateFeedItem];
-//    [self setupView];
-    
 }
 
 - (void)checkNoResults {
@@ -468,7 +468,7 @@
 }
 
 
-- (void)fetchResults {
+- (void)fetchResults:(id)refreshControl {
     [self.managedObjectContext performBlock:^{
         [RestThread loadThreadWithUser:self.otherUser onLoad:^(RestThread *restThread) {
             ALog(@"rest thread %@", restThread);
