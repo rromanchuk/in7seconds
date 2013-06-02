@@ -89,9 +89,8 @@
         CommentViewController *vc = (CommentViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
-        Match *user = [self.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
+        Match *user = (Match *)sender;
         vc.otherUser = user;
-        
     } else if ([segue.identifier isEqualToString:@"UserProfile"]) {
         UserProfileViewController *vc = (UserProfileViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
@@ -136,6 +135,10 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Match *match = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"CommentThread" sender:match];
+}
 
 - (void)back {
     [self.navigationController popViewControllerAnimated:YES];

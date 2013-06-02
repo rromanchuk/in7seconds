@@ -32,7 +32,7 @@
 
 
 - (void)displayNotificationAlert:(NSString *)alertMessage {
-	
+	ALog(@"did receive notification");
     //	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: UA_PU_TR(@"UA_Notification_Title")
     //                                                    message: alertMessage
     //                                                   delegate: nil
@@ -129,7 +129,6 @@
 //
 
 
-
 - (void)handleBadgeUpdate:(int)badgeNumber {
 	ALog(@"Received an alert with a new badge");
 	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeNumber];
@@ -139,28 +138,13 @@
     ALog(@"Received an alert with a custom payload %@ and notification %@", customData, notification);
     // Update notifications
 	// Do something with your customData JSON, then entire notification is also available
-    
     NSString *type = [[customData objectForKey:@"extra"] objectForKey:@"type"];
-    if ([type isEqualToString:@"notification_approved"]) {
-        // this needs a callback because these network calls are nonblocking and the approval controller shouldn't be notified
-        // until this is actually updates.
-        [SVProgressHUD showWithStatus:NSLocalizedString(@"LOADING", nil)];
-        return;
-    }
-    
     [self.delegate presentIncomingNotification:customData notification:notification];
 }
 
 - (void)handleBackgroundNotification:(NSDictionary *)notification {
     ALog(@"The application resumed from a notification. %@", notification);
     NSString *type = [[notification objectForKey:@"extra"] objectForKey:@"type"];
-    if ([type isEqualToString:@"notification_approved"]) {
-        // this needs a callback because these network calls are nonblocking and the approval controller shouldn't be notified
-        // until this is actually updates.
-        [SVProgressHUD showWithStatus:NSLocalizedString(@"LOADING", nil)];
-        return;
-    }
-    
     [self.delegate presentNotificationApplicationLaunch:notification];
 }
 

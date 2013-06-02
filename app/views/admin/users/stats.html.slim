@@ -1,0 +1,49 @@
+= render :partial => 'tabs'
+
+dl 
+  dt Users created yesterday
+  dd #{@total_users_yesterday}
+  
+  dt Total users
+  dd #{@total_users}
+  
+  dt Total ratings
+  dd= @toal_ratings / 2
+  
+  dt Total ratings yesterday
+  dd= @total_ratings_yesterday / 2
+
+  dt Total matches 
+  dd= @total_matches
+
+  dt Users with geo
+  dd= @users_with_geo_location
+
+  dt Users created yesterday
+  dd= @names_yesterday
+
+  dt All users
+  dd= @names
+
+  dt Percent Female 
+  dd= number_to_percentage(@percent_female * 100, :precision => 0)
+
+table
+  thead
+    td
+      User
+    td
+      Pending
+    td
+      Requested (Liked by Others)
+    td
+      Rejected
+    td
+      Matches
+  - User.active.each do |u|
+    tr
+      td= u.name
+      td= u.pending_hookups.count
+      td= u.requested_hookups.count
+      td= u.rejected_hookups.count
+      td= u.hookups.count

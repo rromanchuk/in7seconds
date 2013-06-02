@@ -13,7 +13,8 @@
           inManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (Match *)matchWithExternalId:(NSNumber *)externalId
-          inManagedObjectContext:(NSManagedObjectContext *)context;
+        inManagedObjectContext:(NSManagedObjectContext *)context;
+
 - (NSString *)getDistanceFrom:(User *)user;
 - (NSString *)fullName;
 - (NSNumber *)yearsOld;

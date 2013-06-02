@@ -47,4 +47,9 @@ class Mailer < ActionMailer::Base
     mail to: 'stats@piclar.com', subject: 'in7seconds Stats'
   end
 
+  def admin_notice(message)
+    @message = message
+    mail to: 'rromanchuk@gmail.com', subject: 'Notification sent'
+  end
+
 end

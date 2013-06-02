@@ -1,0 +1,19 @@
+= render :partial => 'tabs'
+
+table.table
+ thead
+  tr
+    th Sender
+    th Receiver
+    th Type
+    th Message 
+  - @notifications.each do |notification|
+    tr
+      td 
+        #{notification.sender.name if notification.sender}
+      td
+        #{notification.receiver.name if notification.receiver}
+      td
+        #{notification.notification_type}
+      td
+        #{notification.message}

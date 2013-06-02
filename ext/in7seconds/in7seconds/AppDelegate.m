@@ -125,6 +125,9 @@
     [[Location sharedLocation] updateUntilDesiredOrTimeout:15.0];
     
     if (self.currentUser) {
+        [NotificationHandler shared].currentUser = self.currentUser;
+        [NotificationHandler shared].managedObjectContext = self.managedObjectContext;
+
         [self.managedObjectContext performBlock:^{
             [RestUser reload:^(RestUser *restUser) {
                 NSString *alias = [NSString stringWithFormat:@"%d", restUser.externalId];
@@ -363,6 +366,12 @@
     [[UAPush shared] registerDeviceToken:deviceToken];
 }
 
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    ALog(@"Received remote notification: %@", userInfo);
+    ALog(@"delegate is %@", [UAPush shared].delegate);
+    [[UAPush shared] handleNotification:userInfo applicationState:application.applicationState];
+    [[UAPush shared] resetBadge]; // zero badge after push received
+}
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
