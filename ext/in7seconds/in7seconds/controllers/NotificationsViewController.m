@@ -17,7 +17,6 @@
 #import "NotificationCell.h"
 
 @interface NotificationsViewController ()
-
 @end
 
 @implementation NotificationsViewController
@@ -29,8 +28,13 @@
     self.title = @"Уведомления";
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     self.tableView.backgroundView = [[BaseUIView alloc] init];
+    
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchResults:) forControlEvents:UIControlEventValueChanged];
+    
     [self setupFetchedResultsController];
-    [self fetchResults];
+    [self fetchResults:nil];
 }
 
 
@@ -45,7 +49,7 @@
                                                                                    cacheName:nil];
 }
 
-- (void)fetchResults {
+- (void)fetchResults:(id)refreshControl {
     [self.managedObjectContext performBlock:^{
         [RestNotification reload:^(NSArray *notifications) {
             for (RestNotification *restNotification in notifications) {
@@ -57,8 +61,9 @@
             
             AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             [sharedAppDelegate writeToDisk];
+            [refreshControl endRefreshing];
         } onError:^(NSError *error) {
-            
+            [refreshControl endRefreshing];
         }];
     }];
 }
@@ -92,41 +97,35 @@
         cell.isNotRead = NO;
     }
     
-    DLog(@"users name is %@", notification.sender.fullName);
-    NSString *text;
-//    if ([notification.notificationType integerValue] == NotificationTypeNewComment ) {
-//        text = [NSString stringWithFormat:@"%@ %@ %@.", notification.sender.fullName, NSLocalizedString(@"LEFT_A_COMMENT", @"Copy for commenting"), notification.placeTitle];
-//    } else if ([notification.notificationType integerValue] == NotificationTypeNewFriend) {
-//        text = [NSString stringWithFormat:@"%@ %@.", notification.sender.fullName, NSLocalizedString(@"FOLLOWED_YOU", @"Copy for following")];
-//    }
+    ALog(@"users name is %@", notification.sender.fullName);
+    ALog(@"sender is %@", notification.sender);
     cell.notficationLabel.text = notification.message;
     cell.notficationLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
     cell.notficationLabel.lineBreakMode = UILineBreakModeWordWrap;
     cell.notficationLabel.numberOfLines = 0;
     
     if (notification.sender) {
-        DLog(@"sender is %@", notification.sender);
         cell.profilePhotoView.hidden = NO;
         [cell.profilePhotoView setProfilePhotoWithURL:notification.sender.photoUrl];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else {
         cell.profilePhotoView.hidden = YES;
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     return cell;
 }
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    Notification *notification = [self.fetchedResultsController objectAtIndexPath:indexPath];
-//    notification.isRead = [NSNumber numberWithBool:YES];
-//    NSError *error;
-//    [self.managedObjectContext save:&error];
-//    [self.tableView reloadData];
-//    if ([notification.notificationType integerValue] == NotificationTypeNewComment) {
-//        [self performSegueWithIdentifier:@"CheckinShow" sender:notification];
-//    } else {
-//        [self performSegueWithIdentifier:@"UserShow" sender:notification.sender];
-//    }
-//    
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Notification *notification = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    notification.isRead = [NSNumber numberWithBool:YES];
+    NSError *error;
+    [self.managedObjectContext save:&error];
+    [self.tableView reloadData];
+    if (notification.sender) {
+        [self performSegueWithIdentifier:@"DirectToChat" sender:notification.sender];
+    } 
+    
+}
 
 
 @end

@@ -50,8 +50,8 @@
 
 
 - (void)setupView {
-    //NSURL *url = [NSURL URLWithString:self.user.remoteProfilePhotoUrl];
-    //[self.imageView setImageWithURL:url];
+    NSURL *url = [NSURL URLWithString:self.match.photoUrl];
+    [self.imageView setImageWithURL:url];
 }
 
 

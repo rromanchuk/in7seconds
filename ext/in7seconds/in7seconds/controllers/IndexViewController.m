@@ -33,6 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self noResultsLeft];
+    
     self.hookups = [[NSMutableSet alloc] init];
     
     [self fetchHookups];
@@ -67,8 +69,7 @@
     [self.view addSubview:self.countdown];
     self.countdown.delegate = self;
     self.userImageView.notifyImageLoad = YES;
-    
-    [self noResultsLeft];
+    [self fetchHookups];
 }
 
 - (void)leftViewWillAppear {
@@ -141,6 +142,7 @@
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser; 
         vc.otherUser = (Match *)sender;
+        ALog(@"set other user as %@", vc.otherUser);
     } else if ([segue.identifier isEqualToString:@"UserProfile"]) {
         [Flurry logEvent:@"View_User_Profile"];
         [self stopCountdown];
@@ -204,9 +206,7 @@
         self.otherUser = [self.hookups anyObject];
         ALog(@"other user is setup %@", self.otherUser);
         ALog(@"hookups are %@", self.hookups);
-        if (_noResults)
-            [self foundResults];
-        
+        [self foundResults];
         
         [self.userImageView setProfilePhotoWithURL:self.otherUser.photoUrl];
         if (self.otherUser.latitude && [self.otherUser.latitude integerValue] > 0) {
@@ -284,7 +284,7 @@
     ALog(@"noResultsLeft");
     [self stopCountdown];
     _noResults = YES;
-    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdown.hidden = self.userImageView.hidden = self.infoBanner.hidden  = YES;
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdown.hidden = self.userImageView.hidden = self.infoBanner.hidden = YES;
     self.noResultsLabel.hidden = NO;
 }
 

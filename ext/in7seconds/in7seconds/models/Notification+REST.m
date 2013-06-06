@@ -42,6 +42,9 @@
     self.isRead = [NSNumber numberWithBool:restNotification.isRead];
     self.notificationType = restNotification.notificationType;
     self.createdAt = restNotification.createdAt;
-    self.sender = [Match matchWithRestMatch:restNotification.sender inManagedObjectContext:self.managedObjectContext];
+    ALog(@"sender is %@", restNotification.sender);
+    if (restNotification.sender) {
+        self.sender = [Match matchWithRestMatch:restNotification.sender inManagedObjectContext:self.managedObjectContext];
+    }
 }
 @end

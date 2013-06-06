@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_Appirater 0
 #define COCOAPODS_VERSION_PATCH_Appirater 1
 
+// CKRefreshControl
+#define COCOAPODS_POD_AVAILABLE_CKRefreshControl
+#define COCOAPODS_VERSION_MAJOR_CKRefreshControl 1
+#define COCOAPODS_VERSION_MINOR_CKRefreshControl 1
+#define COCOAPODS_VERSION_PATCH_CKRefreshControl 0
+
 // ECSlidingViewController
 #define COCOAPODS_POD_AVAILABLE_ECSlidingViewController
 #define COCOAPODS_VERSION_MAJOR_ECSlidingViewController 0
@@ -78,10 +84,4 @@
 #define COCOAPODS_VERSION_MAJOR_UrbanAirship_iOS_SDK 1
 #define COCOAPODS_VERSION_MINOR_UrbanAirship_iOS_SDK 4
 #define COCOAPODS_VERSION_PATCH_UrbanAirship_iOS_SDK 0
-
-// ZGParallelView
-#define COCOAPODS_POD_AVAILABLE_ZGParallelView
-#define COCOAPODS_VERSION_MAJOR_ZGParallelView 0
-#define COCOAPODS_VERSION_MINOR_ZGParallelView 1
-#define COCOAPODS_VERSION_PATCH_ZGParallelView 5
 

@@ -8,7 +8,6 @@
 
 #import "UserProfileViewController.h"
 #import "BaseUIView.h"
-#import "UITableView+ZGParallelView.h"
 
 #import  <QuartzCore/QuartzCore.h>
 #import "Hookup+REST.h"
