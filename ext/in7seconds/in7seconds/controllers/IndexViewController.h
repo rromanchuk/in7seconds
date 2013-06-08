@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIView *infoBanner;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
+@property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
 
 - (IBAction)didTapUnlike:(id)sender;
 - (IBAction)didTapLike:(id)sender;

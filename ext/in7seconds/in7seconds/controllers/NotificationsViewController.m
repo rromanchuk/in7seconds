@@ -7,6 +7,7 @@
 //
 
 #import "NotificationsViewController.h"
+#import "CommentViewController.h"
 #import "BaseUIView.h"
 #import "RestNotification.h"
 #import "Notification+REST.h"
@@ -48,6 +49,16 @@
                                                                           sectionNameKeyPath:nil
                                                                                    cacheName:nil];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+   if ([segue.identifier isEqualToString:@"DirectToChat"]) {
+        CommentViewController *vc = (CommentViewController *)segue.destinationViewController;
+        vc.managedObjectContext = self.managedObjectContext;
+        vc.currentUser = self.currentUser;
+        vc.otherUser = (Match *)sender;
+    } 
+}
+
 
 - (void)fetchResults:(id)refreshControl {
     [self.managedObjectContext performBlock:^{

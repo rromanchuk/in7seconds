@@ -20,12 +20,13 @@
     BOOL _noResults;
     BOOL _modalOpen;
     BOOL _isFetching;
+    NSInteger _secondsLeft;
 }
 
 @property (strong, nonatomic) JDFlipNumberView *countdown;
 @property (strong, nonatomic) Hookup *otherUser;
 @property (strong, nonatomic) NSMutableSet *hookups;
-
+@property (strong, nonatomic) NSTimer *timer;
 @end
 
 @implementation IndexViewController
@@ -66,10 +67,12 @@
     CGRect frame = CGRectOffset(self.unlikeButton.frame, 120, 0);
     frame.origin.y = self.unlikeButton.frame.origin.y + 15;
     self.countdown.frame = frame;
-    [self.view addSubview:self.countdown];
+    
     self.countdown.delegate = self;
     self.userImageView.notifyImageLoad = YES;
     [self fetchHookups];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
 }
 
 - (void)leftViewWillAppear {
@@ -93,6 +96,7 @@
 
 - (void)viewDidUnload {
     [self setActivityIndicator:nil];
+    [self setCountdownLabel:nil];
     [super viewDidUnload];
 }
 
@@ -100,6 +104,27 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"UserNotAuthorized"
                                                   object:nil];
+}
+
+- (void)startCountdown {
+    ALog(@"starting countdown");
+    _secondsLeft = 7;
+    if (_timer.isValid) {
+        
+    } else {
+        [_timer fire];
+    }
+}
+
+-(void)stopCountdown {
+    ALog(@"stopping countdown");
+    [_timer invalidate];
+}
+
+
+- (void)updateCountdownLabel {
+    _secondsLeft--;
+    self.countdownLabel.text = [NSString stringWithFormat:@"%d", _secondsLeft];
 }
 
 - (NSString *)getDistance {
@@ -181,16 +206,16 @@
     }
 }
 
-- (void)stopCountdown {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self.countdown stopAnimation];
-}
+//- (void)stopCountdown {
+//    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+//    [self.countdown stopAnimation];
+//}
 
-- (void)startCountdown {
-    ALog(@"Starting countdown");
-    self.countdown.value = 7;
-    [self performSelector:@selector(startCountdownAnimation) withObject:self afterDelay:1.0];
-}
+//- (void)startCountdown {
+//    ALog(@"Starting countdown");
+//    self.countdown.value = 7;
+//    [self performSelector:@selector(startCountdownAnimation) withObject:self afterDelay:1.0];
+//}
 
 - (void)startCountdownAnimation {
     [self.countdown animateDownWithTimeInterval: 1.0];
