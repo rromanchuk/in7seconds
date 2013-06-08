@@ -40,7 +40,7 @@ class Relationship < ActiveRecord::Base
       requested = user.requested_that_user_may_like
       puts "#{user.first_name} has #{requested.length} requests from other users"
       past_notifications = user.notifications.where(notification_type: Notification::NOTIFICATION_MATCH_REMINDER).where('created_at > ?', Time.now - 3.days)
-      if !requested.blank? && past_notifications == 0
+      if !requested.blank? && past_notifications.length == 0
         puts "Sending the notification for #{user.first_name}"
         user.notify_pending
       end
