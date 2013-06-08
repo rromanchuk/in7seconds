@@ -352,7 +352,7 @@
                                 <rect key="frame" x="139" y="339" width="42" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="40"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -1054,6 +1054,10 @@
         </class>
         <class className="NavigationTopViewController" superclassName="UINavigationController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationTopViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didDismissNotificationBanner:"/>
+                <relationship kind="action" name="didTapNotificationBanner:"/>
+            </relationships>
         </class>
         <class className="NotificationCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NotificationCell.h"/>
