@@ -28,6 +28,7 @@ class Mailer < ActionMailer::Base
 
   def pending_requests(receiver)
     return unless receiver.email_opt_in?
+    @user = receiver
     @num_requested = receiver.requested_hookups.length
     @people = (@num_requested == 2) ? 'человека' : 'человек'
     mail to: receiver.email, :bcc => "support@in7seconds.com", subject: "Кто-то только что отметил тебя!"
