@@ -28,11 +28,10 @@ class Relationship < ActiveRecord::Base
   end
   handle_asynchronously :notify_match
 
-  def notify_pending
-    Notification.notify_requested_hookups(self)
-    Mailer.pending_requests(self)
+  def self.notify_pending(user)
+    Notification.notify_requested_hookups(user)
+    Mailer.pending_requests(user)
   end
-  handle_asynchronously :notify_pending
 
   # send push notifications to users who have potential hookups waiting
   def self.notify_requested_hookups
@@ -42,7 +41,7 @@ class Relationship < ActiveRecord::Base
       past_notifications = user.notifications.where(notification_type: Notification::NOTIFICATION_MATCH_REMINDER).where('created_at > ?', Time.now - 3.days)
       if !requested.blank? && past_notifications.length == 0
         puts "Sending the notification for #{user.first_name}"
-        user.notify_pending
+        Relationship.notify_pending(user)
       end
     end
   end

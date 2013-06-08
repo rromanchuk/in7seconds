@@ -971,12 +971,9 @@
         <class className="IndexViewController" superclassName="ECSlidingViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IndexViewController.h"/>
             <relationships>
-                <relationship kind="action" name="didSelectNotifications:"/>
                 <relationship kind="action" name="didTapInfo:"/>
                 <relationship kind="action" name="didTapLike:"/>
-                <relationship kind="action" name="didTapMatches:"/>
                 <relationship kind="action" name="didTapUnlike:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="countdownLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="infoBanner" candidateClass="UIView"/>
