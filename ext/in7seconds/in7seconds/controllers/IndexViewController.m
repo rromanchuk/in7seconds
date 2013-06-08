@@ -121,6 +121,10 @@
 - (void)updateCountdownLabel {
     _secondsLeft--;
     self.countdownLabel.text = [NSString stringWithFormat:@"%d", _secondsLeft];
+    if (_secondsLeft == 0) {
+        [self didTapUnlike:self];
+        [self.timer invalidate];
+    }
 }
 
 - (NSString *)getDistance {
