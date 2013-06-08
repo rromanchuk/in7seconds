@@ -48,12 +48,6 @@
 #define COCOAPODS_VERSION_MINOR_HPGrowingTextView 0
 #define COCOAPODS_VERSION_PATCH_HPGrowingTextView 1
 
-// JDFlipNumberView
-#define COCOAPODS_POD_AVAILABLE_JDFlipNumberView
-#define COCOAPODS_VERSION_MAJOR_JDFlipNumberView 2
-#define COCOAPODS_VERSION_MINOR_JDFlipNumberView 0
-#define COCOAPODS_VERSION_PATCH_JDFlipNumberView 5
-
 // JTObjectMapping
 #define COCOAPODS_POD_AVAILABLE_JTObjectMapping
 #define COCOAPODS_VERSION_MAJOR_JTObjectMapping 1
