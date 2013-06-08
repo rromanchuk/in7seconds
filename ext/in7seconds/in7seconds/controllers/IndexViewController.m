@@ -23,7 +23,6 @@
     NSInteger _secondsLeft;
 }
 
-@property (strong, nonatomic) JDFlipNumberView *countdown;
 @property (strong, nonatomic) Hookup *otherUser;
 @property (strong, nonatomic) NSMutableSet *hookups;
 @property (strong, nonatomic) NSTimer *timer;
@@ -63,15 +62,11 @@
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     sharedAppDelegate.delegate = self;
     
-    self.countdown = [[JDFlipNumberView alloc] initWithDigitCount:1];
-    CGRect frame = CGRectOffset(self.unlikeButton.frame, 120, 0);
-    frame.origin.y = self.unlikeButton.frame.origin.y + 15;
-    self.countdown.frame = frame;
     
-    self.countdown.delegate = self;
     self.userImageView.notifyImageLoad = YES;
     [self fetchHookups];
     
+    self.countdownLabel.text = @"7";
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
 }
 
@@ -108,11 +103,12 @@
 
 - (void)startCountdown {
     ALog(@"starting countdown");
-    _secondsLeft = 7;
-    if (_timer.isValid) {
-        
+    _secondsLeft = 8;
+    if (self.timer.isValid) {
+        ALog(@"countdown is running");
     } else {
-        [_timer fire];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
+        ALog(@"countdown is not running");
     }
 }
 
@@ -217,10 +213,6 @@
 //    [self performSelector:@selector(startCountdownAnimation) withObject:self afterDelay:1.0];
 //}
 
-- (void)startCountdownAnimation {
-    [self.countdown animateDownWithTimeInterval: 1.0];
-}
-
 - (void)setupNextHookup {
     if ([self.hookups count] < 10 && !_isFetching) {
         [self fetchPossibleHookups];
@@ -301,7 +293,7 @@
 - (void)foundResults {
     ALog(@"foundResults");
     _noResults = NO;
-    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdown.hidden = self.userImageView.hidden = self.infoBanner.hidden = NO;
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdownLabel.hidden = self.userImageView.hidden = self.infoBanner.hidden = NO;
     self.noResultsLabel.hidden = YES;
 }
 
@@ -309,7 +301,7 @@
     ALog(@"noResultsLeft");
     [self stopCountdown];
     _noResults = YES;
-    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdown.hidden = self.userImageView.hidden = self.infoBanner.hidden = YES;
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdownLabel.hidden = self.userImageView.hidden = self.infoBanner.hidden = YES;
     self.noResultsLabel.hidden = NO;
 }
 
