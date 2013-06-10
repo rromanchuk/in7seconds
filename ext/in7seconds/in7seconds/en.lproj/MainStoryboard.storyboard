@@ -1051,10 +1051,6 @@
         </class>
         <class className="NavigationTopViewController" superclassName="UINavigationController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationTopViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didDismissNotificationBanner:"/>
-                <relationship kind="action" name="didTapNotificationBanner:"/>
-            </relationships>
         </class>
         <class className="NotificationCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NotificationCell.h"/>
