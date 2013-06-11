@@ -335,15 +335,6 @@
 }
 
 
-
-#pragma mark - JDFlipNumberViewDelegate
-- (void)flipNumberView:(JDFlipNumberView *)flipNumberView didChangeValueAnimated:(BOOL)animated {
-    ALog(@"delegate callback %d", flipNumberView.value);
-    if (flipNumberView.value == 0) {
-        [self didTapUnlike:self];
-    }
-}
-
 #pragma mark - UserSettingsDelegate
 - (void)didChangeFilters {
     ALog(@"in change filters");
