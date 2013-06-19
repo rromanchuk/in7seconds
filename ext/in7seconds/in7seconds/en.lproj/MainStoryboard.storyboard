@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="cIh-07-pfa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="13A476u" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="cIh-07-pfa">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -350,7 +350,7 @@
                             </activityIndicatorView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SnQ-k9-1tz">
                                 <rect key="frame" x="139" y="339" width="42" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="40"/>
                                 <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -971,9 +971,12 @@
         <class className="IndexViewController" superclassName="ECSlidingViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IndexViewController.h"/>
             <relationships>
+                <relationship kind="action" name="didSelectNotifications:"/>
                 <relationship kind="action" name="didTapInfo:"/>
                 <relationship kind="action" name="didTapLike:"/>
+                <relationship kind="action" name="didTapMatches:"/>
                 <relationship kind="action" name="didTapUnlike:"/>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="countdownLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="infoBanner" candidateClass="UIView"/>
