@@ -401,6 +401,7 @@ class User < ActiveRecord::Base
     self.first_name = facebook_user.first_name
     self.last_name = facebook_user.last_name
     self.birthday = facebook_user.birthday
+    self.fb_domain = facebook_user.nickname
     #self.location = facebook_user.location.name unless facebook_user.location.blank?
     self.gender = (facebook_user.gender == "male") ? USER_MALE : USER_FEMALE
     self.photo_url = "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=640&height=640"
