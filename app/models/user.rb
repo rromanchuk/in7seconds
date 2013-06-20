@@ -415,6 +415,7 @@ class User < ActiveRecord::Base
           :password => Devise.friendly_token[0,20],
           :first_name => facebook_user.first_name,
           :last_name => facebook_user.last_name,
+          :fb_domain => facebook_user.nickname,
           :birthday => facebook_user.birthday,
           :looking_for_gender => guess_looking_for((facebook_user.gender == "male") ? USER_MALE : USER_FEMALE),
           #:location => (facebook_user.location.blank?) ? "" : facebook_user.location.name,

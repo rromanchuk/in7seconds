@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513194711) do
+ActiveRecord::Schema.define(:version => 20130620121520) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20130513194711) do
     t.boolean  "push_opt_in",                                                         :default => true
     t.datetime "vk_token_expiration"
     t.datetime "fb_token_expiration"
+    t.string   "fb_domain"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
