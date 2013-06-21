@@ -21,6 +21,8 @@
         self.vkAppId = [environment valueForKey:@"vkAppId"];
         self.vkSecretId = [environment valueForKey:@"vkSecretId"];
         self.vkScopes = [environment valueForKey:@"vkScopes"];
+        self.fbScopes = [[environment valueForKey:@"fbScopes"] componentsSeparatedByString:@","];
+        
         self.baseURL = [environment valueForKey:@"baseURL"];
         
         self.airshipSecretProd = [environment valueForKey:@"PRODUCTION_APP_SECRET"];

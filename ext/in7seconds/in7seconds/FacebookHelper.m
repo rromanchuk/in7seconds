@@ -47,7 +47,7 @@
     
 }
 - (void)login {
-    NSArray *permissions = [NSArray arrayWithObjects: @"email", nil];
+    NSArray *permissions = [NSArray arrayWithObjects: @"email", @"user_location", nil];
     [FBSession openActiveSessionWithReadPermissions:permissions allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
         [self sessionStateChanged:session state:status error:error];
     }];

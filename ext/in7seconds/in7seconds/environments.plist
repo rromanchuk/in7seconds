@@ -4,6 +4,8 @@
 <dict>
 	<key>Release</key>
 	<dict>
+		<key>fbScopes</key>
+		<string>email,user_location</string>
 		<key>PRODUCTION_APP_KEY</key>
 		<string>acjij3jDR1mkLzdEfhAfnw</string>
 		<key>APP_STORE_OR_AD_HOC_BUILD</key>
@@ -25,6 +27,8 @@
 	</dict>
 	<key>Distribution</key>
 	<dict>
+		<key>fbScopes</key>
+		<string>email,user_location</string>
 		<key>PRODUCTION_APP_KEY</key>
 		<string>acjij3jDR1mkLzdEfhAfnw</string>
 		<key>APP_STORE_OR_AD_HOC_BUILD</key>
@@ -46,6 +50,8 @@
 	</dict>
 	<key>Debug</key>
 	<dict>
+		<key>fbScopes</key>
+		<string>email,user_location</string>
 		<key>PRODUCTION_APP_KEY</key>
 		<string>acjij3jDR1mkLzdEfhAfnw</string>
 		<key>APP_STORE_OR_AD_HOC_BUILD</key>
