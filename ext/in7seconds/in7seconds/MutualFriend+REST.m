@@ -13,7 +13,7 @@
                             inManagedObjectContext:(NSManagedObjectContext *)context {
     MutualFriend *mutualFriend;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"MutualFriend"];
-    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", [NSNumber numberWithInt:restMutualFriend.externalId]];
+    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", @(restMutualFriend.externalId)];
     
     NSError *error = nil;
     NSArray *mutualFriends = [context executeFetchRequest:request error:&error];
@@ -48,6 +48,6 @@
     self.firstName = restMutualFriend.firstName;
     self.lastName = restMutualFriend.lastName;
     self.photoUrl = restMutualFriend.photoUrl;
-    self.externalId = [NSNumber numberWithInteger:restMutualFriend.externalId];
+    self.externalId = @(restMutualFriend.externalId);
 }
 @end

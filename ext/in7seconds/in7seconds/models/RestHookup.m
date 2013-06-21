@@ -44,8 +44,8 @@ static NSString *RESOURCE_PATH = @"api/v1/users";
                                       dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"created_at",
                                 nil];
         
-    [map setObject:[RestMutualFriend mappingWithKey:@"mutualFriendObjects" mapping:[RestMutualFriend mapping]] forKey:@"mutual_friend_objects"];
-    [map setObject:[RestImage mappingWithKey:@"images" mapping:[RestImage mapping]] forKey:@"images"];
+    map[@"mutual_friend_objects"] = [RestMutualFriend mappingWithKey:@"mutualFriendObjects" mapping:[RestMutualFriend mapping]];
+    map[@"images"] = [RestImage mappingWithKey:@"images" mapping:[RestImage mapping]];
     return map;
 }
 
@@ -85,6 +85,7 @@ static NSString *RESOURCE_PATH = @"api/v1/users";
                                                                                         failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             NSError *customError = [RestObject customError:error withServerResponse:response andJson:JSON];
+                                                                                            ALog(@"Fetch hookups error %@", error);
                                                                                             if (onError)
                                                                                                 onError(customError);
                                                                                         }];

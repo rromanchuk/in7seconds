@@ -17,7 +17,7 @@
     
     Hookup *hookup;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hookup"];
-    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", [NSNumber numberWithInt:restHookup.externalId]];
+    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", @(restHookup.externalId)];
     
     NSError *error = nil;
     NSArray *hookups = [context executeFetchRequest:request error:&error];
@@ -53,25 +53,25 @@
     self.lastName = restHookup.lastName;
     self.email = restHookup.email;
     self.photoUrl = restHookup.photoUrl;
-    self.externalId = [NSNumber numberWithInt:restHookup.externalId];
+    self.externalId = @(restHookup.externalId);
     self.vkUniversityName = restHookup.vkUniversityName;
     self.vkGraduation = restHookup.vkGraduation;
     self.vkFacultyName = restHookup.vkFacultyName;
     
-    self.gender = [NSNumber numberWithInteger:restHookup.gender];
-    self.lookingForGender = [NSNumber numberWithInteger:restHookup.lookingForGender];
+    self.gender = @(restHookup.gender);
+    self.lookingForGender = @(restHookup.lookingForGender);
     self.country = restHookup.country;
     self.city = restHookup.city;
-    self.mutualFriendsNum = [NSNumber numberWithInteger:restHookup.mutualFriendsNum];
-    self.mutualGroups = [NSNumber numberWithInteger:restHookup.mutualGroups];
+    self.mutualFriendsNum = @(restHookup.mutualFriendsNum);
+    self.mutualGroups = @(restHookup.mutualGroups);
     self.birthday = restHookup.birthday;
     self.vkDomain = restHookup.vkDomain;
     self.groupNames = restHookup.groupNames;
     self.friendNames = restHookup.friendNames;
     self.mutualFriendNames = restHookup.mutualFriendNames;
     self.mutualGroupNames = restHookup.mutualGroupNames;
-    self.latitude = [NSNumber numberWithFloat:restHookup.latitude];
-    self.longitude = [NSNumber numberWithFloat:restHookup.longitude];
+    self.latitude = @(restHookup.latitude);
+    self.longitude = @(restHookup.longitude);
     
     NSMutableSet *mutualFriends = [[NSMutableSet alloc] init];
     for (RestMutualFriend *restMutaulFriend in restHookup.mutualFriendObjects) {
@@ -137,6 +137,6 @@
     NSDateComponents *difference = [calendar components:NSYearCalendarUnit
                                                fromDate:fromDate toDate:toDate options:0];
     
-    return [NSNumber numberWithInteger:[difference year]];
+    return @([difference year]);
 }
 @end

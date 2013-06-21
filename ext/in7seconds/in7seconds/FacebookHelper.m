@@ -34,7 +34,7 @@
         NSArray *fbAccounts = [accountStore accountsWithAccountType:accountTypeFB];
         id account;
         if (fbAccounts && [fbAccounts count] > 0 &&
-            (account = [fbAccounts objectAtIndex:0])){
+            (account = fbAccounts[0])){
             
             [accountStore renewCredentialsForAccount:account completion:^(ACAccountCredentialRenewResult renewResult, NSError *error) {
                 //we don't actually need to inspect renewResult or error.
@@ -47,7 +47,7 @@
     
 }
 - (void)login {
-    NSArray *permissions = [NSArray arrayWithObjects: @"email", @"user_location", nil];
+    NSArray *permissions = @[@"email", @"user_location"];
     [FBSession openActiveSessionWithReadPermissions:permissions allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
         [self sessionStateChanged:session state:status error:error];
     }];
@@ -79,7 +79,7 @@
     if ([self isAuthenticated]) {
         ALog(@"User authenticated, asking for publish actions");
         if ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] == NSNotFound) {
-            NSArray *permissions = [NSArray arrayWithObjects: @"publish_actions", nil];
+            NSArray *permissions = @[@"publish_actions"];
             [FBSession openActiveSessionWithPublishPermissions:permissions defaultAudience:FBSessionDefaultAudienceFriends allowLoginUI:YES completionHandler:^(FBSession *session,
                                                                                                                                                                 FBSessionState status,
                                                                                                                                                                 NSError *error) {
@@ -141,7 +141,7 @@
                                                   NSDictionary<FBGraphUser> *my,
                                                   NSError *error) {
                     DLog(@"got data from facebook %@", my);
-                    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:my.id, @"user_id", session.accessTokenData.accessToken, @"access_token", @"facebook", @"platform", [my objectForKey:@"email"], @"email", nil];
+                    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:my.id, @"user_id", session.accessTokenData.accessToken, @"access_token", @"facebook", @"platform", my[@"email"], @"email", nil];
                     [RestUser create:params onLoad:^(RestUser *restUser) {
                         [self.delegate fbDidLogin:restUser];
                         
@@ -168,7 +168,7 @@
     if (error) {
         NSError *localizedError = [NSError errorWithDomain:error.domain
                                                       code:error.code
-                                                  userInfo:[NSDictionary dictionaryWithObject:NSLocalizedString(@"FACEBOOK_ERROR", "Facebook auth error") forKey:NSLocalizedDescriptionKey]
+                                                  userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"FACEBOOK_ERROR", "Facebook auth error")}
                                    ];
         [self.delegate fbDidFailLogin:localizedError];
     }
@@ -179,7 +179,7 @@
     //[[FacebookHelper shared] login];
     NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithObjectsAndKeys:UIImagePNGRepresentation(image), @"picture", nil];
     if (message)
-        [params setObject:message forKey:@"message"];
+        params[@"message"] = message;
     
     [self.facebook requestWithGraphPath:@"me/photos" andParams:params andHttpMethod:@"POST" andDelegate:self];
 }
@@ -188,7 +188,7 @@
 -(void)request:(FBRequest *)request didLoad:(id)result {
     ALog(@"Request didLoad: %@ ", [request url ]);
     if ([result isKindOfClass:[NSArray class]]) {
-        result = [result objectAtIndex:0];
+        result = result[0];
     }
     if ([result isKindOfClass:[NSDictionary class]]){
         

@@ -15,7 +15,7 @@
     
     User *user;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
-    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", [NSNumber numberWithInt:restUser.externalId]];
+    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", @(restUser.externalId)];
     
     NSError *error = nil;
     NSArray *users = [context executeFetchRequest:request error:&error];
@@ -60,7 +60,7 @@
 }
 
 + (User *)currentUser:(NSManagedObjectContext *)context {
-    NSNumber *currentId =  [NSNumber numberWithInteger:[[RestUser currentUserId] integerValue]];
+    NSNumber *currentId =  @([[RestUser currentUserId] integerValue]);
     
     if ([RestUser currentUserId]) {
         User *user = [User userWithExternalId:currentId inManagedObjectContext:context];
@@ -89,17 +89,17 @@
     self.lastName = restUser.lastName;
     self.email = restUser.email;
     self.photoUrl = restUser.photoUrl;
-    self.externalId = [NSNumber numberWithInt:restUser.externalId];
+    self.externalId = @(restUser.externalId);
     self.authenticationToken = restUser.authenticationToken;
     self.vkUniversityName = restUser.vkUniversityName;
     self.vkGraduation = restUser.vkGraduation;
     self.vkFacultyName = restUser.vkFacultyName;
 
-    self.gender = [NSNumber numberWithInteger:restUser.gender];
+    self.gender = @(restUser.gender);
     self.country = restUser.country;
     self.city = restUser.city;
-    self.mutualFriendsNum = [NSNumber numberWithInteger:restUser.mutualFriendsNum];
-    self.mutualGroups = [NSNumber numberWithInteger:restUser.mutualGroups];
+    self.mutualFriendsNum = @(restUser.mutualFriendsNum);
+    self.mutualGroups = @(restUser.mutualGroups);
     self.birthday = restUser.birthday;
     self.updatedAt = restUser.updatedAt;
     self.vkDomain = restUser.vkDomain;
@@ -107,10 +107,10 @@
     self.friendNames = restUser.friendNames;
     self.mutualFriendNames = restUser.mutualFriendNames;
     self.mutualGroupNames = restUser.mutualGroupNames;
-    self.emailOptIn = [NSNumber numberWithBool:restUser.emailOptIn];
-    self.pushOptIn = [NSNumber numberWithBool:restUser.pushOptIn];
-    self.latitude = [NSNumber numberWithFloat:restUser.latitude];
-    self.longitude = [NSNumber numberWithFloat:restUser.longitude];
+    self.emailOptIn = @(restUser.emailOptIn);
+    self.pushOptIn = @(restUser.pushOptIn);
+    self.latitude = @(restUser.latitude);
+    self.longitude = @(restUser.longitude);
     
     for (RestImage *restImage in restUser.images) {
         [self addImagesObject:[Image imageWithRestImage:restImage inManagedObjectContext:self.managedObjectContext]];
@@ -170,7 +170,7 @@
     NSDateComponents *difference = [calendar components:NSYearCalendarUnit
                                                fromDate:fromDate toDate:toDate options:0];
     
-    return [NSNumber numberWithInteger:[difference year]];
+    return @([difference year]);
 }
 
 @end

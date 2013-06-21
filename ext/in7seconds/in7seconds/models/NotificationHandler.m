@@ -138,13 +138,13 @@
     ALog(@"Received an alert with a custom payload %@ and notification %@", customData, notification);
     // Update notifications
 	// Do something with your customData JSON, then entire notification is also available
-    NSString *type = [[customData objectForKey:@"extra"] objectForKey:@"type"];
+    NSString *type = customData[@"extra"][@"type"];
     [self.delegate presentIncomingNotification:customData notification:notification];
 }
 
 - (void)handleBackgroundNotification:(NSDictionary *)notification {
     ALog(@"The application resumed from a notification. %@", notification);
-    NSString *type = [[notification objectForKey:@"extra"] objectForKey:@"type"];
+    NSString *type = notification[@"extra"][@"type"];
     [self.delegate presentNotificationApplicationLaunch:notification];
 }
 

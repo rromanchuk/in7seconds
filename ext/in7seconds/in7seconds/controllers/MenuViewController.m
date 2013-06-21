@@ -35,8 +35,8 @@
     self.view.backgroundColor = [UIColor darkBackgroundColor];
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *majorVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    NSString *minorVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
+    NSString *majorVersion = infoDictionary[@"CFBundleShortVersionString"];
+    NSString *minorVersion = infoDictionary[@"CFBundleVersion"];
     self.versionLabel.text = [NSString stringWithFormat:@"Version %@ (%@)", majorVersion, minorVersion];
 	
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftViewWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
@@ -89,9 +89,9 @@
     _filtersChanged = YES;
     UISwitch *mySwitch = (UISwitch *)sender;
     if (mySwitch == self.notificationEmailSwitch) {
-        self.currentUser.emailOptIn = [NSNumber numberWithBool:self.notificationEmailSwitch.on];
+        self.currentUser.emailOptIn = @(self.notificationEmailSwitch.on);
     } else {
-        self.currentUser.pushOptIn = [NSNumber numberWithBool:self.notificationPushSwitch.on];
+        self.currentUser.pushOptIn = @(self.notificationPushSwitch.on);
     }
     [self saveContext];
     [self update];
@@ -147,11 +147,11 @@
 
 - (void)setLookingFor {
     if ((self.lookingForMen.selected && self.lookingForWomen.selected) || (!self.lookingForMen.selected && !self.lookingForWomen.selected)) {
-        self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForBoth];
+        self.currentUser.lookingForGender = @(LookingForBoth);
     } else if (self.lookingForWomen.selected) {
-        self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForWomen];
+        self.currentUser.lookingForGender = @(LookingForWomen);
     } else {
-        self.currentUser.lookingForGender = [NSNumber numberWithInteger:LookingForMen];
+        self.currentUser.lookingForGender = @(LookingForMen);
     }    
 }
 
@@ -183,7 +183,7 @@
 }
 
 - (IBAction)genderChanged:(id)sender {
-    self.currentUser.gender = [NSNumber numberWithInteger:self.genderSegmentControl.selectedSegmentIndex];
+    self.currentUser.gender = @(self.genderSegmentControl.selectedSegmentIndex);
     [self update];
 }
 
@@ -233,14 +233,12 @@
     [[UISegmentedControl appearance] setDividerImage:segUnselectedSelected forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
     
     
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [UIFont boldSystemFontOfSize:15], UITextAttributeFont,
-                                RGBCOLOR(24, 23, 20), UITextAttributeTextColor,
-                                [UIColor clearColor], UITextAttributeTextShadowColor,
-                                [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset,
-                                nil];
+    NSDictionary *attributes = @{UITextAttributeFont: [UIFont boldSystemFontOfSize:15],
+                                UITextAttributeTextColor: RGBCOLOR(24, 23, 20),
+                                UITextAttributeTextShadowColor: [UIColor clearColor],
+                                UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0, 1)]};
     [self.genderSegmentControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    NSDictionary *highlightedAttributes = @{UITextAttributeTextColor: [UIColor whiteColor]};
     [self.genderSegmentControl setTitleTextAttributes:highlightedAttributes forState:UIControlStateHighlighted];
     
     //    [self.genderSegmentControl setBackgroundImage:[[UIImage imageNamed:@"segment"] resizableImageWithCapInsets:UIEdgeInsetsMake(9, 0, 0, 0)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
@@ -269,7 +267,7 @@
         [self.imagePicker dismissModalViewControllerAnimated:NO];
         CGRect cropRect = [[info valueForKey:UIImagePickerControllerCropRect] CGRectValue];
         // don't try to juggle around orientation, rotate from the beginning if needed
-        UIImage *image = [[info objectForKey:@"UIImagePickerControllerOriginalImage"] fixOrientation];
+        UIImage *image = [info[@"UIImagePickerControllerOriginalImage"] fixOrientation];
 //    
         image = [image croppedImage:cropRect];
     //

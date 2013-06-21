@@ -26,14 +26,14 @@
             localizedDescription = NSLocalizedString(@"Упс. Произошла непредвиденная ошибка (500)", @"interal exception");
             break;
         default:
-            localizedDescription = [JSON objectForKey:@"message"];
+            localizedDescription = JSON[@"message"];
             break;
     }
     NSMutableDictionary *details = [NSMutableDictionary dictionary];
     [details setValue:localizedDescription forKey:NSLocalizedDescriptionKey];
     // populate the error object with the details
     NSError *customError = [NSError errorWithDomain:@"SevenSeconds" code:response.statusCode userInfo:details];
-    [Flurry logError:@"REST_ERROR" message:[JSON objectForKey:@"message"] error:customError];
+    [Flurry logError:@"REST_ERROR" message:JSON[@"message"] error:customError];
     return customError;
 }
 @end

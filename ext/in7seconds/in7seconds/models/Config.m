@@ -14,10 +14,10 @@
     self = [super init];
     
     if (self) {
-        NSString *configuration    = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Configuration"];
+        NSString *configuration    = [[NSBundle mainBundle] infoDictionary][@"Configuration"];
         NSBundle *bundle           = [NSBundle mainBundle];
         NSDictionary *environments = [[NSDictionary alloc] initWithContentsOfFile:[bundle pathForResource:@"environments" ofType:@"plist"]];
-        NSDictionary *environment  = [environments objectForKey:configuration];
+        NSDictionary *environment  = environments[configuration];
         self.vkAppId = [environment valueForKey:@"vkAppId"];
         self.vkSecretId = [environment valueForKey:@"vkSecretId"];
         self.vkScopes = [environment valueForKey:@"vkScopes"];

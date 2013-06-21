@@ -19,7 +19,7 @@
     ALog(@"thread id is %d", restThread.externalId);
     Thread *thread;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Thread"];
-    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", [NSNumber numberWithInt:restThread.externalId]];
+    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", @(restThread.externalId)];
     
     NSError *error = nil;
     NSArray *threads = [context executeFetchRequest:request error:&error];
@@ -43,7 +43,7 @@
     RestThread *restThread = (RestThread *) intermediateObject;
     ALog(@"updating thread thread");
 
-    self.externalId = [NSNumber numberWithInteger:restThread.externalId];
+    self.externalId = @(restThread.externalId);
     ALog(@"updating external id");
     self.withMatch = [Match matchWithRestMatch:restThread.withMatch inManagedObjectContext:self.managedObjectContext];
     ALog(@"updating with match");

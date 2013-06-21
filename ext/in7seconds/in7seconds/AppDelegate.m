@@ -149,23 +149,23 @@
 }
 
 - (void)fetchHookups {
-    [self.managedObjectContext performBlock:^{
-        [RestHookup load:^(NSMutableArray *possibleHookups) {
-            NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
-            for (RestHookup *restHookup in possibleHookups) {
-                [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
-            }
-            [self.currentUser addHookups:_restHookups];
-            
-            NSError *error;
-            [self.managedObjectContext save:&error];
-            [self writeToDisk];
-            
-            
-        } onError:^(NSError *error) {
-            
-        }];
-    }];
+//    [self.managedObjectContext performBlock:^{
+//        [RestHookup load:^(NSMutableArray *possibleHookups) {
+//            NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
+//            for (RestHookup *restHookup in possibleHookups) {
+//                [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
+//            }
+//            [self.currentUser addHookups:_restHookups];
+//            
+//            NSError *error;
+//            [self.managedObjectContext save:&error];
+//            [self writeToDisk];
+//            
+//            
+//        } onError:^(NSError *error) {
+//            
+//        }];
+//    }];
 
 }
 
@@ -179,9 +179,9 @@
     UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
     [navigationBarAppearance setBackgroundImage:[UIImage imageNamed:@"navigation-bar"] forBarMetrics:UIBarMetricsDefault];
     
-    navigationBarAppearance.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue" size:20.0], UITextAttributeFont,
-                                                   RGBACOLOR(159, 169, 172, 1.0), UITextAttributeTextColor,
-                                                   [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset, nil];
+    navigationBarAppearance.titleTextAttributes = @{UITextAttributeFont: [UIFont fontWithName:@"HelveticaNeue" size:20.0],
+                                                   UITextAttributeTextColor: RGBACOLOR(159, 169, 172, 1.0),
+                                                   UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0, 0)]};
 }
 
 - (void)writeToDisk {

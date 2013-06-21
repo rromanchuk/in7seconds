@@ -33,7 +33,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder])
     {
-        self.noResultsFooterView = (NoChatsView *)[[[NSBundle mainBundle] loadNibNamed:@"NoChatsView" owner:self options:nil] objectAtIndex:0];
+        self.noResultsFooterView = (NoChatsView *)[[NSBundle mainBundle] loadNibNamed:@"NoChatsView" owner:self options:nil][0];
         self.noResultsFooterView.messageLabel.text = NSLocalizedString(@"У тебя еще нет совпадений. Чтобы они появились, просто начни отмечать понравившихся тебе людей :)", @"no matches");
         _fm = [[NSDateFormatter alloc] init];
         [_fm setDateFormat:@"d MMM"];
@@ -80,7 +80,7 @@
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Match"];
     request.predicate = [NSPredicate predicateWithFormat:@"self IN %@", self.currentUser.matches];
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.managedObjectContext
@@ -124,7 +124,7 @@
 
     
     
-    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
+    NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
     NSArray *sortedMessages = [user.thread.messages sortedArrayUsingDescriptors:sortDescriptors];
     PrivateMessage *message = [sortedMessages lastObject];
     cell.commentPreview.text = message.message;

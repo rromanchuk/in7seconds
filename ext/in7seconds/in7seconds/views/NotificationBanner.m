@@ -39,7 +39,7 @@
     UIColor *colorOne = RGBACOLOR(43, 146, 204, 0.8);
     UIColor *colorTwo = RGBACOLOR(65, 170, 230, 0.8);
     
-    NSArray *colors = [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor, nil];
+    NSArray *colors = @[(id)colorOne.CGColor, (id)(colorTwo.CGColor)];
     gradientLayer.colors = colors;
     //gradientLayer.opacity = 0.7;
     gradientLayer.startPoint = CGPointMake(0.0, 0.3);

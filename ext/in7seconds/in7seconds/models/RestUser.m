@@ -51,8 +51,8 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
                                 [NSDate mappingWithKey:@"updatedAt"
                                       dateFormatString:@"yyyy-MM-dd'T'HH:mm:ssZ"], @"updated_at",
                                 nil];
-    [map setObject:[RestMutualFriend mappingWithKey:@"mutualFriendObjects" mapping:[RestMutualFriend mapping]] forKey:@"mutual_friend_objects"];
-    [map setObject:[RestImage mappingWithKey:@"images" mapping:[RestImage mapping]] forKey:@"images"];
+    map[@"mutual_friend_objects"] = [RestMutualFriend mappingWithKey:@"mutualFriendObjects" mapping:[RestMutualFriend mapping]];
+    map[@"images"] = [RestImage mappingWithKey:@"images" mapping:[RestImage mapping]];
     return map;
 }
 
@@ -110,7 +110,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     RestClient *restClient = [RestClient sharedClient];
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     if ([provider isEqualToString:@"facebook"]) {
-        [params setObject:token forKey:@"user[fb_token]"];
+        params[@"user[fb_token]"] = token;
     }
     
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"PUT"
@@ -161,19 +161,19 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     
     NSMutableDictionary *p = [params mutableCopy];
     if (user.email.length > 0) {
-        [p setObject:user.email forKey:@"user[email]"];
+        p[@"user[email]"] = user.email;
     }
     
     if (user.birthday) {
         NSDateFormatter *format = [[NSDateFormatter alloc] init];
         [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
         NSString *dateString = [format stringFromDate:user.birthday];
-        [p setObject:dateString forKey:@"user[birthday]"];
+        p[@"user[birthday]"] = dateString;
     }
     
     if ([Location sharedLocation].longitude > 0) {
-        [p setObject:[Location sharedLocation].latitude forKey:@"user[latitude]"];
-        [p setObject:[Location sharedLocation].longitude forKey:@"user[longitude"];
+        p[@"user[latitude]"] = [Location sharedLocation].latitude;
+        p[@"user[longitude"] = [Location sharedLocation].longitude;
     }
     
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"PUT"
@@ -352,7 +352,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
 + (void)setCurrentUserId:(NSInteger)externalId
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSNumber numberWithInteger:externalId] forKey:@"currentUserId"];
+    [defaults setObject:@(externalId) forKey:@"currentUserId"];
     [defaults synchronize];
 }
 

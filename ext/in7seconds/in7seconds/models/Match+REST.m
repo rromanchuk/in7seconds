@@ -22,7 +22,7 @@
 
     Match *match;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Match"];
-    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", [NSNumber numberWithInt:restMatch.externalId]];
+    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", @(restMatch.externalId)];
     ALog(@"");
 
     NSError *error = nil;
@@ -75,24 +75,24 @@
     self.lastName = restMatch.lastName;
     self.email = restMatch.email;
     self.photoUrl = restMatch.photoUrl;
-    self.externalId = [NSNumber numberWithInt:restMatch.externalId];
+    self.externalId = @(restMatch.externalId);
     self.vkUniversityName = restMatch.vkUniversityName;
     self.vkGraduation = restMatch.vkGraduation;
     self.vkFacultyName = restMatch.vkFacultyName;
     
-    self.gender = [NSNumber numberWithInteger:restMatch.gender];
+    self.gender = @(restMatch.gender);
     self.country = restMatch.country;
     self.city = restMatch.city;
-    self.mutualFriendsNum = [NSNumber numberWithInteger:restMatch.mutualFriendsNum];
-    self.mutualGroups = [NSNumber numberWithInteger:restMatch.mutualGroups];
+    self.mutualFriendsNum = @(restMatch.mutualFriendsNum);
+    self.mutualGroups = @(restMatch.mutualGroups);
     self.birthday = restMatch.birthday;
     self.vkDomain = restMatch.vkDomain;
     self.groupNames = restMatch.groupNames;
     self.friendNames = restMatch.friendNames;
     self.mutualFriendNames = restMatch.mutualFriendNames;
     self.mutualGroupNames = restMatch.mutualGroupNames;
-    self.latitude = [NSNumber numberWithFloat:restMatch.latitude];
-    self.longitude = [NSNumber numberWithFloat:restMatch.longitude];
+    self.latitude = @(restMatch.latitude);
+    self.longitude = @(restMatch.longitude);
     
     for (RestMutualFriend *restMutaulFriend in restMatch.mutualFriendObjects) {
         //ALog(@"adding mutualFriend");
@@ -160,14 +160,14 @@
     NSDateComponents *difference = [calendar components:NSYearCalendarUnit
                                                fromDate:fromDate toDate:toDate options:0];
     
-    return [NSNumber numberWithInteger:[difference year]];
+    return @([difference year]);
 }
 
 
 - (NSString *)getDistanceFrom:(User *)user {
     CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude:[user.latitude doubleValue] longitude:[user.longitude doubleValue]];
     CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:[self.latitude doubleValue] longitude:[self.longitude doubleValue]];
-    int distance = [[NSNumber numberWithDouble:[targetLocation distanceFromLocation:currentLocation]] integerValue];
+    int distance = [@([targetLocation distanceFromLocation:currentLocation]) integerValue];
     //ALog(@"user is %d meters away target %@ current %@", distance, targetLocation, currentLocation);
     NSString *measurement;
     if (distance > 1000) {

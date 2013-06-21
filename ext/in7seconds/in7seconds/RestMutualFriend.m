@@ -11,12 +11,10 @@
 @implementation RestMutualFriend
 
 + (NSDictionary *)mapping {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-                                       @"firstName", @"first_name",
-                                       @"lastName", @"last_name",
-                                       @"photoUrl", @"photo_url",
-                                       @"externalId", @"id",
-                                       nil];
+    return @{@"first_name": @"firstName",
+                                       @"last_name": @"lastName",
+                                       @"photo_url": @"photoUrl",
+                                       @"id": @"externalId"};
 
 }
 

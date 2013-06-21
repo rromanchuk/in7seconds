@@ -58,7 +58,7 @@
     }
 
     // Do any additional setup after loading the view.
-    ALog(@"moc: %@ currentUser: %@", self.managedObjectContext, self.currentUser);
+    //ALog(@"moc: %@ currentUser: %@", self.managedObjectContext, self.currentUser);
     self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationTop"];
     NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
     nc.managedObjectContext = self.managedObjectContext;

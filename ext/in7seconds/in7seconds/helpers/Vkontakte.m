@@ -80,12 +80,12 @@
         NSString *request = [[NSUserDefaults standardUserDefaults] objectForKey:@"request"];
         
         NSDictionary *newRequestDict =[self sendRequest:request withCaptcha:YES];
-        NSString *errorMsg = [[newRequestDict  objectForKey:@"error"] objectForKey:@"error_msg"];
+        NSString *errorMsg = newRequestDict[@"error"][@"error_msg"];
         if(errorMsg)
         {
             NSError *error = [NSError errorWithDomain:@"vk.com"
-                                                 code:[[[newRequestDict  objectForKey:@"error"] objectForKey:@"error_code"] intValue]
-                                             userInfo:[newRequestDict  objectForKey:@"error"]];
+                                                 code:[newRequestDict[@"error"][@"error_code"] intValue]
+                                             userInfo:newRequestDict[@"error"]];
             if (self.delegate && [self.delegate respondsToSelector:@selector(vkontakteDidFailedWithError:)])
             {
                 [self.delegate vkontakteDidFailedWithError:error];
@@ -126,15 +126,15 @@
                               options:kNilOptions
                               error:&error];
         
-        NSString *errorMsg = [[dict objectForKey:@"error"] objectForKey:@"error_msg"];
+        NSString *errorMsg = dict[@"error"][@"error_msg"];
         
         DLog(@"Server response: %@ \nError: %@", dict, errorMsg);
         
         if([errorMsg isEqualToString:@"Captcha needed"])
         {
             _isCaptcha = YES;
-            NSString *captcha_sid = [[dict objectForKey:@"error"] objectForKey:@"captcha_sid"];
-            NSString *captcha_img = [[dict objectForKey:@"error"] objectForKey:@"captcha_img"];
+            NSString *captcha_sid = dict[@"error"][@"captcha_sid"];
+            NSString *captcha_img = dict[@"error"][@"captcha_img"];
             [[NSUserDefaults standardUserDefaults] setObject:captcha_img forKey:@"captcha_img"];
             [[NSUserDefaults standardUserDefaults] setObject:captcha_sid forKey:@"captcha_sid"];
             [[NSUserDefaults standardUserDefaults] setObject:reqURl forKey:@"request"];
@@ -189,7 +189,7 @@
                               options:kNilOptions
                               error:&error];
         
-        NSString *errorMsg = [[dict objectForKey:@"error"] objectForKey:@"error_msg"];
+        NSString *errorMsg = dict[@"error"][@"error_msg"];
         
         DLog(@"Server response: %@ \nError: %@", dict, errorMsg);
         
@@ -292,8 +292,8 @@
         DLog(@"Logout: %@", dict);
         
         NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-        NSArray* cookieUrlsToDelete = [NSArray arrayWithObjects:@"http://api.vk.com", @"http://vk.com", @"http://login.vk.com", @"http://oauth.vk.com",
-                                       @"https://api.vk.com", @"https://vk.com", @"https://login.vk.com", @"https://oauth.vk.com",  nil];
+        NSArray* cookieUrlsToDelete = @[@"http://api.vk.com", @"http://vk.com", @"http://login.vk.com", @"http://oauth.vk.com",
+                                       @"https://api.vk.com", @"https://vk.com", @"https://login.vk.com", @"https://oauth.vk.com"];
         
         for (NSString* url in cookieUrlsToDelete) {
             NSArray* vkCookies = [cookies cookiesForURL:[NSURL URLWithString:url]];
@@ -363,15 +363,15 @@
                                       options:kNilOptions
                                       error:&error];
     
-    NSArray *array = [parsedDictionary objectForKey:@"response"];
+    NSArray *array = parsedDictionary[@"response"];
     
-    if ([parsedDictionary objectForKey:@"response"])
+    if (parsedDictionary[@"response"])
     {
-        parsedDictionary = [array objectAtIndex:0];
+        parsedDictionary = array[0];
         parsedDictionary = [NSMutableDictionary dictionaryWithDictionary:parsedDictionary];
         [parsedDictionary setValue:self.email forKey:@"email"];
         
-        self.bigPhotoUrl = [parsedDictionary objectForKey:@"photo_big"];
+        self.bigPhotoUrl = parsedDictionary[@"photo_big"];
         if ([self.delegate respondsToSelector:@selector(vkontakteDidFinishGettinUserInfo:)])
         {
             [self.delegate vkontakteDidFinishGettinUserInfo:parsedDictionary];
@@ -379,12 +379,12 @@
     }
     else
     {
-        NSDictionary *errorDict = [parsedDictionary objectForKey:@"error"];
+        NSDictionary *errorDict = parsedDictionary[@"error"];
         
         if ([self.delegate respondsToSelector:@selector(vkontakteDidFailedWithError:)])
         {
             NSError *error = [NSError errorWithDomain:@"http://api.vk.com/method"
-                                                 code:[[errorDict objectForKey:@"error_code"] intValue]
+                                                 code:[errorDict[@"error_code"] intValue]
                                              userInfo:errorDict];
             
             if (error.code == 5)
@@ -409,15 +409,15 @@
     
     NSDictionary *result = [self sendRequest:sendTextMessage withCaptcha:NO];
     // Если есть описание ошибки в ответе
-    NSString *errorMsg = [[result objectForKey:@"error"] objectForKey:@"error_msg"];
+    NSString *errorMsg = result[@"error"][@"error_msg"];
     if(errorMsg)
     {
-        NSDictionary *errorDict = [result objectForKey:@"error"];
+        NSDictionary *errorDict = result[@"error"];
         
         if ([self.delegate respondsToSelector:@selector(vkontakteDidFailedWithError:)])
         {
             NSError *error = [NSError errorWithDomain:@"http://api.vk.com/method"
-                                                 code:[[errorDict objectForKey:@"error_code"] intValue]
+                                                 code:[errorDict[@"error_code"] intValue]
                                              userInfo:errorDict];
             
             if (error.code == 5)
@@ -453,15 +453,15 @@
     
     // Если запрос более сложный мы можем работать дальше с полученным ответом
     NSDictionary *result = [self sendRequest:sendTextAndLinkMessage withCaptcha:NO];
-    NSString *errorMsg = [[result objectForKey:@"error"] objectForKey:@"error_msg"];
+    NSString *errorMsg = result[@"error"][@"error_msg"];
     if(errorMsg)
     {
-        NSDictionary *errorDict = [result objectForKey:@"error"];
+        NSDictionary *errorDict = result[@"error"];
         
         if ([self.delegate respondsToSelector:@selector(vkontakteDidFailedWithError:)])
         {
             NSError *error = [NSError errorWithDomain:@"http://api.vk.com/method"
-                                                 code:[[errorDict objectForKey:@"error_code"] intValue]
+                                                 code:[errorDict[@"error_code"] intValue]
                                              userInfo:errorDict];
             
             if (error.code == 5)
@@ -489,15 +489,15 @@
     
     NSDictionary *uploadServer = [self sendRequest:getWallUploadServer withCaptcha:NO];
     
-    NSString *upload_url = [[uploadServer objectForKey:@"response"] objectForKey:@"upload_url"];
+    NSString *upload_url = uploadServer[@"response"][@"upload_url"];
     
     NSData *imageData = image;
     
     NSDictionary *postDictionary = [self sendPOSTRequest:upload_url withImageData:imageData];
     
-    NSString *hash = [postDictionary objectForKey:@"hash"];
-    NSString *photo = [postDictionary objectForKey:@"photo"];
-    NSString *server = [postDictionary objectForKey:@"server"];
+    NSString *hash = postDictionary[@"hash"];
+    NSString *photo = postDictionary[@"photo"];
+    NSString *server = postDictionary[@"server"];
     
     NSString *saveWallPhoto = [NSString stringWithFormat:@"https://api.vk.com/method/photos.saveWallPhoto?owner_id=%@&access_token=%@&server=%@&photo=%@&hash=%@",
                                self.userId,
@@ -510,8 +510,8 @@
     
     NSDictionary *saveWallPhotoDict = [self sendRequest:saveWallPhoto withCaptcha:NO];
     
-    NSDictionary *photoDict = [[saveWallPhotoDict objectForKey:@"response"] lastObject];
-    NSString *photoId = [photoDict objectForKey:@"id"];
+    NSDictionary *photoDict = [saveWallPhotoDict[@"response"] lastObject];
+    NSString *photoId = photoDict[@"id"];
     
     NSString *postToWallLink;
     
@@ -536,15 +536,15 @@
     }
     
     NSDictionary *postToWallDict = [self sendRequest:postToWallLink withCaptcha:NO];
-    NSString *errorMsg = [[postToWallDict  objectForKey:@"error"] objectForKey:@"error_msg"];
+    NSString *errorMsg = postToWallDict[@"error"][@"error_msg"];
     if(errorMsg)
     {
-        NSDictionary *errorDict = [postToWallDict objectForKey:@"error"];
+        NSDictionary *errorDict = postToWallDict[@"error"];
         
         if ([self.delegate respondsToSelector:@selector(vkontakteDidFailedWithError:)])
         {
             NSError *error = [NSError errorWithDomain:@"http://api.vk.com/method"
-                                                 code:[[errorDict objectForKey:@"error_code"] intValue]
+                                                 code:[errorDict[@"error_code"] intValue]
                                              userInfo:errorDict];
             
             if (error.code == 5)

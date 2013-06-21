@@ -14,7 +14,7 @@
    
     Image *image;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Image"];
-    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", [NSNumber numberWithInt:restImage.externalId]];
+    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", @(restImage.externalId)];
     
     NSError *error = nil;
     NSArray *threads = [context executeFetchRequest:request error:&error];
@@ -37,7 +37,7 @@
 - (void)setManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {
     RestImage *restImage = (RestImage *) intermediateObject;
     
-    self.externalId = [NSNumber numberWithInteger:restImage.externalId];
+    self.externalId = @(restImage.externalId);
     self.photoUrl = restImage.photoUrl;
 }
 @end

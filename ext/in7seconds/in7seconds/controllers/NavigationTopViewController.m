@@ -22,7 +22,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder])
     {
-        self.notificationBanner = (NotificationBanner *)[[[NSBundle mainBundle] loadNibNamed:@"NotificationBanner" owner:self options:nil] objectAtIndex:0];
+        self.notificationBanner = (NotificationBanner *)[[NSBundle mainBundle] loadNibNamed:@"NotificationBanner" owner:self options:nil][0];
         [self.notificationBanner.dismissButton addTarget:self action:@selector(didDismissNotificationBanner:) forControlEvents:UIControlEventTouchUpInside];
         [self.notificationBanner.notificationTextLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapNotificationBanner:)]];
         //self.isChildNavigationalStack = NO;
@@ -72,9 +72,9 @@
 
 #pragma mark - NotificationDisplayModalDelegate methods
 - (void)presentIncomingNotification:(NSDictionary *)customData notification:(NSDictionary *)notification {
-    NSString *type = [[customData objectForKey:@"extra"] objectForKey:@"type"];
-    NSString *alert = [[notification objectForKey:@"aps"] objectForKey:@"alert"];
-    self.notificationBanner = (NotificationBanner *)[[[NSBundle mainBundle] loadNibNamed:@"NotificationBanner" owner:self options:nil] objectAtIndex:0];
+    NSString *type = customData[@"extra"][@"type"];
+    NSString *alert = notification[@"aps"][@"alert"];
+    self.notificationBanner = (NotificationBanner *)[[NSBundle mainBundle] loadNibNamed:@"NotificationBanner" owner:self options:nil][0];
     [self.notificationBanner.dismissButton addTarget:self action:@selector(didDismissNotificationBanner:) forControlEvents:UIControlEventTouchUpInside];
     [self.notificationBanner.notificationTextLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapNotificationBanner:)]];
 
@@ -95,7 +95,7 @@
                 
                 AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 [sharedAppDelegate writeToDisk];
-                Match *match = [Match matchWithExternalId:[[customData objectForKey:@"extra"] objectForKey:@"sender_id"] inManagedObjectContext:[NotificationHandler shared].managedObjectContext];
+                Match *match = [Match matchWithExternalId:customData[@"extra"][@"sender_id"] inManagedObjectContext:[NotificationHandler shared].managedObjectContext];
                 ALog(@"found other match user %@", match);
                 self.notificationBanner.sender = match;
                 self.notificationBanner.match = match;
@@ -114,12 +114,12 @@
 
 - (void)presentNotificationApplicationLaunch:(NSDictionary *)customData {
     ALog(@"Reacting to notification received ");
-    NSString *type = [[customData objectForKey:@"extra"] objectForKey:@"type"];
+    NSString *type = customData[@"extra"][@"type"];
     
     if ([type isEqualToString:@"private_message"]) {
         [self popToRootViewControllerAnimated:NO];
         
-        ALog(@"fetching for item %@", [[customData objectForKey:@"extra"] objectForKey:@"feed_item_id"]);
+        ALog(@"fetching for item %@", customData[@"extra"][@"feed_item_id"]);
         [SVProgressHUD show];
         [[NotificationHandler shared].managedObjectContext performBlock:^{
             [RestMatch load:^(NSMutableArray *matches) {
@@ -134,7 +134,7 @@
                 
                 AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 [sharedAppDelegate writeToDisk];
-                Match *match = [Match matchWithExternalId:[[customData objectForKey:@"extra"] objectForKey:@"sender_id"] inManagedObjectContext:[NotificationHandler shared].managedObjectContext];
+                Match *match = [Match matchWithExternalId:customData[@"extra"][@"sender_id"] inManagedObjectContext:[NotificationHandler shared].managedObjectContext];
                 [self.visibleViewController performSegueWithIdentifier:@"DirectToChat" sender:match];
                 [SVProgressHUD dismiss];
                 

@@ -62,6 +62,6 @@
 }
 
 - (NSDictionary *)toDict {
-    return @{@"externalId": [NSNumber numberWithInteger:self.externalId], @"messages": self.messages, @"user": self.user, @"withMatch": self.withMatch};
+    return @{@"externalId": @(self.externalId), @"messages": self.messages, @"user": self.user, @"withMatch": self.withMatch};
 }
 @end

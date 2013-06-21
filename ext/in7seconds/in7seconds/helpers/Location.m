@@ -88,8 +88,8 @@
             
             self.desiredLocation = newLocation;
             CLLocationCoordinate2D coordinate = [newLocation coordinate];
-            self.latitude  = [NSNumber numberWithDouble:coordinate.latitude];
-            self.longitude = [NSNumber numberWithDouble:coordinate.longitude];
+            self.latitude  = @(coordinate.latitude);
+            self.longitude = @(coordinate.longitude);
             
             [Flurry setLatitude:newLocation.coordinate.latitude
                       longitude:newLocation.coordinate.longitude
@@ -159,8 +159,8 @@
     CLLocation *location = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
     [self.geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         if ([placemarks count] > 0) {
-            CLPlacemark *placemark = [placemarks objectAtIndex:0];
-            NSString *cityCountryString = [NSString stringWithFormat:@"%@, %@", [placemark.addressDictionary objectForKey:(NSString*)kABPersonAddressCityKey], [placemark.addressDictionary objectForKey:(NSString*)kABPersonAddressCountryKey]];
+            CLPlacemark *placemark = placemarks[0];
+            NSString *cityCountryString = [NSString stringWithFormat:@"%@, %@", (placemark.addressDictionary)[(NSString*)kABPersonAddressCityKey], (placemark.addressDictionary)[(NSString*)kABPersonAddressCountryKey]];
             ALog(@"got address %@", cityCountryString);
             success(cityCountryString);
         }

@@ -33,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _isFetching = NO;
     [self noResultsLeft];
     
     self.hookups = [[NSMutableSet alloc] init];
@@ -77,7 +78,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    ALog(@"View will appear");
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     _modalOpen = NO;
     if (self.currentUser) {
         [self topDidAppear];
@@ -95,11 +99,6 @@
     [super viewDidUnload];
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:@"UserNotAuthorized"
-                                                  object:nil];
-}
 
 - (void)startCountdown {
     ALog(@"starting countdown");
@@ -130,7 +129,7 @@
 - (NSString *)getDistance {
     CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude: [self.currentUser.latitude doubleValue] longitude:[self.currentUser.longitude doubleValue]];
     CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:[self.otherUser.latitude doubleValue] longitude:[self.otherUser.longitude doubleValue]];
-    int distance = [[NSNumber numberWithDouble:[targetLocation distanceFromLocation:currentLocation]] integerValue];
+    int distance = [@([targetLocation distanceFromLocation:currentLocation]) integerValue];
     DLog(@"%@ is %g meters away", place.title, [place.distance doubleValue]);
     NSString *measurement;
     if (distance > 1000) {
@@ -193,29 +192,28 @@
 
 - (void)topDidAppear {
     [((MenuViewController *)self.slidingViewController.underLeftViewController).view endEditing:YES];
-    
+    ALog(@"Top did appear");
     if (self.otherUser) {
         if (_modalOpen == NO) {
             [self startCountdown];
+            ALog(@"resuming countdown");
         }
+        ALog(@"modal says was open");
+        [self startCountdown];
     } else if ([self.hookups count] > 0) {
+        ALog(@"setting up next hookup")
         [self setupNextHookup];
     }
     else if(!_isFetching) {
+        ALog(@"fetching possible hookups from top did appear");
+        [self fetchPossibleHookups];
+    } else {
+        ALog(@"Doing nothing");
         [self fetchPossibleHookups];
     }
+    
 }
 
-//- (void)stopCountdown {
-//    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-//    [self.countdown stopAnimation];
-//}
-
-//- (void)startCountdown {
-//    ALog(@"Starting countdown");
-//    self.countdown.value = 7;
-//    [self performSelector:@selector(startCountdownAnimation) withObject:self afterDelay:1.0];
-//}
 
 - (void)setupNextHookup {
     if ([self.hookups count] < 10 && !_isFetching) {
@@ -254,15 +252,20 @@
 
 #pragma mark - Server fetching
 - (void)fetchPossibleHookups {
-    if (_isFetching)
-        return;
+    ALog(@"is fetching possible hookups");
+//    if (_isFetching)
+//        return;
     
     _numberOfAttempts++;
     _isFetching = YES;
     [self.managedObjectContext performBlock:^{
-        if(_noResults)
-           [self.activityIndicator startAnimating];
+        if(_noResults) {
+            ALog(@"no results start animating");
+            [self.activityIndicator startAnimating];
+        }
+        ALog(@"about to load hookups from rest");
         [RestHookup load:^(NSMutableArray *possibleHookups) {
+            ALog(@"Found %d possible hookups", [possibleHookups count]);
             NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
             for (RestHookup *restHookup in possibleHookups) {
                 [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
@@ -282,6 +285,7 @@
             _isFetching = NO;
             
         } onError:^(NSError *error) {
+            ALog(@"Error fetching hookups %@", error);
             [self.activityIndicator stopAnimating];
             _isFetching = NO;
         }];
@@ -372,7 +376,7 @@
     }
     Hookup *otherUser = self.otherUser;
     [self.hookups removeObject:self.otherUser];
-    self.otherUser.didRate = [NSNumber numberWithBool:YES];
+    self.otherUser.didRate = @YES;
     [self saveContext];
     [self setupNextHookup];
     [RestUser flirtWithUser:otherUser onLoad:^(RestMatch *restMatch) {
@@ -396,7 +400,7 @@
     }
     Hookup *otherUser = self.otherUser;
     [self.hookups removeObject:self.otherUser];
-    self.otherUser.didRate = [NSNumber numberWithBool:YES];
+    self.otherUser.didRate = @YES;
     [self saveContext];
     [self setupNextHookup];
     [RestUser rejectUser:otherUser onLoad:^(BOOL success) {
@@ -409,14 +413,14 @@
 - (void)fetchHookups {
     NSArray *lookingFor;
     if ([self.currentUser.lookingForGender integerValue] == LookingForBoth) {
-        lookingFor = @[[NSNumber numberWithInteger:LookingForMen], [NSNumber numberWithInteger:LookingForWomen]];
+        lookingFor = @[@(LookingForMen), @(LookingForWomen)];
     } else if ([self.currentUser.lookingForGender integerValue] == LookingForMen) {
-        lookingFor = @[[NSNumber numberWithInteger:LookingForMen]];
+        lookingFor = @[@(LookingForMen)];
     } else {
-        lookingFor = @[[NSNumber numberWithInteger:LookingForWomen]];
+        lookingFor = @[@(LookingForWomen)];
     }
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hookup"];
-    request.predicate = [NSPredicate predicateWithFormat:@"user == %@ AND didRate == %@ AND gender IN %@", self.currentUser, [NSNumber numberWithBool:NO], lookingFor];
+    request.predicate = [NSPredicate predicateWithFormat:@"user == %@ AND didRate == %@ AND gender IN %@", self.currentUser, @NO, lookingFor];
     //request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
     NSError *error;
     NSArray *hookups = [self.managedObjectContext executeFetchRequest:request error:&error];
@@ -425,7 +429,6 @@
     for (Hookup *hookup in self.hookups) {
         ALog(@"User %@ gender %@", hookup.fullName, hookup.gender );
     }
-    //ALog(@"There are %d hookups", [self.hookups count])
     if (!self.otherUser) {
         [self setupNextHookup];
     }

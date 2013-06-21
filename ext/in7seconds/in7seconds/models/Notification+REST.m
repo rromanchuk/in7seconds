@@ -13,7 +13,7 @@
                             inManagedObjectContext:(NSManagedObjectContext *)context {
     Notification *notification;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Notification"];
-    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", [NSNumber numberWithInt:restNotification.externalId]];
+    request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", @(restNotification.externalId)];
     
     NSError *error = nil;
     NSArray *notifications = [context executeFetchRequest:request error:&error];
@@ -37,9 +37,9 @@
 - (void)setManagedObjectWithIntermediateObject:(RestObject *)intermediateObject {
     RestNotification *restNotification = (RestNotification *) intermediateObject;
     
-    self.externalId = [NSNumber numberWithInteger:restNotification.externalId];
+    self.externalId = @(restNotification.externalId);
     self.message = restNotification.message;
-    self.isRead = [NSNumber numberWithBool:restNotification.isRead];
+    self.isRead = @(restNotification.isRead);
     self.notificationType = restNotification.notificationType;
     self.createdAt = restNotification.createdAt;
     ALog(@"sender is %@", restNotification.sender);
