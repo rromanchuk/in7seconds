@@ -49,6 +49,7 @@ class User < ActiveRecord::Base
 
   belongs_to :vk_country
   belongs_to :vk_city
+  belongs_to :fb_location
 
   scope :active, where(is_active: true)
   scope :with_geo_location, where('latitude IS NOT NULL')
@@ -161,8 +162,12 @@ class User < ActiveRecord::Base
     self[:looking_for_gender] || 0
   end
 
-  def location 
-   "#{city}, #{country}"
+  def location
+    if fb_location
+      fb_location.name
+    else
+      "#{city}, #{country}"
+    end
   end
   
   def city
@@ -394,19 +399,16 @@ class User < ActiveRecord::Base
     user
   end
 
- 
-
   def update_user_from_fb_graph(facebook_user)
     self.fb_token = facebook_user.access_token
     self.first_name = facebook_user.first_name
     self.last_name = facebook_user.last_name
     self.birthday = facebook_user.birthday
-    self.fb_domain = facebook_user.nickname
-    #self.location = facebook_user.location.name unless facebook_user.location.blank?
+    self.fb_domain = facebook_user.username
+    self.fb_location = FbLocation.where(lid: facebook_user.location.identifier, name: facebook_user.location.name).first_or_create
     self.gender = (facebook_user.gender == "male") ? USER_MALE : USER_FEMALE
     self.photo_url = "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=640&height=640"
     self.is_active = true;
-    #photo_from_url "http://www.warrenphotographic.co.uk/photography/cats/21495.jpg"
     save
   end
 
@@ -416,10 +418,10 @@ class User < ActiveRecord::Base
           :password => Devise.friendly_token[0,20],
           :first_name => facebook_user.first_name,
           :last_name => facebook_user.last_name,
-          :fb_domain => facebook_user.nickname,
+          :fb_domain => facebook_user.username,
           :birthday => facebook_user.birthday,
           :looking_for_gender => guess_looking_for((facebook_user.gender == "male") ? USER_MALE : USER_FEMALE),
-          #:location => (facebook_user.location.blank?) ? "" : facebook_user.location.name,
+          :fb_location => FbLocation.where(lid: facebook_user.location.identifier, name: facebook_user.location.name).first_or_create,
           :fb_token => facebook_user.access_token,
           :provider => :facebook,
           :is_active => true,
@@ -443,7 +445,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_or_create_for_facebook_oauth(facebook_user)
-    logger.debug facebook_user.to_yaml
+    #logger.debug facebook_user.to_yaml
     if user = User.where(:fbuid => facebook_user.identifier).first
       user.update_user_from_fb_graph(facebook_user)
       # User was created before. Just return him
