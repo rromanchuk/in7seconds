@@ -209,7 +209,7 @@ Devise.setup do |config|
   require "omniauth-facebook"
   require "omniauth-vkontakte"
   config.omniauth :facebook, CONFIG[:fb_app_id], CONFIG[:fb_app_secret], :scope => 'email,user_location'
-  config.omniauth :vkontakte, CONFIG[:vk_app_id], CONFIG[:vk_secret], :scope => 'friends,photos,offline,notify'
+  config.omniauth :vkontakte, CONFIG[:vk_app_id], CONFIG[:vk_secret], :scope => 'friends,photos,offline,notify,user_birthday'
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
