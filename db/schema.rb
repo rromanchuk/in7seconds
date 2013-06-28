@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(:version => 20130623153854) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "fb_locations", :force => true do |t|
-    t.integer "lid",  :limit => 8
     t.string  "name"
+    t.integer "lid",  :limit => 8
   end
 
   add_index "fb_locations", ["lid"], :name => "index_fb_locations_on_lid"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20130623153854) do
     t.string   "message"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_read"
+    t.boolean  "is_read",      :default => false
   end
 
   add_index "messages", ["from_user_id"], :name => "index_messages_on_from_user_id"
