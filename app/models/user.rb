@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :token_authenticatable, :omniauthable, :confirmable
          #:validatable
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city, :fbuid, :email_opt_in, :push_opt_in
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :vk_token, :fb_token, :gender, :country, :city, :fbuid, :email_opt_in, :push_opt_in, :fb_domain
   attr_accessible :vkuid, :birthday, :provider, :photo_url, :provider, :is_active, :looking_for_gender, :latitude, :longitude, :vk_city, :vk_country, :vk_domain, :vk_graduation, :vk_university_name, :vk_faculty_name, :vk_mobile_phone
 
   has_many :images
