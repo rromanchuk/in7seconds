@@ -405,7 +405,7 @@ class User < ActiveRecord::Base
     self.last_name = facebook_user.last_name
     self.birthday = facebook_user.birthday
     self.fb_domain = facebook_user.username
-    self.fb_location = FbLocation.where(lid: facebook_user.location.identifier, name: facebook_user.location.name).first_or_create
+    self.fb_location = FbLocation.where(lid: facebook_user.location.identifier, name: facebook_user.location.name).first_or_create unless facebook_user.location.blank?
     self.gender = (facebook_user.gender == "male") ? USER_MALE : USER_FEMALE
     self.photo_url = "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=640&height=640"
     self.is_active = true;
@@ -421,12 +421,13 @@ class User < ActiveRecord::Base
           :fb_domain => facebook_user.username,
           :birthday => facebook_user.birthday,
           :looking_for_gender => guess_looking_for((facebook_user.gender == "male") ? USER_MALE : USER_FEMALE),
-          :fb_location => FbLocation.where(lid: facebook_user.location.identifier, name: facebook_user.location.name).first_or_create,
           :fb_token => facebook_user.access_token,
           :provider => :facebook,
           :is_active => true,
           :photo_url => "https://graph.facebook.com/#{facebook_user.identifier}/picture?width=640&height=640",
           :gender => (facebook_user.gender == "male") ? USER_MALE : USER_FEMALE)
+    user.fb_location = FbLocation.where(lid: facebook_user.location.identifier, name: facebook_user.location.name).first_or_create unless facebook_user.location.blank?
+    user.save
     return user
   end
 
