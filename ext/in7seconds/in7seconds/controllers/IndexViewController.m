@@ -30,9 +30,20 @@
 
 @implementation IndexViewController
 
+- (void)touchesDidBegin {
+    ALog(@"TOUCHES DID BEGIN");
+    [self.navigationController.view removeGestureRecognizer:self.slidingViewController.panGesture];
+}
+
+- (void)touchesDidEnd {
+    ALog(@"TOUCHES DID END");
+    [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.swipeView.delegate = self;
     _isFetching = NO;
     [self noResultsLeft];
     
@@ -77,6 +88,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    //[self.navigationController.view removeGestureRecognizer:self.slidingViewController.panGesture];
     [super viewWillAppear:animated];
 }
 
@@ -96,6 +108,7 @@
 - (void)viewDidUnload {
     [self setActivityIndicator:nil];
     [self setCountdownLabel:nil];
+    [self setSwipeView:nil];
     [super viewDidUnload];
 }
 
@@ -223,8 +236,8 @@
     self.otherUser = nil;    
     if (self.currentUser && [self.hookups count] > 0) {
         self.otherUser = [self.hookups anyObject];
-        ALog(@"other user is setup %@", self.otherUser);
-        ALog(@"hookups are %@", self.hookups);
+        //ALog(@"other user is setup %@", self.otherUser);
+        //ALog(@"hookups are %@", self.hookups);
         [self foundResults];
         
         [self.userImageView setProfilePhotoWithURL:self.otherUser.photoUrl];
@@ -253,8 +266,8 @@
 #pragma mark - Server fetching
 - (void)fetchPossibleHookups {
     ALog(@"is fetching possible hookups");
-//    if (_isFetching)
-//        return;
+    if (_isFetching)
+        return;
     
     _numberOfAttempts++;
     _isFetching = YES;
@@ -265,7 +278,7 @@
         }
         ALog(@"about to load hookups from rest");
         [RestHookup load:^(NSMutableArray *possibleHookups) {
-            ALog(@"Found %d possible hookups", [possibleHookups count]);
+            //ALog(@"Found %d possible hookups", [possibleHookups count]);
             NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
             for (RestHookup *restHookup in possibleHookups) {
                 [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];

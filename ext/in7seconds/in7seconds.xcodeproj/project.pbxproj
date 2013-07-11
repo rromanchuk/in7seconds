@@ -20,6 +20,10 @@
 		943837D3173BD42200052C47 /* ImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 943837D2173BD42200052C47 /* ImageBrowser.m */; };
 		943837D6173BD4AE00052C47 /* SSScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 943837D5173BD4AD00052C47 /* SSScrollView.m */; };
 		943837D9173BD4FD00052C47 /* ImageScrollViewPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 943837D8173BD4FC00052C47 /* ImageScrollViewPage.m */; };
+		94713B95178BCEBA005F1C4F /* reject.png in Resources */ = {isa = PBXBuildFile; fileRef = 94713B91178BCEBA005F1C4F /* reject.png */; };
+		94713B96178BCEBA005F1C4F /* reject@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94713B92178BCEBA005F1C4F /* reject@2x.png */; };
+		94713B97178BCEBA005F1C4F /* accepted.png in Resources */ = {isa = PBXBuildFile; fileRef = 94713B93178BCEBA005F1C4F /* accepted.png */; };
+		94713B98178BCEBA005F1C4F /* accepted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94713B94178BCEBA005F1C4F /* accepted@2x.png */; };
 		9484987616CBFE96000083DE /* UIBarButtonItem+Borderless.m in Sources */ = {isa = PBXBuildFile; fileRef = 9484987516CBFE96000083DE /* UIBarButtonItem+Borderless.m */; };
 		9484988A16CD1EBB000083DE /* UIColor+Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 9484988916CD1EBB000083DE /* UIColor+Defaults.m */; };
 		9484988F16CD1F69000083DE /* BaseUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9484988E16CD1F69000083DE /* BaseUIView.m */; };
@@ -54,6 +58,8 @@
 		94A980B516ECB4060036E52C /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A980B416ECB4040036E52C /* UserProfileViewController.m */; };
 		94BFC622172D24D600A3625B /* RestImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BFC621172D24D600A3625B /* RestImage.m */; };
 		94BFC625172D25C500A3625B /* Image+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BFC624172D25C500A3625B /* Image+REST.m */; };
+		94C8E139177E284800739D2F /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C8E138177E284800739D2F /* SwipeView.m */; };
+		94C8E13C177E291200739D2F /* UserImageContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C8E13B177E291200739D2F /* UserImageContainer.m */; };
 		94CA887817086AB3008A821A /* RestMutualFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CA887717086AB3008A821A /* RestMutualFriend.m */; };
 		94D09CA716CBD3470064F886 /* RestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA616CBD3470064F886 /* RestClient.m */; };
 		94D09CAA16CBD3630064F886 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CA916CBD3630064F886 /* Config.m */; };
@@ -218,6 +224,10 @@
 		943837D5173BD4AD00052C47 /* SSScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSScrollView.m; path = views/SSScrollView.m; sourceTree = "<group>"; };
 		943837D7173BD4FC00052C47 /* ImageScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageScrollViewPage.h; path = views/ImageScrollViewPage.h; sourceTree = "<group>"; };
 		943837D8173BD4FC00052C47 /* ImageScrollViewPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageScrollViewPage.m; path = views/ImageScrollViewPage.m; sourceTree = "<group>"; };
+		94713B91178BCEBA005F1C4F /* reject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reject.png; sourceTree = "<group>"; };
+		94713B92178BCEBA005F1C4F /* reject@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reject@2x.png"; sourceTree = "<group>"; };
+		94713B93178BCEBA005F1C4F /* accepted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accepted.png; sourceTree = "<group>"; };
+		94713B94178BCEBA005F1C4F /* accepted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "accepted@2x.png"; sourceTree = "<group>"; };
 		9484987416CBFE96000083DE /* UIBarButtonItem+Borderless.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIBarButtonItem+Borderless.h"; path = "categories/UIBarButtonItem+Borderless.h"; sourceTree = "<group>"; };
 		9484987516CBFE96000083DE /* UIBarButtonItem+Borderless.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIBarButtonItem+Borderless.m"; path = "categories/UIBarButtonItem+Borderless.m"; sourceTree = "<group>"; };
 		9484988816CD1EBB000083DE /* UIColor+Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Defaults.h"; path = "categories/UIColor+Defaults.h"; sourceTree = "<group>"; };
@@ -264,6 +274,10 @@
 		94BFC621172D24D600A3625B /* RestImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestImage.m; sourceTree = "<group>"; };
 		94BFC623172D25C500A3625B /* Image+REST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Image+REST.h"; sourceTree = "<group>"; };
 		94BFC624172D25C500A3625B /* Image+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Image+REST.m"; sourceTree = "<group>"; };
+		94C8E137177E284800739D2F /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeView.h; sourceTree = "<group>"; };
+		94C8E138177E284800739D2F /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeView.m; sourceTree = "<group>"; };
+		94C8E13A177E291200739D2F /* UserImageContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserImageContainer.h; sourceTree = "<group>"; };
+		94C8E13B177E291200739D2F /* UserImageContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserImageContainer.m; sourceTree = "<group>"; };
 		94CA887617086AB3008A821A /* RestMutualFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestMutualFriend.h; sourceTree = "<group>"; };
 		94CA887717086AB3008A821A /* RestMutualFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestMutualFriend.m; sourceTree = "<group>"; };
 		94D09CA516CBD3470064F886 /* RestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestClient.h; path = models/RestClient.h; sourceTree = "<group>"; };
@@ -507,6 +521,10 @@
 				FA73B107171A058000D084CB /* NotificationCell.m */,
 				FA82642317495CBE00B51936 /* NotificationBanner.h */,
 				FA82642417495CBE00B51936 /* NotificationBanner.m */,
+				94C8E137177E284800739D2F /* SwipeView.h */,
+				94C8E138177E284800739D2F /* SwipeView.m */,
+				94C8E13A177E291200739D2F /* UserImageContainer.h */,
+				94C8E13B177E291200739D2F /* UserImageContainer.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -641,6 +659,10 @@
 		FA70028F16CAECBD0098A5B7 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				94713B91178BCEBA005F1C4F /* reject.png */,
+				94713B92178BCEBA005F1C4F /* reject@2x.png */,
+				94713B93178BCEBA005F1C4F /* accepted.png */,
+				94713B94178BCEBA005F1C4F /* accepted@2x.png */,
 				942A4F18175A1A3000A99482 /* notification-dismiss@2x.png */,
 				942A4F19175A1A3000A99482 /* notification-dismiss.png */,
 				94FF948C172BDF3700563C1A /* facebook-login.png */,
@@ -1018,6 +1040,10 @@
 				FA82642217495BE200B51936 /* NotificationBanner.xib in Resources */,
 				942A4F1A175A1A3000A99482 /* notification-dismiss@2x.png in Resources */,
 				942A4F1B175A1A3000A99482 /* notification-dismiss.png in Resources */,
+				94713B95178BCEBA005F1C4F /* reject.png in Resources */,
+				94713B96178BCEBA005F1C4F /* reject@2x.png in Resources */,
+				94713B97178BCEBA005F1C4F /* accepted.png in Resources */,
+				94713B98178BCEBA005F1C4F /* accepted@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1150,6 +1176,8 @@
 				943837D9173BD4FD00052C47 /* ImageScrollViewPage.m in Sources */,
 				FA82642517495CBE00B51936 /* NotificationBanner.m in Sources */,
 				FA98E5500000069E00687BCA /* NotificationHandler.m in Sources */,
+				94C8E139177E284800739D2F /* SwipeView.m in Sources */,
+				94C8E13C177E291200739D2F /* UserImageContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

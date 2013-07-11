@@ -64,7 +64,7 @@
     
     if ([RestUser currentUserId]) {
         User *user = [User userWithExternalId:currentId inManagedObjectContext:context];
-        ALog("got user %@", user);
+        //ALog("got user %@", user);
         return user;
     }
     
