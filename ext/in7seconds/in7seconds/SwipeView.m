@@ -32,6 +32,7 @@
 {
     
     UITouch *aTouch = [touches anyObject];
+    
     // Only move the placard view if the touch was in the placard view.
     if (aTouch.view == self.userImageContainer) {
         ALog(@"touches moved for user image");
@@ -39,12 +40,12 @@
         CGPoint previousLocation = [aTouch previousLocationInView:self];
         self.userImageContainer.frame = CGRectOffset(self.userImageContainer.frame, location.x-previousLocation.x, location.y-    previousLocation.y);
         if (previousLocation.x > location.x) {
-            float alpha = 1.0 - ((location.x / 1.5) / 100.0);
+            float alpha = 1.0 - ((aTouch.view.center.x / 1.5) / 100.0);
             ALog(@"ALPHA IS %f", alpha);
             self.rejectImage.alpha = alpha;
         } else {
             
-            float alpha = ((location.x - _midpoint) / (320 - 160));
+            float alpha = ((aTouch.view.center.x - _midpoint) / (320 - 160));
             self.acceptImage.alpha = alpha;
             ALog(@"ALPHA IS %f", alpha);
         }

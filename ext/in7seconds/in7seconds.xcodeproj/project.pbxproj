@@ -1274,6 +1274,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "in7seconds/in7seconds-Prefix.pch";
 				INFOPLIST_FILE = "in7seconds/in7seconds-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Airship\"",
@@ -1373,6 +1374,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "in7seconds/in7seconds-Prefix.pch";
 				INFOPLIST_FILE = "in7seconds/in7seconds-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Airship\"",
@@ -1395,6 +1397,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "in7seconds/in7seconds-Prefix.pch";
 				INFOPLIST_FILE = "in7seconds/in7seconds-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Airship\"",
