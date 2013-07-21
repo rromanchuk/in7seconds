@@ -223,10 +223,8 @@
     } else {
         ALog(@"Doing nothing");
         [self fetchPossibleHookups];
-    }
-    
+    }    
 }
-
 
 - (void)setupNextHookup {
     if ([self.hookups count] < 10 && !_isFetching) {

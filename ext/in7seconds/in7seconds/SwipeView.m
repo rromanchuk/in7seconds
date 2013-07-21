@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation SwipeView {
+    CGPoint _center;
     CGRect _originalRect;
     NSInteger _minRejectX;
     NSInteger _maxAcceptX;
@@ -40,13 +41,18 @@
         CGPoint previousLocation = [aTouch previousLocationInView:self];
         self.userImageContainer.frame = CGRectOffset(self.userImageContainer.frame, location.x-previousLocation.x, location.y-    previousLocation.y);
         if (previousLocation.x > location.x) {
-            float alpha = 1.0 - ((aTouch.view.center.x / 1.5) / 100.0);
-            ALog(@"ALPHA IS %f", alpha);
-            self.rejectImage.alpha = alpha;
+            float rejectAlpha = ((aTouch.view.center.x - 160) / (160 - 0)) * -1.0 ;
+            float acceptAlpha = ((aTouch.view.center.x - _midpoint) / (320 - 160));
+
+            ALog(@"ALPHA IS %f", rejectAlpha);
+            self.rejectImage.alpha = rejectAlpha;
+            self.acceptImage.alpha = acceptAlpha;
         } else {
-            
+            float rejectAlpha = ((aTouch.view.center.x - 160) / (160 - 0)) * -1.0 ;
+
             float alpha = ((aTouch.view.center.x - _midpoint) / (320 - 160));
             self.acceptImage.alpha = alpha;
+            self.rejectImage.alpha = rejectAlpha;
             ALog(@"ALPHA IS %f", alpha);
         }
     }
@@ -57,7 +63,7 @@
 	
 	// We only support single touches, so anyObject retrieves just that touch from touches.
 	UITouch *touch = [touches anyObject];
-	
+	_center = self.userImageContainer.center;
 	// Only move the placard view if the touch was in the placard view.
 	if ([touch view] == self.userImageContainer) {
         ALog(@"touches did begin for user image");
@@ -96,6 +102,9 @@
             [UIView animateWithDuration:1.5 animations:^{
                 self.userImageContainer.frame = CGRectOffset(self.userImageContainer.frame, -200.0, 0);
             } completion:^(BOOL finished) {
+                [self.delegate didTapUnlike:self];
+                self.rejectImage.alpha = 0;
+                self.acceptImage.alpha = 0;
                 self.userImageContainer.frame = _originalRect;
             }];
 
@@ -104,6 +113,9 @@
             [UIView animateWithDuration:1.5 animations:^{
                 self.userImageContainer.frame = CGRectOffset(self.userImageContainer.frame, 200.0, 0);
             } completion:^(BOOL finished) {
+                [self.delegate didTapLike:self];
+                self.rejectImage.alpha = 0;
+                self.acceptImage.alpha = 0;
                 self.userImageContainer.frame = _originalRect;
             }];
 
@@ -261,6 +273,8 @@
  */
 - (void)animatePlacardViewToCenter {
 	
+    ALog(@"container center %f view center %f", self.userImageContainer.center.y, self.center.y);
+
     UserImageContainer *userImageContainer = self.userImageContainer;
     CALayer *welcomeLayer = userImageContainer.layer;
 	
@@ -269,12 +283,11 @@
 	bounceAnimation.removedOnCompletion = NO;
 	
 	CGFloat animationDuration = 1.5f;
-    
 	
 	// Create the path for the bounces.
 	UIBezierPath *bouncePath = [[UIBezierPath alloc] init];
 	
-    CGPoint centerPoint = self.center;
+    CGPoint centerPoint = _center;
 	CGFloat midX = centerPoint.x;
 	CGFloat midY = centerPoint.y;
 	CGFloat originalOffsetX = userImageContainer.center.x - midX;
@@ -338,22 +351,8 @@
     
 	self.userImageContainer.transform = CGAffineTransformIdentity;
 	self.userInteractionEnabled = YES;
-}
-
-
-- (void)setupNextDisplayString {
-    
-    NSUInteger nextIndex = self.nextDisplayStringIndex;
-    NSString *displayString = self.displayStrings[nextIndex];
-    //[self.userImageContainer setDisplayString:displayString];
-    
-    nextIndex++;
-    if (nextIndex >= [self.displayStrings count]) {
-        nextIndex = 0;
-    }
-    self.nextDisplayStringIndex = nextIndex;
-    
-    self.userImageContainer.center = self.center;
+    self.rejectImage.alpha = 0.0;
+    self.acceptImage.alpha = 0.0;
 }
 
 @end

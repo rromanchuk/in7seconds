@@ -23,4 +23,6 @@
 @required
 - (void)touchesDidBegin;
 - (void)touchesDidEnd;
+- (IBAction)didTapLike:(id)sender;
+- (IBAction)didTapUnlike:(id)sender;
 @end
