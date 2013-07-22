@@ -21,7 +21,7 @@
 #import "NotificationHandler.h"
 
 @implementation AppDelegate
-@synthesize window = _window;
+
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize privateWriterContext = __privateWriterContext;
