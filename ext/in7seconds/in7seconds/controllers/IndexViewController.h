@@ -13,8 +13,9 @@
 #import "ProfileImageView.h"
 #import "MatchViewController.h"
 #import "AppDelegate.h"
+#import "SwipeView.h"
 
-@interface IndexViewController : ECSlidingViewController <ImageLoadedDelegate, MatchModalDelegate, ApplicationLifecycleDelegate, UserSettingsDelegate>
+@interface IndexViewController : ECSlidingViewController <ImageLoadedDelegate, MatchModalDelegate, ApplicationLifecycleDelegate, UserSettingsDelegate, SwipeViewDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
@@ -33,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
+@property (strong, nonatomic) IBOutlet SwipeView *swipeView;
 
 - (IBAction)didTapUnlike:(id)sender;
 - (IBAction)didTapLike:(id)sender;

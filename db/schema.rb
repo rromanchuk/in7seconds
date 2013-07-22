@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130620121520) do
+ActiveRecord::Schema.define(:version => 20130623153854) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(:version => 20130620121520) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "fb_locations", :force => true do |t|
+    t.string  "name"
+    t.integer "lid",  :limit => 8
+  end
+
+  add_index "fb_locations", ["lid"], :name => "index_fb_locations_on_lid"
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
@@ -82,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20130620121520) do
     t.string   "message"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_read"
+    t.boolean  "is_read",      :default => false
   end
 
   add_index "messages", ["from_user_id"], :name => "index_messages_on_from_user_id"
@@ -159,11 +166,13 @@ ActiveRecord::Schema.define(:version => 20130620121520) do
     t.datetime "vk_token_expiration"
     t.datetime "fb_token_expiration"
     t.string   "fb_domain"
+    t.integer  "fb_location_id"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["fb_location_id"], :name => "index_users_on_fb_location_id"
   add_index "users", ["fbuid"], :name => "index_users_on_fbuid", :unique => true
   add_index "users", ["gender"], :name => "index_users_on_gender"
   add_index "users", ["is_active"], :name => "index_users_on_is_active"

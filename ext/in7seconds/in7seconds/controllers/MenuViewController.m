@@ -79,8 +79,10 @@
         self.lookingForWomen.selected = YES;
     } else if ([self.currentUser.lookingForGender integerValue] == LookingForMen) {
         self.lookingForMen.selected = YES;
+        self.lookingForWomen.selected = NO;
     } else {
         self.lookingForWomen.selected = YES;
+        self.lookingForMen.selected = NO;
     }
     self.genderSegmentControl.selectedSegmentIndex = [self.currentUser.gender integerValue];
 }

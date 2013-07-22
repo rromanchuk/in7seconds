@@ -122,7 +122,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     ALog(@"UPDATE USER REQUEST: %@", request);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                                                            ALog(@"Update JSON: %@", JSON);
+                                                                                            //ALog(@"Update JSON: %@", JSON);
                                                                                             [[UIApplication sharedApplication] hideNetworkActivityIndicator];
                                                                                             //ALog(@"JSON: %@", JSON);
                                                                                             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
