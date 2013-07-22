@@ -47,7 +47,9 @@ class Notification < ActiveRecord::Base
   end
 
   def self.send_notification!(aliases, message, extra={})
-    notification = { aliases: aliases.map(&:to_s), aps: {:alert => message, :badge => 1}, extra: extra }
+    #notification = { aliases: aliases.map(&:to_s), aps: {:alert => message, :badge => 1}, extra: extra }
+    notification = { aliases: aliases.map(&:to_s), aps: {:alert => message, :badge => 1} }
+
     Urbanairship.push(notification)
     Mailer.delay.admin_notice(message)
   end
