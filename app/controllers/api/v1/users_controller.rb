@@ -1,7 +1,7 @@
 module Api
   module V1
     
-    class UsersController < ApplicationController
+    class UsersController < Api::BaseController
       before_filter :authenticate_user!, :except => [:unsubscribe]
       respond_to :json
       

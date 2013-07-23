@@ -264,7 +264,7 @@
 #pragma mark - Server fetching
 - (void)fetchPossibleHookups {
     ALog(@"is fetching possible hookups");
-    if (_isFetching)
+    if (_isFetching || _numberOfAttempts > 5)
         return;
     
     _numberOfAttempts++;

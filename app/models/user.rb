@@ -88,11 +88,13 @@ class User < ActiveRecord::Base
 
   #devise 
   def require_confirmation
-    self.skip_confirmation! unless is_active? && !email.blank?
+    self.skip_confirmation! unless (is_active? && !email.blank?)  
   end
 
   def check_email_status
-    if is_active? && !email.blank?
+    if is_active && has_facebook?
+
+    elsif is_active? && !email.blank?
       if confirmation_sent_at.blank? && !confirmed?
         send_confirmation_instructions
       end

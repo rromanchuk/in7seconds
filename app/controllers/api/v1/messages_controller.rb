@@ -1,7 +1,7 @@
 module Api
   module V1
     
-    class MessagesController < ApplicationController
+    class MessagesController < Api::BaseController
       before_filter :authenticate_user!
       respond_to :json
 
