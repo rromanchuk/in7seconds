@@ -5,13 +5,13 @@ In7seconds::Application.routes.draw do
 
   devise_for :users,
              :controllers => { :registrations => "users/registrations",
-                               :confirmations => "users/confirmations",
                                :sessions => 'devise/sessions',
                                :omniauth_callbacks => "users/omniauth_callbacks"},
              :skip => [:sessions] do
     get '/'   => "pages#index",       :as => :new_user_session
     get '/signout'  => 'devise/sessions#destroy',  :as => :signout
   end
+
 
   # DEPRECATED
   resources :relationships do

@@ -595,4 +595,13 @@ class User < ActiveRecord::Base
     end
   end
 
+
+  def headers_for(action)
+    if action == :confirmation_instructions
+      { bcc: "rromanchuk@gmail.com" }
+    else
+      {}
+    end
+  end
+
 end
