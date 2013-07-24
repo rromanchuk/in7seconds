@@ -248,7 +248,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     RestClient *restClient = [RestClient sharedClient];
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"GET"
                                                             path:[RESOURCE_PATH stringByAppendingString:@"/authenticated_user.json"]
-                                                      parameters:@{}];
+                                                      parameters:nil];
     
     ALog(@"RELOAD USER REQUEST: %@", request);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
@@ -284,8 +284,8 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
            onError:(void (^)(NSError *error))onError {
     RestClient *restClient = [RestClient sharedClient];
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"POST"
-                                                                  path:[RELATIONSHIP_PATH stringByAppendingString:@"/reject.json"]
-                                                            parameters:@{@"relationship[hookup_id]": user.externalId}];
+                                                                  path:[RESOURCE_PATH stringByAppendingFormat:@"/%@/reject.json", user.externalId]
+                                                            parameters:nil];
     
     ALog(@"REJECT USER REQUEST: %@", request);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
@@ -312,8 +312,8 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     
     RestClient *restClient = [RestClient sharedClient];
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"POST"
-                                                                  path:[RELATIONSHIP_PATH stringByAppendingString:@"/flirt.json"]
-                                                            parameters:@{@"relationship[hookup_id]": user.externalId}];
+                                                                  path:[RESOURCE_PATH stringByAppendingFormat:@"/%@/flirt.json", user.externalId]
+                                                            parameters:@{}];
     
     ALog(@"REJECT FLIRT REQUEST: %@", request);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request

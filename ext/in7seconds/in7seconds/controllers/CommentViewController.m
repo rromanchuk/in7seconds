@@ -472,20 +472,21 @@
     [self.managedObjectContext performBlock:^{
         [RestThread loadThreadWithUser:self.otherUser onLoad:^(RestThread *restThread) {
             ALog(@"rest thread %@", restThread);
-            self.thread = [Thread threadWithRestThread:restThread inManagedObjectContext:self.managedObjectContext];
-            [self.currentUser addThreadsObject:self.thread];
-            NSError *error;
-            [self.managedObjectContext save:&error];
-            
-            AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            [sharedAppDelegate writeToDisk];
+            if (restThread) {
+                self.thread = [Thread threadWithRestThread:restThread inManagedObjectContext:self.managedObjectContext];
+                [self.currentUser addThreadsObject:self.thread];
+                NSError *error;
+                [self.managedObjectContext save:&error];
+                
+                AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                [sharedAppDelegate writeToDisk];
+            }
             
             if (!self.fetchedResultsController) {
                 [self setupFetchedResultsController];
             }
             [self checkNoResults];
                         
-            ALog(@"thread %@", restThread);
             [refreshControl endRefreshing];
         } onError:^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
