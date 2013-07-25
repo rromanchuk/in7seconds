@@ -1,8 +1,7 @@
 module Api
   class BaseController < ActionController::Base
-    
-    skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
     protect_from_forgery
+    skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
     
     def current_user
       @current_user ||= super && User.includes([:vk_country, :vk_city, :friends, :groups]).find(@current_user.id)
