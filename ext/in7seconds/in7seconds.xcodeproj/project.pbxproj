@@ -1266,7 +1266,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF7F3663B2C24854B8CFE612 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Romanchuk (RJ6W6Q2JLW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Romanchuk";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1280,7 +1280,7 @@
 					"\"$(SRCROOT)/Airship\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "037BA528-7865-4409-BBDE-5499E3BC90A6";
+				PROVISIONING_PROFILE = "AD0A1886-D2F7-49D2-AF68-81D1140C4DAC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;
