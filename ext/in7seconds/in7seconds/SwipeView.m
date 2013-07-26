@@ -99,7 +99,7 @@
         ALog(@"Location x:%f y%f", location.x, location.y);
         if (location.x < _minRejectX) {
             ALog(@"Rejecting user!");
-            [UIView animateWithDuration:1.5 animations:^{
+            [UIView animateWithDuration:0.8 animations:^{
                 self.userImageContainer.frame = CGRectOffset(self.userImageContainer.frame, -200.0, 0);
             } completion:^(BOOL finished) {
                 [self.delegate didTapUnlike:self];
@@ -110,7 +110,7 @@
 
         } else if (location.x > _maxAcceptX) {
             ALog(@"Accepting user!");
-            [UIView animateWithDuration:1.5 animations:^{
+            [UIView animateWithDuration:0.8 animations:^{
                 self.userImageContainer.frame = CGRectOffset(self.userImageContainer.frame, 200.0, 0);
             } completion:^(BOOL finished) {
                 [self.delegate didTapLike:self];
@@ -282,7 +282,7 @@
 	CAKeyframeAnimation *bounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
 	bounceAnimation.removedOnCompletion = NO;
 	
-	CGFloat animationDuration = 1.5f;
+	CGFloat animationDuration = 0.5f;
 	
 	// Create the path for the bounces.
 	UIBezierPath *bouncePath = [[UIBezierPath alloc] init];
