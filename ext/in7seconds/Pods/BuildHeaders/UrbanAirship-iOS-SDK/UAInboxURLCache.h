@@ -1,1 +1,1 @@
-../../UrbanAirship-iOS-SDK/Airship/Library/InboxLib/UAInboxURLCache.h
+../../UrbanAirship-iOS-SDK/Airship/Inbox/UAInboxURLCache.h

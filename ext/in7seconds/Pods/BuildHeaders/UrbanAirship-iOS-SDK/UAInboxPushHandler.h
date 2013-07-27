@@ -1,1 +1,1 @@
-../../UrbanAirship-iOS-SDK/Airship/Library/InboxLib/UAInboxPushHandler.h
+../../UrbanAirship-iOS-SDK/Airship/Inbox/UAInboxPushHandler.h

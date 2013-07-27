@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import "ECSlidingViewController.h"
 #import "User+REST.h"
 #import "ProfileImageView.h"
 #import "TDDatePickerController.h"

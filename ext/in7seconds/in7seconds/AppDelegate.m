@@ -15,7 +15,6 @@
 #import "Config.h"
 #import "Facebook.h"
 #import "Appirater.h"
-#import "NavigationTopViewController.h"
 #import "RestHookup.h"
 #import "Hookup+REST.h"
 #import "NotificationHandler.h"

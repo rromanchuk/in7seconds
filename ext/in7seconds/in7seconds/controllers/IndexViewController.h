@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import "ECSlidingViewController.h"
 #import "User+REST.h"
 #import "LoginViewController.h"
 #import "MenuViewController.h"
@@ -14,8 +13,9 @@
 #import "MatchViewController.h"
 #import "AppDelegate.h"
 #import "SwipeView.h"
+#import <ViewDeck/IIViewDeckController.h>
 
-@interface IndexViewController : ECSlidingViewController <ImageLoadedDelegate, MatchModalDelegate, ApplicationLifecycleDelegate, UserSettingsDelegate, SwipeViewDelegate>
+@interface IndexViewController : UIViewController <ImageLoadedDelegate, MatchModalDelegate, ApplicationLifecycleDelegate, UserSettingsDelegate, SwipeViewDelegate, IIViewDeckControllerDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;

@@ -1,1 +1,1 @@
-../../UrbanAirship-iOS-SDK/Airship/Library/InboxLib/UAInboxDefaultJSDelegate.h
+../../UrbanAirship-iOS-SDK/Airship/Inbox/UAInboxDefaultJSDelegate.h

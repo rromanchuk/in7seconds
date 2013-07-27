@@ -15,6 +15,8 @@
 #import "RestHookup.h"
 #import "Hookup+REST.h"
 #import "Match+REST.h"
+
+
 @interface IndexViewController () {
     NSInteger _numberOfAttempts;
     BOOL _noResults;
@@ -32,12 +34,16 @@
 
 - (void)touchesDidBegin {
     ALog(@"TOUCHES DID BEGIN");
-    [self.navigationController.view removeGestureRecognizer:self.slidingViewController.panGesture];
+    //self.viewDeckController.delegateMode
+    //[self.navigationController.view removeGestureRecognizer:self.slidingViewController.panGesture];
+    self.viewDeckController.panningMode = IIViewDeckNoPanning;
 }
 
 - (void)touchesDidEnd {
     ALog(@"TOUCHES DID END");
-    [self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
+    //[self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
+    self.viewDeckController.panningMode = IIViewDeckPanningViewPanning;
+
 }
 
 - (void)viewDidLoad
@@ -57,11 +63,12 @@
 
     self.userImageView.delegate = self;
     _numberOfAttempts = 0;
-        
+    //self.viewDeckController ad
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(topDidAppear) name:@"ECSlidingViewTopDidReset" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftViewWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
     
-    ((MenuViewController *)self.slidingViewController.underLeftViewController).settingsDelegate = self;
+    ((MenuViewController *)self.viewDeckController.leftController).settingsDelegate = self;
     
     UIImage *notificationsImage = [UIImage imageNamed:@"navigation-logo"];
     UIButton *notificationButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -80,6 +87,10 @@
     
     self.countdownLabel.text = @"7";
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
+}
+
+- (void)viewDeckController:(IIViewDeckController*)viewDeckController didShowCenterViewFromSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
+    
 }
 
 - (void)leftViewWillAppear {
@@ -200,11 +211,11 @@
 - (IBAction)revealMenu:(id)sender
 {
     [self stopCountdown];
-    [self.slidingViewController anchorTopViewTo:ECRight];
+    [self.viewDeckController toggleLeftView];
 }
 
 - (void)topDidAppear {
-    [((MenuViewController *)self.slidingViewController.underLeftViewController).view endEditing:YES];
+    [((MenuViewController *)self.viewDeckController.leftController).view endEditing:YES];
     ALog(@"Top did appear");
     if (self.otherUser) {
         if (_modalOpen == NO) {

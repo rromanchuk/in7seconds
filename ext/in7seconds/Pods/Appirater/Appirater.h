@@ -54,7 +54,7 @@ extern NSString *const kAppiraterReminderRequestDate;
 /*
  Your app's name.
  */
-#define APPIRATER_APP_NAME				APPIRATER_LOCALIZED_APP_NAME ? APPIRATER_LOCALIZED_APP_NAME : [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey]
+#define APPIRATER_APP_NAME				APPIRATER_LOCALIZED_APP_NAME ? APPIRATER_LOCALIZED_APP_NAME : [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]
 
 /*
  This is the message your users will see once they've passed the day+launches
@@ -143,6 +143,16 @@ extern NSString *const kAppiraterReminderRequestDate;
 + (void)userDidSignificantEvent:(BOOL)canPromptForRating;
 
 /*
+ Tells Appirater to show the prompt (a rating alert). The prompt will be showed
+ if there is connection available, the user hasn't declined to rate
+ or hasn't rated current version.
+ 
+ You could call to show the prompt regardless Appirater settings,
+ e.g., in case of some special event in your app.
+ */
++ (void)showPrompt;
+
+/*
  Tells Appirater to open the App Store page where the user can specify a
  rating for the app. Also records the fact that this has happened, so the
  user won't be prompted again to rate the app.
@@ -223,6 +233,11 @@ extern NSString *const kAppiraterReminderRequestDate;
  Set whether or not Appirater uses animation (currently respected when pushing modal StoreKit rating VCs).
  */
 + (void)setUsesAnimation:(BOOL)animation;
+
+/*
+ If set to YES, Appirater will open App Store link (instead of SKStoreProductViewController on iOS 6). Default NO.
+ */
++ (void)setOpenInAppStore:(BOOL)openInAppStore;
 
 @end
 

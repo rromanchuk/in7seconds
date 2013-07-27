@@ -1,1 +1,1 @@
-../../UrbanAirship-iOS-SDK/Airship/Library/AirshipLib/UAirship+Internal.h
+../../UrbanAirship-iOS-SDK/Airship/Common/UAirship+Internal.h

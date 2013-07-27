@@ -58,8 +58,13 @@ static NSInteger _usesUntilPrompt = 20;
 static NSInteger _significantEventsUntilPrompt = -1;
 static double _timeBeforeReminding = 1;
 static BOOL _debug = NO;
-static id<AppiraterDelegate> _delegate;
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_5_0
+	static id<AppiraterDelegate> _delegate;
+#else
+	__weak static id<AppiraterDelegate> _delegate;
+#endif
 static BOOL _usesAnimation = TRUE;
+static BOOL _openInAppStore = NO;
 static UIStatusBarStyle _statusBarStyle;
 static BOOL _modalOpen = false;
 
@@ -104,6 +109,9 @@ static BOOL _modalOpen = false;
 }
 + (void)setUsesAnimation:(BOOL)animation {
 	_usesAnimation = animation;
+}
++ (void)setOpenInAppStore:(BOOL)openInAppStore {
+    _openInAppStore = openInAppStore;
 }
 + (void)setStatusBarStyle:(UIStatusBarStyle)style {
 	_statusBarStyle = style;
@@ -166,11 +174,12 @@ static BOOL _modalOpen = false;
 											   cancelButtonTitle:APPIRATER_CANCEL_BUTTON
 											   otherButtonTitles:APPIRATER_RATE_BUTTON, APPIRATER_RATE_LATER, nil];
 	self.ratingAlert = alertView;
-	[alertView show];
-	
-	if(self.delegate && [self.delegate respondsToSelector:@selector(appiraterDidDisplayAlert:)]){
-		[self.delegate appiraterDidDisplayAlert:self];
-	}
+    [alertView show];
+
+    id <AppiraterDelegate> delegate = _delegate;
+    if (delegate && [delegate respondsToSelector:@selector(appiraterDidDisplayAlert:)]) {
+             [delegate appiraterDidDisplayAlert:self];
+    }
 }
 
 - (BOOL)ratingConditionsHaveBeenMet {
@@ -200,7 +209,7 @@ static BOOL _modalOpen = false;
 		return NO;
 	
 	// has the user already rated the app?
-	if ([userDefaults boolForKey:kAppiraterRatedCurrentVersion])
+	if ([self userHasRatedCurrentVersion])
 		return NO;
 	
 	// if the user wanted to be reminded later, has enough time passed?
@@ -337,6 +346,14 @@ static BOOL _modalOpen = false;
 	}
 }
 
+- (BOOL)userHasDeclinedToRate {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kAppiraterDeclinedToRate];
+}
+
+- (BOOL)userHasRatedCurrentVersion {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kAppiraterRatedCurrentVersion];
+}
+
 + (void)appLaunched {
 	[Appirater appLaunched:YES];
 }
@@ -376,6 +393,14 @@ static BOOL _modalOpen = false;
                    });
 }
 
++ (void)showPrompt {
+    if ([[Appirater sharedInstance] connectedToNetwork]
+        && ![[Appirater sharedInstance] userHasDeclinedToRate]
+        && ![[Appirater sharedInstance] userHasRatedCurrentVersion]) {
+        [[Appirater sharedInstance] showRatingAlert];
+    }
+}
+
 + (id)getRootViewController {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     if (window.windowLevel != UIWindowLevelNormal) {
@@ -391,11 +416,26 @@ static BOOL _modalOpen = false;
     {
         UIResponder *responder = [subView nextResponder];
         if([responder isKindOfClass:[UIViewController class]]) {
-            return responder;
+            return [self topMostViewController: (UIViewController *) responder];
         }
     }
     
     return nil;
+}
+
++ (UIViewController *) topMostViewController: (UIViewController *) controller {
+	BOOL isPresenting = NO;
+	do {
+		// this path is called only on iOS 6+, so -presentedViewController is fine here.
+		UIViewController *presented = [controller presentedViewController];
+		isPresenting = presented != nil;
+		if(presented != nil) {
+			controller = presented;
+		}
+		
+	} while (isPresenting);
+	
+	return controller;
 }
 
 + (void)rateApp {
@@ -405,14 +445,16 @@ static BOOL _modalOpen = false;
 	[userDefaults synchronize];
 
 	//Use the in-app StoreKit view if available (iOS 6) and imported. This works in the simulator.
-	if (NSStringFromClass([SKStoreProductViewController class]) != nil) {
+	if (!_openInAppStore && NSStringFromClass([SKStoreProductViewController class]) != nil) {
 		
 		SKStoreProductViewController *storeViewController = [[SKStoreProductViewController alloc] init];
 		NSNumber *appId = [NSNumber numberWithInteger:_appId.integerValue];
 		[storeViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:appId} completionBlock:nil];
 		storeViewController.delegate = self.sharedInstance;
-		if ([self.sharedInstance.delegate respondsToSelector:@selector(appiraterWillPresentModalView:animated:)]) {
-			[self.sharedInstance.delegate appiraterWillPresentModalView:self.sharedInstance animated:_usesAnimation];
+        
+        id <AppiraterDelegate> delegate = self.sharedInstance.delegate;
+		if ([delegate respondsToSelector:@selector(appiraterWillPresentModalView:animated:)]) {
+			[delegate appiraterWillPresentModalView:self.sharedInstance animated:_usesAnimation];
 		}
 		[[self getRootViewController] presentViewController:storeViewController animated:_usesAnimation completion:^{
 			[self setModalOpen:YES];
@@ -435,6 +477,8 @@ static BOOL _modalOpen = false;
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    id <AppiraterDelegate> delegate = _delegate;
 	
 	switch (buttonIndex) {
 		case 0:
@@ -442,8 +486,8 @@ static BOOL _modalOpen = false;
 			// they don't want to rate it
 			[userDefaults setBool:YES forKey:kAppiraterDeclinedToRate];
 			[userDefaults synchronize];
-			if(self.delegate && [self.delegate respondsToSelector:@selector(appiraterDidDeclineToRate:)]){
-				[self.delegate appiraterDidDeclineToRate:self];
+			if(delegate && [delegate respondsToSelector:@selector(appiraterDidDeclineToRate:)]){
+				[delegate appiraterDidDeclineToRate:self];
 			}
 			break;
 		}
@@ -451,8 +495,8 @@ static BOOL _modalOpen = false;
 		{
 			// they want to rate it
 			[Appirater rateApp];
-			if(self.delegate && [self.delegate respondsToSelector:@selector(appiraterDidOptToRate:)]){
-				[self.delegate appiraterDidOptToRate:self];
+			if(delegate&& [delegate respondsToSelector:@selector(appiraterDidOptToRate:)]){
+				[delegate appiraterDidOptToRate:self];
 			}
 			break;
 		}
@@ -460,8 +504,8 @@ static BOOL _modalOpen = false;
 			// remind them later
 			[userDefaults setDouble:[[NSDate date] timeIntervalSince1970] forKey:kAppiraterReminderRequestDate];
 			[userDefaults synchronize];
-			if(self.delegate && [self.delegate respondsToSelector:@selector(appiraterDidOptToRemindLater:)]){
-				[self.delegate appiraterDidOptToRemindLater:self];
+			if(delegate && [delegate respondsToSelector:@selector(appiraterDidOptToRemindLater:)]){
+				[delegate appiraterDidOptToRemindLater:self];
 			}
 			break;
 		default:
@@ -480,9 +524,14 @@ static BOOL _modalOpen = false;
 		[[UIApplication sharedApplication]setStatusBarStyle:_statusBarStyle animated:_usesAnimation];
 		BOOL usedAnimation = _usesAnimation;
 		[self setModalOpen:NO];
-		[[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:_usesAnimation completion:^{
-			if ([self.sharedInstance.delegate respondsToSelector:@selector(appiraterDidDismissModalView:animated:)]) {
-				[self.sharedInstance.delegate appiraterDidDismissModalView:(Appirater *)self animated:usedAnimation];
+		
+		// get the top most controller (= the StoreKit Controller) and dismiss it
+		UIViewController *presentingController = [UIApplication sharedApplication].keyWindow.rootViewController;
+		presentingController = [self topMostViewController: presentingController];
+		[presentingController dismissViewControllerAnimated:_usesAnimation completion:^{
+            id <AppiraterDelegate> delegate = self.sharedInstance.delegate;
+			if ([delegate respondsToSelector:@selector(appiraterDidDismissModalView:animated:)]) {
+				[delegate appiraterDidDismissModalView:(Appirater *)self animated:usedAnimation];
 			}
 		}];
 		[self.class setStatusBarStyle:(UIStatusBarStyle)nil];

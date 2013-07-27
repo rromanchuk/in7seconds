@@ -30,8 +30,6 @@
     self.datePicker = [[TDDatePickerController alloc] initWithNibName:@"TDDatePickerController" bundle:nil];
     [self.logoutButton setTitle:NSLocalizedString(@"Выйти", @"logout button text") forState:UIControlStateNormal];
     
-    [self.slidingViewController setAnchorRightRevealAmount:295.0f];
-    self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     self.view.backgroundColor = [UIColor darkBackgroundColor];
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
@@ -250,7 +248,7 @@
 
 #pragma mark UIImagePickerControllerDelegate methods
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [self.slidingViewController dismissModalViewControllerAnimated:NO];
+    [self dismissViewControllerAnimated:YES completion:nil];
     //self.slidingViewController
 }
 
@@ -260,13 +258,13 @@
     [self.imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     self.imagePicker.delegate = self;
     self.imagePicker.allowsEditing = YES;
-    [self.slidingViewController presentModalViewController:self.imagePicker animated:YES];
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
     //[self presentModalViewController:self.imagePicker animated:YES];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-        [self.imagePicker dismissModalViewControllerAnimated:NO];
+        [self.imagePicker dismissViewControllerAnimated:NO completion:nil];
         CGRect cropRect = [[info valueForKey:UIImagePickerControllerCropRect] CGRectValue];
         // don't try to juggle around orientation, rotate from the beginning if needed
         UIImage *image = [info[@"UIImagePickerControllerOriginalImage"] fixOrientation];

@@ -68,7 +68,7 @@
 		94D09CCC16CBF0160064F886 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CCB16CBF0160064F886 /* IndexViewController.m */; };
 		94D09CCE16CBF0CC0064F886 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D09CCD16CBF0CC0064F886 /* CoreData.framework */; };
 		94D09CD116CBF2260064F886 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CD016CBF2260064F886 /* InitialViewController.m */; };
-		94D09CD416CBF3830064F886 /* NavigationTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CD316CBF3830064F886 /* NavigationTopViewController.m */; };
+		94D09CD416CBF3830064F886 /* BaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CD316CBF3830064F886 /* BaseNavigationViewController.m */; };
 		94D09CD716CBF4060064F886 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CD616CBF4060064F886 /* MenuViewController.m */; };
 		94FB84F11733B17A001A74D3 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FB84F01733B17A001A74D3 /* Notification.m */; };
 		94FB84F41733B17B001A74D3 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FB84F31733B17B001A74D3 /* Match.m */; };
@@ -292,8 +292,8 @@
 		94D09CCD16CBF0CC0064F886 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		94D09CCF16CBF2260064F886 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InitialViewController.h; path = controllers/InitialViewController.h; sourceTree = "<group>"; };
 		94D09CD016CBF2260064F886 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InitialViewController.m; path = controllers/InitialViewController.m; sourceTree = "<group>"; };
-		94D09CD216CBF3830064F886 /* NavigationTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationTopViewController.h; path = controllers/NavigationTopViewController.h; sourceTree = "<group>"; };
-		94D09CD316CBF3830064F886 /* NavigationTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationTopViewController.m; path = controllers/NavigationTopViewController.m; sourceTree = "<group>"; };
+		94D09CD216CBF3830064F886 /* BaseNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseNavigationViewController.h; path = controllers/BaseNavigationViewController.h; sourceTree = "<group>"; };
+		94D09CD316CBF3830064F886 /* BaseNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseNavigationViewController.m; path = controllers/BaseNavigationViewController.m; sourceTree = "<group>"; };
 		94D09CD516CBF4060064F886 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = controllers/MenuViewController.h; sourceTree = "<group>"; };
 		94D09CD616CBF4060064F886 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = controllers/MenuViewController.m; sourceTree = "<group>"; };
 		94FB84EF1733B17A001A74D3 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = models/Notification.h; sourceTree = "<group>"; };
@@ -747,8 +747,8 @@
 				94D09CCB16CBF0160064F886 /* IndexViewController.m */,
 				94D09CCF16CBF2260064F886 /* InitialViewController.h */,
 				94D09CD016CBF2260064F886 /* InitialViewController.m */,
-				94D09CD216CBF3830064F886 /* NavigationTopViewController.h */,
-				94D09CD316CBF3830064F886 /* NavigationTopViewController.m */,
+				94D09CD216CBF3830064F886 /* BaseNavigationViewController.h */,
+				94D09CD316CBF3830064F886 /* BaseNavigationViewController.m */,
 				94D09CD516CBF4060064F886 /* MenuViewController.h */,
 				94D09CD616CBF4060064F886 /* MenuViewController.m */,
 				FAA2CFB916DD6A8D00C22D76 /* CoreDataTableViewController.h */,
@@ -1119,7 +1119,7 @@
 				94D09CC916CBED1D0064F886 /* User+REST.m in Sources */,
 				94D09CCC16CBF0160064F886 /* IndexViewController.m in Sources */,
 				94D09CD116CBF2260064F886 /* InitialViewController.m in Sources */,
-				94D09CD416CBF3830064F886 /* NavigationTopViewController.m in Sources */,
+				94D09CD416CBF3830064F886 /* BaseNavigationViewController.m in Sources */,
 				94D09CD716CBF4060064F886 /* MenuViewController.m in Sources */,
 				9484987616CBFE96000083DE /* UIBarButtonItem+Borderless.m in Sources */,
 				9484988A16CD1EBB000083DE /* UIColor+Defaults.m in Sources */,
