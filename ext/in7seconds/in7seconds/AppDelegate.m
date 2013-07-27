@@ -12,6 +12,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import "UAPush.h"
 #import "UAirship.h"
+#import "UAConfig.h"
 #import "Config.h"
 #import "Facebook.h"
 #import "Appirater.h"
@@ -36,28 +37,17 @@
     [TestFlight takeOff:@"8b9f2759-9e2b-48d9-873b-d3af3677d35b"];
     [Crashlytics startWithAPIKey:@"cbbca2d940f872c4617ddb67cf20ec9844d036ea"];
     
+    UAConfig *config = [UAConfig defaultConfig];
+    config.developmentAppKey = [Config sharedConfig].airshipKeyDev;
+    config.developmentAppSecret = [Config sharedConfig].airshipSecretDev;
+    config.productionAppKey = [Config sharedConfig].airshipKeyProd;
+    config.productionAppSecret = [Config sharedConfig].airshipSecretProd;
+
     
-    NSMutableDictionary *takeOffOptions = [[NSMutableDictionary alloc] init];
-    [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
+
     
-    NSMutableDictionary *airshipConfigOptions = [[NSMutableDictionary alloc] init];
-    
-    [airshipConfigOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
-    
-    [airshipConfigOptions setValue:[Config sharedConfig].airshipKeyDev forKey:@"DEVELOPMENT_APP_KEY"];
-    [airshipConfigOptions setValue:[Config sharedConfig].airshipSecretDev forKey:@"DEVELOPMENT_APP_SECRET"];
-    [airshipConfigOptions setValue:[Config sharedConfig].airshipKeyProd  forKey:@"PRODUCTION_APP_KEY"];
-    [airshipConfigOptions setValue:[Config sharedConfig].airshipSecretProd  forKey:@"PRODUCTION_APP_SECRET"];
-    
-#ifdef DEBUG
-    [airshipConfigOptions setValue:@"NO" forKey:@"APP_STORE_OR_AD_HOC_BUILD"];
-#else
-    [airshipConfigOptions setValue:@"YES" forKey:@"APP_STORE_OR_AD_HOC_BUILD"];
-#endif
-    
-    [takeOffOptions setValue:airshipConfigOptions forKey:UAirshipTakeOffOptionsAirshipConfigKey];
-    
-    [UAirship takeOff:takeOffOptions];
+    [UAirship takeOff:config];
+    [[UAPush shared] setPushEnabled:YES];
     [UAPush shared].delegate = [NotificationHandler shared];
     [[UAPush shared] setAutobadgeEnabled:YES];
 
@@ -170,7 +160,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [UAirship land];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

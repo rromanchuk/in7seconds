@@ -8,6 +8,10 @@
 
 #import "InitialViewController.h"
 #import "IndexViewController.h"
+#import "BaseNavigationViewController.h"
+#import "MenuViewController.h"
+#import "IndexViewController.h"
+
 #import "RestHookup.h"
 #import "Hookup+REST.h"
 #import "Location.h"
@@ -26,9 +30,6 @@
     self = [super initWithCenterViewController:[storyboard instantiateViewControllerWithIdentifier:@"middleViewController"]
                             leftViewController:[storyboard instantiateViewControllerWithIdentifier:@"leftViewController"]];
     if (self) {
-        // Add any extra init code here
-        //((LeftViewController *)((ApplicatonNavigationController *)self.leftController).topViewController).delegate = self;
-        ////self.currentUser = [User currentUser:self.managedObjectContext];
         
     }
     return self;
@@ -53,37 +54,44 @@
 //
 //}
 //
-//- (void)viewDidAppear:(BOOL)animated {
-//    [super viewDidAppear:animated];
-//    if (self.currentUser) {
-//        [self setup];
-//    } else {
-//        [self performSegueWithIdentifier:@"Login" sender:self];
-//    }
-//}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setup];
+    if (self.currentUser) {
+        
+        [self setup];
+    } else {
+        [self performSegueWithIdentifier:@"Login" sender:self];
+    }
+}
 //
 //
 //
-//- (void)setup {
-//    
-//    UIStoryboard *storyboard;
-//    
-//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-//        storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-//    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-//        storyboard = [UIStoryboard storyboardWithName:@"iPad" bundle:nil];
-//    }
-//
-//    // Do any additional setup after loading the view.
-//    //ALog(@"moc: %@ currentUser: %@", self.managedObjectContext, self.currentUser);
-//    self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"NavigationTop"];
-//    NavigationTopViewController *nc = ((NavigationTopViewController *)self.topViewController);
-//    nc.managedObjectContext = self.managedObjectContext;
+- (void)setup {
+    
+    UIStoryboard *storyboard;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        storyboard = [UIStoryboard storyboardWithName:@"iPad" bundle:nil];
+    }
+
+    // Do any additional setup after loading the view.
+    //ALog(@"moc: %@ currentUser: %@", self.managedObjectContext, self.currentUser);
 //    ((IndexViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
 //    ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
 //    ((MenuViewController *)nc.slidingViewController.underLeftViewController).delegate = self;
-//    
-//}
+    
+    BaseNavigationViewController *leftController = (BaseNavigationViewController *)self.viewDeckController.leftController;
+    BaseNavigationViewController *centerController = (BaseNavigationViewController *)self.viewDeckController.centerController;
+    ((MenuViewController *)leftController.topViewController).managedObjectContext = self.managedObjectContext;
+    ((MenuViewController *)leftController.topViewController).currentUser = self.currentUser;
+
+    ((IndexViewController *)centerController.topViewController).managedObjectContext = self.managedObjectContext;
+    ((IndexViewController *)centerController.topViewController).currentUser = self.currentUser;
+
+}
 //
 //#pragma mark LoginDelegate methods
 //- (void)didVkLogin:(User *)user {

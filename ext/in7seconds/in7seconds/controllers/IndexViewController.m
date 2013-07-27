@@ -7,6 +7,7 @@
 //
 
 #import "IndexViewController.h"
+#import "BaseNavigationViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MatchesViewController.h"
 #import "CommentViewController.h"
@@ -49,6 +50,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = delegate.managedObjectContext;
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    
     self.swipeView.delegate = self;
     _isFetching = NO;
     [self noResultsLeft];
@@ -68,7 +73,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(topDidAppear) name:@"ECSlidingViewTopDidReset" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftViewWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
     
-    ((MenuViewController *)self.viewDeckController.leftController).settingsDelegate = self;
+    BaseNavigationViewController *nc = (BaseNavigationViewController *)self.viewDeckController.leftController;
+    MenuViewController *vc = (MenuViewController *)nc.viewControllers[0];
+    vc.settingsDelegate = self;
+  
     
     UIImage *notificationsImage = [UIImage imageNamed:@"navigation-logo"];
     UIButton *notificationButton = [UIButton buttonWithType:UIButtonTypeCustom];
