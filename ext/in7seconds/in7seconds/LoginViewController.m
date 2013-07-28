@@ -7,6 +7,8 @@
 //
 
 #import "LoginViewController.h"
+#import "IndexViewController.h"
+#import "BaseNavigationViewController.h"
 #import "RestUser.h"
 #import "AppDelegate.h"
 #import "UAPush.h"
@@ -21,14 +23,6 @@
 
 @implementation LoginViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -70,6 +64,7 @@
 
 - (void)showVkontakteAuthController:(UIViewController *)controller
 {
+    self.vkController = controller;
     [self presentViewController:controller animated:YES completion:^(void) {
         
     }];
@@ -100,7 +95,7 @@
                   [self setIdentifiers:user];
                   [SVProgressHUD dismiss];
                   [self setupProfile];
-
+                  [self.vkController dismissViewControllerAnimated:YES completion:nil];
 
               }
              onError:^(NSError *error) {
@@ -108,6 +103,7 @@
                  [RestUser resetIdentifiers];
                  [[Vkontakte sharedInstance] logout];
                  [self dismissViewControllerAnimated:YES completion:nil];
+                 [self.vkController dismissViewControllerAnimated:YES completion:nil];
                  [SVProgressHUD showErrorWithStatus:error.localizedDescription];
              }];
 
@@ -168,10 +164,15 @@
 
 - (void)setupProfile {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    MenuViewController *menu = [storyboard instantiateViewControllerWithIdentifier:@"leftViewController"];
+    
+    BaseNavigationViewController *center = [storyboard instantiateViewControllerWithIdentifier:@"middleViewController"];
+    self.viewDeckController.centerController = center;
+    
+    BaseNavigationViewController *menu = [storyboard instantiateViewControllerWithIdentifier:@"leftViewController"];
     self.viewDeckController.leftController = menu;
     
 }
+
 - (void)saveContext
 {
     NSError *error = nil;

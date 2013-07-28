@@ -901,6 +901,7 @@
 				FA70024F16CAECB20098A5B7 /* Resources */,
 				8E491643FF18455A9E8F911A /* Copy Pods Resources */,
 				FA809FE616D03CED003920E6 /* ShellScript */,
+				94EA8B1417A5490A002CA8FB /* Bump Version */,
 			);
 			buildRules = (
 				943837DA173E611100052C47 /* PBXBuildRule */,
@@ -1075,6 +1076,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+		94EA8B1417A5490A002CA8FB /* Bump Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bump Version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ $CONFIGURATION == Release ]; then\necho \"Bumping build number...\"\nplist=${PROJECT_DIR}/${INFOPLIST_FILE}\n\n# increment the build number (ie 115 to 116)\nbuildnum=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${plist}\")\nif [[ \"${buildnum}\" == \"\" ]]; then\necho \"No build number in $plist\"\nexit 2\nfi\n\nbuildnum=$(expr $buildnum + 1)\n/usr/libexec/Plistbuddy -c \"Set CFBundleVersion $buildnum\" \"${plist}\"\necho \"Bumped build number to $buildnum\"\n\nelse\necho $CONFIGURATION \" build - Not bumping build number.\"\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 		FA70027516CAECB20098A5B7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1284,7 +1300,7 @@
 					"\"$(SRCROOT)/Airship\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "037BA528-7865-4409-BBDE-5499E3BC90A6";
+				PROVISIONING_PROFILE = "898C11E9-2FFE-4BC0-995C-C8409C6EBF83";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;

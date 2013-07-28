@@ -68,10 +68,7 @@
     [Location sharedLocation].delegate = self;
     self.initalStoryboard = self.window.rootViewController.storyboard;
     
-    InitialViewController *vc = (InitialViewController *)self.window.rootViewController;
-    vc.managedObjectContext = self.managedObjectContext;
     self.currentUser = [User currentUser:self.managedObjectContext];
-    vc.currentUser = self.currentUser;
     [self theme];
     
     [FBSettings publishInstall:@"138127329695553"];

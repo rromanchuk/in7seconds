@@ -40,7 +40,7 @@
 
 - (void)touchesDidEnd {
     ALog(@"TOUCHES DID END");
-    self.viewDeckController.panningMode = IIViewDeckPanningViewPanning;
+    self.viewDeckController.panningMode = IIViewDeckNavigationBarPanning;
 }
 
 - (void)viewDidLoad
@@ -57,6 +57,7 @@
     
     
     self.userImageView.delegate = self;
+    self.viewDeckController.delegate = self;
     
     UIImage *notificationsImage = [UIImage imageNamed:@"navigation-logo"];
     UIButton *notificationButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -71,20 +72,23 @@
     
     
     self.userImageView.notifyImageLoad = YES;
-    
+    _secondsLeft = 8;
     self.countdownLabel.text = @"7";
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
-
+    self.hookups = [[NSMutableSet alloc] init];
+    [self.activityIndicator stopAnimating];
     if (self.currentUser) {
         [self noResultsLeft];
-        self.hookups = [[NSMutableSet alloc] init];
         [self fetchHookups];
     }
 }
 
 - (void)viewDeckController:(IIViewDeckController*)viewDeckController didShowCenterViewFromSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
     ALog(@"did show center view from side");
+    [self topDidAppear];
 }
+
+//- (void)view
 
 - (void)leftViewWillAppear {
     ALog(@"left view will appear with user");
@@ -386,7 +390,12 @@
 }
 
 - (IBAction)didTapInfo:(id)sender {
-    [self performSegueWithIdentifier:@"UserProfile" sender:self];
+    if (self.currentUser) {
+        [self performSegueWithIdentifier:@"UserProfile" sender:self];
+    } else {
+        [self revealMenu:nil];
+    }
+    
 }
 
 - (IBAction)didTapLike:(id)sender {

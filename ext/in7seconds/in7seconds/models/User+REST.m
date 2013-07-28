@@ -60,8 +60,11 @@
 }
 
 + (User *)currentUser:(NSManagedObjectContext *)context {
-    NSNumber *currentId =  @([[RestUser currentUserId] integerValue]);
+    if (!context) {
+        abort();
+    }
     
+    NSNumber *currentId =  @([[RestUser currentUserId] integerValue]);
     if ([RestUser currentUserId]) {
         User *user = [User userWithExternalId:currentId inManagedObjectContext:context];
         //ALog("got user %@", user);

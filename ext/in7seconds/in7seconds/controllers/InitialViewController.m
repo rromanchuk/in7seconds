@@ -27,10 +27,17 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    
-    self = [super initWithCenterViewController:[storyboard instantiateViewControllerWithIdentifier:@"middleViewController"]
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = delegate.managedObjectContext;
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    if (self.currentUser) {
+        self = [super initWithCenterViewController:[storyboard instantiateViewControllerWithIdentifier:@"middleViewController"]
                                 leftViewController:[storyboard instantiateViewControllerWithIdentifier:@"leftViewController"]];
-        
+    } else {
+        self = [super initWithCenterViewController:[storyboard instantiateViewControllerWithIdentifier:@"middleViewController"]
+                                leftViewController:[storyboard instantiateViewControllerWithIdentifier:@"loginViewController"]];
+    }
+            
     if (self) {
         
     }
@@ -48,51 +55,7 @@
 //
 //}
 //
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self setup];
-}
-//
-//
-//
-- (void)setup {
-    
-    UIStoryboard *storyboard;
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        storyboard = [UIStoryboard storyboardWithName:@"iPad" bundle:nil];
-    }
-    
-    User *currentUser = [User currentUser:self.managedObjectContext];
-    if (currentUser) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-        MenuViewController *menu = [storyboard instantiateViewControllerWithIdentifier:@"leftViewController"];
-        menu.managedObjectContext = self.managedObjectContext;
-        menu.currentUser = currentUser;
-        self.viewDeckController.leftController = menu;
-    } else {
-        LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
-        loginViewController.managedObjectContext = self.managedObjectContext;
-        loginViewController.currentUser = currentUser;
-    }
 
-// Do any additional setup after loading the view.
-//ALog(@"moc: %@ currentUser: %@", self.managedObjectContext, self.currentUser);
-//    ((IndexViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
-//    ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
-//    ((MenuViewController *)nc.slidingViewController.underLeftViewController).delegate = self;
-    
-    BaseNavigationViewController *leftController = (BaseNavigationViewController *)self.viewDeckController.leftController;
-    BaseNavigationViewController *centerController = (BaseNavigationViewController *)self.viewDeckController.centerController;
-    ((MenuViewController *)leftController.topViewController).managedObjectContext = self.managedObjectContext;
-    ((MenuViewController *)leftController.topViewController).currentUser = self.currentUser;
-
-    ((IndexViewController *)centerController.topViewController).managedObjectContext = self.managedObjectContext;
-    ((IndexViewController *)centerController.topViewController).currentUser = self.currentUser;
-
-}
 //
 //#pragma mark LoginDelegate methods
 //- (void)didVkLogin:(User *)user {

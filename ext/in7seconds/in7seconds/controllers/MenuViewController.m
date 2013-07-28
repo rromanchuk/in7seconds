@@ -7,6 +7,7 @@
 //
 
 #import "MenuViewController.h"
+#import "BaseNavigationViewController.h"
 #import "RestUser.h"
 #import "AppDelegate.h"
 #import "User+REST.h"
@@ -31,7 +32,7 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
     self.currentUser = [User currentUser:self.managedObjectContext];
-    self.settingsDelegate = (IndexViewController *)self.viewDeckController.centerController;
+    self.settingsDelegate = (IndexViewController *)((BaseNavigationViewController *)self.viewDeckController.centerController).topViewController;
     
     [self setupProfile];
 
@@ -142,11 +143,19 @@
 
     [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
-    self.viewDeckController.leftController = loginViewController;
-}
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+//        
+//    BaseNavigationViewController *centerViewController = [storyboard instantiateViewControllerWithIdentifier:@"middleViewController"];
+//    self.viewDeckController.centerController = centerViewController;
+//    
+//    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
+//    self.viewDeckController.leftController = loginViewController;
+//    
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [sharedAppDelegate resetWindowToInitialView];
 
+
+}
 
 - (IBAction)didTapWomen:(id)sender {
     _filtersChanged = YES;

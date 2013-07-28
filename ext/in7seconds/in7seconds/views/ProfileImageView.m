@@ -41,7 +41,6 @@
     self.layer.borderWidth = 3;
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((self.frame.size.width/2) - 10, (self.frame.size.height / 2) - 10, 20.0, 20.0) ];
     [self addSubview:self.activityIndicator];
-    [self.activityIndicator startAnimating];
     [self.activityIndicator setHidesWhenStopped:YES];
     self.activityIndicator.backgroundColor = RGBCOLOR(197, 197, 197);
     self.activityIndicator.opaque = YES;
@@ -51,6 +50,7 @@
 
 - (void)setProfilePhotoWithURL:(NSString *)url {
     NSURLRequest *postcardRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [self.activityIndicator startAnimating];
     [self setImageWithURLRequest:postcardRequest
                 placeholderImage:nil
                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
