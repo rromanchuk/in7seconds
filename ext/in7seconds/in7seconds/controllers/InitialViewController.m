@@ -27,8 +27,10 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    
     self = [super initWithCenterViewController:[storyboard instantiateViewControllerWithIdentifier:@"middleViewController"]
-                            leftViewController:[storyboard instantiateViewControllerWithIdentifier:@"leftViewController"]];
+                                leftViewController:[storyboard instantiateViewControllerWithIdentifier:@"leftViewController"]];
+        
     if (self) {
         
     }
@@ -37,14 +39,6 @@
 
 
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([segue.identifier isEqualToString:@"Login"]) {        
-//        LoginViewController *vc = (LoginViewController *)segue.destinationViewController;
-//        vc.managedObjectContext = self.managedObjectContext;
-//        vc.currentUser = self.currentUser;
-//        vc.delegate = self;
-//    }
-//}
 //
 //- (void)viewDidLoad
 //{
@@ -57,12 +51,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self setup];
-    if (self.currentUser) {
-        
-        [self setup];
-    } else {
-        [self performSegueWithIdentifier:@"Login" sender:self];
-    }
 }
 //
 //
@@ -76,9 +64,22 @@
     } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         storyboard = [UIStoryboard storyboardWithName:@"iPad" bundle:nil];
     }
+    
+    User *currentUser = [User currentUser:self.managedObjectContext];
+    if (currentUser) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        MenuViewController *menu = [storyboard instantiateViewControllerWithIdentifier:@"leftViewController"];
+        menu.managedObjectContext = self.managedObjectContext;
+        menu.currentUser = currentUser;
+        self.viewDeckController.leftController = menu;
+    } else {
+        LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
+        loginViewController.managedObjectContext = self.managedObjectContext;
+        loginViewController.currentUser = currentUser;
+    }
 
-    // Do any additional setup after loading the view.
-    //ALog(@"moc: %@ currentUser: %@", self.managedObjectContext, self.currentUser);
+// Do any additional setup after loading the view.
+//ALog(@"moc: %@ currentUser: %@", self.managedObjectContext, self.currentUser);
 //    ((IndexViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
 //    ((IndexViewController *)nc.topViewController).currentUser = self.currentUser;
 //    ((MenuViewController *)nc.slidingViewController.underLeftViewController).delegate = self;

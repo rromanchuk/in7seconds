@@ -30,7 +30,9 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
-    self.currentUser = appDelegate.currentUser;
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    self.settingsDelegate = (IndexViewController *)self.viewDeckController.centerController;
+    
     [self setupProfile];
 
     self.navigationController.navigationBarHidden = YES;
@@ -54,15 +56,8 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pictureFromLibrary:)];
     [self.profileImage addGestureRecognizer:tap];
     
-    //[UAPush openApnsSettings:self animated:YES];
 }
 
-
-- (void)leftViewWillAppear {
-    self.currentUser = [User currentUser:self.managedObjectContext];
-    [self setupProfile];
-    ALog(@"left view will appear with user %@ and managedObject %@", self.currentUser, self.managedObjectContext);
-}
 
 
 - (void)setupProfile {
@@ -134,8 +129,24 @@
 
 - (IBAction)didTapLogout:(id)sender {
     ALog(@"did tap logout sending to delegate %@", self.delegate);
-    [self.delegate didLogout];
+    [self didLogout];
 }
+
+- (void)didLogout
+{
+    ALog(@"in logout");
+    [[Location sharedLocation] stopUpdatingLocation:@"logout"];
+    [[[RestClient sharedClient] operationQueue] cancelAllOperations];
+    [RestUser resetIdentifiers];
+    [[Vkontakte sharedInstance] logout];
+
+    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
+    self.viewDeckController.leftController = loginViewController;
+}
+
 
 - (IBAction)didTapWomen:(id)sender {
     _filtersChanged = YES;
@@ -255,7 +266,7 @@
 
 #pragma mark UIImagePickerControllerDelegate methods
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
     //self.slidingViewController
 }
 

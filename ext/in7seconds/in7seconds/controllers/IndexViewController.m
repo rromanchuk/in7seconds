@@ -35,16 +35,12 @@
 
 - (void)touchesDidBegin {
     ALog(@"TOUCHES DID BEGIN");
-    //self.viewDeckController.delegateMode
-    //[self.navigationController.view removeGestureRecognizer:self.slidingViewController.panGesture];
     self.viewDeckController.panningMode = IIViewDeckNoPanning;
 }
 
 - (void)touchesDidEnd {
     ALog(@"TOUCHES DID END");
-    //[self.navigationController.view addGestureRecognizer:self.slidingViewController.panGesture];
     self.viewDeckController.panningMode = IIViewDeckPanningViewPanning;
-
 }
 
 - (void)viewDidLoad
@@ -53,30 +49,14 @@
     AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     self.managedObjectContext = delegate.managedObjectContext;
     self.currentUser = [User currentUser:self.managedObjectContext];
-    
-    self.swipeView.delegate = self;
     _isFetching = NO;
-    [self noResultsLeft];
-    
-    self.hookups = [[NSMutableSet alloc] init];
-    
-    [self fetchHookups];
-        
+    _numberOfAttempts = 0;
+    self.swipeView.delegate = self;
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"settings_icon"] target:self action:@selector(revealMenu:)];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chat_icon"] target:self action:@selector(didTapMatches:)];
     
-
+    
     self.userImageView.delegate = self;
-    _numberOfAttempts = 0;
-    //self.viewDeckController ad
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(topDidAppear) name:@"ECSlidingViewTopDidReset" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leftViewWillAppear) name:@"ECSlidingViewUnderLeftWillAppear" object:nil];
-    
-    BaseNavigationViewController *nc = (BaseNavigationViewController *)self.viewDeckController.leftController;
-    MenuViewController *vc = (MenuViewController *)nc.viewControllers[0];
-    vc.settingsDelegate = self;
-  
     
     UIImage *notificationsImage = [UIImage imageNamed:@"navigation-logo"];
     UIButton *notificationButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -84,21 +64,26 @@
     
     [notificationButton setBackgroundImage:notificationsImage forState:UIControlStateNormal];
     [notificationButton setFrame:CGRectMake(0, 0, 125, 27)];
-
+    
     self.navigationItem.titleView = notificationButton;
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     sharedAppDelegate.delegate = self;
     
     
     self.userImageView.notifyImageLoad = YES;
-    [self fetchHookups];
     
     self.countdownLabel.text = @"7";
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
+
+    if (self.currentUser) {
+        [self noResultsLeft];
+        self.hookups = [[NSMutableSet alloc] init];
+        [self fetchHookups];
+    }
 }
 
 - (void)viewDeckController:(IIViewDeckController*)viewDeckController didShowCenterViewFromSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
-    
+    ALog(@"did show center view from side");
 }
 
 - (void)leftViewWillAppear {
@@ -107,7 +92,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    //[self.navigationController.view removeGestureRecognizer:self.slidingViewController.panGesture];
     [super viewWillAppear:animated];
 }
 
@@ -131,7 +115,6 @@
     [super viewDidUnload];
 }
 
-
 - (void)startCountdown {
     ALog(@"starting countdown");
     _secondsLeft = 8;
@@ -143,11 +126,10 @@
     }
 }
 
--(void)stopCountdown {
+- (void)stopCountdown {
     ALog(@"stopping countdown");
     [_timer invalidate];
 }
-
 
 - (void)updateCountdownLabel {
     _secondsLeft--;
@@ -273,15 +255,22 @@
             self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", self.otherUser.lastName, self.otherUser.firstName];
         }
     } else {
-        if (_numberOfAttempts < 3) 
+        if (_numberOfAttempts < 3 && !_isFetching)
             [self fetchPossibleHookups];
 
-        [self noResultsLeft];
+        if (!_isFetching) {
+            [self noResultsLeft];
+        }
+        
     }
 }
 
 #pragma mark - Server fetching
 - (void)fetchPossibleHookups {
+    
+    if (!self.currentUser)
+        return;
+    
     ALog(@"is fetching possible hookups");
     if (_isFetching || _numberOfAttempts > 5)
         return;
@@ -355,7 +344,6 @@
     }
 }
 
-
 #pragma mark MatchModalDelegate methods
 - (void)userWantsToChat:(Match *)matchUser {
     [self dismissViewControllerAnimated:NO completion:nil];
@@ -385,7 +373,11 @@
 #pragma mark - user events
 
 - (IBAction)didTapMatches:(id)sender {
-    [self performSegueWithIdentifier:@"Matches" sender:nil];
+    if (self.currentUser) {
+        [self performSegueWithIdentifier:@"Matches" sender:nil];
+    } else {
+        [self revealMenu:self];
+    }
 }
 
 
@@ -398,6 +390,10 @@
 }
 
 - (IBAction)didTapLike:(id)sender {
+    if (!self.currentUser) {
+        [self revealMenu:self];
+        return;
+    }
     [Flurry logEvent:@"Like_Tapped"];
     [self stopCountdown];
     if (!self.otherUser) {
@@ -422,6 +418,10 @@
 }
 
 - (IBAction)didTapUnlike:(id)sender {
+    if (!self.currentUser) {
+        [self revealMenu:self];
+        return;
+    }
     [Flurry logEvent:@"Unlike_Tapped"];
     [self stopCountdown];
     if (!self.otherUser) {

@@ -13,6 +13,7 @@
 		9404B50A1730FE860052E4CE /* MutualFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B5091730FE860052E4CE /* MutualFriend.m */; };
 		9404B50D1730FE860052E4CE /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B50C1730FE860052E4CE /* PrivateMessage.m */; };
 		9404B5101730FE860052E4CE /* Hookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B50F1730FE860052E4CE /* Hookup.m */; };
+		940E8E2D17A52B1F00B5FA36 /* alena@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 940E8E2C17A52B1F00B5FA36 /* alena@2x.png */; };
 		942544E516EF87A100FA79FB /* NoChatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 942544E416EF87A000FA79FB /* NoChatsView.xib */; };
 		942544E816EF888200FA79FB /* NoChatsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 942544E716EF888200FA79FB /* NoChatsView.m */; };
 		942A4F1A175A1A3000A99482 /* notification-dismiss@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 942A4F18175A1A3000A99482 /* notification-dismiss@2x.png */; };
@@ -213,6 +214,7 @@
 		9404B50C1730FE860052E4CE /* PrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivateMessage.m; path = models/PrivateMessage.m; sourceTree = "<group>"; };
 		9404B50E1730FE860052E4CE /* Hookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hookup.h; path = models/Hookup.h; sourceTree = "<group>"; };
 		9404B50F1730FE860052E4CE /* Hookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hookup.m; path = models/Hookup.m; sourceTree = "<group>"; };
+		940E8E2C17A52B1F00B5FA36 /* alena@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alena@2x.png"; sourceTree = "<group>"; };
 		942544E416EF87A000FA79FB /* NoChatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoChatsView.xib; sourceTree = "<group>"; };
 		942544E616EF888200FA79FB /* NoChatsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoChatsView.h; path = views/NoChatsView.h; sourceTree = "<group>"; };
 		942544E716EF888200FA79FB /* NoChatsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoChatsView.m; path = views/NoChatsView.m; sourceTree = "<group>"; };
@@ -659,6 +661,7 @@
 		FA70028F16CAECBD0098A5B7 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				940E8E2C17A52B1F00B5FA36 /* alena@2x.png */,
 				94713B91178BCEBA005F1C4F /* reject.png */,
 				94713B92178BCEBA005F1C4F /* reject@2x.png */,
 				94713B93178BCEBA005F1C4F /* accepted.png */,
@@ -1044,6 +1047,7 @@
 				94713B96178BCEBA005F1C4F /* reject@2x.png in Resources */,
 				94713B97178BCEBA005F1C4F /* accepted.png in Resources */,
 				94713B98178BCEBA005F1C4F /* accepted@2x.png in Resources */,
+				940E8E2D17A52B1F00B5FA36 /* alena@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1266,7 +1270,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF7F3663B2C24854B8CFE612 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Romanchuk";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Romanchuk (RJ6W6Q2JLW)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1280,7 +1284,7 @@
 					"\"$(SRCROOT)/Airship\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AD0A1886-D2F7-49D2-AF68-81D1140C4DAC";
+				PROVISIONING_PROFILE = "037BA528-7865-4409-BBDE-5499E3BC90A6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;

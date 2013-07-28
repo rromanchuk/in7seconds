@@ -11,6 +11,10 @@
 #import "AppDelegate.h"
 #import "UAPush.h"
 #import "UAirship.h"
+#import "MenuViewController.h"
+
+#import <ViewDeck/IIViewDeckController.h>
+
 @interface LoginViewController ()
 
 @end
@@ -29,6 +33,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = appDelegate.managedObjectContext;
+    
     [Vkontakte sharedInstance].delegate = self;
     [FacebookHelper shared].delegate = self;
     self.loginLabel.text = NSLocalizedString(@"Войти через Вконтакте", @"Login with vk prompt");
@@ -91,10 +99,8 @@
                   [RestUser setCurrentUserToken:restUser.authenticationToken];
                   [self setIdentifiers:user];
                   [SVProgressHUD dismiss];
-                  [self.delegate didVkLogin:user];
-                  [self dismissViewControllerAnimated:YES completion:^(void) {
-                      ALog(@"finished dismissing");
-                  }];
+                  [self setupProfile];
+
 
               }
              onError:^(NSError *error) {
@@ -132,7 +138,7 @@
     [RestUser setCurrentUserToken:restUser.authenticationToken];
     [self setIdentifiers:user];
     [SVProgressHUD dismiss];
-    [self.delegate didFbLogin:user];
+    [self setupProfile];
 }
 
 - (void)fbDidFailLogin:(NSError *)error {
@@ -158,6 +164,13 @@
         [Flurry setAge:[user.yearsOld integerValue]];
     }
 
+}
+
+- (void)setupProfile {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    MenuViewController *menu = [storyboard instantiateViewControllerWithIdentifier:@"leftViewController"];
+    self.viewDeckController.leftController = menu;
+    
 }
 - (void)saveContext
 {
