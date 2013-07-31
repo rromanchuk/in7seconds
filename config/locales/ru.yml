@@ -53,7 +53,7 @@ ru:
       failure: "Вы не можете войти в систему с учётной записью из %{kind}, т.к. \"%{reason}\"."
     mailer:
       confirmation_instructions:
-        subject: "Инструкции по подтверждению учётной записи"
+        subject: "Последний шаг на пути к победе"
       reset_password_instructions:
         subject: "Инструкции по восстановлению пароля"
       unlock_instructions:

@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
 
   def check_email_status
     if is_active && has_facebook?
-
+      confirm!
     elsif is_active? && !email.blank?
       if confirmation_sent_at.blank? && !confirmed?
         send_confirmation_instructions
@@ -277,6 +277,10 @@ class User < ActiveRecord::Base
     else
       USER_FEMALE
     end
+  end
+
+  def is_girl?
+    gender == USER_FEMALE
   end
 
   def vk_app_users
