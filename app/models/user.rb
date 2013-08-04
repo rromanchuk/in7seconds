@@ -497,7 +497,7 @@ class User < ActiveRecord::Base
 
     # Ok find friends on facebook
     if users.length < 20
-      friends = filter(User.where(:id => self.friends.map(&:id) ).where('gender IN (?)', get_genders))
+      friends = filter(User.where(:id => self.friends.pluck(:id) ).where('gender IN (?)', get_genders))
       users = users.concat(friends)
     end
     
@@ -525,7 +525,9 @@ class User < ActiveRecord::Base
   end
 
   def exclude_ids
-    (hookups + pending_hookups + rejected_hookups).map(&:id)
+    #relationships.pluck(:id)
+    relationships.where("status != 'requested'").pluck(:id)
+    #(hookups.pluck(:id) + pending_hookups.pluck(:id) + rejected_hookups.pluck(:id))
   end
 
   def users_nearby
