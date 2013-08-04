@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="13A476u" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3389" systemVersion="13A524d" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Hookup" representedClassName="Hookup" syncable="YES">
         <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
@@ -8,6 +8,7 @@
         <attribute name="didRate" optional="YES" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="fbDomain" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="friendNames" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="Boolean" indexed="YES" syncable="YES"/>
@@ -44,6 +45,7 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="fbDomain" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="friendNames" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -133,13 +135,13 @@
         <relationship name="threads" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Thread" inverseName="user" inverseEntity="Thread" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Hookup" positionX="160" positionY="192" width="128" height="465"/>
-        <element name="Image" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Match" positionX="160" positionY="192" width="128" height="465"/>
-        <element name="MutualFriend" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="Notification" positionX="160" positionY="192" width="128" height="150"/>
-        <element name="PrivateMessage" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Thread" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="User" positionX="160" positionY="192" width="128" height="525"/>
+        <element name="Hookup" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Image" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Match" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MutualFriend" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Notification" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PrivateMessage" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Thread" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="User" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

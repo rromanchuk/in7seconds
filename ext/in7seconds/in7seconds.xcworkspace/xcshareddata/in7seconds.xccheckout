@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>AB2F24AA-8444-4ACB-8D4E-687E5FD4E813</string>
+	<key>IDESourceControlProjectName</key>
+	<string>in7seconds</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>325782B5-DDD1-4A7C-B5A2-D124988DA418</key>
+		<string>ssh://github.com/rromanchuk/in7seconds.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ext/in7seconds/in7seconds.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>325782B5-DDD1-4A7C-B5A2-D124988DA418</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/rromanchuk/in7seconds.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>325782B5-DDD1-4A7C-B5A2-D124988DA418</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>325782B5-DDD1-4A7C-B5A2-D124988DA418</string>
+			<key>IDESourceControlWCCName</key>
+			<string>in7seconds</string>
+		</dict>
+	</array>
+</dict>
+</plist>

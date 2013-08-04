@@ -2,7 +2,7 @@
 //  User.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 5/3/13.
+//  Created by Ryan Romanchuk on 8/4/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -23,6 +23,7 @@
 @dynamic email;
 @dynamic emailOptIn;
 @dynamic externalId;
+@dynamic fbDomain;
 @dynamic firstName;
 @dynamic friendNames;
 @dynamic gender;

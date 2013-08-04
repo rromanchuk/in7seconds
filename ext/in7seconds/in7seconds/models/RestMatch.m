@@ -34,6 +34,7 @@ static NSString *RESOURCE_PATH = @"api/v1/users";
                                 @"city", @"city",
                                 @"country", @"country",
                                 @"vkDomain", @"vk_domain",
+                                @"fbDomain", @"fb_domain",
                                 @"latitude", @"latitude",
                                 @"longitude", @"longitude",
                                 [NSDate mappingWithKey:@"birthday"

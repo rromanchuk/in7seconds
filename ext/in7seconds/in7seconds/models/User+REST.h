@@ -24,5 +24,5 @@
 - (NSString *)fullLocation;
 - (NSString *)vkUrl;
 - (NSString *)schoolInfo;
-
+- (NSString *)socialUrl;
 @end

@@ -92,6 +92,7 @@
 
 - (void)leftViewWillAppear {
     ALog(@"left view will appear with user");
+    self.viewDeckController.centerhiddenInteractivity = YES;
     [self stopCountdown];
 }
 

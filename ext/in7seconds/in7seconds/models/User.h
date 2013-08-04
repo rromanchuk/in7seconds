@@ -2,7 +2,7 @@
 //  User.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 5/3/13.
+//  Created by Ryan Romanchuk on 8/4/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSNumber * emailOptIn;
 @property (nonatomic, retain) NSNumber * externalId;
+@property (nonatomic, retain) NSString * fbDomain;
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * friendNames;
 @property (nonatomic, retain) NSNumber * gender;

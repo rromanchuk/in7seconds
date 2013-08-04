@@ -141,6 +141,16 @@
     return nil;
 }
 
+- (NSString *)socialUrl {
+    if (self.vkDomain) {
+        return [NSString stringWithFormat:@"http://vk.com/%@", self.vkDomain];
+    } else {
+        return [NSString stringWithFormat:@"http://facebook.com/%@", self.fbDomain];
+    }
+    return nil;
+}
+
+
 - (NSString *)russianFullName {
     return [NSString stringWithFormat:@"%@ %@", self.lastName, self.firstName];
 }

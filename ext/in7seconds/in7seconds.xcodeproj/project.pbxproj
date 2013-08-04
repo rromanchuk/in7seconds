@@ -12,7 +12,6 @@
 		9404B5071730FE850052E4CE /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B5061730FE850052E4CE /* Thread.m */; };
 		9404B50A1730FE860052E4CE /* MutualFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B5091730FE860052E4CE /* MutualFriend.m */; };
 		9404B50D1730FE860052E4CE /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B50C1730FE860052E4CE /* PrivateMessage.m */; };
-		9404B5101730FE860052E4CE /* Hookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B50F1730FE860052E4CE /* Hookup.m */; };
 		940E8E2D17A52B1F00B5FA36 /* alena@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 940E8E2C17A52B1F00B5FA36 /* alena@2x.png */; };
 		942544E516EF87A100FA79FB /* NoChatsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 942544E416EF87A000FA79FB /* NoChatsView.xib */; };
 		942544E816EF888200FA79FB /* NoChatsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 942544E716EF888200FA79FB /* NoChatsView.m */; };
@@ -21,6 +20,9 @@
 		943837D3173BD42200052C47 /* ImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 943837D2173BD42200052C47 /* ImageBrowser.m */; };
 		943837D6173BD4AE00052C47 /* SSScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 943837D5173BD4AD00052C47 /* SSScrollView.m */; };
 		943837D9173BD4FD00052C47 /* ImageScrollViewPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 943837D8173BD4FC00052C47 /* ImageScrollViewPage.m */; };
+		946F6D0617AEA6AF006B7442 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F6D0517AEA6AF006B7442 /* User.m */; };
+		946F6D0917AEA6B1006B7442 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F6D0817AEA6B1006B7442 /* Match.m */; };
+		946F6D0C17AEA728006B7442 /* Hookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F6D0B17AEA728006B7442 /* Hookup.m */; };
 		94713B95178BCEBA005F1C4F /* reject.png in Resources */ = {isa = PBXBuildFile; fileRef = 94713B91178BCEBA005F1C4F /* reject.png */; };
 		94713B96178BCEBA005F1C4F /* reject@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94713B92178BCEBA005F1C4F /* reject@2x.png */; };
 		94713B97178BCEBA005F1C4F /* accepted.png in Resources */ = {isa = PBXBuildFile; fileRef = 94713B93178BCEBA005F1C4F /* accepted.png */; };
@@ -72,8 +74,6 @@
 		94D09CD416CBF3830064F886 /* BaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CD316CBF3830064F886 /* BaseNavigationViewController.m */; };
 		94D09CD716CBF4060064F886 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D09CD616CBF4060064F886 /* MenuViewController.m */; };
 		94FB84F11733B17A001A74D3 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FB84F01733B17A001A74D3 /* Notification.m */; };
-		94FB84F41733B17B001A74D3 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FB84F31733B17B001A74D3 /* Match.m */; };
-		94FB84F71733B23F001A74D3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FB84F61733B23F001A74D3 /* User.m */; };
 		94FF9488172A5D6400563C1A /* Notification+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FF9487172A5D6200563C1A /* Notification+REST.m */; };
 		94FF948B172A606800563C1A /* RestNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FF948A172A606600563C1A /* RestNotification.m */; };
 		94FF9490172BDF3700563C1A /* facebook-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FF948C172BDF3700563C1A /* facebook-login.png */; };
@@ -212,8 +212,6 @@
 		9404B5091730FE860052E4CE /* MutualFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutualFriend.m; path = models/MutualFriend.m; sourceTree = "<group>"; };
 		9404B50B1730FE860052E4CE /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateMessage.h; path = models/PrivateMessage.h; sourceTree = "<group>"; };
 		9404B50C1730FE860052E4CE /* PrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivateMessage.m; path = models/PrivateMessage.m; sourceTree = "<group>"; };
-		9404B50E1730FE860052E4CE /* Hookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hookup.h; path = models/Hookup.h; sourceTree = "<group>"; };
-		9404B50F1730FE860052E4CE /* Hookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hookup.m; path = models/Hookup.m; sourceTree = "<group>"; };
 		940E8E2C17A52B1F00B5FA36 /* alena@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alena@2x.png"; sourceTree = "<group>"; };
 		942544E416EF87A000FA79FB /* NoChatsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoChatsView.xib; sourceTree = "<group>"; };
 		942544E616EF888200FA79FB /* NoChatsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoChatsView.h; path = views/NoChatsView.h; sourceTree = "<group>"; };
@@ -226,6 +224,12 @@
 		943837D5173BD4AD00052C47 /* SSScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSScrollView.m; path = views/SSScrollView.m; sourceTree = "<group>"; };
 		943837D7173BD4FC00052C47 /* ImageScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageScrollViewPage.h; path = views/ImageScrollViewPage.h; sourceTree = "<group>"; };
 		943837D8173BD4FC00052C47 /* ImageScrollViewPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageScrollViewPage.m; path = views/ImageScrollViewPage.m; sourceTree = "<group>"; };
+		946F6D0417AEA6AF006B7442 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
+		946F6D0517AEA6AF006B7442 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
+		946F6D0717AEA6B1006B7442 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Match.h; path = models/Match.h; sourceTree = "<group>"; };
+		946F6D0817AEA6B1006B7442 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Match.m; path = models/Match.m; sourceTree = "<group>"; };
+		946F6D0A17AEA728006B7442 /* Hookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hookup.h; path = models/Hookup.h; sourceTree = "<group>"; };
+		946F6D0B17AEA728006B7442 /* Hookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hookup.m; path = models/Hookup.m; sourceTree = "<group>"; };
 		94713B91178BCEBA005F1C4F /* reject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reject.png; sourceTree = "<group>"; };
 		94713B92178BCEBA005F1C4F /* reject@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reject@2x.png"; sourceTree = "<group>"; };
 		94713B93178BCEBA005F1C4F /* accepted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accepted.png; sourceTree = "<group>"; };
@@ -300,10 +304,6 @@
 		94D09CD616CBF4060064F886 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = controllers/MenuViewController.m; sourceTree = "<group>"; };
 		94FB84EF1733B17A001A74D3 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = models/Notification.h; sourceTree = "<group>"; };
 		94FB84F01733B17A001A74D3 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notification.m; path = models/Notification.m; sourceTree = "<group>"; };
-		94FB84F21733B17A001A74D3 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Match.h; path = models/Match.h; sourceTree = "<group>"; };
-		94FB84F31733B17B001A74D3 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Match.m; path = models/Match.m; sourceTree = "<group>"; };
-		94FB84F51733B23F001A74D3 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = models/User.h; sourceTree = "<group>"; };
-		94FB84F61733B23F001A74D3 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
 		94FF9486172A5D6100563C1A /* Notification+REST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Notification+REST.h"; path = "models/Notification+REST.h"; sourceTree = "<group>"; };
 		94FF9487172A5D6200563C1A /* Notification+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Notification+REST.m"; path = "models/Notification+REST.m"; sourceTree = "<group>"; };
 		94FF9489172A606500563C1A /* RestNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestNotification.h; path = models/RestNotification.h; sourceTree = "<group>"; };
@@ -543,14 +543,14 @@
 		94D09CC316CBEA4B0064F886 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				94FB84F51733B23F001A74D3 /* User.h */,
-				94FB84F61733B23F001A74D3 /* User.m */,
-				94FB84F21733B17A001A74D3 /* Match.h */,
-				94FB84F31733B17B001A74D3 /* Match.m */,
+				946F6D0A17AEA728006B7442 /* Hookup.h */,
+				946F6D0B17AEA728006B7442 /* Hookup.m */,
+				946F6D0717AEA6B1006B7442 /* Match.h */,
+				946F6D0817AEA6B1006B7442 /* Match.m */,
+				946F6D0417AEA6AF006B7442 /* User.h */,
+				946F6D0517AEA6AF006B7442 /* User.m */,
 				94FB84EF1733B17A001A74D3 /* Notification.h */,
 				94FB84F01733B17A001A74D3 /* Notification.m */,
-				9404B50E1730FE860052E4CE /* Hookup.h */,
-				9404B50F1730FE860052E4CE /* Hookup.m */,
 				9404B50B1730FE860052E4CE /* PrivateMessage.h */,
 				9404B50C1730FE860052E4CE /* PrivateMessage.m */,
 				9404B5081730FE860052E4CE /* MutualFriend.h */,
@@ -1130,6 +1130,7 @@
 				FA7002B816CAF0F30098A5B7 /* LoginViewController.m in Sources */,
 				FA7002BB16CAF42E0098A5B7 /* in7seconds.xcdatamodeld in Sources */,
 				FA7002BE16CAF4700098A5B7 /* RestObject.m in Sources */,
+				946F6D0C17AEA728006B7442 /* Hookup.m in Sources */,
 				FA7002C116CAF48B0098A5B7 /* RestUser.m in Sources */,
 				FA7002C516CAF5430098A5B7 /* Vkontakte.m in Sources */,
 				FA7002C816CAF5F00098A5B7 /* VkontakteViewController.m in Sources */,
@@ -1150,6 +1151,7 @@
 				FAA2CFBE16DD6AF200C22D76 /* MatchesViewController.m in Sources */,
 				FAA2CFC116DD705900C22D76 /* MatchCell.m in Sources */,
 				FAC3DA5016DD769900410BF7 /* RestHookup.m in Sources */,
+				946F6D0617AEA6AF006B7442 /* User.m in Sources */,
 				FAC3DA5316DE8FEE00410BF7 /* ProfileImageView.m in Sources */,
 				FAC3DA5616DE930700410BF7 /* UIImageView+additions.m in Sources */,
 				FA7F38D916E7CA8B00EA2C0B /* CommentViewController.m in Sources */,
@@ -1178,6 +1180,7 @@
 				94FF9488172A5D6400563C1A /* Notification+REST.m in Sources */,
 				94FF948B172A606800563C1A /* RestNotification.m in Sources */,
 				94FF9496172BE08300563C1A /* FacebookHelper.m in Sources */,
+				946F6D0917AEA6B1006B7442 /* Match.m in Sources */,
 				94BFC622172D24D600A3625B /* RestImage.m in Sources */,
 				94BFC625172D25C500A3625B /* Image+REST.m in Sources */,
 				FAC69504172E35DC008E964F /* TDDatePickerController.m in Sources */,
@@ -1187,10 +1190,7 @@
 				9404B5071730FE850052E4CE /* Thread.m in Sources */,
 				9404B50A1730FE860052E4CE /* MutualFriend.m in Sources */,
 				9404B50D1730FE860052E4CE /* PrivateMessage.m in Sources */,
-				9404B5101730FE860052E4CE /* Hookup.m in Sources */,
 				94FB84F11733B17A001A74D3 /* Notification.m in Sources */,
-				94FB84F41733B17B001A74D3 /* Match.m in Sources */,
-				94FB84F71733B23F001A74D3 /* User.m in Sources */,
 				943837D3173BD42200052C47 /* ImageBrowser.m in Sources */,
 				943837D6173BD4AE00052C47 /* SSScrollView.m in Sources */,
 				943837D9173BD4FD00052C47 /* ImageScrollViewPage.m in Sources */,
