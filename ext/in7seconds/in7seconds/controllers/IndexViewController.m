@@ -81,6 +81,9 @@
         [self noResultsLeft];
         [self fetchHookups];
     }
+    
+    UITapGestureRecognizer *tr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapPhoto:)];
+    [self.swipeView addGestureRecognizer:tr];
 }
 
 - (void)viewDeckController:(IIViewDeckController*)viewDeckController didShowCenterViewFromSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated {
@@ -92,7 +95,7 @@
 
 - (void)leftViewWillAppear {
     ALog(@"left view will appear with user");
-    self.viewDeckController.centerhiddenInteractivity = YES;
+    //self.viewDeckController.centerhiddenInteractivity = YES;
     [self stopCountdown];
 }
 
@@ -251,6 +254,7 @@
           self.locationLabel.text = self.otherUser.fullLocation;
         }
         
+        self.photosCountLabel.text =  [NSString stringWithFormat:@"%d", [self.otherUser.images count] + 1];
         self.mutualFriendsLabel.text = [NSString stringWithFormat:@"%@ общих друзей", self.otherUser.mutualFriendsNum];
         self.mutualGroupsLabel.text = [NSString stringWithFormat:@"%@ общих интересов", self.otherUser.mutualGroups];
         ALog(@"birthday %@", self.otherUser.birthday);
@@ -397,6 +401,10 @@
         [self revealMenu:nil];
     }
     
+}
+
+- (IBAction)didTapPhoto:(id)sender {
+    [self didTapInfo:self];
 }
 
 - (IBAction)didTapLike:(id)sender {

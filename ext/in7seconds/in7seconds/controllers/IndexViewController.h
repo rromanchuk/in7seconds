@@ -35,9 +35,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
 @property (strong, nonatomic) IBOutlet SwipeView *swipeView;
+@property (weak, nonatomic) IBOutlet UILabel *photosCountLabel;
 
 - (IBAction)didTapUnlike:(id)sender;
 - (IBAction)didTapLike:(id)sender;
 - (IBAction)didTapInfo:(id)sender;
+- (IBAction)didTapPhoto:(id)sender;
 
 @end

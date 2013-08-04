@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		61A0C62717AF05B000CB1F5D /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A0C62517AF05B000CB1F5D /* camera.png */; };
+		61A0C62817AF05B000CB1F5D /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A0C62617AF05B000CB1F5D /* camera@2x.png */; };
 		90455B5C1D5F434F8877A20B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9F46389CB045FD9589A9AC /* libPods.a */; };
 		9404B5011730FE840052E4CE /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B5001730FE840052E4CE /* Image.m */; };
 		9404B5071730FE850052E4CE /* Thread.m in Sources */ = {isa = PBXBuildFile; fileRef = 9404B5061730FE850052E4CE /* Thread.m */; };
@@ -204,6 +206,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		61A0C62517AF05B000CB1F5D /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		61A0C62617AF05B000CB1F5D /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
 		9404B4FF1730FE840052E4CE /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = models/Image.h; sourceTree = "<group>"; };
 		9404B5001730FE840052E4CE /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Image.m; path = models/Image.m; sourceTree = "<group>"; };
 		9404B5051730FE850052E4CE /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Thread.h; path = models/Thread.h; sourceTree = "<group>"; };
@@ -661,6 +665,8 @@
 		FA70028F16CAECBD0098A5B7 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				61A0C62517AF05B000CB1F5D /* camera.png */,
+				61A0C62617AF05B000CB1F5D /* camera@2x.png */,
 				940E8E2C17A52B1F00B5FA36 /* alena@2x.png */,
 				94713B91178BCEBA005F1C4F /* reject.png */,
 				94713B92178BCEBA005F1C4F /* reject@2x.png */,
@@ -1049,6 +1055,8 @@
 				94713B97178BCEBA005F1C4F /* accepted.png in Resources */,
 				94713B98178BCEBA005F1C4F /* accepted@2x.png in Resources */,
 				940E8E2D17A52B1F00B5FA36 /* alena@2x.png in Resources */,
+				61A0C62717AF05B000CB1F5D /* camera.png in Resources */,
+				61A0C62817AF05B000CB1F5D /* camera@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

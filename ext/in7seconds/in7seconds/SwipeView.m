@@ -24,6 +24,7 @@
         _midpoint = (self.frame.size.width / 2.0);
         _minRejectX = _midpoint / 2;
         _maxAcceptX = _midpoint + (_midpoint / 2);
+        
     }
     return self;
 }
