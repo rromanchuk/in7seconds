@@ -3,12 +3,12 @@ module Api
     
 
     skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
-    before_filter :check_admin
+    before_filter :miniprofile
 
     ADMINS = [41526347, 2048071, 4807674, 54267159, 201331745]
     FB_ADMINS = [225311, 7300784, 1071841049, 759795370, 3421601]
-    
-    def check_admin
+
+    def miniprofile
       if current_user && (ADMINS.include?(current_user.vkuid) or FB_ADMINS.include?(current_user.fbuid)) 
         Rack::MiniProfiler.authorize_request
       end
