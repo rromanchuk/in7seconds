@@ -30,6 +30,7 @@ gem 'dalli'
 gem 'faye'
 gem 'thin'
 gem 'newrelic_rpm'
+gem 'rack-mini-profiler'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
