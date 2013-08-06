@@ -62,7 +62,7 @@
 			<key>UILaunchImageOrientation</key>
 			<string>Portrait</string>
 			<key>UILaunchImageSize</key>
-			<string>{320, 568}</string>
+			<string>{320, 480}</string>
 		</dict>
 		<dict>
 			<key>UILaunchImageMinimumOSVersion</key>
