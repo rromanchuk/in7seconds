@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6199BA9117B181760015DEBF /* 7sec_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6199BA8B17B181760015DEBF /* 7sec_logo.png */; };
+		6199BA9217B181760015DEBF /* 7sec_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6199BA8C17B181760015DEBF /* 7sec_logo@2x.png */; };
+		6199BA9317B181760015DEBF /* facebook_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6199BA8D17B181760015DEBF /* facebook_button.png */; };
+		6199BA9417B181760015DEBF /* facebook_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6199BA8E17B181760015DEBF /* facebook_button@2x.png */; };
+		6199BA9517B181760015DEBF /* vkontakte_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6199BA8F17B181760015DEBF /* vkontakte_button.png */; };
+		6199BA9617B181760015DEBF /* vkontakte_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6199BA9017B181760015DEBF /* vkontakte_button@2x.png */; };
 		61A0C62717AF05B000CB1F5D /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A0C62517AF05B000CB1F5D /* camera.png */; };
 		61A0C62817AF05B000CB1F5D /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A0C62617AF05B000CB1F5D /* camera@2x.png */; };
 		90455B5C1D5F434F8877A20B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9F46389CB045FD9589A9AC /* libPods.a */; };
@@ -78,10 +84,6 @@
 		94FB84F11733B17A001A74D3 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FB84F01733B17A001A74D3 /* Notification.m */; };
 		94FF9488172A5D6400563C1A /* Notification+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FF9487172A5D6200563C1A /* Notification+REST.m */; };
 		94FF948B172A606800563C1A /* RestNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FF948A172A606600563C1A /* RestNotification.m */; };
-		94FF9490172BDF3700563C1A /* facebook-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FF948C172BDF3700563C1A /* facebook-login.png */; };
-		94FF9491172BDF3700563C1A /* facebook-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FF948D172BDF3700563C1A /* facebook-login@2x.png */; };
-		94FF9492172BDF3700563C1A /* vkontakte-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FF948E172BDF3700563C1A /* vkontakte-login.png */; };
-		94FF9493172BDF3700563C1A /* vkontakte-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94FF948F172BDF3700563C1A /* vkontakte-login@2x.png */; };
 		94FF9496172BE08300563C1A /* FacebookHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FF9495172BE08300563C1A /* FacebookHelper.m */; };
 		FA316E0116EE5F300051EB5F /* blue_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = FA316DFF16EE5F300051EB5F /* blue_circle.png */; };
 		FA316E0216EE5F300051EB5F /* blue_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA316E0016EE5F300051EB5F /* blue_circle@2x.png */; };
@@ -143,8 +145,6 @@
 		FAA2CCA316DC00C900C22D76 /* tumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC7F16DC00C900C22D76 /* tumbnail@2x.png */; };
 		FAA2CCA416DC00C900C22D76 /* unlike_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC8016DC00C900C22D76 /* unlike_icon.png */; };
 		FAA2CCA516DC00C900C22D76 /* unlike_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC8116DC00C900C22D76 /* unlike_icon@2x.png */; };
-		FAA2CCA616DC00C900C22D76 /* vk_login_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC8216DC00C900C22D76 /* vk_login_icon.png */; };
-		FAA2CCA716DC00C900C22D76 /* vk_login_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC8316DC00C900C22D76 /* vk_login_icon@2x.png */; };
 		FAA2CCA816DC00C900C22D76 /* settings_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC8416DC00C900C22D76 /* settings_icon@2x.png */; };
 		FAA2CCA916DC00C900C22D76 /* settings_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC8516DC00C900C22D76 /* settings_icon.png */; };
 		FAA2CCAA16DC00C900C22D76 /* in7seconds_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC8616DC00C900C22D76 /* in7seconds_logo.png */; };
@@ -206,6 +206,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6199BA8717B17DED0015DEBF /* 120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 120.png; sourceTree = "<group>"; };
+		6199BA8817B17E1B0015DEBF /* 58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 58.png; sourceTree = "<group>"; };
+		6199BA8B17B181760015DEBF /* 7sec_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7sec_logo.png; sourceTree = "<group>"; };
+		6199BA8C17B181760015DEBF /* 7sec_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "7sec_logo@2x.png"; sourceTree = "<group>"; };
+		6199BA8D17B181760015DEBF /* facebook_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_button.png; sourceTree = "<group>"; };
+		6199BA8E17B181760015DEBF /* facebook_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_button@2x.png"; sourceTree = "<group>"; };
+		6199BA8F17B181760015DEBF /* vkontakte_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vkontakte_button.png; sourceTree = "<group>"; };
+		6199BA9017B181760015DEBF /* vkontakte_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vkontakte_button@2x.png"; sourceTree = "<group>"; };
+		6199BA9717B184540015DEBF /* Default-526h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-526h@2x.png"; sourceTree = "<group>"; };
 		61A0C62517AF05B000CB1F5D /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		61A0C62617AF05B000CB1F5D /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
 		9404B4FF1730FE840052E4CE /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = models/Image.h; sourceTree = "<group>"; };
@@ -312,10 +321,6 @@
 		94FF9487172A5D6200563C1A /* Notification+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Notification+REST.m"; path = "models/Notification+REST.m"; sourceTree = "<group>"; };
 		94FF9489172A606500563C1A /* RestNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestNotification.h; path = models/RestNotification.h; sourceTree = "<group>"; };
 		94FF948A172A606600563C1A /* RestNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestNotification.m; path = models/RestNotification.m; sourceTree = "<group>"; };
-		94FF948C172BDF3700563C1A /* facebook-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login.png"; sourceTree = "<group>"; };
-		94FF948D172BDF3700563C1A /* facebook-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login@2x.png"; sourceTree = "<group>"; };
-		94FF948E172BDF3700563C1A /* vkontakte-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vkontakte-login.png"; sourceTree = "<group>"; };
-		94FF948F172BDF3700563C1A /* vkontakte-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vkontakte-login@2x.png"; sourceTree = "<group>"; };
 		94FF9494172BE08300563C1A /* FacebookHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookHelper.h; sourceTree = "<group>"; };
 		94FF9495172BE08300563C1A /* FacebookHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookHelper.m; sourceTree = "<group>"; };
 		CE9F46389CB045FD9589A9AC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -404,8 +409,6 @@
 		FAA2CC7F16DC00C900C22D76 /* tumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tumbnail@2x.png"; path = "assets/tumbnail@2x.png"; sourceTree = "<group>"; };
 		FAA2CC8016DC00C900C22D76 /* unlike_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unlike_icon.png; path = assets/unlike_icon.png; sourceTree = "<group>"; };
 		FAA2CC8116DC00C900C22D76 /* unlike_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unlike_icon@2x.png"; path = "assets/unlike_icon@2x.png"; sourceTree = "<group>"; };
-		FAA2CC8216DC00C900C22D76 /* vk_login_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vk_login_icon.png; path = assets/vk_login_icon.png; sourceTree = "<group>"; };
-		FAA2CC8316DC00C900C22D76 /* vk_login_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vk_login_icon@2x.png"; path = "assets/vk_login_icon@2x.png"; sourceTree = "<group>"; };
 		FAA2CC8416DC00C900C22D76 /* settings_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_icon@2x.png"; path = "assets/settings_icon@2x.png"; sourceTree = "<group>"; };
 		FAA2CC8516DC00C900C22D76 /* settings_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings_icon.png; path = assets/settings_icon.png; sourceTree = "<group>"; };
 		FAA2CC8616DC00C900C22D76 /* in7seconds_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = in7seconds_logo.png; path = assets/in7seconds_logo.png; sourceTree = "<group>"; };
@@ -488,6 +491,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6199BA8917B181530015DEBF /* v2 */ = {
+			isa = PBXGroup;
+			children = (
+				6199BA8A17B1815D0015DEBF /* Login */,
+			);
+			name = v2;
+			sourceTree = "<group>";
+		};
+		6199BA8A17B1815D0015DEBF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				6199BA8B17B181760015DEBF /* 7sec_logo.png */,
+				6199BA8C17B181760015DEBF /* 7sec_logo@2x.png */,
+				6199BA8D17B181760015DEBF /* facebook_button.png */,
+				6199BA8E17B181760015DEBF /* facebook_button@2x.png */,
+				6199BA8F17B181760015DEBF /* vkontakte_button.png */,
+				6199BA9017B181760015DEBF /* vkontakte_button@2x.png */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		943837D0173BD3E500052C47 /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,6 +595,9 @@
 		FA70024816CAECB20098A5B7 = {
 			isa = PBXGroup;
 			children = (
+				6199BA9717B184540015DEBF /* Default-526h@2x.png */,
+				6199BA8817B17E1B0015DEBF /* 58.png */,
+				6199BA8717B17DED0015DEBF /* 120.png */,
 				FAA2CCBA16DD2ADA00C22D76 /* CoreLocation.framework */,
 				FA809FED16D2BD58003920E6 /* AddressBook.framework */,
 				FA809FE916D040FD003920E6 /* Crashlytics.framework */,
@@ -665,6 +692,7 @@
 		FA70028F16CAECBD0098A5B7 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				6199BA8917B181530015DEBF /* v2 */,
 				61A0C62517AF05B000CB1F5D /* camera.png */,
 				61A0C62617AF05B000CB1F5D /* camera@2x.png */,
 				940E8E2C17A52B1F00B5FA36 /* alena@2x.png */,
@@ -674,10 +702,6 @@
 				94713B94178BCEBA005F1C4F /* accepted@2x.png */,
 				942A4F18175A1A3000A99482 /* notification-dismiss@2x.png */,
 				942A4F19175A1A3000A99482 /* notification-dismiss.png */,
-				94FF948C172BDF3700563C1A /* facebook-login.png */,
-				94FF948D172BDF3700563C1A /* facebook-login@2x.png */,
-				94FF948E172BDF3700563C1A /* vkontakte-login.png */,
-				94FF948F172BDF3700563C1A /* vkontakte-login@2x.png */,
 				94A9593317105DDE006D141C /* center_left_select.png */,
 				94A9593417105DDE006D141C /* center_left_select@2x.png */,
 				94A9593517105DDE006D141C /* center_noselect.png */,
@@ -724,8 +748,6 @@
 				FAA2CC7F16DC00C900C22D76 /* tumbnail@2x.png */,
 				FAA2CC8016DC00C900C22D76 /* unlike_icon.png */,
 				FAA2CC8116DC00C900C22D76 /* unlike_icon@2x.png */,
-				FAA2CC8216DC00C900C22D76 /* vk_login_icon.png */,
-				FAA2CC8316DC00C900C22D76 /* vk_login_icon@2x.png */,
 				FAA2CC8416DC00C900C22D76 /* settings_icon@2x.png */,
 				FAA2CC8516DC00C900C22D76 /* settings_icon.png */,
 				FAA2CC8616DC00C900C22D76 /* in7seconds_logo.png */,
@@ -977,6 +999,7 @@
 				FA70026B16CAECB20098A5B7 /* Default-568h@2x.png in Resources */,
 				FA70026E16CAECB20098A5B7 /* MainStoryboard.storyboard in Resources */,
 				94D09CBF16CBD5260064F886 /* environments.plist in Resources */,
+				6199BA9117B181760015DEBF /* 7sec_logo.png in Resources */,
 				9484989716CD2DB0000083DE /* 114.png in Resources */,
 				9484989916CD2DBA000083DE /* 57.png in Resources */,
 				FAA2CC9216DC00C900C22D76 /* interests_icon.png in Resources */,
@@ -984,6 +1007,7 @@
 				FAA2CC9416DC00C900C22D76 /* like_icon.png in Resources */,
 				FAA2CC9516DC00C900C22D76 /* like_icon@2x.png in Resources */,
 				FAA2CC9616DC00C900C22D76 /* logout_button.png in Resources */,
+				6199BA9317B181760015DEBF /* facebook_button.png in Resources */,
 				FAA2CC9716DC00C900C22D76 /* logout_button@2x.png in Resources */,
 				FAA2CC9816DC00C900C22D76 /* navigation-bar.png in Resources */,
 				FAA2CC9916DC00C900C22D76 /* navigation-bar@2x.png in Resources */,
@@ -999,11 +1023,10 @@
 				FAA2CCA316DC00C900C22D76 /* tumbnail@2x.png in Resources */,
 				FAA2CCA416DC00C900C22D76 /* unlike_icon.png in Resources */,
 				FAA2CCA516DC00C900C22D76 /* unlike_icon@2x.png in Resources */,
-				FAA2CCA616DC00C900C22D76 /* vk_login_icon.png in Resources */,
-				FAA2CCA716DC00C900C22D76 /* vk_login_icon@2x.png in Resources */,
 				FAA2CCA816DC00C900C22D76 /* settings_icon@2x.png in Resources */,
 				FAA2CCA916DC00C900C22D76 /* settings_icon.png in Resources */,
 				FAA2CCAA16DC00C900C22D76 /* in7seconds_logo.png in Resources */,
+				6199BA9517B181760015DEBF /* vkontakte_button.png in Resources */,
 				FAA2CCAB16DC00C900C22D76 /* in7seconds_logo@2x.png in Resources */,
 				FAA2CCAC16DC00C900C22D76 /* back_icon@2x.png in Resources */,
 				FAA2CCAD16DC00C900C22D76 /* chat_icon.png in Resources */,
@@ -1017,6 +1040,7 @@
 				FAA2CCB516DC00C900C22D76 /* settings_bg@2x.png in Resources */,
 				FAA2CCB816DC191E00C22D76 /* form-bg.png in Resources */,
 				FAA2CCB916DC191E00C22D76 /* form-bg@2x.png in Resources */,
+				6199BA9217B181760015DEBF /* 7sec_logo@2x.png in Resources */,
 				94A9807A16E9E1E60036E52C /* blue_bubble.png in Resources */,
 				94A9807B16E9E1E60036E52C /* blue_bubble@2x.png in Resources */,
 				94A9807C16E9E1E60036E52C /* blue_button.png in Resources */,
@@ -1034,6 +1058,7 @@
 				942544E516EF87A100FA79FB /* NoChatsView.xib in Resources */,
 				94A9593D17105DDF006D141C /* center_left_select.png in Resources */,
 				94A9593E17105DDF006D141C /* center_left_select@2x.png in Resources */,
+				6199BA9417B181760015DEBF /* facebook_button@2x.png in Resources */,
 				94A9593F17105DDF006D141C /* center_noselect.png in Resources */,
 				94A9594017105DDF006D141C /* center_noselect@2x.png in Resources */,
 				94A9594117105DDF006D141C /* center_right_select.png in Resources */,
@@ -1042,10 +1067,6 @@
 				94A9594417105DDF006D141C /* selected_control@2x.png in Resources */,
 				94A9594517105DDF006D141C /* unselected_control.png in Resources */,
 				94A9594617105DDF006D141C /* unselected_control@2x.png in Resources */,
-				94FF9490172BDF3700563C1A /* facebook-login.png in Resources */,
-				94FF9491172BDF3700563C1A /* facebook-login@2x.png in Resources */,
-				94FF9492172BDF3700563C1A /* vkontakte-login.png in Resources */,
-				94FF9493172BDF3700563C1A /* vkontakte-login@2x.png in Resources */,
 				FAC69505172E35DC008E964F /* TDDatePickerController.xib in Resources */,
 				FA82642217495BE200B51936 /* NotificationBanner.xib in Resources */,
 				942A4F1A175A1A3000A99482 /* notification-dismiss@2x.png in Resources */,
@@ -1056,6 +1077,7 @@
 				94713B98178BCEBA005F1C4F /* accepted@2x.png in Resources */,
 				940E8E2D17A52B1F00B5FA36 /* alena@2x.png in Resources */,
 				61A0C62717AF05B000CB1F5D /* camera.png in Resources */,
+				6199BA9617B181760015DEBF /* vkontakte_button@2x.png in Resources */,
 				61A0C62817AF05B000CB1F5D /* camera@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
