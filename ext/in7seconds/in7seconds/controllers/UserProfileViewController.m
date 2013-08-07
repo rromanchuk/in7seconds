@@ -7,7 +7,6 @@
 //
 
 #import "UserProfileViewController.h"
-#import "BaseUIView.h"
 
 #import  <QuartzCore/QuartzCore.h>
 #import "Hookup+REST.h"
@@ -56,7 +55,6 @@
     [self addImageBrowser];
     self.scrollView.delegate = self;
     
-    self.tableView.backgroundView = [[BaseUIView alloc] init];
     if (self.otherUser.birthday && [self.otherUser.yearsOld integerValue] > 0) {
         self.title = [NSString stringWithFormat:@"%@, %@", self.otherUser.firstName, self.otherUser.yearsOld];
     } else {

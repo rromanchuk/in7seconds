@@ -15,7 +15,7 @@
 #import "SwipeView.h"
 #import <ViewDeck/IIViewDeckController.h>
 
-@interface IndexViewController : UIViewController <ImageLoadedDelegate, MatchModalDelegate, ApplicationLifecycleDelegate, UserSettingsDelegate, SwipeViewDelegate, IIViewDeckControllerDelegate>
+@interface IndexViewController : UIViewController <ImageLoadedDelegate, MatchModalDelegate, ApplicationLifecycleDelegate, SwipeViewDelegate, IIViewDeckControllerDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;

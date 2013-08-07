@@ -53,7 +53,7 @@
     _numberOfAttempts = 0;
     self.swipeView.delegate = self;
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"sidebar_button"] target:self action:@selector(revealMenu:)];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chats_button"] target:self action:@selector(didTapMatches:)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chats_button"] target:self action:@selector(revealChats:)];
     
     
     self.userImageView.delegate = self;
@@ -211,6 +211,13 @@
     [self stopCountdown];
     [self.viewDeckController toggleLeftView];
 }
+
+- (IBAction)revealChats:(id)sender
+{
+    [self stopCountdown];
+    [self.viewDeckController toggleRightView];
+}
+
 
 - (void)topDidAppear {
     [((MenuViewController *)self.viewDeckController.leftController).view endEditing:YES];

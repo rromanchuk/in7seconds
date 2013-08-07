@@ -32,8 +32,10 @@
     self.currentUser = [User currentUser:self.managedObjectContext];
     if (self.currentUser) {
         self = [super initWithCenterViewController:[storyboard instantiateViewControllerWithIdentifier:@"middleViewController"]
-                                leftViewController:[storyboard instantiateViewControllerWithIdentifier:@"leftViewController"]];
+                                leftViewController:[storyboard instantiateViewControllerWithIdentifier:@"menuViewController"]
+                rightViewController:[storyboard instantiateViewControllerWithIdentifier:@"matchesController"]];
     } else {
+        
         self = [super initWithCenterViewController:[storyboard instantiateViewControllerWithIdentifier:@"middleViewController"]
                                 leftViewController:[storyboard instantiateViewControllerWithIdentifier:@"loginViewController"]];
     }

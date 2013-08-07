@@ -6,10 +6,9 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import "BaseUIView.h"
 #import "UserImageContainer.h"
 @protocol SwipeViewDelegate;
-@interface SwipeView : BaseUIView
+@interface SwipeView : UIView
 @property (nonatomic, strong) IBOutlet UserImageContainer *userImageContainer;
 @property (nonatomic) NSUInteger nextDisplayStringIndex;
 @property (nonatomic, strong) NSArray *displayStrings;

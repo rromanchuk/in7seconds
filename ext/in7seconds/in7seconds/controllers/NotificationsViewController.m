@@ -8,7 +8,6 @@
 
 #import "NotificationsViewController.h"
 #import "CommentViewController.h"
-#import "BaseUIView.h"
 #import "RestNotification.h"
 #import "Notification+REST.h"
 #import "Match+REST.h"
@@ -28,7 +27,6 @@
     [super viewDidLoad];
     self.title = @"Уведомления";
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
-    self.tableView.backgroundView = [[BaseUIView alloc] init];
     
     
     self.refreshControl = [[UIRefreshControl alloc] init];

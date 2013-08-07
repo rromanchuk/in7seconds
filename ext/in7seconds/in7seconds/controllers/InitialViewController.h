@@ -12,7 +12,7 @@
 #import "LoginViewController.h"
 #import "MenuViewController.h"
 
-@interface InitialViewController : IIViewDeckController <LoginDelegate, LogoutDelegate>
+@interface InitialViewController : IIViewDeckController 
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;

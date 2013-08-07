@@ -6,8 +6,7 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import "BaseUIView.h"
-@interface NoChatsView : BaseUIView
+@interface NoChatsView : UIView
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 
 @end

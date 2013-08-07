@@ -15,9 +15,17 @@
 @implementation MenuViewController
 
 - (void)viewDidLoad {
-    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg"]];
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_sidebar"]];
+    self.navigationController.navigationBarHidden = YES;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+
 @end
+
 
 
 

@@ -30,6 +30,7 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
+    self.navigationController.navigationBarHidden = YES;
     
     [Vkontakte sharedInstance].delegate = self;
     [FacebookHelper shared].delegate = self;
@@ -168,7 +169,7 @@
     BaseNavigationViewController *center = [storyboard instantiateViewControllerWithIdentifier:@"middleViewController"];
     self.viewDeckController.centerController = center;
     
-    BaseNavigationViewController *menu = [storyboard instantiateViewControllerWithIdentifier:@"leftViewController"];
+    BaseNavigationViewController *menu = [storyboard instantiateViewControllerWithIdentifier:@"menuViewController"];
     self.viewDeckController.leftController = menu;
     
 }

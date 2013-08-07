@@ -46,28 +46,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-//    self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
-//    //((MenuViewController *)self.slidingViewController.underLeftViewController).delegate = self;
-//    ((MenuViewController *)self.slidingViewController.underLeftViewController).currentUser = self.currentUser;
-//    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
 }
 
-
-- (void)saveContext
-{
-    NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
-        if ([_managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        }
-    }
-    
-    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [sharedAppDelegate writeToDisk];
-}
 
 
 #pragma mark - NotificationDisplayModalDelegate methods

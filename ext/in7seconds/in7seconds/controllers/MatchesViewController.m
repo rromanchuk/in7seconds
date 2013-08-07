@@ -8,7 +8,6 @@
 
 #import "MatchesViewController.h"
 #import "MatchCell.h"
-#import "BaseUIView.h"
 #import "NoChatsView.h"
 #import "CommentViewController.h"
 #import "UserProfileViewController.h"
@@ -52,9 +51,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = delegate.managedObjectContext;
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    
+    self.navigationController.navigationBarHidden = YES;
+
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     self.title = NSLocalizedString(@"Симпатии", nil);
-    self.tableView.backgroundView = [[BaseUIView alloc] init];
     [[UAPush shared] resetBadge];
     
     
@@ -108,36 +112,35 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     Match *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
     MatchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
-    cell.nameLabel.text = user.fullName;
-    [cell.profileImage setProfilePhotoWithURL:user.photoUrl];
-    cell.profileImage.layer.borderWidth = 1;
-    cell.profileImage.tag = indexPath.row;
-    cell.profileImage.userInteractionEnabled = YES;
+    cell.nameLabel.text = user.firstName;
+    [cell.profilePhoto setProfileImageForUser:user];
+    cell.profilePhoto.tag = indexPath.row;
+    cell.profilePhoto.userInteractionEnabled = YES;
     UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];
-    [cell.profileImage addGestureRecognizer:tg];
+    [cell.profilePhoto addGestureRecognizer:tg];
     
     
-    if (user.latitude && [user.latitude integerValue] > 0 && [self.currentUser.latitude integerValue] > 0) {
-        cell.previewLabel.text = [NSString stringWithFormat:@"в %@ от тебя", [user getDistanceFrom:self.currentUser]];
-    } else {
-        cell.previewLabel.text = user.fullLocation;
-    }
+//    if (user.latitude && [user.latitude integerValue] > 0 && [self.currentUser.latitude integerValue] > 0) {
+//        cell.previewLabel.text = [NSString stringWithFormat:@"в %@ от тебя", [user getDistanceFrom:self.currentUser]];
+//    } else {
+//        cell.previewLabel.text = user.fullLocation;
+//    }
 
     
     
     NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
     NSArray *sortedMessages = [user.thread.messages sortedArrayUsingDescriptors:sortDescriptors];
     PrivateMessage *message = [sortedMessages lastObject];
-    cell.commentPreview.text = message.message;
+    cell.subtitleLabel.text = message.message;
     
     
-    if (message) {
-        ALog(@"message");
-        cell.dateLabel.text = [_fm stringFromDate:message.createdAt];
-    } else {
-        ALog(@"match created");
-        cell.dateLabel.text = [_fm stringFromDate:user.createdAt];
-    }
+//    if (message) {
+//        ALog(@"message");
+//        cell.dateLabel.text = [_fm stringFromDate:message.createdAt];
+//    } else {
+//        ALog(@"match created");
+//        cell.dateLabel.text = [_fm stringFromDate:user.createdAt];
+//    }
     return cell;
 }
 

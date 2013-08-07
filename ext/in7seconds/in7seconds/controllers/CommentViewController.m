@@ -21,7 +21,6 @@
 #import "UserProfileViewController.h"
 
 // views
-#import "BaseUIView.h"
 #import "NoChatsView.h"
 @interface CommentViewController ()
 @property (strong, nonatomic) NoChatsView *noResultsFooterView;
@@ -61,7 +60,6 @@
     [self setupFooterView];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     self.title = self.otherUser.fullName;
-    self.tableView.backgroundView = [[BaseUIView alloc] init];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.tableView addSubview:self.refreshControl];

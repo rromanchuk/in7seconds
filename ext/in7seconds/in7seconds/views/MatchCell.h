@@ -7,11 +7,12 @@
 //
 
 #import "ProfileImageView.h"
+#import "ProfilePhotoView.h"
 @interface MatchCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet ProfileImageView *profileImage;
-@property (weak, nonatomic) IBOutlet UILabel *previewLabel;
-@property (weak, nonatomic) IBOutlet UILabel *commentPreview;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
+@property (weak, nonatomic) IBOutlet ProfilePhotoView *profilePhoto;
+
+
 
 @end
