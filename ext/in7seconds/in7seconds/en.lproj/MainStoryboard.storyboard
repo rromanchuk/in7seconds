@@ -154,7 +154,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y0p-Bm-YYD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-763" y="-151"/>
+            <point key="canvasLocation" x="-1187" y="365"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="86a-fb-ytw">
@@ -169,7 +169,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OaW-A8-xxg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1185" y="-151"/>
+            <point key="canvasLocation" x="-1642" y="365"/>
         </scene>
         <!--Base Navigation View Controller-->
         <scene sceneID="cYh-7b-GGa">
@@ -184,7 +184,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLE-wd-UZE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-138" y="-259"/>
+            <point key="canvasLocation" x="-1187" y="-303"/>
         </scene>
         <!--Initial View Controller-->
         <scene sceneID="9Tx-id-SYg">
@@ -404,7 +404,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2d3-TX-Xo8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="339" y="-259"/>
+            <point key="canvasLocation" x="-557" y="-303"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5Lw-p8-3mB">
@@ -419,7 +419,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fsf-q0-aeF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="834" y="-259"/>
+            <point key="canvasLocation" x="196" y="-355"/>
         </scene>
         <!--Matches View Controller-->
         <scene sceneID="low-Aa-7nq">
@@ -486,13 +486,12 @@
                     <navigationItem key="navigationItem" id="LTQ-U5-73r"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <segue destination="SDa-LR-4qD" kind="push" identifier="UserProfile" id="hf1-0m-qN0"/>
                         <segue destination="q9A-pi-12M" kind="push" identifier="CommentThread" id="NQ1-kO-6tI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z8r-JU-Hri" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1228" y="-259"/>
+            <point key="canvasLocation" x="748" y="-347"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="cQU-BN-yCe">
@@ -618,7 +617,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tgh-vo-D9L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1405" y="-259"/>
+            <point key="canvasLocation" x="1749" y="-253"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Bak-ar-NST">
@@ -633,7 +632,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vOh-Mo-NJf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1193" y="-992"/>
+            <point key="canvasLocation" x="-1642" y="-992"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="lzO-2R-eAi">
@@ -696,7 +695,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="muH-Kt-KEj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-748" y="-983"/>
+            <point key="canvasLocation" x="-1187" y="-992"/>
         </scene>
         <!--Match View Controller-->
         <scene sceneID="AvQ-Xf-ZGx">
@@ -706,34 +705,13 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NFJ-ke-WZU">
-                                <constraints>
-                                    <constraint firstAttribute="height" id="G3v-QK-1fB"/>
-                                    <constraint firstAttribute="width" id="ukS-Gq-sC7"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jze-Kh-OEd">
-                                <constraints>
-                                    <constraint firstAttribute="width" id="3Kd-rV-Mrp"/>
-                                    <constraint firstAttribute="height" id="qHl-jB-VUB"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQX-Pg-u5j">
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Начать общение" backgroundImage="blue_button.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapStartChat:" destination="Ujj-87-9Zu" eventType="touchUpInside" id="afW-4V-9qQ"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhT-7A-PrV">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" type="user" id="EKr-7z-kvE"/>
+                                    <constraint firstAttribute="width" constant="230" id="LHV-6k-Hnh"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Продолжить поиск" backgroundImage="logout_button.png">
+                                <state key="normal" title="Начать общение" backgroundImage="tell_friend_button.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -744,51 +722,78 @@
                                     <action selector="didTapKeepSearching:" destination="Ujj-87-9Zu" eventType="touchUpInside" id="JjC-7W-OrQ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Базинга!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5u-EQ-WRv">
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="У вас с Анюткой похоже что-то намечается!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jkK-XV-Iid">
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AD3-dB-CX5" customClass="ProfilePhotoView">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" type="user" id="C1x-kt-52w"/>
+                                    <constraint firstAttribute="width" constant="100" type="user" id="aVR-el-0DF"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RXM-3d-Ib7" customClass="ProfilePhotoView">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" type="user" id="L8x-tq-CnH"/>
+                                    <constraint firstAttribute="height" constant="100" type="user" id="yMV-Ep-aA5"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1R-zd-cvU">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Bz5-kr-j6t"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="или продолжить поиск">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="279" translatesAutoresizingMaskIntoConstraints="NO" id="Hcw-B1-eDO">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="oMz-c4-bvz"/>
+                                </constraints>
+                                <string key="text">Совпало!Похоже что-то будет!</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="r5u-EQ-WRv" firstAttribute="top" secondItem="9zA-zV-msD" secondAttribute="top" constant="-71" id="1WD-1d-NJB"/>
-                            <constraint firstItem="fhT-7A-PrV" firstAttribute="top" secondItem="9zA-zV-msD" secondAttribute="top" constant="31" id="2Wv-6B-MeO"/>
-                            <constraint firstItem="NFJ-ke-WZU" firstAttribute="top" secondItem="9zA-zV-msD" secondAttribute="top" constant="78" id="3dP-8s-Aic"/>
-                            <constraint firstItem="fhT-7A-PrV" firstAttribute="leading" secondItem="9zA-zV-msD" secondAttribute="leading" constant="24" id="DKe-XE-zKx"/>
-                            <constraint firstItem="jkK-XV-Iid" firstAttribute="top" secondItem="9zA-zV-msD" secondAttribute="top" constant="-25" id="Diu-9E-gAD"/>
-                            <constraint firstItem="GQX-Pg-u5j" firstAttribute="leading" secondItem="9zA-zV-msD" secondAttribute="leading" constant="-34" id="Nw3-ZL-rjP"/>
-                            <constraint firstItem="GQX-Pg-u5j" firstAttribute="top" secondItem="9zA-zV-msD" secondAttribute="top" constant="-61" id="Rs4-9p-B4C"/>
-                            <constraint firstItem="jkK-XV-Iid" firstAttribute="leading" secondItem="9zA-zV-msD" secondAttribute="leading" constant="-86" id="ZWS-YM-28d"/>
-                            <constraint firstItem="jze-Kh-OEd" firstAttribute="top" secondItem="9zA-zV-msD" secondAttribute="top" constant="63" id="b4n-El-tbg"/>
-                            <constraint firstItem="r5u-EQ-WRv" firstAttribute="leading" secondItem="9zA-zV-msD" secondAttribute="leading" constant="21" id="w1r-Jh-E5s"/>
-                            <constraint firstItem="jze-Kh-OEd" firstAttribute="leading" secondItem="9zA-zV-msD" secondAttribute="leading" constant="88" id="wKE-Sv-qjR"/>
-                            <constraint firstItem="NFJ-ke-WZU" firstAttribute="leading" secondItem="9zA-zV-msD" secondAttribute="leading" constant="-73" id="xrI-yv-GwT"/>
+                            <constraint firstItem="Hcw-B1-eDO" firstAttribute="centerX" secondItem="fhT-7A-PrV" secondAttribute="centerX" type="user" id="6LP-32-dFh"/>
+                            <constraint firstItem="AD3-dB-CX5" firstAttribute="leading" secondItem="Hcw-B1-eDO" secondAttribute="leading" type="user" id="7hA-gp-WJg"/>
+                            <constraint firstItem="RXM-3d-Ib7" firstAttribute="top" secondItem="AD3-dB-CX5" secondAttribute="top" type="user" id="8pf-A8-azb"/>
+                            <constraint firstItem="Hcw-B1-eDO" firstAttribute="top" secondItem="9zA-zV-msD" secondAttribute="top" constant="50" id="EOR-gv-GJB"/>
+                            <constraint firstAttribute="trailing" secondItem="RXM-3d-Ib7" secondAttribute="trailing" constant="20" symbolic="YES" type="user" id="EoF-fO-0Ac"/>
+                            <constraint firstItem="RXM-3d-Ib7" firstAttribute="leading" secondItem="9zA-zV-msD" secondAttribute="leading" constant="200" type="user" id="HWc-eE-8uO"/>
+                            <constraint firstItem="AD3-dB-CX5" firstAttribute="bottom" secondItem="RXM-3d-Ib7" secondAttribute="bottom" type="user" id="JoP-kp-N6a"/>
+                            <constraint firstAttribute="trailing" secondItem="AD3-dB-CX5" secondAttribute="trailing" constant="199" type="user" id="TAp-kv-3aO"/>
+                            <constraint firstItem="fhT-7A-PrV" firstAttribute="top" secondItem="RXM-3d-Ib7" secondAttribute="bottom" constant="61" type="user" id="TOe-HU-8PG"/>
+                            <constraint firstItem="AD3-dB-CX5" firstAttribute="top" secondItem="9zA-zV-msD" secondAttribute="top" constant="157" type="user" id="WcM-kH-wuC"/>
+                            <constraint firstAttribute="bottom" secondItem="L1R-zd-cvU" secondAttribute="bottom" constant="84" id="Xsl-BL-agR"/>
+                            <constraint firstItem="fhT-7A-PrV" firstAttribute="leading" secondItem="L1R-zd-cvU" secondAttribute="leading" type="default" id="eoy-7U-ogr"/>
+                            <constraint firstItem="fhT-7A-PrV" firstAttribute="centerX" secondItem="9zA-zV-msD" secondAttribute="centerX" type="user" id="h3i-TM-SmI"/>
+                            <constraint firstAttribute="trailing" secondItem="Hcw-B1-eDO" secondAttribute="trailing" constant="20" symbolic="YES" type="user" id="lgC-jc-ltd"/>
+                            <constraint firstItem="L1R-zd-cvU" firstAttribute="trailing" secondItem="fhT-7A-PrV" secondAttribute="trailing" type="default" id="oVb-bK-lB2"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="currentUserImage" destination="NFJ-ke-WZU" id="dTd-a5-VKh"/>
+                        <outlet property="currentUserImage" destination="AD3-dB-CX5" id="cXo-Bx-OcB"/>
                         <outlet property="keepSearchingButton" destination="fhT-7A-PrV" id="1Ou-gF-n27"/>
-                        <outlet property="matchTextLabel" destination="jkK-XV-Iid" id="wXY-Vj-usV"/>
-                        <outlet property="otherUserImage" destination="jze-Kh-OEd" id="lst-1j-RjN"/>
-                        <outlet property="startChatButton" destination="GQX-Pg-u5j" id="IZO-YR-HR1"/>
+                        <outlet property="otherUserImage" destination="RXM-3d-Ib7" id="XxH-bU-lBx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tsS-1z-XD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="328" y="379"/>
+            <point key="canvasLocation" x="-557" y="402"/>
         </scene>
         <!--User Profile View Controller-->
         <scene sceneID="Uyd-vd-V4d">
             <objects>
                 <tableViewController id="SDa-LR-4qD" customClass="UserProfileViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fti-kp-El6">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -945,7 +950,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q2r-MF-gAZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="873" y="402"/>
+            <point key="canvasLocation" x="21" y="402"/>
         </scene>
         <!--Vkontakte View Controller-->
         <scene sceneID="xIX-93-nbs">
@@ -1012,7 +1017,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcz-D4-H7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="738" y="-803"/>
+            <point key="canvasLocation" x="-569" y="-1065"/>
         </scene>
     </scenes>
     <resources>
@@ -1020,29 +1025,192 @@
         <image name="accepted.png" width="200" height="56"/>
         <image name="alena@2x.png" width="524" height="524"/>
         <image name="bg.png" width="320" height="568"/>
-        <image name="blue_button.png" width="282" height="47"/>
         <image name="blue_circle.png" width="58" height="58"/>
         <image name="camera.png" width="24" height="24"/>
         <image name="facebook_button.png" width="75" height="75"/>
         <image name="green_circle.png" width="58" height="58"/>
         <image name="i_button.png" width="50" height="50"/>
-        <image name="logout_button.png" width="257" height="47"/>
         <image name="matches_icon.png" width="40" height="40"/>
         <image name="no_button.png" width="75" height="75"/>
         <image name="photos_icon.png" width="35" height="35"/>
         <image name="recommendation_icon.png" width="40" height="40"/>
         <image name="reject.png" width="200" height="56"/>
         <image name="settings_icon.png" width="40" height="40"/>
+        <image name="tell_friend_button.png" width="230" height="55"/>
         <image name="vkontakte_button.png" width="75" height="75"/>
         <image name="yes_button.png" width="75" height="75"/>
     </resources>
+    <classes>
+        <class className="BaseNavigationViewController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseNavigationViewController.h"/>
+        </class>
+        <class className="BlueBubble" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BlueBubble.h"/>
+        </class>
+        <class className="CommentViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CommentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="CoreDataTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
+        </class>
+        <class className="CurrentUserChatCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrentUserChatCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="profilePhoto" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="whiteBubble" candidateClass="WhiteBubble"/>
+            </relationships>
+        </class>
+        <class className="IIViewDeckController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IIViewDeckController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bottomController" candidateClass="UIViewController"/>
+                <relationship kind="outlet" name="centerController" candidateClass="UIViewController"/>
+                <relationship kind="outlet" name="leftController" candidateClass="UIViewController"/>
+                <relationship kind="outlet" name="panningView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="rightController" candidateClass="UIViewController"/>
+                <relationship kind="outlet" name="topController" candidateClass="UIViewController"/>
+            </relationships>
+        </class>
+        <class className="IndexViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IndexViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didTapInfo:"/>
+                <relationship kind="action" name="didTapLike:"/>
+                <relationship kind="action" name="didTapPhoto:"/>
+                <relationship kind="action" name="didTapUnlike:"/>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="countdownLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoBanner" candidateClass="UIView"/>
+                <relationship kind="outlet" name="infoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="likeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="locationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mutualFriendsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mutualGroupsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="noResultsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photosCountLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="swipeView" candidateClass="SwipeView"/>
+                <relationship kind="outlet" name="unlikeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="userImageView" candidateClass="ProfileImageView"/>
+            </relationships>
+        </class>
+        <class className="InitialViewController" superclassName="IIViewDeckController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InitialViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didTapFbLogin:"/>
+                <relationship kind="action" name="didTapVkLogin:"/>
+                <relationship kind="outlet" name="fbLoginButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loginLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="vkLoginButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="MatchCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="profilePhoto" candidateClass="ProfilePhotoView"/>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MatchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didTapKeepSearching:"/>
+                <relationship kind="action" name="didTapStartChat:"/>
+                <relationship kind="outlet" name="currentUserImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="keepSearchingButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="matchTextLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="otherUserImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="startChatButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="MatchesViewController" superclassName="CoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchesViewController.h"/>
+        </class>
+        <class className="MenuViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="NotificationCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NotificationCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="notficationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="profilePhotoView" candidateClass="ProfileImageView"/>
+            </relationships>
+        </class>
+        <class className="NotificationsViewController" superclassName="CoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NotificationsViewController.h"/>
+        </class>
+        <class className="OtherUserChatCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OtherUserChatCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="blueBubble" candidateClass="BlueBubble"/>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="profileImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ProfileImageView" superclassName="UIImageView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileImageView.h"/>
+        </class>
+        <class className="ProfilePhotoView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfilePhotoView.h"/>
+        </class>
+        <class className="SwipeView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SwipeView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="acceptImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="rejectImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="userImageContainer" candidateClass="UserImageContainer"/>
+            </relationships>
+        </class>
+        <class className="UserImageContainer" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserImageContainer.h"/>
+        </class>
+        <class className="UserProfileViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserProfileViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="educationHeader" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="educationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mutalFriendsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mutualFriendsHeader" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mutualFriendsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mutualGroupsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mutualGroupsHeading" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mutualGroupsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="userGroupsHeader" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userGroupsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="vkHeader" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="vkUrlTextView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="VkontakteViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VkontakteViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="WhiteBubble" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WhiteBubble.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="1PX-uE-6VX"/>
         <segue reference="NQ1-kO-6tI"/>
-        <segue reference="hf1-0m-qN0"/>
     </inferredMetricsTieBreakers>
 </document>

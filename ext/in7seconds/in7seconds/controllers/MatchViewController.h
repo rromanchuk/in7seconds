@@ -8,14 +8,16 @@
 
 #import "User+REST.h"
 #import "ProfileImageView.h"
+#import "ProfilePhotoView.h"
+
 @protocol MatchModalDelegate;
 @interface MatchViewController : UIViewController
 @property (strong, nonatomic) User *currentUser;
 @property (strong, nonatomic) Match *otherUser;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
-@property (weak, nonatomic) IBOutlet UIImageView *currentUserImage;
-@property (weak, nonatomic) IBOutlet UIImageView *otherUserImage;
+@property (weak, nonatomic) IBOutlet ProfilePhotoView *currentUserImage;
+@property (weak, nonatomic) IBOutlet ProfilePhotoView *otherUserImage;
 
 @property (weak, nonatomic) IBOutlet UIButton *startChatButton;
 @property (weak, nonatomic) IBOutlet UIButton *keepSearchingButton;
