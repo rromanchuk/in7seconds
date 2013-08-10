@@ -12,10 +12,6 @@
 #import "Hookup+REST.h"
 #import "Image+REST.h"
 #import "MutualFriend+REST.h"
-#import "ImageBrowser.h"
-#define TRANSPARENT_BOUNDS CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] applicationFrame]), 150)
-#define DRAGGING_OPEN_OFFSET  40
-#define DRAGGING_CLOSE_OFFSET 20
 
 @interface UserProfileViewController () {
 }
@@ -36,24 +32,46 @@
     ALog(@"images are %@", images);
     
     NSInteger ctr = 1;
-    for (Image *image in images) {
+    int offsetX = 0;
+    
+    for (NSString *imageUrl in images) {
         if (ctr == 1) {
-            [self.firstImage setImageWithURL:[NSURL URLWithString:image.photoUrl]];
+            [self.firstImage setImageWithURL:[NSURL URLWithString:imageUrl]];
         } else {
-            int offsetX = (self.firstImage.frame.origin.x + CGRectGetWidth(self.firstImage.frame)) * ctr;
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(offsetX, self.firstImage.frame.origin.y, CGRectGetWidth(self.firstImage.frame), CGRectGetHeight(self.firstImage.frame))];
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(offsetX, 0, 320, 343)];
+            [imageView setImageWithURL:[NSURL URLWithString:imageUrl]];
             [self.imagesScrollView addSubview:imageView];
         }
         ctr++;
+        offsetX += 320;
+    }
+    [self.imagesScrollView setContentSize:CGSizeMake(offsetX, 343)];
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    if (scrollView == self.imagesScrollView) {
+        
+        CGFloat pageWidth = self.imagesScrollView.frame.size.width;
+        float fractionalPage = self.imagesScrollView.contentOffset.x / pageWidth;
+        NSInteger page = lround(fractionalPage);
+        self.pageControl.currentPage = page;
     }
 }
 
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setupPhotos];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //[self addImageBrowser];
-    //self.scrollView.delegate = self;
-    
+    self.pageControl.numberOfPages = [self.otherUser.images count] + 1;
+    self.imagesScrollView.delegate = self;
+    //[self setupPhotos];
+       
     if (self.otherUser.birthday && [self.otherUser.yearsOld integerValue] > 0) {
         self.nameLabel.text = [NSString stringWithFormat:@"%@, %@", self.otherUser.firstName, self.otherUser.yearsOld];
     } else {
@@ -156,6 +174,7 @@
 }
 
 - (IBAction)didTapClose:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)didTapLike:(id)sender {

@@ -108,6 +108,7 @@
 		94F20D2F17B64C8300B74955 /* blue_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F20D2D17B64C8300B74955 /* blue_circle.png */; };
 		94F20D3017B64C8300B74955 /* blue_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F20D2E17B64C8300B74955 /* blue_circle@2x.png */; };
 		94F20D3417B6548C00B74955 /* FeedUserImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F20D3217B6548C00B74955 /* FeedUserImage.m */; };
+		94F20D3717B6793400B74955 /* UserProfileImageScrollViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F20D3617B6793400B74955 /* UserProfileImageScrollViewDelegate.m */; };
 		94FB84F11733B17A001A74D3 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FB84F01733B17A001A74D3 /* Notification.m */; };
 		94FF9488172A5D6400563C1A /* Notification+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FF9487172A5D6200563C1A /* Notification+REST.m */; };
 		94FF948B172A606800563C1A /* RestNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FF948A172A606600563C1A /* RestNotification.m */; };
@@ -358,6 +359,8 @@
 		94F20D2E17B64C8300B74955 /* blue_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blue_circle@2x.png"; path = "assets/v2/feed/blue_circle@2x.png"; sourceTree = "<group>"; };
 		94F20D3217B6548C00B74955 /* FeedUserImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedUserImage.m; path = views/FeedUserImage.m; sourceTree = "<group>"; };
 		94F20D3317B6548C00B74955 /* FeedUserImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedUserImage.h; path = views/FeedUserImage.h; sourceTree = "<group>"; };
+		94F20D3517B6793400B74955 /* UserProfileImageScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileImageScrollViewDelegate.h; path = helpers/UserProfileImageScrollViewDelegate.h; sourceTree = "<group>"; };
+		94F20D3617B6793400B74955 /* UserProfileImageScrollViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileImageScrollViewDelegate.m; path = helpers/UserProfileImageScrollViewDelegate.m; sourceTree = "<group>"; };
 		94FB84EF1733B17A001A74D3 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = models/Notification.h; sourceTree = "<group>"; };
 		94FB84F01733B17A001A74D3 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notification.m; path = models/Notification.m; sourceTree = "<group>"; };
 		94FF9486172A5D6100563C1A /* Notification+REST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Notification+REST.h"; path = "models/Notification+REST.h"; sourceTree = "<group>"; };
@@ -972,6 +975,8 @@
 			children = (
 				FA98E54E0000069E00687BCA /* NotificationHandler.h */,
 				FA98E54F0000069E00687BCA /* NotificationHandler.m */,
+				94F20D3517B6793400B74955 /* UserProfileImageScrollViewDelegate.h */,
+				94F20D3617B6793400B74955 /* UserProfileImageScrollViewDelegate.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -1348,6 +1353,7 @@
 				9473343A17B6461A0076781F /* Group.m in Sources */,
 				9473343D17B6461A0076781F /* Hookup.m in Sources */,
 				94F20D3417B6548C00B74955 /* FeedUserImage.m in Sources */,
+				94F20D3717B6793400B74955 /* UserProfileImageScrollViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

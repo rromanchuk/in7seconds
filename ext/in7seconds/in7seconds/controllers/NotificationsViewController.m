@@ -115,7 +115,7 @@
     
     if (notification.sender) {
         cell.profilePhotoView.hidden = NO;
-        [cell.profilePhotoView setProfileImageWithUrl:notification.sender.photoUrl];
+        //[cell.profilePhotoView setProfileImageWithUrl:notification.sender.photoUrl];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else {
         cell.profilePhotoView.hidden = YES;

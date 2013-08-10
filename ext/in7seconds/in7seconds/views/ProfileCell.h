@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
 @interface ProfileCell : UITableViewCell
 

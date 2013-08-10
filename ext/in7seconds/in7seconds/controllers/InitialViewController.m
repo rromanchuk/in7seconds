@@ -48,56 +48,27 @@
 
 
 
-//
-//- (void)viewDidLoad
-//{
-//    [super viewDidLoad];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout)
-//                                                 name:@"UserNotAuthorized" object:nil];
-//
-//}
-//
 
-//
-//#pragma mark LoginDelegate methods
-//- (void)didVkLogin:(User *)user {
-//    self.currentUser = user;
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//}
-//
-//- (void)didFbLogin:(User *)user {
-//    self.currentUser = user;
-//    //[self dismissViewControllerAnimated:YES completion:nil];
-//    [self dismissModalViewControllerAnimated:YES];
-//}
-//
-//#pragma mark - LogoutDelegate delegate methods
-//- (void) didLogout
-//{
-//    ALog(@"in logout");
-//    [[Location sharedLocation] stopUpdatingLocation:@"logout"];
-//    [[[RestClient sharedClient] operationQueue] cancelAllOperations];
-//    [RestUser resetIdentifiers];
-//    [[Vkontakte sharedInstance] logout];
-//    
-//    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
-//    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    [sharedAppDelegate resetWindowToInitialView];
-//}
-//
-//- (void)saveContext
-//{
-//    NSError *error = nil;
-//    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-//    if (managedObjectContext != nil) {
-//        if ([_managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-//            // Replace this implementation with code to handle the error appropriately.
-//            DLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//        }
-//    }
-//    
-//    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    [sharedAppDelegate writeToDisk];
-//}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogout)
+                                                 name:@"UserNotAuthorized" object:nil];
+
+}
+
+#pragma mark - LogoutDelegate delegate methods
+- (void) didLogout
+{
+    ALog(@"in logout");
+    [[Location sharedLocation] stopUpdatingLocation:@"logout"];
+    [[[RestClient sharedClient] operationQueue] cancelAllOperations];
+    [RestUser resetIdentifiers];
+    [[Vkontakte sharedInstance] logout];
+    
+    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [sharedAppDelegate resetWindowToInitialView];
+}
 
 @end

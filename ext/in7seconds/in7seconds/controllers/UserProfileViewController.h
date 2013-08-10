@@ -14,6 +14,7 @@
 @property (strong, nonatomic) User *currentUser;
 @property (strong, nonatomic) Hookup *otherUser;
 @property (weak, nonatomic) IBOutlet UIScrollView *imagesScrollView;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIImageView *firstImage;
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (weak, nonatomic) IBOutlet UIButton *yesButton;

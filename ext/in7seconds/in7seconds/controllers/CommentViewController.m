@@ -19,6 +19,7 @@
 #import "AppDelegate.h"
 
 #import "UserProfileViewController.h"
+#import <ViewDeck/IIViewDeckController.h>
 
 // views
 #import "NoChatsView.h"
@@ -57,7 +58,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.viewDeckController.rightSize = 0;
     [self setupFooterView];
+    
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     self.title = self.otherUser.fullName;
     

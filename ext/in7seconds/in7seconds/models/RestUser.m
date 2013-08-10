@@ -96,9 +96,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
                                                                                                 onError(customError);
                                                                                         }];
     [[UIApplication sharedApplication] showNetworkActivityIndicator];
-    [operation start];
-
- 
+    [[restClient operationQueue] addOperation:operation]; 
 }
 
 + (void)updateProviderToken:(NSString *)token
@@ -141,9 +139,8 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
                                                                                                 onError(customError);
                                                                                         }];
     [[UIApplication sharedApplication] showNetworkActivityIndicator];
-    [operation start];
-
     
+    [[restClient operationQueue] addOperation:operation];
 }
 
 
@@ -203,8 +200,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
                                                                                                 onError(customError);
                                                                                         }];
     [[UIApplication sharedApplication] showNetworkActivityIndicator];
-    [operation start];
-
+    [[restClient operationQueue] addOperation:operation];
 }
 
 + (void)create:(NSMutableDictionary *)parameters
@@ -239,7 +235,8 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
                                                                                                 onError(customError);
                                                                                         }];
     [[UIApplication sharedApplication] showNetworkActivityIndicator];
-    [operation start];
+    [[restClient operationQueue] addOperation:operation];
+
 }
 
 
@@ -273,10 +270,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
                                                                                                 onError(customError);
                                                                                         }];
     [[UIApplication sharedApplication] showNetworkActivityIndicator];
-    [operation start];
-
-
-
+    [[restClient operationQueue] addOperation:operation];
 }
 
 + (void)rejectUser:(User *)user
@@ -302,8 +296,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
                                                                                                 onError(customError);
                                                                                         }];
     [[UIApplication sharedApplication] showNetworkActivityIndicator];
-    [operation start];
-
+    [[restClient operationQueue] addOperation:operation];
 }
 
 + (void)flirtWithUser:(User *)user
@@ -337,8 +330,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
                                                                                                 onError(customError);
                                                                                         }];
     [[UIApplication sharedApplication] showNetworkActivityIndicator];
-    [operation start];
-
+    [[restClient operationQueue] addOperation:operation];
 }
 
 + (void)resetIdentifiers {

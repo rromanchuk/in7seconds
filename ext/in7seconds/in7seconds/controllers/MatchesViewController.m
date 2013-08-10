@@ -113,7 +113,7 @@
     Match *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
     MatchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
     cell.nameLabel.text = user.firstName;
-    [cell.profilePhoto setProfileImageForUser:user];
+    [cell.profilePhoto setCircleWithUrl:user.photoUrl];
     cell.profilePhoto.tag = indexPath.row;
     cell.profilePhoto.userInteractionEnabled = YES;
     UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];

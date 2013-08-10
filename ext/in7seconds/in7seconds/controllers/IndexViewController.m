@@ -189,7 +189,7 @@
         vc.currentUser = self.currentUser; 
         vc.otherUser = (Match *)sender;
         ALog(@"set other user as %@", vc.otherUser);
-    } else if ([segue.identifier isEqualToString:@"UserProfile"]) {
+    } else if ([segue.identifier isEqualToString:@"FeedUserProfileModal"]) {
         [Flurry logEvent:@"View_User_Profile"];
         [self stopCountdown];
         _modalOpen = YES;
@@ -407,7 +407,7 @@
 
 - (IBAction)didTapInfo:(id)sender {
     if (self.currentUser) {
-        [self performSegueWithIdentifier:@"UserProfile" sender:self];
+        [self performSegueWithIdentifier:@"FeedUserProfileModal" sender:self];
     } else {
         [self revealMenu:nil];
     }

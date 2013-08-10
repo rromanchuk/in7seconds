@@ -21,7 +21,7 @@
     if (groups && ([groups count] > 1)) {
         // handle error
     } else if (![groups count]) {
-        group = [NSEntityDescription insertNewObjectForEntityForName:@"Image"
+        group = [NSEntityDescription insertNewObjectForEntityForName:@"Group"
                                               inManagedObjectContext:context];
         
         [group setManagedObjectWithIntermediateObject:restGroup];
