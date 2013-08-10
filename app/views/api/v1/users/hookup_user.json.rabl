@@ -7,6 +7,10 @@ child :images  do
   extends "api/v1/images/show"
 end
 
+child :groups  do 
+  extends "api/v1/groups/show"
+end
+
 node :birthday do |user|
   user.birthday_simple
 end
