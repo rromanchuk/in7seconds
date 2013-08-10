@@ -10,6 +10,7 @@
 #import "RestUser.h"
 #import "RestMutualFriend.h"
 #import "RestImage.h"
+#import "RestGroup.h"
 static NSString *RESOURCE_PATH = @"api/v1/users";
 
 @implementation RestHookup
@@ -47,6 +48,7 @@ static NSString *RESOURCE_PATH = @"api/v1/users";
         
     map[@"mutual_friend_objects"] = [RestMutualFriend mappingWithKey:@"mutualFriendObjects" mapping:[RestMutualFriend mapping]];
     map[@"images"] = [RestImage mappingWithKey:@"images" mapping:[RestImage mapping]];
+    map[@"groups"] = [RestGroup mappingWithKey:@"groups" mapping:[RestGroup mapping]];
     return map;
 }
 

@@ -7,7 +7,7 @@
 //
 
 @protocol ImageLoadedDelegate;
-@interface ProfileImageView : UIImageView
+@interface FeedUserImage : UIImageView
 @property BOOL notifyImageLoad;
 
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;

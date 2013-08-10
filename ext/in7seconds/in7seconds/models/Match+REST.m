@@ -11,6 +11,7 @@
 #import "Image+REST.h"
 #import "User+REST.h"
 #import <MapKit/MapKit.h>
+#import "Group+REST.h"
 
 @implementation Match (REST)
 
@@ -104,6 +105,10 @@
     
     for (RestImage *restImage in restMatch.images) {
         [self addImagesObject:[Image imageWithRestImage:restImage inManagedObjectContext:self.managedObjectContext]];
+    }
+    
+    for (RestGroup *restGroup in restMatch.groups) {
+        [self addGroupsObject:[Group groupWithRestGroup:restGroup inManagedObjectContext:self.managedObjectContext]];
     }
 }
 

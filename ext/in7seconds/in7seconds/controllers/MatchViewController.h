@@ -7,7 +7,6 @@
 //
 
 #import "User+REST.h"
-#import "ProfileImageView.h"
 #import "ProfilePhotoView.h"
 
 @protocol MatchModalDelegate;

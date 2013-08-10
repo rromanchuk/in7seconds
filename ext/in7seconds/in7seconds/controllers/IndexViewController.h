@@ -9,7 +9,7 @@
 #import "User+REST.h"
 #import "LoginViewController.h"
 #import "MenuViewController.h"
-#import "ProfileImageView.h"
+#import "FeedUserImage.h"
 #import "MatchViewController.h"
 #import "AppDelegate.h"
 #import "SwipeView.h"
@@ -19,7 +19,7 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
-@property (weak, nonatomic) IBOutlet ProfileImageView *userImageView;
+@property (weak, nonatomic) IBOutlet FeedUserImage *userImageView;
 @property (weak, nonatomic) IBOutlet UILabel *mutualFriendsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mutualGroupsLabel;
 

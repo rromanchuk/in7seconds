@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import "ProfileImageView.h"
+#import "FeedUserImage.h"
 @interface UIImageView (additions)
 - (CGSize)imageScale;
 @end

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3389" systemVersion="13A524d" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="13A524d" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Group" representedClassName="Group" syncable="YES">
+        <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="provider" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="hookup" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Hookup" inverseName="groups" inverseEntity="Hookup" syncable="YES"/>
+        <relationship name="match" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Match" inverseName="groups" inverseEntity="Match" syncable="YES"/>
+    </entity>
     <entity name="Hookup" representedClassName="Hookup" syncable="YES">
         <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,6 +35,7 @@
         <attribute name="vkGraduation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vkToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vkUniversityName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="hookup" inverseEntity="Group" syncable="YES"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="hookup" inverseEntity="Image" syncable="YES"/>
         <relationship name="mutualFriends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MutualFriend" inverseName="hookup" inverseEntity="MutualFriend" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="hookups" inverseEntity="User" syncable="YES"/>
@@ -63,6 +72,7 @@
         <attribute name="vkGraduation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vkToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vkUniversityName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="match" inverseEntity="Group" syncable="YES"/>
         <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="match" inverseEntity="Image" syncable="YES"/>
         <relationship name="mutualFriends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MutualFriend" inverseName="match" inverseEntity="MutualFriend" syncable="YES"/>
         <relationship name="sentNotifcation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Notification" inverseName="sender" inverseEntity="Notification" syncable="YES"/>
@@ -135,13 +145,14 @@
         <relationship name="threads" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Thread" inverseName="user" inverseEntity="Thread" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Hookup" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Image" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Match" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="MutualFriend" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Notification" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PrivateMessage" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Thread" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="User" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Hookup" positionX="0" positionY="0" width="128" height="495"/>
+        <element name="Image" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Match" positionX="0" positionY="0" width="128" height="495"/>
+        <element name="MutualFriend" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Notification" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="PrivateMessage" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Thread" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="User" positionX="0" positionY="0" width="128" height="525"/>
+        <element name="Group" positionX="160" positionY="192" width="128" height="135"/>
     </elements>
 </model>

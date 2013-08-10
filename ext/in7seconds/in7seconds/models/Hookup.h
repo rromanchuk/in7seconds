@@ -2,14 +2,14 @@
 //  Hookup.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 8/4/13.
+//  Created by Ryan Romanchuk on 8/10/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Image, MutualFriend, User;
+@class Group, Image, MutualFriend, User;
 
 @interface Hookup : NSManagedObject
 
@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSNumber * didRate;
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSNumber * externalId;
+@property (nonatomic, retain) NSString * fbDomain;
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * friendNames;
 @property (nonatomic, retain) NSNumber * gender;
@@ -38,10 +39,10 @@
 @property (nonatomic, retain) NSString * vkGraduation;
 @property (nonatomic, retain) NSString * vkToken;
 @property (nonatomic, retain) NSString * vkUniversityName;
-@property (nonatomic, retain) NSString * fbDomain;
 @property (nonatomic, retain) NSSet *images;
 @property (nonatomic, retain) NSSet *mutualFriends;
 @property (nonatomic, retain) User *user;
+@property (nonatomic, retain) NSSet *groups;
 @end
 
 @interface Hookup (CoreDataGeneratedAccessors)
@@ -55,5 +56,10 @@
 - (void)removeMutualFriendsObject:(MutualFriend *)value;
 - (void)addMutualFriends:(NSSet *)values;
 - (void)removeMutualFriends:(NSSet *)values;
+
+- (void)addGroupsObject:(Group *)value;
+- (void)removeGroupsObject:(Group *)value;
+- (void)addGroups:(NSSet *)values;
+- (void)removeGroups:(NSSet *)values;
 
 @end

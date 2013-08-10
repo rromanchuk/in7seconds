@@ -40,6 +40,7 @@
 @property (atomic, strong) NSString *mutualFriendNames;
 @property (atomic, strong) NSString *mutualGroupNames;
 @property (atomic, strong) NSSet *images;
+@property (atomic, strong) NSSet *groups;
 
 + (NSDictionary *)mapping;
 + (void)load:(void (^)(NSMutableArray *possibleHookups))onLoad

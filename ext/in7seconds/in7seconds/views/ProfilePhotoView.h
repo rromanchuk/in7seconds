@@ -9,16 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "User+Rest.h"
 
+#import <UIKit/UIKit.h>
+#import "User+Rest.h"
 @interface ProfilePhotoView : UIView
+
 @property NSNumber *thumbnailSize;
 @property NSNumber *thumbnailSizeForDevice;
 @property NSNumber *radius;
 @property NSNumber *radiusForDevice;
-@property (strong, nonatomic) UIImage *profileImage;
-
+@property (weak, nonatomic) UIImage *profileImage;
 @property UIImageView *profileImageView;
 
+- (void)setProfileImageWithUrl:(NSString *)url;
 - (void)setProfileImageForUser:(User *)user;
-+ (UIImage *)roundImage:(UIImage *)profileImage thumbnailSizeForDevize:(float)size radiusForDevice:(float)radius;
 @end
-

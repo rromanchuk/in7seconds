@@ -2,7 +2,7 @@
 //  Match.m
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 8/4/13.
+//  Created by Ryan Romanchuk on 8/10/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -22,6 +22,7 @@
 @dynamic createdAt;
 @dynamic email;
 @dynamic externalId;
+@dynamic fbDomain;
 @dynamic firstName;
 @dynamic friendNames;
 @dynamic gender;
@@ -39,11 +40,11 @@
 @dynamic vkGraduation;
 @dynamic vkToken;
 @dynamic vkUniversityName;
-@dynamic fbDomain;
 @dynamic images;
 @dynamic mutualFriends;
 @dynamic sentNotifcation;
 @dynamic thread;
 @dynamic user;
+@dynamic groups;
 
 @end

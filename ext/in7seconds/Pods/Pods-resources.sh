@@ -22,12 +22,16 @@ install_resource()
       cp -fpR "${PODS_ROOT}/$1" "${CONFIGURATION_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
       ;;
     *.xcdatamodel)
-      echo xcrun momc "${PODS_ROOT}/$1" ${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcdatamodel`.mom
-      xcrun momc "${PODS_ROOT}/$1" ${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcdatamodel`.mom
+      echo "xcrun momc \"${PODS_ROOT}/$1\" \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1"`.mom\""
+      xcrun momc "${PODS_ROOT}/$1" "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcdatamodel`.mom"
       ;;
     *.xcdatamodeld)
-      echo  xcrun momc "${PODS_ROOT}/$1" ${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcdatamodeld`.momd
-      xcrun momc "${PODS_ROOT}/$1" ${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcdatamodeld`.momd
+      echo "xcrun momc \"${PODS_ROOT}/$1\" \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcdatamodeld`.momd\""
+      xcrun momc "${PODS_ROOT}/$1" "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/`basename "$1" .xcdatamodeld`.momd"
+      ;;
+    /*)
+      echo "$1"
+      echo "$1" >> "$RESOURCES_TO_COPY"
       ;;
     *)
       echo "${PODS_ROOT}/$1"
@@ -35,66 +39,66 @@ install_resource()
       ;;
   esac
 }
-install_resource 'Appirater/ca.lproj'
-install_resource 'Appirater/cs.lproj'
-install_resource 'Appirater/da.lproj'
-install_resource 'Appirater/de.lproj'
-install_resource 'Appirater/el.lproj'
-install_resource 'Appirater/en.lproj'
-install_resource 'Appirater/es.lproj'
-install_resource 'Appirater/fi.lproj'
-install_resource 'Appirater/fr.lproj'
-install_resource 'Appirater/he.lproj'
-install_resource 'Appirater/hu.lproj'
-install_resource 'Appirater/id.lproj'
-install_resource 'Appirater/it.lproj'
-install_resource 'Appirater/ja.lproj'
-install_resource 'Appirater/ko.lproj'
-install_resource 'Appirater/nb.lproj'
-install_resource 'Appirater/nl.lproj'
-install_resource 'Appirater/pl.lproj'
-install_resource 'Appirater/pt.lproj'
-install_resource 'Appirater/ro.lproj'
-install_resource 'Appirater/ru.lproj'
-install_resource 'Appirater/sk.lproj'
-install_resource 'Appirater/sv.lproj'
-install_resource 'Appirater/tr.lproj'
-install_resource 'Appirater/zh-Hans.lproj'
-install_resource 'Appirater/zh-Hant.lproj'
-install_resource 'Facebook-iOS-SDK/src/FacebookSDKResources.bundle'
-install_resource 'Facebook-iOS-SDK/src/FBUserSettingsViewResources.bundle'
-install_resource 'SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/check.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/check@2x.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/down.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/down@2x.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/Overlay/overlayCloseBtn.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/Overlay/overlayCloseBtn@2x.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/UAInboxMessageListCell.xib'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/UAInboxMessageListController.xib'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/UAInboxMessageViewController.xib'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/uncheck.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/uncheck@2x.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/up.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/up@2x.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/bottom-detail.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/bottom-detail@2x.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/middle-detail.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/middle-detail@2x.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/top-detail.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/top-detail@2x.png'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UALocationSettingsViewController.xib'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAMapPresentationViewController.xib'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushMoreSettingsView.xib'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushSettingsAddTagViewController.xib'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushSettingsAliasView.xib'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushSettingsSoundsViewController.xib'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushSettingsTagsViewController.xib'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushSettingsTokenView.xib'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushSettingsUserInfoView.xib'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushSettingsView.xib'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/UAInboxLocalization.bundle'
-install_resource 'UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushLocalization.bundle'
+install_resource "Appirater/ca.lproj"
+install_resource "Appirater/cs.lproj"
+install_resource "Appirater/da.lproj"
+install_resource "Appirater/de.lproj"
+install_resource "Appirater/el.lproj"
+install_resource "Appirater/en.lproj"
+install_resource "Appirater/es.lproj"
+install_resource "Appirater/fi.lproj"
+install_resource "Appirater/fr.lproj"
+install_resource "Appirater/he.lproj"
+install_resource "Appirater/hu.lproj"
+install_resource "Appirater/id.lproj"
+install_resource "Appirater/it.lproj"
+install_resource "Appirater/ja.lproj"
+install_resource "Appirater/ko.lproj"
+install_resource "Appirater/nb.lproj"
+install_resource "Appirater/nl.lproj"
+install_resource "Appirater/pl.lproj"
+install_resource "Appirater/pt.lproj"
+install_resource "Appirater/ro.lproj"
+install_resource "Appirater/ru.lproj"
+install_resource "Appirater/sk.lproj"
+install_resource "Appirater/sv.lproj"
+install_resource "Appirater/tr.lproj"
+install_resource "Appirater/zh-Hans.lproj"
+install_resource "Appirater/zh-Hant.lproj"
+install_resource "Facebook-iOS-SDK/src/FacebookSDKResources.bundle"
+install_resource "Facebook-iOS-SDK/src/FBUserSettingsViewResources.bundle"
+install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/check.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/check@2x.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/down.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/down@2x.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/Overlay/overlayCloseBtn.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/Overlay/overlayCloseBtn@2x.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/UAInboxMessageListCell.xib"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/UAInboxMessageListController.xib"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/UAInboxMessageViewController.xib"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/uncheck.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/uncheck@2x.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/up.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/up@2x.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/bottom-detail.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/bottom-detail@2x.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/middle-detail.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/middle-detail@2x.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/top-detail.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/top-detail@2x.png"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UALocationSettingsViewController.xib"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAMapPresentationViewController.xib"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushMoreSettingsView.xib"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushSettingsAddTagViewController.xib"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushSettingsAliasView.xib"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushSettingsSoundsViewController.xib"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushSettingsTagsViewController.xib"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushSettingsTokenView.xib"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushSettingsUserInfoView.xib"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushSettingsView.xib"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/UAInboxLocalization.bundle"
+install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushLocalization.bundle"
 
 rsync -avr --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 rm -f "$RESOURCES_TO_COPY"

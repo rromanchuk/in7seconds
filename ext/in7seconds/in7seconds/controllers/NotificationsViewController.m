@@ -110,12 +110,12 @@
     ALog(@"sender is %@", notification.sender);
     cell.notficationLabel.text = notification.message;
     cell.notficationLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
-    cell.notficationLabel.lineBreakMode = UILineBreakModeWordWrap;
+    cell.notficationLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.notficationLabel.numberOfLines = 0;
     
     if (notification.sender) {
         cell.profilePhotoView.hidden = NO;
-        [cell.profilePhotoView setProfilePhotoWithURL:notification.sender.photoUrl];
+        [cell.profilePhotoView setProfileImageWithUrl:notification.sender.photoUrl];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else {
         cell.profilePhotoView.hidden = YES;

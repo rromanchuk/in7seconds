@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import "ProfileImageView.h"
+#import "FeedUserImage.h"
 #import  <QuartzCore/QuartzCore.h>
 #import "UIImageView+additions.h"
 
-@implementation ProfileImageView
+@implementation FeedUserImage
 
 - (id)initWithFrame:(CGRect)frame
 {

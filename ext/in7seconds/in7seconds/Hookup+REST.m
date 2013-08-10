@@ -10,6 +10,7 @@
 #import "RestMutualFriend.h"
 #import "MutualFriend+REST.h"
 #import "Image+REST.h"
+#import "Group+REST.h"
 
 @implementation Hookup (REST)
 + (Hookup *)hookupWithRestHookup:(RestHookup *)restHookup
@@ -82,6 +83,10 @@
     
     for (RestImage *restImage in restHookup.images) {
         [self addImagesObject:[Image imageWithRestImage:restImage inManagedObjectContext:self.managedObjectContext]];
+    }
+    
+    for (RestGroup *restGroup in restHookup.groups) {
+        [self addGroupsObject:[Group groupWithRestGroup:restGroup inManagedObjectContext:self.managedObjectContext]];
     }
 }
 

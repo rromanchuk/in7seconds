@@ -7,33 +7,23 @@
 //
 
 #import "User+REST.h"
-#import "ProfileImageView.h"
+#import "ProfilePhotoView.h"
 @interface UserProfileViewController : UITableViewController <UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
 @property (strong, nonatomic) Hookup *otherUser;
+@property (weak, nonatomic) IBOutlet UIScrollView *imagesScrollView;
+@property (weak, nonatomic) IBOutlet UIImageView *firstImage;
+@property (weak, nonatomic) IBOutlet UIButton *closeButton;
+@property (weak, nonatomic) IBOutlet UIButton *yesButton;
+@property (weak, nonatomic) IBOutlet UIButton *noButton;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *interestsScrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *friendsScrollView;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+- (IBAction)didTapClose:(id)sender;
+- (IBAction)didTapLike:(id)sender;
+- (IBAction)didTapUnlike:(id)sender;
 
-
-@property (weak, nonatomic) IBOutlet UILabel *mutualFriendsHeader;
-@property (weak, nonatomic) IBOutlet UIButton *mutalFriendsButton;
-@property (weak, nonatomic) IBOutlet UILabel *mutualFriendsLabel;
-
-@property (weak, nonatomic) IBOutlet UIButton *mutualGroupsButton;
-@property (weak, nonatomic) IBOutlet UILabel *mutualGroupsHeading;
-@property (weak, nonatomic) IBOutlet UILabel *mutualGroupsLabel;
-
-
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
-
-@property (weak, nonatomic) IBOutlet UILabel *userGroupsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *userGroupsHeader;
-
-@property (weak, nonatomic) IBOutlet UILabel *educationLabel;
-@property (weak, nonatomic) IBOutlet UILabel *educationHeader;
-
-
-@property (weak, nonatomic) IBOutlet UILabel *vkHeader;
-@property (weak, nonatomic) IBOutlet UITextView *vkUrlTextView;
 @end

@@ -2,7 +2,7 @@
 //  Match.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 8/4/13.
+//  Created by Ryan Romanchuk on 8/10/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSDate * createdAt;
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSNumber * externalId;
+@property (nonatomic, retain) NSString * fbDomain;
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * friendNames;
 @property (nonatomic, retain) NSNumber * gender;
@@ -36,12 +37,12 @@
 @property (nonatomic, retain) NSString * vkGraduation;
 @property (nonatomic, retain) NSString * vkToken;
 @property (nonatomic, retain) NSString * vkUniversityName;
-@property (nonatomic, retain) NSString * fbDomain;
 @property (nonatomic, retain) NSSet *images;
 @property (nonatomic, retain) NSSet *mutualFriends;
 @property (nonatomic, retain) NSSet *sentNotifcation;
 @property (nonatomic, retain) Thread *thread;
 @property (nonatomic, retain) User *user;
+@property (nonatomic, retain) NSSet *groups;
 @end
 
 @interface Match (CoreDataGeneratedAccessors)
@@ -60,5 +61,10 @@
 - (void)removeSentNotifcationObject:(Notification *)value;
 - (void)addSentNotifcation:(NSSet *)values;
 - (void)removeSentNotifcation:(NSSet *)values;
+
+- (void)addGroupsObject:(NSManagedObject *)value;
+- (void)removeGroupsObject:(NSManagedObject *)value;
+- (void)addGroups:(NSSet *)values;
+- (void)removeGroups:(NSSet *)values;
 
 @end

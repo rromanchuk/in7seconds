@@ -59,12 +59,12 @@
     self.userImageView.delegate = self;
     self.viewDeckController.delegate = self;
     
-    UIImage *notificationsImage = [UIImage imageNamed:@"navigation-logo"];
+    UIImage *notificationsImage = [UIImage imageNamed:@"in7sec_logo"];
     UIButton *notificationButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [notificationButton addTarget:self action:@selector(didSelectNotifications:) forControlEvents:UIControlEventTouchUpInside];
     
     [notificationButton setBackgroundImage:notificationsImage forState:UIControlStateNormal];
-    [notificationButton setFrame:CGRectMake(0, 0, 125, 27)];
+    [notificationButton setFrame:CGRectMake(0, 0, 115, 27)];
     
     self.navigationItem.titleView = notificationButton;
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -214,8 +214,12 @@
 
 - (IBAction)revealChats:(id)sender
 {
-    [self stopCountdown];
-    [self.viewDeckController toggleRightView];
+    if (self.currentUser) {
+        [self stopCountdown];
+        [self.viewDeckController toggleRightView];
+    } else {
+        [self.viewDeckController toggleLeftView];
+    }
 }
 
 

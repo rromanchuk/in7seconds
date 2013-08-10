@@ -7,7 +7,6 @@
 //
 #import <QuartzCore/QuartzCore.h>
 #import "ProfilePhotoView.h"
-//#import "Utils.h"
 #import "UIImage+RoundedCorner.h"
 #import "UIImage+Resize.h"
 
@@ -17,7 +16,22 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self commonInit];
+        UIColor *pinkColor = RGBCOLOR(242, 95, 114);
+        CALayer *backdropLayer = self.layer;
+        [backdropLayer setCornerRadius:self.frame.size.width / 2];
+        [backdropLayer setBorderWidth:1];
+        [backdropLayer setBorderColor:[pinkColor CGColor]];
+        [backdropLayer setMasksToBounds:YES];
+        
+        self.thumbnailSize = [NSNumber numberWithFloat:(self.frame.size.height - 4.0)];
+        self.thumbnailSizeForDevice = [NSNumber numberWithFloat:[self sizeForDevice:[self.thumbnailSize floatValue]]];
+        self.radius = [NSNumber numberWithFloat:([self.thumbnailSize floatValue]/ 2.0)];
+        self.radiusForDevice = [NSNumber numberWithFloat:[self sizeForDevice:[self.radius floatValue]]];
+        
+        float padding = (self.frame.size.width - (self.frame.size.width - 4.0)) /2;
+        self.profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(padding, padding, self.frame.size.width - 4.0, self.frame.size.height - 4.0)];
+        [self addSubview:self.profileImageView];
+        self.profileImageView.image = self.profileImage;
     }
     return self;
 }
@@ -26,38 +40,27 @@
 {
     if(self = [super initWithCoder:aDecoder])
     {
-        [self commonInit];
+        UIColor *pinkColor = RGBCOLOR(242, 95, 114);
+        CALayer *backdropLayer = self.layer;
+        [backdropLayer setCornerRadius:self.frame.size.width / 2];
+        [backdropLayer setBorderWidth:1];
+        [backdropLayer setBorderColor:[pinkColor CGColor]];
+        [backdropLayer setMasksToBounds:YES];
+        
+        self.thumbnailSize = [NSNumber numberWithFloat:(self.frame.size.height - 4.0)];
+        self.thumbnailSizeForDevice = [NSNumber numberWithFloat:[self sizeForDevice:[self.thumbnailSize floatValue]]];
+        self.radius = [NSNumber numberWithFloat:([self.thumbnailSize floatValue]/ 2.0)];
+        self.radiusForDevice = [NSNumber numberWithFloat:[self sizeForDevice:[self.radius floatValue]]];
+        
+        float padding = (self.frame.size.width - (self.frame.size.width - 4.0)) /2;
+        self.profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(padding, padding, self.frame.size.width - 4.0, self.frame.size.height - 4.0)];
+        [self addSubview:self.profileImageView];
+        self.profileImageView.image = self.profileImage;
     }
     return self;
 }
 
-- (void)commonInit {
-    //UIColor *pinkColor = RGBCOLOR(242, 95, 114);
-    CALayer *backdropLayer = self.layer;
-    [backdropLayer setCornerRadius:self.frame.size.width / 2];
-    [backdropLayer setBorderWidth:2];
-    [backdropLayer setBorderColor:[[UIColor whiteColor] CGColor]];
-    //[backdropLayer setMasksToBounds:YES];
-    [backdropLayer setShadowColor:[UIColor grayColor].CGColor];
-    [backdropLayer setShadowOffset:CGSizeMake(0, 2)];
-    [backdropLayer setShadowRadius:2];
-    [backdropLayer setShadowOpacity:0.8];
-    
-    [backdropLayer setShadowPath:
-     [[UIBezierPath bezierPathWithRoundedRect:[backdropLayer bounds]
-                                 cornerRadius:self.frame.size.width / 2] CGPath]];
-    
-    //[backdropLayer setShadowPath:[[UIBezierPath bezierPathWithRect:self.bounds] CGPath]];
-    self.thumbnailSize = [NSNumber numberWithFloat:(self.frame.size.height - 4.0)];
-    self.thumbnailSizeForDevice = [NSNumber numberWithFloat:[self sizeForDevice:[self.thumbnailSize floatValue]]];
-    self.radius = [NSNumber numberWithFloat:([self.thumbnailSize floatValue]/ 2.0)];
-    self.radiusForDevice = [NSNumber numberWithFloat:[self sizeForDevice:[self.radius floatValue]]];
-    
-    float padding = (self.frame.size.width - (self.frame.size.width - 4.0)) /2;
-    self.profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(padding, padding, self.frame.size.width - 4.0, self.frame.size.height - 4.0)];
-    [self addSubview:self.profileImageView];
-    self.profileImageView.image = self.profileImage;
-}
+
 
 - (void)setProfileImageForUser:(User *)user {
     
@@ -73,6 +76,21 @@
                                               }];
         
 }
+
+- (void)setProfileImageWithUrl:(NSString *)url {
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [self.profileImageView setImageWithURLRequest:request
+                                 placeholderImage:[UIImage imageNamed:@"profile-placeholder.png"]
+                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                              self.profileImage = image;
+                                              
+                                          }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                              DLog(@"Failure loading review profile photo with request %@ and errer %@", request, error);
+                                          }];
+    
+}
+
 
 + (UIImage *)roundImage:(UIImage *)profileImage thumbnailSizeForDevize:(float)size radiusForDevice:(float)radius {
     return [profileImage thumbnailImage:size transparentBorder:0 cornerRadius:radius interpolationQuality:kCGInterpolationHigh];

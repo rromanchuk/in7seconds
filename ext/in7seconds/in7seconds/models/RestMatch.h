@@ -39,6 +39,7 @@
 
 @property (atomic, strong) NSSet *mutualFriendObjects;
 @property (atomic, strong) NSSet *images;
+@property (atomic, strong) NSSet *groups;
 
 + (NSDictionary *)mapping;
 + (void)load:(void (^)(NSMutableArray *matches))onLoad

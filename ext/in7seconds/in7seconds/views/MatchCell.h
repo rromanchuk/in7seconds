@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
-#import "ProfileImageView.h"
 #import "ProfilePhotoView.h"
 @interface MatchCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

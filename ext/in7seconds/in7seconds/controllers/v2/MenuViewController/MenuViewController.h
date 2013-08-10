@@ -17,7 +17,7 @@
 
 
 #import "User+REST.h"
-#import "ProfileImageView.h"
+#import "FeedUserImage.h"
 #import "TDDatePickerController.h"
 
 typedef enum  {
