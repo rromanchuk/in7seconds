@@ -58,7 +58,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.viewDeckController.rightSize = 0;
+    self.navigationController.navigationBarHidden = NO;
     [self setupFooterView];
     
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
@@ -168,30 +170,20 @@
     PrivateMessage *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
     if (![message.isFromSelf boolValue]) {
         OtherUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OtherUserChatCell"];
-        [cell.blueBubble setMessage:message.message];
-        [cell.profileImage setImageWithURL:[NSURL URLWithString:self.otherUser.photoUrl]];
+        cell.otherUserText.text = message.message;
         cell.dateLabel.text = [_df stringFromDate:message.createdAt];
-        cell.profileImage.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];
-        [cell.profileImage addGestureRecognizer:tg];
+        cell.otherUserBubble.layer.cornerRadius = 20;
+//        UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];
+//        [cell.profileImage addGestureRecognizer:tg];
         return cell;
     } else {
         CurrentUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CurrentUserChatCell"];
-        [cell.whiteBubble setMessage:message.message];
+        cell.currentUserText.text = message.message;
+        cell.currentUserText.layer.cornerRadius = 20;
         cell.dateLabel.text = [_df stringFromDate:message.createdAt];
-        [cell.profilePhoto setImageWithURL:[NSURL URLWithString:self.currentUser.photoUrl]];        
         return cell;
     }
 
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    RestMessage *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    CGSize size = [message.message sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:15] constrainedToSize:CGSizeMake(245 - 25, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
-    DLog(@"height will be")
-    //return exptectedSize.height + 20;
-    return size.height + 20 + 20;
 }
 
 

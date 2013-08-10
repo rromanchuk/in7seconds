@@ -9,9 +9,8 @@
 #import "BlueBubble.h"
 @interface OtherUserChatCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet BlueBubble *blueBubble;
-
-@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UILabel *otherUserText;
+@property (weak, nonatomic) IBOutlet UIView *otherUserBubble;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end
