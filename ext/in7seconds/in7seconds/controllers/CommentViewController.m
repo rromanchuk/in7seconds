@@ -62,8 +62,9 @@
     self.viewDeckController.rightSize = 0;
     self.navigationController.navigationBarHidden = NO;
     [self setupFooterView];
-    
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    space.width = 20;
+    self.navigationItem.leftBarButtonItems = @[space, [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_button"] target:self action:@selector(back)]];
     self.title = self.otherUser.fullName;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -102,6 +103,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
     [self.commentView resignFirstResponder];
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardDidShowNotification

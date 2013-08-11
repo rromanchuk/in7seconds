@@ -8,9 +8,10 @@
 
 
 #import "User+REST.h"
-
+#import "ProfilePhotoView.h"
 @interface MenuViewController : UITableViewController
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (weak, nonatomic) IBOutlet ProfilePhotoView *profilePhoto;
 @property (strong, nonatomic) User *currentUser;
 @end
 

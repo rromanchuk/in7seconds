@@ -13,6 +13,8 @@
 #import "UserProfileViewController.h"
 #import "UAPush.h"
 #import  <QuartzCore/QuartzCore.h>
+#import <ViewDeck/IIViewDeckController.h>
+
 #import "PrivateMessage+REST.h"
 
 #import "RestMatch.h"
@@ -21,6 +23,7 @@
 #import "AppDelegate.h"
 @interface MatchesViewController () {
     NSDateFormatter *_fm;
+    CGFloat _ledgeSize;
     
 }
 @property (strong, nonatomic) NoChatsView *noResultsFooterView;
@@ -51,11 +54,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = NO;
+    
+    _ledgeSize = self.viewDeckController.rightLedgeSize;
     AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     self.managedObjectContext = delegate.managedObjectContext;
     self.currentUser = [User currentUser:self.managedObjectContext];
     
-    self.navigationController.navigationBarHidden = YES;
 
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     self.title = NSLocalizedString(@"Симпатии", nil);
@@ -73,6 +78,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    if (_ledgeSize) {
+        self.viewDeckController.rightSize = _ledgeSize;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

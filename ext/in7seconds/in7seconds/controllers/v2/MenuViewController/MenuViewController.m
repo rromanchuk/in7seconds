@@ -7,6 +7,20 @@
 //
 
 #import "MenuViewController.h"
+#import "SettingsViewController.h"
+#import "MyProfileViewController.h"
+#import "MatchesViewController.h"
+#import "IndexViewController.h"
+#import <ViewDeck/IIViewDeckController.h>
+
+typedef enum {
+    SSMenuRowRecommendations,
+    SSMenuRowMatches,
+    SSMenuRowSpace,
+    SSMenuRowSettings,
+    SSMenuRowProfile,
+    numSSMenuRow
+} SSMenuRow;
 
 @interface MenuViewController ()
 
@@ -17,10 +31,32 @@
 - (void)viewDidLoad {
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_sidebar"]];
     self.navigationController.navigationBarHidden = YES;
+    [self.profilePhoto setCircleWithUrl:self.currentUser.photoUrl];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+
+    if (indexPath.row == SSMenuRowRecommendations) {
+        UINavigationController *nc =  (UINavigationController *)[storyboard instantiateViewControllerWithIdentifier:@"middleViewController"];
+        ((IndexViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
+        self.viewDeckController.centerController = nc;
+
+    } else if (indexPath.row == SSMenuRowMatches) {
+        UINavigationController *nc =  (UINavigationController *)[storyboard instantiateViewControllerWithIdentifier:@"matchesController"];
+        ((MatchesViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
+        self.viewDeckController.centerController = nc;
+
+    } else if (indexPath.row == SSMenuRowSettings) {
+        UINavigationController *nc =  (UINavigationController *)[storyboard instantiateViewControllerWithIdentifier:@"settings"];
+        ((SettingsViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
+        self.viewDeckController.centerController = nc;
+
+    } else if (indexPath.row == SSMenuRowProfile) {
+        UINavigationController *nc =  (UINavigationController *)[storyboard instantiateViewControllerWithIdentifier:@"profile"];
+        ((MyProfileViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
+        self.viewDeckController.centerController = nc;
+    }
 }
 
 
