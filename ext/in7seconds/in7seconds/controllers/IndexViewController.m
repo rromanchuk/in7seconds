@@ -278,8 +278,8 @@ typedef enum  {
         }
         
         self.photosCountLabel.text =  [NSString stringWithFormat:@"%d", [self.otherUser.images count] + 1];
-        self.mutualFriendsLabel.text = [NSString stringWithFormat:@"%@ общих друзей", self.otherUser.mutualFriendsNum];
-        self.mutualGroupsLabel.text = [NSString stringWithFormat:@"%@ общих интересов", self.otherUser.mutualGroups];
+        self.mutualFriendsLabel.text = [NSString stringWithFormat:@"%@", self.otherUser.mutualFriendsNum];
+        self.mutualGroupsLabel.text = [NSString stringWithFormat:@"%@", self.otherUser.mutualGroups];
         ALog(@"birthday %@", self.otherUser.birthday);
         if (self.otherUser.birthday && [self.otherUser.yearsOld integerValue] > 0) {
             self.nameLabel.text = [NSString stringWithFormat:@"%@ %@, %@ %@", self.otherUser.lastName, self.otherUser.firstName, self.otherUser.yearsOld, NSLocalizedString(@"лет", @"years old")];
