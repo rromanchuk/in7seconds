@@ -526,7 +526,7 @@ class User < ActiveRecord::Base
 
   def exclude_ids
     #relationships.pluck(:id)
-    relationships.where("status IN (?)", ['pending', 'accepted']).pluck(:id)
+    relationships.where("status IN (?)", ['pending', 'accepted']).pluck(:hookup_id)
     #(hookups.pluck(:id) + pending_hookups.pluck(:id) + rejected_hookups.pluck(:id))
   end
 
