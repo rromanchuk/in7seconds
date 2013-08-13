@@ -8,62 +8,36 @@
 
 #import "SettingsViewController.h"
 
-@interface SettingsViewController ()
+#import "Location.h"
+#import "AppDelegate.h"
+#import "RestUser.h"
+#import "Vkontakte.h"
 
+#import <ViewDeck/IIViewDeckController.h>
+
+
+@interface SettingsViewController ()
+@property BOOL isFetching;
+@property BOOL filtersChanged;
 @end
 
 @implementation SettingsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.currentUser = [User currentUser:self.managedObjectContext];
+    
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    space.width = 20;
+    self.navigationItem.leftBarButtonItems = @[space, [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"sidebar_button"] target:self action:@selector(revealMenu:)]];
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
 }
 
 /*
@@ -75,47 +49,108 @@
 }
 */
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    if (indexPath.section == SSSettingsSectionTypeGender) {
+        
+    } else if (indexPath.section == SSSettingsSectionTypeDistance) {
+        
+    } else if (indexPath.section == SSSettingsSectionTypeAge) {
+        
+    } else if (indexPath.section == SSSettingsSectionTypePush) {
+        
+    } else if (indexPath.section == SSSettingsSectionTypeLogout) {
+        [self didLogout];
+    }
 }
 
+- (IBAction)revealMenu:(id)sender
+{
+    [self.viewDeckController toggleLeftView];
+}
+
+- (void)update {
+    [self.managedObjectContext performBlock:^{
+        _isFetching  = YES;
+        [RestUser update:self.currentUser onLoad:^(RestUser *restUser) {
+            [SVProgressHUD dismiss];
+            self.currentUser = [User userWithRestUser:restUser inManagedObjectContext:self.managedObjectContext];
+            
+            NSError *error;
+            [self.managedObjectContext save:&error];
+            
+            AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [sharedAppDelegate writeToDisk];
+            
+            if (_filtersChanged) {
+                _filtersChanged = NO;
+            }
+            _isFetching = NO;
+        } onError:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+            _isFetching = NO;
+        }];
+    }];
+    
+}
+
+
+- (IBAction)didTapLogout:(id)sender {
+    //ALog(@"did tap logout sending to delegate %@", self.delegate);
+    [self didLogout];
+}
+
+- (void)didLogout
+{
+    ALog(@"in logout");
+    [[Location sharedLocation] stopUpdatingLocation:@"logout"];
+    [[[RestClient sharedClient] operationQueue] cancelAllOperations];
+    [RestUser resetIdentifiers];
+    [[Vkontakte sharedInstance] logout];
+    
+    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
+    
+    //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    //
+    //    BaseNavigationViewController *centerViewController = [storyboard instantiateViewControllerWithIdentifier:@"middleViewController"];
+    //    self.viewDeckController.centerController = centerViewController;
+    //
+    //    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
+    //    self.viewDeckController.leftController = loginViewController;
+    //
+    AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [sharedAppDelegate resetWindowToInitialView];
+    
+    
+}
+
+- (IBAction)lookingForMenChanged:(id)sender {
+    if ((self.lookingForMenSwitch.on && self.lookingForWomenSwitch.on) || (!self.lookingForMenSwitch.on && !self.lookingForWomenSwitch.on)) {
+        self.currentUser.lookingForGender = @(LookingForBoth);
+    } else if (self.lookingForMenSwitch.on) {
+        self.currentUser.lookingForGender = @(LookingForMen);
+    } else if (self.lookingForWomenSwitch.on) {
+        self.currentUser.lookingForGender = @(LookingForWomen);
+    }
+    
+}
+
+- (IBAction)notificationSettingsChanged:(id)sender {
+    _filtersChanged = YES;
+    UISwitch *mySwitch = (UISwitch *)sender;
+    if (mySwitch == self.notificationEmailSwitch) {
+        self.currentUser.emailOptIn = @(self.notificationEmailSwitch.on);
+    } else {
+        self.currentUser.pushOptIn = @(self.notificationPushSwitch.on);
+    }
+    [self update];
+}
+
+
+- (IBAction)lookingForWomenChanged:(id)sender {
+}
 @end

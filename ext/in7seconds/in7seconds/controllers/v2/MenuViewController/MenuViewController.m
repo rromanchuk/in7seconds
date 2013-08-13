@@ -29,6 +29,8 @@ typedef enum {
 @implementation MenuViewController
 
 - (void)viewDidLoad {
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = delegate.managedObjectContext;
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_sidebar"]];
     self.navigationController.navigationBarHidden = YES;
     [self.profilePhoto setCircleWithUrl:self.currentUser.photoUrl];
@@ -45,6 +47,7 @@ typedef enum {
     } else if (indexPath.row == SSMenuRowMatches) {
         UINavigationController *nc =  (UINavigationController *)[storyboard instantiateViewControllerWithIdentifier:@"matchesController"];
         ((MatchesViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
+        ((MatchesViewController *)nc.topViewController).fromMenu = YES;
         self.viewDeckController.centerController = nc;
 
     } else if (indexPath.row == SSMenuRowSettings) {
@@ -57,6 +60,7 @@ typedef enum {
         ((MyProfileViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
         self.viewDeckController.centerController = nc;
     }
+    [self.viewDeckController toggleLeftView];
 }
 
 

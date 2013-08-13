@@ -61,8 +61,15 @@
     self.managedObjectContext = delegate.managedObjectContext;
     self.currentUser = [User currentUser:self.managedObjectContext];
     
+    if (self.fromMenu) {
+        UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+        space.width = 20;
+        self.navigationItem.leftBarButtonItems = @[space, [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"sidebar_button"] target:self action:@selector(revealMenu:)]];
 
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
+    } else {
+        self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
+    }
+    
     self.title = NSLocalizedString(@"Симпатии", nil);
     [[UAPush shared] resetBadge];
     
@@ -184,6 +191,11 @@
             [refreshControl endRefreshing];
         }];
     }];
+}
+
+- (IBAction)revealMenu:(id)sender
+{
+    [self.viewDeckController toggleLeftView];
 }
 
 - (void)saveContext

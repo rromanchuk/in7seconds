@@ -21,11 +21,7 @@
 #import "FeedUserImage.h"
 #import "TDDatePickerController.h"
 
-typedef enum  {
-    LookingForMen = 0,
-    LookingForWomen = 1,
-    LookingForBoth = 2
-} LookingForTypes;
+
 
 //@protocol LogoutDelegate;
 //@protocol UserSettingsDelegate;

@@ -7,6 +7,8 @@
 //
 
 #import "MyProfileViewController.h"
+#import <ViewDeck/IIViewDeckController.h>
+
 
 @interface MyProfileViewController ()
 
@@ -14,18 +16,13 @@
 
 @implementation MyProfileViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    space.width = 20;
+    self.navigationItem.leftBarButtonItems = @[space, [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"sidebar_button"] target:self action:@selector(revealMenu:)]];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -34,11 +31,6 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
 
@@ -117,5 +109,11 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
+
+- (IBAction)revealMenu:(id)sender
+{
+    [self.viewDeckController toggleLeftView];
+}
+
 
 @end

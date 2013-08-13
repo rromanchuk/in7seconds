@@ -18,6 +18,12 @@
 #import "Match+REST.h"
 
 
+typedef enum  {
+    LookingForMen = 0,
+    LookingForWomen = 1,
+    LookingForBoth = 2
+} LookingForTypes;
+
 @interface IndexViewController () {
     NSInteger _numberOfAttempts;
     BOOL _noResults;
@@ -52,7 +58,12 @@
     _isFetching = NO;
     _numberOfAttempts = 0;
     self.swipeView.delegate = self;
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"sidebar_button"] target:self action:@selector(revealMenu:)];
+    
+    
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    space.width = 20;
+    self.navigationItem.leftBarButtonItems = @[space, [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"sidebar_button"] target:self action:@selector(revealMenu:)]];
+    
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chats_button"] target:self action:@selector(revealChats:)];
     
     

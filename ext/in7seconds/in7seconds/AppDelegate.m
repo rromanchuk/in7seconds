@@ -162,10 +162,11 @@
 
 - (void)theme {
     UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
-    [navigationBarAppearance setBackgroundImage:[UIImage imageNamed:@"navigation-bar"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
     
-    navigationBarAppearance.titleTextAttributes = @{UITextAttributeFont: [UIFont fontWithName:@"HelveticaNeue" size:20.0],
-                                                   UITextAttributeTextColor: RGBACOLOR(159, 169, 172, 1.0),
+    navigationBarAppearance.titleTextAttributes = @{UITextAttributeFont: [UIFont fontWithName:@"HelveticaNeue-Light" size:21.0],
+                                                   UITextAttributeTextColor: RGBACOLOR(50, 57, 61, 1.0),
                                                    UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0, 0)]};
 }
 

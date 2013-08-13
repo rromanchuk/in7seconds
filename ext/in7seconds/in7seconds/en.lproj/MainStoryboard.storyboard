@@ -156,10 +156,10 @@
             </objects>
             <point key="canvasLocation" x="-1187" y="365"/>
         </scene>
-        <!--Settings View Controller - Root View Controller-->
+        <!--Settings View Controller - Настройки-->
         <scene sceneID="fXw-4j-gNh">
             <objects>
-                <tableViewController id="EpH-8b-8fv" customClass="SettingsViewController" sceneMemberID="viewController">
+                <tableViewController title="Настройки" id="EpH-8b-8fv" customClass="SettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9sH-jL-i73">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -174,7 +174,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oO3-va-CNH"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oO3-va-CNH">
+                                                    <connections>
+                                                        <action selector="lookingForMenChanged:" destination="EpH-8b-8fv" eventType="valueChanged" id="VdB-Gm-281"/>
+                                                    </connections>
+                                                </switch>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Мужчины" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTx-xX-xDl">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="ugh-as-dKP"/>
@@ -200,7 +204,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zz8-NZ-ozr"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zz8-NZ-ozr">
+                                                    <connections>
+                                                        <action selector="lookingForWomenChanged:" destination="EpH-8b-8fv" eventType="valueChanged" id="git-8z-StI"/>
+                                                    </connections>
+                                                </switch>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Женщины" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVl-A1-F6s">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="5yr-sE-wzg"/>
@@ -230,11 +238,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="dY1-N1-0uI">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="114" id="KXM-eh-VUi"/>
-                                                    </constraints>
-                                                </slider>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="dY1-N1-0uI"/>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Искать до:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EhC-2v-aUT">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="128" id="GFz-EL-3lj"/>
@@ -257,47 +261,63 @@
                                             <constraint firstItem="dY1-N1-0uI" firstAttribute="top" secondItem="EhC-2v-aUT" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="8M0-vA-ESD"/>
                                             <constraint firstItem="EhC-2v-aUT" firstAttribute="leading" secondItem="gvn-Jf-dQW" secondAttribute="leading" constant="20" type="default" id="GYp-jj-ukH"/>
                                             <constraint firstItem="EhC-2v-aUT" firstAttribute="top" secondItem="gvn-Jf-dQW" secondAttribute="top" constant="14" id="Zjt-3o-MXf"/>
-                                            <constraint firstItem="dY1-N1-0uI" firstAttribute="centerX" secondItem="gvn-Jf-dQW" secondAttribute="centerX" type="default" id="jq4-TF-okZ"/>
+                                            <constraint firstItem="dY1-N1-0uI" firstAttribute="leading" secondItem="gvn-Jf-dQW" secondAttribute="leading" constant="20" type="default" id="hgg-cm-tYA"/>
                                             <constraint firstItem="69l-gT-btk" firstAttribute="top" secondItem="EhC-2v-aUT" secondAttribute="top" type="default" id="k8g-4i-4Rz"/>
+                                            <constraint firstAttribute="trailing" secondItem="dY1-N1-0uI" secondAttribute="trailing" constant="20" type="default" id="qMd-u4-npU"/>
                                             <constraint firstAttribute="trailing" secondItem="69l-gT-btk" secondAttribute="trailing" constant="11" id="s3D-3x-vVa"/>
                                             <constraint firstItem="69l-gT-btk" firstAttribute="baseline" secondItem="EhC-2v-aUT" secondAttribute="baseline" type="default" id="wAj-zY-LzA"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="E8E-IH-7vJ">
-                                        <rect key="frame" x="0.0" y="218" width="320" height="44"/>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Возраст" id="VAk-L7-tqG">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="c1h-dp-OWA">
+                                        <rect key="frame" x="0.0" y="240" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="G6J-Ob-FiN">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="18" minValue="16" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="G6J-Ob-FiN">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="114" id="srR-lQ-iRu"/>
+                                                        <constraint firstAttribute="width" constant="225" id="iIz-8N-HWK"/>
                                                     </constraints>
                                                 </slider>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="16" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPk-61-tZ8">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="vbh-xg-bEg"/>
+                                                        <constraint firstAttribute="width" constant="30" id="w3m-e4-Whg"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="22" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KU-Mm-De1">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="iRs-5s-Ls4"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="G6J-Ob-FiN" firstAttribute="centerX" secondItem="E8E-IH-7vJ" secondAttribute="centerX" type="default" id="XCh-Gg-uhm"/>
-                                            <constraint firstItem="G6J-Ob-FiN" firstAttribute="centerY" secondItem="E8E-IH-7vJ" secondAttribute="centerY" type="default" id="b6y-KE-SNm"/>
+                                            <constraint firstItem="RPk-61-tZ8" firstAttribute="top" secondItem="c1h-dp-OWA" secondAttribute="top" constant="2" id="Djv-KO-7Ds"/>
+                                            <constraint firstItem="RPk-61-tZ8" firstAttribute="leading" secondItem="c1h-dp-OWA" secondAttribute="leading" constant="11" id="NsG-Le-4x8"/>
+                                            <constraint firstItem="G6J-Ob-FiN" firstAttribute="leading" secondItem="RPk-61-tZ8" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="PxH-YB-XQe"/>
+                                            <constraint firstItem="G6J-Ob-FiN" firstAttribute="centerY" secondItem="c1h-dp-OWA" secondAttribute="centerY" type="default" id="QRG-px-Y3p"/>
+                                            <constraint firstItem="2KU-Mm-De1" firstAttribute="baseline" secondItem="RPk-61-tZ8" secondAttribute="baseline" type="default" id="UDe-CP-sHc"/>
+                                            <constraint firstItem="2KU-Mm-De1" firstAttribute="leading" secondItem="G6J-Ob-FiN" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="d0J-zK-mh9"/>
+                                            <constraint firstItem="2KU-Mm-De1" firstAttribute="top" secondItem="RPk-61-tZ8" secondAttribute="top" type="default" id="fYe-zS-M5T"/>
                                         </constraints>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="67u-O5-297">
-                                        <rect key="frame" x="0.0" y="262" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Уведомления" id="lax-uF-Xk5">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="qw3-Xg-dRJ">
-                                        <rect key="frame" x="0.0" y="328" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="306" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -311,7 +331,11 @@
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sp7-JW-erc"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sp7-JW-erc">
+                                                    <connections>
+                                                        <action selector="notificationSettingsChanged:" destination="EpH-8b-8fv" eventType="valueChanged" id="zPc-f8-lU8"/>
+                                                    </connections>
+                                                </switch>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -323,13 +347,17 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="YN9-RL-2dj">
-                                        <rect key="frame" x="0.0" y="372" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="350" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejy-LJ-UwC"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejy-LJ-UwC">
+                                                    <connections>
+                                                        <action selector="notificationSettingsChanged:" destination="EpH-8b-8fv" eventType="valueChanged" id="AQx-Ro-1nR"/>
+                                                    </connections>
+                                                </switch>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Push" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRX-0F-ll9">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="1LM-ai-xCF"/>
@@ -349,7 +377,7 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hkd-ou-y5u">
-                                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="394" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -359,9 +387,44 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="jOP-Wh-PFT">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="jAt-6t-B0m">
+                                        <rect key="frame" x="0.0" y="438" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Выйти" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqr-p7-KDW">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="8jG-pR-M63"/>
+                                                        <constraint firstAttribute="width" constant="185" id="rkB-b1-dWH"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="Eqr-p7-KDW" firstAttribute="leading" secondItem="jAt-6t-B0m" secondAttribute="leading" constant="20" type="default" id="Fai-Ew-RsJ"/>
+                                            <constraint firstItem="Eqr-p7-KDW" firstAttribute="top" secondItem="jAt-6t-B0m" secondAttribute="top" constant="11" id="G94-5t-lsc"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="ksC-Aq-YDb"/>
+                    <navigationItem key="navigationItem" title="Настройки" id="ksC-Aq-YDb"/>
+                    <connections>
+                        <outlet property="ageSlider" destination="G6J-Ob-FiN" id="a8d-LI-aQ4"/>
+                        <outlet property="distanceSlider" destination="dY1-N1-0uI" id="xvC-fL-RIZ"/>
+                        <outlet property="lookingForMenSwitch" destination="oO3-va-CNH" id="zwl-YZ-pBc"/>
+                        <outlet property="lookingForWomenSwitch" destination="zz8-NZ-ozr" id="H2a-re-yrg"/>
+                        <outlet property="notificationEmailSwitch" destination="Sp7-JW-erc" id="Lr2-lp-UKS"/>
+                        <outlet property="notificationPushSwitch" destination="ejy-LJ-UwC" id="OoO-22-1H3"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uwk-iF-sAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1441,173 +1504,6 @@
         <image name="yes_button.png" width="75" height="75"/>
         <image name="yes_small_button.png" width="55" height="55"/>
     </resources>
-    <classes>
-        <class className="BaseNavigationViewController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseNavigationViewController.h"/>
-        </class>
-        <class className="CommentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CommentViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="CoreDataTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
-        </class>
-        <class className="CurrentUserChatCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrentUserChatCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="currentUserText" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="whiteBubble" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="FeedUserImage" superclassName="UIImageView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedUserImage.h"/>
-        </class>
-        <class className="IIViewDeckController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IIViewDeckController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bottomController" candidateClass="UIViewController"/>
-                <relationship kind="outlet" name="centerController" candidateClass="UIViewController"/>
-                <relationship kind="outlet" name="leftController" candidateClass="UIViewController"/>
-                <relationship kind="outlet" name="panningView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="rightController" candidateClass="UIViewController"/>
-                <relationship kind="outlet" name="topController" candidateClass="UIViewController"/>
-            </relationships>
-        </class>
-        <class className="IndexViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IndexViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didTapInfo:"/>
-                <relationship kind="action" name="didTapLike:"/>
-                <relationship kind="action" name="didTapPhoto:"/>
-                <relationship kind="action" name="didTapUnlike:"/>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="countdownLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoBanner" candidateClass="UIView"/>
-                <relationship kind="outlet" name="infoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="likeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="locationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mutualFriendsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mutualGroupsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="noResultsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="photosCountLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="swipeView" candidateClass="SwipeView"/>
-                <relationship kind="outlet" name="unlikeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="userImageView" candidateClass="FeedUserImage"/>
-            </relationships>
-        </class>
-        <class className="InitialViewController" superclassName="IIViewDeckController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InitialViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didTapFbLogin:"/>
-                <relationship kind="action" name="didTapVkLogin:"/>
-                <relationship kind="outlet" name="fbLoginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loginLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="vkLoginButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="MatchCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="profilePhoto" candidateClass="ProfilePhotoView"/>
-                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MatchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didTapKeepSearching:"/>
-                <relationship kind="action" name="didTapStartChat:"/>
-                <relationship kind="outlet" name="currentUserImage" candidateClass="ProfilePhotoView"/>
-                <relationship kind="outlet" name="keepSearchingButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="matchTextLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="otherUserImage" candidateClass="ProfilePhotoView"/>
-                <relationship kind="outlet" name="startChatButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="MatchesViewController" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchesViewController.h"/>
-        </class>
-        <class className="MenuViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="profilePhoto" candidateClass="ProfilePhotoView"/>
-            </relationships>
-        </class>
-        <class className="MyProfileViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyProfileViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="NotificationCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NotificationCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="notficationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="profilePhotoView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="NotificationsViewController" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NotificationsViewController.h"/>
-        </class>
-        <class className="OtherUserChatCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OtherUserChatCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="otherUserBubble" candidateClass="UIView"/>
-                <relationship kind="outlet" name="otherUserText" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ProfilePhotoView" superclassName="UIImageView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfilePhotoView.h"/>
-        </class>
-        <class className="SettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-        </class>
-        <class className="SwipeView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SwipeView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="acceptImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="rejectImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="userImageContainer" candidateClass="UserImageContainer"/>
-            </relationships>
-        </class>
-        <class className="UserImageContainer" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserImageContainer.h"/>
-        </class>
-        <class className="UserProfileViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserProfileViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didTapClose:"/>
-                <relationship kind="action" name="didTapLike:"/>
-                <relationship kind="action" name="didTapUnlike:"/>
-                <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="firstImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="friendsScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="imagesScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="interestsScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="noButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="statusLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="yesButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="VkontakteViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/VkontakteViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
