@@ -164,13 +164,16 @@
 }
 
 - (void)setupProfile {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    
-    BaseNavigationViewController *center = [storyboard instantiateViewControllerWithIdentifier:@"middleViewController"];
-    self.viewDeckController.centerController = center;
-    
-    BaseNavigationViewController *menu = [storyboard instantiateViewControllerWithIdentifier:@"menuViewController"];
-    self.viewDeckController.leftController = menu;
+    AppDelegate *sharedAppDelegate = [[UIApplication sharedApplication] delegate];
+    [sharedAppDelegate resetWindowToInitialView];
+
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+//    
+//    BaseNavigationViewController *center = [storyboard instantiateViewControllerWithIdentifier:@"middleViewController"];
+//    self.viewDeckController.centerController = center;
+//    
+//    BaseNavigationViewController *menu = [storyboard instantiateViewControllerWithIdentifier:@"menuViewController"];
+//    self.viewDeckController.leftController = menu;
     
 }
 

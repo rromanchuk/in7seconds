@@ -33,6 +33,21 @@
     self.navigationItem.leftBarButtonItems = @[space, [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"sidebar_button"] target:self action:@selector(revealMenu:)]];
     
 
+    
+    if ([self.currentUser.lookingForGender integerValue] == LookingForBoth) {
+        self.lookingForMenSwitch.selected = YES;
+        self.lookingForWomenSwitch.selected = YES;
+    } else if ([self.currentUser.lookingForGender integerValue] == LookingForMen) {
+        self.lookingForMenSwitch.selected = YES;
+        self.lookingForWomenSwitch.selected = NO;
+    } else {
+        self.lookingForWomenSwitch.selected = YES;
+        self.lookingForWomenSwitch.selected = NO;
+    }
+
+    self.notificationEmailSwitch.on = [self.currentUser.emailOptIn boolValue];
+    self.notificationPushSwitch.on = [self.currentUser.pushOptIn boolValue];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -128,7 +143,7 @@
     
 }
 
-- (IBAction)lookingForMenChanged:(id)sender {
+- (IBAction)lookingForChanged:(id)sender {
     if ((self.lookingForMenSwitch.on && self.lookingForWomenSwitch.on) || (!self.lookingForMenSwitch.on && !self.lookingForWomenSwitch.on)) {
         self.currentUser.lookingForGender = @(LookingForBoth);
     } else if (self.lookingForMenSwitch.on) {
@@ -137,6 +152,7 @@
         self.currentUser.lookingForGender = @(LookingForWomen);
     }
     
+    [self update];
 }
 
 - (IBAction)notificationSettingsChanged:(id)sender {
@@ -150,7 +166,4 @@
     [self update];
 }
 
-
-- (IBAction)lookingForWomenChanged:(id)sender {
-}
 @end

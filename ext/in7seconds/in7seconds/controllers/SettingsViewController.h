@@ -33,8 +33,7 @@ typedef enum  {
 @property (weak, nonatomic) IBOutlet UISlider *ageSlider;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
-- (IBAction)lookingForMenChanged:(id)sender;
-- (IBAction)lookingForWomenChanged:(id)sender;
+- (IBAction)lookingForChanged:(id)sender;
 - (IBAction)notificationSettingsChanged:(id)sender;
 
 //@property (weak, nonatomic) id <LogoutDelegate> delegate;

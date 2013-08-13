@@ -174,7 +174,7 @@
         OtherUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OtherUserChatCell"];
         cell.otherUserText.text = message.message;
         cell.dateLabel.text = [_df stringFromDate:message.createdAt];
-        cell.otherUserBubble.layer.cornerRadius = 20;
+        cell.otherUserText.layer.cornerRadius = 20;
 //        UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];
 //        [cell.profileImage addGestureRecognizer:tg];
         return cell;

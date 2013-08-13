@@ -52,6 +52,7 @@ typedef enum  {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.hookups = [[NSMutableSet alloc] init];
     AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     self.managedObjectContext = delegate.managedObjectContext;
     self.currentUser = [User currentUser:self.managedObjectContext];
@@ -64,7 +65,7 @@ typedef enum  {
     space.width = 20;
     self.navigationItem.leftBarButtonItems = @[space, [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"sidebar_button"] target:self action:@selector(revealMenu:)]];
     
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chats_button"] target:self action:@selector(revealChats:)];
+    self.navigationItem.rightBarButtonItems = @[space, [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chats_button"] target:self action:@selector(revealChats:)]];
     
     
     self.userImageView.delegate = self;
@@ -86,7 +87,7 @@ typedef enum  {
     _secondsLeft = 8;
     self.countdownLabel.text = @"7";
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
-    self.hookups = [[NSMutableSet alloc] init];
+    
     [self.activityIndicator stopAnimating];
     if (self.currentUser) {
         [self noResultsLeft];
@@ -319,8 +320,11 @@ typedef enum  {
             NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
             for (RestHookup *restHookup in possibleHookups) {
                 [_restHookups addObject:[Hookup hookupWithRestHookup:restHookup inManagedObjectContext:self.managedObjectContext]];
+                ALog(@"adding user %@", restHookup.firstName);
             }
             [self.currentUser addHookups:_restHookups];
+            ALog(@"user has %d", [self.currentUser.hookups count]);
+
             
             if ([_restHookups count] > 0 )
                 _numberOfAttempts = 0;
@@ -490,7 +494,11 @@ typedef enum  {
         lookingFor = @[@(LookingForWomen)];
     }
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hookup"];
-    request.predicate = [NSPredicate predicateWithFormat:@"user == %@ AND didRate == %@ AND gender IN %@", self.currentUser, @NO, lookingFor];
+    for (Hookup *hookup in self.currentUser.hookups) {
+        ALog(@"hookup's gender is %@, didrate is %@ name %@", hookup.gender, hookup.didRate, hookup.firstName);
+    }
+    request.predicate = [NSPredicate predicateWithFormat:@"didRate == %@ AND gender IN %@", @NO, lookingFor];
+    ALog(@"request predicate is %@", request.predicate);
     //request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
     NSError *error;
     NSArray *hookups = [self.managedObjectContext executeFetchRequest:request error:&error];
