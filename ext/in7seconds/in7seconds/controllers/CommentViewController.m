@@ -188,6 +188,14 @@
 
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RestMessage *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    CGSize size = [message.message sizeWithFont:[UIFont fontWithName:@"Helvetica-Light" size:17] constrainedToSize:CGSizeMake(280 - 25, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+    DLog(@"height will be")
+    //return exptectedSize.height + 20;
+    return size.height + 20 + 20;
+}
 
 #pragma mark - HPGrowingTextView delegate methods
 -(void)growingTextView:(HPGrowingTextView *)growingTextView didChangeHeight:(float)height {
