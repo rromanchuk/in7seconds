@@ -79,12 +79,12 @@ In7seconds::Application.configure do
   # Urbanairship.master_secret = "swmZZidlSx2dv1RyZ1cn4w"
   Urbanairship.logger = Rails.logger
 
-
-  config.middleware.use ExceptionNotifier,
-  :email_prefix => "[7seconds] ",
-  :sender_address => %{"in7Seconds Exception" <exceptions@in7seconds.com>},
-  :exception_recipients => %w{ support@in7seconds.com }
-
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[7seconds] ",
+    :sender_address => %{"in7Seconds Exception" <exceptions@in7seconds.com>},
+    :exception_recipients => %w{ support@in7seconds.com }
+  }
 
   if defined? ::HamlCoffeeAssets
     
