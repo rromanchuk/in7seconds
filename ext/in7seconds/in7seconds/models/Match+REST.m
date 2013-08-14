@@ -17,14 +17,14 @@
 
 + (Match *)matchWithRestMatch:(RestMatch *)restMatch
        inManagedObjectContext:(NSManagedObjectContext *)context {
-    ALog(@"");
-    ALog(@"match id is %d", restMatch.externalId);
-    ALog(@"restMatch object is %@", restMatch);
+    //ALog(@"");
+    //ALog(@"match id is %d", restMatch.externalId);
+    //ALog(@"restMatch object is %@", restMatch);
 
     Match *match;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Match"];
     request.predicate = [NSPredicate predicateWithFormat:@"externalId = %@", @(restMatch.externalId)];
-    ALog(@"");
+    //ALog(@"");
 
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];

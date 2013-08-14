@@ -13,6 +13,8 @@
 #import "UserProfileViewController.h"
 #import "UAPush.h"
 #import  <QuartzCore/QuartzCore.h>
+#import <ViewDeck/IIViewDeckController.h>
+
 #import "PrivateMessage+REST.h"
 
 #import "RestMatch.h"
@@ -21,6 +23,7 @@
 #import "AppDelegate.h"
 @interface MatchesViewController () {
     NSDateFormatter *_fm;
+    CGFloat _ledgeSize;
     
 }
 @property (strong, nonatomic) NoChatsView *noResultsFooterView;
@@ -51,13 +54,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = NO;
+    
+    _ledgeSize = self.viewDeckController.rightLedgeSize;
     AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     self.managedObjectContext = delegate.managedObjectContext;
     self.currentUser = [User currentUser:self.managedObjectContext];
     
-    self.navigationController.navigationBarHidden = YES;
+    if (self.fromMenu) {
+        UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+        space.width = 20;
+        self.navigationItem.leftBarButtonItems = @[space, [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"sidebar_button"] target:self action:@selector(revealMenu:)]];
 
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
+    } else {
+        self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
+    }
+    
     self.title = NSLocalizedString(@"Симпатии", nil);
     [[UAPush shared] resetBadge];
     
@@ -73,6 +85,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    if (_ledgeSize) {
+        self.viewDeckController.rightSize = _ledgeSize;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -176,6 +191,11 @@
             [refreshControl endRefreshing];
         }];
     }];
+}
+
+- (IBAction)revealMenu:(id)sender
+{
+    [self.viewDeckController toggleLeftView];
 }
 
 - (void)saveContext

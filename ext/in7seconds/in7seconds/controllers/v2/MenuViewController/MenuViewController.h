@@ -8,9 +8,10 @@
 
 
 #import "User+REST.h"
-
+#import "ProfilePhotoView.h"
 @interface MenuViewController : UITableViewController
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (weak, nonatomic) IBOutlet ProfilePhotoView *profilePhoto;
 @property (strong, nonatomic) User *currentUser;
 @end
 
@@ -20,11 +21,7 @@
 #import "FeedUserImage.h"
 #import "TDDatePickerController.h"
 
-typedef enum  {
-    LookingForMen = 0,
-    LookingForWomen = 1,
-    LookingForBoth = 2
-} LookingForTypes;
+
 
 //@protocol LogoutDelegate;
 //@protocol UserSettingsDelegate;

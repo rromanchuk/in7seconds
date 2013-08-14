@@ -62,8 +62,9 @@
     self.viewDeckController.rightSize = 0;
     self.navigationController.navigationBarHidden = NO;
     [self setupFooterView];
-    
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    space.width = 20;
+    self.navigationItem.leftBarButtonItems = @[space, [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_button"] target:self action:@selector(back)]];
     self.title = self.otherUser.fullName;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -102,6 +103,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
     [self.commentView resignFirstResponder];
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardDidShowNotification
@@ -172,7 +174,7 @@
         OtherUserChatCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"OtherUserChatCell"];
         cell.otherUserText.text = message.message;
         cell.dateLabel.text = [_df stringFromDate:message.createdAt];
-        cell.otherUserBubble.layer.cornerRadius = 20;
+        cell.otherUserText.layer.cornerRadius = 20;
 //        UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];
 //        [cell.profileImage addGestureRecognizer:tg];
         return cell;

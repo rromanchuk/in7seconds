@@ -203,7 +203,7 @@
     
     NSString *email = [_webView stringByEvaluatingJavaScriptFromString:s];
     ALog(@"Caught EMAIL %@", email);
-    if (([email length] != 0))
+    if (email.length > 0)
     {
         _userEmail = email;
     }

@@ -11,4 +11,5 @@
 @interface MatchesViewController : CoreDataTableViewController
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
+@property BOOL fromMenu;
 @end
