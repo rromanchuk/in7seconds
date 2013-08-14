@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git@github.com:nesquena/rabl.git
-  revision: 17bc3cc1e0c4b0d8539d55f7e96af7f1a5ca22f4
+  revision: cfaaf591a769736dd1fb6b64e011fcc5202fd4c7
   specs:
     rabl (0.8.6)
       activesupport (>= 2.3.14)
@@ -52,7 +52,7 @@ GEM
     arel (3.0.2)
     attr_required (0.0.5)
     awesome_print (1.1.0)
-    aws-sdk (1.14.1)
+    aws-sdk (1.15.0)
       json (~> 1.4)
       nokogiri (< 1.6.0)
       uuidtools (~> 2.1)
@@ -151,7 +151,7 @@ GEM
     geocoder (1.1.8)
     haml (4.0.3)
       tilt
-    haml_coffee_assets (1.13.1)
+    haml_coffee_assets (1.13.2)
       coffee-script (>= 1.0.0)
       sprockets (>= 2.0.3)
       tilt (>= 1.3.3)
@@ -164,7 +164,7 @@ GEM
       multi_xml (>= 0.5.2)
     httpauth (0.2.0)
     httpclient (2.3.4.1)
-    i18n (0.6.4)
+    i18n (0.6.5)
     journey (1.0.4)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
@@ -259,7 +259,7 @@ GEM
       json (~> 1.4)
     russian (0.6.0)
       i18n (>= 0.5.0)
-    rvm-capistrano (1.4.3)
+    rvm-capistrano (1.4.4)
       capistrano (>= 2.15.4)
     sass (3.2.10)
     sass-rails (3.2.6)
