@@ -44,7 +44,7 @@
     self.navigationItem.leftBarButtonItems = @[space, [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"sidebar_button"] target:self action:@selector(revealMenu:)]];
     
     if (self.currentUser.status.length > 0 ) {
-        self.statusTextField.text = self.currentUser.status
+        self.statusTextField.text = self.currentUser.status;
     }
     self.genderSegment.selectedSegmentIndex = [self.currentUser.gender integerValue];
     ALog(@"birthday %@", self.currentUser.birthday);
