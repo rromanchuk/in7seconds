@@ -2,14 +2,14 @@
 //  Match.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 8/10/13.
+//  Created by Ryan Romanchuk on 8/17/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Image, MutualFriend, Notification, Thread, User;
+@class Group, Image, MutualFriend, Notification, Thread, User;
 
 @interface Match : NSManagedObject
 
@@ -37,15 +37,21 @@
 @property (nonatomic, retain) NSString * vkGraduation;
 @property (nonatomic, retain) NSString * vkToken;
 @property (nonatomic, retain) NSString * vkUniversityName;
+@property (nonatomic, retain) NSString * status;
+@property (nonatomic, retain) NSSet *groups;
 @property (nonatomic, retain) NSSet *images;
 @property (nonatomic, retain) NSSet *mutualFriends;
 @property (nonatomic, retain) NSSet *sentNotifcation;
 @property (nonatomic, retain) Thread *thread;
 @property (nonatomic, retain) User *user;
-@property (nonatomic, retain) NSSet *groups;
 @end
 
 @interface Match (CoreDataGeneratedAccessors)
+
+- (void)addGroupsObject:(Group *)value;
+- (void)removeGroupsObject:(Group *)value;
+- (void)addGroups:(NSSet *)values;
+- (void)removeGroups:(NSSet *)values;
 
 - (void)addImagesObject:(Image *)value;
 - (void)removeImagesObject:(Image *)value;
@@ -61,10 +67,5 @@
 - (void)removeSentNotifcationObject:(Notification *)value;
 - (void)addSentNotifcation:(NSSet *)values;
 - (void)removeSentNotifcation:(NSSet *)values;
-
-- (void)addGroupsObject:(NSManagedObject *)value;
-- (void)removeGroupsObject:(NSManagedObject *)value;
-- (void)addGroups:(NSSet *)values;
-- (void)removeGroups:(NSSet *)values;
 
 @end

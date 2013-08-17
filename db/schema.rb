@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130623153854) do
+ActiveRecord::Schema.define(:version => 20130817062645) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -137,7 +137,6 @@ ActiveRecord::Schema.define(:version => 20130623153854) do
     t.boolean  "is_active"
     t.string   "provider"
     t.boolean  "gender",                                                              :default => false
-    t.integer  "looking_for_gender"
     t.datetime "birthday"
     t.string   "first_name"
     t.string   "last_name"
@@ -150,6 +149,7 @@ ActiveRecord::Schema.define(:version => 20130623153854) do
     t.decimal  "longitude",                           :precision => 15, :scale => 10
     t.datetime "created_at",                                                                             :null => false
     t.datetime "updated_at",                                                                             :null => false
+    t.integer  "looking_for_gender"
     t.string   "vk_domain"
     t.string   "vk_university_name"
     t.string   "vk_faculty_name"
@@ -167,6 +167,7 @@ ActiveRecord::Schema.define(:version => 20130623153854) do
     t.datetime "fb_token_expiration"
     t.string   "fb_domain"
     t.integer  "fb_location_id"
+    t.string   "status"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

@@ -31,6 +31,7 @@
 @property (atomic, strong) NSString *vkFacultyName;
 @property (atomic, strong) NSString *vkDomain;
 @property (atomic, strong) NSString *fbDomain;
+@property (atomic, strong) NSString *status;
 
 
 @property (atomic, strong) NSSet *mutualFriendObjects;

@@ -40,6 +40,7 @@ static NSString *RESOURCE_PATH = @"api/v1/users";
                                 @"fbDomain", @"fb_domain",
                                 @"latitude", @"latitude",
                                 @"longitude", @"longitude",
+                                @"status", @"status",
                                 [NSDate mappingWithKey:@"birthday"
                                       dateFormatString:@"yyyy-MM-dd"], @"birthday",
                                 [NSDate mappingWithKey:@"createdAt"

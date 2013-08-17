@@ -94,6 +94,7 @@
     self.mutualGroupNames = restMatch.mutualGroupNames;
     self.latitude = @(restMatch.latitude);
     self.longitude = @(restMatch.longitude);
+    self.status = restMatch.status;
     
     for (RestMutualFriend *restMutaulFriend in restMatch.mutualFriendObjects) {
         //ALog(@"adding mutualFriend");

@@ -46,6 +46,7 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
                                 @"vkDomain", @"vk_domain",
                                 @"latitude", @"latitude",
                                 @"longitude", @"longitude",
+                                @"status", @"status",
                                 [NSDate mappingWithKey:@"birthday"
                                       dateFormatString:@"yyyy-MM-dd"], @"birthday",
                                 [NSDate mappingWithKey:@"updatedAt"
@@ -171,6 +172,10 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
     if ([Location sharedLocation].longitude > 0) {
         p[@"user[latitude]"] = [Location sharedLocation].latitude;
         p[@"user[longitude"] = [Location sharedLocation].longitude;
+    }
+    
+    if (user.status.length > 0) {
+        p[@"user[status]"] = user.status;
     }
     
     NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"PUT"

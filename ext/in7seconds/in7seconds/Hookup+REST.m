@@ -73,6 +73,7 @@
     self.mutualGroupNames = restHookup.mutualGroupNames;
     self.latitude = @(restHookup.latitude);
     self.longitude = @(restHookup.longitude);
+    self.status = restHookup.status;
     
     NSMutableSet *mutualFriends = [[NSMutableSet alloc] init];
     for (RestMutualFriend *restMutaulFriend in restHookup.mutualFriendObjects) {

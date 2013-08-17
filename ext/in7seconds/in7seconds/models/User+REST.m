@@ -114,7 +114,7 @@
     self.pushOptIn = @(restUser.pushOptIn);
     self.latitude = @(restUser.latitude);
     self.longitude = @(restUser.longitude);
-    
+    self.status = restUser.status;
     for (RestImage *restImage in restUser.images) {
         [self addImagesObject:[Image imageWithRestImage:restImage inManagedObjectContext:self.managedObjectContext]];
     }

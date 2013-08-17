@@ -34,6 +34,8 @@
 @property (atomic, strong) NSString *friendNames;
 @property (atomic, strong) NSString *mutualFriendNames;
 @property (atomic, strong) NSString *mutualGroupNames;
+@property (atomic, strong) NSString *status;
+
 
 @property (atomic, strong) NSString *email;
 @property (atomic, strong) NSString *photoUrl;

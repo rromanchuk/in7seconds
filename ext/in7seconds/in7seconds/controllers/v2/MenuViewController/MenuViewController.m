@@ -29,10 +29,19 @@ typedef enum {
 @implementation MenuViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     self.managedObjectContext = delegate.managedObjectContext;
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_sidebar"]];
     self.navigationController.navigationBarHidden = YES;
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (!self.currentUser) {
+        self.currentUser = [User currentUser:self.managedObjectContext];
+    }
     [self.profilePhoto setCircleWithUrl:self.currentUser.photoUrl];
 }
 
@@ -58,6 +67,8 @@ typedef enum {
     } else if (indexPath.row == SSMenuRowProfile) {
         UINavigationController *nc =  (UINavigationController *)[storyboard instantiateViewControllerWithIdentifier:@"profile"];
         ((MyProfileViewController *)nc.topViewController).managedObjectContext = self.managedObjectContext;
+        ((MyProfileViewController *)nc.topViewController).currentUser = self.currentUser;
+
         self.viewDeckController.centerController = nc;
     }
     [self.viewDeckController toggleLeftView];
