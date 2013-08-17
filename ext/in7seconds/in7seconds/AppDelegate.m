@@ -19,6 +19,8 @@
 #import "RestHookup.h"
 #import "Hookup+REST.h"
 #import "NotificationHandler.h"
+#import "RestNotification.h"
+#import "Notification+REST.h"
 
 @implementation AppDelegate
 
@@ -384,5 +386,25 @@
     self.currentUser = [User currentUser:self.managedObjectContext];
     vc.currentUser = self.currentUser;
 }
+
+
+- (void)fetchNotifications {
+    if (self.currentUser) {
+        [self.managedObjectContext performBlock:^{
+            [RestNotification reload:^(NSArray *notifications) {
+                for (RestNotification *restNotification in notifications) {
+                    Notification *notification = [Notification notificationWithRestNotification:restNotification inManagedObjectContext:self.managedObjectContext];
+                    [self.currentUser addNotificationsObject:notification];
+                }
+                NSError *error;
+                [self.managedObjectContext save:&error];
+                
+            } onError:^(NSError *error) {
+                
+            }];
+        }];
+    }
+}
+
 
 @end

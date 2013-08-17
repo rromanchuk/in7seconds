@@ -8,6 +8,7 @@
 
 #import "Notification+REST.h"
 #import "Match+REST.h"
+#import "RestNotification.h"
 @implementation Notification (REST)
 + (Notification *)notificationWithRestNotification:(RestNotification *)restNotification
                             inManagedObjectContext:(NSManagedObjectContext *)context {
@@ -47,4 +48,25 @@
         self.sender = [Match matchWithRestMatch:restNotification.sender inManagedObjectContext:self.managedObjectContext];
     }
 }
+
++ (void)markAllAsRead:(void (^)(bool status))onLoad
+              onError:(void (^)(NSError *error))onError
+              forUser:(User *)user
+    inManagedObjectContext:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Notification"];
+    request.predicate = [NSPredicate predicateWithFormat:@"user = %@", user];
+    NSError *error = nil;
+    NSArray *notifications = [context executeFetchRequest:request error:&error];
+    for (Notification *notification in notifications) {
+        notification.isRead = @(YES);
+    }
+    
+    [RestNotification markAsRead:^(bool *success) {
+        
+    } onError:^(NSError *error) {
+        
+    }];
+}
+
 @end
