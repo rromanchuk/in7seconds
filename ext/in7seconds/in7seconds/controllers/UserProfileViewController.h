@@ -8,8 +8,9 @@
 
 #import "User+REST.h"
 #import "ProfilePhotoView.h"
+@protocol UserProfileRateDelegate;
 @interface UserProfileViewController : UITableViewController <UIScrollViewDelegate>
-
+@property (weak, nonatomic) id <UserProfileRateDelegate> delegate;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) User *currentUser;
 @property (strong, nonatomic) Hookup *otherUser;
@@ -25,8 +26,18 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *friendsScrollView;
 @property (weak, nonatomic) IBOutlet ProfilePhotoView *firstFriendScroll;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property BOOL canRate;
+
 - (IBAction)didTapClose:(id)sender;
 - (IBAction)didTapLike:(id)sender;
 - (IBAction)didTapUnlike:(id)sender;
+
+@end
+
+
+@protocol UserProfileRateDelegate <NSObject>
+@required
+- (void)didUnlikeFromProfile;
+- (void)didLikeFromProfile;
 
 @end

@@ -15,7 +15,6 @@
 #import "Group+REST.h"
 @interface UserProfileViewController () {
 }
-
 @end
 
 @implementation UserProfileViewController
@@ -70,6 +69,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.yesButton.hidden = self.noButton.hidden = !self.canRate;
     self.pageControl.numberOfPages = [self.otherUser.images count] + 1;
     self.imagesScrollView.delegate = self;
     //[self setupPhotos];
@@ -197,10 +197,10 @@
 }
 
 - (IBAction)didTapLike:(id)sender {
-    
+    [self.delegate didLikeFromProfile];
 }
 
 - (IBAction)didTapUnlike:(id)sender {
-    
+    [self.delegate didUnlikeFromProfile];
 }
 @end

@@ -35,6 +35,7 @@
 }
 
 - (void)setCircleWithUrl:(NSString *)string {
+    [self layoutIfNeeded];
     NSURL *url = [NSURL URLWithString:string];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     __weak ProfilePhotoView *weakSelf = self;

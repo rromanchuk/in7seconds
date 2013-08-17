@@ -11,7 +11,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "MatchesViewController.h"
 #import "CommentViewController.h"
-#import "UserProfileViewController.h"
 #import "NotificationsViewController.h"
 #import "RestHookup.h"
 #import "Hookup+REST.h"
@@ -65,8 +64,8 @@ typedef enum  {
     space.width = 20;
     self.navigationItem.leftBarButtonItems = @[space, [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"sidebar_button"] target:self action:@selector(revealMenu:)]];
     
-    //if (self.currentUser.numberOfUnreadNotifications > 0) {
-    if (YES) {
+    if (self.currentUser.numberOfUnreadNotifications > 0) {
+    //if (YES) {
         UIBarButtonItem *notifButton = [UIBarButtonItem notificationBarItemWithImage:[UIImage imageNamed:@"chats_button_with_bubble"] target:self action:@selector(revealChats:) title:[NSString stringWithFormat:@"%d", self.currentUser.numberOfUnreadNotifications]];
         self.navigationItem.rightBarButtonItems = @[space, notifButton];
         
@@ -217,6 +216,8 @@ typedef enum  {
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
         vc.otherUser = self.otherUser;
+        vc.delegate = self;
+        vc.canRate = YES;
     } else if ([segue.identifier isEqualToString:@"Notifications"]) {
         _modalOpen = YES;
         [self stopCountdown];
@@ -535,4 +536,16 @@ typedef enum  {
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [sharedAppDelegate writeToDisk];
 }
+
+
+- (void)didUnlikeFromProfile {
+    [self didTapUnlike:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)didLikeFromProfile {
+    [self didTapLike:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

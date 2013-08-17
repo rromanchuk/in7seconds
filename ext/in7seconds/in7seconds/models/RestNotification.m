@@ -62,6 +62,36 @@
                                                                                                 onError(customError);
                                                                                         }];
     [[UIApplication sharedApplication] showNetworkActivityIndicator];
-    [operation start];
+    [[RestClient sharedClient] enqueueHTTPRequestOperation:operation];
+}
+
++ (void)markAsRead:(void (^)(bool *success))onLoad
+       onError:(void (^)(NSError *error))onError {
+    
+    RestClient *restClient = [RestClient sharedClient];
+    NSString *path = @"api/v1/notifications/mark_as_read.json";
+    
+    NSMutableURLRequest *request = [restClient signedRequestWithMethod:@"POST"
+                                                                  path:path
+                                                            parameters:nil];
+    ALog(@"load notifications: %@", request);
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            ALog(@"JSON: %@", JSON);
+                                                                                            
+                                                                                            if (onLoad)
+                                                                                                onLoad(YES);
+                                                                                            
+                                                                                        }
+                                                                                        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                                                            [[UIApplication sharedApplication] hideNetworkActivityIndicator];
+                                                                                            NSError *customError = [RestObject customError:error withServerResponse:response andJson:JSON];
+                                                                                            if (onError)
+                                                                                                onError(customError);
+                                                                                        }];
+    [[UIApplication sharedApplication] showNetworkActivityIndicator];
+    [[RestClient sharedClient] enqueueHTTPRequestOperation:operation];
 }
 @end

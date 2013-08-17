@@ -22,7 +22,7 @@
     UIButton *gearButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [gearButton setBackgroundImage:image forState:UIControlStateNormal];
     gearButton.frame= CGRectMake(0.0, 0.0, image.size.width, image.size.height);
-    [gearButton setTitle:@"10" forState:UIControlStateNormal];
+    [gearButton setTitle:title forState:UIControlStateNormal];
     gearButton.contentEdgeInsets = UIEdgeInsetsMake(0, 14, 10, 0);
     gearButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:10];
     gearButton.titleLabel.textColor = [UIColor whiteColor];

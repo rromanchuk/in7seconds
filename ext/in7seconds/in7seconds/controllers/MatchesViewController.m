@@ -55,7 +55,6 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = NO;
-    
     _ledgeSize = self.viewDeckController.rightLedgeSize;
     AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     self.managedObjectContext = delegate.managedObjectContext;
@@ -121,6 +120,8 @@
         vc.managedObjectContext = self.managedObjectContext;
         vc.otherUser = (Match *)sender;
         vc.currentUser = self.currentUser;
+        vc.canRate = NO;
+
     }
 }
 

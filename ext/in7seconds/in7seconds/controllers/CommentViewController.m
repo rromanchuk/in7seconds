@@ -52,6 +52,8 @@
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
         vc.otherUser = self.otherUser;
+        vc.canRate = NO;
+
     }
 }
 
