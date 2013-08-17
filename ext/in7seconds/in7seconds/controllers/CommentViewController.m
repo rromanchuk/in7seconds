@@ -47,7 +47,7 @@
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"UserProfile"]) {
+    if ([segue.identifier isEqualToString:@"UserProfileFromChat"]) {
         UserProfileViewController *vc = (UserProfileViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.currentUser = self.currentUser;
@@ -503,7 +503,7 @@
     NSInteger row = ((UITapGestureRecognizer *)sender).view.tag;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
     Match *match = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"UserProfile" sender:match];
+    [self performSegueWithIdentifier:@"UserProfileFromChat" sender:match];
     
 }
 @end

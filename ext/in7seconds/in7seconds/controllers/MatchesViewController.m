@@ -116,7 +116,7 @@
         vc.currentUser = self.currentUser;
         Match *user = (Match *)sender;
         vc.otherUser = user;
-    } else if ([segue.identifier isEqualToString:@"UserProfile"]) {
+    } else if ([segue.identifier isEqualToString:@"UserProfileFromMatches"]) {
         UserProfileViewController *vc = (UserProfileViewController *)segue.destinationViewController;
         vc.managedObjectContext = self.managedObjectContext;
         vc.otherUser = (Match *)sender;
@@ -217,7 +217,7 @@
     NSInteger row = ((UITapGestureRecognizer *)sender).view.tag;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
     Match *match = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"UserProfile" sender:match];
+    [self performSegueWithIdentifier:@"UserProfileFromMatches" sender:match];
 }
 
 

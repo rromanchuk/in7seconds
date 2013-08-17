@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="13A538g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cIh-07-pfa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E3067" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cIh-07-pfa">
     <dependencies>
         <deployment version="1552" identifier="iOS"/>
         <development version="4600" identifier="xcode"/>
@@ -923,6 +923,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <segue destination="q9A-pi-12M" kind="push" identifier="CommentThread" id="go7-cl-s4e"/>
+                        <segue destination="SDa-LR-4qD" kind="modal" identifier="UserProfileFromMatches" id="ySP-3n-59l"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z8r-JU-Hri" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1315,8 +1316,20 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eyl-2L-lY7">
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gfp-A6-6qa" customClass="ProfilePhotoView">
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="65" id="MUN-36-Px0"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="65" type="user" id="867-MM-MRL"/>
+                                                        <constraint firstItem="Gfp-A6-6qa" firstAttribute="bottom" secondItem="eyl-2L-lY7" secondAttribute="bottom" type="default" id="AwB-uR-Uwr"/>
+                                                        <constraint firstItem="Gfp-A6-6qa" firstAttribute="centerY" secondItem="eyl-2L-lY7" secondAttribute="centerY" type="default" id="QPk-KZ-MdG"/>
+                                                        <constraint firstItem="Gfp-A6-6qa" firstAttribute="top" secondItem="eyl-2L-lY7" secondAttribute="top" type="default" id="mx1-3a-leW"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Gfp-A6-6qa" secondAttribute="trailing" constant="215" id="nIX-3c-YSg"/>
+                                                        <constraint firstItem="Gfp-A6-6qa" firstAttribute="leading" secondItem="eyl-2L-lY7" secondAttribute="leading" type="default" id="wdT-aD-XHf"/>
                                                     </constraints>
                                                 </scrollView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Общие друзья" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Rn-q2-dvD">
@@ -1328,8 +1341,20 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CXU-Dv-cJA">
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mn4-6e-REM" customClass="ProfilePhotoView">
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="65" id="ejc-Cj-JQ8"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
                                                     <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="mn4-6e-REM" secondAttribute="trailing" constant="215" id="6vt-St-HEc"/>
+                                                        <constraint firstItem="mn4-6e-REM" firstAttribute="leading" secondItem="CXU-Dv-cJA" secondAttribute="leading" type="default" id="9GJ-x3-iX7"/>
                                                         <constraint firstAttribute="height" constant="65" type="user" id="V5v-op-7DF"/>
+                                                        <constraint firstItem="mn4-6e-REM" firstAttribute="top" secondItem="CXU-Dv-cJA" secondAttribute="top" type="default" id="dNm-Ti-NSR"/>
+                                                        <constraint firstItem="mn4-6e-REM" firstAttribute="centerY" secondItem="CXU-Dv-cJA" secondAttribute="centerY" type="default" id="dWI-7c-PiH"/>
+                                                        <constraint firstItem="mn4-6e-REM" firstAttribute="bottom" secondItem="CXU-Dv-cJA" secondAttribute="bottom" type="default" id="q5x-Cd-236"/>
                                                     </constraints>
                                                 </scrollView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Статус" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZJ-LX-6BD">
@@ -1388,7 +1413,9 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="closeButton" destination="9ti-r1-idX" id="eme-np-TPi"/>
+                        <outlet property="firstFriendScroll" destination="mn4-6e-REM" id="Beg-qB-Jgn"/>
                         <outlet property="firstImage" destination="X54-hM-pf2" id="Li8-eq-dbW"/>
+                        <outlet property="firstInterestImage" destination="Gfp-A6-6qa" id="tuQ-1I-GmJ"/>
                         <outlet property="friendsScrollView" destination="CXU-Dv-cJA" id="cbg-eY-AtZ"/>
                         <outlet property="imagesScrollView" destination="9yh-BN-4Ns" id="NVh-SS-Lby"/>
                         <outlet property="interestsScrollView" destination="eyl-2L-lY7" id="z0O-LI-o9L"/>
@@ -1506,194 +1533,12 @@
         <image name="yes_button.png" width="75" height="75"/>
         <image name="yes_small_button.png" width="55" height="55"/>
     </resources>
-    <classes>
-        <class className="BaseNavigationViewController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseNavigationViewController.h"/>
-        </class>
-        <class className="CommentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CommentViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="CoreDataTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
-        </class>
-        <class className="CurrentUserChatCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrentUserChatCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="currentUserText" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="whiteBubble" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="FeedUserImage" superclassName="UIImageView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedUserImage.h"/>
-        </class>
-        <class className="IIViewDeckController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IIViewDeckController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bottomController" candidateClass="UIViewController"/>
-                <relationship kind="outlet" name="centerController" candidateClass="UIViewController"/>
-                <relationship kind="outlet" name="leftController" candidateClass="UIViewController"/>
-                <relationship kind="outlet" name="panningView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="rightController" candidateClass="UIViewController"/>
-                <relationship kind="outlet" name="topController" candidateClass="UIViewController"/>
-            </relationships>
-        </class>
-        <class className="IndexViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IndexViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didTapInfo:"/>
-                <relationship kind="action" name="didTapLike:"/>
-                <relationship kind="action" name="didTapPhoto:"/>
-                <relationship kind="action" name="didTapUnlike:"/>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="countdownLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoBanner" candidateClass="UIView"/>
-                <relationship kind="outlet" name="infoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="likeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="locationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mutualFriendsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mutualGroupsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="noResultsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="photosCountLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="swipeView" candidateClass="SwipeView"/>
-                <relationship kind="outlet" name="unlikeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="userImageView" candidateClass="FeedUserImage"/>
-            </relationships>
-        </class>
-        <class className="InitialViewController" superclassName="IIViewDeckController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InitialViewController.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didTapFbLogin:"/>
-                <relationship kind="action" name="didTapVkLogin:"/>
-                <relationship kind="outlet" name="fbLoginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loginLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="vkLoginButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="MatchCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="profilePhoto" candidateClass="ProfilePhotoView"/>
-                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MatchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didTapKeepSearching:"/>
-                <relationship kind="action" name="didTapStartChat:"/>
-                <relationship kind="outlet" name="currentUserImage" candidateClass="ProfilePhotoView"/>
-                <relationship kind="outlet" name="keepSearchingButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="matchTextLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="otherUserImage" candidateClass="ProfilePhotoView"/>
-                <relationship kind="outlet" name="startChatButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="MatchesViewController" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchesViewController.h"/>
-        </class>
-        <class className="MenuViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="profilePhoto" candidateClass="ProfilePhotoView"/>
-            </relationships>
-        </class>
-        <class className="MyProfileViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyProfileViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="NotificationCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NotificationCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="notficationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="profilePhotoView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="NotificationsViewController" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NotificationsViewController.h"/>
-        </class>
-        <class className="OtherUserChatCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OtherUserChatCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="otherUserBubble" candidateClass="UIView"/>
-                <relationship kind="outlet" name="otherUserText" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ProfilePhotoView" superclassName="UIImageView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfilePhotoView.h"/>
-        </class>
-        <class className="SSChatLabel" superclassName="UILabel">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SSChatLabel.h"/>
-        </class>
-        <class className="SettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="lookingForChanged:"/>
-                <relationship kind="action" name="notificationSettingsChanged:"/>
-                <relationship kind="outlet" name="ageSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="distanceSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lookingForMenSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="lookingForWomenSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="notificationEmailSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="notificationPushSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="versionLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SwipeView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SwipeView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="acceptImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="rejectImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="userImageContainer" candidateClass="UserImageContainer"/>
-            </relationships>
-        </class>
-        <class className="UserImageContainer" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserImageContainer.h"/>
-        </class>
-        <class className="UserProfileViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserProfileViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didTapClose:"/>
-                <relationship kind="action" name="didTapLike:"/>
-                <relationship kind="action" name="didTapUnlike:"/>
-                <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="firstImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="friendsScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="imagesScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="interestsScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="noButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="statusLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="yesButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="VkontakteViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/VkontakteViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Qbw-Nj-K3g"/>
+        <segue reference="ySP-3n-59l"/>
     </inferredMetricsTieBreakers>
 </document>

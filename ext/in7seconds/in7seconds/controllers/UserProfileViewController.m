@@ -12,7 +12,7 @@
 #import "Hookup+REST.h"
 #import "Image+REST.h"
 #import "MutualFriend+REST.h"
-
+#import "Group+REST.h"
 @interface UserProfileViewController () {
 }
 
@@ -64,7 +64,9 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self setupPhotos];
+    [self setupMutualFriends];
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -121,44 +123,61 @@
 //    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
     
     [self setupMutualFriends];
+    [self setupMutualInterests];
     //[self setupUserImages];
 }
 
 
-//- (void)setupUserImages {
-//    NSInteger page = 1;
-//    for (Image *_image in self.otherUser.images) {
-//        int offsetX = (self.userProfileImage.frame.origin.x + 320) * page;
-//        ProfileImageView *image = [[ProfileImageView alloc] initWithFrame:CGRectMake(offsetX, self.userProfileImage.frame.origin.y, self.userProfileImage.frame.size.width, self.userProfileImage.frame.size.height)];
-//        [self.headerScrollView addSubview:image];
-//        page++;
-//    }
-//}
-
 - (void)setupMutualFriends {
-//    int offsetX = 15;
-//    //OstronautFilterType filterType;
-//    ALog(@"other user %@", self.otherUser);
-//    //ALog(@"current user is %@", self.currentUser);
-//    for (MutualFriend *mutualFriend in self.otherUser.mutualFriends) {
-//        ALog(@"in mutal friend loop");
-//        UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(offsetX, 0, 50, 50)];
-//        userImageView.layer.borderWidth = 1;
-//        [userImageView setImageWithURL:[NSURL URLWithString:mutualFriend.photoUrl]];
-//        
-//        [self.scrollView addSubview:userImageView];
-//        
+    int offsetX = 0;
+    NSInteger ctr = 1;
+    //OstronautFilterType filterType;
+    ALog(@"other user %@", self.otherUser);
+    //ALog(@"current user is %@", self.currentUser);
+    for (MutualFriend *mutualFriend in self.otherUser.mutualFriends) {
+        if (ctr == 1) {
+            [self.firstFriendScroll setCircleWithUrl:mutualFriend.photoUrl];
+        } else {
+            ProfilePhotoView *imageView = [[ProfilePhotoView alloc] initWithFrame:CGRectMake(offsetX, 0, 65, 65)];
+            [imageView setCircleWithUrl:mutualFriend.photoUrl];
+            [self.friendsScrollView addSubview:imageView];
+
+        }
+        ALog(@"in mutal friend loop");
+                
 //        UILabel *userNameLabel = [[UILabel alloc] initWithFrame: CGRectMake(userImageView.frame.origin.x, userImageView.frame.size.height + 4, userImageView.frame.size.width, 10.0)];
 //        userNameLabel.text = mutualFriend.firstName;
 //        userNameLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:10.0];
 //        userNameLabel.textAlignment = NSTextAlignmentCenter;
 //        userNameLabel.backgroundColor = [UIColor clearColor];
 //        userNameLabel.textColor = RGBCOLOR(159, 169, 172);
-//        [self.scrollView addSubview:userNameLabel];
-//        offsetX += 10 + userNameLabel.frame.size.width;
-//    }
-//    
-//    [self.scrollView setContentSize:CGSizeMake(offsetX, 69)];
+        //[self.scrollView addSubview:userNameLabel];
+        offsetX += 5 + 65;
+    }
+    
+    [self.friendsScrollView setContentSize:CGSizeMake(offsetX, 65)];
+}
+
+- (void)setupMutualInterests {
+    int offsetX = 0;
+    NSInteger ctr = 1;
+    //OstronautFilterType filterType;
+    ALog(@"other user %@", self.otherUser);
+    //ALog(@"current user is %@", self.currentUser);
+    for (Group *group in self.otherUser.groups) {
+        if (ctr == 1) {
+            [self.firstInterestImage setCircleWithUrl:group.photo];
+        } else {
+            ProfilePhotoView *imageView = [[ProfilePhotoView alloc] initWithFrame:CGRectMake(offsetX, 0, 65, 65)];
+            [imageView setCircleWithUrl:group.photo];
+            [self.interestsScrollView addSubview:imageView];
+            
+        }
+        ALog(@"in mutal group loop");
+        offsetX += 5 + 65;
+    }
+    
+    [self.interestsScrollView setContentSize:CGSizeMake(offsetX, 65)];
 }
 
 - (void)back {
@@ -178,8 +197,10 @@
 }
 
 - (IBAction)didTapLike:(id)sender {
+    
 }
 
 - (IBAction)didTapUnlike:(id)sender {
+    
 }
 @end

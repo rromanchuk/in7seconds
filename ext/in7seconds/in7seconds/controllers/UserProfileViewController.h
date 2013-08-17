@@ -21,7 +21,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *noButton;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *interestsScrollView;
+@property (weak, nonatomic) IBOutlet ProfilePhotoView *firstInterestImage;
 @property (weak, nonatomic) IBOutlet UIScrollView *friendsScrollView;
+@property (weak, nonatomic) IBOutlet ProfilePhotoView *firstFriendScroll;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 - (IBAction)didTapClose:(id)sender;
 - (IBAction)didTapLike:(id)sender;
