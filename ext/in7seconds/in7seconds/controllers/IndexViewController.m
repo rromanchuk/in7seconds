@@ -65,7 +65,15 @@ typedef enum  {
     space.width = 20;
     self.navigationItem.leftBarButtonItems = @[space, [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"sidebar_button"] target:self action:@selector(revealMenu:)]];
     
-    self.navigationItem.rightBarButtonItems = @[space, [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chats_button"] target:self action:@selector(revealChats:)]];
+    //if (self.currentUser.numberOfUnreadNotifications > 0) {
+    if (YES) {
+        UIBarButtonItem *notifButton = [UIBarButtonItem notificationBarItemWithImage:[UIImage imageNamed:@"chats_button_with_bubble"] target:self action:@selector(revealChats:) title:[NSString stringWithFormat:@"%d", self.currentUser.numberOfUnreadNotifications]];
+        self.navigationItem.rightBarButtonItems = @[space, notifButton];
+        
+    } else {
+        self.navigationItem.rightBarButtonItems = @[space, [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"chats_button"] target:self action:@selector(revealChats:)]];
+    }
+    
     
     
     self.userImageView.delegate = self;

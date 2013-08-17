@@ -280,4 +280,26 @@
     return img;
 }
 
+- (UIImage *) normalize {
+    
+    CGSize size = CGSizeMake(round(self.size.width* [UIScreen mainScreen].scale), round(self.size.height*[UIScreen mainScreen].scale));
+    CGColorSpaceRef genericColorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef thumbBitmapCtxt = CGBitmapContextCreate(NULL,
+                                                         size.width,
+                                                         size.height,
+                                                         8, (4 * size.width),
+                                                         genericColorSpace,
+                                                         kCGImageAlphaPremultipliedFirst);
+    CGColorSpaceRelease(genericColorSpace);
+    CGContextSetInterpolationQuality(thumbBitmapCtxt, kCGInterpolationDefault);
+    CGRect destRect = CGRectMake(0, 0, size.width, size.height);
+    CGContextDrawImage(thumbBitmapCtxt, destRect, self.CGImage);
+    CGImageRef tmpThumbImage = CGBitmapContextCreateImage(thumbBitmapCtxt);
+    CGContextRelease(thumbBitmapCtxt);
+    UIImage *result = [UIImage imageWithCGImage:tmpThumbImage scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
+    CGImageRelease(tmpThumbImage);
+    
+    return result;
+}
+
 @end

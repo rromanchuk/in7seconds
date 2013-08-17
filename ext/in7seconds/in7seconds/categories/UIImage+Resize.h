@@ -24,4 +24,5 @@
 - (CGAffineTransform)transformForOrientation:(CGSize)newSize;
 - (UIImage *)fixOrientation;
 - (UIImage *)crop:(CGRect)rect;
+- (UIImage *) normalize;
 @end

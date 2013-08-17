@@ -85,6 +85,10 @@
 		948774A517BF4FAC00CCBFB1 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 948774A417BF4FAC00CCBFB1 /* Match.m */; };
 		948774A817BF4FAC00CCBFB1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 948774A717BF4FAC00CCBFB1 /* User.m */; };
 		948774AB17BF4FAC00CCBFB1 /* Hookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 948774AA17BF4FAC00CCBFB1 /* Hookup.m */; };
+		948774B117BF69FA00CCBFB1 /* chats_button_with_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 948774AD17BF69F700CCBFB1 /* chats_button_with_bubble.png */; };
+		948774B217BF69FA00CCBFB1 /* chats_button_with_bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 948774AE17BF69F700CCBFB1 /* chats_button_with_bubble@2x.png */; };
+		948774B317BF69FA00CCBFB1 /* chats_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 948774AF17BF69F800CCBFB1 /* chats_button.png */; };
+		948774B417BF69FA00CCBFB1 /* chats_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 948774B017BF69F900CCBFB1 /* chats_button@2x.png */; };
 		94A9594317105DDF006D141C /* selected_control.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A9593917105DDE006D141C /* selected_control.png */; };
 		94A9594417105DDF006D141C /* selected_control@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A9593A17105DDE006D141C /* selected_control@2x.png */; };
 		94A9594517105DDF006D141C /* unselected_control.png in Resources */ = {isa = PBXBuildFile; fileRef = 94A9593B17105DDE006D141C /* unselected_control.png */; };
@@ -323,6 +327,10 @@
 		948774A717BF4FAC00CCBFB1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = models/User.m; sourceTree = "<group>"; };
 		948774A917BF4FAC00CCBFB1 /* Hookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hookup.h; path = models/Hookup.h; sourceTree = "<group>"; };
 		948774AA17BF4FAC00CCBFB1 /* Hookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hookup.m; path = models/Hookup.m; sourceTree = "<group>"; };
+		948774AD17BF69F700CCBFB1 /* chats_button_with_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chats_button_with_bubble.png; path = assets/v2/chats_button_with_bubble.png; sourceTree = "<group>"; };
+		948774AE17BF69F700CCBFB1 /* chats_button_with_bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chats_button_with_bubble@2x.png"; path = "assets/v2/chats_button_with_bubble@2x.png"; sourceTree = "<group>"; };
+		948774AF17BF69F800CCBFB1 /* chats_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chats_button.png; path = assets/v2/chats_button.png; sourceTree = "<group>"; };
+		948774B017BF69F900CCBFB1 /* chats_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chats_button@2x.png"; path = "assets/v2/chats_button@2x.png"; sourceTree = "<group>"; };
 		94A9593917105DDE006D141C /* selected_control.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected_control.png; sourceTree = "<group>"; };
 		94A9593A17105DDE006D141C /* selected_control@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected_control@2x.png"; sourceTree = "<group>"; };
 		94A9593B17105DDE006D141C /* unselected_control.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unselected_control.png; sourceTree = "<group>"; };
@@ -625,6 +633,10 @@
 		6199BA8917B181530015DEBF /* v2 */ = {
 			isa = PBXGroup;
 			children = (
+				948774AD17BF69F700CCBFB1 /* chats_button_with_bubble.png */,
+				948774AE17BF69F700CCBFB1 /* chats_button_with_bubble@2x.png */,
+				948774AF17BF69F800CCBFB1 /* chats_button.png */,
+				948774B017BF69F900CCBFB1 /* chats_button@2x.png */,
 				948774AC17BF581C00CCBFB1 /* MyProfile */,
 				61988B7C17B6CF7200610794 /* Chats */,
 				9473341B17B631E60076781F /* Profile */,
@@ -1243,6 +1255,10 @@
 				94F20D3017B64C8300B74955 /* blue_circle@2x.png in Resources */,
 				61988B7F17B6CFBE00610794 /* back_button.png in Resources */,
 				61988B8017B6CFBE00610794 /* back_button@2x.png in Resources */,
+				948774B117BF69FA00CCBFB1 /* chats_button_with_bubble.png in Resources */,
+				948774B217BF69FA00CCBFB1 /* chats_button_with_bubble@2x.png in Resources */,
+				948774B317BF69FA00CCBFB1 /* chats_button.png in Resources */,
+				948774B417BF69FA00CCBFB1 /* chats_button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

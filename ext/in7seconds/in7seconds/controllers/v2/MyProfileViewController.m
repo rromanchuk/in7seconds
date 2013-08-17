@@ -66,6 +66,10 @@
     [self update];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    
+}
+
 - (void)update {
     [self.managedObjectContext performBlock:^{
         _isFetching  = YES;

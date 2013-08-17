@@ -8,6 +8,8 @@
 
 
 @interface ProfilePhotoView : UIImageView
+@property float deviceSize;
+@property float radius;
 
 - (void)setCircleWithUrl:(NSString *)string;
 @end

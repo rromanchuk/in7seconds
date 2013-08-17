@@ -186,4 +186,10 @@
     return @([difference year]);
 }
 
+- (NSInteger)numberOfUnreadNotifications {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isRead == %@ AND isActive == %i", [NSNumber numberWithBool:NO], YES];
+    NSSet *notifications = [self.notifications filteredSetUsingPredicate:predicate];
+    return [notifications count];
+}
+
 @end

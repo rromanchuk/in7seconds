@@ -25,4 +25,5 @@
 - (NSString *)vkUrl;
 - (NSString *)schoolInfo;
 - (NSString *)socialUrl;
+- (NSInteger)numberOfUnreadNotifications;
 @end

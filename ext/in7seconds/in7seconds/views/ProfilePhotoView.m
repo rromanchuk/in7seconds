@@ -30,17 +30,25 @@
     return self;
 }
 
+- (void)awakeFromNib {
+    
+}
+
 - (void)setCircleWithUrl:(NSString *)string {
     NSURL *url = [NSURL URLWithString:string];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    __weak ProfilePhotoView *weakSelf = self;
+    
     [self setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"alena"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
         //self.image = image;
-        float radius = [self sizeForDevice:(self.frame.size.width / 2.0)];
-        float size = [self sizeForDevice:self.frame.size.width];
-        self.image = [image thumbnailImage:size transparentBorder:0 cornerRadius:radius interpolationQuality:kCGInterpolationHigh];
+        float radius = [weakSelf sizeForDevice:(weakSelf.frame.size.width / 2.0)];
+        float size = [weakSelf sizeForDevice:weakSelf.frame.size.width];
+        ALog(@"image is %@ radius %f size %f", image, radius, size);
+
+        weakSelf.image = [image thumbnailImage:size transparentBorder:1 cornerRadius:radius interpolationQuality:kCGInterpolationHigh];
         //[self setRoundedView:self toDiameter:50];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        
+        ALog(@"Image failure %@", error);
     }];
 }
 
