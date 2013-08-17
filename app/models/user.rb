@@ -14,22 +14,22 @@ class User < ActiveRecord::Base
   has_many :relationships, :dependent => :destroy
 
   has_many :hookups, :through => :relationships,
-         :conditions => "status = 'accepted'"
+         :conditions => "relationships.status = 'accepted'"
 
   has_many :requested_hookups,
          :through => :relationships,
          :source => :hookup,
-         :conditions => "status = 'requested'"
+         :conditions => "relationships.status = 'requested'"
   
   has_many :pending_hookups,
          :through => :relationships,
          :source => :hookup,
-         :conditions => "status = 'pending'"
+         :conditions => "relationships.status = 'pending'"
 
   has_many :rejected_hookups,
          :through => :relationships,
          :source => :hookup,
-         :conditions => "status = 'rejected'"
+         :conditions => "relationships.status = 'rejected'"
 
   has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
