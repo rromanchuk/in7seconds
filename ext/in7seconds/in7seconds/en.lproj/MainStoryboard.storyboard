@@ -470,18 +470,18 @@
                                                     <color key="textColor" red="0.30980392156862746" green="0.30980392156862746" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="add_foto_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="H1o-07-vaW" customClass="ProfilePhotoView">
+                                                <imageView contentMode="scaleToFill" image="add_foto_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="H1o-07-vaW" customClass="ProfilePhotoView">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="66" type="user" id="Yiz-bq-Dqt"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="add_foto_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="3yx-RK-l1K" customClass="ProfilePhotoView">
+                                                <imageView contentMode="scaleToFill" image="add_foto_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="3yx-RK-l1K" customClass="ProfilePhotoView">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="64" id="JA3-V3-awz"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="add_foto_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="uNx-yt-353" customClass="ProfilePhotoView"/>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="add_foto_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="e1K-Ms-XpO" customClass="ProfilePhotoView"/>
+                                                <imageView contentMode="scaleToFill" image="add_foto_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="uNx-yt-353" customClass="ProfilePhotoView"/>
+                                                <imageView contentMode="scaleToFill" image="add_foto_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="e1K-Ms-XpO" customClass="ProfilePhotoView"/>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4aA-nR-ZdX">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="290" id="X3k-h5-uZs"/>
@@ -1590,10 +1590,14 @@
         <class className="IndexViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IndexViewController.h"/>
             <relationships>
+                <relationship kind="action" name="didSelectNotifications:"/>
                 <relationship kind="action" name="didTapInfo:"/>
                 <relationship kind="action" name="didTapLike:"/>
+                <relationship kind="action" name="didTapMatches:"/>
                 <relationship kind="action" name="didTapPhoto:"/>
                 <relationship kind="action" name="didTapUnlike:"/>
+                <relationship kind="action" name="revealChats:"/>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="countdownLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="infoBanner" candidateClass="UIView"/>

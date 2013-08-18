@@ -14,6 +14,7 @@
 @interface MyProfileViewController ()
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 @property BOOL isFetching;
+@property NSInteger currentSelectedPhoto;
 @end
 
 @implementation MyProfileViewController
@@ -56,12 +57,7 @@
 
     
     [self.myPhoto setCircleWithUrl:self.currentUser.photoUrl];
-    ALog(@"setting image for user profile %@", self.currentUser.photoUrl);
-    NSInteger ctr = 0;
-    for (Image *image in self.currentUser.images) {
-        
-    }
-
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -178,7 +174,30 @@
 }
 
 
+- (void)reloadUserImages {
+    ALog(@"setting image for user profile %@", self.currentUser.photoUrl);
+    NSInteger ctr = 0;
+    for (Image *image in self.currentUser.images) {
+        switch (ctr) {
+            case 0:
+                [self.myPicture1 setCircleWithUrl:image.photoUrl];
+                break;
+            case 1:
+                [self.myPicture2 setCircleWithUrl:image.photoUrl];
+                break;
+            case 2:
+                [self.myPicture3 setCircleWithUrl:image.photoUrl];
+                break;
+            case 3:
+                [self.myPicture4 setCircleWithUrl:image.photoUrl];
+                break;
+            default:
+                break;
+        }
+        ctr++;
+    }
 
+}
 #pragma mark UIImagePickerControllerDelegate methods
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
@@ -186,6 +205,7 @@
 
 - (IBAction)pictureFromLibrary:(id)sender {
     self.imagePicker = [[UIImagePickerController alloc] init];
+    self.currentSelectedPhoto = ((UIImageView *)((UIGestureRecognizer *)sender).view).tag;
     [self.imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     self.imagePicker.delegate = self;
     self.imagePicker.allowsEditing = YES;
@@ -283,7 +303,7 @@
     }
     NSMutableData *imageData = [UIImageJPEGRepresentation(image, 0.9) mutableCopy];
     [RestUser addPhoto:imageData  onLoad:^(RestUser *restUser) {
-
+        
     } onError:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];

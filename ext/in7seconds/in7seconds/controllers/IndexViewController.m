@@ -249,11 +249,11 @@ typedef enum  {
     ALog(@"Top did appear");
     if (self.otherUser) {
         if (_modalOpen == NO) {
-            [self startCountdown];
+            //[self startCountdown];
             ALog(@"resuming countdown");
         }
         ALog(@"modal says was open");
-        [self startCountdown];
+        //[self startCountdown];
     } else if ([self.hookups count] > 0) {
         ALog(@"setting up next hookup")
         [self setupNextHookup];
@@ -357,7 +357,7 @@ typedef enum  {
 
 - (void)imageLoaded {
     if (self.otherUser && (self.isViewLoaded && self.view.window) && !_modalOpen) {
-        [self startCountdown];
+        //[self startCountdown];
     }
 }
 
@@ -384,7 +384,7 @@ typedef enum  {
 - (void)applicationWillWillStart {
     _numberOfAttempts = 0;
     if (self.otherUser) {
-        [self startCountdown];
+        //[self startCountdown];
     }
 }
 
