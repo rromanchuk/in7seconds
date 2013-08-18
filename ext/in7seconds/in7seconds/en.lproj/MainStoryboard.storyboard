@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="13A538g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cIh-07-pfa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E3067" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cIh-07-pfa">
     <dependencies>
         <deployment version="1552" identifier="iOS"/>
         <development version="4600" identifier="xcode"/>
@@ -53,7 +53,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="matches_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="vhH-zr-jbP"/>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="My matches" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZuX-L2-Zmv">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Совпадения" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZuX-L2-Zmv">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="2p7-Lo-CqC"/>
                                                         <constraint firstAttribute="width" constant="219" id="3rF-1V-j8J"/>
@@ -1558,6 +1558,8 @@
         <class className="CommentViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CommentViewController.h"/>
             <relationships>
+                <relationship kind="action" name="didAddComment:event:"/>
+                <relationship kind="action" name="didTapProfilePhoto:"/>
                 <relationship kind="outlet" name="footerView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
@@ -1590,14 +1592,10 @@
         <class className="IndexViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IndexViewController.h"/>
             <relationships>
-                <relationship kind="action" name="didSelectNotifications:"/>
                 <relationship kind="action" name="didTapInfo:"/>
                 <relationship kind="action" name="didTapLike:"/>
-                <relationship kind="action" name="didTapMatches:"/>
                 <relationship kind="action" name="didTapPhoto:"/>
                 <relationship kind="action" name="didTapUnlike:"/>
-                <relationship kind="action" name="revealChats:"/>
-                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="countdownLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="infoBanner" candidateClass="UIView"/>
@@ -1756,6 +1754,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ika-PZ-c2Y"/>
+        <segue reference="ySP-3n-59l"/>
     </inferredMetricsTieBreakers>
 </document>
