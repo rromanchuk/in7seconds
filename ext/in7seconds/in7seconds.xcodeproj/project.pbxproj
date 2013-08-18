@@ -101,6 +101,8 @@
 		94A9808D16E9FF6F0036E52C /* RestMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9808C16E9FF6F0036E52C /* RestMessage.m */; };
 		94A9809616EA048B0036E52C /* PrivateMessage+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A9809516EA048A0036E52C /* PrivateMessage+REST.m */; };
 		94A980B516ECB4060036E52C /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A980B416ECB4040036E52C /* UserProfileViewController.m */; };
+		94AC6EF917C0E8E10044C9EA /* add_foto_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 94AC6EF717C0E8E10044C9EA /* add_foto_icon.png */; };
+		94AC6EFA17C0E8E10044C9EA /* add_foto_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94AC6EF817C0E8E10044C9EA /* add_foto_icon@2x.png */; };
 		94BFC622172D24D600A3625B /* RestImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BFC621172D24D600A3625B /* RestImage.m */; };
 		94BFC625172D25C500A3625B /* Image+REST.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BFC624172D25C500A3625B /* Image+REST.m */; };
 		94C8E139177E284800739D2F /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C8E138177E284800739D2F /* SwipeView.m */; };
@@ -349,6 +351,8 @@
 		94A9809516EA048A0036E52C /* PrivateMessage+REST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PrivateMessage+REST.m"; sourceTree = "<group>"; };
 		94A980B316ECB4030036E52C /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = controllers/UserProfileViewController.h; sourceTree = "<group>"; };
 		94A980B416ECB4040036E52C /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = controllers/UserProfileViewController.m; sourceTree = "<group>"; };
+		94AC6EF717C0E8E10044C9EA /* add_foto_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = add_foto_icon.png; path = assets/v2/myprofile/add_foto_icon.png; sourceTree = "<group>"; };
+		94AC6EF817C0E8E10044C9EA /* add_foto_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add_foto_icon@2x.png"; path = "assets/v2/myprofile/add_foto_icon@2x.png"; sourceTree = "<group>"; };
 		94BFC620172D24D600A3625B /* RestImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestImage.h; sourceTree = "<group>"; };
 		94BFC621172D24D600A3625B /* RestImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestImage.m; sourceTree = "<group>"; };
 		94BFC623172D25C500A3625B /* Image+REST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Image+REST.h"; sourceTree = "<group>"; };
@@ -747,6 +751,8 @@
 		948774AC17BF581C00CCBFB1 /* MyProfile */ = {
 			isa = PBXGroup;
 			children = (
+				94AC6EF717C0E8E10044C9EA /* add_foto_icon.png */,
+				94AC6EF817C0E8E10044C9EA /* add_foto_icon@2x.png */,
 			);
 			name = MyProfile;
 			sourceTree = "<group>";
@@ -1259,6 +1265,8 @@
 				948774B217BF69FA00CCBFB1 /* chats_button_with_bubble@2x.png in Resources */,
 				948774B317BF69FA00CCBFB1 /* chats_button.png in Resources */,
 				948774B417BF69FA00CCBFB1 /* chats_button@2x.png in Resources */,
+				94AC6EF917C0E8E10044C9EA /* add_foto_icon.png in Resources */,
+				94AC6EFA17C0E8E10044C9EA /* add_foto_icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
