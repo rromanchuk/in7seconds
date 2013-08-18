@@ -80,47 +80,7 @@
         self.nameLabel.text = [NSString stringWithFormat:@"%@", self.otherUser.lastName];
     }
     
-    
-//    
-//    //[self.userProfileImage setProfilePhotoWithURL:self.otherUser.photoUrl];
-//    [self.mutalFriendsButton setTitle:[NSString stringWithFormat:@"%@", self.otherUser.mutualFriendsNum] forState:UIControlStateNormal];
-//    [self.mutualGroupsButton setTitle:[NSString stringWithFormat:@"%@", self.otherUser.mutualGroups] forState:UIControlStateNormal];
-//    
-//    if (self.otherUser.mutualFriendNames.length == 0) {
-//        self.mutualFriendsLabel.text = @"отсутствующий";
-//    } else {
-//        self.mutualFriendsLabel.text = self.otherUser.mutualFriendNames;
-//    }
-//    
-//    if (self.otherUser.mutualGroupNames.length == 0) {
-//        self.mutualGroupsLabel.text =  @"отсутствующий";
-//    } else {
-//        self.mutualGroupsLabel.text = self.otherUser.mutualGroupNames;
-//    }
-//    [self.mutualGroupsLabel sizeToFit];
-//    
-//    
-//    [self.userGroupsHeader setFrame:CGRectMake(self.mutualGroupsLabel.frame.origin.x, (self.mutualGroupsLabel.frame.origin.y + self.mutualGroupsLabel.frame.size.height) + 10, self.userGroupsHeader.frame.size.width, self.userGroupsHeader.frame.size.height)];
-//    [self.userGroupsLabel setFrame:CGRectMake(self.mutualGroupsLabel.frame.origin.x, (self.userGroupsHeader.frame.origin.y + self.userGroupsHeader.frame.size.height), self.userGroupsLabel.frame.size.width, self.userGroupsLabel.frame.size.height)];
-//    if (self.otherUser.groupNames.length == 0) {
-//        self.userGroupsLabel.text = @"отсутствующий";
-//    } else {
-//        self.userGroupsLabel.text = self.otherUser.groupNames;
-//    }
-//    [self.userGroupsLabel sizeToFit];
-//    
-//    
-//    [self.educationHeader setFrame:CGRectMake(self.userGroupsLabel.frame.origin.x, (self.userGroupsLabel.frame.origin.y + self.userGroupsLabel.frame.size.height) + 10, self.educationHeader.frame.size.width, self.educationHeader.frame.size.height)];
-//    [self.educationLabel setFrame:CGRectMake(self.educationHeader.frame.origin.x, (self.educationHeader.frame.origin.y + self.educationHeader.frame.size.height), self.educationLabel.frame.size.width, self.educationLabel.frame.size.height)];
-//    self.educationLabel.text = self.otherUser.schoolInfo;
-//    [self.educationLabel sizeToFit];
-//    
-//    [self.vkHeader setFrame:CGRectMake(self.educationLabel.frame.origin.x, (self.educationLabel.frame.origin.y + self.educationLabel.frame.size.height) + 10, self.vkHeader.frame.size.width, self.educationLabel.frame.size.height)];
-//    
-//    [self.vkUrlTextView setFrame:CGRectMake(self.vkHeader.frame.origin.x, (self.vkHeader.frame.origin.y + self.vkHeader.frame.size.height), self.vkUrlTextView.frame.size.width, self.vkUrlTextView.frame.size.height)];
-//    
-//    self.vkUrlTextView.text = self.otherUser.socialUrl;
-//    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barItemWithImage:[UIImage imageNamed:@"back_icon"] target:self action:@selector(back)];
+    self.statusLabel.text = self.otherUser.status;
     
     [self setupMutualFriends];
     [self setupMutualInterests];

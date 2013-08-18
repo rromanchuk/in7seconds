@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130818160353) do
+ActiveRecord::Schema.define(:version => 20130818163525) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(:version => 20130818160353) do
   add_index "groups", ["provider"], :name => "index_groups_on_provider"
 
   create_table "images", :force => true do |t|
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(:version => 20130818160353) do
     t.string   "remote_url"
     t.string   "provider"
     t.integer  "external_id",        :limit => 8
-    t.boolean  "is_uploaded"
+    t.boolean  "is_uploaded",                     :default => false
   end
 
   add_index "images", ["external_id"], :name => "index_images_on_external_id"
