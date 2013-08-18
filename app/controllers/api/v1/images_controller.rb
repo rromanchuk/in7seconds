@@ -10,7 +10,7 @@ module Api
         @image.provider = :phone
         @image.save
         @user = current_user.reload
-        render 'api/v1/users/authenticate_user'
+        render 'api/v1/users/authenticated_user'
       end
 
     end
