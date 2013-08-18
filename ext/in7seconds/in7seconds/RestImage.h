@@ -9,5 +9,8 @@
 #import "RestObject.h"
 @interface RestImage : RestObject
 @property (strong, atomic) NSString *photoUrl;
+@property BOOL isFromUpload;
+
+
 + (NSDictionary *)mapping;
 @end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130817062645) do
+ActiveRecord::Schema.define(:version => 20130818160353) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20130817062645) do
     t.string   "remote_url"
     t.string   "provider"
     t.integer  "external_id",        :limit => 8
+    t.boolean  "is_uploaded"
   end
 
   add_index "images", ["external_id"], :name => "index_images_on_external_id"

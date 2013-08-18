@@ -43,6 +43,7 @@
     </entity>
     <entity name="Image" representedClassName="Image" syncable="YES">
         <attribute name="externalId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="isFromUpload" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="hookup" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Hookup" inverseName="images" inverseEntity="Hookup" syncable="YES"/>
         <relationship name="match" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Match" inverseName="images" inverseEntity="Match" syncable="YES"/>
@@ -150,7 +151,7 @@
     <elements>
         <element name="Group" positionX="160" positionY="192" width="128" height="135"/>
         <element name="Hookup" positionX="0" positionY="0" width="128" height="510"/>
-        <element name="Image" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Image" positionX="0" positionY="0" width="128" height="135"/>
         <element name="Match" positionX="0" positionY="0" width="128" height="510"/>
         <element name="MutualFriend" positionX="0" positionY="0" width="128" height="135"/>
         <element name="Notification" positionX="0" positionY="0" width="128" height="150"/>

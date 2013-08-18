@@ -2,7 +2,7 @@
 //  Image.h
 //  in7seconds
 //
-//  Created by Ryan Romanchuk on 5/1/13.
+//  Created by Ryan Romanchuk on 8/18/13.
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSNumber * externalId;
 @property (nonatomic, retain) NSString * photoUrl;
+@property (nonatomic, retain) NSNumber * isFromUpload;
 @property (nonatomic, retain) Hookup *hookup;
 @property (nonatomic, retain) Match *match;
 @property (nonatomic, retain) User *user;

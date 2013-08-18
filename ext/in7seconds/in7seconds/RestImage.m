@@ -11,7 +11,8 @@
 @implementation RestImage
 + (NSDictionary *)mapping {
     return @{@"id": @"externalId",
-             @"photo_url": @"photoUrl"
+             @"photo_url": @"photoUrl",
+             @"is_uploaded": @"isFromUpload"
              };
     
 }

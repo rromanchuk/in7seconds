@@ -39,5 +39,6 @@
     
     self.externalId = @(restImage.externalId);
     self.photoUrl = restImage.photoUrl;
+    self.isFromUpload = @(restImage.isFromUpload);
 }
 @end
