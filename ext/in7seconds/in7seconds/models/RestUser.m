@@ -172,7 +172,6 @@ static NSString *RELATIONSHIP_PATH = @"api/v1/relationships";
         p[@"user[latitude]"] = [Location sharedLocation].latitude;
         p[@"user[longitude"] = [Location sharedLocation].longitude;
     }
-    
     if (user.status.length > 0) {
         p[@"user[status]"] = user.status;
     }
