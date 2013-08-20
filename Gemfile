@@ -29,7 +29,7 @@ gem 'haml_coffee_assets'
 gem 'dalli'
 gem 'faye'
 gem 'thin'
-gem 'newrelic_rpm'
+#gem 'newrelic_rpm'
 gem 'rack-mini-profiler'
 
 group :assets do
