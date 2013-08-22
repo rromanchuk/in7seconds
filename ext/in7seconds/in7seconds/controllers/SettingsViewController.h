@@ -6,13 +6,14 @@
 //  Copyright (c) 2013 Ryan Romanchuk. All rights reserved.
 //
 #import "User+REST.h"
+#import "NMRangeSlider.h"
 
 typedef enum  {
-    SSSettingsSectionTypeGender = 0,
-    SSSettingsSectionTypeDistance = 1,
-    SSSettingsSectionTypeAge = 2,
-    SSSettingsSectionTypePush = 3,
-    SSSettingsSectionTypeLogout = 4
+    SSSettingsSectionTypeGender,
+    SSSettingsSectionTypeDistance,
+    SSSettingsSectionTypeAge,
+    SSSettingsSectionTypePush,
+    SSSettingsSectionTypeLogout
 } SSSettingsSectionType;
 
 
@@ -30,17 +31,17 @@ typedef enum  {
 @property (weak, nonatomic) IBOutlet UISwitch *lookingForWomenSwitch;
 @property (weak, nonatomic) IBOutlet UISlider *distanceSlider;
 
-@property (weak, nonatomic) IBOutlet UISlider *ageSlider;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+@property (weak, nonatomic) IBOutlet NMRangeSlider *ageSlider;
+@property (weak, nonatomic) IBOutlet UILabel *lowerLabel;
+@property (weak, nonatomic) IBOutlet UILabel *upperLabel;
 
 - (IBAction)lookingForChanged:(id)sender;
 - (IBAction)notificationSettingsChanged:(id)sender;
+- (IBAction)labelSliderChanged:(id)sender;
 
 //@property (weak, nonatomic) id <LogoutDelegate> delegate;
 //@property (weak, nonatomic) id <UserSettingsDelegate> settingsDelegate;
-
-
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 
 @property (weak, nonatomic) IBOutlet UISwitch *notificationEmailSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *notificationPushSwitch;

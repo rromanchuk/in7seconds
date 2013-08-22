@@ -28,11 +28,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UILabel *noResultsLabel;
 @property (weak, nonatomic) IBOutlet UIView *infoBanner;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
 @property (strong, nonatomic) IBOutlet SwipeView *swipeView;

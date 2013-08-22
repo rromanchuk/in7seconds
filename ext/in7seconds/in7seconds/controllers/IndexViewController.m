@@ -34,6 +34,8 @@ typedef enum  {
 @property (strong, nonatomic) Hookup *otherUser;
 @property (strong, nonatomic) NSMutableSet *hookups;
 @property (strong, nonatomic) NSTimer *timer;
+@property BOOL *firstLoad;
+
 @end
 
 @implementation IndexViewController
@@ -51,6 +53,7 @@ typedef enum  {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.firstLoad = YES;
     self.hookups = [[NSMutableSet alloc] init];
     AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     self.managedObjectContext = delegate.managedObjectContext;
@@ -95,7 +98,6 @@ typedef enum  {
     self.countdownLabel.text = @"7";
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(updateCountdownLabel) userInfo:nil repeats:YES];
     
-    [self.activityIndicator stopAnimating];
     if (self.currentUser) {
         [self noResultsLeft];
         [self fetchHookups];
@@ -136,7 +138,6 @@ typedef enum  {
 }
 
 - (void)viewDidUnload {
-    [self setActivityIndicator:nil];
     [self setCountdownLabel:nil];
     [self setSwipeView:nil];
     [super viewDidUnload];
@@ -280,11 +281,11 @@ typedef enum  {
         [self foundResults];
         
         [self.userImageView setProfilePhotoWithURL:self.otherUser.photoUrl];
-        if (self.otherUser.latitude && [self.otherUser.latitude integerValue] > 0) {
-            self.locationLabel.text = [NSString stringWithFormat:@"Примерно в %@ от тебя", [self getDistance]];
-        } else {
-          self.locationLabel.text = self.otherUser.fullLocation;
-        }
+//        if (self.otherUser.latitude && [self.otherUser.latitude integerValue] > 0) {
+//            self.locationLabel.text = [NSString stringWithFormat:@"Примерно в %@ от тебя", [self getDistance]];
+//        } else {
+//          self.locationLabel.text = self.otherUser.fullLocation;
+//        }
         
         self.photosCountLabel.text =  [NSString stringWithFormat:@"%d", [self.otherUser.images count] + 1];
         self.mutualFriendsLabel.text = [NSString stringWithFormat:@"%@", self.otherUser.mutualFriendsNum];
@@ -317,11 +318,12 @@ typedef enum  {
         return;
     
     _numberOfAttempts++;
-    _isFetching = YES;
+    _isFetching = YES;        
+    
     [self.managedObjectContext performBlock:^{
         if(_noResults) {
             ALog(@"no results start animating");
-            [self.activityIndicator startAnimating];
+            [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
         }
         ALog(@"about to load hookups from rest");
         [RestHookup load:^(NSMutableArray *possibleHookups) {
@@ -344,12 +346,12 @@ typedef enum  {
             AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             [sharedAppDelegate writeToDisk];
             [self fetchHookups];
-            [self.activityIndicator stopAnimating];
+            [SVProgressHUD dismiss];
             _isFetching = NO;
             
         } onError:^(NSError *error) {
             ALog(@"Error fetching hookups %@", error);
-            [self.activityIndicator stopAnimating];
+            [SVProgressHUD dismiss];
             _isFetching = NO;
         }];
     }];
@@ -364,7 +366,7 @@ typedef enum  {
 - (void)foundResults {
     ALog(@"foundResults");
     _noResults = NO;
-    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdownLabel.hidden = self.userImageView.hidden = self.infoBanner.hidden = NO;
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.infoButton.hidden = self.countdownLabel.hidden = self.userImageView.hidden = self.infoBanner.hidden = NO;
     self.noResultsLabel.hidden = YES;
 }
 
@@ -372,7 +374,7 @@ typedef enum  {
     ALog(@"noResultsLeft");
     [self stopCountdown];
     _noResults = YES;
-    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.locationLabel.hidden = self.countdownLabel.hidden = self.userImageView.hidden = self.infoBanner.hidden = YES;
+    self.likeButton.hidden = self.unlikeButton.hidden = self.nameLabel.hidden = self.infoButton.hidden = self.countdownLabel.hidden = self.userImageView.hidden = self.infoBanner.hidden = YES;
     self.noResultsLabel.hidden = NO;
 }
 
@@ -426,7 +428,7 @@ typedef enum  {
 
 
 - (IBAction)didSelectNotifications:(id)sender {
-    [self performSegueWithIdentifier:@"Notifications" sender:self];
+    //[self performSegueWithIdentifier:@"Notifications" sender:self];
 }
 
 - (IBAction)didTapInfo:(id)sender {

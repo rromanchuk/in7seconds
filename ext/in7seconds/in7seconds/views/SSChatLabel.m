@@ -19,19 +19,24 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    // Drawing code
+    if(self = [super initWithCoder:aDecoder])
+    {
+        self.preferredMaxLayoutWidth = 300;
+    }
+    return self;
 }
-*/
 
 
 - (void)drawTextInRect:(CGRect)rect
 {
-    UIEdgeInsets insets = {0,8,0,5};
+    UIEdgeInsets insets;
+    if (self.tag == 1) {
+        insets = UIEdgeInsetsMake(0, 0, 0, 10);
+    } else {
+       insets = UIEdgeInsetsMake(0, 10, 0, 0);
+    }
     
     [super drawTextInRect:UIEdgeInsetsInsetRect(rect, insets)];
 }

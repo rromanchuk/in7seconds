@@ -26,6 +26,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.viewDeckController.panningMode = IIViewDeckNoPanning;
+  
+    
+    self.ageSlider.minimumValue = 15;
+    self.ageSlider.maximumValue = 60;
+    
+    self.ageSlider.lowerValue = 16;
+    self.ageSlider.upperValue = 30;
+    
+    self.ageSlider.minimumRange = 10;
+
+    
     self.currentUser = [User currentUser:self.managedObjectContext];
     
     UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
@@ -48,22 +60,26 @@
     self.notificationEmailSwitch.on = [self.currentUser.emailOptIn boolValue];
     self.notificationPushSwitch.on = [self.currentUser.pushOptIn boolValue];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+
+
+- (void)updateSliderLabels
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    // You get get the center point of the slider handles and use this to arrange other subviews
+    
+    CGPoint lowerCenter;
+    lowerCenter.x = (self.ageSlider.lowerCenter.x + self.ageSlider.frame.origin.x);
+    lowerCenter.y = (self.ageSlider.center.y - 30.0f);
+    self.lowerLabel.center = lowerCenter;
+    self.lowerLabel.text = [NSString stringWithFormat:@"%d", (int)self.ageSlider.lowerValue];
+    
+    CGPoint upperCenter;
+    upperCenter.x = (self.ageSlider.upperCenter.x + self.ageSlider.frame.origin.x);
+    upperCenter.y = (self.ageSlider.center.y - 30.0f);
+    self.upperLabel.center = upperCenter;
+    self.upperLabel.text = [NSString stringWithFormat:@"%d", (int)self.ageSlider.upperValue];
 }
-*/
-
 
 
 #pragma mark - Table view delegate
@@ -128,15 +144,6 @@
     [[Vkontakte sharedInstance] logout];
     
     [((AppDelegate *)[[UIApplication sharedApplication] delegate]) resetCoreData];
-    
-    //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    //
-    //    BaseNavigationViewController *centerViewController = [storyboard instantiateViewControllerWithIdentifier:@"middleViewController"];
-    //    self.viewDeckController.centerController = centerViewController;
-    //
-    //    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
-    //    self.viewDeckController.leftController = loginViewController;
-    //
     AppDelegate *sharedAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [sharedAppDelegate resetWindowToInitialView];
     
@@ -164,6 +171,10 @@
         self.currentUser.pushOptIn = @(self.notificationPushSwitch.on);
     }
     [self update];
+}
+
+- (IBAction)labelSliderChanged:(id)sender {
+    [self updateSliderLabels];
 }
 
 @end
