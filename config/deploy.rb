@@ -34,9 +34,9 @@ set :faye_config, "#{release_path}/faye.ru"
 
 after 'deploy:update', 'deploy:cleanup'
 before 'deploy:create_symlink', 'deploy:abort_if_pending_migrations'
-after 'deploy:update_code' do
-  run "cd #{release_path}; RAILS_ENV=production rake assets:precompile"
-end
+# after 'deploy:update_code' do
+#   run "cd #{release_path}; RAILS_ENV=production rake assets:precompile"
+# end
 before "deploy:restart", "delayed_job:stop"
 after  "deploy:restart", "delayed_job:start"
 after  "deploy:restart", "deploy:ensure_alive"
