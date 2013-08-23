@@ -141,7 +141,9 @@
 //    } else {
 //        cell.previewLabel.text = user.fullLocation;
 //    }
-
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@""];
     
     
     NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];

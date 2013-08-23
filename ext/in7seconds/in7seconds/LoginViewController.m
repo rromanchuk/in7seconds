@@ -164,7 +164,7 @@
 }
 
 - (void)setupProfile {
-    AppDelegate *sharedAppDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *sharedAppDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [sharedAppDelegate resetWindowToInitialView];
 
 //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];

@@ -40,7 +40,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     __weak ProfilePhotoView *weakSelf = self;
     
-    [self setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"alena"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+    [self setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
         //self.image = image;
         float radius = [weakSelf sizeForDevice:(weakSelf.frame.size.width / 2.0)];
         float size = [weakSelf sizeForDevice:weakSelf.frame.size.width];
