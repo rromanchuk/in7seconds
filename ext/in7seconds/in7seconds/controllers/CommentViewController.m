@@ -163,7 +163,8 @@
     
     UIButton *enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
     enterButton.frame = CGRectMake(275.0, 5, 36, 31.0);
-    [enterButton setImage:[UIImage imageNamed:@"enter-button.png"] forState:UIControlStateNormal];
+    [enterButton setTitle:@"Send" forState:UIControlStateNormal];
+    [enterButton setImage:[UIImage imageNamed:@"enter-button"] forState:UIControlStateNormal];
     [enterButton addTarget:self action:@selector(didAddComment:event:) forControlEvents:UIControlEventTouchUpInside];
     [self.footerView addSubview:enterButton];
 }
