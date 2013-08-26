@@ -1,7 +1,5 @@
 In7seconds::Application.routes.draw do
   
-  # DEPRECATED
-  resources :token_authentications, :only => [:create, :destroy]
 
   devise_for :users,
              :controllers => { :registrations => "users/registrations",

@@ -1,8 +1,6 @@
 # encoding: utf-8
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
   devise :registerable, :database_authenticatable,
          :recoverable, :rememberable, :trackable, :token_authenticatable, :omniauthable, :confirmable
          #:validatable
@@ -79,7 +77,7 @@ class User < ActiveRecord::Base
   after_create :welcome_email, :if => :is_active?
   before_destroy :remove_relationships
   
-  before_save :require_confirmation, :on => :create
+  #before_save :require_confirmation, :on => :create
   after_save :check_email_status
  
   VK_FIELDS = [:first_name, :last_name, :screen_name, :sex, :bdate, :city, :country, :photo_big, :graduation, :university_name, :education, :domain, :contacts]
@@ -87,13 +85,13 @@ class User < ActiveRecord::Base
   scope :added_yesterday, lambda { where(created_at: Date.yesterday...Date.today, is_active: true) }
 
   #devise 
-  def require_confirmation
-    self.skip_confirmation! unless (is_active? && !email.blank?)  
-  end
+  # def require_confirmation
+  #   self.skip_confirmation! unless (is_active? && !email.blank?)  
+  # end
 
   def check_email_status
-    if is_active && has_facebook?
-      confirm!
+    if is_active? && has_facebook?
+      #confirm!
     elsif is_active? && !email.blank?
       if confirmation_sent_at.blank? && !confirmed?
         send_confirmation_instructions

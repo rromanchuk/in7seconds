@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20130818163525) do
     t.boolean  "is_active"
     t.string   "provider"
     t.boolean  "gender",                                                              :default => false
+    t.integer  "looking_for_gender"
     t.datetime "birthday"
     t.string   "first_name"
     t.string   "last_name"
@@ -150,7 +151,6 @@ ActiveRecord::Schema.define(:version => 20130818163525) do
     t.decimal  "longitude",                           :precision => 15, :scale => 10
     t.datetime "created_at",                                                                             :null => false
     t.datetime "updated_at",                                                                             :null => false
-    t.integer  "looking_for_gender"
     t.string   "vk_domain"
     t.string   "vk_university_name"
     t.string   "vk_faculty_name"
