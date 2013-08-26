@@ -882,6 +882,7 @@
                         <outlet property="userImageView" destination="APD-Fz-edu" id="FfR-BH-bT2"/>
                         <segue destination="Ujj-87-9Zu" kind="modal" identifier="NewMatch" id="sSy-fW-JD7"/>
                         <segue destination="SDa-LR-4qD" kind="modal" identifier="FeedUserProfileModal" id="ika-PZ-c2Y"/>
+                        <segue destination="q9A-pi-12M" kind="push" identifier="DirectToChat" id="wjR-Sq-dkw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2d3-TX-Xo8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1544,6 +1545,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Qbw-Nj-K3g"/>
+        <segue reference="wjR-Sq-dkw"/>
+        <segue reference="ika-PZ-c2Y"/>
     </inferredMetricsTieBreakers>
 </document>
