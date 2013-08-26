@@ -10,7 +10,6 @@
 @interface FeedUserImage : UIImageView
 @property BOOL notifyImageLoad;
 
-@property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 @property (weak) id <ImageLoadedDelegate> delegate;
 - (void)setProfilePhotoWithURL:(NSString *)url;
 - (void)setWithImage:(UIImage *)image;

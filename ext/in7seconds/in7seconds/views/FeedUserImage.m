@@ -39,23 +39,16 @@
     [self.layer setShadowOffset:CGSizeMake(0.0, 0.0)];
     self.layer.borderColor = [UIColor whiteColor].CGColor;
     self.layer.borderWidth = 3;
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((self.frame.size.width/2) - 10, (self.frame.size.height / 2) - 10, 20.0, 20.0) ];
-    [self addSubview:self.activityIndicator];
-    [self.activityIndicator setHidesWhenStopped:YES];
-    self.activityIndicator.backgroundColor = RGBCOLOR(197, 197, 197);
-    self.activityIndicator.opaque = YES;
     self.opaque = YES;
     self.backgroundColor = RGBCOLOR(197, 197, 197);
 }
 
 - (void)setProfilePhotoWithURL:(NSString *)url {
     NSURLRequest *postcardRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [self.activityIndicator startAnimating];
     [self setImageWithURLRequest:postcardRequest
                 placeholderImage:nil
                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                              ALog(@"image sizie w%f h%f", image.size.width, image.size.height);
-                             [self.activityIndicator stopAnimating];
                              self.image = image;
                              CGSize actual = [self imageScale];
                              self.clipsToBounds = YES;
@@ -64,13 +57,11 @@
                              }
      
                          }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                             [self.activityIndicator stopAnimating];
                              DLog(@"Failure setting postcard image with url %@", url);
                          }];
 }
 
 - (void)setWithImage:(UIImage *)image {
-    [self.activityIndicator stopAnimating];
     self.image = image;
     CGSize actual = [self imageScale];
     self.clipsToBounds = YES;

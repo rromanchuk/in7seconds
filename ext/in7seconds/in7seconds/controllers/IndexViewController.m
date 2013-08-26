@@ -34,7 +34,7 @@ typedef enum  {
 @property (strong, nonatomic) Hookup *otherUser;
 @property (strong, nonatomic) NSMutableSet *hookups;
 @property (strong, nonatomic) NSTimer *timer;
-@property BOOL *firstLoad;
+@property BOOL firstLoad;
 
 @end
 
@@ -53,6 +53,8 @@ typedef enum  {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.viewDeckController.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
+
     self.firstLoad = YES;
     self.hookups = [[NSMutableSet alloc] init];
     AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
@@ -116,7 +118,6 @@ typedef enum  {
 
 - (void)leftViewWillAppear {
     ALog(@"left view will appear with user");
-    //self.viewDeckController.centerhiddenInteractivity = YES;
     [self stopCountdown];
 }
 
