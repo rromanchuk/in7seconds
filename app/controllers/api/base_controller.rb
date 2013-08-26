@@ -2,7 +2,7 @@ module Api
   class BaseController < ActionController::Base
     
     skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
-    before_filter :miniprofile
+    #before_filter :miniprofile
 
     ADMINS = [41526347, 2048071, 4807674, 54267159, 201331745]
     FB_ADMINS = [225311, 7300784, 1071841049, 759795370, 3421601]
