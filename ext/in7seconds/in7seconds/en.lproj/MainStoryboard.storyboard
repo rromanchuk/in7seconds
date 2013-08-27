@@ -528,45 +528,59 @@
                                                         <constraint firstAttribute="height" constant="21" id="Din-BV-Y4l"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.30980392156862746" green="0.30980392156862746" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Какое у вас настроение?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PHH-Xv-F6l">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <action selector="statusDidChange:" destination="uma-6m-A1Z" eventType="valueChanged" id="4xW-qI-aRF"/>
-                                                    </connections>
-                                                </textField>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I43-Ht-SW1">
+                                                    <subviews>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Какое у вас настроение?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PHH-Xv-F6l">
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="vnC-rL-8zb"/>
+                                                                <constraint firstAttribute="width" constant="269" id="wih-4N-6Et"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <action selector="statusDidChange:" destination="uma-6m-A1Z" eventType="valueChanged" id="4xW-qI-aRF"/>
+                                                            </connections>
+                                                        </textField>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="PHH-Xv-F6l" firstAttribute="leading" secondItem="I43-Ht-SW1" secondAttribute="leading" constant="9" id="Fww-g7-phz"/>
+                                                        <constraint firstItem="PHH-Xv-F6l" firstAttribute="centerY" secondItem="I43-Ht-SW1" secondAttribute="centerY" type="default" id="o98-hd-KAq"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="3yx-RK-l1K" firstAttribute="leading" secondItem="H1o-07-vaW" secondAttribute="trailing" constant="7" type="user" id="2AQ-nL-fb5"/>
                                             <constraint firstAttribute="trailing" secondItem="se5-YO-KGN" secondAttribute="trailing" constant="20" type="default" id="3Qd-Vi-MqJ"/>
-                                            <constraint firstItem="PHH-Xv-F6l" firstAttribute="top" secondItem="tGB-S4-vz7" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="5gE-Mp-3YF"/>
                                             <constraint firstItem="3yx-RK-l1K" firstAttribute="top" secondItem="se5-YO-KGN" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="9jn-AE-y9T"/>
+                                            <constraint firstItem="I43-Ht-SW1" firstAttribute="leading" secondItem="joD-T9-zMa" secondAttribute="leading" constant="20" type="default" id="CZ7-F5-dEv"/>
                                             <constraint firstItem="e1K-Ms-XpO" firstAttribute="top" secondItem="se5-YO-KGN" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="GR7-8e-RiS"/>
+                                            <constraint firstAttribute="bottom" secondItem="I43-Ht-SW1" secondAttribute="bottom" constant="7" id="HAo-cP-Kx9"/>
                                             <constraint firstItem="H1o-07-vaW" firstAttribute="leading" secondItem="joD-T9-zMa" secondAttribute="leading" constant="20" type="user" id="Ipu-13-JYG"/>
                                             <constraint firstItem="se5-YO-KGN" firstAttribute="leading" secondItem="joD-T9-zMa" secondAttribute="leading" constant="20" type="default" id="Jxt-Cc-VGr"/>
                                             <constraint firstItem="e1K-Ms-XpO" firstAttribute="leading" secondItem="uNx-yt-353" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="MCq-b3-Ndo"/>
                                             <constraint firstItem="tGB-S4-vz7" firstAttribute="leading" secondItem="joD-T9-zMa" secondAttribute="leading" constant="20" type="default" id="MvO-sI-AaD"/>
+                                            <constraint firstAttribute="trailing" secondItem="I43-Ht-SW1" secondAttribute="trailing" constant="20" type="default" id="Qjl-Le-0xn"/>
                                             <constraint firstItem="RAS-6Y-ofx" firstAttribute="top" secondItem="joD-T9-zMa" secondAttribute="top" constant="73" id="RME-FC-dPF"/>
                                             <constraint firstItem="tGB-S4-vz7" firstAttribute="trailing" secondItem="rpU-tL-6d0" secondAttribute="trailing" type="default" id="SV8-6r-pUf"/>
                                             <constraint firstItem="uNx-yt-353" firstAttribute="leading" secondItem="3yx-RK-l1K" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="VYR-wq-zPh"/>
+                                            <constraint firstAttribute="bottom" secondItem="tGB-S4-vz7" secondAttribute="bottom" constant="47" id="Voh-xK-gbZ"/>
                                             <constraint firstAttribute="trailing" secondItem="RAS-6Y-ofx" secondAttribute="trailing" constant="20" type="default" id="VxT-8V-Tyb"/>
                                             <constraint firstItem="rpU-tL-6d0" firstAttribute="top" secondItem="joD-T9-zMa" secondAttribute="top" constant="20" type="default" id="YAP-eb-P4S"/>
                                             <constraint firstItem="uNx-yt-353" firstAttribute="top" secondItem="se5-YO-KGN" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="f99-CN-vxo"/>
                                             <constraint firstItem="se5-YO-KGN" firstAttribute="top" secondItem="rpU-tL-6d0" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="gXO-jQ-pmJ"/>
-                                            <constraint firstItem="PHH-Xv-F6l" firstAttribute="trailing" secondItem="4aA-nR-ZdX" secondAttribute="trailing" type="default" id="hAp-9E-BSG"/>
-                                            <constraint firstItem="PHH-Xv-F6l" firstAttribute="leading" secondItem="joD-T9-zMa" secondAttribute="leading" constant="20" type="default" id="hc0-ga-DQj"/>
                                             <constraint firstItem="RAS-6Y-ofx" firstAttribute="leading" secondItem="rpU-tL-6d0" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="jR8-hv-YWo"/>
                                             <constraint firstItem="uNx-yt-353" firstAttribute="bottom" secondItem="3yx-RK-l1K" secondAttribute="bottom" type="default" id="mp2-nO-UG9"/>
                                             <constraint firstItem="H1o-07-vaW" firstAttribute="top" secondItem="se5-YO-KGN" secondAttribute="bottom" constant="7" type="user" id="mqd-fe-Wfe"/>
                                             <constraint firstItem="e1K-Ms-XpO" firstAttribute="bottom" secondItem="uNx-yt-353" secondAttribute="bottom" type="default" id="pFA-5t-i3i"/>
                                             <constraint firstItem="4aA-nR-ZdX" firstAttribute="leading" secondItem="joD-T9-zMa" secondAttribute="leading" constant="20" type="default" id="rdY-qS-JNy"/>
                                             <constraint firstItem="rpU-tL-6d0" firstAttribute="leading" secondItem="joD-T9-zMa" secondAttribute="leading" constant="20" type="default" id="rti-Q4-UAE"/>
-                                            <constraint firstAttribute="bottom" secondItem="PHH-Xv-F6l" secondAttribute="bottom" constant="9" id="v0G-3m-K66"/>
+                                            <constraint firstItem="I43-Ht-SW1" firstAttribute="top" secondItem="joD-T9-zMa" secondAttribute="top" constant="368" id="tVN-yF-Dm5"/>
                                             <constraint firstAttribute="bottom" secondItem="4aA-nR-ZdX" secondAttribute="bottom" constant="93" id="y23-7V-STo"/>
                                         </constraints>
                                     </tableViewCell>
