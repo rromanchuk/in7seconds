@@ -538,8 +538,9 @@
                                                                 <constraint firstAttribute="height" constant="30" id="vnC-rL-8zb"/>
                                                                 <constraint firstAttribute="width" constant="269" id="wih-4N-6Et"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <color key="textColor" red="0.70196078431372544" green="0.70196078431372544" blue="0.70196078431372544" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                             <connections>
                                                                 <action selector="statusDidChange:" destination="uma-6m-A1Z" eventType="valueChanged" id="4xW-qI-aRF"/>
                                                             </connections>
