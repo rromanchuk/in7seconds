@@ -130,9 +130,7 @@
 
 
 - (void)setupFooterView {
-    //UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height - 20, self.view.frame.size.width, 40.0)];
-    //view.clipsToBounds = NO;
-    
+        
     self.footerView.opaque = YES;
     self.footerView.backgroundColor = RGBCOLOR(239.0, 239.0, 239.0);
     [self.footerView.layer setMasksToBounds:NO];

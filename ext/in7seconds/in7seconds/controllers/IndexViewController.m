@@ -327,6 +327,11 @@ typedef enum  {
             [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
         }
         ALog(@"about to load hookups from rest");
+        
+        [self.managedObjectContext performBlock:^{
+            
+        }];
+        
         [RestHookup load:^(NSMutableArray *possibleHookups) {
             //ALog(@"Found %d possible hookups", [possibleHookups count]);
             NSMutableSet *_restHookups = [[NSMutableSet alloc] init];
