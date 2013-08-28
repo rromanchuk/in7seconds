@@ -511,7 +511,7 @@
                                                 </imageView>
                                                 <imageView contentMode="scaleToFill" image="add_foto_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="uNx-yt-353" customClass="ProfilePhotoView"/>
                                                 <imageView contentMode="scaleToFill" image="add_foto_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="e1K-Ms-XpO" customClass="ProfilePhotoView"/>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4aA-nR-ZdX">
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4aA-nR-ZdX">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="290" id="X3k-h5-uZs"/>
                                                     </constraints>
@@ -519,6 +519,7 @@
                                                         <segment title="Мужчина"/>
                                                         <segment title="Женщина"/>
                                                     </segments>
+                                                    <color key="tintColor" red="0.63921568627450975" green="0.44313725490196076" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="genderChanged:" destination="uma-6m-A1Z" eventType="valueChanged" id="RAT-NY-aPL"/>
                                                     </connections>
