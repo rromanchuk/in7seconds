@@ -1,18 +1,18 @@
 PODS:
-  - AFNetworking (1.3.1)
-  - Appirater (1.0.5)
-  - Facebook-iOS-SDK (3.5.3)
-  - FlurrySDK (4.2.2)
+  - AFNetworking (1.3.2)
+  - Appirater (2.0.1)
+  - Facebook-iOS-SDK (3.7.1)
+  - FlurrySDK (4.2.3)
   - HPGrowingTextView (0.0.1)
   - JTObjectMapping (1.1)
   - SVProgressHUD (0.9)
-  - TestFlightSDK (1.3.0-beta.7)
+  - TestFlightSDK (2.0)
   - TTTAttributedLabel (1.7.1)
   - UrbanAirship-iOS-SDK (2.0.0)
   - ViewDeck (2.3.1)
 
 DEPENDENCIES:
-  - AFNetworking
+  - AFNetworking (= 1.3.2)
   - Appirater
   - Facebook-iOS-SDK
   - FlurrySDK
@@ -25,14 +25,14 @@ DEPENDENCIES:
   - ViewDeck
 
 SPEC CHECKSUMS:
-  AFNetworking: 9ec8aafb9269236a7630bd8d9838ce2ba30fa2a0
-  Appirater: 5addfe3fac0aa85209b553f894b6b0533152786f
-  Facebook-iOS-SDK: c11e851555d8cb8b55853ec2990b01d9e343d09e
-  FlurrySDK: a3f369251a1f46eb6d53fbd817cb41ce4bd9b513
+  AFNetworking: 7f9bcd7c287a75476cd5c61e82fd3380e93e4c54
+  Appirater: 10cdcb23edc2d3b225afbb4a7d110539adac9b55
+  Facebook-iOS-SDK: bf38d403928f6adb652e2e5ae46253e0c6ba9a19
+  FlurrySDK: 20b3fd669eeafd005ca8ff65a1406d1befbc8031
   HPGrowingTextView: 42fee2f684a8c98e61bc19579d274d7fc12b48ca
   JTObjectMapping: 245b1123d0f0d7d0d6ff6537f9d23bbe0d108ddc
   SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
-  TestFlightSDK: 3af0a385405725e36452a35ef63ba8b3f2ef3ffc
+  TestFlightSDK: 940906d4b2550cf397c6f2d2fcc4ebfdcd8ae858
   TTTAttributedLabel: e504133915a9b11de63cb470ffa2790383a3eb23
   UrbanAirship-iOS-SDK: 2c57f0162d51520cf3181d15825fbd04f6283b25
   ViewDeck: 2cdc67c4b41a10cafc7556b982f028409e33604d

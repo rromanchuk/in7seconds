@@ -26,7 +26,7 @@ THE SOFTWARE.
 
 ## Appirater
 
-Copyright 2012. Arash Payan. This library is distributed under the terms of the MIT/X11.
+Copyright 2013. Arash Payan. This library is distributed under the terms of the MIT/X11.
 
 ## Facebook-iOS-SDK
 
