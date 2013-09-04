@@ -29,50 +29,50 @@
     return self;
 }
 
+//
+//- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    
+//    UITouch *aTouch = [touches anyObject];
+//    
+//    // Only move the placard view if the touch was in the placard view.
+//    if (aTouch.view == self.userImageContainer) {
+//        ALog(@"touches moved for user image");
+//        CGPoint location = [aTouch locationInView:self];
+//        CGPoint previousLocation = [aTouch previousLocationInView:self];
+//        self.userImageContainer.frame = CGRectOffset(self.userImageContainer.frame, location.x-previousLocation.x, location.y-    previousLocation.y);
+//        if (previousLocation.x > location.x) {
+//            float rejectAlpha = ((aTouch.view.center.x - 160) / (160 - 0)) * -1.0 ;
+//            float acceptAlpha = ((aTouch.view.center.x - _midpoint) / (320 - 160));
+//
+//            ALog(@"ALPHA IS %f", rejectAlpha);
+//            self.rejectImage.alpha = rejectAlpha;
+//            self.acceptImage.alpha = acceptAlpha;
+//        } else {
+//            float rejectAlpha = ((aTouch.view.center.x - 160) / (160 - 0)) * -1.0 ;
+//
+//            float alpha = ((aTouch.view.center.x - _midpoint) / (320 - 160));
+//            self.acceptImage.alpha = alpha;
+//            self.rejectImage.alpha = rejectAlpha;
+//            ALog(@"ALPHA IS %f", alpha);
+//        }
+//    }
+//}
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-    UITouch *aTouch = [touches anyObject];
-    
-    // Only move the placard view if the touch was in the placard view.
-    if (aTouch.view == self.userImageContainer) {
-        ALog(@"touches moved for user image");
-        CGPoint location = [aTouch locationInView:self];
-        CGPoint previousLocation = [aTouch previousLocationInView:self];
-        self.userImageContainer.frame = CGRectOffset(self.userImageContainer.frame, location.x-previousLocation.x, location.y-    previousLocation.y);
-        if (previousLocation.x > location.x) {
-            float rejectAlpha = ((aTouch.view.center.x - 160) / (160 - 0)) * -1.0 ;
-            float acceptAlpha = ((aTouch.view.center.x - _midpoint) / (320 - 160));
 
-            ALog(@"ALPHA IS %f", rejectAlpha);
-            self.rejectImage.alpha = rejectAlpha;
-            self.acceptImage.alpha = acceptAlpha;
-        } else {
-            float rejectAlpha = ((aTouch.view.center.x - 160) / (160 - 0)) * -1.0 ;
-
-            float alpha = ((aTouch.view.center.x - _midpoint) / (320 - 160));
-            self.acceptImage.alpha = alpha;
-            self.rejectImage.alpha = rejectAlpha;
-            ALog(@"ALPHA IS %f", alpha);
-        }
-    }
-}
-
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	
-	// We only support single touches, so anyObject retrieves just that touch from touches.
-	UITouch *touch = [touches anyObject];
-	_center = self.userImageContainer.center;
-	// Only move the placard view if the touch was in the placard view.
-	if ([touch view] == self.userImageContainer) {
-        ALog(@"touches did begin for user image");
-        _originalRect = self.userImageContainer.frame;
-        [self.delegate touchesDidBegin];
-	}
-    
-}
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//	
+//	// We only support single touches, so anyObject retrieves just that touch from touches.
+//	UITouch *touch = [touches anyObject];
+//	_center = self.userImageContainer.center;
+//	// Only move the placard view if the touch was in the placard view.
+//	if ([touch view] == self.userImageContainer) {
+//        ALog(@"touches did begin for user image");
+//        _originalRect = self.userImageContainer.frame;
+//        [self.delegate touchesDidBegin];
+//	}
+//    
+//}
 //
 //- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 //	
@@ -129,16 +129,8 @@
 		return;
 	}
 }
-//
-//
-//- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-//	
-//	/*
-//     To impose as little impact on the device as possible, simply set the placard view's center and transformation to the original values.
-//     */
-//	self.userImageContainer.center = self.center;
-//	self.userImageContainer.transform = CGAffineTransformIdentity;
-//}
+
+
 
 /*
  First of two possible implementations of animateFirstTouchAtPoint: illustrating different behaviors.

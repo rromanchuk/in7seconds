@@ -814,7 +814,7 @@
                                     </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Ирина, 21" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a7B-zy-7Tz">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="Yv8-FN-v7I"/>
+                                            <constraint firstAttribute="height" constant="25" id="xd1-pH-JDz"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23.569999694824219"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -924,16 +924,16 @@
         <scene sceneID="low-Aa-7nq">
             <objects>
                 <tableViewController id="KXj-XR-793" customClass="MatchesViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" id="O3t-0e-jEa">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="O3t-0e-jEa">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MatchCell" rowHeight="91" id="t3q-FL-F7s" customClass="MatchCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="91"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MatchCell" rowHeight="65" id="t3q-FL-F7s" customClass="MatchCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sarah" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsc-DR-KbM">
@@ -941,7 +941,7 @@
                                                 <constraint firstAttribute="height" constant="31" type="user" id="XHs-hC-mpU"/>
                                                 <constraint firstAttribute="width" constant="188" id="xpd-Ra-doT"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="40"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
                                             <color key="textColor" red="0.19607843137254902" green="0.22352941176470587" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
@@ -963,13 +963,13 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="FTu-PR-qTE" firstAttribute="top" secondItem="wsc-DR-KbM" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="859-wV-Z0L"/>
-                                    <constraint firstItem="znI-zT-gLs" firstAttribute="centerY" secondItem="wsc-DR-KbM" secondAttribute="centerY" type="default" id="Dny-zC-KOZ"/>
+                                    <constraint firstItem="FTu-PR-qTE" firstAttribute="bottom" secondItem="znI-zT-gLs" secondAttribute="bottom" type="default" id="3hg-aW-7gB"/>
                                     <constraint firstItem="znI-zT-gLs" firstAttribute="leading" secondItem="t3q-FL-F7s" secondAttribute="leading" constant="60" id="GE2-wt-yEI"/>
                                     <constraint firstItem="FTu-PR-qTE" firstAttribute="trailing" secondItem="wsc-DR-KbM" secondAttribute="trailing" type="default" id="Iuc-gU-6ps"/>
-                                    <constraint firstItem="wsc-DR-KbM" firstAttribute="top" secondItem="t3q-FL-F7s" secondAttribute="top" constant="16" type="user" id="OCD-wo-vfl"/>
+                                    <constraint firstItem="wsc-DR-KbM" firstAttribute="top" secondItem="znI-zT-gLs" secondAttribute="top" type="default" id="SNZ-ox-BiZ"/>
                                     <constraint firstItem="FTu-PR-qTE" firstAttribute="leading" secondItem="znI-zT-gLs" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="goO-mH-7Jq"/>
                                     <constraint firstItem="wsc-DR-KbM" firstAttribute="leading" secondItem="znI-zT-gLs" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="vx1-hO-7jg"/>
+                                    <constraint firstItem="wsc-DR-KbM" firstAttribute="top" secondItem="t3q-FL-F7s" secondAttribute="top" constant="7" id="zYQ-iA-uwm"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="nameLabel" destination="wsc-DR-KbM" id="WB0-9c-LlE"/>
@@ -1749,7 +1749,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="wjR-Sq-dkw"/>
-        <segue reference="ika-PZ-c2Y"/>
+        <segue reference="go7-cl-s4e"/>
+        <segue reference="ySP-3n-59l"/>
     </inferredMetricsTieBreakers>
 </document>
