@@ -191,8 +191,6 @@
 		FAA2CCB016DC00C900C22D76 /* friends_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC8C16DC00C900C22D76 /* friends_icon@2x.png */; };
 		FAA2CCB216DC00C900C22D76 /* normal_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC8E16DC00C900C22D76 /* normal_bg.png */; };
 		FAA2CCB316DC00C900C22D76 /* normal_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CC8F16DC00C900C22D76 /* normal_bg@2x.png */; };
-		FAA2CCB816DC191E00C22D76 /* form-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CCB616DC191E00C22D76 /* form-bg.png */; };
-		FAA2CCB916DC191E00C22D76 /* form-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAA2CCB716DC191E00C22D76 /* form-bg@2x.png */; };
 		FAA2CCBB16DD2ADA00C22D76 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA2CCBA16DD2ADA00C22D76 /* CoreLocation.framework */; };
 		FAA2CFBB16DD6A8D00C22D76 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2CFBA16DD6A8D00C22D76 /* CoreDataTableViewController.m */; };
 		FAA2CFBE16DD6AF200C22D76 /* MatchesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2CFBD16DD6AF200C22D76 /* MatchesViewController.m */; };
@@ -491,8 +489,6 @@
 		FAA2CC8C16DC00C900C22D76 /* friends_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "friends_icon@2x.png"; path = "assets/friends_icon@2x.png"; sourceTree = "<group>"; };
 		FAA2CC8E16DC00C900C22D76 /* normal_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = normal_bg.png; path = assets/normal_bg.png; sourceTree = "<group>"; };
 		FAA2CC8F16DC00C900C22D76 /* normal_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "normal_bg@2x.png"; path = "assets/normal_bg@2x.png"; sourceTree = "<group>"; };
-		FAA2CCB616DC191E00C22D76 /* form-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "form-bg.png"; path = "assets/form-bg.png"; sourceTree = "<group>"; };
-		FAA2CCB716DC191E00C22D76 /* form-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "form-bg@2x.png"; path = "assets/form-bg@2x.png"; sourceTree = "<group>"; };
 		FAA2CCBA16DD2ADA00C22D76 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FAA2CFB916DD6A8D00C22D76 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataTableViewController.h; path = controllers/CoreDataTableViewController.h; sourceTree = "<group>"; };
 		FAA2CFBA16DD6A8D00C22D76 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataTableViewController.m; path = controllers/CoreDataTableViewController.m; sourceTree = "<group>"; };
@@ -964,8 +960,6 @@
 				94A9593C17105DDE006D141C /* unselected_control@2x.png */,
 				94A9807E16E9E1F10036E52C /* white_bubble.png */,
 				94A9807F16E9E1F10036E52C /* white_bubble@2x.png */,
-				FAA2CCB616DC191E00C22D76 /* form-bg.png */,
-				FAA2CCB716DC191E00C22D76 /* form-bg@2x.png */,
 				FAA2CC6E16DC00C900C22D76 /* interests_icon.png */,
 				FAA2CC6F16DC00C900C22D76 /* interests_icon@2x.png */,
 				FAA2CC7416DC00C900C22D76 /* navigation-bar.png */,
@@ -1245,8 +1239,6 @@
 				FAA2CCB016DC00C900C22D76 /* friends_icon@2x.png in Resources */,
 				FAA2CCB216DC00C900C22D76 /* normal_bg.png in Resources */,
 				FAA2CCB316DC00C900C22D76 /* normal_bg@2x.png in Resources */,
-				FAA2CCB816DC191E00C22D76 /* form-bg.png in Resources */,
-				FAA2CCB916DC191E00C22D76 /* form-bg@2x.png in Resources */,
 				94A9808016E9E1F10036E52C /* white_bubble.png in Resources */,
 				94A9808116E9E1F10036E52C /* white_bubble@2x.png in Resources */,
 				942544E516EF87A100FA79FB /* NoChatsView.xib in Resources */,
