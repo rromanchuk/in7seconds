@@ -334,7 +334,7 @@ class User < ActiveRecord::Base
         puts "#{friend.first_name} '#{friend.screen_name}' #{friend.last_name}"
         puts friend.to_yaml
         
-        next unless photo_url_is_good?(friend.photo_big)
+        next unless User.photo_url_is_good?(friend.photo_big)
 
         user = User.where(vkuid: friend.uid).first_or_create(:password => Devise.friendly_token[0,20],
             :first_name => friend.first_name,
@@ -361,7 +361,7 @@ class User < ActiveRecord::Base
   handle_asynchronously :get_friends
 
 
-  def photo_url_is_good?(photo_url)
+  def self.photo_url_is_good?(photo_url)
     if photo_url =~ /camera_a|deactivated/
       false
     else
