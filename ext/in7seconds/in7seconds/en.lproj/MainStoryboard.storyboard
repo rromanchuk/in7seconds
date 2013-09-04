@@ -837,7 +837,6 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="1TP-4s-6JG" firstAttribute="centerX" secondItem="lSB-LD-oUJ" secondAttribute="centerX" type="default" id="8WN-8p-ZGH"/>
                                     <constraint firstItem="2Kx-vJ-f7d" firstAttribute="leading" secondItem="a7B-zy-7Tz" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="9a5-wh-MAB"/>
                                     <constraint firstAttribute="bottom" secondItem="1TP-4s-6JG" secondAttribute="bottom" constant="10" type="user" id="IOM-2L-Dxl"/>
                                     <constraint firstAttribute="trailing" secondItem="2Kx-vJ-f7d" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="JtE-w8-PdN"/>
@@ -850,6 +849,7 @@
                                     <constraint firstAttribute="trailing" secondItem="8IQ-cQ-JZh" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="oc4-am-uIr"/>
                                     <constraint firstItem="1TP-4s-6JG" firstAttribute="trailing" secondItem="APD-Fz-edu" secondAttribute="trailing" type="user" id="q1G-xh-jhQ"/>
                                     <constraint firstItem="8IQ-cQ-JZh" firstAttribute="leading" secondItem="a7B-zy-7Tz" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="rKj-xF-YFX"/>
+                                    <constraint firstItem="1TP-4s-6JG" firstAttribute="centerX" secondItem="lSB-LD-oUJ" secondAttribute="centerX" type="default" id="uIE-ro-kRm"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Qo-UI-AyA">
