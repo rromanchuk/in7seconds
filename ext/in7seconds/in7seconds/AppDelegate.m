@@ -15,7 +15,7 @@
 #import "UAConfig.h"
 #import "Config.h"
 #import "Facebook.h"
-#import "Appirater.h"
+//#import "Appirater.h"
 #import "RestHookup.h"
 #import "Hookup+REST.h"
 #import "NotificationHandler.h"
@@ -32,7 +32,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [Appirater setAppId:@"604460636"];
+    //[Appirater setAppId:@"604460636"];
     
     // Override point for customization after application launch.
     [Flurry startSession:@"7RBHDYVR2RPTKP7NT4XN"];
@@ -75,14 +75,14 @@
     
     [FBAppEvents activateApp];
     
-    [Appirater setAppId:@"604460636"];
+    //[Appirater setAppId:@"604460636"];
     //[Appirater setDaysUntilPrompt:3];
-    [Appirater setUsesUntilPrompt:4];
+    //[Appirater setUsesUntilPrompt:4];
     //[Appirater setSignificantEventsUntilPrompt:-1];
     //[Appirater setTimeBeforeReminding:2];
     //[Appirater setDebug:YES];
     
-    [Appirater appLaunched:YES];
+    //[Appirater appLaunched:YES];
     return YES;
 }
 							
@@ -101,7 +101,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    [Appirater appEnteredForeground:YES];
+    //[Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

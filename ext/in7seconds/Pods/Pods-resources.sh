@@ -72,7 +72,6 @@ install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/
 install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushSettingsView.xib"
 install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Inbox/Resources/Shared/UAInboxLocalization.bundle"
 install_resource "UrbanAirship-iOS-SDK/Airship/UI/Default/Push/Resources/Shared/UAPushLocalization.bundle"
-install_resource "${TARGET_BUILD_DIR}/Appirater.bundle"
 
 rsync -avr --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 rm -f "$RESOURCES_TO_COPY"
