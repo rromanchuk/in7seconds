@@ -10,7 +10,7 @@
 #import "User+REST.h"
 #import "Image+REST.h"
 
-@interface MyProfileViewController : UITableViewController
+@interface MyProfileViewController : UITableViewController <UITextFieldDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) User *currentUser;
 

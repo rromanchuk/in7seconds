@@ -135,21 +135,24 @@
     UITapGestureRecognizer *tg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfilePhoto:)];
     [cell.profilePhoto addGestureRecognizer:tg];
     
-    
-//    if (user.latitude && [user.latitude integerValue] > 0 && [self.currentUser.latitude integerValue] > 0) {
-//        cell.previewLabel.text = [NSString stringWithFormat:@"в %@ от тебя", [user getDistanceFrom:self.currentUser]];
-//    } else {
-//        cell.previewLabel.text = user.fullLocation;
-//    }
-    
+       
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@""];
+    [df setDateFormat:@"/"];
     
     
     NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
     NSArray *sortedMessages = [user.thread.messages sortedArrayUsingDescriptors:sortDescriptors];
     PrivateMessage *message = [sortedMessages lastObject];
-    cell.subtitleLabel.text = message.message;
+    
+    
+    if (message.message) {
+        cell.subtitleLabel.text = message.message;
+    } else if (user.latitude && [user.latitude integerValue] > 0 && [self.currentUser.latitude integerValue] > 0) {
+        cell.subtitleLabel.text = [NSString stringWithFormat:@"в %@ от тебя", [user getDistanceFrom:self.currentUser]];
+    } else {
+        cell.subtitleLabel.text = user.fullLocation;
+    }
+
     
     
 //    if (message) {

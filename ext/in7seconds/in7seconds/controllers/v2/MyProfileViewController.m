@@ -23,6 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.statusTextField.delegate = self;
     self.title = @"Профиль";
     UITapGestureRecognizer *gr1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pictureFromLibrary:)];
     [self.myPicture1 addGestureRecognizer:gr1];
@@ -251,6 +252,11 @@
     self.currentUser.status = self.statusTextField.text;
 }
 
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 
 
