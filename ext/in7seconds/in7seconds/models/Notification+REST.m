@@ -62,7 +62,7 @@
         notification.isRead = @(YES);
     }
     
-    [RestNotification markAsRead:^(bool *success) {
+    [RestNotification markAsRead:^(BOOL success) {
         
     } onError:^(NSError *error) {
         

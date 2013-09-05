@@ -73,7 +73,7 @@
     self.currentUser = [User currentUser:self.managedObjectContext];
     [self theme];
     
-    [FBSettings publishInstall:@"138127329695553"];
+    [FBAppEvents activateApp];
     
     [Appirater setAppId:@"604460636"];
     //[Appirater setDaysUntilPrompt:3];

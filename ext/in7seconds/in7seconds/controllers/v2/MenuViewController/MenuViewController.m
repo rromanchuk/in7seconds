@@ -30,7 +30,7 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.managedObjectContext = delegate.managedObjectContext;
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_sidebar"]];
     self.navigationController.navigationBarHidden = YES;

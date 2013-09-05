@@ -7,7 +7,6 @@ PODS:
   - JTObjectMapping (1.1)
   - SVProgressHUD (0.9)
   - TestFlightSDK (2.0)
-  - TTTAttributedLabel (1.7.1)
   - UrbanAirship-iOS-SDK (2.0.0)
   - ViewDeck (2.3.1)
 
@@ -20,7 +19,6 @@ DEPENDENCIES:
   - JTObjectMapping (= 1.1)
   - SVProgressHUD (>= 0.8)
   - TestFlightSDK (>= 1.1)
-  - TTTAttributedLabel
   - UrbanAirship-iOS-SDK
   - ViewDeck
 
@@ -33,7 +31,6 @@ SPEC CHECKSUMS:
   JTObjectMapping: 245b1123d0f0d7d0d6ff6537f9d23bbe0d108ddc
   SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
   TestFlightSDK: 940906d4b2550cf397c6f2d2fcc4ebfdcd8ae858
-  TTTAttributedLabel: e504133915a9b11de63cb470ffa2790383a3eb23
   UrbanAirship-iOS-SDK: 2c57f0162d51520cf3181d15825fbd04f6283b25
   ViewDeck: 2cdc67c4b41a10cafc7556b982f028409e33604d
 

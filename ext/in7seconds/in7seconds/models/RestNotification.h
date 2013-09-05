@@ -18,6 +18,6 @@
 + (NSDictionary *)mapping;
 + (void)reload:(void (^)(NSArray *notifications))onLoad
        onError:(void (^)(NSError *error))onError;
-+ (void)markAsRead:(void (^)(bool *success))onLoad
++ (void)markAsRead:(void (^)(BOOL success))onLoad
            onError:(void (^)(NSError *error))onError;
 @end

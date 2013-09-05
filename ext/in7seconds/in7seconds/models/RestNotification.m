@@ -65,7 +65,7 @@
     [[RestClient sharedClient] enqueueHTTPRequestOperation:operation];
 }
 
-+ (void)markAsRead:(void (^)(bool *success))onLoad
++ (void)markAsRead:(void (^)(BOOL success))onLoad
        onError:(void (^)(NSError *error))onError {
     
     RestClient *restClient = [RestClient sharedClient];
