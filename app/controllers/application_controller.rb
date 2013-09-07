@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user_json
-  before_filter :prepare_for_mobile
+  #before_filter :prepare_for_mobile
   #before_filter :miniprofile
 
   ADMINS = [41526347, 2048071, 4807674, 54267159, 201331745]
@@ -41,10 +41,10 @@ class ApplicationController < ActionController::Base
   end
   helper_method :mobile_device?
 
-  def prepare_for_mobile
-    session[:mobile_param] = params[:mobile] if params[:mobile]
-    request.format = :mobile if mobile_device?
-  end
+  # def prepare_for_mobile
+  #   session[:mobile_param] = params[:mobile] if params[:mobile]
+  #   request.format = :mobile if mobile_device?
+  # end
 
   def render_error(status, exception)
     ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver
