@@ -137,9 +137,9 @@
     
        
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"/"];
-    
-    
+    [df setDateFormat:@"d MMM"];
+     
+    NSString *matchedAt = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Совпадение от", nil), [df stringFromDate:user.createdAt]];
     NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
     NSArray *sortedMessages = [user.thread.messages sortedArrayUsingDescriptors:sortDescriptors];
     PrivateMessage *message = [sortedMessages lastObject];
@@ -147,21 +147,15 @@
     
     if (message.message) {
         cell.subtitleLabel.text = message.message;
+    } else if (matchedAt) {
+        cell.subtitleLabel.text = matchedAt;
     } else if (user.latitude && [user.latitude integerValue] > 0 && [self.currentUser.latitude integerValue] > 0) {
         cell.subtitleLabel.text = [NSString stringWithFormat:@"в %@ от тебя", [user getDistanceFrom:self.currentUser]];
     } else {
         cell.subtitleLabel.text = user.fullLocation;
     }
-
     
     
-//    if (message) {
-//        ALog(@"message");
-//        cell.dateLabel.text = [_fm stringFromDate:message.createdAt];
-//    } else {
-//        ALog(@"match created");
-//        cell.dateLabel.text = [_fm stringFromDate:user.createdAt];
-//    }
     return cell;
 }
 
