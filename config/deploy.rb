@@ -1,6 +1,6 @@
 require 'rvm/capistrano'                  # Load RVM's capistrano plugin.
 require 'bundler/capistrano'
-require "delayed/recipes"  
+require "delayed/recipes"
 set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
 
@@ -21,7 +21,6 @@ set :deploy_to, "/home/ubuntu/in7seconds"
 set :deploy_via, :remote_cache
 set :user, "ubuntu"
 set :use_sudo, false
-ssh_options[:forward_agent] = true
 
 # repo details
 set :scm, :git
@@ -60,9 +59,9 @@ namespace :deploy do
     run 'sudo /etc/init.d/nginx restart'
   end
 
-  task :ensure_alive do 
-    cmd = "curl http://in7seconds.com" 
-    system(cmd) 
+  task :ensure_alive do
+    cmd = "curl http://in7seconds.com"
+    system(cmd)
   end
 
 end

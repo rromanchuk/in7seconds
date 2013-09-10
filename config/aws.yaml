@@ -1,9 +1,0 @@
-# Fill in your AWS Access Key ID and Secret Access Key
-# http://aws.amazon.com/security-credentials
-development:
-  access_key_id: 0SPGHF9VGDTQXENQC282
-  secret_access_key: 9zscLw+Y+Mh437fHaG1h+BUCtjViDrCP8ipmJImy
-
-production:
-  access_key_id: 0SPGHF9VGDTQXENQC282
-  secret_access_key: 9zscLw+Y+Mh437fHaG1h+BUCtjViDrCP8ipmJImy
